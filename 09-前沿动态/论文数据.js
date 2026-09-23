@@ -261,39 +261,39 @@ window.LBLB_PAPERS = {
  ],
  "拓扑学": [
   {
+   "title": "Chromatic Purity of Dualizable Categories",
+   "link": "https://arxiv.org/abs/2609.26497v1",
+   "abs": "We develop the chromatic theory of dualizable stable categories, with chromatic purity for continuous $K$-theory at its center. We generalize the chromatic purity theorem for algebraic $K$-theory to continuous…",
+   "date": "2026-09-22",
+   "author": "Yifan Jin"
+  },
+  {
+   "title": "Ext-groups of graded comodules",
+   "link": "https://arxiv.org/abs/2609.26465v1",
+   "abs": "Let $Γ$ be a coalgebra over a field. There is a well-known covariant embedding of the category of graded $Γ$-comodules into the category of graded modules over the dual algebra $Γ^*$. We show that this covariant…",
+   "date": "2026-09-22",
+   "author": "Andrew Salch"
+  },
+  {
    "title": "Gabriel Spectrum of Persistence Categories",
-   "link": "https://www.semanticscholar.org/paper/c131cf448408f49aad9d19ec8b60f1e7df016263",
+   "link": "https://arxiv.org/abs/2609.25761v1",
    "abs": "We determine the Gabriel spectrum of a category of sheaves of vector spaces in purely topological terms. For every topological space $X$, we prove that the Gabriel spectrum of ${\\mathbf{Sh}}(X)$ is homeomorphic to…",
    "date": "2026-09-22",
-   "author": "Manu Harsu、Eero Hyry · arXiv:2609.25761"
+   "author": "Manu Harsu"
   },
   {
-   "title": "Signed Graph Pre-Training and Prompt Learning",
-   "link": "https://www.semanticscholar.org/paper/5bc519931fa19e54bd53cffa42c97d3c878e8a20",
-   "abs": "Signed graphs arise in trust--distrust networks, financial correlation systems, biological interaction graphs, and many other domains in which edges can be positive or negative and may also be directed. While signed…",
+   "title": "Signed GLMY Homology of Signed Graphs via Double Covers",
+   "link": "https://arxiv.org/abs/2609.25557v1",
+   "abs": "We define a signed GLMY chain complex over $\\mathbb{R}$ for signed digraphs using sheet-labelled regular paths. The complex is naturally isomorphic to the deck anti-invariant subcomplex of the ordinary GLMY complex on…",
    "date": "2026-09-22",
-   "author": "Zi-Han Mei、Rong Pan 等 · arXiv:2609.25722"
+   "author": "Shuliang Bai"
   },
   {
-   "title": "Topological Vector Group Topologies Between the Minimal Topology and the Usual Topology on the Real Line",
-   "link": "https://www.semanticscholar.org/paper/46617b3d7a90b70cdb590e6fc1d2258f00c99334",
-   "abs": "For every positive sequence that tends to zero faster than every fixed exponential, we construct a Hausdorff topological Vector Group topology on the additive group of real numbers. It lies strictly between the minimal…",
-   "date": "2026-09-22",
-   "author": "I. Yaroshevskaya · arXiv:2609.26668"
-  },
-  {
-   "title": "DualCL: Dual contrastive learning for hypergraphs",
-   "link": "https://www.semanticscholar.org/paper/32ecdc161d6a063d4a2d5bdaf92fb126889c7a6b",
-   "abs": "Unsupervised hypergraph representation learning is often restricted to a single structural perspective, with hyperedges serving mainly as intermediaries for node-centric message passing. To address this limitation, we…",
-   "date": "2026-09-22",
-   "author": "Yuan Liu"
-  },
-  {
-   "title": "An analytic construction of the universal moduli space of $\\mathrm{SL}_r(\\mathbb C)$-Higgs bundles",
-   "link": "https://www.semanticscholar.org/paper/0d44d5d4ebdd43f8a07fa1046f3ab701fe3f92db",
-   "abs": "We construct the moduli space of marked polystable $\\mathrm{SL}_r(\\mathbb C)$-Higgs bundles via analytic methods. The resulting space is normal and Hausdorff, and its local models are products of a Teichmüller…",
-   "date": "2026-09-22",
-   "author": "Shi-Yu Cao · arXiv:2609.25807"
+   "title": "Fixed point properties and cohomology of Banach representations of arithmetic groups",
+   "link": "https://arxiv.org/abs/2609.24951v1",
+   "abs": "We study fixed point theorems for actions of lattices of semisimple groups. They are deduced from vanishing results for the group cohomology of $L^p$-representations. We show that for lattices in simple groups of higher…",
+   "date": "2026-09-21",
+   "author": "Saar Bader"
   }
  ],
  "复分析": [
@@ -326,11 +326,11 @@ window.LBLB_PAPERS = {
    "author": "Ya-Han Lu、Dong-Yang Xia 等 · arXiv:2609.24750"
   },
   {
-   "title": "A Contour Method for Multiparameter Eigenvalue Problems",
-   "link": "https://www.semanticscholar.org/paper/a26544a0d61de479813f21e31419b91bfce9030e",
-   "abs": "Multiparameter eigenvalue problems arise in boundary value problems, stability analysis, and delay-differential equations. Despite their importance, existing methods either require solving extremely large global…",
+   "title": "Stochastic Analysis of Competing Opinion Dynamics with Trend-Following, Opposition, and Indifference",
+   "link": "https://www.semanticscholar.org/paper/cdd5ddb642a93f027ea07b39e3d776e0c59cd2c2",
+   "abs": "Abstract. We analyze a stochastic model for the diffusion of two competing opinions in a population composed of trend-followers, opposers, and indifferent individuals. The model introduces a reinforcement mechanism…",
    "date": "2026-09-21",
-   "author": "Emil Graf、Alex Townsend · arXiv:2609.24943"
+   "author": "Manuel González-Navarrete"
   }
  ],
  "微分方程": [
