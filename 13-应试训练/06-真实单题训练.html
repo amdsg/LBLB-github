@@ -322,7 +322,21 @@ function refreshStat(){
 }
 function startTrain(){
   queue=buildQueue();qi=0;
-  if(!queue.length){card.innerHTML='<div style="padding:34px;text-align:center;color:var(--ink2)">当前条件下没有题（错题本/SRS 为空时属正常）。</div>';return;}
+  if(!queue.length){
+    if(BANK.length){
+      card.innerHTML='<div style="padding:34px;text-align:center;color:var(--ink2)">当前条件下没有题（错题本/SRS 为空时属正常）。</div>';
+    } else {
+      card.innerHTML=
+        '<div style="padding:15px 17px;background:#FFF9E8;border:1px solid #E5D29F;border-left:4px solid #A8751E;border-radius:10px;color:#5A4310;font-size:13.5px;line-height:1.85">'
+        +'<b>本页需要题库数据，当前为空白状态。</b><br>'
+        +'原因：真题的题目正文与试卷原件因权利方（教育部教育考试院、中国数学会竞赛工作组、各高校、各省考试院）未给出再分发授权，不随本仓库发布，所以公开站点上无法显示题目。<br>'
+        +'本地使用时，把题库文件放回 <code>13-应试训练/123/</code> 即可正常显示。<br>'
+        +'<b>合法获取渠道：</b>考研数学真题 → 教育部教育考试院、各省教育考试院、高等教育出版社历年真题解析；竞赛（CMC）→ 中国数学会官网 <a href="https://www.cms.org.cn/" target="_blank" rel="noopener" style="color:#1F4E9C">cms.org.cn</a>、科学出版社《全国大学生数学竞赛参赛指南》；高校期末与练习 → 各高校数学学院课程网站、校内教务系统；专升本 → 各省教育考试院官网。<br>'
+        +'权利归属、核查依据与发布范围详见 <a href="题库来源与授权.md" style="color:#1F4E9C;font-weight:700">题库来源与授权.md</a>。'
+        +'</div>';
+    }
+    return;
+  }
   showTrain();
 }
 function showTrain(){
@@ -585,6 +599,7 @@ $("onlineBtn").onclick=function(){
 $("resetBtn").onclick=function(){if(confirm("确定清空本机全部做题记录与错题？此操作不可恢复。")){rec={};wrong=[];persist();refreshStat();$("setHint").textContent="已清空。";}};
 
 refreshStat();
+if(!BANK.length){startTrain();}
 var linkedMode=new URLSearchParams(location.search).get("mode");
 if(linkedMode==="exam"){
   var examTab=document.querySelector('.tab[data-v="exam"]');

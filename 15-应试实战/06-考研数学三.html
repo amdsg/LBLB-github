@@ -122,7 +122,14 @@ if(!data.length){
     +'原因：真题的著作权人是教育部考试中心、竞赛工作组与各高校，未给出再分发授权，'
     +'故本仓库只发布元数据（试卷标题、年份、出处链接），不发布题目正文与试卷原件。<br>'
     +'要让本页显示完整题目，请把题库文件放回 <code>13-应试训练/123/</code>'
-    +(missing.length?('（当前缺少：'+missing.join('、')+'）'):'')+'。</div>';
+    +(missing.length?('（当前缺少：'+missing.join('、')+'）'):'')+'。<br>'
+    +'<b>合法获取渠道：</b>考研数学真题 → 教育部教育考试院、各省教育考试院、'
+    +'高等教育出版社历年真题解析；竞赛（CMC）→ 中国数学会官网 '
+    +'<a href="https://www.cms.org.cn/" target="_blank" rel="noopener" style="color:var(--blue)">cms.org.cn</a>、'
+    +'科学出版社《全国大学生数学竞赛参赛指南》；'
+    +'高校期末与练习 → 各高校数学学院课程网站、校内教务系统；专升本 → 各省教育考试院官网。<br>'
+    +'权利归属、核查依据与发布范围详见 '
+    +'<a href="../13-应试训练/题库来源与授权.md" style="color:var(--blue);font-weight:700">题库来源与授权.md</a>。</div>';
 
   if(lib.length){
     var yrs={};
@@ -139,7 +146,7 @@ if(!data.length){
         +'<span class="tagd">'+esc(p.category||'')+'</span>'
         +(p.tag?'<span class="tagd">'+esc(p.tag)+'</span>':'')
         +'</div><div class="stem">'+esc(p.title||'')+'</div>'
-        +'<div class="meta">试卷文件：<code>'+esc(p.file||'')+'</code>（未随仓库分发）</div>'
+        +'<div class="meta">试卷文件：<code>'+esc(p.file||'')+'</code>（原件未随仓库分发，获取渠道见上方说明）</div>'
         +'</article>');
     }
     h+='<div class="qlist">'+rows.join('')+'</div>';
