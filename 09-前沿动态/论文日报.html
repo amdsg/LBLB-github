@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>论文日报 · LBLB 数学前沿</title>
@@ -36,9 +34,20 @@ ol.papers a:hover{text-decoration:underline;}
 .note code{background:#E4DECC;border-radius:4px;padding:1px 6px;word-break:break-all;}
 @media (max-width:640px){body{padding:20px 12px 48px;}h1{font-size:30px;}ol.papers li{padding:12px 12px;}}
 </style><script>
-window.MathJax={tex:{macros:{F:'\\mathbb{F}',C:'\\mathbb{C}',R:'\\mathbb{R}',Z:'\\mathbb{Z}',Q:'\\mathbb{Q}',N:'\\mathbb{N}',HH:'\\mathbb{H}',PP:'\\mathbb{P}',eps:'\\varepsilon',vphi:'\\varphi',half:'\\tfrac{1}{2}'},inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+window.MathJax = {
+ tex: {
+  inlineMath: [['$','$'],['\(','\)']],
+  // arXiv 摘要常用自定义宏，缺定义会渲染成红色报错；补成常规含义
+  macros: { F: '\mathbb{F}', C: '\mathbb{C}', R: '\mathbb{R}',
+            Z: '\mathbb{Z}', Q: '\mathbb{Q}', N: '\mathbb{N}',
+            HH: '\mathbb{H}', PP: '\mathbb{P}', eps: '\varepsilon',
+            vphi: '\varphi', half: '\tfrac{1}{2}' }
+ },
+ options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+ startup: { typeset: true }
+};
 </script>
-<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在（本页需与 assets 目录保持原有相对位置）。';document.currentScript.after(b);"></script>
 
 </head>
 <body>
@@ -46,7 +55,7 @@ window.MathJax={tex:{macros:{F:'\\mathbb{F}',C:'\\mathbb{C}',R:'\\mathbb{R}',Z:'
     <p class="crumb"><a href="../00-总览/index.html">← 总览</a> · <a href="数学前沿.html">数学前沿（重大事件）</a></p>
   <h1>论文日报 Σ</h1>
   <p class="sub">数据源：arXiv 数学分类（math）RSS/Atom</p>
-  <p class="status">自动更新于 2026-09-18 08:30 · 共 25 篇</p>
+  <p class="status">自动更新于 2026-09-23 17:08 · 共 25 篇</p>
 
   <div class="sec">
   <h2>重大事件（人工维护，不受自动更新影响）</h2>
@@ -60,129 +69,129 @@ window.MathJax={tex:{macros:{F:'\\mathbb{F}',C:'\\mathbb{C}',R:'\\mathbb{R}',Z:'
     <h2>最新论文（前 25 篇）</h2>
     <ol class="papers">
 <li>
-  <a href="https://arxiv.org/abs/2609.17543" rel="noopener" target="_blank">Distinct Consecutive Products</a>
-  <div class="meta">Przemek Chojecki · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17543v1 Announce Type: new Abstract: We prove that there is a density-one set of positive integers for which the products of all distinct consecutive blocks are distinct, answering a question of Erdős and</div>
+  <a href="https://arxiv.org/abs/2609.25011" rel="noopener" target="_blank">A Kernel-Certified Verification of the Erdős-Mollin-Walsh Conjecture below $10^{14}$</a>
+  <div class="meta">Ibrahim Mian, Shayaan Siddique · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25011v1 Announce Type: new Abstract: Erdős problem 364 asks whether three consecutive powerful numbers exist, where $n$ is powerful if $p \mid n$ implies $p^2 \mid n$. Erdős (1976) and, independently, Mollin…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17551" rel="noopener" target="_blank">A $\sqrt{2}$-Approximation to the Bilu-Linial Conjecture</a>
-  <div class="meta">Zejun Huang · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17551v1 Announce Type: new Abstract: Bilu and Linial conjectured that if $d\ge 2$, then every $d$-regular graph $G$ has an edge signing $\sigma:E(G)\to\{-1,1\}$ such that its signed adjacency matrix $A_\sigma$</div>
+  <a href="https://arxiv.org/abs/2609.25015" rel="noopener" target="_blank">A compactness theorem for twisted-unitary elements of integral group rings, with a certified route to the theta-unitary Case A at window B(4) of the Promislow group</a>
+  <div class="meta">Moe Tabei · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25015v1 Announce Type: new Abstract: Let G be a torsion-free group whose real group algebra R[G] has no zero divisors, and let u -&gt; u^{*theta} be an l2-isometric anti-involution of R[G] (a composition of the…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17557" rel="noopener" target="_blank">An improved lower bound for the blowup defective chromatic separation constant</a>
-  <div class="meta">Guillaume Lecomte · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17557v1 Announce Type: new Abstract: For a graph $G$ and an integer $d \geq 0$, let $\chi^d(G)$ denote the $d$-defective chromatic number, and let $G \boxtimes K_{d+1}$ be the $(d+1)$-fold clique blowup of $G$</div>
+  <a href="https://arxiv.org/abs/2609.25016" rel="noopener" target="_blank">The domain question for the Nielsen-Soelberg group rings: the commutative case, with certified ball checks</a>
+  <div class="meta">Moe Tabei · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25016v1 Announce Type: new Abstract: Nielsen and Soelberg exhibited three torsion-free groups G_1, G_2, G_3 carrying 8-element sets without unique products, and asked whether any of the group rings R[G_i], R…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17559" rel="noopener" target="_blank">Localizing the Gardam unit: the support geometry of units in F_2[P] and its non-unique-product relatives</a>
-  <div class="meta">Moe Tabei · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17559v1 Announce Type: new Abstract: Gardam's counterexample to the Kaplansky unit conjecture is a unit of $\mathbb{F}_2[P]$, $P$ the Promislow group, whose support has $21$ elements, and Gardam has asked whet</div>
+  <a href="https://arxiv.org/abs/2609.25020" rel="noopener" target="_blank">Compressibility is not Feedback: A Random-access Gap in Causal Semantic Repair</a>
+  <div class="meta">Milad Bafarassat · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25020v1 Announce Type: new Abstract: Semantic feedback can repair a noisy first decode without retransmitting the whole message, but current end-to-end evaluations hide where a feedback design fails. An…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17561" rel="noopener" target="_blank">A closed form for the block-statistic generating function of the $2\times n$ rectangle: the two-row case of Kahane&#x27;s conjecture</a>
-  <div class="meta">Patrick White · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17561v1 Announce Type: new Abstract: Kahane (arXiv:2607.11225) proves that for a fence poset $P$ of size $n$, $n!\,\Omega(P;t)=\sum_{\sigma\in S_n} t^{\mathrm{bl}(\sigma)}$, with $\mathrm{bl}(\sigma)$ a canoni</div>
+  <a href="https://arxiv.org/abs/2609.25023" rel="noopener" target="_blank">Idempotent-free non-solvable evolution algebras over $\mathbb{C}$</a>
+  <div class="meta">Xing-Yu Hu, Ran Wen · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25023v1 Announce Type: new Abstract: A recent conjecture states that a finite-dimensional complex evolution algebra is solvable if and only if it has no non-zero idempotents. We exhibit a three-dimensional…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17567" rel="noopener" target="_blank">Exact three-component covers in 2-coloured random bipartite graphs</a>
-  <div class="meta">Xiao-Chuan Liu, Xu Yang · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17567v1 Announce Type: new Abstract: We resolve the two-colour three-component conjecture of Fernández, Pavez-Signé and Stein for random bipartite graphs. More precisely, we prove that if $G\sim G(n,n,p)$</div>
+  <a href="https://arxiv.org/abs/2609.25025" rel="noopener" target="_blank">String-Monodromy Rigidity from Six-Point Consistency</a>
+  <div class="meta">Jianqi Sheng · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25025v1 Announce Type: new Abstract: Can the characteristic monodromy of string scattering be derived from S-matrix consistency alone, without assuming a worldsheet? We show that finite-particle consistency…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17576" rel="noopener" target="_blank">Non-homogeneous Partial Differential Wave Equation for the Description of Correlated Pair States in the Microworld</a>
-  <div class="meta">Elmira Isayeva, Alireza Khalili Golmankhaneh · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17576v1 Announce Type: new Abstract: In this paper, a new non-homogeneous linear second-order partial differential equation (PDE) is proposed and investigated, designed to describe the dynamics of correlated p</div>
+  <a href="https://arxiv.org/abs/2609.25027" rel="noopener" target="_blank">Fixed Convex-Lens Spectral Constants: Möbius Reduction, Sharp Model Theorems, and Angle-Dependent Bounds</a>
+  <div class="meta">Zijian Zeng · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25027v1 Announce Type: new Abstract: For the intersection of two disks meeting at angle $2\alpha$, let $C(\alpha)$ be the least constant in the associated spectral-set inequality. We give a self-contained…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17586" rel="noopener" target="_blank">An improved second pinching theorem for minimal hypersurfaces with constant scalar curvature in spheres</a>
-  <div class="meta">Ruihan Chen · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17586v1 Announce Type: new Abstract: Let $M^n$ be a closed minimal hypersurface of the unit sphere with constant squared norm $S$ of the second fundamental form. For $n\geq4$, we prove that $S&gt;n$ implies</div>
+  <a href="https://arxiv.org/abs/2609.25029" rel="noopener" target="_blank">Low-Twist Matrix Covariants of Exterior Powers: Vanishing and Modular Phenomena</a>
+  <div class="meta">Jingchuan Ma, Yanhua Liu, Qiaoyun Huang · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25029v1 Announce Type: new Abstract: We study $GL(V)$-equivariant morphisms between the polynomial representations $\operatorname{Sym}^d(\Lambda^r V)$ and $\operatorname{End}(V)\otimes\det(V)^\ell$. Scalar…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17592" rel="noopener" target="_blank">Monge&#x27;s transport problem in synthetic Lorentzian spacetimes</a>
-  <div class="meta">Afiny Akdemir · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17592v1 Announce Type: new Abstract: We prove the existence of solutions to the Lorentzian Monge problem on synthetic Lorentzian spacetimes that satisfy the forward timelike measure contraction property</div>
+  <a href="https://arxiv.org/abs/2609.25030" rel="noopener" target="_blank">Spectral extremal hypergraphs without long Berge cycles</a>
+  <div class="meta">Lihua Feng, Lu Lu, Tingzeng Wu · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25030v1 Announce Type: new Abstract: Let $r\ge 3$ and $k\ge 2r+1$ be fixed integers. We determine, for all sufficiently large $n$, the maximum adjacency-tensor spectral radius of an $n$-vertex $r$-uniform…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17596" rel="noopener" target="_blank">Joint Continuity and Selberg--ODE Equivalence for the $\mathrm{Sine}_\beta$ Pair Correlation Function</a>
-  <div class="meta">Weiyang Fang · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17596v1 Announce Type: new Abstract: We address two questions posed by Qu and Valkó in their study of the pair correlation function of the $\mathrm{Sine}_\beta$ process. First, we prove that the pair correla</div>
+  <a href="https://arxiv.org/abs/2609.25032" rel="noopener" target="_blank">Quadratic-Defect Completions of Spherical $2$-Design Orbits</a>
+  <div class="meta">Kuan-Cheng Chien, Ming-Hsuan Kang · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25032v1 Announce Type: new Abstract: We study how spherical $2$-designs arising from finite group orbits can be completed to spherical $4$-designs by adjoining further orbits, allowing weights in the general…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17603" rel="noopener" target="_blank">$\mathbb{Z}$-Torus Exteriors and Small Knot-Surgery Four-Manifolds</a>
-  <div class="meta">Anar Akhmedov · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17603v1 Announce Type: new Abstract: We study a cut-and-paste operation in which torus neighborhoods in the author's symplectic building blocks $Y_K$ and $X_K$, associated to a genus-one fibered knot $K$, are</div>
+  <a href="https://arxiv.org/abs/2609.25033" rel="noopener" target="_blank">Bistationary Traces, Wide Levels, and Branch-Cover Rigidity for an Unrestricted Typed Variant of the Hayut-Magidor Forcing</a>
+  <div class="meta">Xing-Yu Hu · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25033v1 Announce Type: new Abstract: For every uncountable regular cardinal $\alpha$, $\mathbb S^{\ast}(\alpha)$ is an explicitly typed four-coordinate forcing motivated by the ladder-system construction of…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17605" rel="noopener" target="_blank">Every introenumerable set contains a uniformly introreducible subset</a>
-  <div class="meta">Patrizio Cintioli · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17605v1 Announce Type: new Abstract: We prove that every infinite introenumerable set contains an infinite uniformly introreducible subset, answering both parts of Question 1.7 of Greenberg, Harrison-Trainor</div>
+  <a href="https://arxiv.org/abs/2609.25035" rel="noopener" target="_blank">KKT Stresses, Affine Moments, and Separator Flux in the Heilbronn Triangle Problem</a>
+  <div class="meta">Dawid Trela · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25035v1 Announce Type: new Abstract: For n points in the unit square, the Heilbronn triangle problem asks for the largest possible minimum triangle area. We develop a variational stress theory for this…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17611" rel="noopener" target="_blank">Transitive automorphism groups of maximal curves</a>
-  <div class="meta">Saeed Tafazolian · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17611v1 Announce Type: new Abstract: Let $q=p^h$ be an odd prime power and let $X/\F_{q^2}$ be a maximal curve of genus at least two. We classify the curves for which the full geometric automorphism group is t</div>
+  <a href="https://arxiv.org/abs/2609.25037" rel="noopener" target="_blank">Discrete Concavity of Token-Graph Spectral Radii via Lorentzian Semigroups</a>
+  <div class="meta">Weiqi Jiang (Institute of Theoretical Physics, Chinese Academy of Sciences) · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25037v1 Announce Type: new Abstract: Let $F_k(G)$ be the $k$-token graph of a finite graph with nonnegative edge weights, and let $A_k$ and $D_k$ be its weighted adjacency and degree matrices. For every…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17621" rel="noopener" target="_blank">On motivic cohomology of commutative C*-algebras</a>
-  <div class="meta">Ko Aoki · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17621v1 Announce Type: new Abstract: Consider the ring of complex-valued continuous functions on a compact Hausdorff space $X$. Cortiñas--Thom computed its nonpositive algebraic $K$-theory, confirming Rosenb</div>
+  <a href="https://arxiv.org/abs/2609.25038" rel="noopener" target="_blank">A Vertex-Linear Threshold for Eventually Turán good and the Cluster Method</a>
+  <div class="meta">Xiamiao Zhao, Liying Kang, Yuanpei Wang · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25038v1 Announce Type: new Abstract: A graph $H$ is $K_{r+1}$-Turán-good if, for every sufficiently large $n$, the Turán graph $T_r(n)$ maximizes the number of copies of $H$ among all $n$-vertex…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17623" rel="noopener" target="_blank">Uniform High-Frequency Localization on Quantum Graphs</a>
-  <div class="meta">Binh T. Nguyen · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17623v1 Announce Type: new Abstract: We study uniform high-frequency localization for the Laplacian on compact metric graphs through the least $L^2$-mass that eigenfunctions must place in a prescribed measurab</div>
+  <a href="https://arxiv.org/abs/2609.25041" rel="noopener" target="_blank">A square-root law for equitable coloring</a>
+  <div class="meta">Mohammad F. Marashdeh · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25041v1 Announce Type: new Abstract: An equitable $k$-coloring of a graph partitions its vertex set into $k$ independent sets whose sizes differ by at most one; the least such $k$ is the equitable chromatic…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17629" rel="noopener" target="_blank">Fenchel-Young Duality Gaps: Certified Early Stopping for Regularized Inverse Problems</a>
-  <div class="meta">Pierre-Cyril Aubin-Frankowski (CERMICS UMR 9032, ENPC), Yohann de Castro (ICJ, ECL, IUF, PSPM) · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17629v1 Announce Type: new Abstract: We study computable error bounds and certified early stopping for regularized inverse problems, where a data-fidelity term is traded against a regularizer. The analysis rel</div>
+  <a href="https://arxiv.org/abs/2609.25042" rel="noopener" target="_blank">Infinitely Many Binomial Coefficients of Deficiency One</a>
+  <div class="meta">Xu Zhang · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25042v1 Announce Type: new Abstract: A binomial coefficient $\binom{n}{k}$ is good if all its prime divisors exceed $k$, and its deficiency is the number of $k$-smooth integers in $(n-k,n]$. A short…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17634" rel="noopener" target="_blank">Xiao&#x27;s Genus-Two Fibration: Branched Covers and Braid Monodromy</a>
-  <div class="meta">Anar Akhmedov · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17634v1 Announce Type: new Abstract: We compute the geometric monodromy factorization of Xiao's genus-two Lefschetz fibration directly from its branched-cover construction, following Moishezon's braid-monodrom</div>
+  <a href="https://arxiv.org/abs/2609.25045" rel="noopener" target="_blank">An irreducible decomposition of the Weil representation restricted to open compact subgroups</a>
+  <div class="meta">Yuta Takahashi · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25045v1 Announce Type: new Abstract: For a $p$-adic field of any residual characteristic, we determine irreducible decompositions of the Weil representation restricted to the maximal open compact subgroups…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17641" rel="noopener" target="_blank">Transcendence measure for the values of the logarithmic derivative of the Bessel function $J_0$ at algebraic arguments</a>
-  <div class="meta">St\&#x27;ephane Fischler (LMO), Tanguy Rivoal (IF) · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17641v1 Announce Type: new Abstract: Let $P\in \mathbb Z[X]\setminus\{0\}$ be of degree $\delta\ge 1$ and usual height $H\ge 1$, and let $\alpha\in \overline{\mathbb Q}^*$ be of degree $d\ge 2$. As a consequen</div>
+  <a href="https://arxiv.org/abs/2609.25060" rel="noopener" target="_blank">A reciprocal-Gamma Mehler--Heine limit for Krawtchouk--Sobolev type orthogonal polynomials with an exterior mass point</a>
+  <div class="meta">Anier Soria Lorente, Junior Michel · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25060v1 Announce Type: new Abstract: We study the monic polynomials $\Sob{n}$ orthogonal with respect to a Sobolev-type modification of the discrete Krawtchouk inner product in which a single point mass at an…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17651" rel="noopener" target="_blank">Homological invariants of Edge Ideals associated to powers of cycles</a>
-  <div class="meta">Shahnawaz Ahmad Rather, S. Pirzada, M. Aijaz · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17651v1 Announce Type: new Abstract: Let $G_{n,m}=\overline{\C_n^{[m]}}$, where $\C_n^{[m]}$ denotes the closed $m$th power of the $n$-cycle. We study the graded Betti numbers and homological invariants of the</div>
+  <a href="https://arxiv.org/abs/2609.25062" rel="noopener" target="_blank">Extremal expectations in card guessing with partial feedback: proofs of two conjectures of Diaconis-Graham-Spiro</a>
+  <div class="meta">Congyi Luo · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25062v1 Announce Type: new Abstract: We study the minimum and maximum expected scores over all adaptive strategies in sequential card guessing with yes/no feedback. A deck contains $n$ labels, each appearing…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17687" rel="noopener" target="_blank">Geometric Hybrid Dynamical Systems: Part I - Modeling and Stability</a>
-  <div class="meta">Piyush P. Jirwankar, Daniel E. Ochoa, Ricardo G. Sanfelice · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17687v1 Announce Type: new Abstract: We present a framework for the modeling and analysis of geometric hybrid dynamical systems as hybrid inclusions on $C^1$-manifolds. Using tools from nonsmooth and set-value</div>
+  <a href="https://arxiv.org/abs/2609.25063" rel="noopener" target="_blank">Optimal complete-feedback card guessing under nonincreasing valley weights: A proof of the Diaconis-Fulman-Holmes shelf-shuffling conjecture</a>
+  <div class="meta">Congyi Luo · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25063v1 Announce Type: new Abstract: Let a random permutation $W\in S_n$ represent the order of $n$ distinct cards. After each guess, the player learns the actual card, and the objective is to maximize the…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17692" rel="noopener" target="_blank">Bicomplex Characteristic Classes</a>
-  <div class="meta">Jos\&#x27;e Antonio Arciniega-Nev\&#x27;arez, Yesenia Bravo-Ortega, In\&#x27;acio Rabelo, Agust\&#x27;in Romano-Vel\&#x27;azquez · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17692v1 Announce Type: new Abstract: We introduce bicomplex fiber bundles and develop a framework for bicomplex characteristic classes and almost bicomplex structures on smooth manifolds. In the first part, we</div>
+  <a href="https://arxiv.org/abs/2609.25064" rel="noopener" target="_blank">Real Inertia, Phase Obstructions, and de Rham Algebras for Orientifolds</a>
+  <div class="meta">Xiaobin Li · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25064v1 Announce Type: new Abstract: In this paper, we study de Rham realizations for finite orientifold quotients. On the orientation preserving inertia of an almost complex global quotient we construct an…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17700" rel="noopener" target="_blank">Integer Realization of an Equivelar Octahedron of Genus 3</a>
-  <div class="meta">Ruslan Mizhaev · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17700v1 Announce Type: new Abstract: We present an integer-coordinate realization of a genus-3 polyhedral surface with eight planar simple nonagonal faces. It has 24 vertices and 36 edges, and each vertex is i</div>
+  <a href="https://arxiv.org/abs/2609.25065" rel="noopener" target="_blank">Affine Anchors and Cylinder Obstructions in the Three-Dimensional Tingley Problem</a>
+  <div class="meta">Yicen Ma · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25065v1 Announce Type: new Abstract: Let $X$ be a three-dimensional real Banach space and let $f:S_X\to S_Y$ be a surjective isometry. We study the propagation of an affine formula for $f$ on a relatively…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17703" rel="noopener" target="_blank">Hodge integrals on admissible covers and tautological projections of Prym classes</a>
-  <div class="meta">Yoav Len, Sam Molcho, Navid Nabijou · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17703v1 Announce Type: new Abstract: In the moduli space of abelian varieties, Prym loci parametrise Prym varieties associated to covers of curves with fixed degree and monodromy data. We derive and implement</div>
+  <a href="https://arxiv.org/abs/2609.25068" rel="noopener" target="_blank">Forking in monadically NIP theories</a>
+  <div class="meta">Artem Chernikov · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25068v1 Announce Type: new Abstract: We demonstrate that forking in monadically NIP theories satisfies a very strong form of triviality over arbitrary sets, generalizing Baldwin-Shelah in monadically stable…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17712" rel="noopener" target="_blank">Range Failure, Resolvent Growth, and Resonance in Partially Dissipative Systems</a>
-  <div class="meta">Boris Muha, Sebastian Schwarzacher, Justin T. Webster · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17712v1 Announce Type: new Abstract: We introduce several notions of resonance for systems exhibiting weak or partial dissipation: $\dot u=Au+f(t)$, with $A$ the generator of a strongly stable semigroup $S(t)$</div>
+  <a href="https://arxiv.org/abs/2609.25080" rel="noopener" target="_blank">Nonabelian Torus Exteriors in $\mathbb S^4$ and Torus Replacement in Four-Manifolds</a>
+  <div class="meta">Anar Akhmedov, Azer Akhmedov · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25080v1 Announce Type: new Abstract: We study torus-exterior replacement in four-manifolds, with the construction controlled by the peripheral homomorphism. Using torus exteriors arising from the work of…</div>
 </li>
 <li>
-  <a href="https://arxiv.org/abs/2609.17715" rel="noopener" target="_blank">Lattice points close to a smooth curve and squarefull numbers in short intervals. II</a>
-  <div class="meta">Ognian Trifonov · 2026-09-17</div>
-  <div class="abs">arXiv:2609.17715v1 Announce Type: new Abstract: By applying recent estimates on the number of integer solutions of ternary quadratic forms in boxes due to Browning and Heath-Brown, we obtain new estimates for the number</div>
+  <a href="https://arxiv.org/abs/2609.25084" rel="noopener" target="_blank">Finite-state counterexamples to Ross&#x27;s second queueing conjecture</a>
+  <div class="meta">Yitzchak Shmalo · 2026-09-23</div>
+  <div class="abs">arXiv:2609.25084v1 Announce Type: new Abstract: We construct finite-state Markov arrival-rate processes for which faster modulation increases the mean stationary workload of a stable single-server queue, disproving the…</div>
 </li>
     </ol>
   </div>
@@ -197,7 +206,5 @@ window.MathJax={tex:{macros:{F:'\\mathbb{F}',C:'\\mathbb{C}',R:'\\mathbb{R}',Z:'
   </div>
 
 </div>
-<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
-
 </body>
 </html>
