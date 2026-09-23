@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="no-referrer">
+<title>逻辑斯蒂分叉图 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='28' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%9E%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--magenta:#B0396E;--green:#2E7D5B;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--magenta);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:42px;margin:14px 0 6px;}
+h1 .sym{color:var(--magenta);font-style:italic;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif;font-size:26px;border-left:6px solid var(--magenta);padding-left:14px;}
+.sec h2 small{font-size:13px;color:var(--ink2);font-family:"Noto Sans SC",sans-serif;font-weight:400;margin-left:8px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:20px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#fffef9;}
+#cv2{cursor:crosshair;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--magenta);width:220px;}
+.controls .btn{background:var(--magenta);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls .btn.gray{background:#8A8270;}
+.info{font-family:Georgia,serif;font-size:14px;color:var(--ink2);margin-left:auto;}
+.explain{margin-top:16px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+.tag{display:inline-block;margin-top:10px;font-size:12px;letter-spacing:.08em;color:var(--magenta);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--magenta);text-decoration:none;}
+</style>
+<script>
+window.MathJax={loader:{paths:{mathjax:"../assets/mathjax/es5"}},tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="可视化导航.html">← 返回可视化</a>
+  <h1>逻辑斯蒂分叉图 <span class="sym">λ</span></h1>
+  <p class="sub">$x_{n+1}=r\,x_n(1-x_n)$：横轴放参数 $r$，纵轴放长期轨道。从一条线到周期倍增，再到混沌雾；拖动框选可放大周期窗口。</p>
+  <span class="tag">动力系统 · 分叉 · Lyapunov</span>
+</header>
+
+<div class="sec">
+  <h2>分叉图 <small>按住拖拽一个矩形 → 放大该区；「复位」回到 2.5–4</small></h2>
+  <div class="fig">
+    <canvas id="cv2" width="880" height="420" role="img" aria-label="逻辑斯蒂分叉图：交互式画布，内容随下方控件实时变化"></canvas>
+    <div class="controls">
+      <label>当前 r</label><input type="range" id="rSl" min="250" max="400" value="357">
+      <span id="rV" class="info">3.57</span>
+      <button class="btn gray" id="reset">复位</button>
+      <span class="info" id="lam">λ = —</span>
+    </div>
+    <p class="explain"><b>怎么玩：</b>在图上<b>按住拖拽</b>一个矩形，松开即放大该 $r$ 区间——去 $r\approx3.828$ 附近找周期 3 的窗口。<b>当前 r</b> 竖线标出值，<b>λ</b> 是 Lyapunov 指数：负（绿）=稳定/周期，正（红）=混沌。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>蛛网图 <small>当前 r 下，轨道如何在对角线与抛物线之间弹跳</small></h2>
+  <div class="fig">
+    <canvas id="cv" width="440" height="440" style="max-width:440px;" role="img" aria-label="逻辑斯蒂分叉图：交互式画布，内容随下方控件实时变化"></canvas>
+    <p class="explain"><b>读图：</b>抛物线 $f(x)=rx(1-x)$ 与对角线 $y=x$。竖线=迭代 $x\to f(x)$，横线=映回对角线。r=3.3 收敛到两点环；r=3.9 四处乱跳。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>数学原理 <small>Feigenbaum 常数</small></h2>
+  <p>分叉点 $r_1,r_2,\dots$ 间距比收敛于 $\delta=4.6692\ldots$，与具体单峰映射无关。Lyapunov 指数 $\lambda=\lim\frac1N\sum\ln|r(1-2x_n)|$；$\lambda>0$ 即混沌。$r=4$ 时 $\lambda=\ln2$。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+  var cv2=document.getElementById('cv2'),ctx2=cv2.getContext('2d');
+  var W2=cv2.width,H2=cv2.height;
+  var rLo=2.5,rHi=4.0;
+  var rSl=document.getElementById('rSl'),rV=document.getElementById('rV'),lam=document.getElementById('lam');
+  var drag=false,x0=0,x1=0;
+  function drawBif(){
+    ctx2.fillStyle='#fffef9';ctx2.fillRect(0,0,W2,H2);
+    ctx2.strokeStyle='#22262B';ctx2.lineWidth=1.5;ctx2.strokeRect(0,0,W2,H2);
+    var cols=Math.floor(W2/2);
+    for(var c=0;c<cols;c++){
+      var r=rLo+(rHi-rLo)*c/cols;
+      var x=0.5,ly=0;
+      for(var k=0;k<200;k++)x=r*x*(1-x);
+      for(var s=0;s<160;s++){
+        x=r*x*(1-x);
+        ly+=Math.log(Math.abs(r*(1-2*x))+1e-12);
+        ctx2.fillStyle='rgba(176,57,110,0.55)';
+        ctx2.fillRect(c*2,H2-2-(H2-10)*x,2,2);
+      }
+      ly/=160;
+      ctx2.fillStyle=(ly>0)?'rgba(192,57,43,0.8)':'rgba(46,125,91,0.8)';
+    }
+    var rNow=parseInt(rSl.value,10)/100;
+    var px=(rNow-rLo)/(rHi-rLo)*W2;
+    ctx2.strokeStyle='#1F4E9C';ctx2.setLineDash([4,3]);ctx2.beginPath();ctx2.moveTo(px,0);ctx2.lineTo(px,H2);ctx2.stroke();ctx2.setLineDash([]);
+    // recompute lambda for rNow
+    var xx=0.5,ll=0;for(var t=0;t<500;t++)xx=rNow*xx*(1-xx);
+    for(var s2=0;s2<500;s2++){xx=rNow*xx*(1-xx);ll+=Math.log(Math.abs(rNow*(1-2*xx))+1e-12);}
+    ll/=500;
+    lam.textContent='λ = '+ll.toFixed(3)+(ll>0?'（混沌）':'（稳定）');
+    lam.style.color=ll>0?'#C0392B':'#2E7D5B';
+  }
+  function rOf(px){return rLo+(rHi-rLo)*px/W2;}
+  cv2.addEventListener('mousedown',function(e){var b=cv2.getBoundingClientRect();drag=true;x0=(e.clientX-b.left)*W2/b.width;x1=x0;});
+  cv2.addEventListener('mousemove',function(e){if(!drag)return;var b=cv2.getBoundingClientRect();x1=(e.clientX-b.left)*W2/b.width;drawBif();var a=Math.min(x0,x1),bb=Math.max(x0,x1);ctx2.fillStyle='rgba(31,78,156,0.15)';ctx2.fillRect(a,0,bb-a,H2);ctx2.strokeStyle='#1F4E9C';ctx2.strokeRect(a,0,bb-a,H2);});
+  window.addEventListener('mouseup',function(){
+    if(!drag)return;drag=false;
+    var a=Math.min(x0,x1),bb=Math.max(x0,x1);
+    if(bb-a>8){var lo=rOf(a),hi=rOf(bb);if(hi-lo>0.005){rLo=lo;rHi=hi;}}
+    drawBif();drawCob();
+  });
+  document.getElementById('reset').addEventListener('click',function(){rLo=2.5;rHi=4.0;drawBif();drawCob();});
+  rSl.addEventListener('input',function(){rV.textContent=(parseInt(this.value,10)/100).toFixed(2);drawBif();drawCob();});
+
+  // cobweb
+  var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+  function drawCob(){
+    var W=cv.width,H=cv.height,p=30,iw=W-2*p;
+    ctx.fillStyle='#fffef9';ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle='#22262B';ctx.strokeRect(p,p,iw,iw);
+    ctx.strokeStyle='#888';ctx.beginPath();ctx.moveTo(p,p+iw);ctx.lineTo(p+iw,p);ctx.stroke();
+    ctx.strokeStyle='#B0396E';ctx.beginPath();
+    for(var x=0;x<=1;x+=0.02){var y=rNow()*x*(1-x);ctx.lineTo(p+x*iw,p+iw-y*iw);}ctx.stroke();
+    var r=rNow(),xx=0.1;
+    ctx.strokeStyle='#C0392B';ctx.lineWidth=1.4;ctx.beginPath();
+    var px=p+xx*iw,py=p+iw;ctx.moveTo(px,py);
+    for(var k=0;k<40;k++){
+      var fy=r*xx*(1-xx);
+      ctx.lineTo(px,p+iw-fy*iw);xx=fy;px=p+xx*iw;
+      ctx.lineTo(px,p+iw-xx*iw);
+    }
+    ctx.stroke();ctx.lineWidth=1;
+  }
+  function rNow(){return parseInt(rSl.value,10)/100;}
+  rV.textContent=rNow().toFixed(2);
+  drawBif();drawCob();
+})();
+</script>
+
+</body>
+</html>

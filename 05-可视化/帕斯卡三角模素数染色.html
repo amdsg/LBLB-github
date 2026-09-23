@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>帕斯卡三角模素数染色 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='26' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3EC%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--green:#2E7D5B;--magenta:#B0396E;--gold:#A8751E;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--green);text-decoration:none;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:38px;margin:14px 0 6px;}
+h1 .sym{color:var(--green);font-style:italic;}
+.tag{display:inline-block;background:var(--paper2);border:1px solid var(--line);color:var(--green);border-radius:999px;padding:2px 12px;font-size:12px;margin-left:10px;vertical-align:middle;}
+.sub{color:var(--ink2);font-size:16px;max-width:780px;}
+.sec{margin-top:36px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--green);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;background:#fffef9;border:1px solid var(--line);border-radius:8px;cursor:crosshair;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--green);width:180px;}
+button{background:var(--green);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:14px;cursor:pointer;}
+button.ghost{background:var(--paper2);color:var(--ink);border:1px solid var(--line);}
+button.on{background:var(--magenta);}
+.info{font-family:Georgia,serif;font-size:15px;color:var(--ink);margin-left:auto;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>帕斯卡三角模素数染色 <span class="sym">C(n,k) mod p</span><span class="tag">数论 · 分形</span></h1>
+<p class="sub">把组合数 $C(n,k)$ 对素数 $p$ 取余并按余数染色——模 2 就是 Sierpinski 三角形，模 3、模 7 是更精细的自相似分形。</p>
+</header>
+
+<div class="sec">
+<h2>分形图案 <small>拖动滑块改素数与行数；点下方余数按钮只看某一类</small></h2>
+<div class="fig">
+<canvas id="cv" width="880" height="560" role="img" aria-label="帕斯卡三角模素数染色：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls">
+<label>素数 p = <span id="pV">2</span></label>
+<input type="range" id="p" min="2" max="7" step="1" value="2">
+<label>行数 = <span id="rV">64</span></label>
+<input type="range" id="r" min="10" max="128" step="2" value="64">
+<button class="ghost on" data-r="all">全部余数</button>
+<span id="rbtns" style="display:inline-flex;gap:6px;flex-wrap:wrap;"></span>
+<span class="info" id="stat"></span>
+</div>
+<p class="explain"><b>怎么玩：</b>每格颜色代表 $C(n,k)\bmod p$ 的余数。模 2 时黑色=0、墨绿=1，经典 Sierpinski 垫片就出现了。调大行数看分形递归；点某个余数按钮可单独高亮它（其余变灰）。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>原理：Lucas 定理</h2>
+<p>$C(n,k)\equiv0\pmod p$ 当且仅当 $k$ 的 $p$ 进制某一位超过 $n$ 的对应位。这正是分形成因——三角按 $p$ 进位递归地"挖空"。$p=2$ 时就是 Sierpinski 三角形。</p>
+</div>
+
+<footer style="margin-top:48px;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--ink2);">
+<a class="back" href="可视化导航.html">← 可视化导航</a>
+</footer>
+</div>
+
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d'),stat=document.getElementById('stat');
+var pEl=document.getElementById('p'),rEl=document.getElementById('r');
+var pV=document.getElementById('pV'),rV=document.getElementById('rV');
+var highlight=-1;
+var palette={2:['#22262B','#2E7D5B'],3:['#22262B','#2E7D5B','#A8751E'],5:['#22262B','#2E7D5B','#A8751E','#B0396E','#3B6EA5'],7:['#22262B','#2E7D5B','#A8751E','#B0396E','#3B6EA5','#6B8E23','#8B5A2B']};
+function isPrime(x){return [2,3,5,7].indexOf(x)>=0;}
+function nextPrime(x){var ps=[2,3,5,7];for(var i=0;i<ps.length;i++)if(ps[i]>=x)return ps[i];return 7;}
+function draw(){
+  var p=nextPrime(parseInt(pEl.value));pV.textContent=p;
+  var R=parseInt(rEl.value);rV.textContent=R;
+  var row=new Int32Array(R),colW=cv.width/R;
+  var rowH=(cv.height-20)/R;
+  ctx.clearRect(0,0,cv.width,cv.height);
+  var colors=palette[p]||palette[7];
+  var counts=new Array(p).fill(0);
+  for(var n=0;n<R;n++){
+    // compute row n mod p using recurrence upward
+    for(var k=n;k>=0;k--){
+      if(k===0||k===n)row[k]=1;
+      else row[k]=(row[k]+row[k-1])%p;
+    }
+    for(k=0;k<=n;k++){
+      var val=row[k];counts[val]++;
+      var x=(cv.width-(n+1)*colW)/2+k*colW;
+      var y=10+n*rowH;
+      if(highlight>=0&&val!==highlight)ctx.fillStyle='#EDE7D6';
+      else ctx.fillStyle=colors[val];
+      ctx.fillRect(x+0.5,y+0.5,colW-1,rowH-1);
+    }
+  }
+  stat.textContent='p='+p+' · '+R+' 行 · 非零格 '+counts.slice(1).reduce((a,b)=>a+b,0);
+}
+function buildRbtns(){
+  var box=document.getElementById('rbtns');box.innerHTML='';
+  var p=nextPrime(parseInt(pEl.value));
+  var colors=palette[p]||palette[7];
+  for(var i=0;i<p;i++){
+    var b=document.createElement('button');
+    b.className='ghost'+(highlight===i?' on':'');
+    b.textContent='余'+i;
+    b.style.borderColor=colors[i];
+    (function(idx){b.onclick=function(){highlight=(highlight===idx?-1:idx);this.classList.toggle('on',highlight===idx);draw();};})(i);
+    box.appendChild(b);
+  }
+}
+document.querySelector('[data-r="all"]').onclick=function(){highlight=-1;this.classList.add('on');buildRbtns();draw();};
+pEl.oninput=function(){buildRbtns();draw();};
+rEl.oninput=draw;
+buildRbtns();draw();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="no-referrer">
+<title>分形树 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='28' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%98%98%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--green:#2E7D5B;--gold:#A8751E;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--green);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:42px;margin:14px 0 6px;}
+h1 .sym{color:var(--green);font-style:italic;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif;font-size:26px;border-left:6px solid var(--green);padding-left:14px;}
+.sec h2 small{font-size:13px;color:var(--ink2);font-family:"Noto Sans SC",sans-serif;font-weight:400;margin-left:8px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:20px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#fdfaf0;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--green);width:180px;}
+.controls .btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls .btn.gray{background:#8A8270;}
+.info{font-family:Georgia,serif;font-size:14px;color:var(--ink2);margin-left:auto;}
+.explain{margin-top:16px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+.tag{display:inline-block;margin-top:10px;font-size:12px;letter-spacing:.08em;color:var(--green);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--green);text-decoration:none;}
+</style>
+<script>
+window.MathJax={loader:{paths:{mathjax:"../assets/mathjax/es5"}},tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="可视化导航.html">← 返回可视化</a>
+  <h1>分形树 <span class="sym">♣</span></h1>
+  <p class="sub">树干末端长出两根略短、略偏的树枝，再在每根上重复——一行递归画出一棵有生命的树。调一调分叉角与缩放比，看松柏、垂柳、仙人掌次第出现。</p>
+  <span class="tag">分形 · 递归几何</span>
+</header>
+
+<div class="sec">
+  <h2>生长画布 <small>拖动滑块实时重画；开「风」看整棵树摇摆</small></h2>
+  <div class="fig">
+    <canvas id="cv" width="880" height="600" role="img" aria-label="分形树：交互式画布，内容随下方控件实时变化"></canvas>
+    <div class="controls">
+      <label>分叉角</label><input type="range" id="ang" min="5" max="80" value="28">
+      <span id="angV" class="info">28°</span>
+      <label>长度比</label><input type="range" id="rat" min="50" max="80" value="72">
+      <span id="ratV" class="info">0.72</span>
+      <label>深度</label><input type="range" id="dep" min="3" max="12" value="10">
+      <span id="depV" class="info">10</span>
+      <button class="btn" id="wind">风：关</button>
+    </div>
+    <p class="explain"><b>怎么玩：</b>把<b>分叉角</b>调到 60°+ 像仙人掌，<b>长度比</b>调到 0.55 像矮松；深度越高枝叶越密（注意深度 12 时线段数约 $2^{12}=4096$）。打开<b>风</b>，整棵树随时间轻轻摇晃——分形不再静止。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>数学原理 <small>自相似与 L-系统</small></h2>
+  <p>树枝变换 = 旋转 $\pm\theta$ + 缩放 $r$。整棵树是这组变换的吸引子。把 $\theta$ 加大、$r$ 减小，就能在同一套代码里切换树种——这正是 Lindenmayer（1968）<b>L-系统</b>模拟植物生长的思想：用符号重写规则描述「细胞分裂」，再用海龟绘图把字符串画成树。</p>
+  <p><b>真实树木为何像分形：</b>光照与力学优化让树枝在长度和角度上满足近似自相似；这解释了为什么断枝断面仍像一棵小树。Mandelbrot 称「云朵不呈球面、山峦不呈圆锥、海岸不是圆」——自然界偏爱分形。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+  var W=cv.width,H=cv.height;
+  var angEl=document.getElementById('ang'),ratEl=document.getElementById('rat'),depEl=document.getElementById('dep');
+  var angV=document.getElementById('angV'),ratV=document.getElementById('ratV'),depV=document.getElementById('depV');
+  var wind=false,t=0,raf=null;
+  function branch(x,y,len,dir,depth){
+    if(depth===0)return;
+    var bend=(wind?Math.sin(t+depth*0.6)*0.02*depth:0);
+    var ndir=dir+bend;
+    var x2=x+len*Math.cos(ndir),y2=y+len*Math.sin(ndir);
+    var a=Math.max(0.15,depth/12);
+    ctx.strokeStyle='rgba('+Math.round(120-a*60)+','+Math.round(90+a*70)+','+Math.round(50-a*30)+',0.9)';
+    ctx.lineWidth=Math.max(0.6,depth*0.7);
+    ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x2,y2);ctx.stroke();
+    var th=angEl.value*Math.PI/180, r=ratEl.value/100;
+    branch(x2,y2,len*r,ndir-th,depth-1);
+    branch(x2,y2,len*r,ndir+th,depth-1);
+  }
+  function draw(){
+    ctx.fillStyle='#fdfaf0';ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle='#A8751E';ctx.beginPath();ctx.moveTo(0,H-20);ctx.lineTo(W,H-20);ctx.stroke();
+    branch(W/2,H-20,150,-Math.PI/2,parseInt(depEl.value,10));
+  }
+  function loop(){if(!wind)return;t+=0.05;draw();raf=requestAnimationFrame(loop);}
+  function sync(){angV.textContent=angEl.value+'°';ratV.textContent=(ratEl.value/100).toFixed(2);depV.textContent=depEl.value;draw();}
+  [angEl,ratEl,depEl].forEach(function(el){el.addEventListener('input',sync);});
+  document.getElementById('wind').addEventListener('click',function(){
+    wind=!wind;this.textContent='风：'+(wind?'开':'关');
+    if(wind)loop();else cancelAnimationFrame(raf);
+  });
+  sync();
+})();
+</script>
+
+</body>
+</html>

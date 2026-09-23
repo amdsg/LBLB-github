@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>数学书单与资源 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%98%B0%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --green:#2E7D5B; --gold:#A8751E; --blue:#1F4E9C; --red:#C0392B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--green); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--green); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:700px;}
+.sec{margin-top:48px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--green); padding-left:14px;}
+.sec h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.tbl{margin-top:18px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+.tbl td a.bk{color:var(--hm);text-decoration:none;font-weight:600;}
+.bk{font-family:Georgia,"Noto Serif SC",serif; font-weight:700; font-size:14.5px;}
+.tbl td .au{font-size:12.5px; color:var(--ink2);}
+.diff{font-size:12px; color:var(--gold); white-space:nowrap;}
+.note{margin-top:26px; background:var(--paper2); border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:13.5px; color:var(--ink2);}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px;}
+footer a{color:var(--green); text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>数学书单与资源 <span class="sym">☰</span></h1>
+  <p class="sub">按三条路线选书：读故事（兴趣）、啃教材（系统）、追前沿（进阶）。难度用 ★ 标注，★ 越多越硬核。</p>
+</header>
+
+<div class="sec">
+  <h2>一档：兴趣入门 <small>读得进去，比读完更重要</small></h2>
+  <table class="tbl">
+    <colgroup><col style="width:34%"><col style="width:52%"><col style="width:14%"></colgroup>
+    <thead><tr><th>书</th><th>推荐理由</th><th>难度</th></tr></thead>
+    <tbody>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E5%AD%A6" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">什么是数学 ↗</a><br><span class="au">柯朗 &amp; 罗宾斯</span></td><td>面向聪明外行的全景导览，分析、代数、几何、拓扑一次看全，近百年来最好的「数学是什么」答案。</td><td class="diff">★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E8%B4%B9%E9%A9%AC%E5%A4%A7%E5%AE%9A%E7%90%86" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">费马大定理 ↗</a><br><span class="au">西蒙·辛格</span></td><td>358 年攻防战的纪实文学：从费马边注到怀尔斯 1994 年的最后一战，读起来像侦探小说。</td><td class="diff">★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E6%95%B0%E5%AD%A6%E5%A5%B3%E5%AD%A9" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">数学女孩 ↗</a> 系列<br><span class="au">结城浩</span></td><td>用对话带你把定理亲手证一遍——数列、群论、伽罗瓦理论都有对应的分册。适合跟着写。</td><td class="diff">★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E6%97%A0%E8%A8%80%E7%9A%84%E8%AF%81%E6%98%8E" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">无言的证明 ↗</a><br><span class="au">R. B. Nelsen</span></td><td>上百幅「一眼看懂」的图形证明图集，配合本库「美丽证明」页一起服用。</td><td class="diff">★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E5%93%A5%E5%BE%B7%E5%B0%94%E3%80%81%E8%89%BE%E8%88%8D%E5%B0%94%E3%80%81%E5%B7%B4%E8%B5%AB" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">哥德尔、艾舍尔、巴赫 ↗</a><br><span class="au">侯世达</span></td><td>数学（哥德尔定理）、艺术（埃舍尔版画）、音乐（巴赫赋格）的复调合奏，关于「自指」的终极之书。</td><td class="diff">★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E6%95%B0%E5%AD%A6%E6%B2%89%E6%80%9D%E5%BD%95" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">数学沉思录 ↗</a><br><span class="au">马里奥·利维奥</span></td><td>关于「为什么数学有用」的哲学追问，从斐波那契到黎曼假设，温和而有洞见。</td><td class="diff">★</td></tr>
+          <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=什么是数学" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">什么是数学 ↗</a><br><span class="au">Richard Courant / Herbert Robbins</span></td><td>写得最像「数学本身」的入门书，从数论讲到拓扑，每章都能独立读。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=从一到无穷大" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">从一到无穷大 ↗</a><br><span class="au">George Gamow</span></td><td>把数论、相对论、熵与基因讲成一件事，几十年来最好的科学启蒙读物之一。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=数学之美" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">数学之美 ↗</a><br><span class="au">吴军</span></td><td>用信息论、隐马尔可夫模型讲搜索引擎与翻译，中文语境下的数学应用入门。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=数学女孩" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">数学女孩 ↗</a><br><span class="au">结城浩</span></td><td>以高中生的日常对话引入数列、生成函数、泰勒展开，适合被公式吓过的人。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=怎样解题" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">怎样解题 ↗</a><br><span class="au">George Pólya</span></td><td>「理解题目→拟定方案→执行→回顾」四步法，是所有解题方法论的原型。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=数学与猜想" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">数学与猜想 ↗</a><br><span class="au">George Pólya</span></td><td>《怎样解题》的进阶版：讲合情推理——数学发现是怎么猜出来的。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=具体数学" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">具体数学：计算机科学基础 ↗</a><br><span class="au">Graham / Knuth / Patashnik</span></td><td>求和、递归、生成函数、离散概率。Knuth 写的，难度不低但极扎实。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=Proofs%20from%20THE%20BOOK" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">Proofs from THE BOOK ↗</a><br><span class="au">Aigner / Ziegler</span></td><td>把「最漂亮的证明」结集，许多章节只需初等知识就能读懂。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=费马大定理" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">费马大定理：一个困惑了世间智者 358 年的谜 ↗</a><br><span class="au">Simon Singh</span></td><td>数学史写成侦探小说的标杆，讲怀尔斯如何补上最后一块。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=哥德尔、艾舍尔、巴赫" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">哥德尔、艾舍尔、巴赫 ↗</a><br><span class="au">Douglas Hofstadter</span></td><td>把哥德尔不完备、艾舍尔的画与巴赫的卡农讲成同一个主题：自指。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=数学简史" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">数学简史 ↗</a><br><span class="au">Morris Kline</span></td><td>克莱因的《古今数学思想》太厚，这本是更易读的通史入口。</td><td class="diff">★★★★</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <h2>二档：系统学习 <small>一条线啃到底，比什么都有效</small></h2>
+  <table class="tbl">
+    <colgroup><col style="width:34%"><col style="width:52%"><col style="width:14%"></colgroup>
+    <thead><tr><th>书</th><th>推荐理由</th><th>难度</th></tr></thead>
+    <tbody>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E6%99%AE%E6%9E%97%E6%96%AF%E9%A1%BF%E5%BE%AE%E7%A7%AF%E5%88%86%E8%AF%BB%E6%9C%AC" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">普林斯顿微积分读本 ↗</a><br><span class="au">Adrian Banner</span></td><td>一元微积分最「读得下去」的教材：直觉先行、证明殿后，适合 L3 阶段。</td><td class="diff">★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%BA%94%E8%AF%A5%E8%BF%99%E6%A0%B7%E5%AD%A6" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">线性代数应该这样学 ↗</a><br><span class="au">Sheldon Axler</span></td><td>绕开行列式起手，直接从线性映射讲起；证明干净，是「现代风格」的教科书。</td><td class="diff">★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E9%99%B6%E5%93%B2%E8%BD%A9%E5%AE%9E%E5%88%86%E6%9E%90" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">陶哲轩实分析 ↗</a><br><span class="au">陶哲轩</span></td><td>从自然数公理一路搭到实数与微积分，手把手教你怎么写严格证明。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E5%85%B7%E4%BD%93%E6%95%B0%E5%AD%A6" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">具体数学 ↗</a><br><span class="au">Graham, Knuth, Patashnik</span></td><td>计算机科学家的数学手册：求和、递归、生成函数、离散概率，公式之美尽在其中。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">抽象代数基础教程 ↗</a><br><span class="au">Joseph Gallian</span></td><td>群、环、域的标准入门，习题出色；想感受「结构」就先读它。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E5%A4%8D%E5%88%86%E6%9E%90%EF%BC%9A%E5%8F%AF%E8%A7%86%E5%8C%96%E6%96%B9%E6%B3%95" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">复分析：可视化方法 ↗</a><br><span class="au">Tristan Needham</span></td><td>用几何直觉讲复变函数，公式变成画面，分析立刻「活」过来。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E6%8B%93%E6%89%91%E5%AD%A6" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">拓扑学 ↗</a><br><span class="au">James Munkres</span></td><td>点集拓扑的标准教材：开集、紧致、连通，规范得无可挑剔。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E5%8E%9F%E7%90%86" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">数学分析原理 ↗</a><br><span class="au">Walter Rudin</span></td><td>「小黄书」，篇幅短、密度极高。硬核读者的成人礼，读懂了会感谢自己。</td><td class="diff">★★★★★</td></tr>
+          <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=数学分析新讲" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">数学分析新讲（三册） ↗</a><br><span class="au">张筑生</span></td><td>北大教材，证明完整、讲法现代，中文数学分析的经典之一。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=高等代数" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">高等代数 ↗</a><br><span class="au">丘维声</span></td><td>北大版高等代数，从线性方程组一路讲到若尔当标准形与双线性函数。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=数学分析原理" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">数学分析原理 ↗</a><br><span class="au">Walter Rudin</span></td><td>「Baby Rudin」。极简、极密，适合第二遍学分析时用来逼自己补严整性。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=线性代数应该这样学" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">线性代数应该这样学 ↗</a><br><span class="au">Sheldon Axler</span></td><td>先讲算子再讲行列式，让特征值不再像从天而降。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=代数学引论" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">代数学引论（三卷） ↗</a><br><span class="au">А. И. 柯斯特利金</span></td><td>莫斯科大学教材，从线性代数一路铺到群环域与表示论，习题极多。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=抽象代数" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">代数学 ↗</a><br><span class="au">Michael Artin</span></td><td>以对称与线性代数为起点进入抽象代数，动机清楚，例题扎实。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=概率论与数理统计" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">概率论与数理统计 ↗</a><br><span class="au">陈希孺</span></td><td>中文概率统计最扎实的教材之一，讲清了「为什么这样定义」。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=数学物理方法" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">数学物理方法 ↗</a><br><span class="au">梁昆淼</span></td><td>复变函数、傅里叶变换、特殊函数与偏微分方程一条线拉通。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=点集拓扑讲义" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">点集拓扑讲义 ↗</a><br><span class="au">熊金城</span></td><td>中文点集拓扑的标准入门，篇幅克制，例子够用。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=复变函数论" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">复变函数论 ↗</a><br><span class="au">钟玉泉</span></td><td>国内复分析常用教材，路径积分与留数部分讲得细。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=常微分方程" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">常微分方程 ↗</a><br><span class="au">王高雄 / 周之铭 等</span></td><td>国内常微分方程的标准教材，存在唯一性定理与稳定性分析完整。</td><td class="diff">★★★★</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <h2>三档：进阶研究 <small>选题材深耕，配合论文阅读</small></h2>
+  <table class="tbl">
+    <colgroup><col style="width:34%"><col style="width:52%"><col style="width:14%"></colgroup>
+    <thead><tr><th>书</th><th>推荐理由</th><th>难度</th></tr></thead>
+    <tbody>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=Proofs%20from%20THE%20BOOK" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">Proofs from THE BOOK ↗</a><br><span class="au">Aigner &amp; Ziegler</span></td><td>「天书」中的证明精选：数论、组合、几何各取精华，每篇都值得反复读。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E5%93%88%E4%BB%A3%E6%95%B0%E8%AE%BA" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">哈代数论 ↗</a><br><span class="au">Hardy &amp; Wright</span></td><td>数论经典中的经典：从素数定理到丢番图逼近，体系完整、叙述优雅。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E4%BB%A3%E6%95%B0" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">代数 ↗</a><br><span class="au">Michael Artin</span></td><td>抽象代数的现代圣经：从对称与线性代数出发，直通伽罗瓦理论。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95%EF%BC%9A%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">微分几何：曲线与曲面 ↗</a><br><span class="au">do Carmo</span></td><td>古典微分几何的标准入口，曲率、测地线，为流形与广义相对论做准备。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=Probability%20with%20Martingales" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">Probability with Martingales ↗</a><br><span class="au">David Williams</span></td><td>把概率论升级为测度论语言，短小精悍，定理与直觉并重。</td><td class="diff">★★★★★</td></tr>
+          <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=实变函数论" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">实变函数论 ↗</a><br><span class="au">周民强</span></td><td>测度与积分的中文标准教材，习题量大、深度够。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=泛函分析" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">泛函分析 ↗</a><br><span class="au">Walter Rudin</span></td><td>Rudin 三部曲最后一部，拓扑向量空间、Banach 代数与算子谱论。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=代数" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">代数学 ↗</a><br><span class="au">Serge Lang</span></td><td>Lang《Algebra》覆盖面极广，被当作参考手册用比通读更合适。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=交换代数" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">交换代数 ↗</a><br><span class="au">David Eisenbud</span></td><td>从 Gröbner 基讲到同调方法，几何动机明确，是通往代数几何的桥。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=代数几何" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">代数几何 ↗</a><br><span class="au">Robin Hartshorne</span></td><td>「Hartshorne」是代数几何的分水岭：读过它，才算进入这门学科。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=代数拓扑" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">代数拓扑 ↗</a><br><span class="au">Allen Hatcher</span></td><td>★ 作者主页提供免费 PDF。同调、上同调、同伦论，图示极佳。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=黎曼几何" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">黎曼几何 ↗</a><br><span class="au">Manfredo do Carmo</span></td><td>古典微分几何之后的标准下一步，曲率与比较定理讲得清楚。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=偏微分方程" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">偏微分方程 ↗</a><br><span class="au">Lawrence Evans</span></td><td>PDE 的现代标准教材，从四类方程到 Sobolev 空间与弱解。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=数论" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">数论导引 ↗</a><br><span class="au">Hardy / Wright</span></td><td>数论经典，从同余与二次剩余讲到素数分布，风格英式、习题丰富。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=代数数论" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">代数数论 ↗</a><br><span class="au">Jürgen Neukirch</span></td><td>用现代语言组织代数数论，从理想论到类域论，结构清晰。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=椭圆曲线" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">椭圆曲线的算术 ↗</a><br><span class="au">Joseph Silverman</span></td><td>椭圆曲线理论的权威教材，密码学与费马大定理都从这里出发。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=概率论" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">概率：理论与例子 ↗</a><br><span class="au">Rick Durrett</span></td><td>★ 作者主页提供免费 PDF。从测度论概率到鞅与布朗运动，例子极多。</td><td class="diff">★★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=统计推断" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">统计推断 ↗</a><br><span class="au">Casella / Berger</span></td><td>统计学的标准教材，点估计、假设检验、区间估计一应俱全。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=计算复杂性" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">计算复杂性 ↗</a><br><span class="au">Oded Goldreich</span></td><td>P/NP、归约与概率证明系统的系统讲解，偏向概念与证明。</td><td class="diff">★★★★</td></tr>
+      <tr><td><a rel="noopener noreferrer" href="https://search.douban.com/book/subject_search?search_text=The%20Rising%20Sea" target="_blank" style="color:var(--hm);text-decoration:none;font-weight:600">代数几何基础（The Rising Sea） ↗</a><br><span class="au">Ravi Vakil</span></td><td>★ 公开免费。以「抬高海平面」的方式讲概形，比 Hartshorne 友好得多。</td><td class="diff">★★★★★</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="note">
+  <b>选书心法：</b>① 一档选 1–2 本「睡前书」，二档选 1 本「主教材」从头到尾读完，比三本各读三分之一强得多；② 教材读到卡住处，回退到更基础的档位补洞，不要硬闯；③ 每本书配一支笔：数学书是用来「做」的，不是用来「看」的。
+</div>
+
+
+<div class="sec">
+  <h2>名校数学系本科四年书单对照 <small>哈佛、莫斯科大学、北大怎么排课</small></h2>
+  <p>下面对照世界一流数学系本科四年主教材：</p>
+  <ul>
+    <li><b>哈佛 Math 55</b>（"世界上最难的本科数学课"）：用 Axler《线代》+ Rudin《数学分析原理》+ Artin《代数》，一年覆盖三年内容。毕业生包括 Gates、Meyer、Suciu。</li>
+    <li><b>莫斯科大学力学数学系</b>：菲赫金哥尔茨《微积分教程》三卷（5000 页）+ Vinberg《代数》+ Shafarevich《代数几何基础》。俄国风格：习题多、计算扎实。</li>
+    <li><b>北大数学学院</b>：张筑生《数学分析新讲》+ 丘维声《高等代数》+ 尤承业《基础拓扑学》。中文经典，证明完整。</li>
+    <li><b>剑桥 Mathematical Tripos Part IA-IB-II</b>：分析、代数、几何、概率分轨并行。每年只读 6 门，但每门深。</li>
+    <li><b>普林斯顿</b>：Spivak《流形上的微积分》本科就开。Stein《分析》三部曲是其风格。</li>
+  </ul>
+  <p><b>共通点</b>：所有名校都把<b>证明</b>放在第一位——不是"会用公式"而是"会证定理"。本库按此哲学编排。</p>
+</div>
+
+<div class="sec">
+  <h2>分支方向推荐书单 <small>选定方向后从这里出发</small></h2>
+  <p>选定方向后，每门深入的书单：</p>
+  <ul>
+    <li><b>分析方向</b>：Rudin 三部曲（数学分析/实复分析/泛函分析）→ Stein《分析》四部曲（傅里叶/复/实/泛函）→ Hörmander《线性偏微分算子》→ Caffarelli–Cabré《Fully Nonlinear Elliptic Equations》。</li>
+    <li><b>代数方向</b>：Artin《代数》→ Lang《代数》→ Eisenbud《交换代数》→ Hartshorne《代数几何》→ Vakil《The Rising Sea》（现代 AG 教材，开放获取）→ Lurie《Higher Topos Theory》（DERIVED AG 入口）。</li>
+    <li><b>几何方向</b>：Do Carmo《曲线曲面》→ Lee《黎曼流形》→ Petersen《黎曼几何》→ Joyce《Riemannian Holonomy Groups and Calibrated Geometry》→ Morgan–Tian《Ricci Flow and the Poincaré Conjecture》。</li>
+    <li><b>拓扑方向</b>：Munkres《点集拓扑》→ Hatcher《代数拓扑》→ Milnor《微分拓扑》→ Thurston《三维拓扑与几何》→ Lurie《Higher Topos Theory》。</li>
+    <li><b>数论方向</b>：Hardy–Wright《数论》→ Ireland–Rosen《现代数论》→ Silverman《椭圆曲线》→ Neukirch《代数数论》→ Diamond–Shurman《First Course in Modular Forms》→ Frenkel《Langlands 纲领》。</li>
+    <li><b>概率/统计</b>：Ross《概率论》→ Williams《Probability with Martingales》→ Durrett《概率：理论与例子》→ Billingsley《概率与测度》→ Casella–Berger《统计推断》→ Lehmann《点估计/假设检验》。</li>
+    <li><b>数学物理</b>：Arnold《经典力学的数学方法》→ Nakahara《几何、拓扑与物理》→ Peskin–Schroeder《量子场论》→ Deligne《Quantum Fields and Strings》。</li>
+    <li><b>计算机数学</b>：Knuth《TAOCP》全 4 卷（已出 1,2,3,4A）→ Graham–Knuth–Patashnik《具体数学》→ Motwani–Raghavan《随机算法》→ Goldreich《计算复杂性》。</li>
+  </ul>
+  <div class="key"><b>选书心法</b>：每个分支选 1 本主教材 + 1 本参考书。<b>主教材通读</b>（做习题），<b>参考书查阅</b>（找细节）。</div>
+</div>
+
+<div class="sec">
+  <h2>论文与学术资源 <small>从教科书到研究前沿</small></h2>
+  <p>到了 L7，论文成为主要阅读对象：</p>
+  <ul>
+    <li><b>arXiv</b>（arxiv.org）：预印本主站。Math 分类下 32 个子分类。注册账户可订阅关键词。</li>
+    <li><b>MathSciNet</b>（ams.org/mathscinet）：AMS 维护，每篇论文都有<b>评审摘要</b>，价值密度远高于 arXiv 摘要。需订阅（大学 IP 通常可用）。</li>
+    <li><b>ZbMATH Open</b>（zbmath.org）：欧洲对应 MathSciNet。免费开放，质量略低但更国际。</li>
+    <li><b>HAL</b>（hal.science）：法国国家预印本库，欧洲论文偏多。</li>
+    <li><b>Project Euclid</b>（projecteuclid.org）：数学期刊聚合，含不少独立出版社内容。</li>
+    <li><b>期刊</b>：Annals of Math、JAMS、Inventiones、Acta Mathematica 是四大顶刊；Duke、AJM、TAMS 是次顶。</li>
+    <li><b>会议</b>：ICM（国际数学家大会，4 年一次，Fields 奖颁发）；ICM proceedings 是领域全景图。</li>
+  </ul>
+  <p><b>书与论文的关系</b>：教科书提供体系，论文提供最新进展。<b>教科书读完读论文，论文读完写教科书</b>——学术研究的循环。</p>
+</div>
+
+<div class="sec">
+  <h2>经典难题与未决问题 <small>"够你做一辈子"的题目</small></h2>
+  <p>挑选一些从教科书到论文都能找到的难题——它们是无数数学家毕生追求：</p>
+  <ul>
+    <li><b>千禧难题（Clay Math 2000，每个 100 万美元）</b>：Riemann 假设、BSD 猜想、Navier–Stokes 存在性与光滑性、P vs NP、Hodge 猜想、Yang–Mills 质量间隙、Poincaré 猜想（Perelman 2003 已解）。</li>
+    <li><b>Hilbert 问题（1900）</b>：23 个，影响 20 世纪数学方向。已解大部分，第 8（Riemann + 孪生素数）和第 12（类域论的复乘推广）未完全解决。</li>
+    <li><b>Landau 问题</b>（1912 提出的四个数论难题）：$n^2+1$ 素值无限性、孪生素数猜想、Goldbach 猜想、Legendre 猜想（$n^2$ 与 $(n+1)^2$ 间必有素数）。全部未解。</li>
+    <li><b>组合与图论</b>：考拉兹猜想、Erdős–Faber–Lovász 猜想、Hadamard 矩阵最大阶、Rota 基猜想。</li>
+    <li><b>几何</b>：Atiyah 猜想（流形上的椭圆算子）、Yau 猜想（极小球面）、Smale 问题（流形的紧致性分类）。</li>
+    <li><b>动力系统</b>：Burnside 问题（已部分解决）、遍历假设定理、Ulam 猜想（湍流稳定性）。</li>
+  </ul>
+  <p><b>建议</b>：从教科书阶段开始关注 1-2 个未决问题。每读到相关定理时，问"它推进了哪个未决问题？"——这种联系是<b>研究品味</b>的萌芽。</p>
+</div>
+
+<div class="sec">
+  <h2>补充：进阶书单与学习路径</h2>
+  <table class="tbl">
+    <thead><tr><th>阶段</th><th>推荐书</th><th>特点</th></tr></thead>
+    <tbody>
+      <tr><td>分析入门</td><td>Tao《陶哲轩实分析》、Rudin《数学分析原理》</td><td>从公理出发构建实数、极限、微积分；Tao 友好，Rudin 精炼</td></tr>
+      <tr><td>代数入门</td><td>Artin《代数》、Hungerford《代数》</td><td>线性代数与抽象代数的现代视角，Artin 以线性代数为入口</td></tr>
+      <tr><td>几何/拓扑</td><td>Do Carmo《曲线与曲面的微分几何》、Munkres《拓扑学》</td><td>几何靠计算直觉，拓扑靠公理化思维</td></tr>
+      <tr><td>概率统计</td><td>Billingsley《概率与测度》、Casella《统计推断》</td><td>测度论基础的概率论；统计推断的标准教材</td></tr>
+      <tr><td>数论</td><td>Ireland & Rosen《现代数论经典导引》、Silverman《椭圆曲线》</td><td>从古典到现代，连接代数几何</td></tr>
+      <tr><td>趣味拓展</td><td>《哥德尔、艾舍尔、巴赫》、《Proofs from THE BOOK》</td><td>侯世达的奇书；Martin Aigner 的「天书证明」精选</td></tr>
+    </tbody>
+  </table>
+  <div class="key"><b>建议：</b>不要试图读完所有书。每门课选一本主教材通读，配一本参考书查疑。做题 > 看书 > 看视频。</div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../01-学习路线/数学学习路线图.html">配套学习路线 →</a>
+  <a href="数学阅读路线图.html">数学阅读路线图 →</a>
+</footer>
+</div>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

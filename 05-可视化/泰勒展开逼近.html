@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self';">
+<title>泰勒展开逼近 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23177E89'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3EΣxⁿ%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--teal:#177E89;--blue:#1F4E9C;--red:#C0392B;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--teal);text-decoration:none;}
+.tag{display:inline-block;background:var(--teal);color:#fff;font-size:12px;padding:2px 10px;border-radius:20px;vertical-align:middle;margin-left:10px;}
+h1{font-family:Georgia,"Noto Serif SC",serif;font-size:40px;margin:14px 0 6px;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--teal);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#fffef9;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls .btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls .btn.gray{background:#8A8270;}
+.controls label{font-size:14px;color:var(--ink2);}
+.controls select{padding:6px;border:1px solid var(--line);border-radius:8px;}
+.controls input[type=range]{width:160px;vertical-align:middle;}
+.stats{display:flex;flex-wrap:wrap;gap:18px;font-family:Georgia,serif;font-size:15px;color:var(--ink2);margin-top:10px;}
+.stats b{color:var(--ink);font-size:18px;}
+.legend{display:flex;gap:16px;font-size:13px;color:var(--ink2);margin-top:8px;}
+.legend i{display:inline-block;width:16px;height:3px;vertical-align:middle;margin-right:5px;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--teal);text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>泰勒展开逼近 <span class="tag">数值分析</span></h1>
+<p class="sub">用一条多项式去"贴"一条曲线：在展开点附近贴合，离得越远越走样。拖动阶数 $n$，看多项式如何一级一级吞掉原函数。</p>
+</header>
+
+<div class="sec">
+<h2>多项式逼近 <small>黑线=原函数；红线=n 阶泰勒多项式</small></h2>
+<div class="fig">
+<canvas id="cv" width="880" height="440" role="img" aria-label="泰勒展开逼近：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls">
+<label>函数：
+<select id="fn">
+<option value="exp">eˣ（麦克劳林）</option>
+<option value="sin">sin x</option>
+<option value="cos">cos x</option>
+<option value="ln">ln(1+x)，|x|&lt;1</option>
+</select></label>
+<label>阶数 n = <span id="nVal">3</span>
+<input type="range" id="n" min="0" max="16" value="3"></label>
+<button class="btn" id="play">自动升阶</button>
+</div>
+<div class="legend"><span><i style="background:#22262B"></i>原函数</span><span><i style="background:#C0392B"></i>n 阶泰勒多项式</span></div>
+<div class="stats" id="stats"></div>
+<p class="explain">注意 $\ln(1+x)$ 只能在 $|x|&lt;1$ 内收敛——红线在 $x=-1$ 附近立刻发散，这就是收敛半径。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>公式与余项</h2>
+<p>$f(x)=\sum_{k=0}^{n}\dfrac{f^{(k)}(0)}{k!}x^k+R_n(x)$。常用展开：</p>
+$$e^x=\sum_{k=0}^{\infty}\frac{x^k}{k!},\quad \sin x=\sum_{k=0}^{\infty}\frac{(-1)^k x^{2k+1}}{(2k+1)!},\quad \ln(1+x)=\sum_{k=1}^{\infty}\frac{(-1)^{k+1}x^k}{k}.$$
+<p>拉格朗日余项 $R_n(x)=\dfrac{f^{(n+1)}(\xi)}{(n+1)!}x^{n+1}$——在 $x$ 固定时随 $n$ 增大而趋于零，正是阶数滑块有效的数学根据。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var W=cv.width,H=cv.height;
+var timer=null;
+function fact(k){var r=1;for(var i=2;i<=k;i++)r*=i;return r;}
+function Tpoly(x,fn,n){
+  var s=0;
+  if(fn==='exp'){for(var k=0;k<=n;k++)s+=Math.pow(x,k)/fact(k);}
+  else if(fn==='sin'){for(var k=0;2*k+1<=n;k++)s+=Math.pow(-1,k)*Math.pow(x,2*k+1)/fact(2*k+1);}
+  else if(fn==='cos'){for(var k=0;2*k<=n;k++)s+=Math.pow(-1,k)*Math.pow(x,2*k)/fact(2*k);}
+  else if(fn==='ln'){for(var k=1;k<=n;k++)s+=Math.pow(-1,k+1)*Math.pow(x,k)/k;}
+  return s;
+}
+function ftrue(x,fn){
+  if(fn==='exp')return Math.exp(x);
+  if(fn==='sin')return Math.sin(x);
+  if(fn==='cos')return Math.cos(x);
+  return Math.log(1+x);
+}
+function draw(){
+  var fn=document.getElementById('fn').value;
+  var n=+document.getElementById('n').value;
+  document.getElementById('nVal').textContent=n;
+  ctx.clearRect(0,0,W,H);
+  var pl=50,pr=30,pt=30,pb=50;
+  var pw=W-pl-pr,ph=H-pt-pb;
+  var xr=(fn==='ln')?[-0.95,1.5]:[-6,6];
+  var yr=(fn==='ln')?[-3,2]:[-4,8];
+  function X(x){return pl+pw*(x-xr[0])/(xr[1]-xr[0]);}
+  function Y(y){return pt+ph-(y-yr[0])/(yr[1]-yr[0])*ph;}
+  ctx.strokeStyle='#D8D0BC';ctx.strokeRect(pl,pt,pw,ph);
+  // axes through 0
+  ctx.strokeStyle='#BFB8A5';ctx.beginPath();ctx.moveTo(X(xr[0]),Y(0));ctx.lineTo(X(xr[1]),Y(0));ctx.moveTo(X(0),Y(yr[0]));ctx.lineTo(X(0),Y(yr[1]));ctx.stroke();
+  function curve(g,color,lw){
+    ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.beginPath();
+    for(var px=0;px<=pw;px++){var xv=xr[0]+(xr[1]-xr[0])*px/pw;var yv=g(xv);if(yv<yr[0]||yv>yr[1]){if(px>0)ctx.lineTo(X(xv),Y(Math.max(yr[0],Math.min(yr[1],yv))));continue;} if(px===0)ctx.moveTo(X(xv),Y(yv));else ctx.lineTo(X(xv),Y(yv));}
+    ctx.stroke();
+  }
+  curve(function(x){return ftrue(x,fn);},'#22262B',2.4);
+  curve(function(x){return Tpoly(x,fn,n);},'#C0392B',2);
+  ctx.fillStyle='#4A5258';ctx.font='12px Georgia';ctx.textAlign='center';
+  ctx.fillText('x',pl+pw/2,H-16);
+  // sample error at x=1
+  var xe=(fn==='ln')?0.5:1.0;
+  var err=Math.abs(Tpoly(xe,fn,n)-ftrue(xe,fn));
+  document.getElementById('stats').innerHTML=
+    '<span>阶数 n <b>'+n+'</b></span>'+
+    '<span>在 x=1 处误差 <b>'+err.toExponential(2)+'</b></span>';
+}
+document.getElementById('fn').addEventListener('change',draw);
+document.getElementById('n').addEventListener('input',draw);
+document.getElementById('play').addEventListener('click',function(){
+  if(timer){clearInterval(timer);timer=null;document.getElementById('play').textContent='自动升阶';return;}
+  document.getElementById('play').textContent='暂停';
+  timer=setInterval(function(){var s=document.getElementById('n');var v=+s.value;if(v>=16){clearInterval(timer);timer=null;document.getElementById('play').textContent='自动升阶';return;}s.value=v+1;draw();},600);
+});
+draw();
+})();
+</script>
+
+</body>
+</html>

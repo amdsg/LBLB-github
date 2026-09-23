@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>分析讲义 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='32' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%AB%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --vermilion:#C0462E; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--vermilion); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:40px; margin:12px 0 6px;}
+h1 .sym{color:var(--vermilion); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:740px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--vermilion); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--vermilion); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; margin-top:26px;}
+.ch p{font-size:15px; margin-top:10px; max-width:820px;}
+.f{font-family:Georgia,"Cambria Math",serif; font-style:italic; background:var(--paper2); border-radius:6px; padding:1px 8px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--vermilion);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--vermilion); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.demo{background:var(--paper2); border:1px solid var(--line); border-radius:16px; padding:20px; margin-top:16px;}
+.demo .btn{display:inline-block; background:var(--vermilion); color:#fff; border:none; border-radius:8px; padding:8px 18px; font-size:14px; cursor:pointer; margin:0 8px 12px 0; min-height:44px;}
+.demo .btn.gray{background:#8A8270;}
+.demo p.hint{font-size:13px; color:var(--ink2);}
+.papers{display:grid; gap:10px; margin-top:12px;}
+.papers .p{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px;}
+.papers .p a{color:var(--vermilion); text-decoration:none; font-weight:600; font-size:14.5px;}
+.papers .p a:hover{text-decoration:underline;}
+.papers .m{font-size:12.5px; color:var(--ink2); margin-top:3px;}
+.papers .empty{background:var(--paper2); border:1px dashed var(--line); border-radius:10px; padding:14px 16px; font-size:13.5px; color:var(--ink2);}
+.gloss{margin-top:14px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:14px;}
+.gloss dt{font-weight:700; margin-top:8px;}
+.gloss dt:first-child{margin-top:0;}
+.gloss dd{margin-left:18px; color:var(--ink2); font-size:13.5px;}
+.online{margin-top:16px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; font-size:14px;}
+.online a{color:var(--vermilion); text-decoration:none;}
+.online a:hover{text-decoration:underline;}
+.online ul{margin:8px 0 0 20px;}
+.online li{margin-top:6px;}
+.online .hint{font-size:12.5px; color:var(--ink2); margin-top:8px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--vermilion); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>分析讲义 <span class="sym">∫</span></h1>
+  <p class="sub">极限、导数、积分与级数——建立在「无穷」之上的完整讲义：ε-δ、微积分基本定理、幂级数与傅里叶展开，含证明、例题与练习。</p>
+  <p class="quote">「微积分是上帝的语言。」——牛顿与莱布尼茨之后，人类学会了精确地谈论无穷。</p>
+</header>
+
+<div class="toc">
+  <b>本讲目录</b>
+  <ol>
+    <li><a href="#c1">极限：分析的地基</a></li>
+    <li><a href="#c2">连续与中值定理</a></li>
+    <li><a href="#c3">导数与应用</a></li>
+    <li><a href="#c4">积分与微积分基本定理</a></li>
+    <li><a href="#c5">级数与收敛</a></li>
+    <li><a href="#c6">泰勒展开与幂级数</a></li>
+    <li><a href="#c7">实数与无穷：完备性</a></li>
+    <li><a href="#c8">测度与傅里叶分析</a></li>
+    <li><a href="#cA1">深度专题：实数完备性六大基本定理互证</a></li>
+    <li><a href="#cA2">深度专题：一致收敛与极限换序</a></li>
+    <li><a href="#c9a">深度：勒贝格测度与积分</a></li>
+    <li><a href="#c9b">深度：傅里叶变换与不确定性原理</a></li>
+    <li><a href="#c9c">深度：Banach 不动点定理</a></li>
+    <li><a href="#c9d">深度：傅里叶分析与 Plancherel 定理</a></li>
+    <li><a href="#c9e">深度：索伯列夫空间与弱导数</a></li>
+    <li><a href="#c9">练习与自测</a></li>
+    <li><a href="#c10">术语表、在线资源与最新研究</a></li>
+  </ol>
+</div>
+
+<!-- ================= 第 1 章 ================= -->
+<div class="ch" id="c1">
+  <h2>1. 极限：分析的地基 <small>把「趋于」变成精确陈述</small></h2>
+  <div class="def"><b>定义（函数极限 ε-δ）：</b>$\lim_{x\to a}f(x)=L$ 当且仅当：对任意 ε &gt; 0，存在 δ &gt; 0，使 0 &lt; |x−a| &lt; δ 时 |f(x)−L| &lt; ε。极限不是「到达」，而是「任意逼近」。</div>
+  <div class="def"><b>定义（序列极限）：</b>lim aₙ = L ⟺ 对任意 ε &gt; 0 存在 N 使 n &gt; N 时 |aₙ − L| &lt; ε。</div>
+  <div class="thm"><b>定理（夹逼定理）：</b>若 aₙ ≤ bₙ ≤ cₙ 且 aₙ→L、cₙ→L，则 bₙ→L。<div class="proof"><b>证明要点：</b>由 ε 定义直接比较 |bₙ−L| ≤ max(|aₙ−L|, |cₙ−L|)。</div></div>
+  <div class="thm"><b>定理（重要极限）：</b>$\lim_{x\to 0}\dfrac{\sin x}{x}=1$；$\lim_{n\to\infty}(1+\dfrac{1}{n})^n=e$。<div class="proof"><b>证明要点：</b>前者用扇形面积夹逼（几何面积 sin x &lt; x &lt; tan x）；后者用二项展开与单调有界定理。</div></div>
+  <div class="ex"><b>例：</b>求 $\lim_{n\to\infty}n\cdot\sin(1/n)$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 t = 1/n → 0，原式 = lim sin t / t = 1。</div></details></div>
+</div>
+
+<!-- ================= 第 2 章 ================= -->
+<div class="ch" id="c2">
+  <h2>2. 连续与中值定理 <small>连续 = 图像一笔画</small></h2>
+  <div class="def"><b>定义（连续）：</b>f 在 a 连续 ⟺ lim f(x) = f(a)。在区间上每点连续称连续函数。</div>
+  <div class="thm"><b>定理（介值定理）：</b>f 在 [a,b] 连续，则 f 取遍 f(a) 与 f(b) 之间的一切值。<div class="proof"><b>证明要点：</b>用完备性：考虑集合 {x : f(x) &lt; y} 的上确界 c，连续保证 f(c) = y。</div></div>
+  <div class="thm"><b>定理（极值定理）：</b>闭区间上的连续函数有最大值与最小值。<div class="proof"><b>证明要点：</b>先用「有界性引理」（反证 + 波尔查诺-魏尔斯特拉斯），再取最值。</div></div>
+  <div class="thm"><b>定理（中值定理 / 拉格朗日）：</b>f 在 [a,b] 连续、(a,b) 可导，则存在 c 使 f′(c) = (f(b)−f(a))/(b−a)。<div class="proof"><b>证明要点：</b>构造 g(x) = f(x) − 割线函数，g 在端点相等，由罗尔定理 g′(c) = 0。</div></div>
+  <div class="thm"><b>定理（罗尔定理的推论）：</b>f′ = 0 则 f 常数；f′ &gt; 0 则 f 严格增。<div class="proof"><b>应用：</b>中值定理是「导数信息 → 函数整体信息」的桥梁：泰勒余项、洛必达法则都靠它。</div></div>
+  <div class="ex"><b>例：</b>证明方程 x³ − 3x + 1 = 0 在 (0,1) 内有根。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>f(0) = 1 &gt; 0，f(1) = −1 &lt; 0，介值定理 → 存在 c ∈ (0,1) 使 f(c) = 0。</div></details></div>
+</div>
+
+<!-- ================= 第 3 章 ================= -->
+<div class="ch" id="c3">
+  <h2>3. 导数与应用 <small>变化率的局部线性化</small></h2>
+  <div class="def"><b>定义（导数）：</b>$f'(a)=\lim_{h\to 0}\dfrac{f(a+h)-f(a)}{h}$。几何意义：切线斜率；物理意义：瞬时变化率。</div>
+  <div class="thm"><b>定理（求导法则）：</b>(fg)′ = f′g + fg′（乘积）；(f/g)′ = (f′g − fg′)/g²（商）；链式法则 (f∘g)′ = f′(g(x))g′(x)。<div class="proof"><b>证明要点：</b>乘积法则用「加一项减一项」的技巧；链式法则用微分形式 d(f∘g) = f′(g)dg。</div></div>
+  <div class="thm"><b>定理（洛必达法则）：</b>若 lim f = lim g = 0（或 ±∞）且 lim f′/g′ 存在，则 lim f/g = lim f′/g′。<div class="proof"><b>证明要点：</b>柯西中值定理：f/g = f′(c)/g′(c) 对某个中间点 c 成立。</div></div>
+  <div class="thm"><b>定理（极值判定）：</b>f′(c) = 0 且 f″(c) &gt; 0 → 局部极小；f″(c) &lt; 0 → 局部极大。<div class="proof"><b>证明要点：</b>二阶导符号 = 一阶导单调性 = 函数的凹凸性。</div></div>
+  <div class="ex"><b>例：</b>求 f(x) = x²e^(−x) 的极值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>f′ = $e^{-x}$(2x − x²) = 0 → x = 0 或 2。f″ = $e^{-x}$(2 − 4x + x²)：f″(0) = 2 &gt; 0 极小 f(0)=0；f″(2) = e⁻²(2−8+4) = −2e⁻² &lt; 0 极大 f(2) = 4e⁻²。</div></details></div>
+</div>
+
+<!-- ================= 第 4 章 ================= -->
+<div class="ch" id="c4">
+  <h2>4. 积分与微积分基本定理 <small>求和与求导互为逆运算</small></h2>
+  <div class="def"><b>定义（黎曼积分）：</b>把区间分成小段，用矩形面积逼近曲线下面积：$\int _a^b$ f = lim Σ f(ξᵢ)Δxᵢ（当分划细度 → 0）。</div>
+  <div class="thm"><b>定理（微积分基本定理）：</b>① F(x) = $\int _a^x$ f(t)dt 满足 F′ = f；② $\int _a^b$ f = F(b) − F(a)（F 为任意原函数）。<div class="proof"><b>证明要点：</b>① 用中值定理：F(x+h)−F(x) = f(c)·h；② 两边同取导数的「面积=净变化」解读：∫ f = 总变化量。</div></div>
+  <div class="thm"><b>定理（换元与分部积分）：</b>$\int f(g(x))g′(x)\,dx$ = $\int f(u)\,du$；$\int u \,dv$ = uv − $\int v \,du$。<div class="proof"><b>证明要点：</b>分部积分就是乘积法则的积分版：(uv)′ = u′v + uv′ → ∫ uv′ = uv − ∫ u′v。</div></div>
+  <div class="ex"><b>例：</b>求 $\int _{0}^π x \cos x \,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>分部积分：u=x, dv=cos x dx → ∫ = [x sin x]₀^π − $\int \sin x \,dx$ = 0 − (−cos x)|₀^π = cos π − cos 0 = −2。</div></details></div>
+</div>
+
+<!-- ================= 第 5 章 ================= -->
+<div class="ch" id="c5">
+  <h2>5. 级数与收敛 <small>无穷和什么时候「算得清」</small></h2>
+  <div class="def"><b>定义（级数收敛）：</b>Σ aₙ 收敛 ⟺ 部分和 Sₙ = a₁+…+aₙ 收敛。</div>
+  <div class="thm"><b>定理（比较判别法 / 比值判别法）：</b>Σ aₙ 与 Σ bₙ 正项比较：若 aₙ ≤ bₙ 且 Σbₙ 收敛则 Σaₙ 收敛；比值 lim aₙ₊₁/aₙ &lt; 1 收敛，&gt; 1 发散。<div class="proof"><b>例：</b>Σ 1/n² 收敛（与 1/n(n+1) 比较，而后者裂项求和 = 1）；Σ 1/n 发散（调和级数，按 1/2 的块分组证明）。</div></div>
+  <div class="thm"><b>定理（交错级数判别法）：</b>Σ (−1)ⁿbₙ（bₙ 单调趋于 0）收敛，且余项 ≤ 首项。<div class="proof"><b>证明要点：</b>部分和的奇偶子列单调有界（莱布尼茨判别法）。</div></div>
+  <div class="thm"><b>定理（黎曼重排定理）：</b>条件收敛级数可重排成任意和。<div class="proof"><b>证明要点：</b>正项部分发散到 +∞、负项部分发散到 −∞，交替取项即可逼近任意目标——「和」依赖于次序。</div></div>
+  <div class="ex"><b>例：</b>Σ (−1)ⁿ/n = ln 2 条件收敛；重排后可以等于任何数。</div>
+</div>
+
+<!-- ================= 第 6 章 ================= -->
+<div class="ch" id="c6">
+  <h2>6. 泰勒展开与幂级数 <small>用多项式逼近一切</small></h2>
+  <div class="thm"><b>定理（泰勒定理）：</b>f 在 a 附近 n+1 次可导，则 f(x) = Σ_{k=0}^n f⁽ᵏ⁾(a)/k! (x−a)ᵏ + Rₙ，余项 Rₙ = f⁽ⁿ⁺¹⁾(c)/(n+1)! (x−a)ⁿ⁺¹。<div class="proof"><b>证明要点：</b>反复用中值定理或积分型余项（Rₙ = $\int _a^x$ f⁽ⁿ⁺¹⁾(t)(x−t)ⁿ/n! dt）。</div></div>
+  <div class="thm"><b>定理（经典展开）：</b>eˣ = Σ xⁿ/n!；sin x = Σ (−1)ⁿx²ⁿ⁺¹/(2n+1)!；cos x = Σ (−1)ⁿx²ⁿ/(2n)!；1/(1−x) = Σ xⁿ（|x|&lt;1）。<div class="proof"><b>推论：</b>欧拉公式 $e^{iθ}$ = cos θ + i sin θ——把 iθ 代入 eˣ 的展开并分离实虚部。这是数学中最著名的公式之一。</div></div>
+  <div class="thm"><b>定理（巴塞尔问题）：</b>Σ 1/n² = π²/6。<div class="proof"><b>证明要点（欧拉，非严格版）：</b>把 sin x / x 看作「多项式」用根展开：sin x/x = ∏(1 − x²/(n²π²))，比较 x² 系数：−1/6 = −Σ 1/(n²π²)。严格化由柯西 1841 年完成。</div></div>
+  <div class="ex"><b>例：</b>用泰勒展开求 e 的近似：e = 1 + 1 + 1/2! + 1/3! + … 前 8 项 ≈ 2.71828（误差 &lt; 1/8! ≈ 2.5×10⁻⁵）。</div>
+</div>
+
+<!-- ================= 第 7 章 ================= -->
+<div class="ch" id="c7">
+  <h2>7. 实数与无穷：完备性 <small>分析学的地基是「没有洞」的数轴</small></h2>
+  <div class="def"><b>定义（完备性）：</b>实数的每个上界集合都有最小上界（上确界原理）——数轴没有「洞」。有理数不满足：√2 的截断序列没有有理数极限。</div>
+  <div class="thm"><b>定理（戴德金分割 / 康托尔构造）：</b>实数可由有理数构造：戴德金用分割、康托尔用有理数柯西列的等价类。<div class="proof"><b>意义：</b>√2、π、e 这些「数」第一次有了严格定义——实数完备性是微积分严格化的基础。</div></div>
+  <div class="thm"><b>定理（康托尔对角线）：</b>实数不可数。<div class="proof"><b>证明要点：</b>假设 [0,1] 可数列出，把每个数写成十进制展开，对角线取第 n 位并 +1（避开 0.999… 问题用 9 不进位），构造出不在此列的数——矛盾。这是人类第一次证明「无穷也有大小」。</div></div>
+  <div class="thm"><b>定理（康托尔-伯恩斯坦定理）：</b>若 |A| ≤ |B| 且 |B| ≤ |A|，则 |A| = |B|。<div class="proof"><b>推论：</b>[0,1] 与 ℝ 等势（连续统势 c）；有理数与整数等势（可数）；连续统假设（ℵ₁ = c？）独立于 ZFC——哥德尔与科恩 1963 年证明不可判定。</div></div>
+  <div class="ex"><b>例：</b>整数与偶数的个数「一样多」（双射 n ↦ 2n）——希尔伯特旅馆的数学依据。</div>
+</div>
+
+<!-- ================= 第 8 章 ================= -->
+<div class="ch" id="c8">
+  <h2>8. 测度与傅里叶分析 <small>从「可积」到「可测」</small></h2>
+  <div class="def"><b>定义（勒贝格测度与积分）：</b>把「长度」推广到复杂集合（可测集），积分按「值分层」求和而非按「自变量分段」。黎曼不可积的狄利克雷函数（有理数=1，无理数=0）勒贝格可积（=0）。</div>
+  <div class="thm"><b>定理（勒贝格控制收敛定理）：</b>若 fₙ → f 且 |fₙ| ≤ g（g 可积），则 ∫fₙ → ∫f。<div class="proof"><b>意义：</b>「极限与积分交换」在温和条件下合法——这是测度论给分析的礼物，概率论的大数定律严格化全靠它。</div></div>
+  <div class="thm"><b>定理（傅里叶级数）：</b>足够好的周期函数可展开为三角函数和：f(x) = a₀/2 + Σ(aₙ cos nx + bₙ sin nx)，系数由正交性 ∫ cos·cos 得到。<div class="proof"><b>收敛：</b>光滑函数一致收敛；狄利克雷条件（分段单调）逐点收敛到平均值；连续函数在 L² 意义收敛。去<a href="../05-可视化/傅里叶级数.html">傅里叶可视化</a>看圆周运动画出方波。</div></div>
+  <div class="ex"><b>例：</b>方波的傅里叶展开 f(x) = (4/π)(sin x + sin 3x/3 + sin 5x/5 + …) 在跳跃点收敛到 0（吉布斯现象：过冲约 9%）。</div>
+</div>
+
+
+<!-- ================= 深度专题 A ================= -->
+<div class="ch" id="cA1">
+  <h2>9. 深度专题：实数完备性六大基本定理互证 <small>分析的地基是「没有洞」</small></h2>
+  <div class="def"><b>六大等价命题：</b>
+    ① <b>确界原理</b>：$\mathbb R$ 中非空有上界集合必有上确界；
+    ② <b>单调有界定理</b>：单调有界数列必收敛；
+    ③ <b>闭区间套定理</b>：$[a_n,b_n]\supseteq[a_{n+1},b_{n+1}]$ 且 $b_n-a_n\to 0$，则交集恰为一点；
+    ④ <b>有限覆盖定理（Heine–Borel）</b>：闭区间的任一开覆盖有有限子覆盖；
+    ⑤ <b>聚点定理（Bolzano–Weierstrass）</b>：有界无限集必有聚点；
+    ⑥ <b>Cauchy 收敛准则</b>：$\{x_n\}$ 收敛 $\iff$ 它是 Cauchy 列。</div>
+  <div class="thm"><b>定理：</b>以上六条在 $\mathbb R$ 上两两等价（以 $\mathbb R$ 的戴德金构造或确界原理为出发点）。<div class="proof"><b>典型互证链：</b>确界原理 $\Rightarrow$ 闭区间套——取所有 $a_n$ 的上确界 $\xi$，可验证 $\xi\in\cap[a_n,b_n]$ 且唯一。闭区间套 $\Rightarrow$ 聚点定理——将含无限多点的闭区间二分，保留含无限多点的半段，得到区间套，其公共点即聚点。聚点定理 $\Rightarrow$ Cauchy 准则——Cauchy 列必有界，故有收敛子列；由 Cauchy 条件整列收敛。Cauchy 准则 $\Rightarrow$ 确界原理——用上确界的逼近序列构造 Cauchy 列，其极限即确界。</div></div>
+  <div class="ex"><b>例：用闭区间套证明「介值定理」。</b>设 $f$ 在 $[a,b]$ 连续，$f(a)&lt;0&lt;f(b)$。记 $c=(a+b)/2$：若 $f(c)=0$ 则结束；若 $f(c)&lt;0$ 取 $[c,b]$，否则取 $[a,c]$。反复二分得到区间套 $[a_n,b_n]$，长度 $\to 0$，且 $f(a_n)&lt;0&lt;f(b_n)$。由闭区间套存在 $\xi$，$a_n\to\xi\leftarrow b_n$；由连续性 $f(\xi)=\lim f(a_n)\le 0$ 且 $f(\xi)=\lim f(b_n)\ge 0$，故 $f(\xi)=0$。<div class="sol"><b>对照：</b>这个证明在 $\mathbb Q$ 上失败——二分点可能是 $\sqrt2$ 这类「洞」，区间套没有公共点。这就是为什么分析必须建立在 $\mathbb R$ 上。</div></div>
+  <div class="ex"><b>例：Heine–Borel 的反例方向。</b>覆盖 $(0,1)$ 的开区间族 $\{(1/n,1):n\ge 2\}$ 没有有限子覆盖——因为任取 $n$ 个区间，其最左端点为 $1/n_{\max}>0$，靠近 $0$ 的点漏出。对比 $[0,1]$ 被同类族加 $(-\varepsilon,\varepsilon)$ 覆盖，则必有有限子覆盖。区别正是「开」与「闭」：紧性在 $\mathbb R$ 中等价于「有界闭」。</div>
+</div>
+
+<!-- ================= 深度专题 B ================= -->
+<div class="ch" id="cA2">
+  <h2>10. 深度专题：一致收敛与极限换序 <small>什么时候 $\int$ 与 $\lim$ 可交换</small></h2>
+  <div class="def"><b>定义（逐点收敛 vs 一致收敛）：</b>$f_n\to f$ 逐点收敛指 $\forall x,\forall\varepsilon,\exists N(x,\varepsilon)$；一致收敛指 $N$ 不依赖 $x$：
+  $$\sup_{x\in D}|f_n(x)-f(x)|\to 0.$$</div>
+  <div class="thm"><b>定理（连续性保持）：</b>若 $f_n$ 在 $D$ 上连续且 $f_n\rightrightarrows f$，则 $f$ 在 $D$ 上连续。<div class="proof"><b>证明思路：</b>$\varepsilon/3$ 论证。固定 $x_0$，取 $n$ 使 $\sup|f_n-f|&lt;\varepsilon/3$（一致收敛），再取 $\delta$ 使 $|f_n(x)-f_n(x_0)|&lt;\varepsilon/3$（连续性），则 $|f(x)-f(x_0)|&lt;\varepsilon$。逐点收敛不够：$f_n(x)=x^n$ 在 $[0,1]$ 逐点收敛到不连续函数 $f(1)=1$、$f(x)=0\,(x&lt;1)$。</div></div>
+  <div class="thm"><b>定理（逐项积分）：</b>若 $f_n$ 在 $[a,b]$ 上 Riemann 可积且 $f_n\rightrightarrows f$，则 $f$ 可积且
+  $$\lim_{n\to\infty}\int_a^b f_n(x)\,dx = \int_a^b f(x)\,dx = \int_a^b \lim_{n\to\infty}f_n(x)\,dx.$$
+  <div class="proof"><b>证明思路：</b>$|\int f_n - \int f|\le (b-a)\sup|f_n-f|\to 0$。一致收敛是充分条件；对单调收敛可用 LEBESGUE 控制收敛定理放宽到逐点 + 控制函数。</div></div>
+  <div class="thm"><b>定理（逐项微分）：</b>若 $f_n$ 在 $[a,b]$ 上可导、$f_n'$ 连续、$f_n'$ 一致收敛到 $g$，且某点 $f_n(x_0)$ 收敛，则 $f_n$ 一致收敛到可导 $f$ 且 $f'=g$。注意：条件在导数列上，不在函数列上。</div>
+  <div class="ex"><b>例：逐项积分与逐项求导的对照。</b>$f_n(x)=\dfrac{\sin nx}{\sqrt n}$ 在 $\mathbb R$ 上一致收敛到 $f\equiv 0$（$\sup|f_n|\le 1/\sqrt n$），故 $\int_0^\pi f_n = (1-\cos n\pi)/\sqrt n\cdot(1/n)$ 趋于 $0=\int_0^\pi 0$。但若逐项求导：$f_n'(x)=\sqrt n\cos nx$，它不一致收敛，且 $f_n'(0)=\sqrt n\to\infty$，而 $f'(0)=0$——逐项求导失败。<div class="sol"><b>结论：</b>积分对一致收敛「宽容」，求导必须验证导数列本身一致收敛。</div></div>
+  <div class="ex"><b>例：Weierstrass 判别法定理的应用。</b>证明 $\sum_{n=1}^\infty \dfrac{\sin nx}{n^2}$ 在 $\mathbb R$ 上一致收敛。因 $\left|\frac{\sin nx}{n^2}\right|\le \frac1{n^2}$，而 $\sum 1/n^2$ 收敛，由 M-判别法函数项级数一致收敛。每项连续，故和函数连续；逐项积分合法。</div>
+</div>
+
+
+<!-- ================= 第 9 章 ================= -->
+
+<!-- ================= 深度小节：9a. 深度：勒贝格测度与积分 ================= -->
+<div class="ch" id="c9a">
+  <h2>11. 深度：勒贝格测度与积分 <small>让「可测集」成为分析的新地基</small></h2>
+  <div class="def"><b>定义（$\sigma$-代数与测度）</b> 集 $X$ 上的 $\sigma$-代数 $\mathcal{M}$ 对可数并、补封闭；测度 $\mu:\mathcal{M}\to[0,\infty]$ 满足 $\mu(\bigcup E_i)=\sum\mu(E_i)$（不交并）。$\mathbb{R}^n$ 上的勒贝格测度延拓「区间体积」至极大类可测集。</div>
+  <div class="thm"><b>定理（控制收敛定理）</b> 若 $f_n\to f$ a.e. 且 $|f_n|\le g$（$g$ 可积），则
+  $$\lim\int f_n = \int\lim f_n = \int f.$$
+  <div class="proof"><b>思路：</b>由 Fatou 引理 $\int f\le\liminf\int f_n$ 与 $\int(-f)\le\liminf\int(-f_n)$ 双向夹逼。这是勒贝格积分相对黎曼积分的决定性优势——极限与积分可交换的条件由「控制」给出。</div></div>
+  <div class="ex"><b>例：</b>枚举 $\mathbb{Q}\cap[0,1]=\{q_1,q_2,\dots\}$，定义 $f_n=\mathbf{1}_{\{q_1,\dots,q_n\}}$。则 $f_n\to\mathbf{1}_\mathbb{Q}$ 处处，$\int f_n=0$ 对所有 $n$，但 $\int\mathbf{1}_\mathbb{Q}=0$——控制收敛定理成立（被 $g=1$ 控制）。黎曼积分在 $\mathbf{1}_\mathbb{Q}$ 上根本不存在。</div>
+</div>
+
+
+<!-- ================= 深度小节：9b. 深度：傅里叶变换与不确定性原理 ================= -->
+<div class="ch" id="c9b">
+  <h2>12. 深度：傅里叶变换与不确定性原理 <small>信号在时频两个域里不能同时太窄</small></h2>
+  <div class="def"><b>定义（傅里叶变换）</b> $\hat f(\xi)=\int_{-\infty}^{\infty}f(x)e^{-2\pi i x\xi}\,dx$（$f\in L^1$）。反演公式 $f(x)=\int\hat f(\xi)e^{2\pi ix\xi}\,d\xi$ 在 $\hat f\in L^1$ 时几乎处处成立。</div>
+  <div class="thm"><b>定理（Plancherel）</b> $\|f\|_{L^2}=\|\hat f\|_{L^2}$；$\widehat{fg}=\hat f*\hat g$；$\widehat{f*g}=\hat f\cdot\hat g$。<div class="proof"><b>注：</b>这把卷积（难）变成乘法（易）——工程与纯数都依赖这条「时域卷积 = 频域乘积」。</div></div>
+  <div class="thm"><b>定理（Heisenberg 不确定性原理）</b> 对 $f\in L^2(\mathbb{R})$，$\|f\|_2=1$，记位置/动量方差 $\sigma_x^2=\int x^2|f|^2$、$\sigma_\xi^2=\int\xi^2|\hat f|^2$，则
+  $$\sigma_x\,\sigma_\xi\ge\frac{1}{4\pi}.$$
+  等号成立当且仅当 $f$ 为高斯函数 $Ce^{-\pi ax^2}$。<div class="proof"><b>思路：</b>由 $\widehat{xf}=\frac{i}{2\pi}\partial_\xi\hat f$ 与柯西–施瓦茨 $\|xf\|\cdot\|f'\|\ge\frac12\|f\|^2$ 即得。物理诠释：粒子位置与动量不能同时精确——量子力学的数学基石。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9c. 深度：Banach 不动点定理 ================= -->
+<div class="ch" id="c9c">
+  <h2>13. 深度：Banach 不动点定理 <small>在收缩映射里反复迭代，必收敛</small></h2>
+  <div class="def"><b>定义（收缩映射）</b> 完备度量空间 $(X,d)$ 上的映射 $T:X\to X$ 是压缩系数 $q&lt;1$ 的收缩，若 $d(Tx,Ty)\le q\,d(x,y)$ 对所有 $x,y$ 成立。</div>
+  <div class="thm"><b>定理（Banach 不动点 / 压缩映射原理）</b> 收缩映射 $T$ 在 $X$ 上恰有一个不动点 $x^*$，且对任意 $x_0$，迭代 $x_{n+1}=T(x_n)$ 收敛到 $x^*$，速度
+  $$d(x_n,x^*)\le\frac{q^n}{1-q}\,d(x_0,x_1).$$
+  <div class="proof"><b>证明：</b>先估 $d(x_n,x_{n+1})\le q^n d(x_0,x_1)$；用三角不等式与几何级数收敛得 $\{x_n\}$ 是柯西列；完备性给极限 $x^*$；连续性（$T$ 李普希茨）给 $T(x^*)=x^*$；唯一性由 $d(x^*,y^*)\le q\,d(x^*,y^*)\Rightarrow d=0$。</div></div>
+  <div class="ex"><b>例：</b>皮卡迭代解 ODE 初值问题 $y'=f(t,y),\,y(0)=y_0$。
+  <div class="sol"><b>解：</b>等价于积分方程 $y(t)=y_0+\int_0^t f(s,y(s))\,ds$。若 $f$ 关于 $y$ 李普希茨（系数 $L$）且 $T$ 定义为右式映射，则在小区间上 $T$ 是收缩映射（$q=L\cdot T_0&lt;1$）——皮卡迭代必收敛到唯一解。这是 ODE 存在唯一性定理的现代证明。</div></div>
+</div>
+
+
+<!-- ================= 第二轮深度小节：9d. 深度：傅里叶分析与 Plancherel 定理 ================= -->
+<div class="ch" id="c9d">
+  <h2>14. 深度：傅里叶分析与 Plancherel 定理 <small>把函数拆成波</small></h2>
+  <div class="def"><b>定义（傅里叶变换）</b> 对 $f\in L^1(\mathbb{R})$，$\hat f(\xi)=\int_{-\infty}^{\infty}f(x)e^{-2\pi i x\xi}\,dx$。反演公式 $f(x)=\int\hat f(\xi)e^{2\pi i x\xi}\,d\xi$ 在 $\hat f\in L^1$ 时 a.e. 成立。</div>
+  <div class="thm"><b>定理（Plancherel）</b> $\mathcal F: L^1\cap L^2\to L^2$ 是等距（$\|\hat f\|_2=\|f\|_2$），延拓为 $L^2(\mathbb{R})\to L^2(\mathbb{R})$ 的酉同构。<div class="proof"><b>思路：</b>核 $K(x,y)=\mathrm{sinc}$ 满足 $\int K(x,t)K(y,t)\,dt=K(x,y)$（正交投影）；用 $g*f$ 卷积逼近，极化等式把内积关系从范数推出。</div></div>
+  <div class="thm"><b>定理（Poisson 求和公式）</b> 适当条件下 $\sum_{n\in\mathbb{Z}}f(n)=\sum_{n\in\mathbb{Z}}\hat f(n)$。<div class="proof"><b>意义：</b>这是「函数的采样」与「频谱的周期化」的对偶。由此可导出 $\theta$ 函数变换 $\theta(t)=t^{-1/2}\theta(1/t)$——这是模形式理论的物理直觉。</div></div>
+  <div class="ex"><b>例：</b>计算 $f(x)=e^{-\pi x^2}$ 的傅里叶变换。
+  <div class="sol"><b>解：</b>$\hat f(\xi)=e^{-\pi\xi^2}$——高斯是傅里叶变换的不动点。证：$\hat f'(\xi)=-2\pi\xi\hat f(\xi)$ 配 $\hat f(0)=1$ 解出 $\hat f=e^{-\pi\xi^2}$。这推出测不准原理等号在 Gaussian 取到。</div></div>
+</div>
+
+<!-- ================= 第二轮深度小节：9e. 深度：索伯列夫空间与弱导数 ================= -->
+<div class="ch" id="c9e">
+  <h2>15. 深度：索伯列夫空间与弱导数 <small>把「导数」放宽到不可导的函数</small></h2>
+  <div class="def"><b>定义（弱导数）</b> $u\in L^1_{\mathrm{loc}}(\Omega)$ 有 $\alpha$ 阶弱导数 $v$，若对所有 $\varphi\in C_c^\infty(\Omega)$ 有
+  $$\int_\Omega u\,D^\alpha\varphi\,dx = (-1)^{|\alpha|}\int_\Omega v\,\varphi\,dx.$$
+  记 $v=D^\alpha u$。直觉：分部积分把导数「转移」到测试函数上。</div>
+  <div class="def"><b>定义（索伯列夫空间）</b> $W^{k,p}(\Omega)=\{u\in L^p:\,D^\alpha u\in L^p,\,|\alpha|\le k\}$，范数 $\|u\|_{W^{k,p}}^p=\sum_{|\alpha|\le k}\|D^\alpha u\|_p^p$。$p=2$ 时 $H^k=W^{k,2}$ 是 Hilbert 空间。</div>
+  <div class="thm"><b>定理（Sobolev 嵌入）</b> 若 $kp>n$ 则 $W^{k,p}(\mathbb{R}^n)\hookrightarrow C^0(\mathbb{R}^n)$（Hölder 连续）。更精确地 $W^{k,p}\hookrightarrow L^q$ 对 $\frac1q=\frac1p-\frac{k}{n}$（$kp&lt;n$ 时）。<div class="proof"><b>思路：</b>用 Gagliardo–Nirenberg 不等式 $\|u\|_{L^{p^*}}\le C\|Du\|_{L^p}$，$p^*=np/(n-p)$（临界 Sobolev 指数）。临界情形 $kp=n$ 失效但 Trudinger 替代为指数可积。</div></div>
+  <div class="thm"><b>定理（Poincaré 不等式）</b> 有界区域 $\Omega$ 上 $\|u-\bar u\|_{L^p}\le C\|Du\|_{L^p}$（$\bar u$ 为均值）。这给出 $W^{1,p}/\mathbb{R}$ 的离散谱，是椭圆算子的核心估计。<div class="proof"><b>思路：</b>紧嵌入 $W^{1,p}\hookrightarrow\hookrightarrow L^p$ + 反证法（否则可构造矛盾序列）。</div></div>
+  <div class="ex"><b>例：</b>阶梯函数 $u=\mathbf 1_{[0,\infty)}$ 在 $\mathbb{R}$ 上的弱导数。
+  <div class="sol"><b>解：</b>$\int u\varphi'=-\int_{0}^{\infty}\varphi' = \varphi(0)=\int\delta_0\varphi$，故 $Du=\delta_0$（Dirac 测度）——不在 $L^1_{\mathrm{loc}}$ 中，故 $u\notin W^{1,1}_{\mathrm{loc}}$。但若用磨光核逼近，可定义 $H^{-1}$ 等负范数空间。</div></div>
+</div>
+
+<div class="ch" id="c9">
+  <h2>16. 练习与自测</h2>
+  <div class="ex"><b>练习 1：</b>用 ε-δ 证明 $\lim_{x\to 2}(3x-1)=5$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>|(3x−1)−5| = 3|x−2| &lt; ε 当 |x−2| &lt; ε/3，取 δ = ε/3 即可。</div></details></div>
+  <div class="ex"><b>练习 2：</b>求 $\int x \ln x \,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>分部积分 u = ln x, dv = x dx → $\int x \ln x \,dx$ = (x²/2)ln x − $\int (x^{2}/2)(1/x)\,dx$ = (x²/2)ln x − x²/4 + C。</div></details></div>
+  <div class="ex"><b>练习 3：</b>判断 Σ n/(n²+1) 收敛性。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>发散。n/(n²+1) ~ 1/n，与调和级数同阶（极限比较判别法）。</div></details></div>
+  <div class="ex"><b>练习 4：</b>证明无理数的集合不可数。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>ℝ = 有理数 ∪ 无理数。有理数可数，若无理数也可数则 ℝ 可数——矛盾（ℝ 不可数）。</div></details></div>
+  <div class="ex"><b>练习 5：</b>求 f(x) = x³ − 3x 在 [0,3] 的最大值与最小值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>f′ = 3x²−3 = 0 → x=1（x=−1 不在区间）。f(0)=0, f(1)=−2, f(3)=18。最大 18（x=3），最小 −2（x=1）。</div></details></div>
+  <div class="ex"><b>练习 6：</b>证明 sin x 的泰勒展开在实数轴上处处收敛到 sin x。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>余项 Rₙ = sin⁽ⁿ⁺¹⁾(c) xⁿ⁺¹/(n+1)!，|sin⁽ⁿ⁺¹⁾| ≤ 1，故 |Rₙ| ≤ |x|ⁿ⁺¹/(n+1)! → 0 对任意固定 x。</div></details></div>
+</div>
+
+<!-- ================= 第 10 章 ================= -->
+
+  <div class="ex"><b>练习 7：</b>证明 $\mathbb{Q}\subset[0,1]$ 的勒贝格测度为 $0$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>枚举 $\mathbb{Q}\cap[0,1]=\{q_1,q_2,\dots\}$，用开区间 $I_n=(q_n-\epsilon/2^n,q_n+\epsilon/2^n)$ 覆盖，总长 $\le2\epsilon$。令 $\epsilon\to0$ 得测度为 $0$。</div></details></div>
+
+  <div class="ex"><b>练习 8：</b>求高斯函数 $f(x)=e^{-\pi x^2}$ 的傅里叶变换。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\hat f(\xi)=e^{-\pi\xi^2}$——高斯函数是傅里叶变换的不动点。这也解释了它为何达到 Heisenberg 不等式的等号。</div></details></div>
+
+  <div class="ex"><b>练习 9：</b>用 Banach 不动点定理证明 $\cos x=x$ 在 $[0,1]$ 有唯一解。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$T(x)=\cos x$ 在 $[0,1]$ 上 $|T'(x)|=|\sin x|\le\sin1&lt;1$，是收缩映射。从 $x_0=0$ 迭代收敛到不动点 $x^*\approx0.739$。</div></details></div>
+
+  <div class="ex"><b>练习 10：</b>解释为什么 $\mathbf{1}_\mathbb{Q}$ 黎曼不可积但勒贝格可积。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>黎曼上下达布和：上和 $=1$（每个区间有有理点）、下和 $=0$（每个区间有无理点），不等。勒贝格：$\mathbb{Q}$ 测度 $0$，故 $\mathbf{1}_\mathbb{Q}=0$ a.e.，积分 $=0$。</div></details></div>
+
+  <div class="ex"><b>练习 11：</b>证 $\widehat{f*g}=\hat f\,\hat g$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\widehat{f*g}(\xi)=\iint f(x-y)g(y)e^{-2\pi i(x-y)\xi}e^{-2\pi iy\xi}\,dy\,dx=\hat f(\xi)\hat g(\xi)$（Fubini）。</div></details></div>
+  <div class="ex"><b>练习 12：</b>证 $u(x)=|x|^{1/2}$ 在 $(-1,1)$ 上属于 $H^s$ 当且仅当 $s&lt;1$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$Du\sim|x|^{-1/2}$ 在 $L^2$ 附近发散，但 $|x|^{1/2}\in L^2$。用 $|D^s u|^2\sim|x|^{1-2s}$ 积分 $\int|x|^{1-2s}dx$ 收敛当 $1-2s>-1$，即 $s&lt;1$。临界 $s=1$ 是 Sobolev 嵌入阈值。</div></details></div>
+
+<div class="ch" id="c10">
+  <h2>17. 术语表、在线资源与最新研究</h2>
+  <div class="gloss">
+    <dt>一致收敛</dt><dd>收敛速度与点无关：sup|fₙ−f| → 0。</dd>
+    <dt>紧致性</dt><dd>闭区间 [a,b] 的抽象化：有限开覆盖性质，保证极值与一致连续。</dd>
+    <dt>测度零</dt><dd>可被总长任意小的区间覆盖的集合。</dd>
+    <dt>绝对收敛</dt><dd>Σ|aₙ| 收敛——与次序无关的收敛。</dd>
+    <dt>分布（广义函数）</dt><dd>δ 函数等「不光滑对象」的严格框架。</dd>
+    <dt>调和分析</dt><dd>傅里叶分析在群上的推广。</dd>
+    <dt>勒贝格测度</dt><dd>从区间体积延拓而来的测度，使极限与积分可交换。</dd>
+    <dt>Heisenberg 不等式</dt><dd>$\sigma_x\sigma_\xi\ge1/(4\pi)$——时频联合不确定性的下界。</dd>
+    <dt>收缩映射</dt><dd>距离缩小因子 $q&lt;1$ 的映射；Banach 不动点定理保证唯一不动点。</dd>
+  </div>
+  <div class="online">
+    <b>在线资源（需联网打开）</b>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Mathematical_analysis" target="_blank" rel="noopener noreferrer">Wikipedia: Mathematical analysis</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Calculus" target="_blank" rel="noopener noreferrer">Wikipedia: Calculus</a></li>
+      <li><a href="https://arxiv.org/list/math.CA/recent" target="_blank" rel="noopener noreferrer">arXiv 经典分析最新论文（math.CA）</a></li>
+      <li><a href="https://www.desmos.com/calculator" target="_blank" rel="noopener noreferrer">Desmos 在线绘图计算器</a> —— 随手画函数与微积分实验</li>
+    </ul>
+    <p class="hint">本页「最新研究」区加载更新器每日抓取的 arXiv 经典分析（math.CA）最新论文。</p>
+  </div>
+  <div class="ch" style="margin-top:34px;">
+    <h2>本主题最新研究 <small>每日自动更新 · 来源 arXiv math.CA</small></h2>
+    <div class="papers" id="topicPapers">
+      <div class="empty">等待数据……若长时间未更新，请运行 <code>python 09-前沿动态/数学前沿更新器.py</code>。</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../02-核心主题/代数.html">代数讲义 →</a>
+  <a href="../02-核心主题/概率与统计.html">概率讲义 →</a>
+  <a href="../05-可视化/傅里叶级数.html">傅里叶可视化 →</a>
+</footer>
+</div>
+
+<script src="../09-前沿动态/论文数据.js"></script>
+<script>
+(function(){
+  var wrap = document.getElementById('topicPapers');
+  if(!wrap) return;
+  var papers = (typeof window.LBLB_PAPERS !== 'undefined' && window.LBLB_PAPERS['分析']) || [];
+  if(!papers.length){
+    wrap.innerHTML = '<div class="empty">暂无该主题最新论文数据（更新器尚未成功抓取或已离线）。运行 <code>数学前沿更新器.py</code> 后自动填充。</div>';
+    return;
+  }
+  var html = '';
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+  for(var i=0;i<papers.length;i++){
+    var p = papers[i];
+    html += '<div class="p"><a href="' + esc(p.link) + '" target="_blank" rel="noopener noreferrer">' + esc(p.title) + '</a>' +
+      '<div class="m">' + esc(p.author||'—') + ' · ' + esc(p.date||'') + '</div></div>';
+  }
+  wrap.innerHTML = html;
+})();
+</script>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>线性代数讲义 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='32' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%8C%88%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --violet:#6B4E9E; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--violet); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:40px; margin:12px 0 6px;}
+h1 .sym{color:var(--violet); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:740px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--violet); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--violet); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; margin-top:26px;}
+.ch p{font-size:15px; margin-top:10px; max-width:820px;}
+.f{font-family:Georgia,"Cambria Math",serif; font-style:italic; background:var(--paper2); border-radius:6px; padding:1px 8px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--violet);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--violet); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.demo{background:var(--paper2); border:1px solid var(--line); border-radius:16px; padding:20px; margin-top:16px;}
+.demo .btn{display:inline-block; background:var(--violet); color:#fff; border:none; border-radius:8px; padding:8px 18px; font-size:14px; cursor:pointer; margin:0 8px 12px 0; min-height:44px;}
+.demo .btn.gray{background:#8A8270;}
+.demo p.hint{font-size:13px; color:var(--ink2);}
+.transform-box{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;}
+.transform-box canvas{width:100%; height:auto; background:#fffdf6; border:1px solid var(--line); border-radius:8px;}
+.papers{display:grid; gap:10px; margin-top:12px;}
+.papers .p{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px;}
+.papers .p a{color:var(--violet); text-decoration:none; font-weight:600; font-size:14.5px;}
+.papers .p a:hover{text-decoration:underline;}
+.papers .m{font-size:12.5px; color:var(--ink2); margin-top:3px;}
+.papers .empty{background:var(--paper2); border:1px dashed var(--line); border-radius:10px; padding:14px 16px; font-size:13.5px; color:var(--ink2);}
+.gloss{margin-top:14px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:14px;}
+.gloss dt{font-weight:700; margin-top:8px;}
+.gloss dt:first-child{margin-top:0;}
+.gloss dd{margin-left:18px; color:var(--ink2); font-size:13.5px;}
+.online{margin-top:16px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; font-size:14px;}
+.online a{color:var(--violet); text-decoration:none;}
+.online a:hover{text-decoration:underline;}
+.online ul{margin:8px 0 0 20px;}
+.online li{margin-top:6px;}
+.online .hint{font-size:12.5px; color:var(--ink2); margin-top:8px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--violet); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+  .toc ol{column-count:1;}
+  .transform-box{grid-template-columns:1fr;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>线性代数讲义 <span class="sym">⌈⌉</span></h1>
+  <p class="sub">向量空间、矩阵与特征值——现代数学与数据科学的通用语法：完整讲义含定义、定理、证明、例题与可交互的矩阵变换实验。</p>
+  <p class="quote">「线性代数是 21 世纪的科学语言——从量子力学到搜索引擎，处处是向量与矩阵。」</p>
+</header>
+
+<div class="toc">
+  <b>本讲目录</b>
+  <ol>
+    <li><a href="#c1">向量空间与子空间</a></li>
+    <li><a href="#c2">线性无关、基与维数</a></li>
+    <li><a href="#c3">线性变换与矩阵</a></li>
+    <li><a href="#c4">行列式</a></li>
+    <li><a href="#c5">特征值与特征向量</a></li>
+    <li><a href="#c6">对角化与分解</a></li>
+    <li><a href="#c7">内积、正交与最小二乘</a></li>
+    <li><a href="#c8">应用与动手实验</a></li>
+    <li><a href="#cA1">深度专题：Jordan 标准形</a></li>
+    <li><a href="#cA2">深度专题：正规算子与谱定理</a></li>
+    <li><a href="#c9a">深度：奇异值分解 SVD 与应用</a></li>
+    <li><a href="#c9b">深度：若尔当标准型</a></li>
+    <li><a href="#c9c">深度：正定矩阵与二次型</a></li>
+    <li><a href="#c9d">深度：谱定理与正规算子</a></li>
+    <li><a href="#c9e">深度：奇异值分解与伪逆</a></li>
+    <li><a href="#c9">练习与自测</a></li>
+    <li><a href="#c10">术语表、在线资源与最新研究</a></li>
+  </ol>
+</div>
+
+<!-- ================= 第 1 章 ================= -->
+<div class="ch" id="c1">
+  <h2>1. 向量空间与子空间 <small>「线性」的精确含义</small></h2>
+  <div class="def"><b>定义（向量空间）：</b>域 F 上的集合 V，有加法与数乘，满足 8 条公理（交换、结合、分配、零元、负元、单位元……）。ℝⁿ、多项式空间、函数空间都是向量空间。</div>
+  <div class="def"><b>定义（子空间）：</b>W ⊆ V 对加法和数乘封闭。检验：0 ∈ W，w₁+w₂ ∈ W，cw ∈ W。</div>
+  <div class="thm"><b>定理（子空间的交）：</b>子空间的任意交仍是子空间。<div class="proof"><b>注意：</b>并集一般不是子空间——ℝ² 中 x 轴 ∪ y 轴不封闭（(1,0)+(0,1) 不在并里）。</div></div>
+  <div class="thm"><b>定理（列空间与零空间）：</b>矩阵 A 的列空间 Col(A) = {Ax}、零空间 Null(A) = {x: Ax = 0} 都是子空间。<div class="proof"><b>意义：</b>Ax = b 有解 ⟺ b ∈ Col(A)；解的结构 = 特解 + Null(A)。</div></div>
+  <div class="ex"><b>例：</b>判断 {(x, 2x) : x ∈ ℝ} 是否是 ℝ² 的子空间。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>是：加法 (x₁+x₂, 2x₁+2x₂) 仍满足 y = 2x；数乘同理；含 0。</div></details></div>
+</div>
+
+<!-- ================= 第 2 章 ================= -->
+<div class="ch" id="c2">
+  <h2>2. 线性无关、基与维数 <small>用最少的向量张成整个空间</small></h2>
+  <div class="def"><b>定义：</b>v₁,…,vₖ 线性无关 ⟺ c₁v₁+…+cₖvₖ = 0 只有平凡解。张成（span）是全部线性组合的集合。基 = 线性无关的张成集；维数 = 基的大小。</div>
+  <div class="thm"><b>定理（基的存在与唯一大小）：</b>有限维空间的任意两组基大小相同。<div class="proof"><b>证明要点（替换引理）：</b>一组基可逐步替换另一组——每一步保持张成。这是「维数良定义」的核心。</div></div>
+  <div class="thm"><b>定理（秩-零化度定理）：</b>dim Col(A) + dim Null(A) = n（A 为 m×n）。<div class="proof"><b>证明要点：</b>把 A 化成行阶梯形：主元列数 = 秩，自由变量数 = n − 秩 = 零化度。</div></div>
+  <div class="ex"><b>例：</b>求矩阵 [[1,2],[2,4]] 的秩与零化度。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>第二行是第一行的 2 倍，秩 = 1；n = 2，零化度 = 1。</div></details></div>
+</div>
+
+<!-- ================= 第 3 章 ================= -->
+<div class="ch" id="c3">
+  <h2>3. 线性变换与矩阵 <small>线性映射的「表格」表示</small></h2>
+  <div class="def"><b>定义（线性变换）：</b>T: V → W 满足 T(u+v) = T(u)+T(v)、T(cu) = cT(u)。矩阵乘法正是线性变换在标准基下的「编码」。</div>
+  <div class="thm"><b>定理（矩阵-线性变换对应）：</b>每个线性变换 T: ℝⁿ → ℝᵐ 对应唯一 m×n 矩阵 A（列 = T(eᵢ)），且 T(x) = Ax。<div class="proof"><b>证明要点：</b>x = Σxᵢeᵢ，线性性 T(x) = ΣxᵢT(eᵢ) = Ax。</div></div>
+  <div class="thm"><b>定理（复合与乘积）：</b>(T∘S) 的矩阵 = A_T · A_S——矩阵乘法就是「先做 S 再做 T」的复合。<div class="proof"><b>推论：</b>矩阵乘法非交换（AB ≠ BA），但结合。恒等矩阵 I 是单位元。</div></div>
+  <div class="ex"><b>例：</b>旋转 90° 的矩阵？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>[[0,−1],[1,0]]（e₁ ↦ e₂，e₂ ↦ −e₁）。</div></details></div>
+</div>
+
+<!-- ================= 第 4 章 ================= -->
+<div class="ch" id="c4">
+  <h2>4. 行列式 <small>「体积」的代数化</small></h2>
+  <div class="def"><b>定义（行列式）：</b>det(A) = 把 A 的列向量张成的平行体的（有向）体积。2×2：ad−bc；3×3：萨鲁斯法则。</div>
+  <div class="thm"><b>定理（行列式性质）：</b>换行变号；某行乘 c 则行列式乘 c；两行成比例则行列式为 0；三角矩阵的行列式 = 主对角元之积。<div class="proof"><b>推论：</b>A 可逆 ⟺ det A ≠ 0。</div></div>
+  <div class="thm"><b>定理（乘积与转置）：</b>det(AB) = det(A)det(B)；det(Aᵀ) = det(A)。<div class="proof"><b>证明要点：</b>乘积性把 A 分解为初等矩阵乘积（初等矩阵的行列式变化规律）即可。</div></div>
+  <div class="thm"><b>定理（克拉默法则）：</b>Ax = b 且 A 可逆时，xᵢ = det(Aᵢ)/det(A)（Aᵢ 是把第 i 列换成 b）。<div class="proof"><b>注：</b>理论价值高，计算价值低（数值上高斯消元更优）。</div></div>
+  <div class="ex"><b>例：</b>det([[1,2],[3,4]]) = 1×4 − 2×3 = −2 ≠ 0，矩阵可逆。</div>
+</div>
+
+<!-- ================= 第 5 章 ================= -->
+<div class="ch" id="c5">
+  <h2>5. 特征值与特征向量 <small>线性变换的「主轴」</small></h2>
+  <div class="def"><b>定义：</b>λ 是 A 的特征值、v ≠ 0 是特征向量，若 Av = λv。特征多项式 det(A − λI) = 0 的根即特征值。</div>
+  <div class="thm"><b>定理（特征值之和与积）：</b>Σλᵢ = tr(A)（迹），∏λᵢ = det(A)。<div class="proof"><b>证明要点：</b>特征多项式 (λ₁−λ)…(λₙ−λ) 的系数与 det(A−λI) 的系数比较。</div></div>
+  <div class="thm"><b>定理（不同特征值的特征向量线性无关）：</b>λ₁,…,λₖ 互异 → v₁,…,vₖ 线性无关。<div class="proof"><b>证明要点：</b>假设线性相关，取最短关系式，左乘 A 得 λ 的错位关系，相减消去——归纳矛盾。</div></div>
+  <div class="thm"><b>定理（凯莱-哈密顿定理）：</b>A 满足自己的特征多项式：p(A) = 0。<div class="proof"><b>意义：</b>矩阵幂 Aᵏ 可化为低次多项式——计算 Aⁿ 只需求特征多项式。</div></div>
+  <div class="ex"><b>例：</b>求 A = [[2,1],[1,2]] 的特征值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>det(A−λI) = (2−λ)²−1 = λ²−4λ+3 = 0 → λ = 1, 3。</div></details></div>
+</div>
+
+<!-- ================= 第 6 章 ================= -->
+<div class="ch" id="c6">
+  <h2>6. 对角化与分解 <small>把矩阵变得「好算」</small></h2>
+  <div class="thm"><b>定理（对角化条件）：</b>A 可对角化（A = PDP⁻¹，D 对角）⟺ 有 n 个线性无关的特征向量。<div class="proof"><b>应用：</b>Aⁿ = PDⁿP⁻¹——特征值直接决定幂的增长/衰减，斐波那契通项即由此而来。</div></div>
+  <div class="thm"><b>定理（实对称矩阵谱定理）：</b>实对称矩阵可正交对角化：A = QΛQᵀ，Q 正交（列 = 标准正交特征向量）。<div class="proof"><b>证明要点：</b>对称矩阵特征值全实，不同特征值的特征向量自动正交。</div></div>
+  <div class="thm"><b>定理（奇异值分解 SVD）：</b>任意 m×n 矩阵 A = UΣVᵀ，U、V 正交，Σ 对角（奇异值 ≥ 0）。<div class="proof"><b>意义：</b>SVD 是「最万能」的矩阵分解：数据降维（PCA）、图像压缩、推荐系统、搜索引擎排名都靠它。</div></div>
+  <div class="ex"><b>例：</b>A = [[3,0],[0,2]] 已是对角阵，Aⁿ = [[3ⁿ,0],[0,2ⁿ]]——对角阵的幂就是元素幂。</div>
+</div>
+
+<!-- ================= 第 7 章 ================= -->
+<div class="ch" id="c7">
+  <h2>7. 内积、正交与最小二乘 <small>在向量空间里定义「角度」</small></h2>
+  <div class="def"><b>定义（内积）：</b>⟨u,v⟩ = uᵀv；范数 ‖u‖ = √⟨u,u⟩；u⊥v ⟺ ⟨u,v⟩ = 0。标准正交基：两两正交且单位长。</div>
+  <div class="thm"><b>定理（柯西-施瓦茨不等式）：</b>|⟨u,v⟩| ≤ ‖u‖‖v‖。<div class="proof"><b>证明要点：</b>‖u − tv‖² ≥ 0 对一切 t，取最优 t = ⟨u,v⟩/‖v‖²。</div></div>
+  <div class="thm"><b>定理（格拉姆-施密特正交化）：</b>任意基可化为标准正交基：逐步减去已正交方向的投影。<div class="proof"><b>应用：</b>QR 分解（Q 正交、R 上三角）——解最小二乘的数值算法。</div></div>
+  <div class="thm"><b>定理（最小二乘解）：</b>Ax = b 无解时，法方程 AᵀAx = Aᵀb 的解使 ‖Ax−b‖ 最小。<div class="proof"><b>证明要点：</b>残差 r = b − Ax 必须垂直于 Col(A)：Aᵀr = 0。</div></div>
+  <div class="ex"><b>例：</b>数据点 (1,1),(2,2),(3,4)，拟合直线 y = a + bx。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>A = [[1,1],[1,2],[1,3]], b = (1,2,4)ᵀ。AᵀA = [[3,6],[6,14]]，Aᵀb = (7,17)ᵀ。解：b = 1.5，a = (7−6×1.5)/3 = −2/3。直线 y = 1.5x − 2/3。</div></details></div>
+</div>
+
+<!-- ================= 第 8 章 ================= -->
+<div class="ch" id="c8">
+  <h2>8. 应用与动手实验 <small>矩阵变换看得到</small></h2>
+  <p><b>应用：</b>马尔可夫链（转移矩阵特征值 = 1 的稳态）、PageRank（最大特征向量）、PCA（协方差矩阵的特征分解）、图像压缩（SVD 截断）。</p>
+  <div class="demo">
+    <p class="hint">点击按钮，观察左侧单位圆与坐标向量经矩阵变换后的像（右侧）。</p>
+    <button class="btn" data-m="1,0,0,1">恒等</button>
+    <button class="btn" data-m="2,0,0,1">水平拉伸</button>
+    <button class="btn" data-m="0,-1,1,0">旋转 90°</button>
+    <button class="btn" data-m="1,1,0,1">剪切</button>
+    <button class="btn gray" data-m="-1,0,0,1">镜像</button>
+    <div class="transform-box">
+      <canvas id="cvA" width="300" height="300" role="img" aria-label="线性代数讲义：交互式画布，内容随下方控件实时变化"></canvas>
+      <canvas id="cvB" width="300" height="300" role="img" aria-label="线性代数讲义：交互式画布，内容随下方控件实时变化"></canvas>
+    </div>
+    <p class="hint" id="matText">当前矩阵：[[1,0],[0,1]]，行列式 = 1（面积不变）。</p>
+  </div>
+</div>
+
+
+<!-- ================= 深度专题 A ================= -->
+<div class="ch" id="cA1">
+  <h2>9. 深度专题：Jordan 标准形 <small>不能对角化时的最佳近似</small></h2>
+  <div class="def"><b>定义（广义特征向量）：</b>$v\neq 0$ 称为 $T$ 对应 $\lambda$ 的广义特征向量（阶 $m$），若 $(T-\lambda I)^m v=0$ 但 $(T-\lambda I)^{m-1}v\neq 0$。<b>Jordan 链</b>：$(T-\lambda I)^{m-1}v,\dots,(T-\lambda I)v,v$。</div>
+  <div class="def"><b>定义（Jordan 块）：</b>$J_m(\lambda)=\lambda I_m + N_m$，其中 $N_m$ 是次对角线为 $1$ 的 $m\times m$ 幂零矩阵：
+  $$J_m(\lambda)=\begin{pmatrix}\lambda&1&&\\&\lambda&1&\\&&\ddots&1\\&&&\lambda\end{pmatrix}.$$</div>
+  <div class="thm"><b>定理（Jordan–Chevalley / Jordan 标准形存在唯一）：</b>代数闭域上 $n$ 阶方阵 $A$ 必相似于
+  $$J=\operatorname{diag}(J_{m_1}(\lambda_1),\dots,J_{m_s}(\lambda_s)),$$
+  除 Jordan 块排列外唯一。$\lambda$ 的几何重数 = 对应 $\lambda$ 的 Jordan 块个数；代数重数 = 各块阶数之和。<div class="proof"><b>证明思路：</b>用特征多项式作空间分解 $V=\oplus_\lambda \ker(T-\lambda I)^{d_\lambda}$（主分解定理）；在每个广义特征子空间上取一组循环 Jordan 基，使 $T-\lambda I$ 成为幂零块。存在性来自「幂零算子有 Jordan 链基」（对 $\dim$ 归纳）；唯一性来自各块维数与 $\dim\ker(T-\lambda I)^k$ 的关系。</div></div>
+  <div class="ex"><b>例：求 $A=\begin{pmatrix}2&1&0\\0&2&1\\0&0&2\end{pmatrix}$ 的 Jordan 标准形与幂。</b>特征多项式 $(\lambda-2)^3$，几何重数 $=\dim\ker(A-2I)$。$A-2I=\begin{pmatrix}0&1&0\\0&0&1\\0&0&0\end{pmatrix}$，秩 $2$，零化度 $1$，故只有一个 $3\times 3$ Jordan 块，$A$ 本身已是 $J_3(2)$。
+  写 $A=2I+N$，$N^3=0$。由二项式（$I$ 与 $N$ 交换）：
+  $$A^k=(2I+N)^k=2^k I + k\,2^{k-1}N + \tfrac{k(k-1)}2\,2^{k-2}N^2.$$
+  代入 $N=\begin{pmatrix}0&1&0\\0&0&1\\0&0&0\end{pmatrix}$，即得 $A^k$ 的显式公式——这是解线性方程组 $x_{n+3}=6x_{n+2}-12x_{n+1}+8x_n$ 这类重根递推的代数基础。<div class="sol"><b>对照：</b>若矩阵可对角化，$A^k=P D^k P^{-1}$ 一步到位；Jordan 情形靠 $(A-\lambda I)$ 的幂零性展开。</div></div>
+</div>
+
+<!-- ================= 深度专题 B ================= -->
+<div class="ch" id="cA2">
+  <h2>10. 深度专题：正规算子与谱定理 <small>内积空间里为什么可对角化</small></h2>
+  <div class="def"><b>定义（伴随、正规、自伴）：</b>内积空间中 $T^*$ 由 $\langle Tx,y\rangle=\langle x,T^*y\rangle$ 定义。若 $TT^*=T^*T$，称 $T$ 正规；若 $T=T^*$，称自伴（埃尔米特）。在 $\mathbb R$ 上对称矩阵即自伴。</div>
+  <div class="thm"><b>定理（复谱定理）：</b>复内积空间上 $T$ 正规 $\iff$ 存在标准正交基使 $T$ 的矩阵为对角阵，特征值为复数。实对称矩阵的特征值全为实数。<div class="proof"><b>证明思路：</b>① 正规性蕴含 $\|Tx\|=\|T^*x\|$，故 $\ker(T-\lambda I)=\ker(T^*-\bar\lambda I)$——对应于不同特征值的特征向量自动正交。② 复线性空间上 $T$ 必有特征值（特征多项式在 $\mathbb C$ 上分裂），取之得到一维不变子空间；它的正交补在 $T$ 与 $T^*$ 下都不变，归纳即得标准正交基。</div></div>
+  <div class="thm"><b>定理（极分解 / SVD 的精神）：</b>任意实矩阵 $A$ 可分解 $A=U\Sigma V^T$，其中 $U,V$ 正交，$\Sigma\ge 0$ 对角。证明：$A^T A$ 半正定对称，由谱定理可正交对角化，特征值 $\sigma_i^2\ge 0$。</div>
+  <div class="ex"><b>例：最小二乘与正交投影。</b>不相容方程组 $Ax=b$ 的最小二乘解满足正规方程 $A^TA\hat x=A^Tb$。其几何意义：$\hat b=A\hat x$ 是 $b$ 在列空间 $\operatorname{Col}(A)$ 上的正交投影，残差 $b-A\hat x\perp\operatorname{Col}(A)$，即 $A^T(b-A\hat x)=0$。<div class="sol"><b>计算：</b>对 $A=\begin{pmatrix}1&1\\1&2\\1&3\end{pmatrix}$，$b=(1,2,2)^T$，$A^TA=\begin{pmatrix}3&6\\6&14\end{pmatrix}$，$A^Tb=(5,11)^T$。解 $\begin{cases}3x_1+6x_2=5\\6x_1+14x_2=11\end{cases}$ 得 $x_2=1/2$，$x_1=2/3$。这是数据 $(1,1),(2,2),(3,2)$ 的最佳拟合直线 $y=\tfrac23+\tfrac12 x$。</div></div>
+</div>
+
+
+<!-- ================= 第 9 章 ================= -->
+
+<!-- ================= 深度小节：9a. 深度：奇异值分解 SVD 与应用 ================= -->
+<div class="ch" id="c9a">
+  <h2>11. 深度：奇异值分解 SVD 与应用 <small>把任意矩阵拆成「旋转-拉伸-旋转」</small></h2>
+  <div class="thm"><b>定理（SVD）</b> 任意 $m\times n$ 复矩阵 $A$ 可分解为 $A=U\Sigma V^*$，$U,V$ 为酉矩阵，$\Sigma$ 为对角矩阵（非负递减）。对角元 $\sigma_i$ 称奇异值，是 $A^*A$ 特征值的平方根。<div class="proof"><b>构造：</b>$A^*A$ 半正定，谱分解 $A^*A=V\Sigma^2V^*$。令 $U=AV\Sigma^{-1}$（非零奇异值对应列），验证 $U^*U=I$，得 $A=U\Sigma V^*$。</div></div>
+  <div class="thm"><b>定理（Eckart–Young）</b> 最佳低秩逼近：$\min_{\mathrm{rank}(B)\le k}\|A-B\|_F=\|A-A_k\|_F=\sqrt{\sigma_{k+1}^2+\cdots}$，$A_k=\sum_{i=1}^k\sigma_i u_iv_i^*$。<div class="proof"><b>意义：</b>截断 SVD 是 $L^2$ 意义下最优压缩。应用：图像压缩、主成分分析 PCA、协同过滤推荐、潜在语义分析 LSA。</div></div>
+  <div class="ex"><b>例：</b>图像 $512\times512$ 用前 50 个奇异值重建，误差 $\sqrt{\sum_{i>50}\sigma_i^2}/\|A\|_F$ 通常 $&lt;10\%$，存储从 $512^2=262144$ 降到 $2\cdot50\cdot512=51200$（约 $1/5$）。</div>
+</div>
+
+
+<!-- ================= 深度小节：9b. 深度：若尔当标准型 ================= -->
+<div class="ch" id="c9b">
+  <h2>12. 深度：若尔当标准型 <small>当矩阵不能对角化时的最佳替代</small></h2>
+  <div class="def"><b>定义（若尔当块）</b> $k\times k$ 矩阵 $J_k(\lambda)=\lambda I+N$，$N$ 为上对角线 1 的幂零矩阵（$N^k=0$）。若尔当标准型 $J=\mathrm{diag}(J_{k_1}(\lambda_1),\dots,J_{k_m}(\lambda_m))$。</div>
+  <div class="thm"><b>定理（若尔当）</b> 任意复方阵 $A$ 相似于若尔当标准型，至块的顺序唯一。<div class="proof"><b>思路：</b>对每个特征值 $\lambda$，分析广义特征空间 $\{v:(A-\lambda I)^kv=0\}$，在其上 $A-\lambda I$ 是幂零，按 $N$ 的链结构（核维数递差）分解。</div></div>
+  <div class="ex"><b>例：</b>$A=\begin{pmatrix}2&1&0\\0&2&1\\0&0&2\end{pmatrix}$ 已是若尔当块 $J_3(2)$。$A$ 不可对角化（几何重数 1 < 代数重数 3）。但 $\exp(At)=e^{2t}\begin{pmatrix}1&t&t^2/2\\0&1&t\\0&0&1\end{pmatrix}$ 仍可显式写出——这是 ODE 系统 $\dot x=Ax$ 解的显式形式。</div>
+</div>
+
+
+<!-- ================= 深度小节：9c. 深度：正定矩阵与二次型 ================= -->
+<div class="ch" id="c9c">
+  <h2>13. 深度：正定矩阵与二次型 <small>把「正数」推广到矩阵</small></h2>
+  <div class="def"><b>定义</b> 对称矩阵 $A$ 正定（$A\succ0$）若 $x^TAx>0$ 对所有 $x\ne0$；半正定（$A\succeq0$）若 $\ge0$。</div>
+  <div class="thm"><b>定理（等价刻画）</b> 对 $A=A^T$，以下等价：① $A\succ0$；② 全部特征值 $>0$；③ 全部主子式 $>0$（Sylvester 判据）；④ Cholesky 分解 $A=LL^T$ 存在；⑤ $x^TAx$ 是正定二次型。<div class="proof"><b>思路：</b>①⇔② 谱分解 $A=Q\Lambda Q^T$；②⇒③ 主子阵的特征值仍正；③⇒④ Cholesky 算法每步除数为正；其余方向类似。</div></div>
+  <div class="thm"><b>定理（Schur 补与条件正定）</b> 分块 $\begin{pmatrix}A&B\\B^T&C\end{pmatrix}\succ0$ 当且仅当 $A\succ0$ 且 Schur 补 $S=C-B^TA^{-1}B\succ0$。<div class="proof"><b>意义：</b>这是高斯消元的矩阵版本——把大正定判定递归降阶。应用：高斯过程协方差、凸优化（log-det 势函数）、最大熵推断。</div></div>
+</div>
+
+
+<!-- ================= 第二轮深度小节：9d. 深度：谱定理与正规算子 ================= -->
+<div class="ch" id="c9d">
+  <h2>14. 深度：谱定理与正规算子 <small>什么时候算子可对角化</small></h2>
+  <div class="def"><b>定义（正规算子）</b> $T\in\mathcal L(V)$ 正规，若 $TT^*=T^*T$；Hermite（自伴）若 $T=T^*$；酉若 $T^*T=TT^*=I$；反 Hermite 若 $T=-T^*$。</div>
+  <div class="thm"><b>定理（复谱定理）</b> $V$ 为有限维复内积空间。$T$ 正规当且仅当 $T$ 在某标准正交基下是对角矩阵——即 $T=\sum\lambda_i P_i$，$P_i$ 为到特征子空间的正交投影，$\sum P_i=I$，$P_iP_j=\delta_{ij}P_i$。<div class="proof"><b>思路：</b>关键引理：正规算子有特征向量（用 $T$ 限制到不变子空间 + Schur 分解）。归纳给出全空间分解。Hermite 特征值实、酉特征值模 1 都是推论。</div></div>
+  <div class="thm"><b>定理（实谱定理）</b> 实内积空间上 $T$ 自伴当且仅当存在标准正交基使 $T$ 对角化（特征值全实）。<div class="proof"><b>对比：</b>实情况比复严格——复正规 $\Leftrightarrow$ 可对角；实自伴 $\Leftrightarrow$ 可对角。实正规只保证「分块对角，2×2 块形 $\begin{pmatrix}a&-b\\b&a\end{pmatrix}$」。</div></div>
+  <div class="ex"><b>例：</b>证酉矩阵 $U$ 的特征值 $|\lambda|=1$。
+  <div class="sol"><b>解：</b>$U^*U=I$。$Uv=\lambda v$ 给 $\|Uv\|^2=\|v\|^2$；又 $\|Uv\|^2=(Uv)^*(Uv)=\bar\lambda\lambda\|v\|^2=|\lambda|^2\|v\|^2$。故 $|\lambda|=1$——酉群是圆面的「离散版」。</div></div>
+</div>
+
+<!-- ================= 第二轮深度小节：9e. 深度：奇异值分解与伪逆 ================= -->
+<div class="ch" id="c9e">
+  <h2>15. 深度：奇异值分解与伪逆 <small>把任意矩阵拆成正交×对角×正交</small></h2>
+  <div class="def"><b>定义（SVD）</b> 任意 $A\in\mathbb{C}^{m\times n}$ 可分解 $A=U\Sigma V^*$，$U\in U(m)$, $V\in U(n)$, $\Sigma$ 为 $m\times n$「对角」$\mathrm{diag}(\sigma_1,\dots,\sigma_r,0,\dots,0)$，$\sigma_1\ge\cdots\ge\sigma_r>0$ 为奇异值。$r=\mathrm{rank}\,A$。</div>
+  <div class="thm"><b>定理（存在性）</b> $A^*A$ 是半正定 Hermite，其特征值 $\lambda_i=\sigma_i^2$。取 $V$ 对角化 $A^*A$，$U$ 由 $Av_i/\sigma_i$ 扩充。<div class="proof"><b>思路：</b>$A^*Av_i=\sigma_i^2v_i$ 给 $\|Av_i\|=\sigma_i$；定义 $u_i=Av_i/\sigma_i$ 得 $Av_i=\sigma_iu_i$，即 $AV=U\Sigma$。补全 $U,V$ 为酉即得。</div></div>
+  <div class="def"><b>定义（Moore–Penrose 伪逆）</b> $A^+=V\Sigma^+U^*$，$\Sigma^+=\mathrm{diag}(1/\sigma_1,\dots,1/\sigma_r,0,\dots,0)^T$。$A^+$ 是 $\min\|Ax-b\|$ 的最小范数解：$x=A^+b$。</div>
+  <div class="thm"><b>定理（最佳低秩逼近 Eckart–Young）</b> 截断 SVD $A_k=\sum_{i=1}^k\sigma_iu_iv_i^*$ 是所有秩 $\le k$ 矩阵中 Frobenius/谱范数逼近 $A$ 的最佳者：$\|A-A_k\|_F=\sqrt{\sum_{i>k}\sigma_i^2}$，$\|A-A_k\|_2=\sigma_{k+1}$。<div class="proof"><b>思路：</b>谱范数 $\|B\|_2=\max$ 奇异值；要 $\|A-B\|_2\ge\sigma_{k+1}$，用 Weyl 不等式 $\sigma_{i+j-1}(A+B)\le\sigma_i(A)+\sigma_j(B)$ 取 $i=k+1,j=1$。</div></div>
+  <div class="ex"><b>例：</b>$A=\begin{pmatrix}1&0\\0&0\\0&0\end{pmatrix}$ 的 SVD 与伪逆。
+  <div class="sol"><b>解：</b>已是对角形，$\sigma_1=1$，$U=I_3$，$V=I_2$。$A^+=\begin{pmatrix}1&0&0\\0&0&0\end{pmatrix}$——对角元 $1\to1$、$0\to0$。验证 $A^+A=\begin{pmatrix}1&0\\0&0\end{pmatrix}$ 为到 $\mathrm{im} A^T$ 的投影。</div></div>
+</div>
+
+<div class="ch" id="c9">
+  <h2>16. 练习与自测</h2>
+  <div class="ex"><b>练习 1：</b>判断 {(x,y) : x+y = 1} 是否是 ℝ² 的子空间。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>不是：不含 0（0+0 ≠ 1），加法不封闭。</div></details></div>
+  <div class="ex"><b>练习 2：</b>求 A = [[1,0,2],[0,1,3]] 的秩。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>已行阶梯形，两个主元列，秩 = 2。</div></details></div>
+  <div class="ex"><b>练习 3：</b>det([[1,2,3],[0,4,5],[0,0,6]]) = ?<details><summary>查看答案</summary><div class="sol"><b>答案：</b>上三角矩阵：1×4×6 = 24。</div></details></div>
+  <div class="ex"><b>练习 4：</b>求 A = [[0,1],[1,0]] 的特征值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>det(A−λI) = λ²−1 = 0 → λ = ±1。特征向量 (1,1)ᵀ 与 (1,−1)ᵀ。</div></details></div>
+  <div class="ex"><b>练习 5：</b>A = [[1,1],[0,1]] 可对角化吗？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>不可。特征值 λ=1（重数 2），但特征空间维数 1 &lt; 2——缺特征向量。</div></details></div>
+  <div class="ex"><b>练习 6：</b>若 A 的特征值为 2、3，求 A² 的特征值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>4、9（特征值的幂对应矩阵的幂）。</div></details></div>
+</div>
+
+<!-- ================= 第 10 章 ================= -->
+
+  <div class="ex"><b>练习 7：</b>求 $A=\begin{pmatrix}3&0\\0&1\end{pmatrix}$ 的 SVD。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$A$ 已对角，$U=I,\Sigma=\mathrm{diag}(\sqrt3,1),V=\mathrm{diag}(\sqrt3,1)/\sqrt3$... 简化：$\sigma_1=3,\sigma_2=1$，$U=I,V=I,\Sigma=\mathrm{diag}(3,1)$。</div></details></div>
+
+  <div class="ex"><b>练习 8：</b>矩阵 $\begin{pmatrix}1&1\\0&1\end{pmatrix}$ 的若尔当型？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$J_2(1)=\begin{pmatrix}1&1\\0&1\end{pmatrix}$——已是若尔当块。代数重数 2，几何重数 1，不可对角化。</div></details></div>
+
+  <div class="ex"><b>练习 9：</b>判定 $\begin{pmatrix}2&-1\\-1&2\end{pmatrix}$ 正定。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>顺序主子式：$2>0$，$\det=3>0$，故正定。特征值 $\lambda=1,3$ 均 $>0$ 验证。</div></details></div>
+
+  <div class="ex"><b>练习 10：</b>用 Cholesky 求解 $\begin{pmatrix}4&2\\2&5\end{pmatrix}=LL^T$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$L=\begin{pmatrix}2&0\\1&2\end{pmatrix}$：$l_{11}=2$，$l_{21}=2/2=1$，$l_{22}=\sqrt{5-1}=2$。</div></details></div>
+
+  <div class="ex"><b>练习 11：</b>若 $A$ 为实对称正定，奇异值与特征值有何关系？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$A=Q\Lambda Q^T$（实谱），$\Lambda>0$。SVD 为 $U=Q,V=Q,\Sigma=\Lambda$，故奇异值 $=$ 特征值。一般矩阵未必：$\sigma_i=\sqrt{\lambda_i(A^*A)}$。</div></details></div>
+  <div class="ex"><b>练习 12：</b>用 Eckart–Young 说明为何 $k$ 个主成分是 PCA 的最优 $k$ 维逼近。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>数据中心化后 $X=U\Sigma V^T$。$k$ 主成分对应 $X_k$，残差 $\|X-X_k\|_F=\sqrt{\sum_{i>k}\sigma_i^2}$ 最小——SVD 给出的就是 Eckart–Young 的结论。</div></details></div>
+
+<div class="ch" id="c10">
+  <h2>17. 术语表、在线资源与最新研究</h2>
+  <div class="gloss">
+    <dt>秩</dt><dd>列空间的维数 = 线性无关列的最大数。</dd>
+    <dt>可逆矩阵</dt><dd>有逆的方阵（det ≠ 0、满秩）。</dd>
+    <dt>特征多项式</dt><dd>det(A − λI)，根是特征值。</dd>
+    <dt>正交矩阵</dt><dd>QᵀQ = I，保长度与角度。</dd>
+    <dt>迹</dt><dd>主对角元之和 = 特征值之和。</dd>
+    <dt>广义特征向量 / 若尔当形</dt><dd>不可对角化时的标准形。</dd>
+    <dt>奇异值分解</dt><dd>$A=U\Sigma V^*$；任意矩阵的酉-对角-酉分解。</dd>
+    <dt>若尔当块 $J_k(\lambda)$</dt><dd>$\lambda I+N$；不可对角矩阵的标准相似形式。</dd>
+    <dt>正定矩阵</dt><dd>$x^TAx>0$ 对所有 $x\ne0$；等价于特征值全正。</dd>
+  </div>
+  <div class="online">
+    <b>在线资源（需联网打开）</b>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Linear_algebra" target="_blank" rel="noopener noreferrer">Wikipedia: Linear algebra</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Singular_value_decomposition" target="_blank" rel="noopener noreferrer">Wikipedia: Singular value decomposition</a></li>
+      <li><a href="https://arxiv.org/list/math.RA/recent" target="_blank" rel="noopener noreferrer">arXiv 环与代数最新论文（math.RA）</a></li>
+      <li><a href="https://matrixcalc.org" target="_blank" rel="noopener noreferrer">Matrix Calculator</a> —— 在线矩阵计算器</li>
+    </ul>
+    <p class="hint">本页「最新研究」区加载更新器每日抓取的 arXiv 环论与代数（math.RA）最新论文。</p>
+  </div>
+  <div class="ch" style="margin-top:34px;">
+    <h2>本主题最新研究 <small>每日自动更新 · 来源 arXiv math.RA</small></h2>
+    <div class="papers" id="topicPapers">
+      <div class="empty">等待数据……若长时间未更新，请运行 <code>python 09-前沿动态/数学前沿更新器.py</code>。</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../02-核心主题/代数.html">代数讲义 →</a>
+  <a href="../02-核心主题/拓扑学.html">拓扑讲义 →</a>
+  <a href="../10-数学手册/公式速查.html">公式速查 →</a>
+</footer>
+</div>
+
+<script src="../09-前沿动态/论文数据.js"></script>
+<script>
+(function(){
+  var wrap = document.getElementById('topicPapers');
+  if(!wrap) return;
+  var papers = (typeof window.LBLB_PAPERS !== 'undefined' && window.LBLB_PAPERS['线性代数']) || [];
+  if(!papers.length){
+    wrap.innerHTML = '<div class="empty">暂无该主题最新论文数据（更新器尚未成功抓取或已离线）。运行 <code>数学前沿更新器.py</code> 后自动填充。</div>';
+    return;
+  }
+  var html = '';
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+  for(var i=0;i<papers.length;i++){
+    var p = papers[i];
+    html += '<div class="p"><a href="' + esc(p.link) + '" target="_blank" rel="noopener noreferrer">' + esc(p.title) + '</a>' +
+      '<div class="m">' + esc(p.author||'—') + ' · ' + esc(p.date||'') + '</div></div>';
+  }
+  wrap.innerHTML = html;
+})();
+(function(){
+  var cvA = document.getElementById('cvA'), cvB = document.getElementById('cvB');
+  var matText = document.getElementById('matText');
+  if(!cvA || !cvB || !cvA.getContext) return;
+  var ctxA = cvA.getContext('2d'), ctxB = cvB.getContext('2d');
+  var cur = [1,0,0,1];
+  function drawBase(ctx){
+    ctx.clearRect(0,0,300,300);
+    ctx.strokeStyle = '#D8D0BC'; ctx.lineWidth = 1;
+    for(var i=-5;i<=5;i++){ var p = 150 + i*25;
+      ctx.beginPath(); ctx.moveTo(p,0); ctx.lineTo(p,300); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0,p); ctx.lineTo(300,p); ctx.stroke(); }
+    ctx.strokeStyle = '#22262B'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(0,150); ctx.lineTo(300,150); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(150,0); ctx.lineTo(150,300); ctx.stroke();
+  }
+  function px(x,y){ return [150 + x*25, 150 - y*25]; }
+  function drawCircle(ctx, m){
+    ctx.save();
+    ctx.beginPath(); ctx.arc(150,150,50,0,Math.PI*2); ctx.clip();
+    ctx.fillStyle = '#E8E1CD'; ctx.fillRect(0,0,300,300);
+    ctx.restore();
+    ctx.beginPath(); ctx.ellipse(150,150,50,50,0,0,Math.PI*2); ctx.strokeStyle = '#C0462E'; ctx.lineWidth = 2; ctx.stroke();
+    var i, p;
+    for(i=0;i<12;i++){
+      var a = i*Math.PI/6;
+      var pt = [Math.cos(a), Math.sin(a)];
+      var q = [m[0]*pt[0]+m[1]*pt[1], m[2]*pt[0]+m[3]*pt[1]];
+      p = px(q[0],q[1]);
+      ctx.beginPath(); ctx.arc(p[0],p[1],2.5,0,Math.PI*2); ctx.fillStyle = '#1F4E9C'; ctx.fill();
+    }
+    ctx.strokeStyle = '#1F4E9C'; ctx.lineWidth = 2.5;
+    p = px(m[0], m[2]); ctx.beginPath(); ctx.moveTo(150,150); ctx.lineTo(p[0],p[1]); ctx.stroke();
+    p = px(m[1], m[3]); ctx.beginPath(); ctx.moveTo(150,150); ctx.lineTo(p[0],p[1]); ctx.stroke();
+  }
+  function draw(){
+    drawBase(ctxA); drawBase(ctxB);
+    drawCircle(ctxA, [1,0,0,1]);
+    drawCircle(ctxB, cur);
+    var det = cur[0]*cur[3] - cur[1]*cur[2];
+    matText.textContent = '当前矩阵：[[' + cur[0] + ',' + cur[1] + '],[' + cur[2] + ',' + cur[3] + ']]，行列式 = ' + det.toFixed(2);
+  }
+  var btns = document.querySelectorAll('.demo .btn[data-m]');
+  for(var j=0;j<btns.length;j++){
+    (function(b){
+      b.addEventListener('click', function(){
+        cur = b.getAttribute('data-m').split(',').map(Number);
+        draw();
+      });
+    })(btns[j]);
+  }
+  draw();
+})();
+</script>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

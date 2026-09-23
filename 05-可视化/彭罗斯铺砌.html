@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>彭罗斯铺砌 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='28' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%97%86%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--green:#2E7D5B;--magenta:#B0396E;--gold:#A8751E;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--green);text-decoration:none;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:14px 0 6px;}
+h1 .sym{color:var(--magenta);}
+.tag{display:inline-block;background:var(--paper2);border:1px solid var(--line);color:var(--green);border-radius:999px;padding:2px 12px;font-size:12px;margin-left:10px;vertical-align:middle;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:36px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--green);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;background:#fffef9;border:1px solid var(--line);border-radius:8px;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--green);width:200px;}
+button{background:var(--green);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:14px;cursor:pointer;}
+button.ghost{background:var(--paper2);color:var(--ink);border:1px solid var(--line);}
+.info{font-family:Georgia,serif;font-size:15px;color:var(--ink);margin-left:auto;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+.legend{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink2);}
+.legend i{width:14px;height:14px;border-radius:3px;display:inline-block;border:1px solid #B9B098;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>彭罗斯铺砌 <span class="sym">◈</span><span class="tag">几何</span></h1>
+<p class="sub">只用胖、瘦两种菱形，却永远拼不出重复周期——1974 年彭罗斯发现的非周期铺砌，启发了后来的准晶体物理。</p>
+</header>
+
+<div class="sec">
+<h2>递归细分 <small>拖动深度看菱形越拼越密；换种子旋转图案</small></h2>
+<div class="fig">
+<canvas id="cv" width="760" height="600" role="img" aria-label="彭罗斯铺砌：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls">
+<label>细分深度 = <span id="dV">4</span></label>
+<input type="range" id="depth" min="0" max="6" step="1" value="4">
+<button id="regen" class="ghost">换一个种子旋转</button>
+<span class="legend"><i style="background:#DCEAE2"></i>胖菱形(36°锐角)</span>
+<span class="legend"><i style="background:#E8D6DE"></i>瘦菱形(72°锐角)</span>
+<span class="info" id="stat"></span>
+</div>
+<p class="explain"><b>怎么玩：</b>从中心十边形出发，按黄金比 $\varphi=(1+\sqrt5)/2$ 递归剖分每个三角形（胖/瘦三角形）。深度越大砖越细；"换种子"把整体旋转一个小角度。两种菱形数量之比在极限下趋于 $\varphi$。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>原理</h2>
+<p>每个三角形按角度二分：$A$ 型 $(36^\circ,72^\circ,72^\circ)$ 剖成 $A+B$；$B$ 型 $(36^\circ,36^\circ,108^\circ)$ 剖成 $A+B$。相似比恒为 $1/\varphi$，故图案自相似却不周期。Shechtman 1982 年在铝锰合金中发现的准晶体，原子排列正是这种五重对称。</p>
+</div>
+
+<footer style="margin-top:48px;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--ink2);">
+<a class="back" href="可视化导航.html">← 可视化导航</a>
+</footer>
+</div>
+
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var phi=(1+Math.sqrt(5))/2, inv=1/phi;
+var depthEl=document.getElementById('depth'),dV=document.getElementById('dV'),stat=document.getElementById('stat');
+var seedOff=0;
+
+// A triangle: [p(36 apex), q(72), r(72)]
+// B triangle: [p(108 apex), q(36), r(36)]
+function subdivide(list){
+  var out=[];
+  list.forEach(function(tri){
+    var t=tri.t, P=tri.p,Q=tri.q,R=tri.r;
+    function lerp(A,B,s){return [A[0]+(B[0]-A[0])*s, A[1]+(B[1]-A[1])*s];}
+    if(t===0){
+      // A: bisect 72 at Q, D on PR with PD = 1/phi^2
+      var D=lerp(P,R,inv*inv);
+      out.push({t:0,p:Q,q:D,r:R});       // (Q,D,R) A
+      out.push({t:1,p:D,q:Q,r:P});        // (P,Q,D) -> B apex D
+    } else {
+      // B: split 108 at P into 72(toward Q)/36; D on QR with QD=PQ(=unit)
+      var D2=lerp(Q,R,inv); // QD/QR = 1/phi
+      out.push({t:0,p:Q,q:P,r:D2});       // (P,Q,D) A apex Q
+      out.push({t:1,p:D2,q:P,r:R});       // (P,D,R) B apex D
+    }
+  });
+  return out;
+}
+function seed(){
+  var list=[],R=1.6;
+  for(var k=0;k<10;k++){
+    var a0=seedOff+2*Math.PI*k/10 - Math.PI/2;
+    var a1=a0+2*Math.PI/10;
+    list.push({t:0,p:[0,0],q:[R*Math.cos(a0),R*Math.sin(a0)],r:[R*Math.cos(a1),R*Math.sin(a1)]});
+  }
+  return list;
+}
+function draw(){
+  var d=parseInt(depthEl.value);
+  var tris=seed();
+  for(var i=0;i<d;i++)tris=subdivide(tris);
+  var scale=Math.min(cv.width,cv.height)/4.2;
+  var cx=cv.width/2, cy=cv.height/2;
+  ctx.clearRect(0,0,cv.width,cv.height);
+  var fat=0,thin=0;
+  tris.forEach(function(t){
+    var pts=[t.p,t.q,t.r].map(function(p){return [cx+p[0]*scale, cy+p[1]*scale];});
+    if(t.t===0){ctx.fillStyle='#DCEAE2';fat++;} else {ctx.fillStyle='#E8D6DE';thin++;}
+    ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);ctx.lineTo(pts[1][0],pts[1][1]);ctx.lineTo(pts[2][0],pts[2][1]);ctx.closePath();ctx.fill();
+    ctx.strokeStyle='rgba(90,80,60,.35)';ctx.lineWidth=0.6;ctx.stroke();
+  });
+  stat.textContent='三角形 '+tris.length+' 个 · 胖:瘦 ≈ '+(fat/thin).toFixed(3)+'（极限 φ='+phi.toFixed(3)+'）';
+}
+depthEl.oninput=function(){dV.textContent=depthEl.value;draw();};
+document.getElementById('regen').onclick=function(){seedOff+=Math.PI/10;draw();};
+draw();
+})();
+</script>
+
+</body>
+</html>

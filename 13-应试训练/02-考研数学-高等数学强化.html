@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>考研数学 · 高等数学强化 · 应试训练 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='32' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --hm:#1F4E9C; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--hm); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:38px; margin:12px 0 6px;}
+h1 .sym{color:var(--hm); font-style:italic;}
+.sub{color:var(--ink2); font-size:15.5px; max-width:800px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--hm); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--hm); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch p{font-size:15px; margin-top:10px; max-width:840px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--hm);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+.warn{background:#FDEDE8; border:1px solid #EAC6B8; border-left:5px solid var(--red); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14px;}
+.warn b{color:var(--red);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--hm); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.tbl{margin-top:14px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px; table-layout:fixed;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+.tag1{display:inline-block; background:#FDEDE8; color:var(--red); border:1px solid #EAC6B8; border-radius:4px; padding:0 6px; font-size:12px;}
+.tag2{display:inline-block; background:#EEF2FA; color:var(--blue); border:1px solid #C9D6EC; border-radius:4px; padding:0 6px; font-size:12px;}
+.tag3{display:inline-block; background:#E8F2EC; color:var(--green); border:1px solid #BFD8C8; border-radius:4px; padding:0 6px; font-size:12px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--hm); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:30px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\(','\)']],displayMath:[['$$','$$'],['\[','\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在。';document.currentScript.after(b);"></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="00-应试总览.html">← 返回应试总览</a>
+  <h1>考研数学 · 高等数学强化 <span class="sym">M</span></h1>
+  <p class="sub">数一 / 数二 / 数三高数部分全覆盖：考纲差异、高频考点、题型套路、真题风格例题、易错清单。高数占考研数学约 56%（数一）、78%（数二）、60%（数三）——得高数者得天下。</p>
+  <p class="quote">「考研数学不考难题，考的是熟练度和不犯错。」</p>
+</header>
+
+<div class="toc">
+  <b>本页目录</b>
+  <ol>
+    <li><a href="#c1">数一数二数三高数差异表</a></li>
+    <li><a href="#c2">极限与连续：题型与套路</a></li>
+    <li><a href="#c3">一元微分：极值/凹凸/渐近线</a></li>
+    <li><a href="#c4">一元积分：计算与应用</a></li>
+    <li><a href="#c5">多元微分：极值与条件极值</a></li>
+    <li><a href="#c6">多元积分：二重/三重/曲线曲面</a></li>
+    <li><a href="#c7">无穷级数（数一/数三）</a></li>
+    <li><a href="#c8">常微分方程</a></li>
+    <li><a href="#c9">真题风格题型精选</a></li>
+    <li><a href="#c10">必背公式与易错清单</a></li>
+  </ol>
+</div>
+
+<!-- 1 -->
+<div class="ch" id="c1">
+  <h2>1. 数一数二数三高数差异表 <small>别多学也别漏学</small></h2>
+  <div class="tbl"><table><colgroup><col style="width:34%"><col style="width:22%"><col style="width:22%"><col style="width:22%"></colgroup>
+  <tr><th>内容</th><th><span class="tag1">数一</span></th><th><span class="tag2">数二</span></th><th><span class="tag3">数三</span></th></tr>
+  <tr><td>极限/连续/一元微积分</td><td>考</td><td>考</td><td>考（要求略低）</td></tr>
+  <tr><td>多元微分（偏导/极值）</td><td>考</td><td>考</td><td>考</td></tr>
+  <tr><td>二重积分</td><td>考</td><td>考</td><td>考</td></tr>
+  <tr><td>三重积分/曲线曲面/场论</td><td><b>考（重点）</b></td><td>不考</td><td>不考</td></tr>
+  <tr><td>无穷级数</td><td>考（含傅里叶）</td><td>不考</td><td>考（无傅里叶）</td></tr>
+  <tr><td>常微分方程</td><td>考（含欧拉）</td><td>考</td><td>考（不含欧拉）</td></tr>
+  <tr><td>空间解析几何</td><td>考</td><td>考</td><td>不考</td></tr>
+  <tr><td>高数占总分比例</td><td>56%</td><td>78%</td><td>60%</td></tr>
+  </table></div>
+  <div class="warn"><b>警示：</b>数二考生直接跳过第 6、7 节的数一专属内容；数三考生跳过三重积分与场论。不要按数一标准学，浪费时间。</div>
+</div>
+
+<!-- 2 -->
+<div class="ch" id="c2">
+  <h2>2. 极限与连续：题型与套路 <small>每年必考 1–2 题</small></h2>
+  <div class="thm"><b>题型 1（0/0 或 ∞/∞）：</b>三步：① 先化简（等价无穷小、根式有理化、泰勒）② 再洛必达（最多 2 次，超过换泰勒）③ 代入。<div class="proof"><b>高频等价无穷小（$x\to0$）：</b>$\sin x\sim x$、$\tan x\sim x$、$\arcsin x\sim x$、$\arctan x\sim x$、$e^x-1\sim x$、$\ln(1+x)\sim x$、$(1+x)^a-1\sim ax$、$1-\cos x\sim x^2/2$。<b>高阶：</b>$\tan x-x\sim x^3/3$；$x-\sin x\sim x^3/6$。</div></div>
+  <div class="thm"><b>题型 2（$1^\infty$ 型）：</b>用公式 $\lim u^v=e^{\lim v(u-1)}$。<div class="proof"><b>例：</b>$\lim(\cos x)^{1/x^2}=e^{\lim(\cos x-1)/x^2}=e^{-1/2}$。</div></div>
+  <div class="thm"><b>题型 3（分段点连续/可导）：</b>$f$ 在 $x_0$ 连续 $\Leftrightarrow \lim=f(x_0)$；可导 $\Leftrightarrow$ 左导 $=$ 右导。<div class="proof"><b>考法：</b>给含参 f，问参数取何值 f 在分段点连续/可导。分别算左右极限与左右导数，列方程。</div></div>
+  <div class="ex"><b>真题风格：</b>$\lim_{x\to0}\frac{e^x-e^{\sin x}}{x-\sin x}$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>提 $e^{\sin x}$：$e^{\sin x}\cdot\frac{e^{x-\sin x}-1}{x-\sin x}\to1\cdot1=1$（用了 $e^u-1\sim u$）。</div></details></div>
+</div>
+
+<!-- 3 -->
+<div class="ch" id="c3">
+  <h2>3. 一元微分：极值/凹凸/渐近线 <small>大题常客</small></h2>
+  <div class="thm"><b>必背流程（求 y = f(x) 性态）：</b>① 定义域 ② 一阶导：单调区间与极值 ③ 二阶导：凹凸区间与拐点 ④ 渐近线（水平 $\lim$、垂直使分母为 0、斜 $\lim (f/x)$ 与 $\lim(f-kx)$）⑤ 作图。<div class="proof"><b>易错：</b>拐点是 $(x_0,f(x_0))$ 不是 $x_0$；拐点处二阶导为 0 或不存在，但两边变号。</div></div>
+  <div class="thm"><b>中值定理题（证明存在 ξ）：</b>三步走：① 定区间（题目给两个点值）② 选定理（罗尔/拉格朗日/柯西）③ 构造辅助函数（见 CMC 页第 3 节套路）。<div class="proof"><b>考研难度比 CMC 低：</b>辅助函数通常直接从结论反推（把 ξ 换成 x，移项让一边为 0）。</div></div>
+  <div class="thm"><b>曲率：</b>曲率 $k=\frac{|y''|}{(1+y'^2)^{3/2}}$；曲率半径 $R=1/k$。<div class="proof"><b>数一/数二考填空，记住公式即可。</b></div></div>
+  <div class="ex"><b>真题风格：</b>求 $y=\frac{x^2}{x+1}$ 的渐近线。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>垂直：$x=-1$（分母为 0）。斜：$k=\lim\frac{x^2}{x+1}/x=1$；$b=\lim(\frac{x^2}{x+1}-x)=\lim\frac{-x}{x+1}=-1$。斜渐近线 $y=x-1$。无水平渐近线。</div></details></div>
+</div>
+
+<!-- 4 -->
+<div class="ch" id="c4">
+  <h2>4. 一元积分：计算与应用 <small>大题计算主力</small></h2>
+  <div class="thm"><b>必背积分表（16 条）：</b>$\int x^n dx=\frac{x^{n+1}}{n+1}$、$\int \frac1x dx=\ln|x|$、$\int e^x dx=e^x$、$\int a^x dx=\frac{a^x}{\ln a}$、$\int\sin x=-\cos x$、$\int\cos x=\sin x$、$\int\sec^2 x=\tan x$、$\int\csc^2 x=-\cot x$、$\int\frac{1}{1+x^2}=\arctan x$、$\int\frac{1}{\sqrt{1-x^2}}=\arcsin x$、$\int\tan x=-\ln|\cos x|$、$\int\sec x=\ln|\sec x+\tan x|$、$\int\frac{1}{x^2-a^2}=\frac{1}{2a}\ln|\frac{x-a}{x+a}|$、$\int\frac{1}{\sqrt{a^2-x^2}}=\arcsin\frac{x}{a}$、$\int\frac{1}{\sqrt{x^2\pm a^2}}=\ln|x\pm\sqrt{x^2\pm a^2}|$、$\int\sqrt{a^2-x^2}=\frac{x}{2}\sqrt{a^2-x^2}+\frac{a^2}{2}\arcsin\frac{x}{a}$。</div>
+  <div class="thm"><b>定积分化简三招：</b>① 奇偶函数在对称区间 ② 区间再现（$x\to a+b-x$）③ 周期性。<div class="proof"><b>必考结论：</b>$\int_0^{\pi/2}\sin^n x\,dx=$ Wallis 公式；$\int_0^\pi x f(\sin x)\,dx=\frac{\pi}{2}\int_0^\pi f(\sin x)\,dx$。</div></div>
+  <div class="thm"><b>反常积分敛散性判据：</b>$\int_a^\infty\frac{1}{x^p}dx$：$p>1$ 收敛，$p\le1$ 发散；$\int_0^a\frac{1}{x^p}dx$：$p<1$ 收敛，$p\ge1$ 发散。<div class="proof"><b>用法：</b>其它反常积分与已知 p 积分比较（比较判据）。</div></div>
+  <div class="ex"><b>真题风格：</b>$\int_0^1 x(1-x^4)^{1/2}\,dx$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>令 $u=x^2$：$du=2x\,dx \Rightarrow$ 原式 $=\frac12\int_0^1(1-u^2)^{1/2}\,du=\frac12\cdot\frac{\pi}{4}=\frac{\pi}{8}$（$\int_0^1\sqrt{1-u^2}\,du=$ 四分之一圆面积）。</div></details></div>
+</div>
+
+<!-- 5 -->
+<div class="ch" id="c5">
+  <h2>5. 多元微分：极值与条件极值 <small>大题高频</small></h2>
+  <div class="thm"><b>无条件极值：</b>解 $f_x=f_y=0$ 得驻点；在驻点算 $A=f_{xx}$、$B=f_{xy}$、$C=f_{yy}$；$AC-B^2>0$ 且 $A>0 \Rightarrow$ 极小；$AC-B^2>0$ 且 $A<0 \Rightarrow$ 极大；$AC-B^2<0 \Rightarrow$ 不是极值。</div>
+  <div class="thm"><b>条件极值（拉格朗日乘数法）：</b>求 $f$ 在约束 $g=0$ 下的极值：构造 $L=f+\lambda g$，解 $L_x=L_y=L_\lambda=0$。<div class="proof"><b>考研考法：</b>给定实际问题（求最大体积/最小距离），先建函数与约束，再用乘数法。</div></div>
+  <div class="thm"><b>全微分形式不变性：</b>$dz=f_x dx+f_y dy$ 与中间变量无关——求全微分可绕过偏导定义。<div class="proof"><b>例：</b>隐函数 $F(x,y,z)=0$ 求 $z_x$、$z_y$：$z_x=-F_x/F_z$、$z_y=-F_y/F_z$。</div></div>
+  <div class="ex"><b>真题风格：</b>$z=x^2+y^2-xy$ 在 $|x|+|y|\le1$ 的最大值。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>内部：$z_x=2x-y=0$、$z_y=2y-x=0 \Rightarrow(0,0)$，$z=0$。边界 $x+y=1$：代入 $y=1-x$：$z=3x^2-3x+1$，max 在端点 $(1,0)$ 或 $(0,1)$：$z=1$；min 在 $x=1/2$：$z=1/4$。同理另两条边。全局 max $=1$（在 $(\pm1,0)$、$(0,\pm1)$）。</div></details></div>
+</div>
+
+<!-- 6 -->
+<div class="ch" id="c6">
+  <h2>6. 多元积分 <span class="tag1">数一</span><span class="tag2">数二</span><span class="tag3">数三</span> <small>二重积分必考</small></h2>
+  <div class="thm"><b>二重积分计算：</b>直角坐标或极坐标——被积函数含 $x^2+y^2$ 或区域为圆/扇形用极坐标（$d\sigma=r\,dr\,d\theta$）。<div class="proof"><b>换序积分：</b>给定 $\int_a^b dx\int_{\varphi_1(x)}^{\varphi_2(x)}f\,dy$：画区域，再按 $y$ 型重写。每年必考一道选择/填空。</div></div>
+  <div class="thm"><b>三重积分（仅数一）：</b>直角（投影法/截面法）、柱坐标（含 $x^2+y^2$）、球坐标（含 $x^2+y^2+z^2$）。<div class="proof"><b>选坐标口诀：</b>球用球、柱用柱、长方体用直角。</div></div>
+  <div class="thm"><b>曲线积分（仅数一）：</b>第一类（对弧长，$dS=\sqrt{1+y'^2}\,dx$，与方向无关）；第二类（对坐标，与方向有关）。格林公式：$\oint Pdx+Qdy=\iint(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})dxdy$。<div class="proof"><b>格林用法：</b>补线使闭合 → 用公式 → 减去补的线。</div></div>
+  <div class="thm"><b>曲面积分（仅数一）：</b>第一类 $dS=\sqrt{1+z_x^2+z_y^2}\,dxdy$；第二类与方向有关。高斯公式：$\oiint(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z})dV$。斯托克斯：空间曲线 $\to$ 曲面。</div>
+  <div class="ex"><b>真题风格：</b>$\iint_D e^{-x^2-y^2}\,dxdy$，$D$：$x^2+y^2\le1$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>极坐标：$\int_0^{2\pi}\int_0^1 e^{-r^2}r\,dr\,d\theta=2\pi\cdot[-\frac12 e^{-r^2}]_0^1=\pi(1-e^{-1})$。</div></details></div>
+</div>
+
+<!-- 7 -->
+<div class="ch" id="c7">
+  <h2>7. 无穷级数 <span class="tag1">数一</span><span class="tag3">数三</span> <small>每年 15 分左右</small></h2>
+  <div class="thm"><b>常数项级数判敛：</b>正项：比较、比值 $(a_{n+1}/a_n)$、根值；交错：莱布尼茨（单调趋于 0）；任意项：先判 $|a_n|$ 收敛（绝对），否则看是否条件收敛。</div>
+  <div class="thm"><b>幂级数：</b>收敛半径 $R=\lim|a_n/a_{n+1}|$；收敛区间 $(-R,R)$，再单独判端点。<div class="proof"><b>求和函数三步：</b>① 判收敛域 ② 逐项求导/积分化成 $1/(1-x)$ 型 ③ 反向积分/求导。</div></div>
+  <div class="thm"><b>傅里叶级数（仅数一）：</b>$f$ 周期 $2\pi$：$a_n=\frac1\pi\int_{-\pi}^{\pi}f\cos nx\,dx$、$b_n=\frac1\pi\int f\sin nx\,dx$；狄利克雷条件下收敛到 $f(x)$（连续点）或 $\frac{f(x^-)+f(x^+)}{2}$（间断点）。<div class="proof"><b>数三只考幂级数。</b></div></div>
+  <div class="ex"><b>真题风格：</b>$\sum n x^{n-1}$ 的和函数（$|x|<1$）。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$\sum x^n=1/(1-x)$ 两边求导：$\sum n x^{n-1}=1/(1-x)^2$。</div></details></div>
+</div>
+
+<!-- 8 -->
+<div class="ch" id="c8">
+  <h2>8. 常微分方程 <small>每年必考 1 道大题</small></h2>
+  <div class="thm"><b>一阶方程识别：</b>① 可分离（$dy/dx=f(x)g(y)$）② 齐次（$dy/dx=\varphi(y/x)$，令 $u=y/x$）③ 一阶线性（$y'+P(x)y=Q(x)$，公式 $y=e^{-\int P}(\int Q e^{\int P}\,dx+C)$）④ 全微分。</div>
+  <div class="thm"><b>二阶常系数线性：</b>齐次：解特征方程 $r^2+pr+q=0$：两异实根 $y=C_1e^{r_1x}+C_2e^{r_2x}$；重根 $y=(C_1+C_2x)e^{rx}$；共轭复根 $\alpha\pm\beta i$：$y=e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$。<div class="proof"><b>非齐次特解形式：</b>$f(x)=e^{\lambda x}P_m(x)$ 设 $e^{\lambda x}Q_m(x)$（$\lambda$ 是 $k$ 重根乘 $x^k$）；$f=e^{\alpha x}(A\cos\beta x+B\sin\beta x)$ 设 $e^{\alpha x}(a\cos\beta x+b\sin\beta x)$（$i\beta$ 是根乘 $x$）。</div></div>
+  <div class="thm"><b>欧拉方程（仅数一）：</b>$x^2 y''+a x y'+b y=0$：令 $x=e^t$。</div>
+  <div class="ex"><b>真题风格：</b>$y''-2y'+y=e^x$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>特征 $(r-1)^2=0$：齐次 $=(C_1+C_2x)e^x$。$\lambda=1$ 是二重根，特解设 $Ax^2 e^x$：代入得 $A=1/2$。通解 $=(C_1+C_2x+x^2/2)e^x$。</div></details></div>
+</div>
+
+<!-- 9 -->
+<div class="ch" id="c9">
+  <h2>9. 真题风格题型精选 <small>限时 20 分钟</small></h2>
+  <div class="ex"><b>精选 1：</b>$\lim_{x\to0}\frac{(1-\cos x)\ln(1+x^2)}{x\cdot\sin x^3}$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$1-\cos x\sim x^2/2$、$\ln(1+x^2)\sim x^2$、$x\cdot\sin x^3\sim x^4$。原式 $=\frac{x^2/2\cdot x^2}{x^4}=1/2$。</div></details></div>
+  <div class="ex"><b>精选 2：</b>$\int_0^{\pi/2}\frac{\sin x}{\sin x+\cos x}\,dx$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>区间再现 = $\pi/4$（见 CMC 页同题）。</div></details></div>
+  <div class="ex"><b>精选 3：</b>$z=f(x^2-y^2,e^{xy})$，$f$ 可微，求 $\partial z/\partial x$、$\partial z/\partial y$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>记 $u=x^2-y^2$、$v=e^{xy}$：$z_x=f_1\cdot2x+f_2\cdot y\cdot e^{xy}$；$z_y=f_1\cdot(-2y)+f_2\cdot x\cdot e^{xy}$。</div></details></div>
+  <div class="ex"><b>精选 4：</b>交换积分次序 $\int_0^1 dx\int_0^x f(x,y)dy$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>区域 $0\le y\le x\le1 \Rightarrow 0\le y\le1$、$y\le x\le1$：$\int_0^1 dy\int_y^1 f\,dx$。</div></details></div>
+  <div class="ex"><b>精选 5：</b>$y''+y=\sin 2x$ 的特解。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$i\cdot2$ 不是特征根，设 $a\cos 2x+b\sin 2x$：代入得 $-3a\cos 2x-3b\sin 2x=\sin 2x \Rightarrow a=0$、$b=-1/3$。特解 $=-\frac13\sin 2x$。</div></details></div>
+</div>
+
+<!-- 10 -->
+<div class="ch" id="c10">
+  <h2>10. 必背公式与易错清单 <small>考前一周默写</small></h2>
+  <div class="thm"><b>必背：</b>等价无穷小 8 条 / 基本导数 12 条 / 基本积分 16 条 / 六个麦克劳林（$e^x$、$\sin x$、$\cos x$、$\ln(1+x)$、$1/(1-x)$、$(1+x)^a$）/ 三大中值定理条件与结论 / 极值判别 $AC-B^2$ / 二重/三重积分坐标选择口诀 / 格林/高斯公式条件（闭合、正向、一阶连续偏导）/ 二阶常系数三种情形 / 非齐次特解形式。</div>
+  <div class="warn"><b>易错 Top 5：</b>① 拐点是点不是 x 值；② 格林公式要补线后减补线；③ $1^\infty$ 型别直接代入；④ 反常积分先判敛再算值；⑤ 拉格朗日乘数法漏约束条件。</div>
+</div>
+
+<footer>
+  <a href="01-CMC全国大学生数学竞赛.html">← CMC 竞赛</a>
+  <a href="03-考研数学-线性代数与概率强化.html">下一页：线代与概率 →</a>
+</footer>
+</div>
+
+</body>
+</html>

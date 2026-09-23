@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>概率与统计讲义 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%9E%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --teal:#177E89; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--teal); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:40px; margin:12px 0 6px;}
+h1 .sym{color:var(--teal); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:740px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--teal); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--teal); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; margin-top:26px;}
+.ch p{font-size:15px; margin-top:10px; max-width:820px;}
+.f{font-family:Georgia,"Cambria Math",serif; font-style:italic; background:var(--paper2); border-radius:6px; padding:1px 8px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--teal);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--teal); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.demo{background:var(--paper2); border:1px solid var(--line); border-radius:16px; padding:20px; margin-top:16px;}
+.demo .btn{display:inline-block; background:var(--teal); color:#fff; border:none; border-radius:8px; padding:8px 18px; font-size:14px; cursor:pointer; margin:0 8px 12px 0; min-height:44px;}
+.demo .btn.gray{background:#8A8270;}
+.demo p.hint{font-size:13px; color:var(--ink2);}
+.papers{display:grid; gap:10px; margin-top:12px;}
+.papers .p{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px;}
+.papers .p a{color:var(--teal); text-decoration:none; font-weight:600; font-size:14.5px;}
+.papers .p a:hover{text-decoration:underline;}
+.papers .m{font-size:12.5px; color:var(--ink2); margin-top:3px;}
+.papers .empty{background:var(--paper2); border:1px dashed var(--line); border-radius:10px; padding:14px 16px; font-size:13.5px; color:var(--ink2);}
+.gloss{margin-top:14px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:14px;}
+.gloss dt{font-weight:700; margin-top:8px;}
+.gloss dt:first-child{margin-top:0;}
+.gloss dd{margin-left:18px; color:var(--ink2); font-size:13.5px;}
+.online{margin-top:16px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; font-size:14px;}
+.online a{color:var(--teal); text-decoration:none;}
+.online a:hover{text-decoration:underline;}
+.online ul{margin:8px 0 0 20px;}
+.online li{margin-top:6px;}
+.online .hint{font-size:12.5px; color:var(--ink2); margin-top:8px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--teal); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>概率与统计讲义 <span class="sym">∞</span></h1>
+  <p class="sub">随机性的规律：从概率公理、贝叶斯到中心极限定理、假设检验与回归——完整讲义含定义、定理、证明、例题与练习。</p>
+  <p class="quote">「概率论只谈『长期频率』与『信念更新』——它是关于不确定性的数学。」</p>
+</header>
+
+<div class="toc">
+  <b>本讲目录</b>
+  <ol>
+    <li><a href="#c1">概率公理与计数</a></li>
+    <li><a href="#c2">条件概率与贝叶斯定理</a></li>
+    <li><a href="#c3">随机变量与分布</a></li>
+    <li><a href="#c4">期望、方差与矩</a></li>
+    <li><a href="#c5">大数定律与中心极限定理</a></li>
+    <li><a href="#c6">参数估计与置信区间</a></li>
+    <li><a href="#c7">假设检验</a></li>
+    <li><a href="#c8">相关、回归与反直觉悖论</a></li>
+    <li><a href="#cA1">深度专题：大数定律与中心极限定理证明思路</a></li>
+    <li><a href="#cA2">深度专题：极大似然估计与假设检验的严格框架</a></li>
+    <li><a href="#c9a">深度：大偏差与 Chernoff 界</a></li>
+    <li><a href="#c9b">深度：马尔可夫链与平稳分布</a></li>
+    <li><a href="#c9c">深度：贝叶斯推断与先验</a></li>
+    <li><a href="#c9d">深度：大偏差理论简介</a></li>
+    <li><a href="#c9e">深度：马尔可夫链与平稳分布</a></li>
+    <li><a href="#c9">练习与自测</a></li>
+    <li><a href="#c10">术语表、在线资源与最新研究</a></li>
+  </ol>
+</div>
+
+<!-- ================= 第 1 章 ================= -->
+<div class="ch" id="c1">
+  <h2>1. 概率公理与计数 <small>柯尔莫哥洛夫的三条公理</small></h2>
+  <div class="def"><b>定义（概率空间）：</b>(Ω, ℱ, P)：样本空间 Ω、事件 σ-代数 ℱ、概率测度 P，满足：① P(Ω) = 1；② 可列可加：互斥事件并的概率 = 概率之和；③ P ≥ 0。</div>
+  <div class="thm"><b>定理（基本计数原理）：</b>加法原理（互斥分类求和）与乘法原理（分步相乘）。<div class="proof"><b>例：</b>从 26 个字母中取 4 个不重复排列数 = 26·25·24·23 = 358,800。</div></div>
+  <div class="thm"><b>定理（组合恒等式）：</b>C(n,k) = n!/(k!(n−k)!)；C(n,k) = C(n−1,k) + C(n−1,k−1)（帕斯卡恒等式）；二项定理 (a+b)ⁿ = Σ C(n,k)aᵏbⁿ⁻ᵏ。<div class="proof"><b>证明要点：</b>帕斯卡恒等式按「第 n 个元素选/不选」分类；二项定理是乘法原理的展开。</div></div>
+  <div class="ex"><b>例：</b>一副牌 52 张取 5 张，多少种不同的手牌？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>C(52,5) = 2,598,960 种。</div></details></div>
+</div>
+
+<!-- ================= 第 2 章 ================= -->
+<div class="ch" id="c2">
+  <h2>2. 条件概率与贝叶斯定理 <small>新信息如何更新信念</small></h2>
+  <div class="def"><b>定义（条件概率）：</b>P(A|B) = P(A∩B)/P(B)。给定 B 已发生，样本空间缩小到 B。</div>
+  <div class="thm"><b>定理（全概率公式）：</b>若 B₁,…,Bₖ 分割 Ω，则 P(A) = Σ P(A|Bᵢ)P(Bᵢ)。</div>
+  <div class="thm"><b>定理（贝叶斯定理）：</b>P(Bᵢ|A) = P(A|Bᵢ)P(Bᵢ) / Σ P(A|Bⱼ)P(Bⱼ)。<div class="proof"><b>证明要点：</b>把 P(A∩Bᵢ) 用两种方式写：P(A|Bᵢ)P(Bᵢ) = P(Bᵢ|A)P(A)，再代入全概率公式。</div></div>
+  <div class="thm"><b>定理（独立）：</b>A、B 独立 ⟺ P(A∩B) = P(A)P(B)。独立 ≠ 互斥；独立是「信息无关」，互斥是「不能同发」。</div>
+  <div class="ex"><b>例（蒙提霍尔问题）：</b>三扇门后有一辆车，选一扇后主持人开一扇空门，换门胜率？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>换门胜率 2/3。贝叶斯：初选正确概率 1/3，主持人必开空门（不提供新信息），不换仍 1/3，换 = 1 − 1/3 = 2/3。</div></details></div>
+  <div class="ex"><b>例（贝叶斯医学检验）：</b>发病率 0.1%，检验灵敏度 99%、假阳性 1%。阳性者真正患病的概率？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>P(病|阳) = 0.99×0.001 / (0.99×0.001 + 0.01×0.999) ≈ 9%。阳性 ≠ 患病——这是最反直觉也最重要的统计素养。</div></details></div>
+</div>
+
+<!-- ================= 第 3 章 ================= -->
+<div class="ch" id="c3">
+  <h2>3. 随机变量与分布 <small>把随机性数值化</small></h2>
+  <div class="def"><b>定义（随机变量）：</b>X: Ω → ℝ 的可测函数。离散型取值可数；连续型有概率密度 f(x)，P(X ∈ A) = ∫_A f。</div>
+  <div class="thm"><b>定理（重要分布族）：</b>
+  <div class="tbl"><table style="table-layout:fixed;width:100%;"><colgroup><col style="width:22%"><col style="width:26%"><col style="width:28%"><col style="width:24%"></colgroup><tr><th>分布</th><th>用途</th><th>期望</th><th>方差</th></tr>
+  <tr><td>伯努利(p)</td><td>单次成败</td><td>p</td><td>p(1−p)</td></tr>
+  <tr><td>二项 B(n,p)</td><td>n 次独立试验</td><td>np</td><td>np(1−p)</td></tr>
+  <tr><td>泊松(λ)</td><td>稀有事件计数</td><td>λ</td><td>λ</td></tr>
+  <tr><td>均匀 U(a,b)</td><td>等可能连续</td><td>(a+b)/2</td><td>(b−a)²/12</td></tr>
+  <tr><td>正态 N(μ,σ²)</td><td>自然误差聚合</td><td>μ</td><td>σ²</td></tr>
+  <tr><td>指数(λ)</td><td>无记忆等待时间</td><td>1/λ</td><td>1/λ²</td></tr></table></div>
+  <div class="proof"><b>推导例：</b>泊松(λ) = 二项当 n→∞、p = λ/n 时极限：P(X=k) = C(n,k)(λ/n)ᵏ(1−λ/n)ⁿ⁻ᵏ → $e^{-λ}$λᵏ/k!。</div></div>
+  <div class="ex"><b>例：</b>某路口每分钟平均过 2 辆车（泊松），1 分钟内恰好过 3 辆的概率？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>P = e⁻²·2³/3! = 8e⁻²/6 ≈ 0.180。</div></details></div>
+</div>
+
+<!-- ================= 第 4 章 ================= -->
+<div class="ch" id="c4">
+  <h2>4. 期望、方差与矩 <small>分布的「重心」与「分散度」</small></h2>
+  <div class="def"><b>定义（期望）：</b>E[X] = Σ xᵢP(X=xᵢ)（离散）；E[X] = $\int x f(x)\,dx$（连续）。方差 Var(X) = E[(X−μ)²] = E[X²] − μ²。</div>
+  <div class="thm"><b>定理（期望线性）：</b>E[aX+bY] = aE[X] + bE[Y]——无需独立性。<div class="proof"><b>证明要点：</b>期望就是加权平均，和式可交换。</div></div>
+  <div class="thm"><b>定理（方差公式）：</b>X、Y 独立时 Var(X+Y) = Var(X) + Var(Y)。<div class="proof"><b>证明要点：</b>展开 E[(X+Y)²]−E[X+Y]²，交叉项用独立性 E[XY] = E[X]E[Y] 消去。</div></div>
+  <div class="thm"><b>定理（马尔可夫/切比雪夫不等式）：</b>P(X ≥ a) ≤ E[X]/a（X ≥ 0）；P(|X−μ| ≥ kσ) ≤ 1/k²。<div class="proof"><b>证明要点：</b>马尔可夫：E[X] ≥ a·P(X≥a)；切比雪夫代入 Y = (X−μ)²。无需分布假设——「只知道均值方差也能限制概率」。</div></div>
+  <div class="ex"><b>例：</b>X ~ N(0,1)，P(|X| ≥ 3) ≤ 1/9（切比雪夫），实际 ≈ 0.0027——切比雪夫很保守但普遍适用。</div>
+</div>
+
+<!-- ================= 第 5 章 ================= -->
+<div class="ch" id="c5">
+  <h2>5. 大数定律与中心极限定理 <small>随机性的两条「收敛」定理</small></h2>
+  <div class="thm"><b>定理（弱大数定律）：</b>X₁,…,Xₙ 独立同分布，均值 μ，则样本均值 X̄ₙ → μ（依概率）。<div class="proof"><b>证明要点（切比雪夫）：</b>Var(X̄ₙ) = σ²/n → 0，切比雪夫给出 P(|X̄ₙ−μ| ≥ ε) → 0。蒙特卡洛方法就靠它：随机数平均值收敛到期望。</div></div>
+  <div class="thm"><b>定理（中心极限定理）：</b>X̄ₙ 标准化后趋于标准正态：√n(X̄ₙ−μ)/σ ⇒ N(0,1)。<div class="proof"><b>证明要点（特征函数）：</b>X 的特征函数在 0 附近展开 φ(t) = 1 + iμt − σ²t²/2 + o(t²)，取 n 次方后趋于 $e^{-t^{2}/2}$（标准正态的特征函数）——勒维连续定理完成极限交换。</div></div>
+  <div class="thm"><b>定理（棣莫弗-拉普拉斯）：</b>二项分布 B(n,p) 的标准化近似正态：P(a ≤ X ≤ b) ≈ Φ((b−np)/$\sqrt{npq}$) − Φ((a−np)/$\sqrt{npq}$)。<div class="proof"><b>经验法则：</b>np ≥ 10 且 n(1−p) ≥ 10 时近似良好。</div></div>
+  <div class="ex"><b>例：</b>掷硬币 1000 次，正面数在 450–550 之间的概率约？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>μ=500, σ=√(1000·½·½)≈15.8。P(450≤X≤550) ≈ Φ(3.16)−Φ(−3.16) ≈ 0.9984。</div></details></div>
+</div>
+
+<!-- ================= 第 6 章 ================= -->
+<div class="ch" id="c6">
+  <h2>6. 参数估计与置信区间 <small>从样本反推总体</small></h2>
+  <div class="def"><b>定义（点估计）：</b>用样本统计量估计总体参数。矩估计：样本矩 = 总体矩；极大似然估计（MLE）：最大化似然函数 L(θ) = ∏f(xᵢ;θ)。</div>
+  <div class="thm"><b>定理（MLE 的不变性）：</b>若 θ̂ 是 θ 的 MLE，则 g(θ̂) 是 g(θ) 的 MLE。<div class="proof"><b>意义：</b>MLE 在大样本下渐近有效（达到克拉美-罗下界）——它是统计推断的主力。</div></div>
+  <div class="thm"><b>定理（置信区间）：</b>总体均值的 95% 置信区间为 X̄ ± 1.96σ/√n（σ 已知）。<div class="proof"><b>解读：</b>重复抽样 100 次，约 95 个区间覆盖真值——置信区间描述的是「方法」，不是「这一次的概率」。</div></div>
+  <div class="ex"><b>例：</b>n = 100，样本均值 50，σ = 10，求 95% 置信区间。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>50 ± 1.96×10/√100 = 50 ± 1.96 → (48.04, 51.96)。</div></details></div>
+</div>
+
+<!-- ================= 第 7 章 ================= -->
+<div class="ch" id="c7">
+  <h2>7. 假设检验 <small>用数据「拒绝」或「无法拒绝」</small></h2>
+  <div class="def"><b>定义（检验框架）：</b>原假设 H₀（现状）vs 备择假设 H₁；显著性水平 α（第 I 类错误率，常取 0.05）；p 值 = 「H₀ 为真时出现当前数据或更极端数据的概率」。p &lt; α → 拒绝 H₀。</div>
+  <div class="thm"><b>定理（两类错误）：</b>第 I 类错误（拒真）率 α；第 II 类错误（取伪）率 β，检验功效 = 1−β。<div class="proof"><b>例：</b>α 与 β 此消彼长——样本量 n 增大可同时降低两者。</div></div>
+  <div class="thm"><b>定理（常见检验）：</b>t 检验（均值，σ 未知）、χ² 检验（拟合优度/独立性）、F 检验（方差比/ANOVA）。<div class="proof"><b>t 统计量：</b>t = (X̄−μ₀)/(s/√n)，自由度 n−1——戈塞特（Guinness 啤酒厂）1908 年发明。</div></div>
+  <div class="ex"><b>例：</b>检验一枚硬币是否公平：掷 100 次得 60 次正面，p 值多少？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>X~B(100,0.5)，P(X≥60) ≈ 0.028（双侧 p ≈ 0.057）。双侧 p &gt; 0.05，在 α=0.05 下不拒绝公平假设。</div></details></div>
+  <p><b>常见陷阱：</b>p 值不是「H₁ 为真的概率」；多重比较需要校正（Bonferroni）；「不显著 ≠ 无效应」（可能功效不足）。</p>
+</div>
+
+<!-- ================= 第 8 章 ================= -->
+<div class="ch" id="c8">
+  <h2>8. 相关、回归与反直觉悖论 <small>相关不是因果</small></h2>
+  <div class="def"><b>定义（皮尔逊相关系数）：</b>r = Cov(X,Y)/(σ_X σ_Y)，范围 [−1,1]。</div>
+  <div class="thm"><b>定理（最小二乘回归）：</b>y = a + bx 最小化 Σ(yᵢ−a−bxᵢ)² 的解：b = Cov(X,Y)/Var(X)，a = ȳ − b x̄。<div class="proof"><b>证明要点：</b>对 a、b 求导令为零（正规方程），或几何投影到列空间。</div></div>
+  <div class="thm"><b>定理（辛普森悖论）：</b>分组看有趋势，合并看趋势反转。<div class="proof"><b>例：</b>两个科室各自 A 药治愈率都更高，但合并数据 B 药更高——因为 B 药更多用于轻症。混淆变量（病情）必须分层分析。</div></div>
+  <div class="ex"><b>例：</b>冰淇淋销量与溺水人数高度相关（r ≈ 0.9）——共同原因：夏天。相关 ≠ 因果。</div>
+</div>
+
+
+<!-- ================= 深度专题 A ================= -->
+<div class="ch" id="cA1">
+  <h2>9. 深度专题：大数定律与中心极限定理证明思路 <small>随机样本为何服从正态</small></h2>
+  <div class="thm"><b>定理（切比雪夫弱大数定律）：</b>$\{X_n\}$ 两两不相关、期望 $\mu$ 相同、方差一致有界，则 $\bar X_n=\frac1n\sum_{i=1}^n X_i \xrightarrow{P}\mu$。<div class="proof"><b>证明思路：</b>$\mathbb E\bar X_n=\mu$，$\operatorname{Var}\bar X_n=\sigma^2/n$。切比雪夫不等式 $P(|\bar X_n-\mu|\ge\varepsilon)\le \sigma^2/(n\varepsilon^2)\to 0$。无需独立同分布，仅需二阶矩有界——这是弱大数定律的最小条件。</div></div>
+  <div class="thm"><b>定理（Kolmogorov 强大数定律）：</b>独立同分布 $X_i$ 且 $\mathbb E|X_1|&lt;\infty$，则 $\bar X_n\to\mu$ 几乎处处。<div class="proof"><b>证明思路：</b>截断法 + Borel–Cantelli 引理。令 $Y_i=X_i\mathbf 1_{\{|X_i|\le i\}}$，则 $\sum P(X_i\neq Y_i)=\sum P(|X_1|>i)&lt;\infty$（由 $\mathbb E|X_1|&lt;\infty$ 推出），故 $X_i\neq Y_i$ 仅发生有限次。再用 Kronecker 引理控制 $\sum(Y_i-\mathbb E Y_i)/n\to 0$。</div></div>
+  <div class="thm"><b>定理（Lindeberg–Lévy 中心极限定理）：</b>i.i.d. $X_i$，$\mathbb E X_i=\mu$，$0&lt;\operatorname{Var}X_i=\sigma^2&lt;\infty$，则
+  $$\frac{\sum_{i=1}^n X_i-n\mu}{\sigma\sqrt n}\ \xrightarrow{d}\ N(0,1).$$
+  <div class="proof"><b>证明思路（特征函数法）：</b>设标准化变量 $\xi_i=(X_i-\mu)/\sigma$ 的特征函数为 $\varphi(t)$。由 Taylor 展开 $\varphi(t)=1-\tfrac12 t^2+o(t^2)$（用到二阶矩有限）。和的特征函数为 $\varphi(t/\sqrt n)^n$，取对数：
+  $$n\log\varphi(t/\sqrt n)=n\left(-\frac{t^2}{2n}+o(1/n)\right)\to -\frac{t^2}{2},$$
+  即标准正态的特征函数。由 Lévy 连续性定理，分布收敛到 $N(0,1)$。</div></div>
+  <div class="ex"><b>例：二项分布的正态近似。</b>$X_n\sim B(n,p)$，它是 $n$ 个独立 Bernoulli$(p)$ 之和，$\mu=np$，$\sigma^2=np(1-p)$。CLT 给出
+  $$P\left(a\le \frac{X_n-np}{\sqrt{np(1-p)}}\le b\right)\approx \Phi(b)-\Phi(a).$$
+  取 $n=100$，$p=0.5$，求 $P(X\ge 60)$。标准化：$(60-50)/\sqrt{25}=2$，连续性修正后用 $(59.5-50)/5=1.9$，得 $1-\Phi(1.9)\approx 0.0287$。<div class="sol"><b>验证：</b>精确二项计算 $\sum_{k=60}^{100}\binom{100}{k}(1/2)^{100}\approx 0.0284$，与 CLT 近似吻合。这就是「$n$ 次独立试验频率渐近正态」的数学根据。</div></div>
+</div>
+
+<!-- ================= 深度专题 B ================= -->
+<div class="ch" id="cA2">
+  <h2>10. 深度专题：极大似然估计与假设检验的严格框架 <small>从数据到推断</small></h2>
+  <div class="def"><b>定义（似然函数与 MLE）：</b>样本 $X_1,\dots,X_n\sim f(x;\theta)$，似然 $L(\theta)=\prod_{i=1}^n f(X_i;\theta)$。极大似然估计 $\hat\theta_{\text{MLE}}=\arg\max_\theta L(\theta)$，通常解得分方程 $\partial_\theta\log L=0$。</div>
+  <div class="thm"><b>定理（MLE 的渐近性质）：</b>正则条件下（可交换求导与积分、Fisher 信息 $I(\theta)>0$），
+  $$\sqrt n(\hat\theta_{\text{MLE}}-\theta)\xrightarrow{d} N\!\left(0,\,I(\theta)^{-1}\right).$$
+  且 $\hat\theta$ 渐近有效（达到 Cramér–Rao 下界）。<div class="proof"><b>证明思路：</b>得分函数 $S=\partial_\theta\log L$ 满足 $\mathbb E S=0$、$\operatorname{Var}S=nI(\theta)$，由 CLT $S\to N(0,nI)$。在 $\hat\theta$ 处 Taylor 展开 $0=S(\hat\theta)\approx S(\hat\theta_0)+S'(\hat\theta_0)(\hat\theta-\hat\theta_0)$，结合信息等式 $\mathbb E S'=-nI$，即得渐近正态。</div></div>
+  <div class="thm"><b>定理（N–P 引理）：</b>在简单原假设 $H_0$ 对简单备择 $H_1$ 的检验中，给定显著性水平 $\alpha$，似然比检验 $\{L_0/L_1&lt;c\}$（$c$ 由 $\alpha$ 确定）是势最大的检验。复合假设下用广义似然比 $\Lambda=\max_{H_0}L/\max_{\text{全部}}L$，在 $H_0$ 下 $-2\log\Lambda\to\chi^2_k$。</div>
+  <div class="ex"><b>例：正态均值的 MLE 与置信区间。</b>$X_i\sim N(\mu,\sigma^2)$，$\sigma^2$ 已知。$\log L=-\frac n2\log(2\pi\sigma^2)-\frac1{2\sigma^2}\sum(X_i-\mu)^2$，得分 $=\frac1{\sigma^2}\sum(X_i-\mu)=0$ 给出 $\hat\mu=\bar X$。信息 $I(\mu)=n/\sigma^2$，故 $\bar X\sim N(\mu,\sigma^2/n)$，$95\%$ 置信区间为
+  $$\bar X\pm 1.96\,\frac{\sigma}{\sqrt n}.$$
+  若 $\sigma^2$ 未知，用 $S^2=\frac1{n-1}\sum(X_i-\bar X)^2$ 代替，并改用 $t$ 分布 $t_{n-1}$ 临界值。<div class="sol"><b>假设检验：</b>检验 $H_0:\mu=\mu_0$。统计量 $Z=(\bar X-\mu_0)/(\sigma/\sqrt n)\sim N(0,1)$。若观测 $|Z|>1.96$，在水平 $\alpha=0.05$ 下拒绝 $H_0$。$p$ 值 $=2(1-\Phi(|Z|))$——它衡量「在 $H_0$ 下观测到当前或更极端数据的概率」，而非「$H_0$ 为真的概率」。</div></div>
+</div>
+
+
+<!-- ================= 第 9 章 ================= -->
+
+<!-- ================= 深度小节：9a. 深度：大偏差与 Chernoff 界 ================= -->
+<div class="ch" id="c9a">
+  <h2>11. 深度：大偏差与 Chernoff 界 <small>把「平均值偏离期望」的概率指数级压下去</small></h2>
+  <div class="def"><b>定义（矩母函数）</b> 随机变量 $X$ 的矩母函数 $M_X(t)=\mathbb{E}[e^{tX}]$。若 $M_X$ 在 $t>0$ 有限，则对 $a>\mathbb{E}[X]$，
+  $$\Pr(X\ge a)\le\inf_{t>0}\frac{M_X(t)}{e^{ta}}.$$
+  这是 Chernoff 界的核心——用最优化参数 $t$ 把界指数级压缩。</div>
+  <div class="thm"><b>定理（Chernoff 界，独立伯努利和）</b> 设 $X=\sum_{i=1}^n X_i$，$X_i\sim\mathrm{Bernoulli}(p_i)$ 独立，$\mu=\mathbb{E}[X]=\sum p_i$。对 $\delta\in(0,1)$，
+  $$\Pr(X\ge(1+\delta)\mu)\le\exp\!\left(-\frac{\delta^2\mu}{3}\right),\quad \Pr(X\le(1-\delta)\mu)\le\exp\!\left(-\frac{\delta^2\mu}{2}\right).$$
+  <div class="proof"><b>思路：</b>对 $e^{tX}$ 用马尔可夫不等式 $\Pr(X\ge a)\le M_X(t)/e^{ta}$，代入伯努利的 $M_X(t)=\prod(p_ie^t+1-p_i)$，用 $1+x\le e^x$ 放缩，最后对 $t$ 求最优。</div></div>
+  <div class="ex"><b>例：</b>$n=10^6$ 次独立掷硬币，期望正面数 $\mu=5\times10^5$。$\Pr(X\ge5.5\times10^5)\le e^{-5\times10^4\cdot0.01/3}=e^{-500/3}\approx10^{-72}$。
+  <div class="sol"><b>解读：</b>偏离期望 $10\%$ 的概率比宇宙年龄还小——大偏差理论给出指数级小概率的精确控制。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9b. 深度：马尔可夫链与平稳分布 ================= -->
+<div class="ch" id="c9b">
+  <h2>12. 深度：马尔可夫链与平稳分布 <small>随机游走的长期行为由转移矩阵的最大特征值决定</small></h2>
+  <div class="def"><b>定义（马尔可夫链）</b> 状态空间 $S$ 上的马尔可夫链由转移矩阵 $P=(p_{ij})$ 决定，$p_{ij}=\Pr(X_{n+1}=j\mid X_n=i)$，满足「无记忆性」：未来只依赖当前。<b>平稳分布</b> $\pi$ 满足 $\pi P=\pi$、$\sum\pi_i=1$。</div>
+  <div class="thm"><b>定理（遍历定理）</b> 不可约、非周期、有限状态马尔可夫链有唯一平稳分布 $\pi$，且对任意初始分布 $\mu_0$，$\mu_0 P^n\to\pi$（指数收敛）。收敛速度由 $P$ 的第二大特征值 $\lambda_2$ 决定：$\|\mu_0 P^n-\pi\|\le C|\lambda_2|^n$。<div class="proof"><b>思路：</b>转移矩阵 $P$ 是随机矩阵（行和为 1），最大特征值为 1，对应特征向量 $\pi$。佩隆–弗罗贝尼乌斯定理保证 $|\lambda_2|&lt;1$（不可约 + 非周期），故高次幂压缩其余分量。</div></div>
+  <div class="ex"><b>例（PageRank）</b> Google 的网页排名 = 转移矩阵 $P=(1-d)\frac{\mathbf{1}\mathbf{1}^T}{N}+d\cdot\tilde P$ 的平稳分布 $\pi$（$d\approx0.85$），其中 $\tilde P$ 是链接矩阵。阻尼系数 $d$ 保证 $P$ 不可约非周期，平稳分布唯一存在。</div>
+</div>
+
+
+<!-- ================= 深度小节：9c. 深度：贝叶斯推断与先验 ================= -->
+<div class="ch" id="c9c">
+  <h2>13. 深度：贝叶斯推断与先验 <small>把「未知参数」当随机变量，用数据更新认知</small></h2>
+  <div class="def"><b>定义（贝叶斯框架）</b> 参数 $\theta$ 有先验 $\pi(\theta)$，观测 $X$ 的似然 $p(X\mid\theta)$，则后验
+  $$\pi(\theta\mid X)=\frac{p(X\mid\theta)\pi(\theta)}{\int p(X\mid\theta')\pi(\theta')\,d\theta'}\propto p(X\mid\theta)\pi(\theta).$$
+  分母（边缘似然）是归一化常数，常难以计算。</div>
+  <div class="thm"><b>定理（共轭先验）</b> 若先验 $\pi$ 与后验同属一个参数族，称共轭。例：伯努利似然 $\Rightarrow$ Beta 先验；泊松似然 $\Rightarrow$ Gamma 先验；高斯似然（已知方差）$\Rightarrow$ 高斯先验。<div class="proof"><b>例（伯努利–Beta）</b> $X_i\sim\mathrm{Bernoulli}(\theta)$，先验 $\theta\sim\mathrm{Beta}(\alpha,\beta)$。后验 $\theta\mid X\sim\mathrm{Beta}(\alpha+\sum X_i,\beta+n-\sum X_i)$——只需更新两个参数（成功数 + 票数），无需积分。</div></div>
+  <div class="ex"><b>例：</b>抛硬币 10 次得 7 正面。先验 Beta(1,1)（均匀），后验 Beta(8,4)，后验均值 $8/12=2/3$。这与 MLE $7/10$ 不同——贝叶斯把先验「拉」向 1/2，小样本时更稳健。</div>
+</div>
+
+
+<!-- ================= 第二轮深度小节：9d. 深度：大偏差理论简介 ================= -->
+<div class="ch" id="c9d">
+  <h2>14. 深度：大偏差理论简介 <small>估计「极端事件」的概率</small></h2>
+  <div class="def"><b>定义（速率函数）</b> 函数 $I:\mathcal X\to[0,\infty]$ 称速率函数，若下水平集 $\{x:I(x)\le a\}$ 闭。好的速率函数还要求所有下水平集紧。</div>
+  <div class="def"><b>定义（大偏差原理 LDP）</b> 随机变量族 $\{X_\lambda\}_{\lambda>0}$ 在 $\mathcal X$ 上满足速率为 $\lambda$ 的大偏差原理，若存在速率函数 $I$ 使
+  $$-\inf_{x\in F}I(x)\le\liminf_\lambda\frac1\lambda\ln P(X_\lambda\in F)\le\limsup_\lambda\frac1\lambda\ln P(X_\lambda\in F)\le-\inf_{x\in\bar F}I(x)$$
+  对所有闭 $F$ 与开 $G$（下界用开集形式）。直觉：$P(X_\lambda\approx x)\approx e^{-\lambda I(x)}$。</div>
+  <div class="thm"><b>定理（Cramér）</b> iid $X_i$ 服从分布 $\mu$，$\bar X_n=(X_1+\cdots+X_n)/n$，则 $\bar X_n$ 满足速率 $n$ 的 LDP，速率函数
+  $$I(x)=\sup_{\theta\in\mathbb{R}}\bigl[\theta x-\ln\mathbb{E}e^{\theta X_1}\bigr]$$
+  （$\ln\mathbb{E}e^{\theta X}$ 为累积生成函数 $\Lambda(\theta)$ 的 Legendre 变换）。<div class="proof"><b>思路：</b>指数 Markov 不等式 $P(\bar X_n\ge a)\le e^{-n(\theta a-\Lambda(\theta))}$ 给上界，取 sup 得 $-I$；下界用指数倾斜测度 $d\mu_\theta=e^{\theta x}d\mu/\mathbb{E}e^{\theta X}$ 在 Cramér 条件下达到。</div></div>
+  <div class="ex"><b>例：</b>正态 $N(0,1)$ 的 $\bar X_n$ 的大偏差速率。
+  <div class="sol"><b>解：</b>$\Lambda(\theta)=\theta^2/2$，$I(x)=\sup_\theta(\theta x-\theta^2/2)=x^2/2$。故 $P(\bar X_n\ge a)\approx e^{-na^2/2}$——正是 Hoeffding/Chernoff 界的高斯特例。</div></div>
+</div>
+
+<!-- ================= 第二轮深度小节：9e. 深度：马尔可夫链与平稳分布 ================= -->
+<div class="ch" id="c9e">
+  <h2>15. 深度：马尔可夫链与平稳分布 <small>记忆只有一步</small></h2>
+  <div class="def"><b>定义（马尔可夫链）</b> 取值于可数状态空间 $S$ 的随机序列 $\{X_n\}$ 满足 Markov 性：$P(X_{n+1}=j\mid X_n=i,X_{n-1},\dots)=P(X_{n+1}=j\mid X_n=i)=:p_{ij}$。转移矩阵 $P=(p_{ij})$ 行随机（$p_{ij}\ge0$, $\sum p_{ij}=1$）。</div>
+  <div class="def"><b>定义（不可约、正常返、非周期）</b> 不可约：任意 $i\to j$（可达）；正常返：$\mathbb{E}_iT_i&lt;\infty$（$T_i=\inf\{n\ge1:X_n=i\}$）；非周期：$\gcd\{n:p_{ii}^{(n)}>0\}=1$。</div>
+  <div class="thm"><b>定理（遍历定理）</b> 不可约正常返非周期链存在唯一平稳分布 $\pi$（$\pi P=\pi$，$\sum\pi=1$），且对任意 $f\in L^1(\pi)$
+  $$\frac1n\sum_{k=1}^n f(X_k)\to\mathbb{E}_\pi f\quad\text{a.s.}$$
+  <div class="proof"><b>思路：</b>耦合方法构造另一条从平稳 $\pi$ 出发的链 $Y$，证明两链必相遇且相遇后同分布；遍历来自强极限律。</div></div>
+  <div class="thm"><b>定理（细致平衡与可逆性）</b> 若存在 $\pi$ 满足 $\pi_i p_{ij}=\pi_j p_{ji}$（细致平衡），则 $\pi$ 是平稳分布，链 $\pi$-可逆。MCMC 的核心：用细致平衡构造目标分布。<div class="proof"><b>意义：</b>Metropolis–Hastings 算法从任意提议核 $q_{ij}$ 构造可逆链：$p_{ij}=q_{ij}\min(1,\pi_jq_{ji}/(\pi_iq_{ij}))$，平稳分布恰为想要的 $\pi$。</div></div>
+  <div class="ex"><b>例：</b>赌徒在 $\{0,1,\dots,N\}$ 上以 $p$ 走 +1、$q=1-p$ 走 -1，0 与 $N$ 吸收。求从 $i$ 破产的概率。
+  <div class="sol"><b>解：</b>设 $h_i$ 为从 $i$ 到 0 的概率，$h_0=1,h_N=0$，$h_i=ph_{i+1}+qh_{i-1}$。解 $h_i=A+B(q/p)^i$。$p\ne q$ 时 $h_i=\frac{(q/p)^N-(q/p)^i}{(q/p)^N-1}$；$p=q=1/2$ 时 $h_i=1-i/N$。赌场优势即 $p&lt;q$ 时 $h_i\to1$。</div></div>
+</div>
+
+<div class="ch" id="c9">
+  <h2>16. 练习与自测</h2>
+  <div class="ex"><b>练习 1：</b>生日悖论：23 人中有两人生日相同的概率约？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>1 − 365·364·…·343/365²³ ≈ 0.507。</div></details></div>
+  <div class="ex"><b>练习 2：</b>E[X²] = 5，E[X] = 1，求 Var(X)。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>Var = 5 − 1² = 4。</div></details></div>
+  <div class="ex"><b>练习 3：</b>X 服从指数分布均值 10，P(X &gt; 20)？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>λ = 1/10，P(X&gt;20) = $e^{-20/10}$ = e⁻² ≈ 0.135。</div></details></div>
+  <div class="ex"><b>练习 4：</b>掷两骰子，点数和为 7 的概率？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>6/36 = 1/6。（1,6),(2,5),(3,4),(4,3),(5,2),(6,1) 共 6 种。</div></details></div>
+  <div class="ex"><b>练习 5：</b>某检验 α = 0.05 做了 20 次独立检验，至少一次假阳性的概率？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>1 − 0.95²⁰ ≈ 0.642——多重比较问题，需要 Bonferroni 校正（α/20 = 0.0025）。</div></details></div>
+  <div class="ex"><b>练习 6：</b>n = 400，p̂ = 0.6，求总体比例 p 的 95% 置信区间。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>0.6 ± 1.96√(0.6·0.4/400) = 0.6 ± 1.96×0.0245 ≈ (0.552, 0.648)。</div></details></div>
+</div>
+
+<!-- ================= 第 10 章 ================= -->
+
+  <div class="ex"><b>练习 7：</b>用 Chernoff 界估计 $\Pr(X\ge60)$，$X\sim\mathrm{Bin}(100,0.5)$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\mu=50$，$\delta=0.2$。$\Pr(X\ge60)\le\exp(-0.04\cdot50/3)=e^{-2/3}\approx0.51$（界较松；精确值约 $0.028$，Chernoff 在大 $n$ 才紧凑）。</div></details></div>
+
+  <div class="ex"><b>练习 8：</b>两状态链 $P=\begin{pmatrix}0.3&0.7\\0.6&0.4\end{pmatrix}$ 的平稳分布？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\pi P=\pi\Rightarrow\pi_1=0.6\pi_2/0.7$... 解 $\pi=(6/13,7/13)$。验证 $\pi P=(6/13,7/13)$✓。</div></details></div>
+
+  <div class="ex"><b>练习 9：</b>Beta(2,2) 先验 + 5 次成功 3 次失败的后验？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>后验 Beta(2+5, 2+3)=Beta(7,5)，均值 $7/12\approx0.583$。MLE 为 $5/8=0.625$——先验的「拉」效应。</div></details></div>
+
+  <div class="ex"><b>练习 10：</b>为什么 MLE 在小样本可能给出 $\theta=0$ 或 $1$ 的极端估计？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>MLE 只看数据：$n$ 次全失败 $\Rightarrow\hat\theta=0$。贝叶斯加先验保证后验有平滑，避免极端——这是贝叶斯方法的核心优势之一。</div></details></div>
+
+  <div class="ex"><b>练习 11：</b>iid $\mathrm{Bernoulli}(p)$，$\bar X_n$ 的 Cramér 速率函数 $I(x)$ 是什么？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\Lambda(\theta)=\ln(pe^\theta+q)$，$I(x)=x\ln(x/p)+(1-x)\ln((1-x)/q)$（KL 散度 $D(x\|p)$）。</div></details></div>
+  <div class="ex"><b>练习 12：</b>证明双随机矩阵（行、列都随机）的链以 $\pi_i=1/N$ 为平稳分布。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>细致平衡不成立，但 $\sum_i p_{ij}=1$ 给 $\pi P=\pi$：$(\pi P)_j=\sum_i\frac1N p_{ij}=\frac1N\cdot1=\pi_j$。故均匀分布平稳。</div></details></div>
+
+<div class="ch" id="c10">
+  <h2>17. 术语表、在线资源与最新研究</h2>
+  <div class="gloss">
+    <dt>样本空间 / 事件</dt><dd>所有可能结果 / 结果集合的子集。</dd>
+    <dt>独立同分布（i.i.d.）</dt><dd>统计推断的标准假设。</dd>
+    <dt>充分统计量</dt><dd>包含全部参数信息的统计量（如样本均值对正态均值）。</dd>
+    <dt>贝叶斯 vs 频率学派</dt><dd>参数是随机变量（信念）/ 参数是固定常数（频率）。</dd>
+    <dt>蒙特卡洛</dt><dd>用随机抽样估计确定性量（如 π）。</dd>
+    <dt>马尔可夫链</dt><dd>「下一状态只依赖当前状态」的随机过程。</dd>
+    <dt>Chernoff 界</dt><dd>用矩母函数给出大偏差概率的指数上界。</dd>
+    <dt>平稳分布</dt><dd>满足 $\pi P=\pi$ 的概率分布；遍历链唯一存在。</dd>
+    <dt>共轭先验</dt><dd>后验与先验同族的先验分布，简化贝叶斯更新。</dd>
+  </div>
+  <div class="online">
+    <b>在线资源（需联网打开）</b>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Probability_theory" target="_blank" rel="noopener noreferrer">Wikipedia: Probability theory</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Statistics" target="_blank" rel="noopener noreferrer">Wikipedia: Statistics</a></li>
+      <li><a href="https://arxiv.org/list/math.PR/recent" target="_blank" rel="noopener noreferrer">arXiv 概率论最新论文（math.PR）</a></li>
+      <li><a href="https://www.statology.org" target="_blank" rel="noopener noreferrer">Statology</a> —— 统计概念通俗教程</li>
+    </ul>
+    <p class="hint">本页「最新研究」区加载更新器每日抓取的 arXiv 概率论（math.PR）最新论文。</p>
+  </div>
+  <div class="ch" style="margin-top:34px;">
+    <h2>本主题最新研究 <small>每日自动更新 · 来源 arXiv math.PR</small></h2>
+    <div class="papers" id="topicPapers">
+      <div class="empty">等待数据……若长时间未更新，请运行 <code>python 09-前沿动态/数学前沿更新器.py</code>。</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../02-核心主题/分析.html">分析讲义 →</a>
+  <a href="../02-核心主题/组合与图论.html">组合讲义 →</a>
+  <a href="../05-可视化/蒙特卡洛求π.html">蒙特卡洛可视化 →</a>
+</footer>
+</div>
+
+<script src="../09-前沿动态/论文数据.js"></script>
+<script>
+(function(){
+  var wrap = document.getElementById('topicPapers');
+  if(!wrap) return;
+  var papers = (typeof window.LBLB_PAPERS !== 'undefined' && window.LBLB_PAPERS['概率与统计']) || [];
+  if(!papers.length){
+    wrap.innerHTML = '<div class="empty">暂无该主题最新论文数据（更新器尚未成功抓取或已离线）。运行 <code>数学前沿更新器.py</code> 后自动填充。</div>';
+    return;
+  }
+  var html = '';
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+  for(var i=0;i<papers.length;i++){
+    var p = papers[i];
+    html += '<div class="p"><a href="' + esc(p.link) + '" target="_blank" rel="noopener noreferrer">' + esc(p.title) + '</a>' +
+      '<div class="m">' + esc(p.author||'—') + ' · ' + esc(p.date||'') + '</div></div>';
+  }
+  wrap.innerHTML = html;
+})();
+</script>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

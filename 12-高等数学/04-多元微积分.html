@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>高等数学 IV：多元微积分 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%82%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --hm:#2F5D8A; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--hm); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:38px; margin:12px 0 6px;}
+h1 .sym{color:var(--hm); font-style:italic;}
+.sub{color:var(--ink2); font-size:15.5px; max-width:780px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.series{margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;}
+.series a{font-size:12.5px; color:var(--hm); text-decoration:none; border:1px solid var(--line); border-radius:20px; padding:3px 12px; background:#fffdf6;}
+.series a:hover{background:var(--paper2);}
+.series .cur{background:var(--hm); color:#fff; border-color:var(--hm);}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--hm); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--hm); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; margin-top:26px;}
+.ch p{font-size:15px; margin-top:10px; max-width:840px;}
+.f{font-family:Georgia,"Cambria Math",serif; font-style:italic; background:var(--paper2); border-radius:6px; padding:1px 8px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--hm);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+.warn{background:#FDEDE8; border:1px solid #EAC6B8; border-left:5px solid var(--red); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14px;}
+.warn b{color:var(--red);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--hm); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.tbl{margin-top:14px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px; table-layout:fixed;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+.gloss{margin-top:14px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:14px;}
+.gloss dt{font-weight:700; margin-top:8px;}
+.gloss dt:first-child{margin-top:0;}
+.gloss dd{margin-left:18px; color:var(--ink2); font-size:13.5px;}
+.online{margin-top:16px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; font-size:14px;}
+.online a{color:var(--hm); text-decoration:none;}
+.online a:hover{text-decoration:underline;}
+.online ul{margin:8px 0 0 20px;}
+.online li{margin-top:6px;}
+.online .hint{font-size:12.5px; color:var(--ink2); margin-top:8px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--hm); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:30px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>高等数学 IV · 多元微积分 <span class="sym">∂</span></h1>
+  <p class="sub">多元函数微分与积分完整体系：偏导数与全微分、方向导数与梯度、多元极值与拉格朗日乘数法、二重/三重积分、曲线积分与曲面积分、三大积分公式——含证明要点、例题与易错点。</p>
+  <p class="quote">「从一元到多元，核心变化只有一句：导数变成矩阵，积分变成多层。」</p>
+  <div class="series">
+    <a href="01-函数极限与连续.html">I 函数极限连续</a>
+    <a href="02-一元微分学.html">II 一元微分学</a>
+    <a href="03-一元积分学.html">III 一元积分学</a>
+    <a class="cur" href="04-多元微积分.html">IV 多元微积分</a>
+    <a href="05-无穷级数.html">V 无穷级数</a>
+    <a href="06-常微分方程.html">VI 常微分方程</a>
+    <a href="07-速查与题库.html">VII 速查题库</a>
+  </div>
+</header>
+
+<div class="toc">
+  <b>本讲目录</b>
+  <ol>
+    <li><a href="#c1">多元函数的极限与连续</a></li>
+    <li><a href="#c2">偏导数与全微分</a></li>
+    <li><a href="#c3">复合函数与隐函数求导</a></li>
+    <li><a href="#c4">方向导数、梯度与多元极值</a></li>
+    <li><a href="#c5">二重积分：定义与计算</a></li>
+    <li><a href="#c6">三重积分与曲线积分</a></li>
+    <li><a href="#c7">曲面积分</a></li>
+        <li><a href="#c9d">深度：隐函数定理</a></li>
+    <li><a href="#c9e">深度：Lagrange 乘数法</a></li>
+<li><a href="#c8">三大积分公式（格林/高斯/斯托克斯）</a></li>
+    <li><a href="#c9">多元微积分的应用</a></li>
+        <li><a href="#c9a">深度：隐函数定理与逆映射定理</a></li>
+    <li><a href="#c9b">深度：Green–Gauss–Stokes 三大公式的统一</a></li>
+    <li><a href="#c9c">深度：重积分换元法与 Jacobi 行列式</a></li>
+    <li><a href="#c10">练习与自测、术语表</a></li>
+  </ol>
+</div>
+
+<!-- ================= 1 ================= -->
+<div class="ch" id="c1">
+  <h2>1. 多元函数的极限与连续 <small>二维以上的分析学</small></h2>
+  <div class="def"><b>定义（多元函数）：</b>$z=f(x,y)$ 把平面点集 $D$ 映到实数。极限 $\lim_{(x,y)\to(x_0,y_0)}f(x,y)=A\iff$ 对任意 $\varepsilon&gt;0$ 存在 $\delta&gt;0$，使 $0&lt;\sqrt{(x-x_0)^2+(y-y_0)^2}&lt;\delta$ 时 $|f-A|&lt;\varepsilon$。</div>
+  <div class="thm"><b>定理（多元极限的关键差异）：</b>一元极限只看左右两个方向；多元极限要求<b>沿一切路径</b>（直线、抛物线、螺旋线…）都趋于同一值。<div class="proof"><b>反例：</b>f(x,y) = xy/(x²+y²)：沿 y = kx 有 f = k/(1+k²) 随 k 变化 ⟹ 极限不存在！</div></div>
+  <div class="def"><b>定义（连续）：</b>lim f(x,y) = f(x₀,y₀)。二元初等函数在定义域内连续。<div class="proof"><b>例：</b>求 lim (x²+y²)sin(1/(x²+y²))——|sin| ≤ 1，夹逼得 0。</div></div>
+  <div class="warn"><b>易错警示：</b>「沿所有直线路径一致」仍不够（f = x²y/(x⁴+y²) 沿所有直线趋于 0，但沿抛物线 y = x² 得 1/2）。证明极限不存在常用特殊路径法。</div>
+
+  <h3>1.1 平面点集与多元函数</h3>
+  <div class="def"><b>定义（邻域与内点）：</b>平面点集 $\mathbb{R}^2$ 中，点 $P_0(x_0,y_0)$ 的 $\delta$ 邻域为 $U(P_0,\delta)=\{(x,y):(x-x_0)^2+(y-y_0)^2&lt;\delta^2\}$。若存在 $P_0$ 的某邻域完全包含于 $D$，称 $P_0$ 为 $D$ 的内点。区域 $D$ 是连通的开集。</div>
+  <div class="def"><b>定义（二元函数）：</b>设 $D\subset\mathbb{R}^2$ 为非空点集。若对 $D$ 中每一点 $(x,y)$，按某法则 $f$ 有唯一确定的实数 $z$ 与之对应，则称 $z=f(x,y)$ 为定义在 $D$ 上的二元函数。$D$ 为定义域，$z$ 为因变量。</div>
+  <h3>1.2 二元函数的极限</h3>
+  <div class="thm"><b>定理（二元极限的严格定义）：</b>设 $f(x,y)$ 在区域 $D$ 内有定义，$P_0(x_0,y_0)$ 为 $D$ 的聚点。若存在常数 $A$，对任意 $\varepsilon>0$，存在 $\delta>0$，使当 $0&lt;\sqrt{(x-x_0)^2+(y-y_0)^2}&lt;\delta$ 且 $(x,y)\in D$ 时，恒有 $|f(x,y)-A|&lt;\varepsilon$，则称 $A$ 为 $f(x,y)$ 当 $(x,y)\to(x_0,y_0)$ 时的极限，记作 $\lim_{(x,y)\to(x_0,y_0)}f(x,y)=A$。
+  <div class="proof"><b>关键理解：</b>这里的"任意方向"比一元函数复杂得多——不仅是左右两条直线，而是平面上一切可能的路径（直线、抛物线、螺旋线、折线……）。只要找到两条不同路径使极限值不同，就证明二重极限不存在。</div></div>
+  <div class="ex"><b>例 1：</b>证明 $\lim_{(x,y)\to(0,0)}\frac{xy}{x^2+y^2}$ 不存在。<details><summary>查看解答</summary><div class="sol"><b>解：</b>沿直线 $y=kx$ 趋近：$\frac{x(kx)}{x^2+k^2x^2}=\frac{k}{1+k^2}$。此值随 $k$ 变化：$k=0$ 时为 $0$，$k=1$ 时为 $1/2$。不同路径极限不同，故二重极限不存在。</div></details></div>
+  <div class="ex"><b>例 2：</b>求 $\lim_{(x,y)\to(0,0)}(x^2+y^2)\sin\frac{1}{x^2+y^2}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>因 $|\sin\frac{1}{x^2+y^2}|\leq 1$，故 $|(x^2+y^2)\sin\frac{1}{x^2+y^2}|\leq x^2+y^2\to 0$。由夹逼准则，极限为 $0$。</div></details></div>
+  <div class="ex"><b>例 3：</b>证明 $\lim_{(x,y)\to(0,0)}\frac{x^2y}{x^4+y^2}$ 沿所有直线趋于 $0$，但二重极限不存在。<details><summary>查看解答</summary><div class="sol"><b>解：</b>沿直线 $y=kx$：$\frac{x^2\cdot kx}{x^4+k^2x^2}=\frac{kx}{x^2+k^2}\to 0$。但沿抛物线 $y=x^2$：$\frac{x^2\cdot x^2}{x^4+x^4}=\frac{1}{2}$。路径不同结果不同，故二重极限不存在。<b>警示：</b>"沿所有直线极限相同"不能保证二重极限存在。</div></details></div>
+  <h3>1.3 二元函数的连续性</h3>
+  <div class="thm"><b>定理（连续的定义）：</b>若 $\lim_{(x,y)\to(x_0,y_0)}f(x,y)=f(x_0,y_0)$，称 $f$ 在点 $(x_0,y_0)$ 连续。若 $f$ 在区域 $D$ 上每点都连续，称 $f$ 在 $D$ 上连续。</div>
+  <div class="thm"><b>定理（连续函数的性质）：</b>① 二元初等函数在其定义域内连续；② 有界闭区域 $D$ 上的连续函数必有最大值 $M$ 和最小值 $m$（最值定理）；③ 有界闭区域上连续函数必取得介于最大值与最小值之间的一切值（介值定理）。</div>
+  <div class="warn"><b>易错警示：</b>二元函数的连续性比一元函数"苛刻"得多——不仅要求沿各方向极限存在且相等，还要求极限值等于函数值。分段函数在分界点必须用定义验证连续性。</div>
+  <h3>1.4 习题</h3>
+  <div class="ex"><b>习题 1：</b>求 $\lim_{(x,y)\to(0,0)}\frac{x^2+y^2}{|x|+|y|}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $r=\sqrt{x^2+y^2}$。$0\leq\frac{r^2}{|x|+|y|}\leq\frac{r^2}{r}=r\to 0$（因 $|x|+|y|\geq\sqrt{x^2+y^2}$）。极限为 $0$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>讨论 $f(x,y)=\frac{x-y}{x+y}$ 在 $(0,0)$ 处的极限是否存在。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>沿 $y=0$：$\frac{x}{x}=1$。沿 $y=x$：$\frac{x-x}{2x}=0$。路径不同，极限不存在。</div></details></div>
+  <div class="ex"><b>习题 3：</b>求 $\lim_{(x,y)\to(0,0)}\frac{1-\cos(x^2+y^2)}{(x^2+y^2)^2}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $r^2=x^2+y^2$。$1-\cos r^2\sim\frac{r^4}{2}$。$=\lim_{r\to 0}\frac{r^4/2}{r^4}=\frac{1}{2}$。</div></details></div>
+
+</div>
+
+<!-- ================= 2 ================= -->
+<div class="ch" id="c2">
+  <h2>2. 偏导数与全微分 <small>沿坐标轴的变化率</small></h2>
+  <div class="def"><b>定义（偏导数）：</b>$f_x(x_0,y_0)=\lim_{h\to 0}\dfrac{f(x_0+h,y_0)-f(x_0,y_0)}{h}$——把 $y$ 固定为常数后对 $x$ 求导。同理 $f_y$。几何意义：曲面与平面 $y=y_0$ 的交线在 $x$ 方向的切线斜率。</div>
+  <div class="thm"><b>定理（高阶偏导数与混合偏导）：</b>二阶偏导 fₓₓ、fₓᵧ、fᵧₓ、fᵧᵧ。若 fₓᵧ 与 fᵧₓ 连续，则混合偏导相等：fₓᵧ = fᵧₓ（求导次序可交换）。<div class="proof"><b>反例（不连续时）：</b>f = xy(x²−y²)/(x²+y²)（补 f(0,0)=0）在原点 fₓᵧ ≠ fᵧₓ。</div></div>
+  <div class="def"><b>定义（全微分）：</b>若 Δz = AΔx + BΔy + o(ρ)（ρ = √(Δx²+Δy²)），称 z 在 (x₀,y₀) 可微，dz = A dx + B dy = fₓ dx + fᵧ dy。</div>
+  <div class="thm"><b>定理（可微、可偏导、连续的关系）：</b>可微 ⟹ 连续 且 可偏导；可偏导 ⟹ 连续（反例：f = xy/√(x²+y²) 在原点两个偏导都是 0 但不连续）；偏导连续 ⟹ 可微。<div class="proof"><b>例：</b>z = $e^{xy}$：zₓ = y $e^{xy}$、zᵧ = x $e^{xy}$、dz = $e^{xy}$(y dx + x dy)。</div></div>
+  <div class="ex"><b>例：</b>z = x²y，求在 (1,2) 的全微分。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>zₓ = 2xy = 4，zᵧ = x² = 1，dz = 4dx + dy。</div></details></div>
+
+  <h3>2.1 偏导数的计算</h3>
+  <div class="thm"><b>定理（偏导数的定义）：</b>函数 $z=f(x,y)$ 在 $(x_0,y_0)$ 对 $x$ 的偏导数：
+  $$f_x(x_0,y_0)=\lim_{\Delta x\to 0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}.$$
+  对 $y$ 的偏导同理。<b>计算方法：</b>求 $f_x$ 时把 $y$ 看作常数对 $x$ 求导；求 $f_y$ 时把 $x$ 看作常数对 $y$ 求导。</div>
+  <div class="ex"><b>例 1：</b>$z=x^2y+\sin(xy)$，求 $\frac{\partial z}{\partial x}$、$\frac{\partial z}{\partial y}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$\frac{\partial z}{\partial x}=2xy+y\cos(xy)$（把 $y$ 当常数）。$\frac{\partial z}{\partial y}=x^2+x\cos(xy)$（把 $x$ 当常数）。</div></details></div>
+  <div class="ex"><b>例 2：</b>$z=x^y$（$x>0$），求 $\frac{\partial z}{\partial x}$、$\frac{\partial z}{\partial y}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>对 $x$ 求导（$y$ 为常数，幂函数）：$\frac{\partial z}{\partial x}=yx^{y-1}$。对 $y$ 求导（$x$ 为常数，指数函数）：$\frac{\partial z}{\partial y}=x^y\ln x$。</div></details></div>
+  <h3>2.2 高阶偏导数</h3>
+  <div class="thm"><b>定理（混合偏导与求导次序无关）：</b>若函数 $z=f(x,y)$ 的两个混合偏导数 $f_{xy}$ 和 $f_{yx}$ 在区域 $D$ 内连续，则在 $D$ 内恒有 $f_{xy}=f_{yx}$。
+  <div class="proof"><b>说明：</b>此定理说明在偏导连续的条件下，求导次序可以交换。大多数初等函数的混合偏导都是连续的，因此可以交换。</div></div>
+  <div class="ex"><b>例 3：</b>$z=x^3y^2-3xy^3$，求二阶偏导数。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$z_x=3x^2y^2-3y^3$，$z_y=2x^3y-9xy^2$。$z_{xx}=6xy^2$，$z_{xy}=6x^2y-9y^2$，$z_{yx}=6x^2y-9y^2$，$z_{yy}=2x^3-18xy$。验证 $z_{xy}=z_{yx}$。</div></details></div>
+  <h3>2.3 全微分</h3>
+  <div class="thm"><b>定理（全微分的定义）：</b>若函数 $z=f(x,y)$ 在点 $(x,y)$ 的全增量 $\Delta z=f(x+\Delta x,y+\Delta y)-f(x,y)$ 可表示为 $\Delta z=A\Delta x+B\Delta y+o(\rho)$，其中 $\rho=\sqrt{(\Delta x)^2+(\Delta y)^2}$，$A$、$B$ 与 $\Delta x$、$\Delta y$ 无关，则称 $f$ 在 $(x,y)$ 可微，$dz=A\Delta x+B\Delta y$ 为全微分。可微时 $A=f_x$、$B=f_y$，故 $dz=f_x dx+f_y dy$。</div>
+  <div class="thm"><b>定理（可微的充分条件——偏导连续）：</b>若 $z=f(x,y)$ 的偏导数 $f_x$、$f_y$ 在点 $(x,y)$ 的某邻域内存在且在该点连续，则 $f$ 在该点可微。
+  <div class="proof"><b>证明思路：</b>将全增量拆为两段：$\Delta z=[f(x+\Delta x,y+\Delta y)-f(x,y+\Delta y)]+[f(x,y+\Delta y)-f(x,y)]$。对每段用一元拉格朗日中值定理，再利用偏导连续性将系数趋近于 $f_x(x,y)$、$f_y(x,y)$，余项 $o(\rho)$。</div></div>
+  <div class="thm"><b>定理（三者关系链）：</b>
+  <div class="tbl"><table><colgroup><col style="width:33%"><col style="width:33%"><col style="width:34%"></colgroup><tr><th>关系</th><th>方向</th><th>说明</th></tr>
+  <tr><td>偏导连续 $\Rightarrow$ 可微</td><td>充分条件</td><td>最常用的可微判别法</td></tr>
+  <tr><td>可微 $\Rightarrow$ 连续</td><td>必要条件</td><td>可微必连续</td></tr>
+  <tr><td>可微 $\Rightarrow$ 可偏导</td><td>必要条件</td><td>可微必可偏导</td></tr>
+  <tr><td>可偏导 $\nRightarrow$ 连续</td><td>反例</td><td>$f=xy/\sqrt{x^2+y^2}$ 在原点</td></tr>
+  <tr><td>可偏导 $\nRightarrow$ 可微</td><td>反例</td><td>偏导存在但不连续时不可微</td></tr></table></div></div>
+  <div class="ex"><b>例 4：</b>求 $z=x^2y+\frac{x}{y}$ 在 $(1,1)$ 处的全微分。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$z_x=2xy+\frac{1}{y}$，$z_y=x^2-\frac{x}{y^2}$。在 $(1,1)$：$z_x=3$，$z_y=0$。$dz=3dx$。</div></details></div>
+  <div class="ex"><b>例 5：</b>计算 $(1.04)^{2.02}$ 的近似值。<details><summary>查看解答</summary><div class="sol"><b>解：</b>设 $f(x,y)=x^y$。取 $x_0=1$、$y_0=2$、$\Delta x=0.04$、$\Delta y=0.02$。$f(1,2)=1$。$f_x=yx^{y-1}$，$f_x(1,2)=2$。$f_y=x^y\ln x$，$f_y(1,2)=0$。$f(1.04,2.02)\approx 1+2\times 0.04+0\times 0.02=1.08$。</div></details></div>
+  <h3>2.4 习题</h3>
+  <div class="ex"><b>习题 1：</b>$z=\arctan\frac{y}{x}$，求 $z_x$、$z_y$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$z_x=\frac{1}{1+(y/x)^2}\cdot(-y/x^2)=\frac{-y}{x^2+y^2}$。$z_y=\frac{1}{1+(y/x)^2}\cdot\frac{1}{x}=\frac{x}{x^2+y^2}$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>验证 $u=\frac{1}{\sqrt{x^2+y^2+z^2}}$ 满足 $u_{xx}+u_{yy}+u_{zz}=0$（拉普拉斯方程）。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$u_x=-\frac{x}{(x^2+y^2+z^2)^{3/2}}$。$u_{xx}=-\frac{1}{r^3}+\frac{3x^2}{r^5}$（$r=\sqrt{x^2+y^2+z^2}$）。三式相加 $=-\frac{3}{r^3}+\frac{3(x^2+y^2+z^2)}{r^5}=0$。</div></details></div>
+  <div class="ex"><b>习题 3：</b>求 $z=e^{xy}$ 的全微分。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$z_x=ye^{xy}$，$z_y=xe^{xy}$。$dz=e^{xy}(y\,dx+x\,dy)$。</div></details></div>
+
+</div>
+
+<!-- ================= 3 ================= -->
+<div class="ch" id="c3">
+  <h2>3. 复合函数与隐函数求导 <small>链式法则的多元版</small></h2>
+  <div class="thm"><b>定理（多元链式法则）：</b>z = f(u, v)、u = u(x,y)、v = v(x,y)：∂z/∂x = (∂z/∂u)(∂u/∂x) + (∂z/∂v)(∂v/∂x)。<div class="proof"><b>例：</b>z = u²v、u = x+y、v = x−y：∂z/∂x = 2uv·1 + u²·1 = 2(x+y)(x−y) + (x+y)²。</div></div>
+  <div class="thm"><b>定理（隐函数存在定理）：</b>F(x,y) = 0 在 (x₀,y₀) 附近确定 y = y(x) 的条件：F(x₀,y₀) = 0 且 Fᵧ(x₀,y₀) ≠ 0，则 dy/dx = −Fₓ/Fᵧ。三元 F(x,y,z) = 0 且 F_z ≠ 0：∂z/∂x = −Fₓ/F_z、∂z/∂y = −Fᵧ/F_z。<div class="proof"><b>证明要点：</b>对 F(x, y(x)) = 0 两边关于 x 求导：Fₓ + Fᵧ·y′ = 0。</div></div>
+  <div class="ex"><b>例：</b>x²+y²+z² = 1，求 ∂z/∂x。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>∂z/∂x = −Fₓ/F_z = −2x/2z = −x/z。</div></details></div>
+  <div class="warn"><b>易错警示：</b>偏导中「谁固定」必须写清楚：u = x/y 中 ∂u/∂x = 1/y（固定 y），但若 x、y 都依赖 t，则 du/dt = (1/y)dx/dt − (x/y²)dy/dt。画树形图可避免漏项。</div>
+
+  <h3>3.1 多元复合函数的链式法则</h3>
+  <div class="thm"><b>定理（多元链式法则——中间变量为二元函数）：</b>设 $z=f(u,v)$，$u=u(x,y)$，$v=v(x,y)$，且 $f$、$u$、$v$ 满足可微条件，则
+  $$\frac{\partial z}{\partial x}=\frac{\partial z}{\partial u}\frac{\partial u}{\partial x}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial x},\quad\frac{\partial z}{\partial y}=\frac{\partial z}{\partial u}\frac{\partial u}{\partial y}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial y}.$$
+  <div class="proof"><b>证明思路：</b>将 $y$ 固定，$z$ 关于 $x$ 的变化率通过 $u$ 和 $v$ 两条路径传递。画"变量关系树"：$z$ 依赖 $u,v$，$u,v$ 各依赖 $x,y$。沿每条路径求偏导再求和。</div></div>
+  <div class="thm"><b>定理（全导数——中间变量为一元函数）：</b>设 $z=f(x,y)$，$x=x(t)$，$y=y(t)$，则 $z$ 对 $t$ 的全导数为
+  $$\frac{dz}{dt}=\frac{\partial f}{\partial x}\frac{dx}{dt}+\frac{\partial f}{\partial y}\frac{dy}{dt}.$$
+  <div class="proof"><b>说明：</b>此时 $z$ 最终只是 $t$ 的一元函数，故用 $\frac{dz}{dt}$（全导数）而非偏导。</div></div>
+  <div class="ex"><b>例 1：</b>$z=e^u\sin v$，$u=xy$，$v=x+y$，求 $\frac{\partial z}{\partial x}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$\frac{\partial z}{\partial x}=e^u\sin v\cdot y+e^u\cos v\cdot 1=e^{xy}[y\sin(x+y)+\cos(x+y)]$。</div></details></div>
+  <div class="ex"><b>例 2：</b>$z=f(x^2-y^2,e^{xy})$，其中 $f$ 有连续一阶偏导，求 $\frac{\partial z}{\partial x}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>令 $u=x^2-y^2$，$v=e^{xy}$。$\frac{\partial z}{\partial x}=f_u\cdot 2x+f_v\cdot ye^{xy}$。（记号：$f_u$ 表示 $f$ 对第一个中间变量 $u$ 的偏导。）</div></details></div>
+  <h3>3.2 隐函数求导</h3>
+  <div class="thm"><b>定理（一个方程的隐函数存在定理）：</b>设 $F(x,y)$ 在点 $P_0(x_0,y_0)$ 的某邻域内具有连续偏导数，且 $F(x_0,y_0)=0$、$F_y(x_0,y_0)\neq 0$，则方程 $F(x,y)=0$ 在 $x_0$ 的某邻域内唯一确定一个连续可导函数 $y=y(x)$，满足 $y_0=y(x_0)$，且
+  $$\frac{dy}{x}=-\frac{F_x}{F_y}.$$
+  对三元方程 $F(x,y,z)=0$，若 $F_z\neq 0$，则确定 $z=z(x,y)$：
+  $$\frac{\partial z}{\partial x}=-\frac{F_x}{F_z},\quad\frac{\partial z}{\partial y}=-\frac{F_y}{F_z}.$$
+  <div class="proof"><b>证明思路（公式推导）：</b>对 $F(x,y(x))=0$ 两边关于 $x$ 求导：$F_x+F_y\cdot y'=0$，解得 $y'=-F_x/F_y$。对三元情形，$F(x,y,z(x,y))=0$ 对 $x$ 求导：$F_x+F_z\cdot z_x=0$。</div></div>
+  <div class="ex"><b>例 3：</b>设 $\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$，求 $\frac{\partial z}{\partial x}$、$\frac{\partial z}{\partial y}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>令 $F=\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}-1$。$F_x=\frac{2x}{a^2}$，$F_y=\frac{2y}{b^2}$，$F_z=\frac{2z}{c^2}$。$\frac{\partial z}{\partial x}=-\frac{F_x}{F_z}=-\frac{c^2x}{a^2z}$，$\frac{\partial z}{\partial y}=-\frac{c^2y}{b^2z}$。</div></details></div>
+  <div class="ex"><b>例 4：</b>设 $z^3-3xyz=a^3$，求 $\frac{\partial z}{\partial x}$、$\frac{\partial z}{\partial y}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>令 $F=z^3-3xyz-a^3$。$F_x=-3yz$，$F_y=-3xz$，$F_z=3z^2-3xy$。$\frac{\partial z}{\partial x}=\frac{yz}{z^2-xy}$，$\frac{\partial z}{\partial y}=\frac{xz}{z^2-xy}$。</div></details></div>
+  <h3>3.3 方程组情形（隐函数组）</h3>
+  <div class="thm"><b>定理（方程组确定隐函数组）：</b>设 $F(x,y,u,v)=0$、$G(x,y,u,v)=0$ 满足条件，可确定 $u=u(x,y)$、$v=v(x,y)$。用<b>雅可比行列式</b>：
+  $$J=\frac{\partial(F,G)}{\partial(u,v)}=\begin{vmatrix}F_u & F_v\\ G_u & G_v\end{vmatrix}.$$
+  若 $J\neq 0$，则
+  $$\frac{\partial u}{\partial x}=-\frac{1}{J}\frac{\partial(F,G)}{\partial(x,v)},\quad\frac{\partial v}{\partial x}=-\frac{1}{J}\frac{\partial(F,G)}{\partial(u,x)}.$$
+  <div class="proof"><b>实用方法：</b>对每个方程两边关于 $x$ 求偏导（$y$ 固定），得到关于 $u_x$、$v_x$ 的线性方程组，用克莱姆法则求解。</div></div>
+  <div class="ex"><b>例 5：</b>设 $xu-yv=0$、$yu+xv=1$，求 $\frac{\partial u}{\partial x}$、$\frac{\partial v}{\partial x}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>对 $x$ 求导：$u+xu_x-yv_x=0$，$yu_x+v+xv_x=0$。整理：$xu_x-yv_x=-u$，$yu_x+xv_x=-v$。$J=\begin{vmatrix}x&-y\\y&x\end{vmatrix}=x^2+y^2$。$u_x=\frac{1}{J}\begin{vmatrix}-u&-y\\-v&x\end{vmatrix}=\frac{-ux-yv}{x^2+y^2}$。$v_x=\frac{1}{J}\begin{vmatrix}x&-u\\y&-v\end{vmatrix}=\frac{-xv+yu}{x^2+y^2}$。</div></details></div>
+  <div class="warn"><b>易错警示：</b>链式法则中"谁是自变量、谁是中间变量"必须画清变量树。偏导中"谁固定"必须写明。隐函数公式 $-F_x/F_y$ 中 $F_x$、$F_y$ 是把 $F$ 当作 $x,y$ 的三元函数求的，不是对 $y=y(x)$ 求导。</div>
+  <h3>3.4 习题</h3>
+  <div class="ex"><b>习题 1：</b>$z=f(x^2-y^2)$，$f$ 可导，验证 $y\frac{\partial z}{\partial x}+x\frac{\partial z}{\partial y}=0$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$z_x=2x f'$，$z_y=-2y f'$。$y\cdot 2x f'+x\cdot(-2y f')=0$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>设 $\ln\sqrt{x^2+y^2}=\arctan\frac{y}{x}$，求 $\frac{dy}{dx}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$F=\frac{1}{2}\ln(x^2+y^2)-\arctan(y/x)$。$F_x=\frac{x}{x^2+y^2}-\frac{1}{1+(y/x)^2}\cdot(-y/x^2)=\frac{x+y}{x^2+y^2}$。$F_y=\frac{y}{x^2+y^2}-\frac{x}{x^2+y^2}=\frac{y-x}{x^2+y^2}$。$\frac{dy}{dx}=-\frac{F_x}{F_y}=\frac{x+y}{x-y}$。</div></details></div>
+  <div class="ex"><b>习题 3：</b>$z=u^2v^3$，$u=x+2y$，$v=x-y$，求 $\frac{\partial z}{\partial x}$ 在 $(1,1)$ 处的值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$(1,1)$ 处 $u=3$、$v=0$。$z_x=2uv^3\cdot 1+3u^2v^2\cdot 1=0+0=0$。</div></details></div>
+
+</div>
+
+<!-- ================= 4 ================= -->
+<div class="ch" id="c4">
+  <h2>4. 方向导数、梯度与多元极值 <small>最陡上升的方向</small></h2>
+  <div class="def"><b>定义（方向导数）：</b>函数沿单位方向 $l=(\cos\alpha,\cos\beta)$ 的变化率：$\dfrac{\partial f}{\partial l}=\lim_{t\to 0}\dfrac{f(x_0+t\cos\alpha,y_0+t\cos\beta)-f(x_0,y_0)}{t}$。</div>
+  <div class="thm"><b>定理（方向导数与梯度）：</b>可微时 ∂f/∂l = fₓ cos α + fᵧ cos β = ∇f · l。梯度 ∇f = (fₓ, fᵧ) 指向函数增长最快的方向，其模 = 最大方向导数。<div class="proof"><b>例：</b>f = x²+y² 在 (1,1)：∇f = (2,2)，沿该方向函数增长最快；等高线 x²+y² = c 的法线恰是梯度方向——梯度 ⊥ 等高线。</div></div>
+  <div class="thm"><b>定理（多元极值必要条件）：</b>可微函数在极值点处 fₓ = fᵧ = 0（驻点）。</div>
+  <div class="thm"><b>定理（极值充分条件——Hessian 判别）：</b>驻点处令 A = fₓₓ、B = fₓᵧ、C = fᵧᵧ，判别式 Δ = AC − B²：Δ &gt; 0 且 A &gt; 0 极小；Δ &gt; 0 且 A &lt; 0 极大；Δ &lt; 0 鞍点；Δ = 0 待定。<div class="proof"><b>例：</b>f = x²+y² 在 (0,0)：A = C = 2、B = 0，Δ = 4 &gt; 0、A &gt; 0 ⟹ 极小值 0。</div></div>
+  <div class="thm"><b>定理（条件极值与拉格朗日乘数法）：</b>在约束 g(x,y) = 0 下求 f 的极值：构造 L = f + λg，解方程组 Lₓ = Lᵧ = L_λ = 0。<div class="proof"><b>例：</b>求 xy 在 x+y = 1 下的最大值：L = xy + λ(x+y−1)，Lₓ = y+λ = 0、Lᵧ = x+λ = 0 ⟹ x = y = 1/2，最大值 1/4。</div></div>
+  <div class="ex"><b>例：</b>用拉格朗日乘数法求 x²+y² 在 xy = 1 下的最小值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>L = x²+y²+λ(xy−1)：2x+λy = 0、2y+λx = 0、xy = 1。由前两式得 λ² = 4（或 x = ±y），xy = 1 ⟹ x = y = ±1，最小值 2。</div></details></div>
+  <div class="ex"><b>例：</b>求 f = x³+y³−3xy 的极值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>驻点：3x²−3y = 0、3y²−3x = 0 ⟹ x = y 且 x² = x ⟹ (0,0)、(1,1)。(1,1)：A = 6、B = −3、C = 6，Δ = 36−9 &gt; 0、A &gt; 0 极小 f = −1。(0,0)：Δ = −9 < 0 鞍点。</div></details></div>
+
+  <h3>4.1 方向导数与梯度</h3>
+  <div class="def"><b>定义（方向导数）：</b>设函数 $z=f(x,y)$ 在点 $P(x,y)$ 的某邻域内有定义。自 $P$ 引射线 $l$，方向角为 $\alpha$（与 $x$ 轴正向夹角）。在 $l$ 上取邻近点 $P'(x+\Delta x,y+\Delta y)$，令 $\rho=\sqrt{(\Delta x)^2+(\Delta y)^2}$。若
+  $$\lim_{\rho\to 0}\frac{f(x+\Delta x,y+\Delta y)-f(x,y)}{\rho}$$
+  存在，称此极限为 $f$ 在 $P$ 沿方向 $l$ 的方向导数，记作 $\frac{\partial f}{\partial l}$。</div>
+  <div class="thm"><b>定理（方向导数的计算公式）：</b>若 $f(x,y)$ 在点 $P(x,y)$ 可微，则函数在该点沿任一方向 $l$ 的方向导数存在，且
+  $$\frac{\partial f}{\partial l}=\frac{\partial f}{\partial x}\cos\alpha+\frac{\partial f}{\partial y}\cos\beta,$$
+  其中 $\cos\alpha$、$\cos\beta$ 为方向 $l$ 的方向余弦。
+  <div class="proof"><b>证明：</b>因 $f$ 可微，$f(x+\Delta x,y+\Delta y)-f(x,y)=f_x\Delta x+f_y\Delta y+o(\rho)$。两边除以 $\rho$：$\frac{\Delta f}{\rho}=f_x\frac{\Delta x}{\rho}+f_y\frac{\Delta y}{\rho}+\frac{o(\rho)}{\rho}=f_x\cos\alpha+f_y\cos\beta+o(1)\to f_x\cos\alpha+f_y\cos\beta$。</div></div>
+  <div class="def"><b>定义（梯度）：</b>设 $f(x,y)$ 在点 $P(x,y)$ 可偏导，称向量
+  $$\nabla f=\operatorname{grad}f=\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y}\right)$$
+  为 $f$ 在 $P$ 点的梯度。
+  <div class="proof"><b>几何意义：</b>$\frac{\partial f}{\partial l}=\nabla f\cdot l=|\nabla f|\cos\theta$。当 $l$ 与 $\nabla f$ 同向时（$\theta=0$），方向导数取最大值 $|\nabla f|$。即梯度方向是函数增长最快的方向，其模长为最大增长率。梯度垂直于等高线（等值线）。</div></div>
+  <div class="ex"><b>例 1：</b>求 $f(x,y)=x^2+xy+y^2$ 在点 $(1,1)$ 沿方向 $l=(1,2)$ 的方向导数。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$f_x=2x+y=3$，$f_y=x+2y=3$。方向 $l=(1,2)$ 的单位向量 $=(1,2)/\sqrt{5}$。$\frac{\partial f}{\partial l}=3\cdot\frac{1}{\sqrt{5}}+3\cdot\frac{2}{\sqrt{5}}=\frac{9}{\sqrt{5}}$。梯度 $=(3,3)$，最大方向导数 $=3\sqrt{2}$。</div></details></div>
+  <h3>4.2 多元函数的极值</h3>
+  <div class="thm"><b>定理（极值的必要条件）：</b>设 $z=f(x,y)$ 在点 $(x_0,y_0)$ 具有偏导数，且在该点取得极值，则有 $f_x(x_0,y_0)=0$、$f_y(x_0,y_0)=0$。称满足此条件的点为<b>驻点</b>。
+  <div class="proof"><b>说明：</b>极值点必为驻点，但驻点未必是极值点（如 $z=xy$ 在 $(0,0)$）。此外，偏导数不存在的点也可能是极值点。</div></div>
+  <div class="thm"><b>定理（极值的充分条件——Hessian 判别法）：</b>设 $z=f(x,y)$ 在驻点 $(x_0,y_0)$ 的某邻域内有二阶连续偏导数。记
+  $$A=f_{xx}(x_0,y_0),\quad B=f_{xy}(x_0,y_0),\quad C=f_{yy}(x_0,y_0),\quad \Delta=AC-B^2.$$
+  <br>① 若 $\Delta>0$ 且 $A>0$，则 $(x_0,y_0)$ 为极小值点；
+  <br>② 若 $\Delta>0$ 且 $A&lt;0$，则 $(x_0,y_0)$ 为极大值点；
+  <br>③ 若 $\Delta&lt;0$，则 $(x_0,y_0)$ 不是极值点（鞍点）；
+  <br>④ 若 $\Delta=0$，判别法失效，需另行判断。</div>
+  <div class="ex"><b>例 2：</b>求 $f(x,y)=x^3-y^3+3x^2+3y^2-9x$ 的极值。<details><summary>查看解答</summary><div class="sol"><b>解：</b>驻点：$f_x=3x^2+6x-9=0\Rightarrow x=1,-3$。$f_y=-3y^2+6y=0\Rightarrow y=0,2$。驻点：$(1,0)$、$(1,2)$、$(-3,0)$、$(-3,2)$。二阶导：$A=6x+6$，$B=0$，$C=-6y+6$。$\Delta=AC-B^2=(6x+6)(6-6y)$。
+  <br>$(1,0)$：$A=12$，$\Delta=12\times 6=72>0$，极小值 $f(1,0)=-5$。
+  <br>$(1,2)$：$A=12$，$\Delta=12\times(-6)=-72&lt;0$，鞍点。
+  <br>$(-3,0)$：$A=-12$，$\Delta=(-12)\times 6=-72&lt;0$，鞍点。
+  <br>$(-3,2)$：$A=-12$，$\Delta=(-12)\times(-6)=72>0$，$A&lt;0$，极大值 $f(-3,2)=31$。</div></details></div>
+  <h3>4.3 条件极值与拉格朗日乘数法</h3>
+  <div class="thm"><b>定理（拉格朗日乘数法）：</b>求函数 $z=f(x,y)$ 在约束条件 $\varphi(x,y)=0$ 下的极值：
+  <br>① 构造拉格朗日函数 $L(x,y,\lambda)=f(x,y)+\lambda\varphi(x,y)$；
+  <br>② 解方程组 $\begin{cases}L_x=f_x+\lambda\varphi_x=0\\L_y=f_y+\lambda\varphi_y=0\\L_\lambda=\varphi=0\end{cases}$，得驻点；
+  <br>③ 根据实际问题判断驻点是否为极值点（最值点）。
+  <div class="proof"><b>原理：</b>在约束曲线上，$f$ 取得极值的条件是 $f$ 的梯度与约束曲线的法向量共线，即 $\nabla f=-\lambda\nabla\varphi$，这正是 $L_x=0$、$L_y=0$ 的几何含义。</div></div>
+  <div class="thm"><b>定理（多约束条件）：</b>在 $m$ 个约束 $\varphi_1=0,\cdots,\varphi_m=0$ 下求 $f$ 的极值，引入 $m$ 个拉格朗日乘数 $\lambda_1,\cdots,\lambda_m$，构造 $L=f+\sum_{i=1}^m\lambda_i\varphi_i$，解 $L$ 的全部偏导为零的方程组。</div>
+  <div class="ex"><b>例 3：</b>求 $f(x,y)=xy$ 在约束 $x+y=1$ 下的最大值。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$L=xy+\lambda(x+y-1)$。$L_x=y+\lambda=0$，$L_y=x+\lambda=0$，$L_\lambda=x+y-1=0$。由前两式 $x=y$。代入 $x+y=1$ 得 $x=y=1/2$。最大值 $=1/4$。</div></details></div>
+  <div class="ex"><b>例 4：</b>求原点到曲面 $z^2=xy+4$ 的最短距离。<details><summary>查看解答</summary><div class="sol"><b>解：</b>距离平方 $f=x^2+y^2+z^2$，约束 $g=xy+4-z^2=0$。$L=x^2+y^2+z^2+\lambda(xy+4-z^2)$。$L_x=2x+\lambda y=0$，$L_y=2y+\lambda x=0$，$L_z=2z-2\lambda z=0$，$xy+4-z^2=0$。由 $L_z=0$：$z=0$ 或 $\lambda=1$。若 $\lambda=1$：$2x+y=0$、$2y+x=0\Rightarrow x=y=0$，代入约束 $z^2=4$，$f=4$。若 $z=0$：$xy=-4$，由前两式 $x^2=y^2$，$xy=-4\Rightarrow x=2,y=-2$ 或反之，$f=8$。最短距离 $=\sqrt{4}=2$。</div></details></div>
+  <div class="ex"><b>例 5：</b>要造一个容积为 $V$ 的无盖长方形水箱，怎样设计尺寸使用料最省？<details><summary>查看解答</summary><div class="sol"><b>解：</b>设长宽高为 $x,y,z$，表面积 $S=xy+2xz+2yz$，约束 $xyz=V$。$L=xy+2xz+2yz+\lambda(xyz-V)$。$L_x=y+2z+\lambda yz=0$，$L_y=x+2z+\lambda xz=0$，$L_z=2x+2y+\lambda xy=0$。由前两式 $x=y$。代入得 $x=y=2z$。$x^2z=V\Rightarrow x=y=(2V)^{1/3}$，$z=(V/4)^{1/3}$。</div></details></div>
+  <h3>4.4 习题</h3>
+  <div class="ex"><b>习题 1：</b>求 $f(x,y)=e^{2x}(x+y^2+2y)$ 的极值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$f_x=e^{2x}(2x+2y^2+4y+1)=0$，$f_y=e^{2x}(2y+2)=0\Rightarrow y=-1$。代入 $f_x=0$：$2x+2+4(-1)+1=0\Rightarrow x=1/2$。再求二阶偏导：$f_{xx}=e^{2x}(4x+4y^2+8y+4)$，$f_{xy}=e^{2x}(4y+4)$，$f_{yy}=2e^{2x}$。在 $(1/2,-1)$ 处：$A=e(2+4-8+4)=2e$，$B=e(-4+4)=0$，$C=2e$。判别式 $\Delta=AC-B^2=4e^2>0$ 且 $A>0$，故为极小值点，极小值 $f(1/2,-1)=e\left(\frac12+1-2\right)=-\frac e2$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>求 $f(x,y)=x^2+y^2$ 在 $\frac{x}{a}+\frac{y}{b}=1$ 下的最小值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$L=x^2+y^2+\lambda(x/a+y/b-1)$。$2x+\lambda/a=0$，$2y+\lambda/b=0$。$x=-\lambda/(2a)$，$y=-\lambda/(2b)$。代入约束：$-\lambda/(2a^2)-\lambda/(2b^2)=1\Rightarrow\lambda=-2a^2b^2/(a^2+b^2)$。$f_{\min}=\frac{a^2b^2}{a^2+b^2}$。</div></details></div>
+  <div class="ex"><b>习题 3：</b>求 $f(x,y)=x^2-xy+y^2$ 在点 $(1,1)$ 沿方向 $l=(1,-1)$ 的方向导数。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$f_x=2x-y=1$，$f_y=2y-x=1$。$l$ 单位化 $=(1,-1)/\sqrt{2}$。$\frac{\partial f}{\partial l}=\frac{1}{\sqrt{2}}-\frac{1}{\sqrt{2}}=0$。</div></details></div>
+
+</div>
+
+<!-- ================= 5 ================= -->
+<div class="ch" id="c5">
+  <h2>5. 二重积分：定义与计算 <small>化二重为累次</small></h2>
+  <div class="def"><b>定义（二重积分）：</b>$\iint _D$ f(x,y)dσ = lim Σ f(ξᵢ,ηᵢ)Δσᵢ。几何意义：曲顶柱体体积（f ≥ 0）。f ≡ 1 时 $\iint _D$ dσ = D 的面积。</div>
+  <div class="thm"><b>定理（直角坐标化累次积分）：</b>
+  <div class="tbl"><table><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tr><th>积分次序</th><th>公式</th></tr>
+  <tr><td>先 y 后 x（X 型区域）</td><td>$\iint _D$ f dσ = $\int _a^b$ [$\int _{φ_{1}(x)}^{φ_{2}(x)}$ f(x,y)dy]dx</td></tr>
+  <tr><td>先 x 后 y（Y 型区域）</td><td>$\iint _D$ f dσ = $\int _c^d$ [$\int _{ψ_{1}(y)}^{ψ_{2}(y)}$ f(x,y)dx]dy</td></tr></table></div></div>
+  <div class="thm"><b>定理（极坐标变换）：</b>x = r cos θ、y = r sin θ，面积元素 dσ = r dr dθ（雅可比行列式 = r）。$\iint _D$ f dσ = ∬ f(r cos θ, r sin θ) r dr dθ。圆域优先用极坐标。<div class="proof"><b>例：</b>$\iint _D$ $e^{-(x^{2}+y^{2})}$dσ，D：x²+y² ≤ 1：= $\int _0^{2π}$$\int _0^1$ $e^{-r^{2}}$ r dr dθ = 2π·(1−e⁻¹)/2 = π(1−e⁻¹)。</div></div>
+  <div class="warn"><b>易错警示：</b>极坐标中「r dr dθ」的 r 因子极易丢失；换序积分时上下限要按区域几何重新确定，不能机械交换。</div>
+  <div class="ex"><b>例：</b>$\iint _D$ xy dσ，D 由 y = x、y = 0、x = 1 围成。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\int _0^1$ [$\int _0^x$ xy dy]dx = $\int _0^1$ x·x²/2 dx = 1/8。</div></details></div>
+  <div class="ex"><b>例：</b>$\iint _D$ x² dσ，D：x²+y² ≤ 1 的第一象限。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>极坐标：$\int _0^{π/2}$$\int _0^1$ r²cos²θ·r dr dθ = (1/4)·$\int _0^{π/2}$cos²θ dθ = (1/4)·(π/4) = π/16。</div></details></div>
+
+  <h3>5.1 二重积分的定义与性质</h3>
+  <div class="def"><b>定义（二重积分的严格陈述）：</b>设 $f(x,y)$ 在有界闭区域 $D$ 上有界。将 $D$ 任意分成 $n$ 个小区域 $\Delta\sigma_1,\cdots,\Delta\sigma_n$，在每个小区域上任取一点 $(\xi_i,\eta_i)$，作和 $\sum_{i=1}^n f(\xi_i,\eta_i)\Delta\sigma_i$。记 $\lambda$ 为各小区域直径的最大值。若 $\lim_{\lambda\to 0}\sum f(\xi_i,\eta_i)\Delta\sigma_i$ 存在，则称此极限为 $f$ 在 $D$ 上的二重积分：
+  $$\iint_D f(x,y)\,d\sigma=\lim_{\lambda\to 0}\sum_{i=1}^n f(\xi_i,\eta_i)\Delta\sigma_i.$$
+  几何意义：当 $f\geq 0$ 时，$\iint_D f\,d\sigma$ 表示以 $D$ 为底、曲面 $z=f(x,y)$ 为顶的曲顶柱体体积。</div>
+  <div class="thm"><b>定理（二重积分的性质）：</b>与定积分类似：① 线性性；② 区域可加性；③ 保序性；④ 估值定理；⑤ 中值定理（$\iint_D f\,d\sigma=f(\xi,\eta)\cdot S_D$）。</div>
+  <h3>5.2 二重积分的计算——直角坐标</h3>
+  <div class="thm"><b>定理（X 型区域化累次积分）：</b>若 $D=\{(x,y):a\leq x\leq b,\ \varphi_1(x)\leq y\leq\varphi_2(x)\}$（X 型区域），则
+  $$\iint_D f(x,y)\,d\sigma=\int_a^b\left[\int_{\varphi_1(x)}^{\varphi_2(x)}f(x,y)\,dy\right]dx.$$
+  即"先对 $y$ 积分（$x$ 固定），再对 $x$ 积分"。<div class="proof"><b>推导：</b>由几何意义，在 $x$ 处用垂直于 $x$ 轴的平面截曲顶柱体得截面面积 $A(x)=\int_{\varphi_1(x)}^{\varphi_2(x)}f(x,y)dy$，体积 $=\int_a^b A(x)dx$。</div></div>
+  <div class="thm"><b>定理（Y 型区域化累次积分）：</b>若 $D=\{(x,y):c\leq y\leq d,\ \psi_1(y)\leq x\leq\psi_2(y)\}$（Y 型区域），则
+  $$\iint_D f(x,y)\,d\sigma=\int_c^d\left[\int_{\psi_1(y)}^{\psi_2(y)}f(x,y)\,dx\right]dy.$$</div>
+  <div class="ex"><b>例 1：</b>计算 $\iint_D xy\,d\sigma$，$D$ 由 $y=x$、$y=0$、$x=1$ 围成。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$D$ 为 X 型：$0\leq x\leq 1$、$0\leq y\leq x$。$=\int_0^1\left[\int_0^x xy\,dy\right]dx=\int_0^1 x\cdot\frac{x^2}{2}dx=\frac{1}{2}\int_0^1 x^3 dx=\frac{1}{8}$。</div></details></div>
+  <div class="ex"><b>例 2：</b>交换积分次序 $\int_0^1 dy\int_y^1 e^{x^2}dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>原积分区域：$0\leq y\leq 1$、$y\leq x\leq 1$。换序为 $0\leq x\leq 1$、$0\leq y\leq x$。$=\int_0^1 dx\int_0^x e^{x^2}dy=\int_0^1 x e^{x^2}dx=\frac{1}{2}e^{x^2}\big|_0^1=\frac{e-1}{2}$。<b>说明：</b>原次序无法积出（$e^{x^2}$ 无初等原函数），换序后立即可积。</div></details></div>
+  <h3>5.3 二重积分的计算——极坐标</h3>
+  <div class="thm"><b>定理（极坐标变换）：</b>令 $x=r\cos\theta$、$y=r\sin\theta$，面积元素 $d\sigma=r\,dr\,d\theta$（雅可比行列式 $=r$）。则
+  $$\iint_D f(x,y)\,d\sigma=\iint_D f(r\cos\theta,r\sin\theta)\,r\,dr\,d\theta.$$
+  当积分区域为圆域、环域、扇形域，或被积函数含 $x^2+y^2$ 时，优先用极坐标。<div class="proof"><b>$r$ 因子的来源：</b>极坐标下面积元素不是 $dr\,d\theta$，而是 $r\,dr\,d\theta$——这是因为极坐标网中半径为 $r$ 的圆弧长度为 $r\,d\theta$，面积微元 $=r\,d\theta\cdot dr$。此 $r$ 极易丢失。</div></div>
+  <div class="ex"><b>例 3：</b>计算 $\iint_D e^{-(x^2+y^2)}d\sigma$，$D:x^2+y^2\leq 1$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>极坐标：$D:0\leq\theta\leq 2\pi$、$0\leq r\leq 1$。$=\int_0^{2\pi}d\theta\int_0^1 e^{-r^2}r\,dr=2\pi\cdot\left[-\frac{1}{2}e^{-r^2}\right]_0^1=\pi(1-e^{-1})$。</div></details></div>
+  <div class="ex"><b>例 4：</b>计算 $\iint_D\sqrt{x^2+y^2}\,d\sigma$，$D$ 为圆环 $1\leq x^2+y^2\leq 4$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>极坐标：$=\int_0^{2\pi}d\theta\int_1^2 r\cdot r\,dr=2\pi\cdot\frac{r^3}{3}\big|_1^2=2\pi\cdot\frac{8-1}{3}=\frac{14\pi}{3}$。</div></details></div>
+  <div class="ex"><b>例 5：</b>利用二重积分计算广义积分 $\int_0^{+\infty}e^{-x^2}dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>设 $I=\int_0^\infty e^{-x^2}dx$。则 $I^2=\int_0^\infty e^{-x^2}dx\int_0^\infty e^{-y^2}dy=\iint_{\text{第一象限}}e^{-(x^2+y^2)}d\sigma$。极坐标 $=\int_0^{\pi/2}d\theta\int_0^\infty e^{-r^2}r\,dr=\frac{\pi}{2}\cdot\frac{1}{2}=\frac{\pi}{4}$。故 $I=\frac{\sqrt{\pi}}{2}$。</div></details></div>
+  <div class="warn"><b>易错警示：</b>极坐标中 $r$ 因子绝对不能丢。交换积分次序时，必须先画出积分区域草图，再按新次序确定上下限，不能机械交换。</div>
+  <h3>5.4 习题</h3>
+  <div class="ex"><b>习题 1：</b>计算 $\iint_D(x^2+y^2)d\sigma$，$D:0\leq x\leq 1$、$0\leq y\leq 1$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$=\int_0^1\int_0^1(x^2+y^2)dx\,dy=\int_0^1\left(\frac{1}{3}+y^2\right)dy=\frac{1}{3}+\frac{1}{3}=\frac{2}{3}$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>交换积分次序 $\int_0^1 dx\int_0^{x^2}f(x,y)dy$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>原区域 $0\leq x\leq 1$、$0\leq y\leq x^2$。换序：$0\leq y\leq 1$、$\sqrt{y}\leq x\leq 1$。$=\int_0^1 dy\int_{\sqrt{y}}^1 f(x,y)dx$。</div></details></div>
+  <div class="ex"><b>习题 3：</b>计算 $\iint_D\sin(x^2+y^2)d\sigma$，$D:\pi\leq x^2+y^2\leq 2\pi$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>极坐标：$=\int_0^{2\pi}d\theta\int_{\sqrt{\pi}}^{\sqrt{2\pi}}\sin(r^2)\cdot r\,dr=2\pi\cdot\left[-\frac{1}{2}\cos(r^2)\right]_{\sqrt{\pi}}^{\sqrt{2\pi}}=\pi(-\cos 2\pi+\cos\pi)=\pi(-1-1)=-2\pi$。</div></details></div>
+
+</div>
+
+<!-- ================= 6 ================= -->
+<div class="ch" id="c6">
+  <h2>6. 三重积分与曲线积分 <small>立体求和与沿曲线求和</small></h2>
+  <div class="thm"><b>定理（三重积分）：</b>∭_Ω f dV。直角坐标：先一后二（投影法）或先二后一（截面法）。柱坐标：x = r cos θ、y = r sin θ、z = z，dV = r dr dθ dz。球坐标：x = ρ sin φ cos θ、y = ρ sin φ sin θ、z = ρ cos φ，dV = ρ² sin φ dρ dφ dθ。<div class="proof"><b>例：</b>球体 x²+y²+z² ≤ R² 的体积：∭1 dV = $\int _0^{2π}$$\int _0^π$$\int _0^R$ ρ² sin φ dρ dφ dθ = 4πR³/3。</div></div>
+  <div class="def"><b>定义（第一类曲线积分）：</b>$\int _L f(x,y)\,ds$——对弧长积分（质量、线密度）。ds = √(dx²+dy²)。参数化：$\int f(x(t),y(t))\sqrt{x′^{2}+y′^{2}}\,dt$。</div>
+  <div class="def"><b>定义（第二类曲线积分）：</b>$\int _L P \,dx$ + Q dy——对坐标积分（变力做功）。参数化：$\int [P x′(t) + Q y′(t)]\,dt$。<div class="proof"><b>例：</b>F = (−y, x) 沿单位圆逆时针一周：$\int _L -y \,dx$ + x dy = $\int _0^{2π}$ (sin²t + cos²t)dt = 2π——恰是圆面积 2 倍，与格林公式呼应。</div></div>
+  <div class="warn"><b>易错警示：</b>第二类曲线积分与方向有关（反向变号）；第一类与方向无关。计算第二类曲线积分时 dx、dy 都要换成参数微分。</div>
+
+  <h3>6.1 三重积分的计算</h3>
+  <div class="def"><b>定义（三重积分）：</b>$\iiint_\Omega f(x,y,z)\,dV=\lim\sum f(\xi_i,\eta_i,\zeta_i)\Delta V_i$。当 $f\equiv 1$ 时，$\iiint_\Omega dV$ 表示 $\Omega$ 的体积。</div>
+  <div class="thm"><b>定理（直角坐标——投影法/先一后二）：</b>将 $\Omega$ 投影到 $xy$ 平面得区域 $D$。在 $D$ 内固定 $(x,y)$，$z$ 的范围为 $z_1(x,y)\leq z\leq z_2(x,y)$。则
+  $$\iiint_\Omega f\,dV=\iint_D\left[\int_{z_1(x,y)}^{z_2(x,y)}f(x,y,z)\,dz\right]dx\,dy.$$</div>
+  <div class="thm"><b>定理（柱面坐标）：</b>$x=r\cos\theta$、$y=r\sin\theta$、$z=z$，$dV=r\,dr\,d\theta\,dz$。适用于旋转体区域（柱体、锥体等）。
+  $$\iiint_\Omega f\,dV=\iiint_\Omega f(r\cos\theta,r\sin\theta,z)\,r\,dr\,d\theta\,dz.$$</div>
+  <div class="thm"><b>定理（球面坐标）：</b>$x=\rho\sin\varphi\cos\theta$、$y=\rho\sin\varphi\sin\theta$、$z=\rho\cos\varphi$，$dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta$。适用于球域或其部分。$\varphi$ 为与 $z$ 轴正向的夹角（$0\leq\varphi\leq\pi$），$\theta$ 为方位角。</div>
+  <div class="ex"><b>例 1：</b>计算 $\iiint_\Omega z\,dV$，$\Omega$ 由球面 $x^2+y^2+z^2=4$ 与锥面 $z=\sqrt{x^2+y^2}$ 围成。<details><summary>查看解答</summary><div class="sol"><b>解：</b>用柱坐标。球面：$r^2+z^2=4$，锥面：$z=r$。交线：$r^2+r^2=4\Rightarrow r=\sqrt{2}$。$\Omega:0\leq\theta\leq 2\pi$、$0\leq r\leq\sqrt{2}$、$r\leq z\leq\sqrt{4-r^2}$。$=\int_0^{2\pi}d\theta\int_0^{\sqrt{2}}r\,dr\int_r^{\sqrt{4-r^2}}z\,dz=2\pi\int_0^{\sqrt{2}}r\cdot\frac{1}{2}(4-r^2-r^2)dr=\pi\int_0^{\sqrt{2}}(4r-2r^3)dr=\pi\left[2r^2-\frac{r^4}{2}\right]_0^{\sqrt{2}}=\pi(4-2)=2\pi$。</div></details></div>
+  <div class="ex"><b>例 2：</b>计算 $\iiint_\Omega(x^2+y^2+z^2)dV$，$\Omega:x^2+y^2+z^2\leq R^2$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>球坐标：$=\int_0^{2\pi}d\theta\int_0^\pi\sin\varphi\,d\varphi\int_0^R\rho^2\cdot\rho^2\,d\rho=2\pi\cdot 2\cdot\frac{R^5}{5}=\frac{4\pi R^5}{5}$。</div></details></div>
+  <h3>6.2 第一类曲线积分（对弧长的曲线积分）</h3>
+  <div class="def"><b>定义（第一类曲线积分）：</b>设 $L$ 为 $xOy$ 面内一条光滑曲线弧，$f(x,y)$ 在 $L$ 上有界。定义
+  $$\int_L f(x,y)\,ds=\lim_{\lambda\to 0}\sum_{i=1}^n f(\xi_i,\eta_i)\Delta s_i.$$
+  物理意义：线密度为 $f(x,y)$ 的曲线弧 $L$ 的质量。$ds$ 为弧长元素。</div>
+  <div class="thm"><b>定理（第一类曲线积分的计算）：</b>
+  <br>① <b>参数方程</b> $x=\varphi(t)$、$y=\psi(t)$（$\alpha\leq t\leq\beta$）：
+  $$\int_L f(x,y)\,ds=\int_\alpha^\beta f(\varphi(t),\psi(t))\sqrt{[\varphi'(t)]^2+[\psi'(t)]^2}\,dt.$$
+  <br>② <b>直角坐标</b> $y=\psi(x)$（$a\leq x\leq b$）：
+  $$\int_L f(x,y)\,ds=\int_a^b f(x,\psi(x))\sqrt{1+[\psi'(x)]^2}\,dx.$$
+  <div class="proof"><b>注意：</b>第一类曲线积分与方向无关（$ds>0$），且 $\alpha&lt;\beta$（下限小于上限）。</div></div>
+  <div class="ex"><b>例 3：</b>计算 $\int_L(x^2+y^2)ds$，$L$ 为上半圆周 $x^2+y^2=ax$（$a>0$）。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$L$ 的参数方程：圆心 $(a/2,0)$、半径 $a/2$。$x=\frac{a}{2}+\frac{a}{2}\cos t$，$y=\frac{a}{2}\sin t$，$t\in[0,\pi]$。$ds=\frac{a}{2}dt$。$x^2+y^2=ax=\frac{a^2}{2}(1+\cos t)$。$=\int_0^\pi\frac{a^2}{2}(1+\cos t)\cdot\frac{a}{2}dt=\frac{a^3}{4}\cdot\pi=\frac{\pi a^3}{4}$。</div></details></div>
+  <h3>6.3 第二类曲线积分（对坐标的曲线积分）</h3>
+  <div class="def"><b>定义（第二类曲线积分）：</b>设 $L$ 为从点 $A$ 到点 $B$ 的有向光滑曲线弧，$P(x,y)$、$Q(x,y)$ 在 $L$ 上有界。定义
+  $$\int_L P(x,y)\,dx+Q(x,y)\,dy=\lim_{\lambda\to 0}\sum\left[P(\xi_i,\eta_i)\Delta x_i+Q(\xi_i,\eta_i)\Delta y_i\right].$$
+  物理意义：变力 $\vec F=(P,Q)$ 沿曲线 $L$ 从 $A$ 到 $B$ 所做的功。</div>
+  <div class="thm"><b>定理（第二类曲线积分的计算）：</b>设 $L$ 的参数方程为 $x=\varphi(t)$、$y=\psi(t)$，$t$ 从 $\alpha$ 到 $\beta$（对应起点和终点），则
+  $$\int_L P\,dx+Q\,dy=\int_\alpha^\beta\left[P(\varphi(t),\psi(t))\varphi'(t)+Q(\varphi(t),\psi(t))\psi'(t)\right]dt.$$
+  <div class="proof"><b>注意：</b>第二类曲线积分与方向有关：$\int_{L^-}P\,dx+Q\,dy=-\int_L P\,dx+Q\,dy$。参数下限对应起点、上限对应终点，不要求下限小于上限。</div></div>
+  <div class="ex"><b>例 4：</b>计算 $\int_L y^2\,dx+x\,dy$，$L$ 为抛物线 $x=y^2$ 从 $(0,0)$ 到 $(1,1)$ 的一段。<details><summary>查看解答</summary><div class="sol"><b>解：</b>以 $y$ 为参数：$x=y^2$，$dx=2y\,dy$，$y$ 从 $0$ 到 $1$。$=\int_0^1[y^2\cdot 2y+y^2\cdot 1]dy=\int_0^1(2y^3+y^2)dy=\frac{1}{2}+\frac{1}{3}=\frac{5}{6}$。</div></details></div>
+  <div class="ex"><b>例 5：</b>计算 $\int_L -y\,dx+x\,dy$，$L$ 为单位圆周 $x^2+y^2=1$ 的上半部分从 $(1,0)$ 到 $(-1,0)$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>参数化 $x=\cos t$、$y=\sin t$，$t$ 从 $0$ 到 $\pi$。$dx=-\sin t\,dt$，$dy=\cos t\,dt$。$=\int_0^\pi[-\sin t\cdot(-\sin t)+\cos t\cdot\cos t]dt=\int_0^\pi(\sin^2 t+\cos^2 t)dt=\int_0^\pi dt=\pi$。</div></details></div>
+  <div class="warn"><b>易错警示：</b>第一类与第二类曲线积分的根本区别：第一类与方向无关（$ds>0$），第二类与方向有关（反向变号）。计算第二类时 $dx$、$dy$ 都要替换为参数微分。</div>
+  <h3>6.4 习题</h3>
+  <div class="ex"><b>习题 1：</b>计算 $\int_L x\,ds$，$L$ 为直线 $y=x$ 从 $(0,0)$ 到 $(1,1)$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$ds=\sqrt{2}dx$。$=\int_0^1 x\sqrt{2}dx=\frac{\sqrt{2}}{2}$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>计算 $\int_L 2xy\,dx+x^2\,dy$，$L$ 沿 $y=x$ 从 $(0,0)$ 到 $(1,1)$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$y=x$，$dy=dx$。$=\int_0^1(2x^2+x^2)dx=\int_0^1 3x^2 dx=1$。</div></details></div>
+  <div class="ex"><b>习题 3：</b>计算 $\iiint_\Omega z\,dV$，$\Omega$ 为球体 $x^2+y^2+z^2\leq R^2$ 的上半部分。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>截面法：$z$ 从 $0$ 到 $R$，截面 $x^2+y^2\leq R^2-z^2$。$=\int_0^R z\cdot\pi(R^2-z^2)dz=\pi\left[\frac{R^2z^2}{2}-\frac{z^4}{4}\right]_0^R=\frac{\pi R^4}{4}$。</div></details></div>
+
+</div>
+
+<!-- ================= 7 ================= -->
+<div class="ch" id="c7">
+  <h2>7. 曲面积分 <small>沿曲面求和</small></h2>
+  <div class="def"><b>定义（第一类曲面积分）：</b>∬_Σ f(x,y,z)dS——对面积积分。曲面 z = z(x,y) 时 dS = √(1+zₓ²+zᵧ²)dxdy。<div class="proof"><b>例：</b>球面 x²+y²+z² = R² 的面积：∬_Σ dS = 4πR²（把上半球投影到 xy 平面，dS = R/√(R²−x²−y²) dxdy，积分得 2πR²，乘 2）。</div></div>
+  <div class="def"><b>定义（第二类曲面积分）：</b>∬_Σ P dydz + Q dzdx + R dxdy——对坐标的曲面积分（通量）。曲面 z = z(x,y) 时：∬_Σ R dxdy = $\iint _D$ R(x,y,z(x,y)) dxdy（注意取上侧为正）。<div class="proof"><b>例：</b>∬_Σ z dxdy，Σ 为平面 z = 1（上侧）在单位圆上方部分 = $\iint _D$ 1 dxdy = π。</div></div>
+  <div class="warn"><b>易错警示：</b>第二类曲面积分的「侧」决定正负号：上侧/外侧为正，下侧/内侧为负。投影时各分量投影到各自平面。</div>
+
+  <h3>7.1 第一类曲面积分（对面积的曲面积分）</h3>
+  <div class="def"><b>定义：</b>设 $\Sigma$ 为光滑曲面，$f(x,y,z)$ 在 $\Sigma$ 上有界。将 $\Sigma$ 任意分成 $n$ 小块，第 $i$ 块面积为 $\Delta S_i$，任取 $(\xi_i,\eta_i,\zeta_i)\in\Delta S_i$。定义
+  $$\iint_\Sigma f(x,y,z)\,dS=\lim_{\lambda\to 0}\sum_{i=1}^n f(\xi_i,\eta_i,\zeta_i)\Delta S_i.$$
+  物理意义：面密度为 $f$ 的曲面薄板的质量。</div>
+  <div class="thm"><b>定理（第一类曲面积分的计算——投影法）：</b>设曲面 $\Sigma$ 的方程为 $z=z(x,y)$，$\Sigma$ 在 $xOy$ 平面上的投影区域为 $D_{xy}$，则
+  $$\iint_\Sigma f(x,y,z)\,dS=\iint_{D_{xy}} f(x,y,z(x,y))\sqrt{1+z_x^2+z_y^2}\,dx\,dy.$$
+  <div class="proof"><b>$dS$ 的推导：</b>曲面 $z=z(x,y)$ 的法向量为 $(-z_x,-z_y,1)$，其模长为 $\sqrt{1+z_x^2+z_y^2}$。曲面面积微元 $dS$ 与投影面积 $dx\,dy$ 的关系为 $dS=\frac{dx\,dy}{|\cos\gamma|}=\sqrt{1+z_x^2+z_y^2}\,dx\,dy$，其中 $\gamma$ 为曲面法向量与 $z$ 轴的夹角。</div></div>
+  <div class="ex"><b>例 1：</b>计算 $\iint_\Sigma(x+y+z)dS$，$\Sigma$ 为平面 $z=1-x-y$ 在第一卦限部分。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$z_x=-1$、$z_y=-1$，$dS=\sqrt{1+1+1}dx\,dy=\sqrt{3}dx\,dy$。投影 $D_{xy}$：$x\geq 0$、$y\geq 0$、$x+y\leq 1$。被积函数 $x+y+z=x+y+1-x-y=1$。$=\iint_D 1\cdot\sqrt{3}dx\,dy=\sqrt{3}\cdot\frac{1}{2}=\frac{\sqrt{3}}{2}$。</div></details></div>
+  <div class="ex"><b>例 2：</b>计算 $\iint_\Sigma z\,dS$，$\Sigma$ 为上半球面 $z=\sqrt{a^2-x^2-y^2}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$z_x=\frac{-x}{\sqrt{a^2-x^2-y^2}}$，$z_y=\frac{-y}{\sqrt{a^2-x^2-y^2}}$。$\sqrt{1+z_x^2+z_y^2}=\frac{a}{\sqrt{a^2-x^2-y^2}}$。$dS=\frac{a}{\sqrt{a^2-x^2-y^2}}dx\,dy$。$z\,dS=\sqrt{a^2-x^2-y^2}\cdot\frac{a}{\sqrt{a^2-x^2-y^2}}dx\,dy=a\,dx\,dy$。$=\iint_{x^2+y^2\leq a^2} a\,dx\,dy=a\cdot\pi a^2=\pi a^3$。</div></details></div>
+  <h3>7.2 第二类曲面积分（对坐标的曲面积分）</h3>
+  <div class="def"><b>定义（有向曲面）：</b>曲面有两侧（如上侧/下侧、外侧/内侧）。选定一侧后，曲面称为有向曲面。法向量指向选定的一侧。
+  <br>第二类曲面积分为
+  $$\iint_\Sigma P\,dy\,dz+Q\,dz\,dx+R\,dx\,dy,$$
+  物理意义：向量场 $\vec F=(P,Q,R)$ 通过曲面 $\Sigma$ 指定侧的<b>通量</b>。</div>
+  <div class="thm"><b>定理（第二类曲面积分的计算——投影法）：</b>
+  <br>① $\iint_\Sigma R(x,y,z)\,dx\,dy$：将 $\Sigma$ 投影到 $xOy$ 平面得 $D_{xy}$。若取上侧（法向量与 $z$ 轴正向夹角为锐角），取正号；取下侧取负号：
+  $$\iint_\Sigma R\,dx\,dy=\pm\iint_{D_{xy}} R(x,y,z(x,y))\,dx\,dy.$$
+  <br>② 类似地，$P\,dy\,dz$ 投影到 $yOz$ 平面，$Q\,dz\,dx$ 投影到 $zOx$ 平面。
+  <div class="proof"><b>符号规则：</b>"上侧/前侧/右侧"（法向量与对应坐标轴正向夹角为锐角）取正号；"下侧/后侧/左侧"取负号。这是第二类曲面积分最易错的地方。</div></div>
+  <div class="ex"><b>例 3：</b>计算 $\iint_\Sigma z\,dx\,dy$，$\Sigma$ 为球面 $x^2+y^2+z^2=R^2$ 的上半部分的上侧。<details><summary>查看解答</summary><div class="sol"><b>解：</b>上半球面 $z=\sqrt{R^2-x^2-y^2}$，取上侧取正号。投影 $D_{xy}:x^2+y^2\leq R^2$。$=\iint_{D_{xy}}\sqrt{R^2-x^2-y^2}dx\,dy$。极坐标 $=\int_0^{2\pi}d\theta\int_0^R\sqrt{R^2-r^2}\cdot r\,dr=2\pi\cdot\left[-\frac{1}{3}(R^2-r^2)^{3/2}\right]_0^R=2\pi\cdot\frac{R^3}{3}=\frac{2\pi R^3}{3}$。</div></details></div>
+  <div class="ex"><b>例 4：</b>计算 $\iint_\Sigma x\,dy\,dz+y\,dz\,dx+z\,dx\,dy$，$\Sigma$ 为柱面 $x^2+y^2=1$（$0\leq z\leq 1$）的外侧。<details><summary>查看解答</summary><div class="sol"><b>解：</b>柱面在 $xOy$ 平面上投影为一条线（面积为零），故 $\iint z\,dx\,dy=0$。对 $x\,dy\,dz$：柱面分为前侧 $x=\sqrt{1-y^2}$（取前侧为正）和后侧 $x=-\sqrt{1-y^2}$（取后侧为负）。$=\iint_{D_{yz}}\sqrt{1-y^2}dy\,dz-\iint_{D_{yz}}(-\sqrt{1-y^2})dy\,dz=2\iint_{D_{yz}}\sqrt{1-y^2}dy\,dz=2\int_0^1 dz\int_{-1}^1\sqrt{1-y^2}dy=2\cdot 1\cdot\frac{\pi}{2}=\pi$。同理 $y\,dz\,dx$ 也为 $\pi$。合计 $=2\pi$。</div></details></div>
+  <div class="warn"><b>易错警示：</b>第二类曲面积分的"侧"决定正负号，必须仔细判断。投影时三个分量分别投影到各自坐标平面，不要混在一起。若曲面在某坐标平面上投影为曲线（面积为零），对应积分项为零。</div>
+  <h3>7.3 习题</h3>
+  <div class="ex"><b>习题 1：</b>计算 $\iint_\Sigma dS$，$\Sigma$ 为平面 $x+y+z=1$ 在第一卦限部分。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$dS=\sqrt{3}dx\,dy$，投影为直角三角形面积 $1/2$。$=\sqrt{3}/2$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>计算 $\iint_\Sigma xyz\,dx\,dy$，$\Sigma$ 为球面 $x^2+y^2+z^2=1$ 在第一卦限部分的外侧。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$z=\sqrt{1-x^2-y^2}$，外侧（上侧）取正。$=\iint_{D_{xy}}xy\sqrt{1-x^2-y^2}dx\,dy$。极坐标：$=\int_0^{\pi/2}\cos\theta\sin\theta\,d\theta\int_0^1 r^2\sqrt{1-r^2}\cdot r\,dr=\frac{1}{2}\cdot\frac{2}{15}=\frac{1}{15}$。</div></details></div>
+
+</div>
+
+<!-- ================= 8 ================= -->
+<div class="ch" id="c8">
+  <h2>8. 三大积分公式 <small>区域积分 ↔ 边界积分</small></h2>
+  <div class="thm"><b>定理（格林公式）：</b>平面有界闭区域 D 的边界 L 取正向（逆时针），P、Q 有连续偏导：$\oint _L$ P dx + Q dy = $\iint _D$ (∂Q/∂x − ∂P/∂y)dxdy。<div class="proof"><b>证明要点：</b>先证 $\oint _L$ P dx = −∬ Pᵧ dxdy（化累次积分，用牛顿-莱布尼茨），对 Q 同理相加。</div></div>
+  <div class="thm"><b>定理（高斯公式）：</b>空间闭曲面 Σ 取外侧：∯_Σ P dydz + Q dzdx + R dxdy = ∭_Ω (∂P/∂x + ∂Q/∂y + ∂R/∂z)dV。<div class="proof"><b>证明要点：</b>逐项化三重积分为曲面积分（先对 z 积分再投影），三式相加。散度 div F = ∂P/∂x+∂Q/∂y+∂R/∂z。</div></div>
+  <div class="thm"><b>定理（斯托克斯公式）：</b>曲面 Σ 的边界 Γ 取正向：∮_Γ P dx + Q dy + R dz = ∬_Σ (∂R/∂y − ∂Q/∂z)dydz + (∂P/∂z − ∂R/∂x)dzdx + (∂Q/∂x − ∂P/∂y)dxdy。<div class="proof"><b>证明要点：</b>先证平面情形（格林公式），再通过参数化与切向量把空间曲面化为平面区域。</div></div>
+  <div class="thm"><b>定理（三大公式的统一——外微分）：</b>三者都是「∫_边界 ω = ∫_区域 dω」的特殊情形（斯托克斯定理的微分形式），是流形上微积分的雏形。<div class="proof"><b>例（格林求面积）：</b>取 P = −y/2、Q = x/2：∮ (xdy − ydx)/2 = $\iint _D$ 1 dxdy = 面积。</div></div>
+  <div class="ex"><b>例：</b>用格林公式计算 $\oint _L$ x²y dx + xy² dy，L 为单位圆（逆时针）。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>∂Q/∂x − ∂P/∂y = y² − x²，$\iint _D$ (y²−x²)dxdy。用对称性（D 关于 x、y 轴对称）：= 0。</div></details></div>
+  <div class="ex"><b>例：</b>用高斯公式计算 ∯_Σ x dydz + y dzdx + z dxdy，Σ 为单位球面。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>div F = 3，∭_Ω 3 dV = 3·(4π/3) = 4π。</div></details></div>
+
+  <h3>8.1 格林公式（Green's Formula）</h3>
+  <div class="thm"><b>定理（格林公式）：</b>设闭区域 $D$ 由分段光滑的曲线 $L$ 围成，函数 $P(x,y)$、$Q(x,y)$ 在 $D$ 上具有一阶连续偏导数，则有
+  $$\oint_L P\,dx+Q\,dy=\iint_D\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dx\,dy,$$
+  其中 $L$ 是 $D$ 的<b>取正向</b>（即当观察者沿 $L$ 行走时，$D$ 内在他近处的那一部分总在他的左边）的整个边界曲线。
+  <div class="proof"><b>证明思路（以 X 型区域为例）：</b>只需分别证明 $\oint_L P\,dx=-\iint_D P_y\,dx\,dy$ 和 $\oint_L Q\,dy=\iint_D Q_x\,dx\,dy$。对第一式：将 $D$ 投影到 $x$ 轴，$D:a\leq x\leq b$、$\varphi_1(x)\leq y\leq\varphi_2(x)$。$\iint_D P_y\,dx\,dy=\int_a^b[P(x,\varphi_2(x))-P(x,\varphi_1(x))]dx$。而 $\oint_L P\,dx$ 由上下两条边组成：上边 $y=\varphi_2(x)$ 从右到左贡献 $-\int_a^b P(x,\varphi_2(x))dx$，下边 $y=\varphi_1(x)$ 从左到右贡献 $\int_a^b P(x,\varphi_1(x))dx$。相加 $=-\iint_D P_y\,dx\,dy$。同理证第二式。</div></div>
+  <div class="thm"><b>定理（格林公式使用条件总结）：</b>
+  <div class="tbl"><table><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tr><th>条件</th><th>不满足时的后果</th></tr>
+  <tr><td>$P,Q$ 在 $D$ 内有连续一阶偏导</td><td>若有奇点（偏导不连续点），需挖去奇点后再用格林公式</td></tr>
+  <tr><td>$L$ 是 $D$ 的<b>正向</b>边界</td><td>反向则等式右边加负号</td></tr>
+  <tr><td>$D$ 是单连通区域</td><td>多连通区域时外边界取正向、内边界取反向</td></tr>
+  <tr><td>$L$ 是闭曲线</td><td>非闭曲线需补线成闭曲线再用格林公式，最后减去补线的积分</td></tr></table></div></div>
+  <div class="thm"><b>定理（平面曲线积分与路径无关的条件）：</b>设 $D$ 是单连通区域，$P,Q$ 在 $D$ 内有连续偏导，则以下四条等价：
+  <br>① $\oint_L P\,dx+Q\,dy=0$ 对 $D$ 内任意闭曲线 $L$ 成立；
+  <br>② 积分 $\int_L P\,dx+Q\,dy$ 与路径无关，只依赖起点和终点；
+  <br>③ 存在原函数 $u(x,y)$ 使 $du=P\,dx+Q\,dy$；
+  <br>④ $\frac{\partial P}{\partial y}=\frac{\partial Q}{\partial x}$ 在 $D$ 内恒成立。
+  <div class="proof"><b>说明：</b>条件④（旋度为零）是最常用的判据。注意：单连通区域是必要条件——若 $D$ 内有奇点（如原点处 $P,Q$ 无定义），即使 $\partial P/\partial y=\partial Q/\partial x$，绕奇点的闭曲线积分也可能不为零。</div></div>
+  <div class="ex"><b>例 1：</b>用格林公式计算 $\oint_L x^2y\,dx-xy^2\,dy$，$L$ 为圆周 $x^2+y^2=a^2$ 的逆时针方向。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$P=x^2y$，$Q=-xy^2$。$Q_x=-y^2$，$P_y=x^2$。$Q_x-P_y=-(x^2+y^2)$。$\oint_L=\iint_D-(x^2+y^2)dx\,dy=-\int_0^{2\pi}d\theta\int_0^a r^2\cdot r\,dr=-2\pi\cdot\frac{a^4}{4}=-\frac{\pi a^4}{2}$。</div></details></div>
+  <div class="ex"><b>例 2：</b>计算 $\int_L(e^x\sin y-my)dx+(e^x\cos y-m)dy$，$L$ 为从 $(a,0)$ 经上半圆周 $y=\sqrt{ax-x^2}$ 到 $(0,0)$ 的弧段。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$L$ 不是闭曲线。补直线段 $L_1$：从 $(0,0)$ 沿 $x$ 轴回到 $(a,0)$（$y=0$，$dy=0$）。则 $L+L_1$ 构成正向闭曲线。$P_y=e^x\cos y-m$，$Q_x=e^x\cos y$。$Q_x-P_y=m$。由格林公式 $\oint_{L+L_1}=\iint_D m\,dx\,dy=m\cdot\frac{\pi(a/2)^2}{2}=\frac{m\pi a^2}{8}$。而 $L_1$ 上积分 $=\int_0^a 0\,dx+0=0$。故原积分 $=\frac{m\pi a^2}{8}$。</div></details></div>
+  <div class="ex"><b>例 3：</b>验证曲线积分 $\int_{(0,0)}^{(1,1)}(x+2y)dx+(2x+y)dy$ 与路径无关，并求其值。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$P=x+2y$，$Q=2x+y$。$P_y=2=Q_x$，全平面单连通，故与路径无关。取直线路径 $y=x$（$x$ 从 $0$ 到 $1$）：$=\int_0^1[(x+2x)+(2x+x)]dx=\int_0^1 6x\,dx=3$。或求原函数：$u=\frac{x^2}{2}+2xy+\frac{y^2}{2}$，$u(1,1)-u(0,0)=3$。</div></details></div>
+  <h3>8.2 高斯公式（Gauss's Formula）</h3>
+  <div class="thm"><b>定理（高斯公式——散度定理）：</b>设空间闭区域 $\Omega$ 由分片光滑的闭曲面 $\Sigma$ 围成，函数 $P(x,y,z)$、$Q(x,y,z)$、$R(x,y,z)$ 在 $\Omega$ 上具有一阶连续偏导数，则有
+  $$∯_\Sigma P\,dy\,dz+Q\,dz\,dx+R\,dx\,dy=\iiint_\Omega\left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\right)dV,$$
+  其中 $\Sigma$ 是 $\Omega$ 的<b>外侧</b>。
+  <div class="proof"><b>证明思路（只证第三项）：</b>需证 $∯_\Sigma R\,dx\,dy=\iiint_\Omega R_z\,dV$。将 $\Omega$ 投影到 $xOy$ 平面。若 $\Omega$ 可同时被上下两曲面 $z=z_2(x,y)$（上侧）和 $z=z_1(x,y)$（下侧）所围，则 $\iiint_\Omega R_z\,dV=\iint_{D_{xy}}\left[R(x,y,z_2)-R(x,y,z_1)\right]dx\,dy$。而曲面积分中，上侧曲面取正号贡献 $+\iint_{D_{xy}}R(x,y,z_2)dx\,dy$，下侧曲面取负号贡献 $-\iint_{D_{xy}}R(x,y,z_1)dx\,dy$。侧面上投影面积为零。三部分相加即得等式。同理证另外两项。</div>
+  <b>散度：</b>$\operatorname{div}\vec F=\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}$。高斯公式的物理意义：向量场通过闭曲面的通量等于散度在区域内的体积分。</div>
+  <div class="thm"><b>定理（高斯公式使用条件总结）：</b>
+  <div class="tbl"><table><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tr><th>条件</th><th>不满足时的后果</th></tr>
+  <tr><td>$P,Q,R$ 在 $\Omega$ 内有连续一阶偏导</td><td>有奇点时需用"挖洞法"——在奇点处取小球面，内外两曲面分别用高斯公式</td></tr>
+  <tr><td>$\Sigma$ 取<b>外侧</b></td><td>取内侧则等式右边加负号</td></tr>
+  <tr><td>$\Sigma$ 是闭曲面</td><td>非闭曲面需补面成闭曲面，再减去补面的积分</td></tr></table></div></div>
+  <div class="ex"><b>例 4：</b>用高斯公式计算 $∯_\Sigma x\,dy\,dz+y\,dz\,dx+z\,dx\,dy$，$\Sigma$ 为球面 $x^2+y^2+z^2=a^2$ 的外侧。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$\operatorname{div}\vec F=1+1+1=3$。$=\iiint_\Omega 3\,dV=3\cdot\frac{4\pi a^3}{3}=4\pi a^3$。</div></details></div>
+  <div class="ex"><b>例 5：</b>计算 $\iint_\Sigma x\,dy\,dz+y\,dz\,dx+z\,dx\,dy$，$\Sigma$ 为柱面 $x^2+y^2=R^2$（$0\leq z\leq h$）的外侧（不含上下底）。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$\Sigma$ 不是闭曲面。补上面 $\Sigma_1$：$z=h$（上侧），补下面 $\Sigma_2$：$z=0$（下侧）。$\Sigma+\Sigma_1+\Sigma_2$ 构成外侧闭曲面。高斯公式：$=\iiint_\Omega 3\,dV=3\pi R^2h$。$\Sigma_1$ 上：$x,y$ 分量投影为零，$\iint z\,dx\,dy=\iint_{D_{xy}}h\,dx\,dy=h\pi R^2$（上侧取正）。$\Sigma_2$ 上：$z=0$，积分 $=0$（下侧但 $z=0$）。故原积分 $=3\pi R^2h-\pi R^2h-0=2\pi R^2h$。</div></details></div>
+  <h3>8.3 斯托克斯公式（Stokes' Formula）</h3>
+  <div class="thm"><b>定理（斯托克斯公式）：</b>设 $\Gamma$ 为分段光滑的空间有向闭曲线，$\Sigma$ 是以 $\Gamma$ 为边界的分片光滑的有向曲面，$\Gamma$ 的正向与 $\Sigma$ 的侧符合<b>右手规则</b>（右手四指沿 $\Gamma$ 方向，拇指指向曲面法向量方向），函数 $P,Q,R$ 在包含 $\Sigma$ 在内的一个空间区域内具有一阶连续偏导数，则
+  $$\oint_\Gamma P\,dx+Q\,dy+R\,dz=\iint_\Sigma\begin{vmatrix}dy\,dz&dz\,dx&dx\,dy\\ \frac{\partial}{\partial x}&\frac{\partial}{\partial y}&\frac{\partial}{\partial z}\\ P&Q&R\end{vmatrix}=\iint_\Sigma\left(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\right)dy\,dz+\left(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\right)dz\,dx+\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dx\,dy.$$
+  <b>旋度：</b>$\operatorname{rot}\vec F=\nabla\times\vec F=\left(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z},\ \frac{\partial P}{\partial z}-\frac{\partial R}{\partial x},\ \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)$。斯托克斯公式：闭曲线积分 = 旋度通量（旋度通过张成曲面的第二类曲面积分）。</div>
+  <div class="ex"><b>例 6：</b>用斯托克斯公式计算 $\oint_\Gamma y\,dx+z\,dy+x\,dz$，$\Gamma$ 为球面 $x^2+y^2+z^2=a^2$ 与平面 $x+y+z=0$ 的交线，从 $x$ 轴正向看去为逆时针方向。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$\operatorname{rot}\vec F=(-1,-1,-1)$。取 $\Sigma$ 为平面 $x+y+z=0$ 上被 $\Gamma$ 围成的圆盘，按右手规则取上侧（法向量 $(1,1,1)/\sqrt{3}$）。$\iint_\Sigma(-1)dy\,dz+(-1)dz\,dx+(-1)dx\,dy$。利用方向余弦：$dy\,dz=\frac{1}{\sqrt{3}}dS$，$dz\,dx=\frac{1}{\sqrt{3}}dS$，$dx\,dy=\frac{1}{\sqrt{3}}dS$。$=-\frac{3}{\sqrt{3}}\iint_\Sigma dS=-\sqrt{3}\cdot\pi a^2=-\sqrt{3}\pi a^2$。</div></details></div>
+  <h3>8.4 三大公式的统一理解</h3>
+  <div class="thm"><b>定理（外微分视角）：</b>格林公式、高斯公式、斯托克斯公式都是广义斯托克斯定理
+  $$\int_{\partial M}\omega=\int_M d\omega$$
+  的特例：
+  <div class="tbl"><table><colgroup><col style="width:25%"><col style="width:25%"><col style="width:25%"><col style="width:25%"></colgroup><tr><th>公式</th><th>区域维数</th><th>边界维数</th><th>对应</th></tr>
+  <tr><td>牛顿-莱布尼茨</td><td>1（区间）</td><td>0（端点）</td><td>$\int_a^b F'(x)dx=F(b)-F(a)$</td></tr>
+  <tr><td>格林公式</td><td>2（平面区域）</td><td>1（闭曲线）</td><td>$\oint_{\partial D}\omega=\iint_D d\omega$</td></tr>
+  <tr><td>高斯公式</td><td>3（空间区域）</td><td>2（闭曲面）</td><td>$∯_{\partial\Omega}\omega=\iiint_\Omega d\omega$</td></tr>
+  <tr><td>斯托克斯公式</td><td>2（空间曲面）</td><td>1（空间闭曲线）</td><td>$\oint_{\partial\Sigma}\omega=\iint_\Sigma d\omega$</td></tr></table></div>
+  核心思想：<b>区域内部的"微分"总和 = 区域边界上的"原函数"总和</b>。</div>
+  <div class="ex"><b>例 7：</b>用格林公式求星形线 $x=a\cos^3 t$、$y=a\sin^3 t$ 所围图形的面积。<details><summary>查看解答</summary><div class="sol"><b>解：</b>取 $P=-\frac{y}{2}$、$Q=\frac{x}{2}$，则 $Q_x-P_y=1$。面积 $A=\frac{1}{2}\oint_L x\,dy-y\,dx=\frac{1}{2}\int_0^{2\pi}[a\cos^3 t\cdot 3a\sin^2 t\cos t-a\sin^3 t\cdot(-3a\cos^2 t\sin t)]dt=\frac{3a^2}{2}\int_0^{2\pi}\sin^2 t\cos^2 t(\cos^2 t+\sin^2 t)dt=\frac{3a^2}{2}\int_0^{2\pi}\sin^2 t\cos^2 t\,dt=\frac{3a^2}{2}\cdot\frac{\pi}{8}\cdot 4=\frac{3\pi a^2}{8}$。</div></details></div>
+  <h3>8.5 习题</h3>
+  <div class="ex"><b>习题 1：</b>用格林公式计算 $\oint_L(2x-y+4)dx+(5y+3x-6)dy$，$L$ 为顶点 $(0,0)$、$(3,0)$、$(3,2)$ 的三角形正向边界。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$Q_x=3$，$P_y=-1$，$Q_x-P_y=4$。$=\iint_D 4\,dx\,dy=4\cdot\frac{1}{2}\cdot 3\cdot 2=12$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>用高斯公式计算 $∯_\Sigma(x^2\cos\alpha+y^2\cos\beta+z^2\cos\gamma)dS$，$\Sigma$ 为锥面 $x^2+y^2=z^2$（$0\leq z\leq h$）的外侧。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>补顶面 $z=h$（上侧）。高斯公式：$\iiint_\Omega(2x+2y+2z)dV$。由对称性 $\iiint 2x\,dV=\iiint 2y\,dV=0$。$=2\iiint_\Omega z\,dV=2\int_0^h z\cdot\pi z^2 dz=2\pi\cdot\frac{h^4}{4}=\frac{\pi h^4}{2}$。补面上积分 $=\iint_{D_{xy}}h^2\,dx\,dy=\pi h^4$。原积分 $=\frac{\pi h^4}{2}-\pi h^4=-\frac{\pi h^4}{2}$。</div></details></div>
+  <div class="ex"><b>习题 3：</b>验证 $\int_L(2xy^3-y^2\cos x)dx+(1-2y\sin x+3x^2y^2)dy$ 与路径无关，并求从 $(0,0)$ 到 $(\pi/2,1)$ 的积分值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$P_y=6xy^2-2y\cos x=Q_x$，与路径无关。原函数 $u=x^2y^3-y^2\sin x$。$u(\pi/2,1)-u(0,0)=\frac{\pi^2}{4}-1$。</div></details></div>
+
+</div>
+
+<!-- ================= 9 ================= -->
+
+<!-- ================= 第二轮深度小节：9d. 深度：隐函数定理 ================= -->
+<div class="ch" id="c9d">
+  <h2>9d. 深度：隐函数定理 <small>从方程确定函数</small></h2>
+  <div class="def"><b>定义（隐函数）</b> 方程 $F(x,y)=0$ 在点 $(x_0,y_0)$ 附近确定隐函数 $y=f(x)$（$f(x_0)=y_0$），若存在邻域使 $\forall x$ 存在唯一 $y=f(x)$ 满足 $F(x,y)=0$。</div>
+  <div class="thm"><b>定理（隐函数定理 IFT）</b> 设 $F\in C^1$ 在 $(x_0,y_0)$ 附近定义，$F(x_0,y_0)=0$, $F_y(x_0,y_0)\ne0$。则存在 $x_0$ 邻域 $U$ 与 $y_0$ 邻域 $V$，以及唯一 $C^1$ 函数 $f:U\to V$ 使 $F(x,f(x))=0$（$\forall x\in U$），且
+  $$f'(x)=-\frac{F_x}{F_y}.$$
+  <div class="proof"><b>思路：</b>定义 $\Phi(x,y)=(x,F(x,y))$，$D\Phi$ 在 $(x_0,y_0)$ 的行列式 $=F_y\ne0$，逆映射定理给局部双射 $\Phi^{-1}$，其 $y$ 分量即隐函数 $f$。导数公式由链式法则 $F_x+f'F_y=0$ 得。</div></div>
+  <div class="thm"><b>定理（多元隐函数）</b> 推广到 $F:\mathbb{R}^{n+m}\to\mathbb{R}^m$，条件是 $D_yF$（$m\times m$ 偏导矩阵）在 $(x_0,y_0)$ 处可逆，得 $y=f(x)$ 且 $Df=-[D_yF]^{-1}D_xF$。<div class="proof"><b>意义：</b>这是非线性方程局部解的存在性基础——微分方程存在唯一性、约束优化中的 Lagrange 乘子等都需要。</div></div>
+  <div class="ex"><b>例：</b>方程 $x^2+y^2=1$ 在 $(0,1)$ 附近确定隐函数 $y=f(x)$，求 $f'(0)$。
+  <div class="sol"><b>解：</b>$F=x^2+y^2-1$, $F_x=2x$, $F_y=2y$。$F_y(0,1)=2\ne0$，隐函数存在。$f'(0)=-F_x/F_y=-0/2=0$。几何：$(0,1)$ 是单位圆最高点，切线水平，斜率为 0。</div></div>
+</div>
+
+<!-- ================= 第二轮深度小节：9e. 深度：Lagrange 乘数法 ================= -->
+<div class="ch" id="c9e">
+  <h2>9e. 深度：Lagrange 乘数法 <small>带约束的极值</small></h2>
+  <div class="def"><b>定义（条件极值）</b> 求 $f(x)$ 在约束 $g(x)=0$ 下的极值。Lagrange 函数 $L=f-\lambda g$。</div>
+  <div class="thm"><b>定理（Lagrange 乘数法）</b> 设 $f,g\in C^1$, $g$ 的梯度 $\nabla g\ne0$ 在极值点 $x^*$。则存在 $\lambda\in\mathbb{R}$ 使
+  $$\nabla f(x^*)=\lambda\nabla g(x^*).$$
+  <div class="proof"><b>思路：</b>约束面 $S=\{g=0\}$ 的切空间 $T_{x^*}S=\{v:\nabla g\cdot v=0\}$。极值点处 $f$ 沿 $S$ 方向导数为零，即 $\nabla f\perp T_{x^*}S$。但 $T_{x^*}S$ 是 $\nabla g$ 的正交补，故 $\nabla f\parallel\nabla g$。</div></div>
+  <div class="thm"><b>定理（多约束 Lagrange）</b> $m$ 个等式约束 $g_1=\cdots=g_m=0$：$\nabla f=\sum\lambda_i\nabla g_i$（在正则点，即 $\nabla g_i$ 线性独立处）。<div class="proof"><b>意义：</b>不等式约束的 KKT 条件是其推广，线性规划对偶是其线性化版本。</div></div>
+  <div class="ex"><b>例：</b>求 $f(x,y)=xy$ 在 $x^2+y^2=1$ 下的最大值。
+  <div class="sol"><b>解：</b>$\nabla f=(y,x)$, $\nabla g=(2x,2y)$。方程 $y=2\lambda x$, $x=2\lambda y$, $x^2+y^2=1$。从第一二式得 $y^2=x^2$（消 $\lambda$），故 $x=\pm y=\pm1/\sqrt2$。最大值 $xy=1/2$（在 $(1/\sqrt2,1/\sqrt2)$ 取到）。最小 $-1/2$。</div></div>
+</div>
+
+<div class="ch" id="c9">
+  <h2>9. 多元微积分的应用 <small>从几何到物理</small></h2>
+  <div class="thm"><b>定理（平面面积与曲面面积）：</b>平面区域面积 A = $\iint _D$ dσ；曲面 z = f(x,y) 的面积 S = $\iint _D$ √(1+fₓ²+fᵧ²)dxdy。<div class="proof"><b>例：</b>抛物面 z = x²+y² 在单位圆上方的面积 = $\int _0^{2π}$$\int _0^1$ √(1+4r²) r dr dθ = (π/6)(5√5 − 1)。</div></div>
+  <div class="thm"><b>定理（重心与转动惯量）：</b>平面薄片重心 x̄ = $\iint _D$ x ρ dσ / $\iint _D$ ρ dσ；转动惯量 Iₓ = $\iint _D$ y²ρ dσ。<div class="proof"><b>例：</b>均匀半圆盘（x²+y² ≤ R², y ≥ 0）重心在 (0, 4R/(3π))——极坐标积分。</div></div>
+  <div class="thm"><b>定理（通量与环量）：</b>高斯公式给出向量场穿过闭曲面的通量 = 散度体积分；斯托克斯公式给出沿闭曲线的环量 = 旋度面积分。物理背景：散度（源/汇强度）与旋度（涡旋强度）。<div class="proof"><b>例：</b>速度场 F = (y, −x, 0) 的旋度 curl F = (0, 0, −2)——绕 z 轴的旋转流场，环量密度处处 −2。</div></div>
+  <div class="ex"><b>例：</b>求 $z=\sqrt{x^{2}+y^{2}}$ 与 $z=1$ 围成的锥体体积。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>用柱坐标，锥面即 $z=r$，故
+  $$V=\int_{0}^{2\pi}\!\!\int_{0}^{1}\!\!\int_{r}^{1}dz\,r\,dr\,d\theta=\int_{0}^{2\pi}\!\!\int_{0}^{1}(1-r)r\,dr\,d\theta=2\pi\left(\tfrac{1}{2}-\tfrac{1}{3}\right)=\frac{2\pi}{6}=\frac{\pi}{3}.$$</div></details></div>
+</div>
+
+  <h3>9.1 几何应用</h3>
+  <div class="thm"><b>定理（空间曲线的切线与法平面）：</b>空间曲线 $\Gamma$ 的参数方程为 $x=\varphi(t)$、$y=\psi(t)$、$z=\omega(t)$，在点 $M_0(x_0,y_0,z_0)$（对应参数 $t_0$）处：
+  <br>切线方向向量（切向量）：$\vec T=(\varphi'(t_0),\psi'(t_0),\omega'(t_0))$。
+  <br>切线方程：$\frac{x-x_0}{\varphi'(t_0)}=\frac{y-y_0}{\psi'(t_0)}=\frac{z-z_0}{\omega'(t_0)}$。
+  <br>法平面方程：$\varphi'(t_0)(x-x_0)+\psi'(t_0)(y-y_0)+\omega'(t_0)(z-z_0)=0$。</div>
+  <div class="thm"><b>定理（曲面的切平面与法线）：</b>曲面 $F(x,y,z)=0$ 在点 $M_0(x_0,y_0,z_0)$ 处：
+  <br>法向量：$\vec n=(F_x(M_0),F_y(M_0),F_z(M_0))$。
+  <br>切平面方程：$F_x(M_0)(x-x_0)+F_y(M_0)(y-y_0)+F_z(M_0)(z-z_0)=0$。
+  <br>法线方程：$\frac{x-x_0}{F_x(M_0)}=\frac{y-y_0}{F_y(M_0)}=\frac{z-z_0}{F_z(M_0)}$。
+  <div class="proof"><b>推导：</b>曲面上过 $M_0$ 的任一条曲线 $x=\varphi(t)$、$y=\psi(t)$、$z=\omega(t)$ 满足 $F(\varphi(t),\psi(t),\omega(t))=0$。对 $t$ 求导：$F_x\varphi'+F_y\psi'+F_z\omega'=0$，即 $\vec n\cdot\vec T=0$。故法向量垂直于切向量。</div></div>
+  <div class="ex"><b>例 1：</b>求曲面 $z=x^2+y^2$ 在点 $(1,1,2)$ 处的切平面与法线方程。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$F=x^2+y^2-z=0$。$F_x=2x=2$，$F_y=2y=2$，$F_z=-1$。切平面：$2(x-1)+2(y-1)-(z-2)=0$，即 $2x+2y-z=2$。法线：$\frac{x-1}{2}=\frac{y-1}{2}=\frac{z-2}{-1}$。</div></details></div>
+  <div class="ex"><b>例 2：</b>求曲线 $x=t$、$y=t^2$、$z=t^3$ 在 $t=1$ 处的切线与法平面。<details><summary>查看解答</summary><div class="sol"><b>解：</b>点 $(1,1,1)$。$\vec T=(1,2,3)$。切线：$\frac{x-1}{1}=\frac{y-1}{2}=\frac{z-1}{3}$。法平面：$1(x-1)+2(y-1)+3(z-1)=0$，即 $x+2y+3z=6$。</div></details></div>
+  <h3>9.2 物理应用——质心、转动惯量、引力</h3>
+  <div class="thm"><b>定理（平面薄片的质心与转动惯量）：</b>设平面薄片占有区域 $D$，面密度 $\rho(x,y)$：
+  <br>质量：$M=\iint_D\rho\,d\sigma$；
+  <br>质心坐标：$\bar x=\frac{1}{M}\iint_D x\rho\,d\sigma$，$\bar y=\frac{1}{M}\iint_D y\rho\,d\sigma$；
+  <br>对 $x$ 轴的转动惯量：$I_x=\iint_D y^2\rho\,d\sigma$；
+  <br>对 $y$ 轴的转动惯量：$I_y=\iint_D x^2\rho\,d\sigma$。
+  <br>三重积分情形类似：将 $d\sigma$ 换为 $dV$，区域换为 $\Omega$。</div>
+  <div class="ex"><b>例 3：</b>求半径为 $a$ 的均匀半圆薄片（面密度为常数 $\rho$）的质心。<details><summary>查看解答</summary><div class="sol"><b>解：</b>半圆 $x^2+y^2\leq a^2$、$y\geq 0$。由对称性 $\bar x=0$。质量 $M=\rho\cdot\frac{\pi a^2}{2}$。$\iint_D y\rho\,d\sigma=\rho\int_0^\pi\int_0^a r\sin\theta\cdot r\,dr\,d\theta=\rho\cdot\frac{a^3}{3}\cdot 2=\frac{2\rho a^3}{3}$。$\bar y=\frac{2\rho a^3/3}{\rho\pi a^2/2}=\frac{4a}{3\pi}$。</div></details></div>
+  <div class="ex"><b>例 4：</b>求均匀球体（半径 $R$、密度 $\rho$）对其直径的转动惯量。<details><summary>查看解答</summary><div class="sol"><b>解：</b>取直径为 $z$ 轴。$I_z=\iiint_\Omega(x^2+y^2)\rho\,dV$。球坐标：$=\rho\int_0^{2\pi}d\theta\int_0^\pi\int_0^R(\rho^2\sin^2\varphi)\cdot\rho^2\sin\varphi\,d\rho\,d\varphi=2\pi\rho\cdot\frac{R^5}{5}\cdot\int_0^\pi\sin^3\varphi\,d\varphi=\frac{2\pi\rho R^5}{5}\cdot\frac{4}{3}=\frac{8\pi\rho R^5}{15}$。（质量 $M=\frac{4\pi\rho R^3}{3}$，故 $I_z=\frac{2}{5}MR^2$。）</div></details></div>
+  <h3>9.3 场论初步</h3>
+  <div class="def"><b>定义（通量与散度）：</b>向量场 $\vec F=(P,Q,R)$ 通过曲面 $\Sigma$ 指定侧的通量为
+  $$\Phi=\iint_\Sigma\vec F\cdot d\vec S=\iint_\Sigma P\,dy\,dz+Q\,dz\,dx+R\,dx\,dy.$$
+  散度 $\operatorname{div}\vec F=\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}$ 表示单位体积内的"源"强度。$\operatorname{div}\vec F=0$ 称无源场（管量场）。</div>
+  <div class="def"><b>定义（环量与旋度）：</b>向量场 $\vec F$ 沿闭曲线 $\Gamma$ 的环量为
+  $$\Gamma=\oint_\Gamma P\,dx+Q\,dy+R\,dz.$$
+  旋度 $\operatorname{rot}\vec F=\nabla\times\vec F$。$\operatorname{rot}\vec F=\vec 0$ 称无旋场（有势场），此时存在势函数 $\varphi$ 使 $\vec F=\nabla\varphi$。</div>
+  <div class="thm"><b>定理（哈密顿算子 $\nabla$）：</b>
+  <div class="tbl"><table><colgroup><col style="width:33%"><col style="width:33%"><col style="width:34%"></colgroup><tr><th>记号</th><th>名称</th><th>公式</th></tr>
+  <tr><td>$\nabla f$</td><td>梯度</td><td>$(f_x,f_y,f_z)$</td></tr>
+  <tr><td>$\nabla\cdot\vec F$</td><td>散度</td><td>$P_x+Q_y+R_z$</td></tr>
+  <tr><td>$\nabla\times\vec F$</td><td>旋度</td><td>$(R_y-Q_z,P_z-R_x,Q_x-P_y)$</td></tr>
+  <tr><td>$\nabla\cdot\nabla f$</td><td>拉普拉斯</td><td>$f_{xx}+f_{yy}+f_{zz}$</td></tr></table></div></div>
+  <h3>9.4 习题</h3>
+  <div class="ex"><b>习题 1：</b>求椭球面 $\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$ 在点 $(a,b,c)/\sqrt{3}$ 处的切平面方程。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$F=\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}-1$。法向量 $(2x/a^2,2y/b^2,2z/c^2)$。切平面：$\frac{x_0 x}{a^2}+\frac{y_0 y}{b^2}+\frac{z_0 z}{c^2}=1$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>求边长为 $a$ 的均匀正方形薄板（密度 $\rho$）对一边的转动惯量。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>取对 $x=0$ 边的转动惯量 $I_y=\iint_D x^2\rho\,dx\,dy=\rho\int_0^a\int_0^a x^2 dx\,dy=\rho a\cdot\frac{a^3}{3}=\frac{\rho a^4}{3}=\frac{Ma^2}{3}$（$M=\rho a^2$）。</div></details></div>
+  <div class="ex"><b>习题 3：</b>求 $\vec F=(x^2,yz,z^2)$ 在点 $(1,1,1)$ 处的散度和旋度。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\operatorname{div}\vec F=2x+z+2z=2x+3z$，在 $(1,1,1)$ 处为 $5$。$\operatorname{rot}\vec F=(0-y,0-0,0-0)=(-y,0,0)=(-1,0,0)$。</div></details></div>
+
+
+
+<!-- ================= 10 ================= -->
+
+  <div class="ex"><b>练习 8：</b>设 $e^z=xyz$，求 $\frac{\partial z}{\partial x}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $F(x,y,z)=e^z-xyz$。$F_x=-yz$，$F_z=e^z-xy$。故 $z_x=-F_x/F_z=\frac{yz}{e^z-xy}=\frac{yz}{xyz-xy}=\frac{z}{x(z-1)}$。</div></details></div>
+
+  <div class="ex"><b>练习 9：</b>用 Gauss 公式计算 $∯_\Sigma x^3dydz+y^3dzdx+z^3dxdy$，$\Sigma:x^2+y^2+z^2=R^2$ 外侧。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>由 Gauss 公式 $=\iiint_\Omega 3(x^2+y^2+z^2)dV=3\int_0^{2\pi}d\theta\int_0^\pi\sin\varphi d\varphi\int_0^R r^2\cdot r^2dr=3\cdot2\pi\cdot2\cdot\frac{R^5}{5}=\frac{12\pi R^5}{5}$。</div></details></div>
+
+  <div class="ex"><b>练习 10：</b>用极坐标计算 $\iint_D\sqrt{x^2+y^2}dxdy$，$D$ 为 $x^2+y^2\le2x$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>圆 $(x-1)^2+y^2\le1$，极坐标 $r\le2\cos\theta$，$\theta\in[-\pi/2,\pi/2]$。$\int_{-\pi/2}^{\pi/2}d\theta\int_0^{2\cos\theta}r\cdot r\,dr=\int_{-\pi/2}^{\pi/2}\frac{8}{3}\cos^3\theta d\theta=\frac{16}{3}\int_0^{\pi/2}\cos^3\theta d\theta=\frac{16}{3}\cdot\frac{2}{3}=\frac{32}{9}$。</div></details></div>
+
+  <div class="ex"><b>练习 11：</b>用 Stokes 公式计算 $\oint_\Gamma ydx+zdy+xdz$，$\Gamma$ 为 $x^2+y^2+z^2=a^2$ 与 $x+y+z=0$ 的交线。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>取 $\Sigma$ 为平面 $x+y+z=0$ 上被 $\Gamma$ 围的圆盘。旋度 $\nabla\times(P,Q,R)=(R_y-Q_z,P_z-R_x,Q_x-P_y)=(0-1,0-1,0-1)=(-1,-1,-1)$。法向 $\mathbf{n}=(1,1,1)/\sqrt{3}$。原式 $=\iint_\Sigma(-1,-1,-1)\cdot(1,1,1)/\sqrt{3}\,dS=-\sqrt{3}\cdot\pi a^2$。</div></details></div>
+
+
+<!-- ================= 深度小节：9a. 深度：隐函数定理与逆映射定理 ================= -->
+  <div class="ex"><b>练习 12：</b>方程 $e^y+xy=e$ 在 $(0,1)$ 附近确定的隐函数 $y=f(x)$，求 $f'(0)$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$F=e^y+xy-e$, $F_x=y$, $F_y=e^y+x$。$f'(0)=-F_x/F_y=-1/(e+0)=-1/e$。</div></details></div>
+  <div class="ex"><b>练习 13：</b>求 $f(x,y,z)=x+2y+3z$ 在球面约束 $x^2+y^2+z^2=1$ 下的最大值与最小值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>Lagrange：$(1,2,3)=2\lambda(x,y,z)$，故 $(x,y,z)=\frac1{2\lambda}(1,2,3)$。代入约束 $\frac{1+4+9}{4\lambda^2}=1$ 得 $\lambda=\pm\frac{\sqrt{14}}2$。最大值点 $\frac1{\sqrt{14}}(1,2,3)$，最大值 $\sqrt{14}$；最小值 $-\sqrt{14}$（点 $-\frac1{\sqrt{14}}(1,2,3)$）。也可直接由 Cauchy–Schwarz：$|x+2y+3z|\le\sqrt{14}\sqrt{x^2+y^2+z^2}=\sqrt{14}$。</div></details></div>
+
+<div class="ch" id="c9a">
+  <h2>9a. 深度：隐函数定理与逆映射定理 <small>什么时候方程 $F(x,y)=0$ 能解出 $y=y(x)$</small></h2>
+  <div class="thm"><b>隐函数定理</b> 设 $F(x,y)$ 在 $(x_0,y_0)$ 的邻域内 $C^1$，$F(x_0,y_0)=0$，$F_y(x_0,y_0)\ne0$。则存在 $(x_0,y_0)$ 的邻域，使方程 $F(x,y)=0$ 唯一确定 $C^1$ 函数 $y=y(x)$，满足 $y(x_0)=y_0$，且
+            $$y'(x)=-\frac{F_x(x,y)}{F_y(x,y)}.$$
+            <div class="proof"><b>证明思路：</b>不妨设 $F_y(x_0,y_0)>0$。由连续性，在某矩形内 $F_y>0$，故 $F(x_0,\cdot)$ 严格递增。因 $F(x_0,y_0)=0$，可取 $y_1&lt;y_0&lt;y_2$ 使 $F(x_0,y_1)&lt;0&lt;F(x_0,y_2)$。由 $F$ 对 $x$ 连续，存在 $x$ 的邻域使 $F(x,y_1)&lt;0&lt;F(x,y_2)$。对每个 $x$，$F(x,\cdot)$ 严格递增，由介值定理存在唯一 $y(x)$。连续性与可微性由 $F$ 的 $C^1$ 性推出。</div></div>
+  <div class="thm"><b>逆映射定理</b> 设 $f:\mathbb{R}^n\to\mathbb{R}^n$ 是 $C^1$ 映射，$J_f(x_0)=\det Df(x_0)\ne0$。则存在 $x_0$ 的邻域 $U$ 和 $f(x_0)$ 的邻域 $V$，使 $f:U\to V$ 是双射，且 $f^{-1}:V\to U$ 也是 $C^1$，$D(f^{-1})(y)=(Df(x))^{-1}$。</div>
+  <div class="ex"><b>例：</b>设 $x^2+y^2=1$，求 $y''(x)$ 在 $(0,1)$ 处的值。
+  <div class="sol"><b>解：</b>$F(x,y)=x^2+y^2-1$。$y'=-F_x/F_y=-x/y$。再导：$y''=\frac{d}{dx}(-x/y)=-\frac{y-xy'}{y^2}=-\frac{y-x(-x/y)}{y^2}=-\frac{y^2+x^2}{y^3}=-\frac{1}{y^3}$。在 $(0,1)$ 处 $y''=-1$。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9b. 深度：Green–Gauss–Stokes 三大公式的统一 ================= -->
+<div class="ch" id="c9b">
+  <h2>9b. 深度：Green–Gauss–Stokes 三大公式的统一 <small>边界积分与内部积分的关系</small></h2>
+  <div class="thm"><b>Green 公式</b> 设 $D$ 为平面有界闭区域，边界 $L$ 取正向，$P,Q\in C^1(D)$，则
+            $$\oint_L Pdx+Qdy=\iint_D\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dxdy.$$</div>
+  <div class="thm"><b>Gauss 公式</b> 设 $\Omega$ 为空间有界闭区域，边界 $\Sigma$ 取外侧，$P,Q,R\in C^1(\Omega)$，则
+            $$∯_\Sigma Pdydz+Qdzdx+Rdxdy=\iiint_\Omega\left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\right)dV.$$</div>
+  <div class="thm"><b>Stokes 公式</b> 设 $\Sigma$ 为光滑曲面，边界 $\Gamma$ 方向与 $\Sigma$ 法向成右手系，则
+            $$\oint_\Gamma Pdx+Qdy+Rdz=\iint_\Sigma\begin{vmatrix}dydz&dzdx&dxdy\\\partial_x&\partial_y&\partial_z\\P&Q&R\end{vmatrix}.$$</div>
+  <div class="thm"><b>统一形式（广义 Stokes 定理）</b> 若 $\omega$ 是 $n$ 维流形 $M$ 上的 $(n-1)$-形式，$\partial M$ 为其边界，则 $\int_M d\omega=\int_{\partial M}\omega$。<div class="proof"><b>说明：</b>Green、Gauss、Stokes 都是广义 Stokes 定理在 $n=2,3,3$ 维的特例。微分形式 $d\omega$ 的外微分对应「散度/旋度」，边界积分对应「通量/环量」。</div></div>
+  <div class="ex"><b>例：</b>用 Green 公式计算 $\oint_L (x^2-y)dx+(x+\sin y)dy$，$L$ 为 $x^2+y^2=2x$ 正向。
+  <div class="sol"><b>解：</b>$P=x^2-y$，$Q=x+\sin y$，$Q_x-P_y=1-(-1)=2$。圆 $(x-1)^2+y^2=1$ 面积 $=\pi$。故原式 $=\iint_D 2\,dA=2\pi$。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9c. 深度：重积分换元法与 Jacobi 行列式 ================= -->
+<div class="ch" id="c9c">
+  <h2>9c. 深度：重积分换元法与 Jacobi 行列式 <small>为什么换元要乘 $|J|$</small></h2>
+  <div class="thm"><b>重积分换元公式</b> 设变换 $T:(u,v)\mapsto(x,y)$ 是 $D'$ 到 $D$ 的 $C^1$ 双射，Jacobi 行列式 $J=\frac{\partial(x,y)}{\partial(u,v)}\ne0$，则
+            $$\iint_D f(x,y)dxdy=\iint_{D'} f(x(u,v),y(u,v))\left|\frac{\partial(x,y)}{\partial(u,v)}\right|dudv.$$</div>
+  <div class="def"><b>Jacobi 行列式的几何意义</b> $|J(u_0,v_0)|$ 是变换 $T$ 在 $(u_0,v_0)$ 处的<b>面积伸缩率</b>——小矩形 $\Delta u\times\Delta v$ 被近似映为平行四边形，面积 $=|J|\Delta u\Delta v$。</div>
+  <div class="ex"><b>例：</b>极坐标变换 $x=r\cos\theta$，$y=r\sin\theta$ 的 Jacobi。
+  <div class="sol"><b>解：</b>$J=\begin{vmatrix}\cos\theta&-r\sin\theta\\\sin\theta&r\cos\theta\end{vmatrix}=r\cos^2\theta+r\sin^2\theta=r$。故 $dxdy=r\,drd\theta$。</div></div>
+  <div class="ex"><b>例：</b>计算 $\iint_D e^{-x^2-y^2}dxdy$，$D:x^2+y^2\le R^2$。
+  <div class="sol"><b>解：</b>极坐标：$\int_0^{2\pi}d\theta\int_0^R e^{-r^2}r\,dr=2\pi\cdot\left[-\frac{1}{2}e^{-r^2}\right]_0^R=\pi(1-e^{-R^2})$。令 $R\to\infty$ 得 $\iint_{\mathbb{R}^2}e^{-x^2-y^2}dxdy=\pi$，即 Gauss 积分 $\int_{-\infty}^{+\infty}e^{-x^2}dx=\sqrt{\pi}$。</div></div>
+</div>
+
+<div class="ch" id="c10">
+  <h2>10. 练习与自测、术语表</h2>
+  <div class="ex"><b>练习 1：</b>z = ln(x²+y²)，求 zₓ、zᵧ。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>zₓ = 2x/(x²+y²)、zᵧ = 2y/(x²+y²)。</div></details></div>
+  <div class="ex"><b>练习 2：</b>求 f = xy 在 x²+y² = 1 上的最大值与最小值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>L = xy + λ(x²+y²−1)：y+2λx = 0、x+2λy = 0。λ² = 1/4。x = y 时 xy = 1/2；x = −y 时 xy = −1/2。最大 1/2、最小 −1/2。</div></details></div>
+  <div class="ex"><b>练习 3：</b>$\iint _D$ (x+y)dσ，D：0 ≤ x ≤ 1、0 ≤ y ≤ x。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\int _0^1$$\int _0^x$ (x+y)dy dx = $\int _0^1$ (x² + x²/2)dx = 1/2。</div></details></div>
+  <div class="ex"><b>练习 4：</b>$\iint _D$ √(x²+y²)dσ，D：x²+y² ≤ 4。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>极坐标：$\int _0^{2π}$$\int _0^2$ r·r dr dθ = 2π·(8/3) = 16π/3。</div></details></div>
+  <div class="ex"><b>练习 5：</b>计算 $\oint _L$ (x²−y)dx + (y²+x)dy，L 为单位圆。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>格林：∬(∂Q/∂x − ∂P/∂y) = ∬(1+1)dxdy = 2π。</div></details></div>
+  <div class="ex"><b>练习 6：</b>求曲面 $z=1-x-y$ 在第一卦限部分的面积。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$dS=\sqrt{1+1+1}\,dxdy=\sqrt{3}\,dxdy$，投影为 $x\ge 0$、$y\ge 0$、$x+y\le 1$，面积 $=\sqrt{3}\cdot\dfrac{1}{2}=\dfrac{\sqrt{3}}{2}$。</div></details></div>
+  
+  <div class="ex"><b>练习 7：</b>求曲面 $z=x^2+y^2$ 平行于平面 $2x+4y-z=0$ 的切平面方程。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>法向量 $(2x,2y,-1)$ 应与 $(2,4,-1)$ 平行。$2x/2=2y/4=(-1)/(-1)$。$x=1,y=2$，切点 $(1,2,5)$。切平面：$2(x-1)+4(y-2)-(z-5)=0$，即 $2x+4y-z=5$。</div></details></div>
+  <div class="ex"><b>练习 8：</b>计算 $\iint_D e^{y^2}d\sigma$，$D$ 由 $y=x$、$y=1$、$x=0$ 围成。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>按 Y 型积分：$0\leq y\leq 1$、$0\leq x\leq y$。$=\int_0^1 dy\int_0^y e^{y^2}dx=\int_0^1 y e^{y^2}dy=\frac{e-1}{2}$。</div></details></div>
+  <div class="ex"><b>练习 9：</b>计算 $\iiint_\Omega z\,dV$，$\Omega$ 由 $z=\sqrt{x^2+y^2}$ 和 $z=1$ 围成。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>柱坐标：$0\leq\theta\leq 2\pi$、$0\leq r\leq 1$、$r\leq z\leq 1$。$=\int_0^{2\pi}d\theta\int_0^1 r\,dr\int_r^1 z\,dz=2\pi\int_0^1 r\cdot\frac{1-r^2}{2}dr=\pi\left[\frac{r^2}{2}-\frac{r^4}{4}\right]_0^1=\frac{\pi}{4}$。</div></details></div>
+  <div class="ex"><b>练习 10：</b>计算 $\oint_L(e^x\sin y-2y)dx+(e^x\cos y-2)dy$，$L$ 为上半圆周 $x^2+y^2=2x$（$y\geq 0$）从 $(0,0)$ 到 $(2,0)$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>补 $x$ 轴上线段从 $(2,0)$ 到 $(0,0)$。格林公式：$Q_x-P_y=e^x\cos y-(e^x\cos y-2)=2$。$\oint=2\cdot\frac{1}{2}\pi(1)^2=\pi$。补线上 $y=0$、$dy=0$，积分 $=0$。原积分 $=\pi$。</div></details></div>
+  <div class="ex"><b>练习 11：</b>求函数 $u=x^2+2y^2+3z^2+xy+3x-2y$ 在点 $(1,1,1)$ 处的梯度和最大方向导数。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$u_x=2x+y+3$，$u_y=4y+x-2$，$u_z=6z$。在 $(1,1,1)$：$\nabla u=(6,3,6)$。最大方向导数 $=|\nabla u|=\sqrt{36+9+36}=\sqrt{81}=9$。</div></details></div>
+  <div class="ex"><b>练习 12：</b>计算 $∯_\Sigma(x^2+y^2+z^2)dydz$，$\Sigma$ 为立方体 $0\leq x\leq 1$、$0\leq y\leq 1$、$0\leq z\leq 1$ 的外侧。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>高斯公式：$∯ x^2 dydz+y^2 dzdx+z^2 dxdy=\iiint(2x+2y+2z)dV=6\cdot\int_0^1\int_0^1\int_0^1 x\,dxdydz=6\cdot\frac{1}{2}=3$。（对称性：三个分量相等，每个贡献 $1$。）</div></details></div>
+
+<div class="gloss">
+    <dt>偏导数</dt><dd>固定其他变量的求导。</dd>
+    <dt>全微分</dt><dd>Δz 的线性主部 fₓdx + fᵧdy。</dd>
+    <dt>梯度 / 散度 / 旋度</dt><dd>∇f、div F、curl F——三大微分算子。</dd>
+    <dt>拉格朗日乘数法</dt><dd>条件极值的方法。</dd>
+    <dt>雅可比行列式</dt><dd>坐标变换的面积/体积伸缩因子。</dd>
+    <dt>格林 / 高斯 / 斯托克斯</dt><dd>区域与边界积分的三大联系。</dd>
+    <dt>隐函数定理</dt><dd>在 $F_y\ne0$ 处，$F(x,y)=0$ 局部确定 $C^1$ 隐函数 $y=y(x)$。</dd>
+    <dt>广义 Stokes 定理</dt><dd>$\int_M d\omega=\int_{\partial M}\omega$，统一 Green/Gauss/Stokes。</dd>
+    <dt>Jacobi 行列式</dt><dd>变换的面积/体积伸缩率，换元时取绝对值相乘。</dd>
+  </div>
+  <div class="online">
+    <b>在线资源（需联网打开）</b>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Partial_derivative" target="_blank" rel="noopener noreferrer">Wikipedia: Partial derivative</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Multiple_integral" target="_blank" rel="noopener noreferrer">Wikipedia: Multiple integral</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Green%27s_theorem" target="_blank" rel="noopener noreferrer">Wikipedia: Green's theorem</a></li>
+      <li><a href="https://www.wolframalpha.com" target="_blank" rel="noopener noreferrer">Wolfram Alpha</a> —— 输入 double integral 验证重积分</li>
+    </ul>
+    <p class="hint">下一讲：<a href="05-无穷级数.html">V 无穷级数 →</a> 数项级数、幂级数与傅里叶级数。</p>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="03-一元积分学.html">← 上一讲</a>
+  <a href="05-无穷级数.html">下一讲：无穷级数 →</a>
+</footer>
+</div>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

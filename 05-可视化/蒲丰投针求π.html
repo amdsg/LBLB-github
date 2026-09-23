@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self';">
+<title>蒲丰投针求 π · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23177E89'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E针%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--teal:#177E89;--blue:#1F4E9C;--red:#C0392B;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--teal);text-decoration:none;}
+.tag{display:inline-block;background:var(--teal);color:#fff;font-size:12px;padding:2px 10px;border-radius:20px;vertical-align:middle;margin-left:10px;}
+h1{font-family:Georgia,"Noto Serif SC",serif;font-size:40px;margin:14px 0 6px;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--teal);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#fffef9;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls .btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls .btn.gray{background:#8A8270;}
+.controls label{font-size:14px;color:var(--ink2);}
+.controls input[type=range]{width:150px;vertical-align:middle;}
+.stats{display:flex;flex-wrap:wrap;gap:18px;font-family:Georgia,serif;font-size:15px;color:var(--ink2);margin-top:10px;}
+.stats b{color:var(--ink);font-size:18px;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--teal);text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>蒲丰投针求 π <span class="tag">概率统计</span></h1>
+<p class="sub">1777 年蒲丰提出：在等距平行线间随机扔一根针，它压线的概率里竟藏着 $\pi$。红针压线、青针落空——扔得越多，估计越逼近圆周率。</p>
+</header>
+
+<div class="sec">
+<h2>投针试验 <small>平行线间距 2a，针长 2l（l&lt;a）</small></h2>
+<div class="fig">
+<canvas id="cv" width="880" height="440" role="img" aria-label="蒲丰投针求 π：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls">
+<label>针长比 l/a = <span id="lr">0.8</span>
+<input type="range" id="ratio" min="20" max="95" value="80"></label>
+<button class="btn" id="b10">投 10 针</button>
+<button class="btn" id="b200">投 200 针</button>
+<button class="btn gray" id="clr">清空</button>
+</div>
+<div class="stats" id="stats"></div>
+<p class="explain">公式 $\pi\approx \dfrac{2l\cdot N}{a\cdot\text{命中数}}$。理论命中概率 $p=\dfrac{2l}{\pi a}$——注意这是<b>最慢</b>的求 π 方法之一，Lazzarini 1901 年的"精确结果"事后被怀疑是精心挑选的试验次数。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>几何推导</h2>
+<p>设针中心到最近一条平行线的距离为 $D\in[0,a]$，针与平行线夹角 $\Theta\in[0,\pi/2]$，二者独立均匀分布。针压线当且仅当 $D\le l\sin\Theta$。</p>
+$$p=\Pr(D\le l\sin\Theta)=\frac{1}{a\cdot \pi/2}\int_0^{\pi/2} l\sin\theta\,d\theta=\frac{2l}{\pi a}.$$
+<p>于是 $\pi=2l/(a p)$，用命中频率 $\hat p=k/N$ 估计，得 $\hat\pi=2lN/(ak)$。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var W=cv.width,H=cv.height;
+var needles=[]; // {x,y,ang,hit}
+// layout: vertical lines across canvas. spacing in px
+var aPx=70; // half spacing between adjacent lines (px) -> full spacing 140px
+function lratio(){return +document.getElementById('ratio').value/100;}
+function drop(k){
+  var lPx=lratio()*aPx;
+  for(var i=0;i<k;i++){
+    var x=Math.random()*W, y=Math.random()*H;
+    var ang=Math.random()*Math.PI; // any orientation
+    // distance to nearest vertical line (lines at multiples of 2aPx starting at left margin)
+    var d=Math.abs(((x % (2*aPx)) + 2*aPx) % (2*aPx) - aPx); // distance to nearest line
+    var hit = d <= lPx*Math.abs(Math.sin(ang));
+    needles.push({x:x,y:y,ang:ang,l:lPx,hit:hit});
+  }
+}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  // lines
+  ctx.strokeStyle='#22262B';ctx.lineWidth=1.5;
+  for(var lx=0;lx<=W;lx+=2*aPx){ctx.beginPath();ctx.moveTo(lx,0);ctx.lineTo(lx,H);ctx.stroke();}
+  // needles (cap drawn count for perf)
+  var cap=Math.min(needles.length,4000);
+  for(var i=0;i<cap;i++){
+    var nd=needles[i];
+    var dx=nd.l*Math.cos(nd.ang), dy=nd.l*Math.sin(nd.ang);
+    ctx.strokeStyle=nd.hit?'rgba(192,57,43,0.8)':'rgba(23,126,137,0.55)';
+    ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(nd.x-dx,nd.y-dy);ctx.lineTo(nd.x+dx,nd.y+dy);ctx.stroke();
+  }
+  var N=needles.length, k=0; for(var j=0;j<N;j++) if(needles[j].hit)k++;
+  var pi = (k===0)? 0 : (2*lratio()*N)/k;
+  document.getElementById('stats').innerHTML=
+    '<span>针数 N <b>'+N+'</b></span>'+
+    '<span>命中 k <b>'+k+'</b></span>'+
+    '<span>命中频率 <b>'+(N?(k/N).toFixed(3):'0')+'</b></span>'+
+    '<span>π ≈ <b>'+(pi?pi.toFixed(4):'—')+'</b></span>'+
+    '<span>误差 <b>'+(pi?(pi-Math.PI>=0?'+':'')+(pi-Math.PI).toFixed(4):'—')+'</b></span>';
+}
+document.getElementById('ratio').addEventListener('input',function(){document.getElementById('lr').textContent=lratio().toFixed(2);draw();});
+document.getElementById('b10').addEventListener('click',function(){drop(10);draw();});
+document.getElementById('b200').addEventListener('click',function(){drop(200);draw();});
+document.getElementById('clr').addEventListener('click',function(){needles=[];draw();});
+draw();
+})();
+</script>
+
+</body>
+</html>

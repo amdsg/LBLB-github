@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>LBLB · 数学爱好者宝库</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='44' font-size='36' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif' font-style='italic'%3E%CF%80%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --red:#C0392B; --gold:#A8751E;
+  --blue:#1F4E9C; --green:#2E7D5B; --violet:#6B4E9E; --vermilion:#C0462E;
+  --teal:#177E89; --magenta:#B0396E; --olive:#6B7A3F; --maroon:#7D3C55;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;
+  line-height:1.75;}
+.wrap{max-width:1080px; margin:0 auto; padding:0 24px 80px;}
+header{padding:48px 0 16px; text-align:center;}
+.kicker{font-size:12px; letter-spacing:.35em; color:var(--ink2); text-transform:uppercase;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; font-weight:700; margin:10px 0 4px;}
+h1 em{font-style:italic; color:var(--red);}
+.tagline{font-size:15px; color:var(--ink2); max-width:640px; margin:8px auto 0;}
+h2.sec{font-family:Georgia,"Noto Serif SC",serif; font-size:18px; margin:32px 0 12px; padding-left:12px; border-left:4px solid var(--teal);}
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px;}
+.card{border:1px solid var(--line); border-top:4px solid var(--c,var(--blue)); background:#fffdf6;
+  border-radius:10px; padding:14px 16px; text-decoration:none; color:var(--ink);
+  transition:transform .12s ease, box-shadow .12s ease; display:block;}
+.card:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(34,38,43,.10);}
+.card .num{font-size:11px; letter-spacing:.15em; color:var(--c,var(--blue)); font-weight:600;}
+.card h3{font-family:Georgia,"Noto Serif SC",serif; font-size:17px; margin:4px 0 4px; color:var(--ink);}
+.card p{font-size:13px; color:var(--ink2); line-height:1.6;}
+.quote{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-style:italic; text-align:center;
+  color:var(--ink2); margin:48px auto 0; max-width:720px; font-size:17px; line-height:2;}
+.quote .by{display:block; font-style:normal; font-size:12px; margin-top:6px; letter-spacing:.2em;}
+footer{margin-top:48px; border-top:1px solid var(--line); padding-top:18px; font-size:12px; color:var(--ink2); text-align:center;}
+.badge{display:inline-block; background:#22262B; color:#F7F3E7; padding:5px 12px; border-radius:999px; font-size:11px; letter-spacing:.12em;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker">An Offline Library for Math Lovers</div>
+  <h1>LBLB · <em>数学爱好者宝库</em></h1>
+  <p class="tagline">完全离线的数学知识档案：从入门路线到千年难题，从同济高数到应试刷题。点任意卡片即跳转。</p>
+</header>
+
+<h2 class="sec">学习路径</h2>
+<div class="grid">
+  <a class="card" style="--c:var(--blue)" href="../01-学习路线/数学学习路线图.html">
+    <div class="num">01</div><h3>学习路线图</h3>
+    <p>从算术到前沿：每个阶段的目标、标志与推荐书目。</p>
+  </a>
+  <a class="card" style="--c:var(--teal)" href="../12-高等数学/00-同济版精读.html">
+    <div class="num">02</div><h3>同济版高数精读</h3>
+    <p>按同济第七版目录：上下册 12 章核心定理与公式速查。</p>
+  </a></div>
+
+<h2 class="sec">应试实战（68 题 · 按目标考试分册对标难度）</h2>
+<div class="grid">
+  <a class="card" style="--c:var(--red)" href="../15-应试实战/index.html">
+    <div class="num">T0</div><h3>应试实战总览</h3>
+    <p>考研数一／数二、专升本、数学竞赛四册，题型分布与难度按对应考试编排。</p>
+  </a>
+  <a class="card" style="--c:var(--blue)" href="../15-应试实战/01-考研数学一.html">
+    <div class="num">T1</div><h3>考研数学一</h3>
+    <p>含多元微积分、曲线曲面积分与级数；证明题集中在中值定理。</p>
+  </a>
+  <a class="card" style="--c:var(--teal)" href="../15-应试实战/02-考研数学二.html">
+    <div class="num">T2</div><h3>考研数学二</h3>
+    <p>不含级数与概率，高数为主 + 线代；计算量大，要求算得准。</p>
+  </a>
+  <a class="card" style="--c:var(--green)" href="../15-应试实战/03-专升本.html">
+    <div class="num">T3</div><h3>专升本</h3>
+    <p>覆盖面广、计算为主、证明较少，难度对标期末偏易到中档。</p>
+  </a>
+  <a class="card" style="--c:var(--violet)" href="../15-应试实战/04-数学竞赛.html">
+    <div class="num">T4</div><h3>大学生数学竞赛</h3>
+    <p>靠巧劲而非套路：换元、对称性、夹逼、构造；证明题比重高。</p>
+  </a>
+</div>
+
+<h2 class="sec">自测题库（234 题 · 答案经符号计算验证）</h2>
+<div class="grid">
+  <a class="card" style="--c:var(--red)" href="../14-自测题库/index.html">
+    <div class="num">A0</div><h3>自测题库总览</h3>
+    <p>9 个主题共 234 道原创题，每题附折叠详解，答案由 sympy 逐题验证。</p>
+  </a>
+  <a class="card" style="--c:var(--blue)" href="../14-自测题库/01-极限与连续.html">
+    <div class="num">A1</div><h3>极限与连续</h3>
+    <p>等价无穷小、洛必达、夹逼、间断点分类。</p>
+  </a>
+  <a class="card" style="--c:var(--teal)" href="../14-自测题库/03-一元积分学.html">
+    <div class="num">A2</div><h3>一元积分学</h3>
+    <p>凑微分、分部积分、有理函数、反常积分、定积分应用。</p>
+  </a>
+  <a class="card" style="--c:var(--violet)" href="../14-自测题库/07-线性代数.html">
+    <div class="num">A3</div><h3>线性代数</h3>
+    <p>行列式、秩、特征值、可对角化与凯莱-哈密顿定理。</p>
+  </a>
+  <a class="card" style="--c:var(--gold)" href="../14-自测题库/08-概率与统计.html">
+    <div class="num">A4</div><h3>概率与统计</h3>
+    <p>古典概型、贝叶斯、常见分布、极大似然估计。</p>
+  </a>
+  <a class="card" style="--c:var(--green)" href="../14-自测题库/09-数论与组合.html">
+    <div class="num">A5</div><h3>数论与组合</h3>
+    <p>同余、欧拉定理、组合恒等式、容斥原理。</p>
+  </a></div>
+
+<h2 class="sec">高等数学（同济版配套）</h2>
+<div class="grid">
+  <a class="card" style="--c:var(--blue)" href="../12-高等数学/01-函数极限与连续.html">
+    <div class="num">03</div><h3>函数 · 极限 · 连续</h3>
+    <p>两个重要极限、等价无穷小、间断点分类。</p>
+  </a>
+  <a class="card" style="--c:var(--blue)" href="../12-高等数学/02-一元微分学.html">
+    <div class="num">04</div><h3>一元微分学</h3>
+    <p>导数定义、求导法则、中值定理、洛必达、泰勒。</p>
+  </a>
+  <a class="card" style="--c:var(--blue)" href="../12-高等数学/03-一元积分学.html">
+    <div class="num">05</div><h3>一元积分学</h3>
+    <p>换元法、分部积分、牛顿-莱布尼茨、反常积分。</p>
+  </a>
+  <a class="card" style="--c:var(--green)" href="../12-高等数学/04-多元微积分.html">
+    <div class="num">06</div><h3>多元微积分</h3>
+    <p>偏导、全微分、重积分、曲线曲面积分。</p>
+  </a>
+  <a class="card" style="--c:var(--violet)" href="../12-高等数学/05-无穷级数.html">
+    <div class="num">07</div><h3>无穷级数</h3>
+    <p>审敛法、幂级数、泰勒与傅里叶展开。</p>
+  </a>
+  <a class="card" style="--c:var(--gold)" href="../12-高等数学/06-常微分方程.html">
+    <div class="num">08</div><h3>常微分方程</h3>
+    <p>可分离变量、一阶线性、二阶常系数。</p>
+  </a>
+  <a class="card" style="--c:var(--olive)" href="../12-高等数学/07-速查与题库.html">
+    <div class="num">09</div><h3>速查与题库</h3>
+    <p>公式速查与经典例题。</p>
+  </a>
+</div>
+
+<h2 class="sec">应试训练（刷题框架 + 自备题库）</h2>
+<div class="grid">
+  <a class="card" style="--c:var(--red)" href="../13-应试训练/00-应试总览.html">
+    <div class="num">10</div><h3>应试训练总览</h3>
+    <p>真题整卷 + 单题刷题 + 专项训练，统一入口。真题与试卷因权利方未授权再分发，默认不随仓库发布；本地放入题库数据后即可使用（权利归属与合规说明见 13 区文档）。</p>
+  </a>
+  <a class="card" style="--c:var(--red)" href="../13-应试训练/01-CMC全国大学生数学竞赛.html">
+    <div class="num">11</div><h3>CMC 全国大学生数学竞赛</h3>
+    <p>非数学类初赛题型、国一技巧、历届真题要点。</p>
+  </a>
+  <a class="card" style="--c:var(--blue)" href="../13-应试训练/02-考研数学-高等数学强化.html">
+    <div class="num">12</div><h3>考研数学 · 高数强化</h3>
+    <p>考研数学一/二/三高数部分考点与题型。</p>
+  </a>
+  <a class="card" style="--c:var(--violet)" href="../13-应试训练/03-考研数学-线性代数与概率强化.html">
+    <div class="num">13</div><h3>考研数学 · 线代与概率</h3>
+    <p>线性代数与概率论强化。</p>
+  </a></div>
+
+<h2 class="sec">核心主题</h2>
+<div class="grid">
+  <a class="card" style="--c:var(--blue)" href="../02-核心主题/数论.html"><div class="num">14</div><h3>数论</h3><p>素数、同余、费马小定理、二次互反律。</p></a>
+  <a class="card" style="--c:var(--green)" href="../02-核心主题/几何.html"><div class="num">15</div><h3>几何</h3><p>欧几里得、非欧几何、黄金比例、分形。</p></a>
+  <a class="card" style="--c:var(--violet)" href="../02-核心主题/代数.html"><div class="num">16</div><h3>代数</h3><p>群环域、伽罗瓦理论、五次方程无根式解。</p></a>
+  <a class="card" style="--c:var(--vermilion)" href="../02-核心主题/分析.html"><div class="num">17</div><h3>分析</h3><p>极限、导数、积分、泰勒展开、欧拉恒等式。</p></a>
+  <a class="card" style="--c:var(--teal)" href="../02-核心主题/概率与统计.html"><div class="num">18</div><h3>概率与统计</h3><p>大数定律、中心极限定理、贝叶斯。</p></a>
+  <a class="card" style="--c:var(--magenta)" href="../02-核心主题/组合与图论.html"><div class="num">19</div><h3>组合与图论</h3><p>帕斯卡三角、生成函数、欧拉七桥。</p></a>
+  <a class="card" style="--c:var(--violet)" href="../02-核心主题/线性代数.html"><div class="num">20</div><h3>线性代数</h3><p>向量、矩阵、特征值与交互实验。</p></a>
+  <a class="card" style="--c:var(--olive)" href="../02-核心主题/拓扑学.html"><div class="num">21</div><h3>拓扑学</h3><p>欧拉示性数、不动点定理。</p></a>
+  <a class="card" style="--c:var(--gold)" href="../02-核心主题/复分析.html"><div class="num">22</div><h3>复分析</h3><p>柯西积分、留数、欧拉公式。</p></a>
+  <a class="card" style="--c:var(--green)" href="../02-核心主题/微分方程.html"><div class="num">23</div><h3>微分方程</h3><p>谐振子到 Navier-Stokes。</p></a>
+  <a class="card" style="--c:var(--magenta)" href="../02-核心主题/博弈论.html"><div class="num">24</div><h3>博弈论</h3><p>纳什均衡与囚徒困境。</p></a>
+  <a class="card" style="--c:var(--maroon)" href="../02-核心主题/数理逻辑与集合论.html"><div class="num">25</div><h3>数理逻辑</h3><p>哥德尔不完备、真值表生成器。</p></a>
+</div>
+
+<h2 class="sec">难题 · 证明 · 前沿</h2>
+<div class="grid">
+  <a class="card" style="--c:var(--gold)" href="../03-经典难题/经典难题与猜想.html"><div class="num">26</div><h3>经典难题与猜想</h3><p>费马大定理、黎曼猜想、P vs NP。</p></a>
+  <a class="card" style="--c:var(--red)" href="../04-美丽证明/美丽证明集锦.html"><div class="num">27</div><h3>美丽证明集锦</h3><p>素数无穷、√2 无理、欧拉恒等式。</p></a>
+  <a class="card" style="--c:var(--blue)" href="../04-美丽证明/证明的意外连接.html"><div class="num">28</div><h3>证明的意外连接</h3><p>八座跨界之桥。</p></a>
+  <a class="card" style="--c:var(--gold)" href="../09-前沿动态/数学前沿.html"><div class="num">29</div><h3>数学前沿</h3><p>菲尔兹奖与千禧难题最新状态、arXiv 论文日报。</p></a>
+</div>
+
+<h2 class="sec">趣味 · 可视化 · 手册</h2>
+<div class="grid">
+  <a class="card" style="--c:var(--blue)" href="../05-可视化/可视化导航.html"><div class="num">30</div><h3>交互可视化</h3><p>曼德博集合、傅里叶、蒙特卡洛 π。</p></a>
+  <a class="card" style="--c:var(--magenta)" href="../07-趣味数学/谜题与悖论.html"><div class="num">31</div><h3>谜题与悖论</h3><p>三门问题、生日悖论、希尔伯特旅馆。</p></a>
+  <a class="card" style="--c:var(--gold)" href="../07-趣味数学/数学魔术与速算.html"><div class="num">32</div><h3>魔术与速算</h3><p>心算、数字根、猜心魔术。</p></a>
+  <a class="card" style="--c:var(--teal)" href="../07-趣味数学/数学游戏与策略.html"><div class="num">33</div><h3>游戏与策略</h3><p>尼姆游戏、猜数字。</p></a>
+  <a class="card" style="--c:var(--blue)" href="../10-数学手册/公式速查.html"><div class="num">34</div><h3>公式速查</h3><p>核心公式一页收齐。</p></a>
+  <a class="card" style="--c:var(--gold)" href="../10-数学手册/常数与工具台.html"><div class="num">35</div><h3>常数与工具台</h3><p>π、e、φ、γ 与质因数工具。</p></a>
+</div>
+
+<h2 class="sec">数学家 · 历史 · 书单</h2>
+<div class="grid">
+  <a class="card" style="--c:var(--red)" href="../11-数学家/数学家名录.html"><div class="num">40</div><h3>数学家名录</h3><p>检索 10,000 位数学家：按原名/译名、国籍、时代筛选，每人附可核实来源。</p></a>
+  <a class="card" style="--c:var(--red)" href="../11-数学家/数学群星谱.html"><div class="num">36</div><h3>数学群星谱</h3><p>两千年数学家巡礼。</p></a>
+  <a class="card" style="--c:var(--teal)" href="../11-数学家/数学家的故事.html"><div class="num">37</div><h3>数学家的故事</h3><p>七个传奇时刻。</p></a>
+  <a class="card" style="--c:var(--blue)" href="../08-数学史/数学史时间线.html"><div class="num">38</div><h3>数学史时间线</h3><p>三千年演进。</p></a>
+  <a class="card" style="--c:var(--green)" href="../06-书单/数学书单与资源.html"><div class="num">39</div><h3>书单与资源</h3><p>三档推荐：入门 / 系统 / 进阶。</p></a>
+  <a class="card" style="--c:var(--red)" href="../11-数学家/数学家群像-学派与传承.html"><div class="num">41</div><h3>学派与传承</h3><p>哥廷根、布尔巴基、卢津学派、华沙学派：数学是怎么成派成系的。</p></a>
+  <a class="card" style="--c:var(--red)" href="../11-数学家/数学大奖与荣誉.html"><div class="num">42</div><h3>数学大奖与荣誉</h3><p>菲尔兹、阿贝尔、沃尔夫、陈省身奖：规则与历届得主。</p></a>
+  <a class="card" style="--c:var(--red)" href="../11-数学家/当代华人数学家.html"><div class="num">43</div><h3>当代华人数学家</h3><p>陈省身、华罗庚以来的华人数学群体。</p></a>
+  <a class="card" style="--c:var(--blue)" href="../08-数学史/中国数学史长编.html"><div class="num">44</div><h3>中国数学史长编</h3><p>从《九章算术》到当代：割圆、四元术、中西会通。</p></a>
+  <a class="card" style="--c:var(--green)" href="../06-书单/数学阅读路线图.html"><div class="num">45</div><h3>数学阅读路线图</h3><p>分阶段读什么、怎么读：一条可执行的路线。</p></a>
+</div>
+
+<p class="quote">"纯数学是逻辑的诗篇。"<span class="by">— Albert Einstein</span></p>
+
+<div class="sec">
+  <h2>如何使用这个宝库</h2>
+  <div class="tbl">
+    <tr><th>你的目标</th><th>推荐路径</th></tr>
+    <tr><td>系统学习数学</td><td>01-学习路线 → 12-高等数学 → 02-核心主题</td></tr>
+    <tr><td>准备考试</td><td>13-应试训练（CMC/考研/专升本）→ 12-高等数学/07-速查与题库</td></tr>
+    <tr><td>拓展视野</td><td>03-经典难题 → 04-美丽证明 → 08-数学史 → 11-数学家</td></tr>
+    <tr><td>兴趣探索</td><td>05-可视化 → 07-趣味数学 → 09-前沿动态</td></tr>
+    <tr><td>快速查阅</td><td>10-数学手册 → 12-高等数学/07-速查与题库</td></tr>
+  </table>
+  <div class="key"><b>核心理念：</b>数学不是背公式，而是学思维。每一页都尝试回答「为什么」而非「是什么」。</div>
+</div>
+
+<footer>
+  <span class="badge">LBLB</span> · 纯静态离线数学资料库 · 点任意卡片即跳转
+</footer>
+</div>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>常微分方程 · 自测题库 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E∂%3C/text%3E%3C/svg%3E">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+  svg: { fontCache: 'local' },
+  startup: { typeset: true }
+};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在（本页需与 assets 目录保持原有相对位置）。';document.currentScript.after(b);"></script>
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;
+  --blue:#1F4E9C;--teal:#177E89;--gold:#A8751E;--red:#C0392B;--green:#2E7D5B;--violet:#6B4C9A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.8;}
+button{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.kicker{font-size:11px;letter-spacing:.32em;color:var(--ink2);text-transform:uppercase;margin-top:22px;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:10px 0 8px;}
+h1 .sym{color:var(--blue);font-style:italic;}
+.sub{color:var(--ink2);font-size:15.5px;max-width:760px;}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.chip{background:#fffdf6;border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-size:12.5px;color:var(--ink2);}
+.chip b{color:var(--blue);}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:20px;padding:12px 16px;
+  background:#fffdf6;border:1px solid var(--line);border-radius:12px;}
+.bar .btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:13.5px;cursor:pointer;min-height:38px;}
+.bar .btn.gray{background:#8A8270;}
+.bar .note{font-size:12.5px;color:var(--ink2);}
+.toc{margin-top:22px;background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:16px 22px;font-size:14px;}
+.toc b{font-size:13.5px;}
+.toc ol{margin:8px 0 0 22px;column-count:2;column-gap:30px;}
+.toc a{color:var(--blue);text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.toc .tt{color:var(--ink2);font-size:12px;}
+.prob{background:#fffdf6;border:1px solid var(--line);border-left:5px solid var(--c,var(--blue));
+  border-radius:10px;padding:15px 18px;margin-top:16px;}
+.prob .head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:7px;}
+.prob .num{font-family:Georgia,serif;font-weight:700;font-size:15px;color:var(--c,var(--blue));letter-spacing:.04em;}
+.prob .lvl{font-size:11.5px;color:var(--gold);letter-spacing:.1em;}
+.prob .tags{font-size:11.5px;color:var(--ink2);margin-left:auto;}
+.prob .tgt{display:inline-block;font-size:11px;letter-spacing:.06em;color:#fff;background:var(--c,var(--blue));
+  border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:1px;}
+.prob .q{font-size:15px;}
+.prob details{margin-top:10px;border-top:1px dashed var(--line);padding-top:9px;}
+.prob summary{cursor:pointer;font-size:13.5px;color:var(--blue);user-select:none;display:inline-block;padding:3px 0;}
+.prob summary:hover{text-decoration:underline;}
+.prob .ans{margin-top:9px;font-size:14.5px;}
+.prob .ans b{color:var(--green);}
+.prob .sol{margin-top:8px;font-size:14px;color:var(--ink2);}
+.prob .sol b{color:var(--ink);}
+.prob .ver{margin-top:9px;font-size:11.5px;color:var(--ink2);border-top:1px dotted var(--line);padding-top:7px;}
+.prob .ver code{background:var(--paper2);border-radius:3px;padding:1px 5px;}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;color:var(--ink2);}
+footer code{background:var(--paper2);border-radius:4px;padding:1px 6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="index.html">← 返回题库总览</a>
+  <div class="kicker">LBLB · Self-Test Problem Bank</div>
+  <h1>常微分方程 <span class="sym">∂</span></h1>
+  <p class="sub">解方程就是「把导数消掉」：能分离就分离，不能分离就找积分因子。</p>
+  <div class="stats"><span class="chip">入门 <b>1</b> 题</span><span class="chip">基础 <b>7</b> 题</span><span class="chip">进阶 <b>13</b> 题</span><span class="chip">较难 <b>5</b> 题</span><span class="chip">知识点 <b>21</b> 个</span></div>
+  <div class="bar">
+    <button class="btn" id="showAll">展开全部详解</button>
+    <button class="btn gray" id="hideAll">收起全部</button>
+    <span class="note">共 26 题 · 每题答案均由 sympy 符号计算验证</span>
+  </div>
+  <nav class="toc"><b>本页目录</b><ol>    <li><a href="#O01">O01</a> <span class="tt">可分离变量</span></li>
+    <li><a href="#O02">O02</a> <span class="tt">可分离变量</span></li>
+    <li><a href="#O03">O03</a> <span class="tt">一阶线性</span></li>
+    <li><a href="#O04">O04</a> <span class="tt">二阶常系数</span></li>
+    <li><a href="#O05">O05</a> <span class="tt">二阶常系数</span></li>
+    <li><a href="#O06">O06</a> <span class="tt">二阶常系数</span></li>
+    <li><a href="#O07">O07</a> <span class="tt">可分离变量</span></li>
+    <li><a href="#O08">O08</a> <span class="tt">非齐次特解</span></li>
+    <li><a href="#O09">O09</a> <span class="tt">齐次方程</span></li>
+    <li><a href="#O10">O10</a> <span class="tt">初值问题</span></li>
+    <li><a href="#O11">O11</a> <span class="tt">一阶线性</span></li>
+    <li><a href="#O12">O12</a> <span class="tt">全微分方程</span></li>
+    <li><a href="#O13">O13</a> <span class="tt">欧拉方程</span></li>
+    <li><a href="#O14">O14</a> <span class="tt">降阶</span></li>
+    <li><a href="#O15">O15</a> <span class="tt">应用</span></li>
+    <li><a href="#O16">O16</a> <span class="tt">阻尼振动</span></li>
+    <li><a href="#O17">O17</a> <span class="tt">非齐次特解</span></li>
+    <li><a href="#O18">O18</a> <span class="tt">一阶线性</span></li>
+    <li><a href="#O19">O19</a> <span class="tt">全微分方程</span></li>
+    <li><a href="#O20">O20</a> <span class="tt">二阶常系数</span></li>
+    <li><a href="#O21">O21</a> <span class="tt">积分因子</span></li>
+    <li><a href="#O22">O22</a> <span class="tt">共振</span></li>
+    <li><a href="#O23">O23</a> <span class="tt">可分离变量</span></li>
+    <li><a href="#O24">O24</a> <span class="tt">一阶线性</span></li>
+    <li><a href="#O25">O25</a> <span class="tt">应用</span></li>
+    <li><a href="#O26">O26</a> <span class="tt">直接积分</span></li></ol></nav>
+</header>
+<article class="prob" id="O01" style="--c:var(--green)">
+<div class="head"><span class="num">O01</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">可分离变量</span></div>
+<div class="q">求解 $\dfrac{dy}{dx}=2xy$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=Ce^{x^{2}}$</div>
+<div class="sol"><b>详解：</b>分离变量 $\frac{dy}{y}=2x\,dx$，两端积分得 $\ln|y|=x^{2}+C$。</div>
+<div class="ver">基础：<code>zero(diff(a*exp(x**2), x) - 2*x*a*exp(x**2))</code></div>
+</details>
+</article>
+<article class="prob" id="O02" style="--c:var(--violet)">
+<div class="head"><span class="num">O02</span><span class="lvl">★☆☆☆☆ 入门</span><span class="tags">可分离变量</span></div>
+<div class="q">求解 $\dfrac{dy}{dx}=\dfrac{y}{x}$（$x>0$）。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=Cx$</div>
+<div class="sol"><b>详解：</b>分离变量 $\frac{dy}{y}=\frac{dx}{x}$，积分得 $\ln|y|=\ln x+C$。</div>
+<div class="ver">入门：<code>zero(diff(a*x, x) - a*x/x)</code></div>
+</details>
+</article>
+<article class="prob" id="O03" style="--c:var(--blue)">
+<div class="head"><span class="num">O03</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">一阶线性 · 积分因子</span></div>
+<div class="q">求解 $y'+y=e^{x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=\dfrac{e^{x}}{2}+Ce^{-x}$</div>
+<div class="sol"><b>详解：</b>积分因子 $e^{x}$，$(ye^{x})'=e^{2x}$，积分得 $ye^{x}=\frac{e^{2x}}{2}+C$。</div>
+<div class="ver">进阶：<code>zero(diff(exp(x)/2 + a*exp(-x), x) + (exp(x)/2 + a*exp(-x)) - exp(x))</code></div>
+</details>
+</article>
+<article class="prob" id="O04" style="--c:var(--teal)">
+<div class="head"><span class="num">O04</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">二阶常系数 · 相异实根</span></div>
+<div class="q">求解 $y''-3y'+2y=0$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=C_1e^{x}+C_2e^{2x}$</div>
+<div class="sol"><b>详解：</b>特征方程 $r^{2}-3r+2=0$ 得 $r=1,2$，两相异实根。</div>
+<div class="ver">基础：<code>zero(diff(a*exp(x)+b*exp(2*x), x, 2) - 3*diff(a*exp(x)+b*exp(2*x), x) + 2*(a*exp(x)+b*exp(2*x)))</code></div>
+</details>
+</article>
+<article class="prob" id="O05" style="--c:var(--red)">
+<div class="head"><span class="num">O05</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">二阶常系数 · 重根</span></div>
+<div class="q">求解 $y''-4y'+4y=0$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=(C_1+C_2x)e^{2x}$</div>
+<div class="sol"><b>详解：</b>特征方程 $(r-2)^{2}=0$ 有二重根 $r=2$，故通解含因子 $x$。</div>
+<div class="ver">进阶：<code>zero(diff((a+b*x)*exp(2*x), x, 2) - 4*diff((a+b*x)*exp(2*x), x) + 4*(a+b*x)*exp(2*x))</code></div>
+</details>
+</article>
+<article class="prob" id="O06" style="--c:var(--gold)">
+<div class="head"><span class="num">O06</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">二阶常系数 · 共轭复根</span></div>
+<div class="q">求解 $y''+y=0$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=C_1\cos x+C_2\sin x$</div>
+<div class="sol"><b>详解：</b>特征方程 $r^{2}+1=0$ 得 $r=\pm i$，对应 $\cos x$ 与 $\sin x$。</div>
+<div class="ver">基础：<code>zero(diff(a*cos(x)+b*sin(x), x, 2) + (a*cos(x)+b*sin(x)))</code></div>
+</details>
+</article>
+<article class="prob" id="O07" style="--c:var(--green)">
+<div class="head"><span class="num">O07</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">可分离变量</span></div>
+<div class="q">求解 $\dfrac{dy}{dx}=y^{2}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=-\dfrac{1}{x+C}$</div>
+<div class="sol"><b>详解：</b>$\frac{dy}{y^{2}}=dx$，积分得 $-\frac1y=x+C$，即 $y=-\frac{1}{x+C}$（另有常数解 $y\equiv0$）。</div>
+<div class="ver">基础：<code>zero(diff(-1/(x+a), x) - (-1/(x+a))**2)</code></div>
+</details>
+</article>
+<article class="prob" id="O08" style="--c:var(--violet)">
+<div class="head"><span class="num">O08</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">非齐次特解</span></div>
+<div class="q">求 $y''+y=2e^{x}$ 的一个特解。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y^{*}=e^{x}$</div>
+<div class="sol"><b>详解：</b>试设 $y=Ae^{x}$ 代入得 $Ae^{x}+Ae^{x}=2e^{x}$，故 $A=1$。</div>
+<div class="ver">进阶：<code>zero(diff(exp(x), x, 2) + exp(x) - 2*exp(x))</code></div>
+</details>
+</article>
+<article class="prob" id="O09" style="--c:var(--blue)">
+<div class="head"><span class="num">O09</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">齐次方程 · 变量代换</span></div>
+<div class="q">求解 $\dfrac{dy}{dx}=\dfrac{x+y}{x}$（$x>0$）。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=x(\ln x+C)$</div>
+<div class="sol"><b>详解：</b>令 $y=ux$，则 $u+xu'=1+u$，即 $u'=\frac1x$，积分得 $u=\ln x+C$。</div>
+<div class="ver">进阶：<code>zero(diff(x*(log(x)+a), x) - (x + x*(log(x)+a))/x)</code></div>
+</details>
+</article>
+<article class="prob" id="O10" style="--c:var(--teal)">
+<div class="head"><span class="num">O10</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">初值问题</span></div>
+<div class="q">求解初值问题 $y'=y$，$y(0)=1$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=e^{x}$</div>
+<div class="sol"><b>详解：</b>通解 $y=Ce^{x}$，代入 $y(0)=1$ 得 $C=1$。</div>
+<div class="ver">基础：<code>zero(diff(exp(x), x) - exp(x)) and eq(exp(0), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="O11" style="--c:var(--red)">
+<div class="head"><span class="num">O11</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">一阶线性</span></div>
+<div class="q">求解 $y'-y=x$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=Ce^{x}-x-1$</div>
+<div class="sol"><b>详解：</b>积分因子 $e^{-x}$，$(ye^{-x})'=xe^{-x}$，积分得 $ye^{-x}=-(x+1)e^{-x}+C$。</div>
+<div class="ver">进阶：<code>zero(diff(-x-1+a*exp(x), x) - (-x-1+a*exp(x)) - x)</code></div>
+</details>
+</article>
+<article class="prob" id="O12" style="--c:var(--gold)">
+<div class="head"><span class="num">O12</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">全微分方程</span></div>
+<div class="q">验证 $x^{2}+xy+y^{2}=C$ 是 $(2x+y)\,dx+(x+2y)\,dy=0$ 的通解。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>是。因为 $\dfrac{\partial u}{\partial x}=2x+y,\ \dfrac{\partial u}{\partial y}=x+2y$，其中 $u=x^{2}+xy+y^{2}$</div>
+<div class="sol"><b>详解：</b>只需验证 $du=(2x+y)dx+(x+2y)dy$，故方程即 $du=0$。</div>
+<div class="ver">进阶：<code>zero(diff(x**2+x*y+y**2, x) - (2*x+y)) and zero(diff(x**2+x*y+y**2, y) - (x+2*y))</code></div>
+</details>
+</article>
+<article class="prob" id="O13" style="--c:var(--green)">
+<div class="head"><span class="num">O13</span><span class="lvl">★★★★☆ 较难</span><span class="tags">欧拉方程</span></div>
+<div class="q">求解欧拉方程 $x^{2}y''+xy'-y=0$（$x>0$）。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=C_1x+\dfrac{C_2}{x}$</div>
+<div class="sol"><b>详解：</b>设 $y=x^{r}$ 代入得 $r(r-1)+r-1=r^{2}-1=0$，故 $r=\pm1$。</div>
+<div class="ver">较难：<code>zero(x**2*diff(a*x+b/x, x, 2) + x*diff(a*x+b/x, x) - (a*x+b/x))</code></div>
+</details>
+</article>
+<article class="prob" id="O14" style="--c:var(--violet)">
+<div class="head"><span class="num">O14</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">降阶</span></div>
+<div class="q">求解 $y''=y'$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=C_1e^{x}+C_2$</div>
+<div class="sol"><b>详解：</b>令 $p=y'$，则 $p'=p$ 得 $p=C_1e^{x}$，再积分一次得 $y=C_1e^{x}+C_2$。</div>
+<div class="ver">进阶：<code>zero(diff(a*exp(x)+b, x, 2) - diff(a*exp(x)+b, x))</code></div>
+</details>
+</article>
+<article class="prob" id="O15" style="--c:var(--blue)">
+<div class="head"><span class="num">O15</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">应用 · 指数增长</span></div>
+<div class="q">人口模型 $\dfrac{dP}{dt}=kP$，$P(0)=P_0$，求 $P(t)$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$P=P_0e^{kt}$</div>
+<div class="sol"><b>详解：</b>可分离变量，积分得 $\ln P=kt+\ln P_0$。</div>
+<div class="ver">基础：<code>zero(diff(a*exp(k*t), t) - k*a*exp(k*t)) and eq(a*exp(k*0), a)</code></div>
+</details>
+</article>
+<article class="prob" id="O16" style="--c:var(--teal)">
+<div class="head"><span class="num">O16</span><span class="lvl">★★★★☆ 较难</span><span class="tags">阻尼振动 · 共轭复根</span></div>
+<div class="q">求解 $y''+2y'+5y=0$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=e^{-x}\left(C_1\cos 2x+C_2\sin 2x\right)$</div>
+<div class="sol"><b>详解：</b>特征方程 $r^{2}+2r+5=0$ 得 $r=-1\pm2i$。</div>
+<div class="ver">较难：<code>zero(diff(exp(-x)*(a*cos(2*x)+b*sin(2*x)), x, 2) + 2*diff(exp(-x)*(a*cos(2*x)+b*sin(2*x)), x) + 5*exp(-x)*(a*cos(2*x)+b*sin(2*x)))</code></div>
+</details>
+</article>
+<article class="prob" id="O17" style="--c:var(--red)">
+<div class="head"><span class="num">O17</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">非齐次特解</span></div>
+<div class="q">求 $y''-y=e^{2x}$ 的一个特解。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y^{*}=\dfrac{e^{2x}}{3}$</div>
+<div class="sol"><b>详解：</b>设 $y=Ae^{2x}$，代入得 $4A-A=1$，故 $A=\frac13$。</div>
+<div class="ver">进阶：<code>zero(diff(exp(2*x)/3, x, 2) - exp(2*x)/3 - exp(2*x))</code></div>
+</details>
+</article>
+<article class="prob" id="O18" style="--c:var(--gold)">
+<div class="head"><span class="num">O18</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">一阶线性 · 积分因子</span></div>
+<div class="q">求解 $y'+\dfrac{y}{x}=x$（$x>0$）。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=\dfrac{x^{2}}{3}+\dfrac{C}{x}$</div>
+<div class="sol"><b>详解：</b>积分因子 $x$，$(xy)'=x^{2}$，积分得 $xy=\frac{x^{3}}{3}+C$。</div>
+<div class="ver">进阶：<code>zero(diff(x**2/3 + a/x, x) + (x**2/3 + a/x)/x - x)</code></div>
+</details>
+</article>
+<article class="prob" id="O19" style="--c:var(--green)">
+<div class="head"><span class="num">O19</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">全微分方程</span></div>
+<div class="q">验证 $u=e^{x}\cos y$ 的全微分给出 $e^{x}\cos y\,dx-e^{x}\sin y\,dy$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{\partial u}{\partial x}=e^{x}\cos y,\quad \dfrac{\partial u}{\partial y}=-e^{x}\sin y$</div>
+<div class="sol"><b>详解：</b>分别对 $x$、$y$ 求偏导即得。</div>
+<div class="ver">进阶：<code>zero(diff(exp(x)*cos(y), x) - exp(x)*cos(y)) and zero(diff(exp(x)*cos(y), y) + exp(x)*sin(y))</code></div>
+</details>
+</article>
+<article class="prob" id="O20" style="--c:var(--violet)">
+<div class="head"><span class="num">O20</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">二阶常系数 · 重根</span></div>
+<div class="q">求解 $y''+6y'+9y=0$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=(C_1+C_2x)e^{-3x}$</div>
+<div class="sol"><b>详解：</b>特征方程 $(r+3)^{2}=0$，二重根 $r=-3$。</div>
+<div class="ver">进阶：<code>zero(diff((a+b*x)*exp(-3*x), x, 2) + 6*diff((a+b*x)*exp(-3*x), x) + 9*(a+b*x)*exp(-3*x))</code></div>
+</details>
+</article>
+<article class="prob" id="O21" style="--c:var(--blue)">
+<div class="head"><span class="num">O21</span><span class="lvl">★★★★☆ 较难</span><span class="tags">积分因子</span></div>
+<div class="q">求解 $y\,dx-x\,dy=0$，并说明积分因子 $\dfrac{1}{x^{2}}$ 的作用。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=Cx$</div>
+<div class="sol"><b>详解：</b>乘以 $\frac{1}{x^{2}}$ 后得 $\frac{y\,dx-x\,dy}{x^{2}}=d\!\left(\frac yx\right)=0$，故 $\frac yx=C$。</div>
+<div class="ver">较难：<code>zero(diff(a*x/x, x))</code></div>
+</details>
+</article>
+<article class="prob" id="O22" style="--c:var(--teal)">
+<div class="head"><span class="num">O22</span><span class="lvl">★★★★☆ 较难</span><span class="tags">共振 · 非齐次特解</span></div>
+<div class="q">求 $y''+y=\sin x$ 的一个特解。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y^{*}=-\dfrac{x\cos x}{2}$</div>
+<div class="sol"><b>详解：</b>右端 $\sin x$ 对应特征根 $\pm i$，发生共振，故试设 $y=x(A\cos x+B\sin x)$，代入得 $A=-\frac12,\ B=0$。</div>
+<div class="ver">较难：<code>zero(diff(-x*cos(x)/2, x, 2) + (-x*cos(x)/2) - sin(x))</code></div>
+</details>
+</article>
+<article class="prob" id="O23" style="--c:var(--red)">
+<div class="head"><span class="num">O23</span><span class="lvl">★★★★☆ 较难</span><span class="tags">可分离变量</span></div>
+<div class="q">求解 $\dfrac{dy}{dx}=e^{x-y}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=\ln\left(e^{x}+C\right)$</div>
+<div class="sol"><b>详解：</b>分离变量 $e^{y}dy=e^{x}dx$，积分得 $e^{y}=e^{x}+C$，取对数。</div>
+<div class="ver">较难：<code>zero(diff(log(exp(x)+a), x) - exp(x - log(exp(x)+a)))</code></div>
+</details>
+</article>
+<article class="prob" id="O24" style="--c:var(--gold)">
+<div class="head"><span class="num">O24</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">一阶线性 · 三角</span></div>
+<div class="q">求解 $y'+y=\cos x$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=\dfrac{\sin x+\cos x}{2}+Ce^{-x}$</div>
+<div class="sol"><b>详解：</b>积分因子 $e^{x}$，$(ye^{x})'=e^{x}\cos x$，而 $\int e^{x}\cos x\,dx=\frac{e^{x}(\sin x+\cos x)}{2}$。</div>
+<div class="ver">进阶：<code>zero(diff((sin(x)+cos(x))/2 + a*exp(-x), x) + (sin(x)+cos(x))/2 + a*exp(-x) - cos(x))</code></div>
+</details>
+</article>
+<article class="prob" id="O25" style="--c:var(--green)">
+<div class="head"><span class="num">O25</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">应用 · 牛顿冷却</span></div>
+<div class="q">冷却定律 $\dfrac{dT}{dt}=-k(T-20)$，$T(0)=100$，求 $T(t)$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$T=20+80e^{-kt}$</div>
+<div class="sol"><b>详解：</b>令 $u=T-20$，则 $u'=-ku$，得 $u=Ce^{-kt}$；由 $T(0)=100$ 定 $C=80$。</div>
+<div class="ver">进阶：<code>zero(diff(20+80*exp(-k*t), t) + k*((20+80*exp(-k*t)) - 20)) and eq(20+80*exp(-k*0), 100)</code></div>
+</details>
+</article>
+<article class="prob" id="O26" style="--c:var(--violet)">
+<div class="head"><span class="num">O26</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">直接积分</span></div>
+<div class="q">求解 $y''=6x$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=x^{3}+C_1x+C_2$</div>
+<div class="sol"><b>详解：</b>两次积分：$y'=3x^{2}+C_1$，$y=x^{3}+C_1x+C_2$。</div>
+<div class="ver">基础：<code>zero(diff(x**3 + a*x + b, x, 2) - 6*x)</code></div>
+</details>
+</article>
+<footer>
+  本页题目与详解由本库编写，答案经符号计算验证；解题方法不限一种，详解给出的是其中一条思路。<br>
+  返回 <a class="back" href="index.html">题库总览</a> ·
+  <a class="back" href="../00-总览/index.html">总览</a> ·
+  授权见仓库根目录 <code>LICENSE</code>
+</footer>
+</div>
+<script>
+(function(){
+  var d=document.querySelectorAll('.prob details');
+  var s=document.getElementById('showAll'), h=document.getElementById('hideAll');
+  if(s) s.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=true; };
+  if(h) h.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=false; };
+})();
+</script>
+</body>
+</html>

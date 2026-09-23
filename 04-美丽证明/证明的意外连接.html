@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>证明的意外连接 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%8A%95%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --blue:#1F4E9C; --gold:#A8751E; --red:#C0392B; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--blue); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--blue); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:720px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.sec{margin-top:44px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--blue); padding-left:14px;}
+.sec h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.proof{background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:20px 24px; margin-top:18px;}
+.proof h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px;}
+.proof .bridge{font-size:12.5px; color:var(--gold); margin-top:4px;}
+.proof .claim{font-size:14.5px; margin-top:8px; background:var(--paper2); border-radius:8px; padding:10px 14px;}
+.proof .claim b{color:var(--blue);}
+.proof ol{margin:10px 0 0 22px; font-size:14.5px;}
+.proof li{margin:6px 0;}
+.proof .f{font-family:Georgia,"Cambria Math",serif; font-style:italic; font-size:15px;}
+.proof .why{font-size:13.5px; color:var(--ink2); margin-top:10px; font-style:italic;}
+.proof .why b{color:var(--gold); font-style:normal;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--blue); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+  .proof{padding:16px 16px;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>证明的意外连接 <span class="sym">⊕</span></h1>
+  <p class="sub">数学最美妙的时刻，是两座看似不相干的岛屿突然架起桥梁：用群论证数论、用概率证素数、用线性代数证数列。这一页收藏「跨界」证明。</p>
+  <p class="quote">「数学的统一性不是被发现的，而是被证明出来的——每次跨界都是一次发明。」</p>
+</header>
+
+<div class="sec">
+  <h2>八座跨界之桥</h2>
+
+  <div class="proof">
+    <h3>1. 用群论证明费马小定理（拉格朗日定理之路）</h3>
+    <p class="bridge">桥梁：群论 → 数论</p>
+    <p class="claim"><b>结论：</b>p 为素数、p∤a 时，$a^{p-1}$ ≡ 1 (mod p)。</p>
+    <ol>
+      <li>模 p 的非零剩余 {1,2,…,p−1} 在乘法下构成一个群：封闭、有单位元 1、每元有逆。</li>
+      <li>对任意元素 a，由它生成的循环子群 ⟨a⟩ 的阶 d 整除群阶 p−1（拉格朗日定理：子群阶整除群阶）。</li>
+      <li>于是 $a^d$ = 1，且 d | (p−1)，所以 $a^{p-1}$ = ($a^d$)^((p−1)/d) = 1。</li>
+    </ol>
+    <p class="why"><b>为何美：</b>一条纯结构定理（子群阶整除群阶）不费吹灰之力地推出数论核心结果——证明者根本不需要知道 a 具体是多少。</p>
+  </div>
+
+  <div class="proof">
+    <h3>2. 用线性代数证明斐波那契通项（矩阵幂之路）</h3>
+    <p class="bridge">桥梁：线性代数 → 数列</p>
+    <p class="claim"><b>结论：</b>Fₙ = (φⁿ − ψⁿ)/√5，其中 φ=(1+√5)/2，ψ=(1−√5)/2。</p>
+    <ol>
+      <li>把递推写成矩阵：[Fₙ₊₁; Fₙ] = A [Fₙ; Fₙ₋₁]，其中 A = [[1,1],[1,0]]。</li>
+      <li>特征多项式 λ²−λ−1=0，特征值恰是 φ 与 ψ。</li>
+      <li>对角化 A = PDP⁻¹，则 Aⁿ 的项由 φⁿ 与 ψⁿ 线性组合给出——通项公式自动浮现。</li>
+    </ol>
+    <p class="why"><b>为何美：</b>一个「只会数数」的递推，背后藏着特征值分解；斐波那契数列原来是指数函数的叠加。</p>
+  </div>
+
+  <div class="proof">
+    <h3>3. 用概率证明素数无穷多（欧拉乘积之路）</h3>
+    <p class="bridge">桥梁：概率/分析 → 数论</p>
+    <p class="claim"><b>结论：</b>素数有无限多个；调和级数 Σ 1/n 发散。</p>
+    <ol>
+      <li>欧拉乘积：Σ 1/nˢ = ∏ₚ 1/(1−p⁻ˢ)（算术基本定理的解析化身）。</li>
+      <li>若素数只有有限多个，右边是有限乘积，对任意 s 都有界。</li>
+      <li>但左边在 s=1 时是调和级数，发散——矛盾。</li>
+    </ol>
+    <p class="why"><b>为何美：</b>欧几里得的反证变成了「级数发散」的推论；素数作为「随机整数分解的原子」，其统计行为第一次被看见。</p>
+  </div>
+
+  <div class="proof">
+    <h3>4. 用拓扑证明欧拉公式 V−E+F=2（球面之路）</h3>
+    <p class="bridge">桥梁：拓扑学 → 多面体几何</p>
+    <p class="claim"><b>结论：</b>任何凸多面体满足 V − E + F = 2。</p>
+    <ol>
+      <li>把多面体表面「吹气」成球面：V−E+F 在连续变形下不变（它是拓扑不变量）。</li>
+      <li>把球面上的网格三角剖分：每加一条对角线，E、F 各加 1，V−E+F 不变。</li>
+      <li>不断删三角形，最终只剩一个点：V−E+F = 1−0+1 = 2。</li>
+    </ol>
+    <p class="why"><b>为何美：</b>证明不关心多面体长什么样——只关心它是球面。这是「变形不变」思想的第一次伟大胜利。</p>
+  </div>
+
+  <div class="proof">
+    <h3>5. 用双计数证明组合恒等式（计两遍之路）</h3>
+    <p class="bridge">桥梁：组合计数 → 代数恒等式</p>
+    <p class="claim"><b>结论：</b>Σₖ C(n,k)² = C(2n,n)。</p>
+    <ol>
+      <li>考虑从 2n 个人里选 n 个：方案数为 C(2n,n)。</li>
+      <li>换个思路：前 n 人里选 k 个，后 n 人里选 n−k 个，对 k 求和：Σ C(n,k)C(n,n−k) = Σ C(n,k)²。</li>
+      <li>两种数法数的是同一个集合，故相等。</li>
+    </ol>
+    <p class="why"><b>为何美：</b>一条代数恒等式被「数两遍」数出来了——组合学的证明方式：不用代数，只需讲故事。</p>
+  </div>
+
+  <div class="proof">
+    <h3>6. 用微积分证明斯特林公式（高斯积分之路）</h3>
+    <p class="bridge">桥梁：微积分 → 阶乘估计</p>
+    <p class="claim"><b>结论：</b>n! ≈ √(2πn) (n/e)ⁿ。</p>
+    <ol>
+      <li>n! = ∫₀^∞ xⁿ $e^{-x}$ dx（Γ 函数，分部积分验证）。</li>
+      <li>被积函数在 x=n 处取峰，换元 x = n + √n·t 并把对数展开到二阶。</li>
+      <li>积分化为高斯积分 ∫ $e^{-t^{2}/2}$ dt = √(2π)，主项 √(2πn)(n/e)ⁿ 浮现。</li>
+    </ol>
+    <p class="why"><b>为何美：</b>离散的阶乘居然服从连续的高斯积分——「局部化」思想（Laplace 方法）在这里第一次显出威力。</p>
+  </div>
+
+  <div class="proof">
+    <h3>7. 用对角线证明实数不可数（康托尔之路）</h3>
+    <p class="bridge">桥梁：集合论 → 分析</p>
+    <p class="claim"><b>结论：</b>(0,1) 中的实数不能与自然数一一对应。</p>
+    <ol>
+      <li>反设可数，列出所有小数 r₁, r₂, r₃, …。</li>
+      <li>构造新小数 d：第 n 位取与 rₙ 第 n 位不同的数字（避开 0 与 9 的循环陷阱）。</li>
+      <li>d 不在列表里——矛盾。故实数不可数。</li>
+    </ol>
+    <p class="why"><b>为何美：</b>一个「没被写进列表」的数永远存在。对角线法后来证明停机问题不可判定——同一把钥匙开了两扇门。</p>
+  </div>
+
+  <div class="proof">
+    <h3>8. 用几何证明平方和公式（面积之路）</h3>
+    <p class="bridge">桥梁：几何 → 数列求和</p>
+    <p class="claim"><b>结论：</b>1² + 2² + … + n² = n(n+1)(2n+1)/6。</p>
+    <ol>
+      <li>把 1²+2²+…+n² 想象成 n 个「正方形塔」的体积（k 层塔每层 k×k）。</li>
+      <li>三个这样的塔可以拼成一个长方体，尺寸 n × (n+1) × (2n+1)。</li>
+      <li>除以 3 即得公式——希腊人用「沙子堆成金字塔」的方式理解它。</li>
+    </ol>
+    <p class="why"><b>为何美：</b>代数恒等式有三维的「体积证明」——K 层塔与 (n+1) 的因式分解在空间里可视化。</p>
+  </div>
+</div>
+
+
+<div class="sec">
+  <h2>补充：更多跨界证明之桥</h2>
+
+  <div class="proof">
+    <h3>9. 用复分析证明代数基本定理（刘维尔定理之路）</h3>
+    <p><b>结论：</b>非常数复系数多项式必有复根。</p>
+    <p><b>证明：</b>设 $p(z)$ 无零点，则 $1/p(z)$ 是整函数。当 $|z|\to\infty$，$|p(z)|\to\infty$，故 $|1/p(z)|\to0$，有界。由刘维尔定理，有界整函数必为常数——矛盾。</p>
+  </div>
+
+  <div class="proof">
+    <h3>10. 用线性代数证明凯莱-哈密顿定理（逼近之路）</h3>
+    <p><b>结论：</b>方阵满足自身的特征多项式：$p_A(A)=0$。</p>
+    <p><b>证明思路：</b>先对可对角化矩阵验证（显然成立）。可对角化矩阵在所有矩阵中稠密（扰动后特征值互异即可对角化）。映射 $A\mapsto p_A(A)$ 连续，故对所有矩阵成立。</p>
+  </div>
+
+  <div class="proof">
+    <h3>11. 用概率证明布丰投针求 $\pi$（几何概率之路）</h3>
+    <p><b>结论：</b>长为 $L$ 的针投向间距为 $d$（$L\le d$）的平行线，相交概率 $=2L/(\pi d)$。</p>
+    <p><b>证明：</b>针的位置由中心到最近线的距离 $x\in[0,d/2]$ 和夹角 $\theta\in[0,\pi/2]$ 决定。相交当且仅当 $x\le\frac{L}{2}\sin\theta$。概率 $=\frac{\int_0^{\pi/2}\frac{L}{2}\sin\theta\,d\theta}{(d/2)(\pi/2)}=\frac{2L}{\pi d}$。</p>
+  </div>
+
+  <div class="proof">
+    <h3>12. 用组合证明范德蒙德恒等式（双计数之路）</h3>
+    <p><b>结论：</b>$\sum_{k=0}^r\binom{m}{k}\binom{n}{r-k}=\binom{m+n}{r}$。</p>
+    <p><b>证明：</b>从 $m$ 男 $n$ 女中选 $r$ 人，共 $\binom{m+n}{r}$ 种。按选了 $k$ 个男人分类：$\binom{m}{k}\binom{n}{r-k}$，对 $k$ 求和即得。</p>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../04-美丽证明/美丽证明集锦.html">美丽证明集锦 →</a>
+  <a href="../02-核心主题/线性代数.html">线性代数 →</a>
+  <a href="../02-核心主题/数理逻辑与集合论.html">数理逻辑 →</a>
+</footer>
+</div>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

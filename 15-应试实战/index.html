@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>应试实战题库 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='45' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%B4%3C/text%3E%3C/svg%3E">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+  svg: { fontCache: 'local' },
+  startup: { typeset: true }
+};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在（本页需与 assets 目录保持原有相对位置）。';document.currentScript.after(b);"></script>
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;
+  --blue:#1F4E9C;--teal:#177E89;--gold:#A8751E;--red:#C0392B;--green:#2E7D5B;--violet:#6B4C9A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.8;}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.kicker{font-size:11px;letter-spacing:.32em;color:var(--ink2);text-transform:uppercase;margin-top:22px;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:42px;margin:10px 0 8px;}
+h1 .sym{color:var(--red);font-style:italic;}
+.sub{color:var(--ink2);font-size:16px;max-width:800px;}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.chip{background:#fffdf6;border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-size:12.5px;color:var(--ink2);}
+.chip b{color:var(--blue);}
+.note{margin-top:28px;background:#fffdf6;border:1px solid var(--line);border-left:5px solid var(--gold);
+  border-radius:10px;padding:14px 18px;font-size:13.5px;color:var(--ink2);}
+.note b{color:var(--ink);}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:15px;margin-top:26px;}
+.card{display:block;background:#fffdf6;border:1px solid var(--line);border-top:4px solid var(--c,var(--blue));
+  border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);
+  transition:transform .12s ease, box-shadow .12s ease;}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(34,38,43,.10);}
+.cardtop{display:flex;align-items:baseline;justify-content:space-between;}
+.card .ic{font-family:Georgia,serif;font-size:23px;color:var(--c,var(--blue));}
+.card .cnt{font-size:11.5px;color:var(--ink2);letter-spacing:.08em;}
+.card h3{font-family:Georgia,"Noto Serif SC",serif;font-size:18px;margin:6px 0 5px;}
+.card p{font-size:13px;color:var(--ink2);line-height:1.65;}
+.card .tg{margin-top:10px;font-size:11px;color:var(--c,var(--blue));letter-spacing:.03em;}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;color:var(--ink2);}
+footer code{background:var(--paper2);border-radius:4px;padding:1px 6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <div class="kicker">LBLB · Exam-Targeted Practice</div>
+  <h1>应试实战题库 <span class="sym">◎</span></h1>
+  <p class="sub">共 <b>4</b> 套、<b>68</b> 道题，按目标考试分册：考研数学一 / 数学二、专升本、大学生数学竞赛。每套的题型分布与难度按对应考试的实际情况编排，而不是把同一批题换个标题。</p>
+  <div class="stats">
+    <span class="chip">主题 <b>4</b> 个</span>
+    <span class="chip">题目 <b>68</b> 道</span>
+    <span class="chip">难度 <b>5</b> 级标注</span>
+    <span class="chip">验证 <b>sympy</b></span>
+  </div>
+  <div class="note"><b>这些题对标真实考试，但不是历年真题。</b>真题原卷的版权属于各命题单位，不能随公开仓库分发；这里给出的是按考纲范围、题型分布与难度梯度重新编写的题目——<b>数学内容本身不受版权保护</b>，所以你拿到的是一套难度对得上、可以放心练手的题。真要练原卷，请用 <a href="../13-应试训练/00-应试总览.html">13-应试训练</a> 的框架接入你自备的题库。<br><b>难度怎么标的：</b>每题按 5 级标注，其中「较难」「挑战」两档对应各套考试里的压轴题与拔高题比重。答案全部经 sympy 符号计算验证，验证表达式印在每题详解下方。</div>
+</header>
+<div class="grid">
+<a class="card" style="--c:var(--blue)" href="01-考研数学一.html"><div class="cardtop"><span class="ic">Ⅰ</span><span class="cnt">20 题</span></div><h3>考研数学一</h3><p>对标考研数学一的题型分布与难度：高等数学约占 56%，含多元微积分、曲线曲面积分与级数——这正是数一区别于数二的部分；计算量偏大，证明题集中在微分中值定理与级数。</p><div class="tg">中值定理 · 二重积分 · 傅里叶 · 全微分 · 几何应用 · 单调有界 · 反常积分 · 变限积分 等</div></a>
+<a class="card" style="--c:var(--teal)" href="02-考研数学二.html"><div class="cardtop"><span class="ic">Ⅱ</span><span class="cnt">15 题</span></div><h3>考研数学二</h3><p>对标考研数学二：不含无穷级数与概率论，重点为高等数学（约 78%）与线性代数（约 22%）；计算为主，要求步骤稳、算得准。</p><div class="tg">不定积分 · 中值定理 · 二重积分 · 分部 · 参数方程 · 参数讨论 · 向量组 · 定积分 等</div></a>
+<a class="card" style="--c:var(--red)" href="03-专升本.html"><div class="cardtop"><span class="ic">Z</span><span class="cnt">18 题</span></div><h3>专升本高等数学</h3><p>对标普通高校专升本高等数学：覆盖面广、计算为主、证明较少，难度大致相当于理工科高数期末的偏易档到中档。</p><div class="tg">不定积分 · 中值定理 · 偏导数 · 分部 · 切线 · 单调性 · 反常积分 · 向量 等</div></a>
+<a class="card" style="--c:var(--gold)" href="04-数学竞赛.html"><div class="cardtop"><span class="ic">◎</span><span class="cnt">15 题</span></div><h3>大学生数学竞赛</h3><p>对标全国大学生数学竞赛非数学类：更依赖巧劲——换元、对称性、夹逼与构造，而非标准套路的堆叠；证明题比重明显高于考研。</p><div class="tg">Beta 函数 · e · 三角 · 不等式 · 不等式估计 · 函数单调性 · 单调有界 · 反常积分 等</div></a>
+</div>
+<footer>
+  题目与详解由本库编写，授权见仓库根目录 <code>LICENSE</code>（内容 CC BY-NC-SA 4.0）。<br>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a> ·
+  <a class="back" href="../12-高等数学/07-速查与题库.html">配套：高数速查与题库 →</a>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>公式速查 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%AB%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --blue:#1F4E9C; --gold:#A8751E; --red:#C0392B; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+.wrap{max-width:1000px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--blue); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--blue); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:720px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.sec{margin-top:44px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:24px; border-left:6px solid var(--blue); padding-left:14px;}
+.sec h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.tbl{margin-top:14px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px; table-layout:fixed;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+.tbl .f{font-family:Georgia,"Cambria Math",serif; font-style:italic;}
+.tbl td.f{font-size:14.5px; white-space:normal;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--blue); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+  .tbl{font-size:13px;}
+  .tbl th,.tbl td{padding:6px 8px;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>公式速查 <span class="sym">∫</span></h1>
+  <p class="sub">数学的「字典」：代数、三角、微积分、线性代数与概率的核心公式，一页收齐。随用随查，为做题与阅读提供速援。</p>
+  <p class="quote">「公式是压缩过的知识——用时展开，闲时品味。」</p>
+</header>
+
+<div class="sec">
+  <h2>代数与指数对数</h2>
+  <table class="tbl">
+    <colgroup><col style="width:34%"><col style="width:66%"></colgroup>
+    <tbody>
+      <tr><td class="f">(a±b)² = a² ± 2ab + b²</td><td>完全平方公式</td></tr>
+      <tr><td class="f">a² − b² = (a+b)(a−b)</td><td>平方差</td></tr>
+      <tr><td class="f">aⁿ·aᵐ = aⁿ⁺ᵐ； (aⁿ)ᵐ = aⁿᵐ； (ab)ⁿ = aⁿbⁿ</td><td>指数法则</td></tr>
+      <tr><td class="f">a⁻ⁿ = 1/aⁿ； $a^{1/n}$ = ⁿ√a</td><td>负指数与根式</td></tr>
+      <tr><td class="f">log(ab) = log a + log b； log(a/b) = log a − log b； log aᵏ = k log a</td><td>对数法则</td></tr>
+      <tr><td class="f">logₐ b = ln b / ln a</td><td>换底公式</td></tr>
+      <tr><td class="f">一元二次：x = (−b ± √(b²−4ac)) / 2a</td><td>求根公式；判别式 Δ = b²−4ac</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <h2>三角恒等式</h2>
+  <table class="tbl">
+    <colgroup><col style="width:34%"><col style="width:66%"></colgroup>
+    <tbody>
+      <tr><td class="f">sin²θ + cos²θ = 1； 1 + tan²θ = sec²θ</td><td>毕达哥拉斯恒等式</td></tr>
+      <tr><td class="f">sin(a±b) = sin a cos b ± cos a sin b</td><td>和差角</td></tr>
+      <tr><td class="f">cos(a±b) = cos a cos b ∓ sin a sin b</td><td>和差角</td></tr>
+      <tr><td class="f">sin 2θ = 2 sin θ cos θ； cos 2θ = cos²θ − sin²θ</td><td>倍角</td></tr>
+      <tr><td class="f">sin a cos b = ½[sin(a+b) + sin(a−b)]</td><td>积化和差</td></tr>
+      <tr><td class="f">sin A/a = sin B/b = sin C/c</td><td>正弦定理</td></tr>
+      <tr><td class="f">c² = a² + b² − 2ab cos C</td><td>余弦定理</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <h2>微积分</h2>
+  <table class="tbl">
+    <colgroup><col style="width:34%"><col style="width:66%"></colgroup>
+    <tbody>
+      <tr><td class="f">d/dx xⁿ = n xⁿ⁻¹； d/dx eˣ = eˣ； d/dx ln x = 1/x</td><td>基本导数</td></tr>
+      <tr><td class="f">d/dx sin x = cos x； d/dx cos x = −sin x</td><td>三角导数</td></tr>
+      <tr><td class="f">(uv)′ = u′v + uv′</td><td>乘积法则</td></tr>
+      <tr><td class="f">(u/v)′ = (u′v − uv′)/v²</td><td>商法则</td></tr>
+      <tr><td class="f">d/dx f(g(x)) = f′(g(x))·g′(x)</td><td>链式法则</td></tr>
+      <tr><td class="f">$\int x^{n} \,dx$ = xⁿ⁺¹/(n+1) + C (n≠−1)</td><td>幂积分</td></tr>
+      <tr><td class="f">$\int 1/x \,dx$ = ln|x| + C； $\int e^{x} \,dx$ = eˣ + C</td><td>基本积分</td></tr>
+      <tr><td class="f">$\int u \,dv$ = uv − $\int v \,du$</td><td>分部积分</td></tr>
+      <tr><td class="f">∫₀^∞ $e^{-x^{2}}$ dx = √π/2</td><td>高斯积分</td></tr>
+      <tr><td class="f">Σₙ₌₁^∞ 1/n² = π²/6</td><td>巴塞尔问题（欧拉）</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <h2>线性代数</h2>
+  <table class="tbl">
+    <colgroup><col style="width:34%"><col style="width:66%"></colgroup>
+    <tbody>
+      <tr><td class="f">det[[a,b],[c,d]] = ad − bc</td><td>2×2 行列式</td></tr>
+      <tr><td class="f">A⁻¹ = (1/det A)·adj(A)</td><td>逆矩阵</td></tr>
+      <tr><td class="f">(AB)ᵀ = BᵀAᵀ； (AB)⁻¹ = B⁻¹A⁻¹</td><td>转置与逆的运算</td></tr>
+      <tr><td class="f">Av = λv</td><td>特征方程 det(A−λI)=0</td></tr>
+      <tr><td class="f">A = UΣVᵀ</td><td>奇异值分解</td></tr>
+      <tr><td class="f">最小二乘：x̂ = (AᵀA)⁻¹Aᵀb</td><td>法方程</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <h2>概率与统计</h2>
+  <table class="tbl">
+    <colgroup><col style="width:34%"><col style="width:66%"></colgroup>
+    <tbody>
+      <tr><td class="f">P(A∪B) = P(A) + P(B) − P(A∩B)</td><td>加法法则</td></tr>
+      <tr><td class="f">P(A|B) = P(A∩B)/P(B)</td><td>条件概率</td></tr>
+      <tr><td class="f">P(A|B) = P(B|A)P(A)/P(B)</td><td>贝叶斯定理</td></tr>
+      <tr><td class="f">E[X] = Σ x p(x)； Var(X) = E[X²] − E[X]²</td><td>期望与方差</td></tr>
+      <tr><td class="f">C(n,k) = n!/(k!(n−k)!)； P(n,k) = n!/(n−k)!</td><td>组合与排列</td></tr>
+      <tr><td class="f">P(X=k) = C(n,k)pᵏ(1−p)ⁿ⁻ᵏ</td><td>二项分布</td></tr>
+      <tr><td class="f">f(x) = 1/(σ√(2π))·$e^{-(x-μ)^{2}/2σ^{2}}$</td><td>正态分布密度</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <h2>几何与常用数值</h2>
+  <table class="tbl">
+    <colgroup><col style="width:34%"><col style="width:66%"></colgroup>
+    <tbody>
+      <tr><td class="f">S = πr²； C = 2πr； V球 = 4/3 πr³</td><td>圆与球</td></tr>
+      <tr><td class="f">V柱 = πr²h； V锥 = ⅓πr²h</td><td>柱与锥</td></tr>
+      <tr><td class="f">S梯形 = ½(a+b)h； S三角 = ½ab sin C</td><td>面积公式</td></tr>
+      <tr><td class="f">π ≈ 3.14159； e ≈ 2.71828； √2 ≈ 1.41421； φ ≈ 1.61803</td><td>常用常数</td></tr>
+      <tr><td class="f">1 rad = 180°/π ≈ 57.2958°</td><td>弧度换算</td></tr>
+      <tr><td class="f">n! ≈ √(2πn)(n/e)ⁿ</td><td>斯特林公式</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="sec">
+  <h2>补充：特殊函数与常用恒等式</h2>
+  <h3>Gamma 与 Beta 函数</h3>
+  <table class="tbl">
+    <tr><th>公式</th><th>说明</th></tr>
+    <tr><td>$\Gamma(s)=\int_0^\infty x^{s-1}e^{-x}dx$</td><td>阶乘推广，$\Gamma(n+1)=n!$</td></tr>
+    <tr><td>$\Gamma(s+1)=s\Gamma(s)$</td><td>递推关系</td></tr>
+    <tr><td>$\Gamma(1/2)=\sqrt{\pi}$</td><td>由 Gauss 积分得出</td></tr>
+    <tr><td>$B(p,q)=\int_0^1 x^{p-1}(1-x)^{q-1}dx=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}$</td><td>Beta 函数</td></tr>
+  </table>
+  <h3>三角恒等式精选</h3>
+  <table class="tbl">
+    <tr><td>$\sin 3\theta=3\sin\theta-4\sin^3\theta$</td><td>$\cos 3\theta=4\cos^3\theta-3\cos\theta$</td></tr>
+    <tr><td>$\sin\alpha+\sin\beta=2\sin\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2}$</td><td>和差化积</td></tr>
+    <tr><td>$\tan\frac{\theta}{2}=\frac{\sin\theta}{1+\cos\theta}=\frac{1-\cos\theta}{\sin\theta}$</td><td>万能公式基础</td></tr>
+    <tr><td>$\prod_{k=1}^{n-1}\sin\frac{k\pi}{n}=\frac{n}{2^{n-1}}$</td><td>正弦乘积恒等式</td></tr>
+  </table>
+  <h3>常见求和公式</h3>
+  <table class="tbl">
+    <tr><td>$\sum_{k=1}^n k=\frac{n(n+1)}{2}$</td><td>$\sum_{k=1}^n k^2=\frac{n(n+1)(2n+1)}{6}$</td></tr>
+    <tr><td>$\sum_{k=1}^n k^3=\left[\frac{n(n+1)}{2}\right]^2$</td><td>$\sum_{k=0}^n\binom{n}{k}=2^n$</td></tr>
+    <tr><td>$\sum_{k=1}^\infty\frac{1}{k^2}=\frac{\pi^2}{6}$</td><td>$\sum_{k=1}^\infty\frac{(-1)^{k+1}}{k}=\ln 2$</td></tr>
+  </table>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../10-数学手册/常数与工具台.html">常数与工具台 →</a>
+  <a href="../02-核心主题/分析.html">分析 →</a>
+  <a href="../06-书单/数学书单与资源.html">书单 →</a>
+</footer>
+</div>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

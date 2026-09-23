@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>一元积分学 · 自测题库 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E∫%3C/text%3E%3C/svg%3E">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+  svg: { fontCache: 'local' },
+  startup: { typeset: true }
+};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在（本页需与 assets 目录保持原有相对位置）。';document.currentScript.after(b);"></script>
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;
+  --blue:#1F4E9C;--teal:#177E89;--gold:#A8751E;--red:#C0392B;--green:#2E7D5B;--violet:#6B4C9A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.8;}
+button{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.kicker{font-size:11px;letter-spacing:.32em;color:var(--ink2);text-transform:uppercase;margin-top:22px;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:10px 0 8px;}
+h1 .sym{color:var(--blue);font-style:italic;}
+.sub{color:var(--ink2);font-size:15.5px;max-width:760px;}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.chip{background:#fffdf6;border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-size:12.5px;color:var(--ink2);}
+.chip b{color:var(--blue);}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:20px;padding:12px 16px;
+  background:#fffdf6;border:1px solid var(--line);border-radius:12px;}
+.bar .btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:13.5px;cursor:pointer;min-height:38px;}
+.bar .btn.gray{background:#8A8270;}
+.bar .note{font-size:12.5px;color:var(--ink2);}
+.toc{margin-top:22px;background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:16px 22px;font-size:14px;}
+.toc b{font-size:13.5px;}
+.toc ol{margin:8px 0 0 22px;column-count:2;column-gap:30px;}
+.toc a{color:var(--blue);text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.toc .tt{color:var(--ink2);font-size:12px;}
+.prob{background:#fffdf6;border:1px solid var(--line);border-left:5px solid var(--c,var(--blue));
+  border-radius:10px;padding:15px 18px;margin-top:16px;}
+.prob .head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:7px;}
+.prob .num{font-family:Georgia,serif;font-weight:700;font-size:15px;color:var(--c,var(--blue));letter-spacing:.04em;}
+.prob .lvl{font-size:11.5px;color:var(--gold);letter-spacing:.1em;}
+.prob .tags{font-size:11.5px;color:var(--ink2);margin-left:auto;}
+.prob .tgt{display:inline-block;font-size:11px;letter-spacing:.06em;color:#fff;background:var(--c,var(--blue));
+  border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:1px;}
+.prob .q{font-size:15px;}
+.prob details{margin-top:10px;border-top:1px dashed var(--line);padding-top:9px;}
+.prob summary{cursor:pointer;font-size:13.5px;color:var(--blue);user-select:none;display:inline-block;padding:3px 0;}
+.prob summary:hover{text-decoration:underline;}
+.prob .ans{margin-top:9px;font-size:14.5px;}
+.prob .ans b{color:var(--green);}
+.prob .sol{margin-top:8px;font-size:14px;color:var(--ink2);}
+.prob .sol b{color:var(--ink);}
+.prob .ver{margin-top:9px;font-size:11.5px;color:var(--ink2);border-top:1px dotted var(--line);padding-top:7px;}
+.prob .ver code{background:var(--paper2);border-radius:3px;padding:1px 5px;}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;color:var(--ink2);}
+footer code{background:var(--paper2);border-radius:4px;padding:1px 6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="index.html">← 返回题库总览</a>
+  <div class="kicker">LBLB · Self-Test Problem Bank</div>
+  <h1>一元积分学 <span class="sym">∫</span></h1>
+  <p class="sub">积分的技巧全在「凑」：凑微分、凑分部、凑配方。定积分还要善用对称性。</p>
+  <div class="stats"><span class="chip">入门 <b>4</b> 题</span><span class="chip">基础 <b>6</b> 题</span><span class="chip">进阶 <b>11</b> 题</span><span class="chip">较难 <b>5</b> 题</span><span class="chip">知识点 <b>21</b> 个</span></div>
+  <div class="bar">
+    <button class="btn" id="showAll">展开全部详解</button>
+    <button class="btn gray" id="hideAll">收起全部</button>
+    <span class="note">共 26 题 · 每题答案均由 sympy 符号计算验证</span>
+  </div>
+  <nav class="toc"><b>本页目录</b><ol>    <li><a href="#I01">I01</a> <span class="tt">分部积分</span></li>
+    <li><a href="#I02">I02</a> <span class="tt">分部积分</span></li>
+    <li><a href="#I03">I03</a> <span class="tt">基本积分表</span></li>
+    <li><a href="#I04">I04</a> <span class="tt">凑微分</span></li>
+    <li><a href="#I05">I05</a> <span class="tt">降幂公式</span></li>
+    <li><a href="#I06">I06</a> <span class="tt">含参积分</span></li>
+    <li><a href="#I07">I07</a> <span class="tt">牛顿-莱布尼茨</span></li>
+    <li><a href="#I08">I08</a> <span class="tt">牛顿-莱布尼茨</span></li>
+    <li><a href="#I09">I09</a> <span class="tt">牛顿-莱布尼茨</span></li>
+    <li><a href="#I10">I10</a> <span class="tt">分部积分</span></li>
+    <li><a href="#I11">I11</a> <span class="tt">分部积分</span></li>
+    <li><a href="#I12">I12</a> <span class="tt">分部积分</span></li>
+    <li><a href="#I13">I13</a> <span class="tt">换元法</span></li>
+    <li><a href="#I14">I14</a> <span class="tt">反常积分</span></li>
+    <li><a href="#I15">I15</a> <span class="tt">反常积分</span></li>
+    <li><a href="#I16">I16</a> <span class="tt">定积分</span></li>
+    <li><a href="#I17">I17</a> <span class="tt">有理函数</span></li>
+    <li><a href="#I18">I18</a> <span class="tt">对称性</span></li>
+    <li><a href="#I19">I19</a> <span class="tt">面积</span></li>
+    <li><a href="#I20">I20</a> <span class="tt">旋转体体积</span></li>
+    <li><a href="#I21">I21</a> <span class="tt">弧长</span></li>
+    <li><a href="#I22">I22</a> <span class="tt">基本积分表</span></li>
+    <li><a href="#I23">I23</a> <span class="tt">配方</span></li>
+    <li><a href="#I24">I24</a> <span class="tt">分部积分</span></li>
+    <li><a href="#I25">I25</a> <span class="tt">反常积分</span></li>
+    <li><a href="#I26">I26</a> <span class="tt">换元法</span></li></ol></nav>
+</header>
+<article class="prob" id="I01" style="--c:var(--red)">
+<div class="head"><span class="num">I01</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">分部积分</span></div>
+<div class="q">计算 $\displaystyle\int x e^{x}\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$(x-1)e^{x}+C$</div>
+<div class="sol"><b>详解：</b>分部积分：$\int xe^{x}dx=xe^{x}-\int e^{x}dx=(x-1)e^{x}+C$。</div>
+<div class="ver">进阶：<code>zero(diff((x-1)*exp(x), x) - x*exp(x))</code></div>
+</details>
+</article>
+<article class="prob" id="I02" style="--c:var(--gold)">
+<div class="head"><span class="num">I02</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">分部积分</span></div>
+<div class="q">计算 $\displaystyle\int \ln x\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$x\ln x-x+C$</div>
+<div class="sol"><b>详解：</b>把 $\ln x$ 看作 $\ln x\cdot1$，分部积分得 $x\ln x-\int x\cdot\frac1x dx=x\ln x-x+C$。</div>
+<div class="ver">进阶：<code>zero(diff(x*log(x)-x, x) - log(x))</code></div>
+</details>
+</article>
+<article class="prob" id="I03" style="--c:var(--green)">
+<div class="head"><span class="num">I03</span><span class="lvl">★☆☆☆☆ 入门</span><span class="tags">基本积分表</span></div>
+<div class="q">计算 $\displaystyle\int\frac{dx}{1+x^{2}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\arctan x+C$</div>
+<div class="sol"><b>详解：</b>基本积分表：$(\arctan x)'=\frac{1}{1+x^{2}}$。</div>
+<div class="ver">入门：<code>zero(diff(atan(x), x) - 1/(1+x**2))</code></div>
+</details>
+</article>
+<article class="prob" id="I04" style="--c:var(--violet)">
+<div class="head"><span class="num">I04</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">凑微分</span></div>
+<div class="q">计算 $\displaystyle\int\frac{x}{1+x^{2}}\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac12\ln(1+x^{2})+C$</div>
+<div class="sol"><b>详解：</b>令 $u=1+x^{2}$，$du=2x\,dx$，得 $\frac12\int\frac{du}{u}=\frac12\ln(1+x^{2})+C$。</div>
+<div class="ver">基础：<code>zero(diff(Rational(1,2)*log(1+x**2), x) - x/(1+x**2))</code></div>
+</details>
+</article>
+<article class="prob" id="I05" style="--c:var(--blue)">
+<div class="head"><span class="num">I05</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">降幂公式</span></div>
+<div class="q">计算 $\displaystyle\int\sin^{2}x\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{x}{2}-\dfrac{\sin 2x}{4}+C$</div>
+<div class="sol"><b>详解：</b>用 $\sin^{2}x=\frac{1-\cos2x}{2}$ 降幂后逐项积分。</div>
+<div class="ver">进阶：<code>zero(diff(x/2 - sin(2*x)/4, x) - sin(x)**2)</code></div>
+</details>
+</article>
+<article class="prob" id="I06" style="--c:var(--teal)">
+<div class="head"><span class="num">I06</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">含参积分 · 反三角</span></div>
+<div class="q">设 $a>0$，计算 $\displaystyle\int\frac{dx}{x^{2}+a^{2}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac1a\arctan\dfrac{x}{a}+C$</div>
+<div class="sol"><b>详解：</b>提出 $a^{2}$：$\frac{1}{a^{2}}\int\frac{dx}{1+(x/a)^{2}}$，令 $u=x/a$ 即得。</div>
+<div class="ver">进阶：<code>zero(diff(atan(x/a)/a, x) - 1/(x**2+a**2))</code></div>
+</details>
+</article>
+<article class="prob" id="I07" style="--c:var(--red)">
+<div class="head"><span class="num">I07</span><span class="lvl">★☆☆☆☆ 入门</span><span class="tags">牛顿-莱布尼茨</span></div>
+<div class="q">计算 $\displaystyle\int_{0}^{1}x^{2}\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac13$</div>
+<div class="sol"><b>详解：</b>$=\left[\frac{x^{3}}{3}\right]_{0}^{1}=\frac13$。</div>
+<div class="ver">入门：<code>eq(integrate(x**2, (x, 0, 1)), Rational(1,3))</code></div>
+</details>
+</article>
+<article class="prob" id="I08" style="--c:var(--gold)">
+<div class="head"><span class="num">I08</span><span class="lvl">★☆☆☆☆ 入门</span><span class="tags">牛顿-莱布尼茨</span></div>
+<div class="q">计算 $\displaystyle\int_{0}^{\pi}\sin x\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$2$</div>
+<div class="sol"><b>详解：</b>$=[-\cos x]_{0}^{\pi}=1-(-1)=2$。</div>
+<div class="ver">入门：<code>eq(integrate(sin(x), (x, 0, pi)), 2)</code></div>
+</details>
+</article>
+<article class="prob" id="I09" style="--c:var(--green)">
+<div class="head"><span class="num">I09</span><span class="lvl">★☆☆☆☆ 入门</span><span class="tags">牛顿-莱布尼茨</span></div>
+<div class="q">计算 $\displaystyle\int_{0}^{\pi/2}\cos x\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$1$</div>
+<div class="sol"><b>详解：</b>$=[\sin x]_{0}^{\pi/2}=1$。</div>
+<div class="ver">入门：<code>eq(integrate(cos(x), (x, 0, pi/2)), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="I10" style="--c:var(--violet)">
+<div class="head"><span class="num">I10</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">分部积分 · 定积分</span></div>
+<div class="q">计算 $\displaystyle\int_{1}^{e}\ln x\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$1$</div>
+<div class="sol"><b>详解：</b>原函数为 $x\ln x-x$，代入得 $(e-e)-(0-1)=1$。</div>
+<div class="ver">基础：<code>eq(integrate(log(x), (x, 1, E)), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="I11" style="--c:var(--blue)">
+<div class="head"><span class="num">I11</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">分部积分</span></div>
+<div class="q">计算 $\displaystyle\int x\ln x\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{x^{2}}{2}\ln x-\dfrac{x^{2}}{4}+C$</div>
+<div class="sol"><b>详解：</b>分部积分，取 $u=\ln x$、$dv=x\,dx$：$\frac{x^{2}}{2}\ln x-\int\frac{x}{2}dx$。</div>
+<div class="ver">进阶：<code>zero(diff(x**2/2*log(x) - x**2/4, x) - x*log(x))</code></div>
+</details>
+</article>
+<article class="prob" id="I12" style="--c:var(--teal)">
+<div class="head"><span class="num">I12</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">分部积分</span></div>
+<div class="q">计算 $\displaystyle\int x\sin x\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$-x\cos x+\sin x+C$</div>
+<div class="sol"><b>详解：</b>分部积分两次：$\int x\sin x\,dx=-x\cos x+\int\cos x\,dx$。</div>
+<div class="ver">进阶：<code>zero(diff(-x*cos(x)+sin(x), x) - x*sin(x))</code></div>
+</details>
+</article>
+<article class="prob" id="I13" style="--c:var(--red)">
+<div class="head"><span class="num">I13</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">换元法 · 对数</span></div>
+<div class="q">计算 $\displaystyle\int\frac{dx}{x\ln x}$（$x>1$）。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\ln\ln x+C$</div>
+<div class="sol"><b>详解：</b>令 $u=\ln x$，$du=\frac{dx}{x}$，得 $\int\frac{du}{u}=\ln|u|+C$。</div>
+<div class="ver">进阶：<code>zero(diff(log(log(x)), x) - 1/(x*log(x)))</code></div>
+</details>
+</article>
+<article class="prob" id="I14" style="--c:var(--gold)">
+<div class="head"><span class="num">I14</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">反常积分</span></div>
+<div class="q">判断 $\displaystyle\int_{1}^{+\infty}\frac{dx}{x^{2}}$ 是否收敛，收敛时求值。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>收敛，值为 $1$</div>
+<div class="sol"><b>详解：</b>$\left[-\frac1x\right]_{1}^{+\infty}=0-(-1)=1$。</div>
+<div class="ver">进阶：<code>eq(integrate(1/x**2, (x, 1, oo)), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="I15" style="--c:var(--green)">
+<div class="head"><span class="num">I15</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">反常积分</span></div>
+<div class="q">计算 $\displaystyle\int_{0}^{+\infty}e^{-x}\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$1$</div>
+<div class="sol"><b>详解：</b>$=[-e^{-x}]_{0}^{+\infty}=0-(-1)=1$。</div>
+<div class="ver">基础：<code>eq(integrate(exp(-x), (x, 0, oo)), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="I16" style="--c:var(--violet)">
+<div class="head"><span class="num">I16</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">定积分 · 反三角</span></div>
+<div class="q">计算 $\displaystyle\int_{0}^{1}\frac{dx}{1+x^{2}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{\pi}{4}$</div>
+<div class="sol"><b>详解：</b>$=[\arctan x]_{0}^{1}=\frac\pi4-0$。</div>
+<div class="ver">基础：<code>eq(integrate(1/(1+x**2), (x, 0, 1)), pi/4)</code></div>
+</details>
+</article>
+<article class="prob" id="I17" style="--c:var(--blue)">
+<div class="head"><span class="num">I17</span><span class="lvl">★★★★☆ 较难</span><span class="tags">有理函数 · 部分分式</span></div>
+<div class="q">计算 $\displaystyle\int\frac{dx}{x^{2}-1}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac12\ln\left|\dfrac{x-1}{x+1}\right|+C$</div>
+<div class="sol"><b>详解：</b>部分分式 $\frac{1}{x^{2}-1}=\frac12\left(\frac{1}{x-1}-\frac{1}{x+1}\right)$，积分后合并对数。</div>
+<div class="ver">较难：<code>zero(diff(Rational(1,2)*log((x-1)/(x+1)), x) - 1/(x**2-1))</code></div>
+</details>
+</article>
+<article class="prob" id="I18" style="--c:var(--teal)">
+<div class="head"><span class="num">I18</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">对称性 · 奇函数</span></div>
+<div class="q">计算 $\displaystyle\int_{-1}^{1}x^{3}\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$0$</div>
+<div class="sol"><b>详解：</b>被积函数是奇函数、区间关于原点对称，故积分为 0。也可直接算出 $\left[\frac{x^4}{4}\right]_{-1}^{1}=0$。</div>
+<div class="ver">基础：<code>eq(integrate(x**3, (x, -1, 1)), 0)</code></div>
+</details>
+</article>
+<article class="prob" id="I19" style="--c:var(--red)">
+<div class="head"><span class="num">I19</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">面积 · 定积分应用</span></div>
+<div class="q">求曲线 $y=x$ 与 $y=x^{2}$ 围成的图形面积。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac16$</div>
+<div class="sol"><b>详解：</b>交点 $x=0,1$。面积 $=\int_{0}^{1}(x-x^{2})dx=\frac12-\frac13=\frac16$。</div>
+<div class="ver">进阶：<code>eq(integrate(x - x**2, (x, 0, 1)), Rational(1,6))</code></div>
+</details>
+</article>
+<article class="prob" id="I20" style="--c:var(--gold)">
+<div class="head"><span class="num">I20</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">旋转体体积</span></div>
+<div class="q">求 $y=\sqrt x$（$0\le x\le1$）绕 $x$ 轴旋转所得旋转体的体积。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{\pi}{2}$</div>
+<div class="sol"><b>详解：</b>$V=\pi\int_{0}^{1}(\sqrt x)^{2}dx=\pi\int_{0}^{1}x\,dx=\frac\pi2$。</div>
+<div class="ver">进阶：<code>eq(pi*integrate(x, (x, 0, 1)), pi/2)</code></div>
+</details>
+</article>
+<article class="prob" id="I21" style="--c:var(--green)">
+<div class="head"><span class="num">I21</span><span class="lvl">★★★★☆ 较难</span><span class="tags">弧长</span></div>
+<div class="q">求曲线 $y=\dfrac23x^{3/2}$ 在 $0\le x\le1$ 上的弧长。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac23\left(2\sqrt2-1\right)$</div>
+<div class="sol"><b>详解：</b>$y'=\sqrt x$，弧长 $=\int_{0}^{1}\sqrt{1+y'^{2}}\,dx=\int_{0}^{1}\sqrt{1+x}\,dx=\frac23\left[(1+x)^{3/2}\right]_{0}^{1}$。</div>
+<div class="ver">较难：<code>eq(integrate(sqrt(1+x), (x, 0, 1)), Rational(2,3)*(2*sqrt(2)-1))</code></div>
+</details>
+</article>
+<article class="prob" id="I22" style="--c:var(--violet)">
+<div class="head"><span class="num">I22</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">基本积分表</span></div>
+<div class="q">计算 $\displaystyle\int\tan x\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$-\ln|\cos x|+C$</div>
+<div class="sol"><b>详解：</b>$\int\frac{\sin x}{\cos x}dx$，令 $u=\cos x$ 得 $-\ln|\cos x|+C$。</div>
+<div class="ver">基础：<code>zero(diff(-log(cos(x)), x) - tan(x))</code></div>
+</details>
+</article>
+<article class="prob" id="I23" style="--c:var(--blue)">
+<div class="head"><span class="num">I23</span><span class="lvl">★★★★☆ 较难</span><span class="tags">配方 · 反三角</span></div>
+<div class="q">计算 $\displaystyle\int\frac{dx}{x^{2}+2x+5}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac12\arctan\dfrac{x+1}{2}+C$</div>
+<div class="sol"><b>详解：</b>配方 $x^{2}+2x+5=(x+1)^{2}+4$，再用 $\int\frac{du}{u^{2}+a^{2}}=\frac1a\arctan\frac ua$。</div>
+<div class="ver">较难：<code>zero(diff(atan((x+1)/2)/2, x) - 1/(x**2+2*x+5))</code></div>
+</details>
+</article>
+<article class="prob" id="I24" style="--c:var(--teal)">
+<div class="head"><span class="num">I24</span><span class="lvl">★★★★☆ 较难</span><span class="tags">分部积分 · 反三角</span></div>
+<div class="q">计算 $\displaystyle\int\arctan x\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$x\arctan x-\dfrac12\ln(1+x^{2})+C$</div>
+<div class="sol"><b>详解：</b>分部积分：$x\arctan x-\int\frac{x}{1+x^{2}}dx$，后一项即 I04。</div>
+<div class="ver">较难：<code>zero(diff(x*atan(x) - Rational(1,2)*log(1+x**2), x) - atan(x))</code></div>
+</details>
+</article>
+<article class="prob" id="I25" style="--c:var(--red)">
+<div class="head"><span class="num">I25</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">反常积分 · 瑕积分</span></div>
+<div class="q">计算 $\displaystyle\int_{0}^{1}\frac{dx}{\sqrt x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$2$</div>
+<div class="sol"><b>详解：</b>$x=0$ 处被积函数无界。$=\left[2\sqrt x\right]_{0}^{1}=2$。</div>
+<div class="ver">进阶：<code>eq(integrate(1/sqrt(x), (x, 0, 1)), 2)</code></div>
+</details>
+</article>
+<article class="prob" id="I26" style="--c:var(--gold)">
+<div class="head"><span class="num">I26</span><span class="lvl">★★★★☆ 较难</span><span class="tags">换元法 · 定积分</span></div>
+<div class="q">计算 $\displaystyle\int_{0}^{\ln 2}\frac{e^{x}}{1+e^{2x}}\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\arctan 2-\dfrac{\pi}{4}$</div>
+<div class="sol"><b>详解：</b>令 $u=e^{x}$，$du=e^{x}dx$，积分化为 $\int_{1}^{2}\frac{du}{1+u^{2}}=[\arctan u]_{1}^{2}$。</div>
+<div class="ver">较难：<code>eq(integrate(exp(x)/(1+exp(2*x)), (x, 0, log(2))), atan(2)-pi/4)</code></div>
+</details>
+</article>
+<footer>
+  本页题目与详解由本库编写，答案经符号计算验证；解题方法不限一种，详解给出的是其中一条思路。<br>
+  返回 <a class="back" href="index.html">题库总览</a> ·
+  <a class="back" href="../00-总览/index.html">总览</a> ·
+  授权见仓库根目录 <code>LICENSE</code>
+</footer>
+</div>
+<script>
+(function(){
+  var d=document.querySelectorAll('.prob details');
+  var s=document.getElementById('showAll'), h=document.getElementById('hideAll');
+  if(s) s.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=true; };
+  if(h) h.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=false; };
+})();
+</script>
+</body>
+</html>

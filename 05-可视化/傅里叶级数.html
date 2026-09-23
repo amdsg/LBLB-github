@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>傅里叶级数 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='32' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%CF%89%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --vermilion:#C0462E; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--vermilion); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--vermilion); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:700px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--vermilion); padding-left:14px;}
+.sec h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.fig{background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:18px; margin-top:20px;}
+.fig canvas{width:100%; height:auto; display:block; border:1px solid var(--line); border-radius:8px; background:#fffef9;}
+.controls{display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--vermilion); width:200px;}
+.controls select{padding:6px 10px; font-size:14px; border:1px solid var(--line); border-radius:8px; background:#fffdf6;}
+.controls .btn{background:var(--vermilion); color:#fff; border:none; border-radius:8px; padding:7px 16px; font-size:14px; cursor:pointer; min-height:44px;}
+.controls .btn.gray{background:#8A8270;}
+.info{font-family:Georgia,serif; font-size:14px; color:var(--ink2); margin-left:auto;}
+.explain{margin-top:16px; font-size:14px; color:var(--ink2);}
+.explain b{color:var(--ink);}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px;}
+footer a{color:var(--vermilion); text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="可视化导航.html">← 返回可视化</a>
+  <h1>傅里叶级数 <span class="sym">ω</span></h1>
+  <p class="sub">任何「足够好」的周期图形，都能分解成一串匀速旋转的圆周（本轮）。几个圆叠着转，竟能画出方框、三角形——这就是傅里叶的魔法。</p>
+</header>
+
+<div class="sec">
+  <h2>圆周拼图 <small>选择图形、增加项数，看轨迹如何逼近目标</small></h2>
+  <div class="fig">
+    <canvas id="cv" width="880" height="600" role="img" aria-label="傅里叶级数：交互式画布，内容随下方控件实时变化"></canvas>
+    <div class="controls">
+      <label>目标</label>
+      <select id="shape">
+        <option value="square">正方形</option>
+        <option value="tri">三角形</option>
+      </select>
+      <label>项数</label>
+      <input type="range" id="terms" min="1" max="25" value="8">
+      <span id="termsV" style="font-family:Georgia,serif;">8</span>
+      <button class="btn" id="play">暂停</button>
+      <button class="btn gray" id="reset">清空轨迹</button>
+      <span class="info" id="info">项数越多越逼近</span>
+    </div>
+    <p class="explain"><b>怎么玩：</b>蓝点 = 每项旋转的圆周，红线 = 各圆周的「手臂」叠出的路径。先暂停，把项数调到 25 再播放：轨迹会越来越像目标图形。正方形的「棱角」需要很多高频项才能磨出来。</p>
+  </div>
+</div>
+
+
+<div class="sec">
+  <h2>数学原理：为什么任意函数都能分解为正弦波？</h2>
+  <div class="thm"><b>Fourier 级数定理</b> 若 $f$ 以 $2\pi$ 为周期且在 $[-\pi,\pi]$ 上分段单调、只有有限个第一类间断点，则
+  $$f(x)\sim\frac{a_0}{2}+\sum_{n=1}^\infty(a_n\cos nx+b_n\sin nx),$$
+  在连续点收敛于 $f(x)$，在间断点收敛于左右极限平均。</div>
+  <p><b>直觉：</b>$\{\cos nx,\sin nx\}$ 构成 $L^2[-\pi,\pi]$ 的正交基，Fourier 系数就是 $f$ 在这些基上的「投影坐标」。这和三维空间中把向量分解到 $x,y,z$ 轴是同一个思想——只是维度变成无穷。</p>
+  <p><b>应用：</b>信号处理（MP3 压缩）、图像压缩（JPEG）、偏微分方程求解（热方程）、量子力学（波函数展开）。</p>
+</div>
+
+<div class="sec">
+  <h2>系数公式与 Parseval 等式 <small>从投影到能量守恒</small></h2>
+  <p>利用三角函数系的正交性 $\int_{-\pi}^{\pi}\cos mx\cos nx\,dx=\pi\delta_{mn}$（$m,n\ge1$），可得：</p>
+  $$a_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos nx\,dx,\quad b_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin nx\,dx,\quad a_0=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\,dx.$$
+  <div class="thm"><b>Parseval 等式</b> 若 $f\in L^2[-\pi,\pi]$，则 $\frac{1}{\pi}\int_{-\pi}^{\pi}|f(x)|^2\,dx=\frac{a_0^2}{2}+\sum_{n=1}^{\infty}(a_n^2+b_n^2)$。系数的平方和等于函数的"能量"——这是 Bessel 不等式取等号的形式。</div>
+  <p><b>例（方波）</b>：$f(x)=\text{sgn}(\sin x)$，则 $a_n=0$，$b_n=\frac{4}{\pi n}$（$n$ 为奇数）。代入 Parseval：$\sum_{n\text{ 奇}}\frac{16}{\pi^2 n^2}=2$，即 $\sum_{k=0}^{\infty}\frac{1}{(2k+1)^2}=\frac{\pi^2}{8}$——巴塞尔问题的"半边"答案。</p>
+</div>
+
+<div class="sec">
+  <h2>收敛性：三种收敛与反例 <small>逐点、一致、$L^2$、几乎处处</small></h2>
+  <p>Fourier 级数的收敛是个微妙话题，不同意义下结论迥异：</p>
+  <ul>
+    <li><b>逐点收敛</b>（Dirichlet 1829）：分段单调且只有有限个第一类间断点的函数，Fourier 级数在连续点收敛到 $f(x)$，在间断点收敛到 $\tfrac{f(x^+)+f(x^-)}{2}$。</li>
+    <li><b>一致收敛</b>：若 $f$ 是 $C^1$ 且 $f(-\pi)=f(\pi)$，则级数绝对一致收敛。间断函数做不到——会有 <b>Gibbs 现象</b>：在跳变点附近，部分和总超出 $f$ 约 9%（$\frac{2}{\pi}\int_0^{\pi}\frac{\sin t}{t}dt-1\approx0.0895$）。</li>
+    <li><b>$L^2$ 收敛</b>（Riesz–Fischer 1907）：$L^2$ 函数的 Fourier 级数必在 $L^2$ 意义下收敛——这是 Hilbert 空间理论的重大胜利。</li>
+    <li><b>几乎处处收敛</b>（Carleson 1966，Hunt 1968）：$L^p$（$p\gt1$）函数的 Fourier 级数几乎处处收敛于 $f$。证明长达 100 余页，是调和分析里程碑。$L^1$ 反例（Kolmogorov 1923）几乎处处发散。</li>
+  </ul>
+  <div class="key"><b>Gibbs 现象</b>（1899）：在跳变 $f=0\to1$ 处，$N$ 项部分和的最大值趋于 $\frac{2}{\pi}\text{Si}(\pi)\approx1.0895$，超调不随 $N$ 增大而减小——但超调区间变窄。</div>
+</div>
+
+<div class="sec">
+  <h2>从级数到变换：连续 Fourier 变换 <small>从周期到非周期</small></h2>
+  <p>周期 $T\to\infty$ 时，离散频率 $\omega_n=n\omega_0$ 趋于连续谱 $\omega\in\mathbb{R}$，级数变成积分：</p>
+  $$\hat f(\omega)=\int_{-\infty}^{\infty}f(x)\,e^{-i\omega x}\,dx,\qquad f(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat f(\omega)\,e^{i\omega x}\,d\omega.$$
+  <div class="thm"><b>Plancherel 定理</b> $\int_{-\infty}^{\infty}|f(x)|^2\,dx=\frac{1}{2\pi}\int_{-\infty}^{\infty}|\hat f(\omega)|^2\,d\omega$。能量在时域和频域中守恒——这是 Heisenberg 测不准原理的数学根源。</div>
+  <p><b>测不准原理（Hardy 1933）</b>：若 $f$ 与 $\hat f$ 都"集中在 0 附近"，则 $\int x^2|f|^2\cdot\int\omega^2|\hat f|^2\ge\frac{\|f\|^4}{4}$。一个函数不能在时域和频域都"很窄"——这是信号处理和量子力学的核心限制。</p>
+</div>
+
+<div class="sec">
+  <h2>离散 Fourier 变换与 FFT <small>20 世纪最重要的算法</small></h2>
+  <p>对 $N$ 点离散序列 $\{x_n\}_{n=0}^{N-1}$，其 DFT 为 $X_k=\sum_{n=0}^{N-1}x_n\,e^{-2\pi i k n/N}$。直接计算 $O(N^2)$；<b>FFT</b>（Cooley–Tukey 1965）只需 $O(N\log N)$。</p>
+  <div class="exm"><b>规模感</b>：$N=10^6$ 时直接 DFT 需要 $10^{12}$ 次乘法（约 1 小时）；FFT 只需 $2\times10^7$ 次（约 10 毫秒）。速度提升 5 万倍——数字信号、医学成像、5G 通信都依赖它。</div>
+  <p><b>历史前传</b>：Gauss 在 1805 年已发明类似算法用于小行星 Pallas/Vesta 轨道插值，但手稿直到 1866 才发表。Cooley–Tukey 论文是 IBM 大型机时代催生的。</p>
+  <p><b>应用谱：</b>MP3 用改进离散余弦变换（MDCT）；JPEG 用 8×8 块 DCT；MRI 用反 Fourier 重建图像；5G OFDM 把数据调制到正交子载波。本页演示的就是<b>"圆周叠加画方框"</b>的几何直觉——所有数字信号理论的源头。</p>
+</div>
+
+<div class="sec">
+  <h2>从调和分析到现代数学 <small>更大的舞台</small></h2>
+  <p><b>局部紧 Abel 群上的 Fourier 变换</b>（Pontryagin 1934）：每个 LCA 群 $G$ 有对偶群 $\hat G$，Fourier 变换把 $L^2(G)$ 映到 $L^2(\hat G)$。$G=\mathbb{R}$ 对偶为 $\mathbb{R}$；$G=\mathbb{T}$（圆周）对偶为 $\mathbb{Z}$（级数！）；$G=\mathbb{Z}/N\mathbb{Z}$ 对偶为自身（DFT！）。所有 Fourier 理论统一为一张图。</p>
+  <p><b>非交换 Fourier 分析</b>：对非 Abel 群（如有限群、Lie 群），用<b>不可约表示</b>代替特征标。有限群表示论、Tannaka–Krein 对偶、量子群表示——都始于这条线索。</p>
+  <p><b>当今研究热点：</b>限制性猜测（restriction conjecture，Stein 1970s）、Bochner–Riesz 平均、Kakeya 猜想——Terry Tao 拿 Fields 奖的工作（2006）都源自调和分析。</p>
+</div>
+
+<footer>
+  <a href="可视化导航.html">← 可视化导航</a>
+  <a href="蒙特卡洛求π.html">蒙特卡洛求 π →</a>
+</footer>
+</div>
+
+<script>
+(function(){
+  var cv = document.getElementById('cv');
+  if(!cv) return;
+  var ctx = cv.getContext('2d');
+  var trace = document.createElement('canvas');
+  trace.width = cv.width; trace.height = cv.height;
+  var tctx = trace.getContext('2d');
+  var shapeSel = document.getElementById('shape');
+  var termsSl = document.getElementById('terms');
+  var termsV = document.getElementById('termsV');
+  var playBtn = document.getElementById('play');
+  var resetBtn = document.getElementById('reset');
+
+  var K = 25;
+  var coeff = { square: null, tri: null };
+  var playing = true;
+  var t = 0;
+  var lastX = null, lastY = null;
+
+  function sampleShape(name, tt){
+    var s;
+    if(name === 'square'){
+      s = 4*tt/Math.PI; // 0..8 周长
+      if(s < 2) return {re: 1, im: -1 + s};
+      if(s < 4) return {re: 1 - (s-2), im: 1};
+      if(s < 6) return {re: -1, im: 1 - (s-4)};
+      return {re: -1 + (s-6), im: -1};
+    }
+    // 等边三角形：顶点 (1,0),(-0.5,√3/2),(-0.5,-√3/2)，周长 3√3
+    var per = 3*Math.sqrt(3);
+    s = tt / (2*Math.PI) * per;
+    var A = {re: 1, im: 0}, B = {re: -0.5, im: Math.sqrt(3)/2}, C = {re: -0.5, im: -Math.sqrt(3)/2};
+    var L = Math.sqrt(3);
+    if(s < L) return lerp(A, B, s/L);
+    if(s < 2*L) return lerp(B, C, (s-L)/L);
+    return lerp(C, A, (s-2*L)/L);
+  }
+  function lerp(p, q, u){ return {re: p.re + (q.re-p.re)*u, im: p.im + (q.im-p.im)*u}; }
+
+  function computeCoeff(name){
+    var M = 4096;
+    var re = new Float64Array(2*K+1), im = new Float64Array(2*K+1);
+    var dt = 2*Math.PI/M;
+    for(var m=0;m<M;m++){
+      var tt = m*dt;
+      var f = sampleShape(name, tt);
+      for(var n=-K;n<=K;n++){
+        var ang = -n*tt;
+        var cr = Math.cos(ang), ci = Math.sin(ang);
+        var idx = n+K;
+        re[idx] += (f.re*cr - f.im*ci) * dt;
+        im[idx] += (f.re*ci + f.im*cr) * dt;
+      }
+    }
+    for(var i=0;i<=2*K;i++){ re[i] /= (2*Math.PI); im[i] /= (2*Math.PI); }
+    return {re: re, im: im};
+  }
+
+  function getC(name){
+    if(!coeff[name]){ coeff[name] = computeCoeff(name); }
+    return coeff[name];
+  }
+
+  function termList(N){
+    var arr = [{n:0}];
+    for(var i=1;i<=N;i++){ arr.push({n:i}); arr.push({n:-i}); }
+    return arr;
+  }
+
+  function pointAt(c, t, N){
+    var re = 0, im = 0;
+    for(var k=-N;k<=N;k++){
+      var idx = k+K;
+      var ang = k*t;
+      var cr = Math.cos(ang), ci = Math.sin(ang);
+      re += c.re[idx]*cr - c.im[idx]*ci;
+      im += c.re[idx]*ci + c.im[idx]*cr;
+    }
+    return {re: re, im: im};
+  }
+
+  function drawFrame(){
+    var name = shapeSel.value;
+    var N = parseInt(termsSl.value, 10);
+    termsV.textContent = N;
+    var c = getC(name);
+    var scale = Math.min(cv.width, cv.height) / 5.2;
+    var ox = cv.width/2, oy = cv.height/2;
+    ctx.clearRect(0,0,cv.width,cv.height);
+    ctx.strokeStyle = '#D8D0BC'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(0,oy); ctx.lineTo(cv.width,oy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(ox,0); ctx.lineTo(ox,cv.height); ctx.stroke();
+    // 目标图形（浅色参考）
+    ctx.strokeStyle = '#D8C9A8'; ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    var prev = null;
+    for(var m=0;m<=300;m++){
+      var p = sampleShape(name, m/300*2*Math.PI);
+      var X = ox + p.re*scale, Y = oy - p.im*scale;
+      if(m===0) ctx.moveTo(X,Y); else ctx.lineTo(X,Y);
+    }
+    ctx.stroke();
+    // 本轮
+    var pos = {re: 0, im: 0};
+    var terms = termList(N);
+    var pts = [];
+    for(var i=0;i<terms.length;i++){
+      var n = terms[i].n;
+      var idx = n+K;
+      var rad = Math.sqrt(c.re[idx]*c.re[idx]+c.im[idx]*c.im[idx]);
+      var x0 = ox + pos.re*scale, y0 = oy - pos.im*scale;
+      var ang = n*t;
+      pos.re += c.re[idx]*Math.cos(ang) - c.im[idx]*Math.sin(ang);
+      pos.im += c.re[idx]*Math.sin(ang) + c.im[idx]*Math.cos(ang);
+      var x1 = ox + pos.re*scale, y1 = oy - pos.im*scale;
+      ctx.strokeStyle = (n === 0) ? '#22262B' : (Math.abs(n)%2===1 ? '#C0462E' : '#1F4E9C');
+      ctx.lineWidth = 1.2;
+      ctx.beginPath(); ctx.arc(x0, y0, Math.max(1.2, rad*scale), 0, Math.PI*2); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x0,y0); ctx.lineTo(x1,y1); ctx.stroke();
+      pts.push({x:x1,y:y1});
+    }
+    // 轨迹
+    if(playing){
+      var cx = ox + pos.re*scale, cy = oy - pos.im*scale;
+      if(lastX !== null){
+        tctx.strokeStyle = '#2E7D5B'; tctx.lineWidth = 2.2;
+        tctx.beginPath(); tctx.moveTo(lastX,lastY); tctx.lineTo(cx,cy); tctx.stroke();
+      }
+      lastX = cx; lastY = cy;
+    }
+    ctx.drawImage(trace, 0, 0);
+    // 笔尖
+    ctx.fillStyle = '#C0462E';
+    ctx.beginPath(); ctx.arc(ox+pos.re*scale, oy-pos.im*scale, 4, 0, Math.PI*2); ctx.fill();
+  }
+
+  var raf = null;
+  function loop(){
+    if(playing){
+      t += 0.012;
+      if(t > 2*Math.PI){ t -= 2*Math.PI; lastX = null; lastY = null; }
+    }
+    drawFrame();
+    raf = requestAnimationFrame(loop);
+  }
+
+  playBtn.addEventListener('click', function(){
+    playing = !playing;
+    playBtn.textContent = playing ? '暂停' : '播放';
+  });
+  resetBtn.addEventListener('click', function(){
+    tctx.clearRect(0,0,cv.width,cv.height);
+    t = 0; lastX = null; lastY = null;
+  });
+  shapeSel.addEventListener('change', function(){
+    tctx.clearRect(0,0,cv.width,cv.height);
+    t = 0; lastX = null; lastY = null;
+  });
+  termsSl.addEventListener('input', function(){
+    termsV.textContent = this.value;
+  });
+  loop();
+})();
+</script>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

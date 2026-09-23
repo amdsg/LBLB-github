@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>康威生命游戏 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='28' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%97%86%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--green:#2E7D5B;--magenta:#B0396E;--gold:#A8751E;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--green);text-decoration:none;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:14px 0 6px;}
+h1 .sym{color:var(--green);}
+.tag{display:inline-block;background:var(--paper2);border:1px solid var(--line);color:var(--green);border-radius:999px;padding:2px 12px;font-size:12px;margin-left:10px;vertical-align:middle;}
+.sub{color:var(--ink2);font-size:16px;max-width:780px;}
+.sec{margin-top:36px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--green);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;background:#fffef9;border:1px solid var(--line);border-radius:8px;cursor:crosshair;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--green);width:150px;}
+button{background:var(--green);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:14px;cursor:pointer;}
+button.ghost{background:var(--paper2);color:var(--ink);border:1px solid var(--line);}
+.info{font-family:Georgia,serif;font-size:15px;color:var(--ink);margin-left:auto;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>康威生命游戏 <span class="sym">◈</span><span class="tag">元胞自动机</span></h1>
+<p class="sub">只有三条规则：活细胞邻居 2–3 个才活，死细胞恰好 3 个邻居就复活。1970 年 Conway 用它证明了元胞自动机可以模拟图灵机。</p>
+</header>
+
+<div class="sec">
+<h2>细胞演化 <small>点击格子画/擦；选一个图案再播放</small></h2>
+<div class="fig">
+<canvas id="cv" width="720" height="480" role="img" aria-label="康威生命游戏：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls" id="presets">
+<button data-p="glider">滑翔机</button>
+<button data-p="pulsar">脉冲星</button>
+<button data-p="gun">高斯帕滑翔机枪</button>
+<button data-p="rand">随机</button>
+<button data-p="clear">清空</button>
+</div>
+<div class="controls" style="margin-top:8px;">
+<button id="play">▶ 播放</button>
+<button id="stepB" class="ghost">单步</button>
+<label>速度</label><input type="range" id="spd" min="1" max="20" step="1" value="8">
+<span class="info" id="stat">第 0 代 · 活 0</span>
+</div>
+<p class="explain"><b>怎么玩：</b>在格子上点击（或拖动）画出活细胞；选"滑翔机/脉冲星/滑翔机枪"加载经典图案；"播放"按规则演化。速度越快演化越快。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>规则</h2>
+<p>对每个细胞统计周围 8 个邻居中活细胞数：邻居 $<2$ 饿死；邻居 $=2,3$ 存活；邻居 $>3$ 拥挤而死；死细胞邻居恰好 $=3$ 时诞生。这是零玩家游戏——初始条件决定一切。</p>
+</div>
+
+<footer style="margin-top:48px;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--ink2);">
+<a class="back" href="可视化导航.html">← 可视化导航</a>
+</footer>
+</div>
+
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d'),stat=document.getElementById('stat');
+var COLS=60,ROWS=40,cell=cv.width/COLS;
+var grid=new Uint8Array(COLS*ROWS),gen=0,timer=null;
+
+function idx(x,y){return y*COLS+x;}
+function put(x,y,pat){for(var j=0;j<pat.length;j++)for(var i=0;i<pat[j].length;i++)grid[((y+j)%ROWS)*COLS+((x+i)%COLS)]=pat[j][i];}
+function load(p){
+  grid=new Uint8Array(COLS*ROWS);gen=0;
+  var cx=Math.floor(COLS/2),cy=Math.floor(ROWS/2);
+  if(p==='glider')put(cx-1,cy-1,[[0,1,0],[0,0,1],[1,1,1]]);
+  else if(p==='pulsar'){
+    var P=[];for(var j=0;j<13;j++)P.push(new Array(13).fill(0));
+    var off=[[2,0],[3,0],[4,0],[8,0],[9,0],[10,0],[2,5],[3,5],[4,5],[8,5],[9,5],[10,5],[2,7],[3,7],[4,7],[8,7],[9,7],[10,7],[2,12],[3,12],[4,12],[8,12],[9,12],[10,12],
+             [0,2],[0,3],[0,4],[5,2],[5,3],[5,4],[7,2],[7,3],[7,4],[12,2],[12,3],[12,4],[0,8],[0,9],[0,10],[5,8],[5,9],[5,10],[7,8],[7,9],[7,10],[12,8],[12,9],[12,10]];
+    off.forEach(function(o){P[o[1]][o[0]]=1;});
+    put(cx-6,cy-6,P);
+  }
+  else if(p==='gun'){
+    var g=[
+      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0],
+      [1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      [1,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    ];
+    put(2,cy-4,g);
+  }
+  else if(p==='rand'){for(var i=0;i<COLS*ROWS;i++)grid[i]=Math.random()<0.22?1:0;}
+  draw();
+}
+function step(){
+  var ng=new Uint8Array(COLS*ROWS);
+  for(var y=0;y<ROWS;y++)for(var x=0;x<COLS;x++){
+    var n=0;
+    for(var dy=-1;dy<=1;dy++)for(var dx=-1;dx<=1;dx++){
+      if(dx===0&&dy===0)continue;
+      var xx=(x+dx+COLS)%COLS,yy=(y+dy+ROWS)%ROWS;
+      n+=grid[yy*COLS+xx];
+    }
+    var alive=grid[y*COLS+x];
+    ng[y*COLS+x]=(alive?(n===2||n===3):(n===3))?1:0;
+  }
+  grid=ng;gen++;draw();
+}
+function draw(){
+  ctx.clearRect(0,0,cv.width,cv.height);
+  var c=0;
+  for(var y=0;y<ROWS;y++)for(var x=0;x<COLS;x++){
+    if(grid[y*COLS+x]){ctx.fillStyle='#2E7D5B';ctx.fillRect(x*cell,y*cell,cell-0.5,cell-0.5);c++;}
+  }
+  stat.textContent='第 '+gen+' 代 · 活 '+c;
+}
+var painting=false;
+function paint(e){
+  var r=cv.getBoundingClientRect();
+  var mx=(e.clientX-r.left)*cv.width/r.width,my=(e.clientY-r.top)*cv.height/r.height;
+  var x=Math.floor(mx/cell),y=Math.floor(my/cell);
+  if(x>=0&&x<COLS&&y>=0&&y<ROWS){grid[y*COLS+x]=1;draw();}
+}
+cv.addEventListener('mousedown',function(e){painting=true;paint(e);});
+cv.addEventListener('mousemove',function(e){if(painting)paint(e);});
+window.addEventListener('mouseup',function(){painting=false;});
+document.getElementById('presets').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;stopT();load(b.dataset.p);
+});
+function stopT(){if(timer){clearInterval(timer);timer=null;}document.getElementById('play').textContent='▶ 播放';}
+document.getElementById('play').onclick=function(){
+  if(timer){stopT();return;}
+  this.textContent='⏸ 暂停';
+  var sp=parseInt(document.getElementById('spd').value);
+  timer=setInterval(step,Math.max(30,300-sp*14));
+};
+document.getElementById('stepB').onclick=function(){stopT();step();};
+load('glider');
+})();
+</script>
+
+</body>
+</html>

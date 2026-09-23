@@ -1,0 +1,62 @@
+# ===========================================================================
+# 定时刷新 arXiv 前沿数据
+# ===========================================================================
+# 为什么需要它：09-前沿动态 的论文日报与 02-核心主题 各页的「最新研究」区块
+# 都是静态文件。静态站点本身没法自己抓数据，所以用这个工作流定时跑更新器，
+# 把新数据提交回仓库——GitHub Pages 随后自动重新部署，站点上看到的即是最新。
+#
+# 默认每 6 小时一次。想更实时就把 cron 调密（注意：GitHub 对定时任务的
+# 实际触发时间有延迟，通常几分钟到十几分钟，做不到秒级实时）。
+#
+# 也可以随时在 Actions 页面手动触发一次（workflow_dispatch）。
+name: update-papers
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"    # 每 6 小时的第 17 分钟（避开整点高峰）
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-papers
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 更新器只用标准库，不需要 pip install
+      - name: Run updater
+        run: |
+          python "09-前沿动态/数学前沿更新器.py" || echo "UPDATER_FAILED=1" >> "$GITHUB_ENV"
+
+      # 抓取失败时不覆盖已有数据（更新器本身也遵循这个原则），
+      # 这里只是把失败暴露在日志里，不让整个工作流红掉
+      - name: Report updater status
+        run: |
+          if [ -n "$UPDATER_FAILED" ]; then
+            echo "::warning::更新器未成功完成（可能是网络或上游接口问题），已保留上一版数据。"
+          fi
+          git status --short || true
+
+      - name: Commit changes
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet && [ -z "$(git status --porcelain)" ]; then
+            echo "没有变化，跳过提交。"
+            exit 0
+          fi
+          git add "09-前沿动态/论文数据.js" "09-前沿动态/论文日报.html"
+          git commit -m "chore(papers): 定时刷新 arXiv 前沿数据 $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push

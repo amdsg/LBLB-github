@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self';">
+<title>二维随机游走 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23177E89'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E游%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--teal:#177E89;--blue:#1F4E9C;--red:#C0392B;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--teal);text-decoration:none;}
+.tag{display:inline-block;background:var(--teal);color:#fff;font-size:12px;padding:2px 10px;border-radius:20px;vertical-align:middle;margin-left:10px;}
+h1{font-family:Georgia,"Noto Serif SC",serif;font-size:40px;margin:14px 0 6px;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--teal);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#fffef9;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls .btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls .btn.gray{background:#8A8270;}
+.controls label{font-size:14px;color:var(--ink2);}
+.controls input[type=range]{width:150px;vertical-align:middle;}
+.stats{display:flex;flex-wrap:wrap;gap:18px;font-family:Georgia,serif;font-size:15px;color:var(--ink2);margin-top:10px;}
+.stats b{color:var(--ink);font-size:18px;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--teal);text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>二维随机游走 <span class="tag">概率统计</span></h1>
+<p class="sub">醉汉每步朝随机方向走一格，没有任何目标，却有确定的规律：走 $N$ 步后，他与起点的典型距离约为 $\sqrt N$。</p>
+</header>
+
+<div class="sec">
+<h2>醉汉漫步 <small>蓝线为轨迹，红点为当前位置</small></h2>
+<div class="fig">
+<canvas id="cv" width="880" height="460" role="img" aria-label="二维随机游走：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls">
+<label>每步步长 = <span id="sl">6</span>
+<input type="range" id="step" min="2" max="16" value="6"></label>
+<button class="btn" id="b1">走一步</button>
+<button class="btn" id="b100">走 100 步</button>
+<button class="btn" id="anim">动画行走</button>
+<button class="btn" id="bubble">撒 300 个终点</button>
+<button class="btn gray" id="clr">清空</button>
+</div>
+<div class="stats" id="stats"></div>
+<p class="explain">"<b>撒终点</b>"按钮让 300 个醉汉各走相同步数，只画他们的终点。点云近似以起点为圆心的圆盘——与 $\mathbb{E}[\|R\|^2]=N$ 完全吻合。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>均方位移</h2>
+<p>每步位移向量 $\Delta_i$ 独立、各向同性、$\mathbb{E}[\Delta_i]=0$、$\mathbb{E}\|\Delta_i\|^2=\ell^2$。则</p>
+$$\mathbb{E}\|R_N\|^2=\sum_{i,j}\mathbb{E}\langle\Delta_i,\Delta_j\rangle=\sum_i \mathbb{E}\|\Delta_i\|^2=N\ell^2,\qquad \sqrt{\mathbb{E}\|R_N\|^2}=\ell\sqrt N.$$
+<p>与维度无关！一维、二维、三维"扩散半径"都是 $\sqrt N$。二维游走的著名结论是<b>波利亚定理</b>：二维随机游走必返回起点（返回概率 1），三维起则不再必然。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var W=cv.width,H=cv.height;
+var path=[{x:0,y:0}]; var timer=null;
+function stepLen(){return +document.getElementById('step').value;}
+function walk(k){
+  var s=stepLen();
+  for(var i=0;i<k;i++){
+    var a=Math.random()*2*Math.PI;
+    var last=path[path.length-1];
+    path.push({x:last.x+s*Math.cos(a), y:last.y+s*Math.sin(a)});
+  }
+}
+function drawEndpoints(){
+  var s=stepLen(); var N=300;
+  ctx.save();
+  ctx.translate(W/2,H/2);
+  for(var w=0;w<N;w++){
+    var x=0,y=0;
+    for(var i=0;i<200;i++){var a=Math.random()*2*Math.PI;x+=s*Math.cos(a);y+=s*Math.sin(a);}
+    ctx.fillStyle='rgba(192,57,43,0.35)';
+    ctx.beginPath();ctx.arc(x,y,2.5,0,Math.PI*2);ctx.fill();
+  }
+  ctx.restore();
+}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  // origin cross
+  ctx.strokeStyle='#D8D0BC';
+  ctx.beginPath();ctx.moveTo(W/2-8,H/2);ctx.lineTo(W/2+8,H/2);ctx.moveTo(W/2,H/2-8);ctx.lineTo(W/2,H/2+8);ctx.stroke();
+  ctx.save();
+  ctx.translate(W/2,H/2);
+  // path
+  ctx.strokeStyle='#1F4E9C';ctx.lineWidth=1.6;ctx.beginPath();
+  for(var i=0;i<path.length;i++){ if(i===0)ctx.moveTo(path[i].x,path[i].y); else ctx.lineTo(path[i].x,path[i].y);}
+  ctx.stroke();
+  // current pos
+  var last=path[path.length-1];
+  ctx.fillStyle='#C0392B';ctx.beginPath();ctx.arc(last.x,last.y,4.5,0,Math.PI*2);ctx.fill();
+  ctx.restore();
+  var N=path.length-1;
+  var r=Math.sqrt(last.x*last.x+last.y*last.y);
+  document.getElementById('stats').innerHTML=
+    '<span>步数 N <b>'+N+'</b></span>'+
+    '<span>当前位移 |R| <b>'+r.toFixed(1)+'</b></span>'+
+    '<span>典型距离 √N·ℓ <b>'+(Math.sqrt(Math.max(1,N))*stepLen()).toFixed(1)+'</b></span>';
+}
+document.getElementById('step').addEventListener('input',function(){document.getElementById('sl').textContent=stepLen();});
+document.getElementById('b1').addEventListener('click',function(){walk(1);draw();});
+document.getElementById('b100').addEventListener('click',function(){walk(100);draw();});
+document.getElementById('anim').addEventListener('click',function(){
+  if(timer){clearInterval(timer);timer=null;document.getElementById('anim').textContent='动画行走';return;}
+  document.getElementById('anim').textContent='暂停';
+  timer=setInterval(function(){walk(3);draw();},50);
+});
+document.getElementById('bubble').addEventListener('click',function(){draw();drawEndpoints();});
+document.getElementById('clr').addEventListener('click',function(){path=[{x:0,y:0}];draw();});
+draw();
+})();
+</script>
+
+</body>
+</html>

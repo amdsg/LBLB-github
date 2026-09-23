@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>多元微积分 · 自测题库 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E∇%3C/text%3E%3C/svg%3E">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+  svg: { fontCache: 'local' },
+  startup: { typeset: true }
+};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在（本页需与 assets 目录保持原有相对位置）。';document.currentScript.after(b);"></script>
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;
+  --blue:#1F4E9C;--teal:#177E89;--gold:#A8751E;--red:#C0392B;--green:#2E7D5B;--violet:#6B4C9A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.8;}
+button{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.kicker{font-size:11px;letter-spacing:.32em;color:var(--ink2);text-transform:uppercase;margin-top:22px;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:10px 0 8px;}
+h1 .sym{color:var(--blue);font-style:italic;}
+.sub{color:var(--ink2);font-size:15.5px;max-width:760px;}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.chip{background:#fffdf6;border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-size:12.5px;color:var(--ink2);}
+.chip b{color:var(--blue);}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:20px;padding:12px 16px;
+  background:#fffdf6;border:1px solid var(--line);border-radius:12px;}
+.bar .btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:13.5px;cursor:pointer;min-height:38px;}
+.bar .btn.gray{background:#8A8270;}
+.bar .note{font-size:12.5px;color:var(--ink2);}
+.toc{margin-top:22px;background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:16px 22px;font-size:14px;}
+.toc b{font-size:13.5px;}
+.toc ol{margin:8px 0 0 22px;column-count:2;column-gap:30px;}
+.toc a{color:var(--blue);text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.toc .tt{color:var(--ink2);font-size:12px;}
+.prob{background:#fffdf6;border:1px solid var(--line);border-left:5px solid var(--c,var(--blue));
+  border-radius:10px;padding:15px 18px;margin-top:16px;}
+.prob .head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:7px;}
+.prob .num{font-family:Georgia,serif;font-weight:700;font-size:15px;color:var(--c,var(--blue));letter-spacing:.04em;}
+.prob .lvl{font-size:11.5px;color:var(--gold);letter-spacing:.1em;}
+.prob .tags{font-size:11.5px;color:var(--ink2);margin-left:auto;}
+.prob .tgt{display:inline-block;font-size:11px;letter-spacing:.06em;color:#fff;background:var(--c,var(--blue));
+  border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:1px;}
+.prob .q{font-size:15px;}
+.prob details{margin-top:10px;border-top:1px dashed var(--line);padding-top:9px;}
+.prob summary{cursor:pointer;font-size:13.5px;color:var(--blue);user-select:none;display:inline-block;padding:3px 0;}
+.prob summary:hover{text-decoration:underline;}
+.prob .ans{margin-top:9px;font-size:14.5px;}
+.prob .ans b{color:var(--green);}
+.prob .sol{margin-top:8px;font-size:14px;color:var(--ink2);}
+.prob .sol b{color:var(--ink);}
+.prob .ver{margin-top:9px;font-size:11.5px;color:var(--ink2);border-top:1px dotted var(--line);padding-top:7px;}
+.prob .ver code{background:var(--paper2);border-radius:3px;padding:1px 5px;}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;color:var(--ink2);}
+footer code{background:var(--paper2);border-radius:4px;padding:1px 6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="index.html">← 返回题库总览</a>
+  <div class="kicker">LBLB · Self-Test Problem Bank</div>
+  <h1>多元微积分 <span class="sym">∇</span></h1>
+  <p class="sub">多元的关键是化为累次积分并选对坐标系，对称性往往能让积分瞬间归零。</p>
+  <div class="stats"><span class="chip">基础 <b>6</b> 题</span><span class="chip">进阶 <b>8</b> 题</span><span class="chip">较难 <b>12</b> 题</span><span class="chip">知识点 <b>31</b> 个</span></div>
+  <div class="bar">
+    <button class="btn" id="showAll">展开全部详解</button>
+    <button class="btn gray" id="hideAll">收起全部</button>
+    <span class="note">共 26 题 · 每题答案均由 sympy 符号计算验证</span>
+  </div>
+  <nav class="toc"><b>本页目录</b><ol>    <li><a href="#M01">M01</a> <span class="tt">偏导数</span></li>
+    <li><a href="#M02">M02</a> <span class="tt">混合偏导</span></li>
+    <li><a href="#M03">M03</a> <span class="tt">全微分</span></li>
+    <li><a href="#M04">M04</a> <span class="tt">隐函数求偏导</span></li>
+    <li><a href="#M05">M05</a> <span class="tt">二重积分</span></li>
+    <li><a href="#M06">M06</a> <span class="tt">二重积分</span></li>
+    <li><a href="#M07">M07</a> <span class="tt">广义二重积分</span></li>
+    <li><a href="#M08">M08</a> <span class="tt">三重积分</span></li>
+    <li><a href="#M09">M09</a> <span class="tt">梯度</span></li>
+    <li><a href="#M10">M10</a> <span class="tt">方向导数</span></li>
+    <li><a href="#M11">M11</a> <span class="tt">无条件极值</span></li>
+    <li><a href="#M12">M12</a> <span class="tt">条件极值</span></li>
+    <li><a href="#M13">M13</a> <span class="tt">格林公式</span></li>
+    <li><a href="#M14">M14</a> <span class="tt">散度</span></li>
+    <li><a href="#M15">M15</a> <span class="tt">旋度</span></li>
+    <li><a href="#M16">M16</a> <span class="tt">链式法则</span></li>
+    <li><a href="#M17">M17</a> <span class="tt">交换积分次序</span></li>
+    <li><a href="#M18">M18</a> <span class="tt">体积</span></li>
+    <li><a href="#M19">M19</a> <span class="tt">混合偏导</span></li>
+    <li><a href="#M20">M20</a> <span class="tt">全微分近似</span></li>
+    <li><a href="#M21">M21</a> <span class="tt">二重积分</span></li>
+    <li><a href="#M22">M22</a> <span class="tt">偏导数</span></li>
+    <li><a href="#M23">M23</a> <span class="tt">高斯公式</span></li>
+    <li><a href="#M24">M24</a> <span class="tt">极值</span></li>
+    <li><a href="#M25">M25</a> <span class="tt">曲线积分</span></li>
+    <li><a href="#M26">M26</a> <span class="tt">含参积分</span></li></ol></nav>
+</header>
+<article class="prob" id="M01" style="--c:var(--violet)">
+<div class="head"><span class="num">M01</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">偏导数</span></div>
+<div class="q">设 $z=x^{2}y+xy^{2}$，求 $\dfrac{\partial z}{\partial x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$2xy+y^{2}$</div>
+<div class="sol"><b>详解：</b>对 $x$ 求偏导时把 $y$ 视为常数：$z_x=2xy+y^{2}$。</div>
+<div class="ver">基础：<code>eq(diff(x**2*y + x*y**2, x), 2*x*y + y**2)</code></div>
+</details>
+</article>
+<article class="prob" id="M02" style="--c:var(--blue)">
+<div class="head"><span class="num">M02</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">混合偏导</span></div>
+<div class="q">设 $z=e^{xy}$，求 $\dfrac{\partial^{2}z}{\partial x\partial y}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$e^{xy}(1+xy)$</div>
+<div class="sol"><b>详解：</b>先对 $x$ 求偏导得 $ye^{xy}$，再对 $y$ 求导得 $e^{xy}+xy\,e^{xy}$。</div>
+<div class="ver">进阶：<code>eq(diff(exp(x*y), x, y), exp(x*y)*(1+x*y))</code></div>
+</details>
+</article>
+<article class="prob" id="M03" style="--c:var(--teal)">
+<div class="head"><span class="num">M03</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">全微分</span></div>
+<div class="q">求 $z=x^{2}+y^{2}$ 的全微分。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$dz=2x\,dx+2y\,dy$</div>
+<div class="sol"><b>详解：</b>$dz=z_x\,dx+z_y\,dy$。</div>
+<div class="ver">基础：<code>eq(diff(x**2+y**2, x), 2*x) and eq(diff(x**2+y**2, y), 2*y)</code></div>
+</details>
+</article>
+<article class="prob" id="M04" style="--c:var(--red)">
+<div class="head"><span class="num">M04</span><span class="lvl">★★★★☆ 较难</span><span class="tags">隐函数求偏导</span></div>
+<div class="q">设 $x^{2}+y^{2}+z^{2}=1$，求 $\dfrac{\partial z}{\partial x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$-\dfrac{x}{z}$</div>
+<div class="sol"><b>详解：</b>由 $F=x^{2}+y^{2}+z^{2}-1$，$\frac{\partial z}{\partial x}=-\frac{F_x}{F_z}=-\frac{2x}{2z}$。</div>
+<div class="ver">较难：<code>zero(2*x + 2*z*(-x/z))</code></div>
+</details>
+</article>
+<article class="prob" id="M05" style="--c:var(--gold)">
+<div class="head"><span class="num">M05</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">二重积分</span></div>
+<div class="q">计算 $\displaystyle\iint_{D}(x+y)\,dx\,dy$，其中 $D=[0,1]\times[0,1]$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$1$</div>
+<div class="sol"><b>详解：</b>$\int_{0}^{1}\!\!\int_{0}^{1}(x+y)\,dx\,dy=\int_{0}^{1}\left(\frac12+y\right)dy=\frac12+\frac12=1$。</div>
+<div class="ver">基础：<code>eq(integrate(x+y, (x, 0, 1), (y, 0, 1)), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="M06" style="--c:var(--green)">
+<div class="head"><span class="num">M06</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">二重积分 · 对称性</span></div>
+<div class="q">计算 $\displaystyle\iint_{D}xy\,dx\,dy$，其中 $D$ 为单位圆盘 $x^{2}+y^{2}\le1$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$0$</div>
+<div class="sol"><b>详解：</b>用极坐标：$\int_{0}^{2\pi}\!\!\int_{0}^{1}r^{3}\cos\theta\sin\theta\,dr\,d\theta$，对 $\theta$ 的积分为 0（奇函数）。</div>
+<div class="ver">进阶：<code>eq(integrate(r**3*cos(t)*sin(t), (r, 0, 1), (t, 0, 2*pi)), 0)</code></div>
+</details>
+</article>
+<article class="prob" id="M07" style="--c:var(--violet)">
+<div class="head"><span class="num">M07</span><span class="lvl">★★★★☆ 较难</span><span class="tags">广义二重积分</span></div>
+<div class="q">计算 $\displaystyle\iint_{x>0,\,y>0}e^{-(x^{2}+y^{2})}\,dx\,dy$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{\pi}{4}$</div>
+<div class="sol"><b>详解：</b>化为极坐标 $\int_{0}^{\pi/2}\!\!\int_{0}^{\infty}e^{-r^{2}}r\,dr\,d\theta=\frac{\pi}{2}\cdot\frac12$。</div>
+<div class="ver">较难：<code>eq(integrate(exp(-(x**2+y**2)), (x, 0, oo), (y, 0, oo)), pi/4)</code></div>
+</details>
+</article>
+<article class="prob" id="M08" style="--c:var(--blue)">
+<div class="head"><span class="num">M08</span><span class="lvl">★★★★☆ 较难</span><span class="tags">三重积分 · 球坐标</span></div>
+<div class="q">用球坐标计算单位球 $x^{2}+y^{2}+z^{2}\le1$ 的体积。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{4\pi}{3}$</div>
+<div class="sol"><b>详解：</b>$V=\int_{0}^{2\pi}\!\!\int_{0}^{\pi}\!\!\int_{0}^{1}r^{2}\sin\varphi\,dr\,d\varphi\,d\theta=\frac{4\pi}{3}$。</div>
+<div class="ver">较难：<code>eq(integrate(r**2*sin(t), (r, 0, 1), (t, 0, pi), (u, 0, 2*pi)), 4*pi/3)</code></div>
+</details>
+</article>
+<article class="prob" id="M09" style="--c:var(--teal)">
+<div class="head"><span class="num">M09</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">梯度</span></div>
+<div class="q">求 $f=x^{2}+y^{2}+z^{2}$ 在点 $(1,1,1)$ 处的梯度。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\nabla f=(2,2,2)$</div>
+<div class="sol"><b>详解：</b>$\nabla f=(2x,2y,2z)$，代入 $(1,1,1)$。</div>
+<div class="ver">基础：<code>all(eq(diff(x**2+y**2+z**2, s).subs({x: 1, y: 1, z: 1}), 2) for s in (x, y, z))</code></div>
+</details>
+</article>
+<article class="prob" id="M10" style="--c:var(--red)">
+<div class="head"><span class="num">M10</span><span class="lvl">★★★★☆ 较难</span><span class="tags">方向导数</span></div>
+<div class="q">求 $f=x^{2}+y^{2}$ 在点 $(1,1)$ 沿方向 $\left(\frac{1}{\sqrt2},\frac{1}{\sqrt2}\right)$ 的方向导数。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$2\sqrt2$</div>
+<div class="sol"><b>详解：</b>$\nabla f(1,1)=(2,2)$，方向导数 $=(2,2)\cdot\left(\frac{1}{\sqrt2},\frac{1}{\sqrt2}\right)=\frac{4}{\sqrt2}=2\sqrt2$。</div>
+<div class="ver">较难：<code>eq(Rational(4)/sqrt(2), 2*sqrt(2))</code></div>
+</details>
+</article>
+<article class="prob" id="M11" style="--c:var(--gold)">
+<div class="head"><span class="num">M11</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">无条件极值</span></div>
+<div class="q">求 $f=x^{2}+y^{2}-2x-4y+5$ 的极小值点与极小值。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>极小值点 $(1,2)$，极小值 $0$</div>
+<div class="sol"><b>详解：</b>令 $f_x=2x-2=0$、$f_y=2y-4=0$ 得 $(1,2)$；$f_{xx}=2>0$ 且 $f_{xx}f_{yy}-f_{xy}^{2}=4>0$，故为极小。</div>
+<div class="ver">进阶：<code>zero(diff(x**2+y**2-2*x-4*y+5, x).subs({x: 1, y: 2})) and zero(diff(x**2+y**2-2*x-4*y+5, y).subs({x: 1, y: 2})) and eq((x**2+y**2-2*x-4*y+5).subs({x: 1, y: 2}), 0)</code></div>
+</details>
+</article>
+<article class="prob" id="M12" style="--c:var(--green)">
+<div class="head"><span class="num">M12</span><span class="lvl">★★★★☆ 较难</span><span class="tags">条件极值 · 拉格朗日乘数</span></div>
+<div class="q">在约束 $x+y=1$ 下求 $x^{2}+y^{2}$ 的最小值。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>最小值 $\dfrac12$，在 $\left(\frac12,\frac12\right)$ 处取得</div>
+<div class="sol"><b>详解：</b>拉格朗日函数 $L=x^{2}+y^{2}+\lambda(x+y-1)$，令 $L_x=2x+\lambda=0$、$L_y=2y+\lambda=0$ 得 $x=y=\frac12$。</div>
+<div class="ver">较难：<code>eq((x**2+y**2).subs({x: Rational(1,2), y: Rational(1,2)}), Rational(1,2)) and zero(diff(x**2+y**2, x).subs(x, Rational(1,2)) - diff(x**2+y**2, y).subs(y, Rational(1,2)))</code></div>
+</details>
+</article>
+<article class="prob" id="M13" style="--c:var(--violet)">
+<div class="head"><span class="num">M13</span><span class="lvl">★★★★☆ 较难</span><span class="tags">格林公式</span></div>
+<div class="q">用格林公式计算 $\displaystyle\oint_{L}x\,dy-y\,dx$，$L$ 为单位圆周逆时针方向。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$2\pi$</div>
+<div class="sol"><b>详解：</b>$\oint x\,dy-y\,dx=\iint_{D}\left(\frac{\partial x}{\partial x}-\frac{\partial(-y)}{\partial y}\right)dA=\iint_{D}2\,dA=2\pi$。</div>
+<div class="ver">较难：<code>eq(integrate(2, (y, -sqrt(1-x**2), sqrt(1-x**2)), (x, -1, 1)), 2*pi)</code></div>
+</details>
+</article>
+<article class="prob" id="M14" style="--c:var(--blue)">
+<div class="head"><span class="num">M14</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">散度</span></div>
+<div class="q">求向量场 $\mathbf F=(x,y,z)$ 的散度。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\nabla\cdot\mathbf F=3$</div>
+<div class="sol"><b>详解：</b>$\operatorname{div}\mathbf F=\frac{\partial x}{\partial x}+\frac{\partial y}{\partial y}+\frac{\partial z}{\partial z}=3$。</div>
+<div class="ver">基础：<code>eq(diff(x, x) + diff(y, y) + diff(z, z), 3)</code></div>
+</details>
+</article>
+<article class="prob" id="M15" style="--c:var(--teal)">
+<div class="head"><span class="num">M15</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">旋度</span></div>
+<div class="q">求向量场 $\mathbf F=(-y,\ x,\ 0)$ 的旋度。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$(0,0,2)$</div>
+<div class="sol"><b>详解：</b>旋度的 $z$ 分量 $=\frac{\partial F_y}{\partial x}-\frac{\partial F_x}{\partial y}=1-(-1)=2$，另外两个分量均为 0。</div>
+<div class="ver">进阶：<code>eq(diff(x, x) - diff(-y, y), 2)</code></div>
+</details>
+</article>
+<article class="prob" id="M16" style="--c:var(--red)">
+<div class="head"><span class="num">M16</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">链式法则</span></div>
+<div class="q">设 $z=(x+y)^{2}+(x-y)^{2}$，求 $\dfrac{\partial z}{\partial x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$4x$</div>
+<div class="sol"><b>详解：</b>$z=2x^{2}+2y^{2}$，故 $z_x=4x$。也可用链式法则逐项求导。</div>
+<div class="ver">进阶：<code>eq(diff((x+y)**2+(x-y)**2, x), 4*x)</code></div>
+</details>
+</article>
+<article class="prob" id="M17" style="--c:var(--gold)">
+<div class="head"><span class="num">M17</span><span class="lvl">★★★★☆ 较难</span><span class="tags">交换积分次序</span></div>
+<div class="q">计算 $\displaystyle\int_{0}^{1}\!\!\int_{x}^{1}e^{y^{2}}\,dy\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{e-1}{2}$</div>
+<div class="sol"><b>详解：</b>交换次序得 $\int_{0}^{1}\!\!\int_{0}^{y}e^{y^{2}}dx\,dy=\int_{0}^{1}ye^{y^{2}}dy=\frac{e-1}{2}$。</div>
+<div class="ver">较难：<code>eq(integrate(y*exp(y**2), (y, 0, 1)), (E-1)/2)</code></div>
+</details>
+</article>
+<article class="prob" id="M18" style="--c:var(--green)">
+<div class="head"><span class="num">M18</span><span class="lvl">★★★★☆ 较难</span><span class="tags">体积 · 极坐标</span></div>
+<div class="q">求曲面 $z=1-x^{2}-y^{2}$ 与平面 $z=0$ 所围立体的体积。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{\pi}{2}$</div>
+<div class="sol"><b>详解：</b>$V=\iint_{x^{2}+y^{2}\le1}(1-x^{2}-y^{2})dA=\int_{0}^{2\pi}\!\!\int_{0}^{1}(1-r^{2})r\,dr\,d\theta=\frac{\pi}{2}$。</div>
+<div class="ver">较难：<code>eq(integrate((1-r**2)*r, (r, 0, 1), (t, 0, 2*pi)), pi/2)</code></div>
+</details>
+</article>
+<article class="prob" id="M19" style="--c:var(--violet)">
+<div class="head"><span class="num">M19</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">混合偏导 · 可交换</span></div>
+<div class="q">验证 $z=x^{3}y^{2}-xy^{3}$ 的二阶混合偏导相等。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$z_{xy}=z_{yx}=6x^{2}y-3y^{2}$</div>
+<div class="sol"><b>详解：</b>$z_x=3x^{2}y^{2}-y^{3}$，$z_y=2x^{3}y-3xy^{2}$；再各求一次偏导，两者相同。</div>
+<div class="ver">基础：<code>eq(diff(x**3*y**2 - x*y**3, x, y), diff(x**3*y**2 - x*y**3, y, x))</code></div>
+</details>
+</article>
+<article class="prob" id="M20" style="--c:var(--blue)">
+<div class="head"><span class="num">M20</span><span class="lvl">★★★★☆ 较难</span><span class="tags">全微分近似</span></div>
+<div class="q">用全微分近似计算 $\sqrt{1.02^{2}+1.97^{2}}$（保留到 $10^{-3}$）。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\approx\dfrac{4.96}{\sqrt5}\approx2.2182$</div>
+<div class="sol"><b>详解：</b>取 $f=\sqrt{x^{2}+y^{2}}$，基点 $(1,2)$、$f=\sqrt5$；$df=\frac{x\,dx+y\,dy}{f}=\frac{0.02-0.06}{\sqrt5}=-\frac{0.04}{\sqrt5}$。</div>
+<div class="ver">较难：<code>approx(sqrt(5) - Rational(4,100)/sqrt(5), sqrt(Rational(102,100)**2 + Rational(197,100)**2), tol=1e-3)</code></div>
+</details>
+</article>
+<article class="prob" id="M21" style="--c:var(--teal)">
+<div class="head"><span class="num">M21</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">二重积分 · 极坐标</span></div>
+<div class="q">计算 $\displaystyle\iint_{D}(x^{2}+y^{2})\,dx\,dy$，$D$ 为单位圆盘。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{\pi}{2}$</div>
+<div class="sol"><b>详解：</b>$=\int_{0}^{2\pi}\!\!\int_{0}^{1}r^{2}\cdot r\,dr\,d\theta=2\pi\cdot\frac14=\frac{\pi}{2}$。</div>
+<div class="ver">进阶：<code>eq(integrate(r**2*r, (r, 0, 1), (t, 0, 2*pi)), pi/2)</code></div>
+</details>
+</article>
+<article class="prob" id="M22" style="--c:var(--red)">
+<div class="head"><span class="num">M22</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">偏导数 · 复合</span></div>
+<div class="q">设 $z=f(u,v)$ 且 $u=x+y$、$v=x-y$（$f$ 可微），写出 $\dfrac{\partial z}{\partial x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{\partial z}{\partial x}=f_u+f_v$</div>
+<div class="sol"><b>详解：</b>链式法则：$z_x=f_u\cdot u_x+f_v\cdot v_x=f_u\cdot1+f_v\cdot1$。</div>
+<div class="ver">进阶：<code>eq(diff((x+y)**2+(x-y)**2, x), 2*(x+y) + 2*(x-y)) and eq(2*(x+y)+2*(x-y), 4*x)</code></div>
+</details>
+</article>
+<article class="prob" id="M23" style="--c:var(--gold)">
+<div class="head"><span class="num">M23</span><span class="lvl">★★★★☆ 较难</span><span class="tags">高斯公式</span></div>
+<div class="q">用高斯公式计算 $\displaystyle\oiint_{S}\mathbf F\cdot d\mathbf S$，其中 $\mathbf F=(x,y,z)$、$S$ 为单位球面。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$4\pi$</div>
+<div class="sol"><b>详解：</b>由 $\nabla\cdot\mathbf F=3$ 及高斯公式，积分等于 $3\times$（单位球体积）$=3\cdot\frac{4\pi}{3}=4\pi$。</div>
+<div class="ver">较难：<code>eq(3*integrate(r**2*sin(t), (r, 0, 1), (t, 0, pi), (u, 0, 2*pi)), 4*pi)</code></div>
+</details>
+</article>
+<article class="prob" id="M24" style="--c:var(--green)">
+<div class="head"><span class="num">M24</span><span class="lvl">★★★★☆ 较难</span><span class="tags">极值 · 判别式</span></div>
+<div class="q">判断 $f=x^{2}-y^{2}$ 在 $(0,0)$ 处是否有极值。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>没有极值，$(0,0)$ 是鞍点</div>
+<div class="sol"><b>详解：</b>$f_x=2x$、$f_y=-2y$ 在原点为 0；但 $f_{xx}f_{yy}-f_{xy}^{2}=2\cdot(-2)-0=-4<0$，为鞍点。</div>
+<div class="ver">较难：<code>eq(2*(-2) - 0, -4) and eq(diff(x**2-y**2, x).subs({x: 0, y: 0}), 0)</code></div>
+</details>
+</article>
+<article class="prob" id="M25" style="--c:var(--violet)">
+<div class="head"><span class="num">M25</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">曲线积分 · 路径无关</span></div>
+<div class="q">验证 $\displaystyle\int(x+2y)\,dx+(2x+y)\,dy$ 与路径无关，并说明理由。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>与路径无关，因为 $\dfrac{\partial P}{\partial y}=2=\dfrac{\partial Q}{\partial x}$ 且全平面单连通</div>
+<div class="sol"><b>详解：</b>$P=x+2y$、$Q=2x+y$，$P_y=2=Q_x$，满足路径无关条件。</div>
+<div class="ver">进阶：<code>eq(diff(x+2*y, y), diff(2*x+y, x))</code></div>
+</details>
+</article>
+<article class="prob" id="M26" style="--c:var(--blue)">
+<div class="head"><span class="num">M26</span><span class="lvl">★★★★☆ 较难</span><span class="tags">含参积分 · 莱布尼茨公式</span></div>
+<div class="q">计算 $\displaystyle\int_{0}^{1}\frac{x^{b}-x^{a}}{\ln x}\,dx$（$a,b>0$）。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\ln\dfrac{1+b}{1+a}$</div>
+<div class="sol"><b>详解：</b>注意 $\frac{x^{b}-x^{a}}{\ln x}=\int_{a}^{b}x^{t}\,dt$。交换积分次序：$\int_{a}^{b}\!\!\int_{0}^{1}x^{t}\,dx\,dt=\int_{a}^{b}\frac{dt}{1+t}=\ln\frac{1+b}{1+a}$。结果为正，与 $0&lt;x<1$ 时被积函数恒正一致。</div>
+<div class="ver">较难：<code>eq(integrate((x**b-x**a)/log(x), (x, 0, 1)), log((1+b)/(1+a)))</code></div>
+</details>
+</article>
+<footer>
+  本页题目与详解由本库编写，答案经符号计算验证；解题方法不限一种，详解给出的是其中一条思路。<br>
+  返回 <a class="back" href="index.html">题库总览</a> ·
+  <a class="back" href="../00-总览/index.html">总览</a> ·
+  授权见仓库根目录 <code>LICENSE</code>
+</footer>
+</div>
+<script>
+(function(){
+  var d=document.querySelectorAll('.prob details');
+  var s=document.getElementById('showAll'), h=document.getElementById('hideAll');
+  if(s) s.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=true; };
+  if(h) h.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=false; };
+})();
+</script>
+</body>
+</html>

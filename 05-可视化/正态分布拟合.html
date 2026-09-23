@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self';">
+<title>正态分布拟合 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23177E89'/%3E%3Ctext x='32' y='45' font-size='26' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3EΦ%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--teal:#177E89;--blue:#1F4E9C;--red:#C0392B;--green:#2E7D5B;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--teal);text-decoration:none;}
+.tag{display:inline-block;background:var(--teal);color:#fff;font-size:12px;padding:2px 10px;border-radius:20px;vertical-align:middle;margin-left:10px;}
+h1{font-family:Georgia,"Noto Serif SC",serif;font-size:40px;margin:14px 0 6px;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--teal);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#fffef9;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls .btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls .btn.gray{background:#8A8270;}
+.controls label{font-size:14px;color:var(--ink2);}
+.controls input[type=range]{width:150px;vertical-align:middle;}
+.stats{display:flex;flex-wrap:wrap;gap:18px;font-family:Georgia,serif;font-size:15px;color:var(--ink2);margin-top:10px;}
+.stats b{color:var(--ink);font-size:18px;}
+.legend{display:flex;gap:16px;font-size:13px;color:var(--ink2);margin-top:8px;}
+.legend i{display:inline-block;width:16px;height:3px;vertical-align:middle;margin-right:5px;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--teal);text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>正态分布拟合 <span class="tag">概率统计</span></h1>
+<p class="sub">真实数据来自一条"看不见"的正态钟形。用样本均值 $\hat\mu$、样本标准差 $\hat\sigma$ 把钟形重新画出来——样本越多，拟合曲线越逼近真相。</p>
+</header>
+
+<div class="sec">
+<h2>直方图与拟合曲线 <small>青柱=数据；红实线=拟合 N(μ̂,σ̂)；灰虚线=真实分布</small></h2>
+<div class="fig">
+<canvas id="cv" width="880" height="440" role="img" aria-label="正态分布拟合：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls">
+<label>样本量 N = <span id="nVal">500</span>
+<input type="range" id="n" min="30" max="5000" step="10" value="500"></label>
+<button class="btn" id="re">重新抽样</button>
+<button class="btn gray" id="more">追加 500 个</button>
+</div>
+<div class="legend"><span><i style="background:#177E89"></i>样本直方图</span><span><i style="background:#C0392B"></i>拟合 N(μ̂,σ̂)</span><span><i style="background:#8A8270"></i>真实 N(μ,σ)</span></div>
+<div class="stats" id="stats"></div>
+<p class="explain">真实参数固定为 $\mu=0,\ \sigma=1.5$。注意：$N$ 很小时拟合曲线歪歪扭扭，$N$ 上千后红线与灰虚线几乎重合——这正是<b>极大似然估计</b>的一致性。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>极大似然估计</h2>
+<p>对 $X_i\sim N(\mu,\sigma^2)$，对数似然 $\ell(\mu,\sigma)=-\frac N2\ln(2\pi\sigma^2)-\frac{1}{2\sigma^2}\sum(X_i-\mu)^2$。求导令零得：</p>
+$$\hat\mu=\bar X=\frac1N\sum X_i,\qquad \hat\sigma^2=\frac1N\sum(X_i-\bar X)^2.$$
+<p>$\hat\mu$ 无偏；$\hat\sigma^2$ 的 MLE 略偏，无偏修正为除以 $N-1$。两者都按 $O(1/\sqrt N)$ 收敛到真值。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var W=cv.width,H=cv.height;
+var TRUE_MU=0, TRUE_SD=1.5;
+var data=[];
+function gauss(m,s){var u=0,v=0;while(u===0)u=Math.random();while(v===0)v=Math.random();return m+s*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+function gen(k){for(var i=0;i<k;i++)data.push(gauss(TRUE_MU,TRUE_SD));}
+function fit(){
+  var n=data.length,m=0; for(var i=0;i<n;i++)m+=data[i]; m/=n;
+  var v=0; for(var i=0;i<n;i++)v+=(data[i]-m)*(data[i]-m); v/=n;
+  return {mu:m,sd:Math.sqrt(v)};
+}
+function normalPDF(x,mu,sd){return (1/(sd*Math.sqrt(2*Math.PI)))*Math.exp(-0.5*((x-mu)/sd)*((x-mu)/sd));}
+function draw(){
+  var n=data.length;
+  document.getElementById('nVal').textContent=n;
+  var f=fit();
+  ctx.clearRect(0,0,W,H);
+  var pl=60,pr=30,pt=30,pb=50;
+  var pw=W-pl-pr, ph=H-pt-pb;
+  ctx.strokeStyle='#D8D0BC';ctx.strokeRect(pl,pt,pw,ph);
+  var lo=-6, hi=6;
+  // histogram
+  var NB=40, bins=new Array(NB).fill(0);
+  for(var i=0;i<n;i++){var b=Math.floor((data[i]-lo)/(hi-lo)*NB); if(b>=0&&b<NB)bins[b]++;}
+  var maxB=1; for(var k=0;k<NB;k++)if(bins[k]>maxB)maxB=bins[k];
+  var bw=pw/NB;
+  for(var b=0;b<NB;b++){
+    var bh=bins[b]/maxB*ph;
+    ctx.fillStyle='rgba(23,126,137,0.7)';
+    ctx.fillRect(pl+b*bw,pt+ph-bh,bw-1,bh);
+  }
+  function curve(mu,sd,color,dash){
+    ctx.strokeStyle=color;ctx.lineWidth=2.4;ctx.setLineDash(dash||[]);ctx.beginPath();
+    for(var px=0;px<=pw;px++){
+      var xv=lo+(hi-lo)*px/pw;
+      var pdf=normalPDF(xv,mu,sd);
+      var expectedCountPerBin=n*pdf*(hi-lo)/NB;
+      var yv=pt+ph-(expectedCountPerBin/maxB)*ph;
+      if(px===0)ctx.moveTo(pl+px,yv);else ctx.lineTo(pl+px,yv);
+    }
+    ctx.stroke();ctx.setLineDash([]);
+  }
+  curve(TRUE_MU,TRUE_SD,'#8A8270',[5,4]);
+  curve(f.mu,f.sd,'#C0392B',[]);
+  ctx.fillStyle='#4A5258';ctx.font='12px Georgia';ctx.textAlign='center';
+  ctx.fillText('数据取值',pl+pw/2,H-16);
+  document.getElementById('stats').innerHTML=
+    '<span>样本 N <b>'+n+'</b></span>'+
+    '<span>真实 μ / σ <b>0 / 1.50</b></span>'+
+    '<span>拟合 μ̂ <b>'+f.mu.toFixed(3)+'</b></span>'+
+    '<span>拟合 σ̂ <b>'+f.sd.toFixed(3)+'</b></span>';
+}
+document.getElementById('n').addEventListener('input',function(){data=[];gen(+this.value);draw();});
+document.getElementById('re').addEventListener('click',function(){data=[];gen(+document.getElementById('n').value);draw();});
+document.getElementById('more').addEventListener('click',function(){gen(500);draw();});
+data=[];gen(500);draw();
+})();
+</script>
+
+</body>
+</html>

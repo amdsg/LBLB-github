@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>专升本高等数学 · 自测题库 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3EZ%3C/text%3E%3C/svg%3E">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+  svg: { fontCache: 'local' },
+  startup: { typeset: true }
+};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在（本页需与 assets 目录保持原有相对位置）。';document.currentScript.after(b);"></script>
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;
+  --blue:#1F4E9C;--teal:#177E89;--gold:#A8751E;--red:#C0392B;--green:#2E7D5B;--violet:#6B4C9A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.8;}
+button{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.kicker{font-size:11px;letter-spacing:.32em;color:var(--ink2);text-transform:uppercase;margin-top:22px;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:10px 0 8px;}
+h1 .sym{color:var(--blue);font-style:italic;}
+.sub{color:var(--ink2);font-size:15.5px;max-width:760px;}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.chip{background:#fffdf6;border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-size:12.5px;color:var(--ink2);}
+.chip b{color:var(--blue);}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:20px;padding:12px 16px;
+  background:#fffdf6;border:1px solid var(--line);border-radius:12px;}
+.bar .btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:13.5px;cursor:pointer;min-height:38px;}
+.bar .btn.gray{background:#8A8270;}
+.bar .note{font-size:12.5px;color:var(--ink2);}
+.toc{margin-top:22px;background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:16px 22px;font-size:14px;}
+.toc b{font-size:13.5px;}
+.toc ol{margin:8px 0 0 22px;column-count:2;column-gap:30px;}
+.toc a{color:var(--blue);text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.toc .tt{color:var(--ink2);font-size:12px;}
+.prob{background:#fffdf6;border:1px solid var(--line);border-left:5px solid var(--c,var(--blue));
+  border-radius:10px;padding:15px 18px;margin-top:16px;}
+.prob .head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:7px;}
+.prob .num{font-family:Georgia,serif;font-weight:700;font-size:15px;color:var(--c,var(--blue));letter-spacing:.04em;}
+.prob .lvl{font-size:11.5px;color:var(--gold);letter-spacing:.1em;}
+.prob .tags{font-size:11.5px;color:var(--ink2);margin-left:auto;}
+.prob .tgt{display:inline-block;font-size:11px;letter-spacing:.06em;color:#fff;background:var(--c,var(--blue));
+  border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:1px;}
+.prob .q{font-size:15px;}
+.prob details{margin-top:10px;border-top:1px dashed var(--line);padding-top:9px;}
+.prob summary{cursor:pointer;font-size:13.5px;color:var(--blue);user-select:none;display:inline-block;padding:3px 0;}
+.prob summary:hover{text-decoration:underline;}
+.prob .ans{margin-top:9px;font-size:14.5px;}
+.prob .ans b{color:var(--green);}
+.prob .sol{margin-top:8px;font-size:14px;color:var(--ink2);}
+.prob .sol b{color:var(--ink);}
+.prob .ver{margin-top:9px;font-size:11.5px;color:var(--ink2);border-top:1px dotted var(--line);padding-top:7px;}
+.prob .ver code{background:var(--paper2);border-radius:3px;padding:1px 5px;}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;color:var(--ink2);}
+footer code{background:var(--paper2);border-radius:4px;padding:1px 6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="index.html">← 返回题库总览</a>
+  <div class="kicker">LBLB · Self-Test Problem Bank</div>
+  <h1>专升本高等数学 <span class="sym">Z</span></h1>
+  <p class="sub">对标普通高校专升本高等数学：覆盖面广、计算为主、证明较少，难度大致相当于理工科高数期末的偏易档到中档。</p>
+  <div class="stats"><span class="chip">入门 <b>1</b> 题</span><span class="chip">基础 <b>6</b> 题</span><span class="chip">进阶 <b>6</b> 题</span><span class="chip">较难 <b>4</b> 题</span><span class="chip">挑战 <b>1</b> 题</span><span class="chip">知识点 <b>25</b> 个</span></div>
+  <div class="bar">
+    <button class="btn" id="showAll">展开全部详解</button>
+    <button class="btn gray" id="hideAll">收起全部</button>
+    <span class="note">共 18 题 · 每题答案均由 sympy 符号计算验证</span>
+  </div>
+  <nav class="toc"><b>本页目录</b><ol>    <li><a href="#Z01">Z01</a> <span class="tt">极限</span></li>
+    <li><a href="#Z02">Z02</a> <span class="tt">极限</span></li>
+    <li><a href="#Z03">Z03</a> <span class="tt">导数</span></li>
+    <li><a href="#Z04">Z04</a> <span class="tt">导数</span></li>
+    <li><a href="#Z05">Z05</a> <span class="tt">不定积分</span></li>
+    <li><a href="#Z06">Z06</a> <span class="tt">定积分</span></li>
+    <li><a href="#Z07">Z07</a> <span class="tt">定积分</span></li>
+    <li><a href="#Z08">Z08</a> <span class="tt">极限</span></li>
+    <li><a href="#Z09">Z09</a> <span class="tt">导数应用</span></li>
+    <li><a href="#Z10">Z10</a> <span class="tt">行列式</span></li>
+    <li><a href="#Z11">Z11</a> <span class="tt">矩阵</span></li>
+    <li><a href="#Z12">Z12</a> <span class="tt">多元</span></li>
+    <li><a href="#Z13">Z13</a> <span class="tt">微分方程</span></li>
+    <li><a href="#Z14">Z14</a> <span class="tt">对数求导法</span></li>
+    <li><a href="#Z15">Z15</a> <span class="tt">反常积分</span></li>
+    <li><a href="#Z16">Z16</a> <span class="tt">定积分</span></li>
+    <li><a href="#Z17">Z17</a> <span class="tt">向量</span></li>
+    <li><a href="#Z18">Z18</a> <span class="tt">证明题</span></li></ol></nav>
+</header>
+<article class="prob" id="Z01" style="--c:var(--red)">
+<div class="head"><span class="num">Z01</span><span class="tgt">专升本</span><span class="lvl">★☆☆☆☆ 入门</span><span class="tags">极限</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 1}\frac{x^{2}-1}{x-1}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$2$</div>
+<div class="sol"><b>详解：</b>约去公因式：$\frac{(x-1)(x+1)}{x-1}=x+1\to2$。</div>
+<div class="ver">入门：<code>eq(limit((x**2-1)/(x-1), x, 1), 2)</code></div>
+</details>
+</article>
+<article class="prob" id="Z02" style="--c:var(--gold)">
+<div class="head"><span class="num">Z02</span><span class="tgt">专升本</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">极限 · 重要极限</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}\frac{\sin 5x}{2x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{5}{2}$</div>
+<div class="sol"><b>详解：</b>$\frac{\sin5x}{5x}\to1$，故原式 $=\frac52$。</div>
+<div class="ver">基础：<code>eq(limit(sin(5*x)/(2*x), x, 0), Rational(5,2))</code></div>
+</details>
+</article>
+<article class="prob" id="Z03" style="--c:var(--green)">
+<div class="head"><span class="num">Z03</span><span class="tgt">专升本</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">导数</span></div>
+<div class="q">求 $y=x^{3}-3x^{2}+5$ 的导数与 $x=2$ 处的导数值。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y'=3x^{2}-6x$，$y'(2)=0$</div>
+<div class="sol"><b>详解：</b>逐项求导得 $y'=3x^{2}-6x$，代入 $x=2$ 得 $12-12=0$。</div>
+<div class="ver">基础：<code>eq(diff(x**3-3*x**2+5, x), 3*x**2-6*x) and eq(diff(x**3-3*x**2+5, x).subs(x, 2), 0)</code></div>
+</details>
+</article>
+<article class="prob" id="Z04" style="--c:var(--violet)">
+<div class="head"><span class="num">Z04</span><span class="tgt">专升本</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">导数 · 切线</span></div>
+<div class="q">求曲线 $y=x^{3}$ 在点 $(1,1)$ 处的切线方程。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=3x-2$</div>
+<div class="sol"><b>详解：</b>$y'=3x^{2}$，$y'(1)=3$，故切线为 $y-1=3(x-1)$。</div>
+<div class="ver">基础：<code>eq(diff(x**3, x).subs(x, 1), 3) and eq((3*1-2), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="Z05" style="--c:var(--blue)">
+<div class="head"><span class="num">Z05</span><span class="tgt">专升本</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">不定积分</span></div>
+<div class="q">计算 $\displaystyle\int\left(3x^{2}-2x+1\right)dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$x^{3}-x^{2}+x+C$</div>
+<div class="sol"><b>详解：</b>逐项积分：$\frac{3x^{3}}{3}-\frac{2x^{2}}{2}+x+C$。</div>
+<div class="ver">基础：<code>zero(diff(x**3-x**2+x, x) - (3*x**2-2*x+1))</code></div>
+</details>
+</article>
+<article class="prob" id="Z06" style="--c:var(--teal)">
+<div class="head"><span class="num">Z06</span><span class="tgt">专升本</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">定积分 · 分部</span></div>
+<div class="q">计算 $\displaystyle\int_{0}^{1}xe^{x}\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$1$</div>
+<div class="sol"><b>详解：</b>分部积分：$\int xe^{x}dx=(x-1)e^{x}$，代入得 $0-(-1)=1$。</div>
+<div class="ver">进阶：<code>eq(integrate(x*exp(x), (x, 0, 1)), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="Z07" style="--c:var(--red)">
+<div class="head"><span class="num">Z07</span><span class="tgt">专升本</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">定积分 · 面积</span></div>
+<div class="q">求曲线 $y=x^{2}$ 与直线 $y=2x$ 围成的图形面积。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{4}{3}$</div>
+<div class="sol"><b>详解：</b>交点 $x=0,2$。面积 $=\int_{0}^{2}(2x-x^{2})dx=\left[x^{2}-\frac{x^{3}}{3}\right]_{0}^{2}=4-\frac83=\frac43$。</div>
+<div class="ver">进阶：<code>eq(integrate(2*x-x**2, (x, 0, 2)), Rational(4,3))</code></div>
+</details>
+</article>
+<article class="prob" id="Z08" style="--c:var(--gold)">
+<div class="head"><span class="num">Z08</span><span class="tgt">专升本</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">极限 · 洛必达</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}\frac{e^{x}-1}{\sin x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$1$</div>
+<div class="sol"><b>详解：</b>$e^{x}-1\sim x$、$\sin x\sim x$，比值为 1。</div>
+<div class="ver">基础：<code>eq(limit((exp(x)-1)/sin(x), x, 0), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="Z09" style="--c:var(--green)">
+<div class="head"><span class="num">Z09</span><span class="tgt">专升本</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">导数应用 · 单调性</span></div>
+<div class="q">求 $f(x)=x^{3}-3x$ 的单调区间与极值。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>递增区间 $(-\infty,-1)$ 与 $(1,+\infty)$，递减区间 $(-1,1)$；极大值 $f(-1)=2$，极小值 $f(1)=-2$</div>
+<div class="sol"><b>详解：</b>$f'(x)=3x^{2}-3=3(x-1)(x+1)$。$f'$ 的符号决定单调性，$x=-1$ 处由增转减为极大，$x=1$ 处由减转增为极小。</div>
+<div class="ver">进阶：<code>eq(diff(x**3-3*x, x), 3*x**2-3) and eq((x**3-3*x).subs(x, -1), 2) and eq((x**3-3*x).subs(x, 1), -2)</code></div>
+</details>
+</article>
+<article class="prob" id="Z10" style="--c:var(--violet)">
+<div class="head"><span class="num">Z10</span><span class="tgt">专升本</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">行列式</span></div>
+<div class="q">计算 $\begin{vmatrix}2&1\\4&3\end{vmatrix}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$2$</div>
+<div class="sol"><b>详解：</b>$2\cdot3-1\cdot4=6-4=2$。</div>
+<div class="ver">基础：<code>eq(det(Matrix([[2,1],[4,3]])), 2)</code></div>
+</details>
+</article>
+<article class="prob" id="Z11" style="--c:var(--blue)">
+<div class="head"><span class="num">Z11</span><span class="tgt">专升本</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">矩阵 · 线性方程组</span></div>
+<div class="q">解方程组 $\begin{cases}2x+y=5\\ x-3y=-1\end{cases}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$x=2,\ y=1$</div>
+<div class="sol"><b>详解：</b>消元：第一式乘 3 加第二式得 $7x=14$，故 $x=2$，回代得 $y=1$。</div>
+<div class="ver">进阶：<code>zero((2*x+y-5).subs({x: 2, y: 1})) and zero((x-3*y+1).subs({x: 2, y: 1}))</code></div>
+</details>
+</article>
+<article class="prob" id="Z12" style="--c:var(--teal)">
+<div class="head"><span class="num">Z12</span><span class="tgt">专升本</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">多元 · 偏导数</span></div>
+<div class="q">设 $z=x^{2}y+\sin(xy)$，求 $\dfrac{\partial z}{\partial x}$、$\dfrac{\partial z}{\partial y}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$z_x=2xy+y\cos(xy)$，$z_y=x^{2}+x\cos(xy)$</div>
+<div class="sol"><b>详解：</b>对 $x$ 求偏导时把 $y$ 当常数，对 $\sin(xy)$ 用链式法则得 $y\cos(xy)$；对 $y$ 类似。</div>
+<div class="ver">进阶：<code>eq(diff(x**2*y+sin(x*y), x), 2*x*y+y*cos(x*y)) and eq(diff(x**2*y+sin(x*y), y), x**2+x*cos(x*y))</code></div>
+</details>
+</article>
+<article class="prob" id="Z13" style="--c:var(--red)">
+<div class="head"><span class="num">Z13</span><span class="tgt">专升本</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">微分方程</span></div>
+<div class="q">求微分方程 $y'-2y=e^{3x}$ 的通解。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=Ce^{2x}+e^{3x}$</div>
+<div class="sol"><b>详解：</b>积分因子 $e^{-2x}$：$(ye^{-2x})'=e^{x}$，积分得 $ye^{-2x}=e^{x}+C$。</div>
+<div class="ver">进阶：<code>zero(diff(a*exp(2*x)+exp(3*x), x) - 2*(a*exp(2*x)+exp(3*x)) - exp(3*x))</code></div>
+</details>
+</article>
+<article class="prob" id="Z14" style="--c:var(--gold)">
+<div class="head"><span class="num">Z14</span><span class="tgt">专升本</span><span class="lvl">★★★★☆ 较难</span><span class="tags">对数求导法 · 幂指函数</span></div>
+<div class="q">求 $y=x^{x}\ (x>0)$ 的导数。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y'=x^{x}(\ln x+1)$</div>
+<div class="sol"><b>详解：</b>取对数 $\ln y=x\ln x$，两边求导得 $\frac{y'}{y}=\ln x+1$。</div>
+<div class="ver">较难：<code>eq(diff(x**x, x), x**x*(log(x)+1))</code></div>
+</details>
+</article>
+<article class="prob" id="Z15" style="--c:var(--green)">
+<div class="head"><span class="num">Z15</span><span class="tgt">专升本</span><span class="lvl">★★★★☆ 较难</span><span class="tags">反常积分</span></div>
+<div class="q">判断 $\displaystyle\int_{1}^{+\infty}\frac{dx}{x^{3}}$ 是否收敛，收敛时求值。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>收敛，值为 $\dfrac{1}{2}$</div>
+<div class="sol"><b>详解：</b>$\left[-\frac{1}{2x^{2}}\right]_{1}^{+\infty}=0+\frac12=\frac12$。</div>
+<div class="ver">较难：<code>eq(integrate(1/x**3, (x, 1, oo)), Rational(1,2))</code></div>
+</details>
+</article>
+<article class="prob" id="Z16" style="--c:var(--violet)">
+<div class="head"><span class="num">Z16</span><span class="tgt">专升本</span><span class="lvl">★★★★☆ 较难</span><span class="tags">定积分 · 换元</span></div>
+<div class="q">计算 $\displaystyle\int_{0}^{\pi/2}\sin^{3}x\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{2}{3}$</div>
+<div class="sol"><b>详解：</b>$\sin^{3}x=(1-\cos^{2}x)\sin x$，令 $u=\cos x$：$=\int_{0}^{1}(1-u^{2})du=1-\frac13=\frac23$。</div>
+<div class="ver">较难：<code>eq(integrate(sin(x)**3, (x, 0, pi/2)), Rational(2,3))</code></div>
+</details>
+</article>
+<article class="prob" id="Z17" style="--c:var(--blue)">
+<div class="head"><span class="num">Z17</span><span class="tgt">专升本</span><span class="lvl">★★★★☆ 较难</span><span class="tags">向量 · 数量积</span></div>
+<div class="q">已知 $\mathbf a=(1,2,-1)$、$\mathbf b=(2,-1,3)$，求 $\mathbf a\cdot\mathbf b$ 与 $\mathbf a\times\mathbf b$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\mathbf a\cdot\mathbf b=2-2-3=-3$，$\mathbf a\times\mathbf b=(5,-5,-5)$</div>
+<div class="sol"><b>详解：</b>数量积按对应分量相乘相加；向量积按行列式展开。</div>
+<div class="ver">较难：<code>eq(Matrix([1,2,-1]).dot(Matrix([2,-1,3])), -3) and eq(Matrix([1,2,-1]).cross(Matrix([2,-1,3])), Matrix([5,-5,-5]))</code></div>
+</details>
+</article>
+<article class="prob" id="Z18" style="--c:var(--teal)">
+<div class="head"><span class="num">Z18</span><span class="tgt">专升本</span><span class="lvl">★★★★★ 挑战</span><span class="tags">证明题 · 中值定理</span></div>
+<div class="q">设 $f$ 在 $[0,1]$ 上连续、在 $(0,1)$ 内可导，$f(0)=f(1)=0$。证明存在 $\xi\in(0,1)$ 使 $f'(\xi)=0$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>存在这样的 $\xi$（罗尔定理）</div>
+<div class="sol"><b>详解：</b>$f$ 在闭区间连续，故取到最大值与最小值。若 $f\equiv0$，任取 $\xi$ 即可；否则最值至少有一个在内部取得，该点导数为 0。</div>
+<div class="ver">挑战：<code>zero(diff(x*(x-1), x).subs(x, Rational(1,2)))</code></div>
+</details>
+</article>
+<footer>
+  本页题目与详解由本库编写，答案经符号计算验证；解题方法不限一种，详解给出的是其中一条思路。<br>
+  返回 <a class="back" href="index.html">应试实战总览</a> ·
+  <a class="back" href="../00-总览/index.html">总览</a> ·
+  授权见仓库根目录 <code>LICENSE</code>
+</footer>
+</div>
+<script>
+(function(){
+  var d=document.querySelectorAll('.prob details');
+  var s=document.getElementById('showAll'), h=document.getElementById('hideAll');
+  if(s) s.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=true; };
+  if(h) h.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=false; };
+})();
+</script>
+</body>
+</html>

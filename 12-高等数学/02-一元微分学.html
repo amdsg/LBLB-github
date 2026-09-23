@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>高等数学 II：一元微分学 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='32' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3Ed%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --hm:#2F5D8A; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--hm); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:38px; margin:12px 0 6px;}
+h1 .sym{color:var(--hm); font-style:italic;}
+.sub{color:var(--ink2); font-size:15.5px; max-width:780px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.series{margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;}
+.series a{font-size:12.5px; color:var(--hm); text-decoration:none; border:1px solid var(--line); border-radius:20px; padding:3px 12px; background:#fffdf6;}
+.series a:hover{background:var(--paper2);}
+.series .cur{background:var(--hm); color:#fff; border-color:var(--hm);}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--hm); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--hm); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; margin-top:26px;}
+.ch p{font-size:15px; margin-top:10px; max-width:840px;}
+.f{font-family:Georgia,"Cambria Math",serif; font-style:italic; background:var(--paper2); border-radius:6px; padding:1px 8px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--hm);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+.warn{background:#FDEDE8; border:1px solid #EAC6B8; border-left:5px solid var(--red); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14px;}
+.warn b{color:var(--red);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--hm); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.tbl{margin-top:14px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px; table-layout:fixed;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+.gloss{margin-top:14px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:14px;}
+.gloss dt{font-weight:700; margin-top:8px;}
+.gloss dt:first-child{margin-top:0;}
+.gloss dd{margin-left:18px; color:var(--ink2); font-size:13.5px;}
+.online{margin-top:16px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; font-size:14px;}
+.online a{color:var(--hm); text-decoration:none;}
+.online a:hover{text-decoration:underline;}
+.online ul{margin:8px 0 0 20px;}
+.online li{margin-top:6px;}
+.online .hint{font-size:12.5px; color:var(--ink2); margin-top:8px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--hm); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:30px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>高等数学 II · 一元微分学 <span class="sym">d</span></h1>
+  <p class="sub">导数与微分的完整体系：导数定义与求导法则、隐函数与参数方程求导、三大中值定理、洛必达法则、函数性态、泰勒公式——含全部证明要点与例题。</p>
+  <p class="quote">「导数度量变化，微分近似变化，中值定理连接两者。」</p>
+  <div class="series">
+    <a href="01-函数极限与连续.html">I 函数极限连续</a>
+    <a class="cur" href="02-一元微分学.html">II 一元微分学</a>
+    <a href="03-一元积分学.html">III 一元积分学</a>
+    <a href="04-多元微积分.html">IV 多元微积分</a>
+    <a href="05-无穷级数.html">V 无穷级数</a>
+    <a href="06-常微分方程.html">VI 常微分方程</a>
+    <a href="07-速查与题库.html">VII 速查题库</a>
+  </div>
+</header>
+
+<div class="toc">
+  <b>本讲目录</b>
+  <ol>
+    <li><a href="#c1">导数的概念</a></li>
+    <li><a href="#c2">求导法则与基本公式</a></li>
+    <li><a href="#c3">隐函数、参数方程与高阶导数</a></li>
+    <li><a href="#c4">微分</a></li>
+    <li><a href="#c5">三大中值定理</a></li>
+    <li><a href="#c6">洛必达法则</a></li>
+    <li><a href="#c7">函数性态：单调、极值、最值</a></li>
+    <li><a href="#c8">凹凸性与曲率、泰勒公式</a></li>
+        <li><a href="#c9a">深度：高阶导数与 Leibniz 公式</a></li>
+    <li><a href="#c9b">深度：微分中值定理的统一证明</a></li>
+        <li><a href="#c9d">深度：Taylor 展开与余项</a></li>
+    <li><a href="#c9e">深度：凸函数与 Jensen 不等式</a></li>
+<li><a href="#c9c">深度：Taylor 公式的余项估计</a></li>
+    <li><a href="#c9">练习与自测</a></li>
+    <li><a href="#c10">术语表与在线资源</a></li>
+  </ol>
+</div>
+
+<!-- ================= 1 ================= -->
+<div class="ch" id="c1">
+  <h2>1. 导数的概念 <small>变化率的极限定义</small></h2>
+  <div class="def"><b>定义（导数）：</b>$f'(x_0)=\lim_{\Delta x\to 0}\dfrac{f(x_0+\Delta x)-f(x_0)}{\Delta x}=\lim_{x\to x_0}\dfrac{f(x)-f(x_0)}{x-x_0}$。几何意义：切线的斜率；物理意义：瞬时速度、瞬时变化率。$f'(x_0)$ 存在称 $f$ 在 $x_0$ 可导。</div>
+  <div class="thm"><b>定理（可导与连续）：</b>可导 ⟹ 连续；但连续 ⟹ 可导。<div class="proof"><b>证明要点：</b>f(x)−f(x₀) = [Δy/Δx]·Δx → f′(x₀)·0 = 0。反例：y = |x| 在 0 连续但不可导（左右导数 ±1 不等）。</div></div>
+  <div class="def"><b>定义（左右导数）：</b>f′₋(x₀)、f′₊(x₀)。f 在 x₀ 可导 ⟺ 左右导数存在且相等。不可导的情形：尖点（|x|）、切线垂直（$x^{1/3}$ 在 0）、振荡（x sin(1/x)）。</div>
+  <div class="ex"><b>例：</b>用定义求 f(x) = x³ 在 x₀ 的导数。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>lim [(x₀+h)³−x₀³]/h = lim (3x₀²h + 3x₀h² + h³)/h = 3x₀²。</div></details></div>
+
+  <h3>1.1 导数定义的三种等价写法</h3>
+  <div class="def"><b>定义：</b>$f$ 在 $x_0$ 可导，其导数为
+  $$f'(x_0)=\lim_{\Delta x\to 0}\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}=\lim_{h\to 0}\frac{f(x_0+h)-f(x_0)}{h}=\lim_{x\to x_0}\frac{f(x)-f(x_0)}{x-x_0}.$$
+  三种写法等价，做题时按题目给的条件选用。</div>
+
+  <h3>1.2 几何意义：切线与法线</h3>
+  <div class="thm"><b>定理（切线方程）：</b>$f'(x_0)$ 是曲线 $y=f(x)$ 在点 $(x_0,f(x_0))$ 处切线斜率。
+  $$\text{切线： } y-f(x_0)=f'(x_0)(x-x_0);\qquad \text{法线： } y-f(x_0)=-\frac{1}{f'(x_0)}(x-x_0)\ (f'(x_0)\neq 0).$$</div>
+  <div class="ex"><b>例 1：</b>求 $y=x^2$ 在 $(1,1)$ 处切线与法线方程。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$y'=2x$，$y'(1)=2$。切线 $y-1=2(x-1)$ 即 $y=2x-1$；法线 $y-1=-\frac{1}{2}(x-1)$ 即 $y=-\frac{x}{2}+\frac{3}{2}$。</div></details></div>
+
+  <h3>1.3 可导 ⇒ 连续的严格证明</h3>
+  <div class="thm"><b>定理：</b>若 $f$ 在 $x_0$ 可导，则 $f$ 在 $x_0$ 连续。<div class="proof"><b>证明：</b>
+  $$f(x)-f(x_0)=\frac{f(x)-f(x_0)}{x-x_0}\cdot(x-x_0).$$
+  当 $x\to x_0$，第一因子 $\to f'(x_0)$，第二因子 $\to 0$，故乘积 $\to 0$，即 $\lim_{x\to x_0}f(x)=f(x_0)$。
+  <b>逆命题不成立：</b>$f(x)=|x|$ 在 $0$ 连续，但 $f'_-(0)=-1$、$f'_+(0)=1$ 不等，故不可导。</div></div>
+
+  <h3>1.4 左右导数与分段函数求导</h3>
+  <div class="def"><b>定义：</b>
+  $$f'_+(x_0)=\lim_{h\to 0^+}\frac{f(x_0+h)-f(x_0)}{h},\qquad f'_-(x_0)=\lim_{h\to 0^-}\frac{f(x_0+h)-f(x_0)}{h}.$$
+  $f'(x_0)$ 存在 $\iff f'_+(x_0)=f'_-(x_0)$。</div>
+  <div class="ex"><b>例 2：</b>讨论 $f(x)=|x|$ 在 $x=0$ 的可导性。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$f'_+(0)=\lim_{h\to 0^+}\frac{|h|}{h}=1$；$f'_-(0)=\lim_{h\to 0^-}\frac{|h|}{h}=-1$。两者不等，$f$ 在 $0$ 不可导（尖点）。</div></details></div>
+  <div class="ex"><b>例 3：</b>$f(x)=\begin{cases}x^2,&x\le 1\\ ax+b,&x>1\end{cases}$，求 $a,b$ 使 $f$ 在 $x=1$ 可导。<details><summary>查看解答</summary><div class="sol"><b>解：</b>先连续：$f(1^-)=1=f(1^+)=a+b$。再可导：左导 $=2x|_{x=1}=2$；右导 $=a$。需 $a=2$，代入 $a+b=1$ 得 $b=-1$。</div></details></div>
+
+  <h3>1.5 本节习题</h3>
+  <div class="ex"><b>习 1：</b>用定义求 $f(x)=\sqrt{x}$ 在 $x=4$ 的导数。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$\frac{\sqrt{4+h}-2}{h}=\frac{h}{h(\sqrt{4+h}+2)}\to\frac{1}{4}$。</div></details></div>
+  <div class="ex"><b>习 2：</b>$f(x)=x|x|$ 在 $x=0$ 是否可导？<details><summary>查看答案</summary><div class="sol"><b>答：</b>$\frac{h|h|}{h}=|h|\to 0$，可导且 $f'(0)=0$。</div></details></div>
+  <div class="ex"><b>习 3：</b>求 $y=e^x$ 在 $(0,1)$ 处切线方程。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$y'=e^x$，$y'(0)=1$，切线 $y=x+1$。</div></details></div>
+</div>
+
+<!-- ================= 2 ================= -->
+<div class="ch" id="c2">
+  <h2>2. 求导法则与基本公式 <small>一张表 + 四条法则</small></h2>
+  <div class="thm"><b>定理（四则运算法则）：</b>(u±v)′ = u′±v′；(uv)′ = u′v + uv′；(u/v)′ = (u′v − uv′)/v²。<div class="proof"><b>证明要点（乘积）：</b>[u(x+h)v(x+h) − u(x)v(x)]/h = u(x+h)[v(x+h)−v(x)]/h + v(x)[u(x+h)−u(x)]/h，取极限。</div></div>
+  <div class="thm"><b>定理（链式法则）：</b>y = f(u)、u = g(x) 均可导，则 dy/dx = f′(g(x))·g′(x)——「外层导数 × 内层导数」。<div class="proof"><b>证明要点：</b>Δy/Δx = (Δy/Δu)·(Δu/Δx)，Δu ≠ 0 处直接除，Δu = 0 处单独处理。</div></div>
+  <div class="thm"><b>定理（基本导数表）：</b>
+  <div class="tbl"><table><colgroup><col style="width:34%"><col style="width:33%"><col style="width:33%"></colgroup><tr><th>f(x)</th><th>f′(x)</th><th>备注</th></tr>
+  <tr><td>xⁿ</td><td>n xⁿ⁻¹</td><td>幂函数</td></tr>
+  <tr><td>aˣ / eˣ</td><td>aˣ ln a / eˣ</td><td>e 的导数是自己</td></tr>
+  <tr><td>log_a x / ln x</td><td>1/(x ln a) / 1/x</td><td></td></tr>
+  <tr><td>sin x / cos x</td><td>cos x / −sin x</td><td></td></tr>
+  <tr><td>tan x / cot x</td><td>sec²x / −csc²x</td><td></td></tr>
+  <tr><td>arcsin x / arccos x</td><td>1/√(1−x²) / −1/√(1−x²)</td><td>|x|&lt;1</td></tr>
+  <tr><td>arctan x</td><td>1/(1+x²)</td><td></td></tr></table></div></div>
+  <div class="ex"><b>例：</b>求 y = x²·eˣ·sin x 的导数。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>y′ = (x²)′eˣsin x + x²(eˣ)′sin x + x²eˣ(sin x)′ = 2xeˣsin x + x²eˣsin x + x²eˣcos x = x eˣ(2sin x + x sin x + x cos x)。</div></details></div>
+  <div class="warn"><b>易错警示：</b>xˣ 这类「底和指数都含 x」的幂指函数，必须取对数：y = xˣ ⟹ ln y = x ln x ⟹ y′/y = ln x + 1 ⟹ y′ = xˣ(ln x + 1)。</div>
+
+  <h3>2.1 反函数求导法则</h3>
+  <div class="thm"><b>定理（反函数求导）：</b>若 $x=\varphi(y)$ 单调可导且 $\varphi'(y)\neq 0$，则反函数 $y=f(x)$ 可导且
+  $$f'(x)=\frac{1}{\varphi'(y)}.$$
+  <div class="proof"><b>证明：</b>$\frac{\Delta y}{\Delta x}=\frac{1}{\Delta x/\Delta y}$，$\Delta x\to 0$ 时（单调性保证 $\Delta y\to 0$）取极限。</div></div>
+  <div class="ex"><b>例 1：</b>由 $(\sin y)'=\cos y$ 推 $(\arcsin x)'$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$x=\sin y$，$(\sin y)'=\cos y$，故 $(\arcsin x)'=\frac{1}{\cos y}=\frac{1}{\sqrt{1-\sin^2 y}}=\frac{1}{\sqrt{1-x^2}}$（取正根因 $y\in(-\pi/2,\pi/2)$）。</div></details></div>
+
+  <h3>2.2 复合函数链式法则（多层嵌套）</h3>
+  <div class="ex"><b>例 2：</b>求 $y=\sin(e^{x^2})$ 的导数。<details><summary>查看解答</summary><div class="sol"><b>解：</b>三层复合：$y=\sin u$，$u=e^v$，$v=x^2$。$y'=\cos u\cdot e^v\cdot 2x=2x\,e^{x^2}\cos(e^{x^2})$。</div></details></div>
+  <div class="ex"><b>例 3：</b>求 $y=\ln(x+\sqrt{x^2+a^2})$ 的导数。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$y'=\frac{1}{x+\sqrt{x^2+a^2}}\cdot\left(1+\frac{x}{\sqrt{x^2+a^2}}\right)=\frac{1}{x+\sqrt{x^2+a^2}}\cdot\frac{\sqrt{x^2+a^2}+x}{\sqrt{x^2+a^2}}=\frac{1}{\sqrt{x^2+a^2}}$。</div></details></div>
+
+  <h3>2.3 对数求导法（幂指函数与连乘连除）</h3>
+  <div class="thm"><b>方法：</b>对 $y=f(x)$ 两边取对数 $\ln y=\ln f(x)$，再对 $x$ 求导 $\frac{y'}{y}=\frac{d}{dx}\ln f(x)$。适用于 $y=u(x)^{v(x)}$ 或多个因子乘除。</div>
+  <div class="ex"><b>例 4：</b>求 $y=x^{\sin x}\ (x>0)$ 的导数。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$\ln y=\sin x\ln x$，$\frac{y'}{y}=\cos x\ln x+\frac{\sin x}{x}$，$y'=x^{\sin x}\left(\cos x\ln x+\frac{\sin x}{x}\right)$。</div></details></div>
+  <div class="ex"><b>例 5：</b>求 $y=\sqrt{\dfrac{(x-1)(x-2)}{(x-3)(x-4)}}$ 的导数。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$\ln y=\frac{1}{2}[\ln(x-1)+\ln(x-2)-\ln(x-3)-\ln(x-4)]$，求导得 $\frac{y'}{y}=\frac{1}{2}\left(\frac{1}{x-1}+\frac{1}{x-2}-\frac{1}{x-3}-\frac{1}{x-4}\right)$。</div></details></div>
+
+  <h3>2.4 本节习题</h3>
+  <div class="ex"><b>习 1：</b>求 $y=\tan^2(1+2x^3)$ 的导数。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$y'=2\tan(1+2x^3)\cdot\sec^2(1+2x^3)\cdot 6x^2=12x^2\tan(1+2x^3)\sec^2(1+2x^3)$。</div></details></div>
+  <div class="ex"><b>习 2：</b>求 $y=e^{\arctan\sqrt{x}}$ 的导数。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$y'=e^{\arctan\sqrt{x}}\cdot\frac{1}{1+x}\cdot\frac{1}{2\sqrt{x}}$。</div></details></div>
+  <div class="ex"><b>习 3：</b>求 $y=(1+x)^{1/x}$ 的导数。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$\ln y=\frac{\ln(1+x)}{x}$，$y'=(1+x)^{1/x}\cdot\frac{\frac{x}{1+x}-\ln(1+x)}{x^2}$。</div></details></div>
+</div>
+
+<!-- ================= 3 ================= -->
+<div class="ch" id="c3">
+  <h2>3. 隐函数、参数方程与高阶导数 <small>三种更复杂的求导场景</small></h2>
+  <div class="thm"><b>定理（隐函数求导）：</b>方程 F(x, y) = 0 确定隐函数 y = y(x)，对等式两边关于 x 求导（把 y 看作 x 的函数），解出 y′。<div class="proof"><b>例：</b>x² + y² = 25：2x + 2yy′ = 0 ⟹ y′ = −x/y。圆上点 (3,4) 处切线斜率 = −3/4。</div></div>
+  <div class="thm"><b>定理（参数方程求导）：</b>x = φ(t)、y = ψ(t) 可导且 φ′(t) ≠ 0，则 dy/dx = ψ′(t)/φ′(t)。<div class="proof"><b>例：</b>摆线 x = t − sin t、y = 1 − cos t，dy/dx = sin t/(1 − cos t)。</div></div>
+  <div class="def"><b>定义（高阶导数）：</b>f″(x) = (f′(x))′，一般 f⁽ⁿ⁾。莱布尼茨公式：(uv)⁽ⁿ⁾ = Σ C(n,k)u⁽ᵏ⁾v⁽ⁿ⁻ᵏ⁾——与二项式展开同构。<div class="proof"><b>常用高阶导数：</b>(xᵐ)⁽ⁿ⁾ = m(m−1)…(m−n+1)$x^{m-n}$；(eˣ)⁽ⁿ⁾ = eˣ；[sin(ax+b)]⁽ⁿ⁾ = aⁿ sin(ax+b + nπ/2)。</div></div>
+  <div class="ex"><b>例：</b>求 y = x²eˣ 的 y⁽²⁰⁾。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>莱布尼茨：C(20,0)x²eˣ + C(20,1)2x eˣ + C(20,2)·2·eˣ = eˣ(x² + 40x + 380)。</div></details></div>
+
+  <h3>3.1 隐函数求导的标准步骤</h3>
+  <div class="thm"><b>步骤：</b>① 方程两边对 $x$ 求导，遇到 $y$ 的函数先用链式法则乘 $y'$；② 解出 $y'$；③ 必要时代入点坐标。</div>
+  <div class="ex"><b>例 1：</b>求 $e^y+xy=e$ 在 $(0,1)$ 处的 $y'$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>两边对 $x$ 求导：$e^y y' + y + xy' = 0$，$y'(e^y+x)=-y$，$y'=-\frac{y}{e^y+x}$。代入 $(0,1)$：$y'=-\frac{1}{e}$。</div></details></div>
+
+  <h3>3.2 参数方程求导（一阶与二阶）</h3>
+  <div class="thm"><b>定理：</b>$\begin{cases}x=\varphi(t)\\ y=\psi(t)\end{cases}$，则
+  $$\frac{dy}{dx}=\frac{\psi'(t)}{\varphi'(t)},\qquad \frac{d^2y}{dx^2}=\frac{d}{dt}\!\left(\frac{dy}{dx}\right)\Big/\varphi'(t).$$
+  <div class="proof"><b>关键：</b>二阶导不是 $\psi''/\varphi''$！必须先对 $t$ 求一阶导的表达式，再除以 $\varphi'(t)$。</div></div>
+  <div class="ex"><b>例 2：</b>摆线 $x=t-\sin t$，$y=1-\cos t$，求 $dy/dx$ 与 $d^2y/dx^2$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$\frac{dy}{dx}=\frac{\sin t}{1-\cos t}=\cot\frac{t}{2}$。二阶：$\frac{d}{dt}\cot\frac{t}{2}=-\frac{1}{2}\csc^2\frac{t}{2}$，除以 $\varphi'(t)=1-\cos t$：$\frac{d^2y}{dx^2}=\frac{-1/(2\sin^2(t/2))}{2\sin^2(t/2)}=-\frac{1}{4\sin^4(t/2)}$。</div></details></div>
+
+  <h3>3.3 常用高阶导数公式与莱布尼茨公式</h3>
+  <div class="thm"><b>定理（莱布尼茨公式）：</b>
+  $$(uv)^{(n)}=\sum_{k=0}^{n}\binom{n}{k}u^{(k)}v^{(n-k)}.$$
+  形式上与 $(a+b)^n$ 展开一致。</div>
+  <div class="tbl"><table><colgroup><col style="width:40%"><col style="width:60%"></colgroup>
+  <tr><th>$f(x)$</th><th>$f^{(n)}(x)$</th></tr>
+  <tr><td>$e^{ax}$</td><td>$a^n e^{ax}$</td></tr>
+  <tr><td>$\sin(ax+b)$</td><td>$a^n\sin(ax+b+\frac{n\pi}{2})$</td></tr>
+  <tr><td>$\cos(ax+b)$</td><td>$a^n\cos(ax+b+\frac{n\pi}{2})$</td></tr>
+  <tr><td>$(1+x)^\alpha$</td><td>$\alpha(\alpha-1)\cdots(\alpha-n+1)(1+x)^{\alpha-n}$</td></tr>
+  <tr><td>$\ln(1+x)$</td><td>$(-1)^{n-1}\frac{(n-1)!}{(1+x)^n}$</td></tr>
+  </table></div>
+  <div class="ex"><b>例 3：</b>求 $y=x^2\sin x$ 的 $y^{(5)}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>莱布尼茨，$u=x^2$（三阶以上导为 $0$）：
+  $y^{(5)}=x^2\sin(x+5\pi/2)+5\cdot 2x\sin(x+4\pi/2)+10\cdot 2\sin(x+3\pi/2)$
+  $=x^2\cos x+10x(-\sin x)+20(-\cos x)=(x^2-20)\cos x-10x\sin x$。</div></details></div>
+
+  <h3>3.4 本节习题</h3>
+  <div class="ex"><b>习 1：</b>求 $x^2+y^2=a^2$ 的二阶导 $y''$。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$y'=-x/y$，$y''=-\frac{y-xy'}{y^2}=-\frac{y+x^2/y}{y^2}=-\frac{y^2+x^2}{y^3}=-\frac{a^2}{y^3}$。</div></details></div>
+  <div class="ex"><b>习 2：</b>$x=e^t\cos t$，$y=e^t\sin t$，求 $dy/dx$。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$\frac{e^t(\sin t+\cos t)}{e^t(\cos t-\sin t)}=\frac{\sin t+\cos t}{\cos t-\sin t}$。</div></details></div>
+  <div class="ex"><b>习 3：</b>求 $y=x\ln x$ 的 $y^{(10)}$。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$y'=\ln x+1$，$y''=1/x$，$y^{(10)}=(-1)^9\frac{8!}{x^9}=-\frac{40320}{x^9}$。</div></details></div>
+</div>
+
+<!-- ================= 4 ================= -->
+<div class="ch" id="c4">
+  <h2>4. 微分 <small>增量的线性主部</small></h2>
+  <div class="def"><b>定义（微分）：</b>若 Δy = A·Δx + o(Δx)（A 与 Δx 无关），称 f 在 x₀ 可微，dy = A·Δx = f′(x₀)dx。可微 ⟺ 可导，且 dy = f′(x)dx。</div>
+  <div class="thm"><b>定理（微分的应用——近似计算）：</b>f(x₀+Δx) ≈ f(x₀) + f′(x₀)Δx。<div class="proof"><b>例：</b>√(4.05) ≈ √4 + (1/(2√4))·0.05 = 2 + 0.0125 = 2.0125（真实 2.01246…）。</div></div>
+  <div class="thm"><b>定理（微分形式不变性）：</b>无论 u 是自变量还是中间变量，dy = f′(u)du 都成立——这是「一阶微分形式不变性」，为换元积分提供理论依据。<div class="proof"><b>例：</b>d(sin x²) = cos(x²)·2x dx。</div></div>
+  <div class="ex"><b>例：</b>求 y = $e^{3x}$ 的微分。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>dy = 3e^(3x) dx。</div></details></div>
+
+  <h3>4.1 可微与可导等价的严格证明</h3>
+  <div class="thm"><b>定理：</b>$f$ 在 $x_0$ 可微 $\iff f$ 在 $x_0$ 可导，且 $A=f'(x_0)$。<div class="proof"><b>证明：</b>
+  ① 可微 $\Rightarrow$ 可导：$\Delta y=A\Delta x+o(\Delta x)$，$\frac{\Delta y}{\Delta x}=A+\frac{o(\Delta x)}{\Delta x}\to A$，故 $f'(x_0)=A$。
+  ② 可导 $\Rightarrow$ 可微：$\lim_{\Delta x\to 0}\frac{\Delta y}{\Delta x}=f'(x_0)$，故 $\frac{\Delta y}{\Delta x}=f'(x_0)+\alpha$，$\alpha\to 0$，$\Delta y=f'(x_0)\Delta x+\alpha\Delta x=f'(x_0)\Delta x+o(\Delta x)$。</div></div>
+
+  <h3>4.2 微分的几何意义</h3>
+  <div class="def"><b>几何：</b>$dy=f'(x_0)\Delta x$ 是切线的纵坐标增量；$\Delta y$ 是曲线的纵坐标增量。当 $\Delta x$ 很小时，$\Delta y\approx dy$，即用切线局部代替曲线（「以直代曲」）。</div>
+
+  <h3>4.3 微分法则与形式不变性</h3>
+  <div class="thm"><b>定理（一阶微分形式不变性）：</b>$dy=f'(u)du$ 对 $u$ 是自变量或中间变量都成立。<div class="proof"><b>证明：</b>若 $u=g(x)$，则 $dy=f'(u)du=f'(g(x))g'(x)dx$，与链式法则一致。</div></div>
+  <div class="ex"><b>例 1：</b>用微分形式不变性求 $y=e^{\sin x}$ 的微分。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$dy=e^{\sin x}d(\sin x)=e^{\sin x}\cos x\,dx$。</div></details></div>
+  <div class="ex"><b>例 2：</b>近似计算 $\sqrt[3]{996}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>取 $f(x)=\sqrt[3]{x}$，$x_0=1000$，$\Delta x=-4$。$f'(x)=\frac{1}{3}x^{-2/3}$，$f'(1000)=\frac{1}{300}$。$\sqrt[3]{996}\approx 10+\frac{1}{300}(-4)=10-\frac{4}{300}\approx 9.9867$。</div></details></div>
+
+  <h3>4.4 本节习题</h3>
+  <div class="ex"><b>习 1：</b>求 $y=x^2\ln x$ 的微分。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$dy=(2x\ln x+x)dx$。</div></details></div>
+  <div class="ex"><b>习 2：</b>近似计算 $\sin 31°$。<details><summary>查看答案</summary><div class="sol"><b>答：</b>取 $x_0=30°=\pi/6$，$\Delta x=\pi/180$。$\sin 31°\approx\sin\frac{\pi}{6}+\cos\frac{\pi}{6}\cdot\frac{\pi}{180}\approx 0.5+0.8660\cdot 0.01745\approx 0.5151$。</div></details></div>
+  <div class="ex"><b>习 3：</b>求由 $y=1+xe^y$ 确定的 $dy$。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$dy=e^y dx+xe^y dy$，$dy=\frac{e^y}{1-xe^y}dx$。</div></details></div>
+</div>
+
+<!-- ================= 5 ================= -->
+<div class="ch" id="c5">
+  <h2>5. 三大中值定理 <small>微分学的桥梁</small></h2>
+  <div class="thm"><b>定理（罗尔定理）：</b>f 在 [a,b] 连续、(a,b) 可导且 f(a) = f(b)，则存在 ξ ∈ (a,b) 使 f′(ξ) = 0。<div class="proof"><b>证明要点：</b>最值定理：f 取最大值 M 与最小值 m。若 M = m 则 f 常值；否则最值之一在内部取得，费马引理（内点极值导数为 0）。</div></div>
+  <div class="thm"><b>定理（拉格朗日中值定理）：</b>f 在 [a,b] 连续、(a,b) 可导，则存在 ξ 使 f(b) − f(a) = f′(ξ)(b−a)。<div class="proof"><b>证明要点：</b>构造辅助函数 F(x) = f(x) − [f(b)−f(a)]/(b−a)·(x−a)，F(a) = F(b)，用罗尔定理。</div></div>
+  <div class="thm"><b>定理（柯西中值定理）：</b>f、g 满足条件且 g′(x) ≠ 0，则存在 ξ 使 [f(b)−f(a)]/[g(b)−g(a)] = f′(ξ)/g′(ξ)。<div class="proof"><b>证明要点：</b>构造 F(x) = f(x) − λg(x)（λ 选使 F(a) = F(b)），罗尔定理。</div></div>
+  <div class="thm"><b>定理（中值定理的应用）：</b>① 证明恒等式：f′ ≡ 0 ⟹ f 常值；② 证明不等式：f′ &gt; 0 ⟹ f 严格增；③ 估计误差：f(b)−f(a) = f′(ξ)(b−a)。<div class="proof"><b>例：</b>证明 |sin b − sin a| ≤ |b − a|——由 |cos ξ| ≤ 1。</div></div>
+  <div class="ex"><b>例：</b>证明 x &gt; 0 时 eˣ &gt; 1 + x。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>f(t) = eᵗ 在 [0,x] 用拉格朗日：eˣ − 1 = e^ξ·x &gt; 1·x = x（ξ &gt; 0 时 e^ξ &gt; 1）。</div></details></div>
+
+  <h3>5.1 费马引理（罗尔定理的基石）</h3>
+  <div class="thm"><b>定理（费马引理）：</b>设 $f$ 在 $x_0$ 的某邻域内有定义，在 $x_0$ 处可导，且 $x_0$ 是 $f$ 的极值点，则 $f'(x_0)=0$。<div class="proof"><b>证明：</b>不妨 $x_0$ 是极大值点。对充分小的 $\Delta x$，$f(x_0+\Delta x)\le f(x_0)$。
+  $\Delta x>0$ 时 $\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}\le 0$，右导 $\le 0$；
+  $\Delta x&lt;0$ 时上式 $\ge 0$，左导 $\ge 0$。
+  可导要求左右导相等，故只能等于 $0$。</div></div>
+
+  <h3>5.2 罗尔定理的完整证明</h3>
+  <div class="thm"><b>定理（罗尔）：</b>$f$ 在 $[a,b]$ 连续、$(a,b)$ 可导、$f(a)=f(b)$，则 $\exists\xi\in(a,b)$ 使 $f'(\xi)=0$。<div class="proof"><b>证明：</b>
+  ① 由最值定理，$f$ 在 $[a,b]$ 取到最大值 $M$ 与最小值 $m$。
+  ② 若 $M=m$，$f$ 为常数，$f'\equiv 0$，任取 $\xi$ 即可。
+  ③ 若 $M>m$，因 $f(a)=f(b)$，$M$ 与 $m$ 至少一个不在端点取到，设 $M$ 在 $\xi\in(a,b)$ 取到。$\xi$ 是内点极大值点，由费马引理 $f'(\xi)=0$。</div></div>
+
+  <h3>5.3 拉格朗日中值定理的证明</h3>
+  <div class="thm"><b>定理（拉格朗日）：</b>$f$ 在 $[a,b]$ 连续、$(a,b)$ 可导，则 $\exists\xi\in(a,b)$ 使
+  $$f(b)-f(a)=f'(\xi)(b-a).$$
+  <div class="proof"><b>证明（构造辅助函数）：</b>令
+  $$F(x)=f(x)-f(a)-\frac{f(b)-f(a)}{b-a}(x-a).$$
+  则 $F(a)=0$，$F(b)=0$。$F$ 在 $[a,b]$ 连续、$(a,b)$ 可导，由罗尔定理 $\exists\xi$ 使 $F'(\xi)=0$，即 $f'(\xi)-\frac{f(b)-f(a)}{b-a}=0$。</div></div>
+
+  <h3>5.4 柯西中值定理的证明</h3>
+  <div class="thm"><b>定理（柯西）：</b>$f,g$ 在 $[a,b]$ 连续、$(a,b)$ 可导，$g'(x)\neq 0$，则 $\exists\xi\in(a,b)$ 使
+  $$\frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(\xi)}{g'(\xi)}.$$
+  <div class="proof"><b>证明：</b>先由罗尔定理的推论，$g(b)-g(a)\neq 0$（否则 $g$ 满足罗尔条件，存在某点 $g'=0$，矛盾）。令
+  $$F(x)=f(x)-f(a)-\lambda[g(x)-g(a)],\qquad \lambda=\frac{f(b)-f(a)}{g(b)-g(a)}.$$
+  $F(a)=F(b)=0$，由罗尔定理 $\exists\xi$ 使 $F'(\xi)=f'(\xi)-\lambda g'(\xi)=0$，即 $\frac{f'(\xi)}{g'(\xi)}=\lambda$。</div></div>
+
+  <h3>5.5 中值定理的典型应用</h3>
+  <div class="ex"><b>例 1：</b>证明 $x>0$ 时 $\dfrac{x}{1+x}&lt;\ln(1+x)&lt;x$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>令 $f(t)=\ln(1+t)$，在 $[0,x]$ 用拉格朗日：$\ln(1+x)=\frac{x}{1+\xi}$，$0&lt;\xi&lt;x$。由 $\frac{1}{1+x}&lt;\frac{1}{1+\xi}&lt;1$ 得 $\frac{x}{1+x}&lt;\ln(1+x)&lt;x$。</div></details></div>
+  <div class="ex"><b>例 2：</b>证明方程 $x^3-3x+c=0$ 在 $(0,1)$ 内不可能有两个不同实根。<details><summary>查看解答</summary><div class="sol"><b>解：</b>反证：若有两根 $a&lt;b\in(0,1)$，$f(a)=f(b)=0$，由罗尔定理 $\exists\xi\in(a,b)$ 使 $f'(\xi)=3\xi^2-3=0$，即 $\xi=\pm 1$，但 $\xi\in(0,1)$，矛盾。</div></details></div>
+  <div class="ex"><b>例 3：</b>证明 $\arcsin x+\arccos x=\dfrac{\pi}{2}$（$|x|\le 1$）。<details><summary>查看解答</summary><div class="sol"><b>解：</b>令 $f(x)=\arcsin x+\arccos x$，$f'(x)=\frac{1}{\sqrt{1-x^2}}-\frac{1}{\sqrt{1-x^2}}=0$，故 $f$ 为常数。代入 $x=0$ 得 $f(0)=\frac{\pi}{2}$。</div></details></div>
+
+  <h3>5.6 本节习题</h3>
+  <div class="ex"><b>习 1：</b>证明 $|\arctan b-\arctan a|\le|b-a|$。<details><summary>查看答案</summary><div class="sol"><b>答：</b>拉格朗日：$|\arctan b-\arctan a|=\frac{|b-a|}{1+\xi^2}\le|b-a|$。</div></details></div>
+  <div class="ex"><b>习 2：</b>证明 $a>b>0$ 时 $\dfrac{a-b}{a}&lt;\ln\frac{a}{b}&lt;\dfrac{a-b}{b}$。<details><summary>查看答案</summary><div class="sol"><b>答：</b>对 $\ln x$ 在 $[b,a]$ 用拉格朗日：$\ln\frac{a}{b}=\frac{a-b}{\xi}$，$b&lt;\xi&lt;a$。</div></details></div>
+  <div class="ex"><b>习 3：</b>证明 $f(x)$ 在 $(a,b)$ 内 $f'\equiv 0$，则 $f$ 为常数。<details><summary>查看答案</summary><div class="sol"><b>答：</b>任取 $x_1&lt;x_2$，拉格朗日 $f(x_2)-f(x_1)=f'(\xi)(x_2-x_1)=0$。</div></details></div>
+</div>
+
+<!-- ================= 6 ================= -->
+<div class="ch" id="c6">
+  <h2>6. 洛必达法则 <small>把极限换成导数之比</small></h2>
+  <div class="thm"><b>定理（洛必达法则）：</b>若 lim f(x) = lim g(x) = 0（或 ±∞），且 f′/g′ 的极限存在（或为无穷大），则 lim f/g = lim f′/g′。<div class="proof"><b>证明要点：</b>柯西中值定理：f(x)/g(x) = [f(x)−f(a)]/[g(x)−g(a)] = f′(ξ)/g′(ξ)，ξ 介于 a 与 x 之间。</div></div>
+  <div class="thm"><b>定理（各种未定式的化法）：</b>
+  <div class="tbl"><table><colgroup><col style="width:16%"><col style="width:44%"><col style="width:40%"></colgroup><tr><th>类型</th><th>例子</th><th>处理</th></tr>
+  <tr><td>0/0, ∞/∞</td><td>lim sin x/x</td><td>直接洛必达</td></tr>
+  <tr><td>0·∞</td><td>lim x ln x</td><td>化为 0/0：ln x / (1/x)</td></tr>
+  <tr><td>∞−∞</td><td>lim (1/sin x − 1/x)</td><td>通分</td></tr>
+  <tr><td>0⁰, 1^∞, ∞⁰</td><td>lim xˣ</td><td>取对数化乘积</td></tr></table></div></div>
+  <div class="warn"><b>易错警示：</b>洛必达只适用于 0/0 与 ∞/∞；滥用会导致循环（如 x/(sin x) 型）或失败（f′/g′ 极限不存在但原极限存在，如 (x+sin x)/x → 1 但 1+cos x 极限不存在）。洛必达失败时应改用夹逼或等价无穷小。</div>
+  <div class="ex"><b>例：</b>求 $\lim_{x\to 0}\dfrac{e^x-1-x}{x^2}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>0/0 型，两次洛必达：$\dfrac{e^x-1}{2x}\to\dfrac{e^x}{2}\to\dfrac{1}{2}$。</div></details></div>
+
+  <h3>6.1 洛必达法则的证明（0/0 型）</h3>
+  <div class="thm"><b>定理：</b>设 $\lim_{x\to a}f(x)=\lim_{x\to a}g(x)=0$，在 $a$ 某邻域内 $f',g'$ 存在且 $g'\neq 0$，$\lim_{x\to a}\frac{f'(x)}{g'(x)}=A$，则 $\lim_{x\to a}\frac{f(x)}{g(x)}=A$。<div class="proof"><b>证明：</b>补充定义 $f(a)=g(a)=0$。由柯西中值定理，对 $x$ 在 $a$ 与 $x$ 之间存在 $\xi$：
+  $$\frac{f(x)}{g(x)}=\frac{f(x)-f(a)}{g(x)-g(a)}=\frac{f'(\xi)}{g'(\xi)}.$$
+  $x\to a$ 时 $\xi\to a$，故右端 $\to A$。</div></div>
+
+  <h3>6.2 典型例题</h3>
+  <div class="ex"><b>例 1：</b>求 $\displaystyle\lim_{x\to 0}\frac{x-\sin x}{x^3}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>0/0，三次洛必达：
+  $\frac{1-\cos x}{3x^2}\xrightarrow{}\frac{\sin x}{6x}\xrightarrow{}\frac{\cos x}{6}\to\frac{1}{6}$。
+  （第一次后仍 0/0，第二次仍 0/0，第三次得定值。）</div></details></div>
+  <div class="ex"><b>例 2：</b>求 $\displaystyle\lim_{x\to 0^+}x\ln x$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$0\cdot\infty$，改写 $\frac{\ln x}{1/x}$（$\infty/\infty$）：
+  $\frac{1/x}{-1/x^2}=-x\to 0$。</div></details></div>
+  <div class="ex"><b>例 3：</b>求 $\displaystyle\lim_{x\to 0}\left(\frac{1}{x}-\frac{1}{e^x-1}\right)$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$\infty-\infty$，通分：
+  $\frac{e^x-1-x}{x(e^x-1)}\sim\frac{e^x-1-x}{x^2}$。洛必达：$\frac{e^x-1}{2x}\to\frac{e^x}{2}\to\frac{1}{2}$。</div></details></div>
+  <div class="ex"><b>例 4：</b>求 $\displaystyle\lim_{x\to 0^+}x^x$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$0^0$，取对数 $\ln y=x\ln x=\frac{\ln x}{1/x}\to 0$（例 2），故 $y\to e^0=1$。</div></details></div>
+  <div class="ex"><b>例 5：</b>求 $\displaystyle\lim_{x\to\infty}\left(1+\frac{a}{x}\right)^x$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$1^\infty$，取对数 $x\ln(1+\frac{a}{x})=\frac{\ln(1+a/x)}{1/x}$，洛必达 $\frac{a/(x+a)}{-1/x^2}\cdot(-x^2)=\frac{ax}{x+a}\to a$，故 $y\to e^a$。</div></details></div>
+
+  <h3>6.3 洛必达失效的情形</h3>
+  <div class="warn"><b>失效例：</b>$\lim_{x\to\infty}\frac{x+\sin x}{x}$。直接洛必达得 $\frac{1+\cos x}{1}=1+\cos x$，极限不存在（振荡），但原极限 $=\lim(1+\frac{\sin x}{x})=1$。洛必达条件要求 $\frac{f'}{g'}$ 极限存在或为无穷，此例不满足，应改用夹逼。</div>
+
+  <h3>6.4 本节习题</h3>
+  <div class="ex"><b>习 1：</b>求 $\lim_{x\to 0}\frac{\tan x-x}{x^3}$。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$\frac{\sec^2 x-1}{3x^2}=\frac{\tan^2 x}{3x^2}\to\frac{1}{3}$。</div></details></div>
+  <div class="ex"><b>习 2：</b>求 $\lim_{x\to 0}\frac{e^x-e^{-x}-2x}{x-\sin x}$。<details><summary>查看答案</summary><div class="sol"><b>答：</b>三次洛必达：$\frac{e^x+e^{-x}-2}{1-\cos x}\to\frac{e^x-e^{-x}}{\sin x}\to\frac{e^x+e^{-x}}{\cos x}\to 2$。</div></details></div>
+  <div class="ex"><b>习 3：</b>求 $\lim_{x\to 1^-}\ln x\cdot\ln(1-x)$。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$0\cdot\infty$，令 $t=1-x$，$\ln(1-t)\sim -t$，原式 $\sim \frac{\ln(1-t)\ln t}{1}\to 0$（更严格：$\ln x\sim x-1=-t$，$t\ln t\to 0$）。</div></details></div>
+</div>
+
+<!-- ================= 7 ================= -->
+<div class="ch" id="c7">
+  <h2>7. 函数性态：单调、极值、最值 <small>导数给函数的「性格」</small></h2>
+  <div class="thm"><b>定理（单调性判定）：</b>若 f′ &gt; 0 于 (a,b)，则 f 严格递增；f′ &lt; 0 严格递减。<div class="proof"><b>证明要点：</b>拉格朗日中值定理：f(x₂)−f(x₁) = f′(ξ)(x₂−x₁) 符号确定。</div></div>
+  <div class="def"><b>定义（极值）：</b>x₀ 是极大值点，若存在邻域使 f(x) ≤ f(x₀)。极值是局部概念，最值是全局概念。</div>
+  <div class="thm"><b>定理（极值必要条件）：</b>可导函数在极值点处 f′(x₀) = 0（驻点）。驻点不一定是极值点（x³ 在 0）。</div>
+  <div class="thm"><b>定理（极值充分条件）：</b>① 第一判别法：f′ 在 x₀ 两侧变号（+→− 极大，−→+ 极小）；② 第二判别法：f′(x₀) = 0 且 f″(x₀) &gt; 0 极小、&lt; 0 极大。<div class="proof"><b>例：</b>f(x) = x³ − 3x：f′ = 3x²−3 = 0 ⟹ x = ±1；f″(±1) = ±6，故 x=−1 极大 f=2，x=1 极小 f=−2。</div></div>
+  <div class="thm"><b>定理（闭区间最值步骤）：</b>① 求驻点与不可导点；② 计算这些点与端点的函数值；③ 最大者为最大值、最小者为最小值。<div class="proof"><b>例：</b>f(x) = x² 在 [−1,2]：驻点 x=0（f=0），端点 f(−1)=1、f(2)=4 ⟹ 最大 4、最小 0。</div></div>
+  <div class="ex"><b>例：</b>用一块边长为 a 的正方形铁皮，四角各剪去边长为 x 的小正方形后折成无盖盒，x 取何值容积最大？<details><summary>查看解答</summary><div class="sol"><b>答案：</b>V(x) = x(a−2x)²，x ∈ (0, a/2)。V′ = (a−2x)(a−6x) = 0 ⟹ x = a/6。检验 V″(a/6) &lt; 0，最大。</div></details></div>
+
+  <h3>7.1 单调性判定的证明</h3>
+  <div class="thm"><b>定理：</b>$f$ 在 $[a,b]$ 连续、$(a,b)$ 可导。$f'(x)>0$ $\Longrightarrow$ $f$ 在 $[a,b]$ 严格递增。<div class="proof"><b>证明：</b>任取 $x_1&lt;x_2\in[a,b]$，由拉格朗日定理 $\exists\xi\in(x_1,x_2)$ 使
+  $$f(x_2)-f(x_1)=f'(\xi)(x_2-x_1)>0.$$
+  故 $f(x_2)>f(x_1)$。</div></div>
+
+  <h3>7.2 极值的必要条件与充分条件</h3>
+  <div class="thm"><b>定理（必要条件·费马）：</b>可导函数的极值点必为驻点（$f'=0$）。<div class="proof"><b>证明：</b>极值点是局部最值点，由费马引理 $f'=0$。注意：不可导点也可能是极值点（$|x|$ 在 $0$）。</div></div>
+  <div class="thm"><b>定理（第一充分条件）：</b>$f$ 在 $x_0$ 连续，$f'$ 在去心邻域存在：
+  <div class="tbl"><table><colgroup><col style="width:50%"><col style="width:50%"></colgroup>
+  <tr><th>$f'$ 在 $x_0$ 两侧符号</th><th>$x_0$ 类型</th></tr>
+  <tr><td>左 $+$ 右 $-$</td><td>极大值点</td></tr>
+  <tr><td>左 $-$ 右 $+$</td><td>极小值点</td></tr>
+  <tr><td>两侧同号</td><td>非极值点</td></tr>
+  </table></div></div>
+  <div class="thm"><b>定理（第二充分条件）：</b>$f'(x_0)=0$，$f''(x_0)$ 存在：
+  $$f''(x_0)>0\Rightarrow\text{极小};\qquad f''(x_0)&lt;0\Rightarrow\text{极大}.$$
+  <div class="proof"><b>证明：</b>$f''(x_0)=\lim_{x\to x_0}\frac{f'(x)-f'(x_0)}{x-x_0}=\lim\frac{f'(x)}{x-x_0}>0$。故 $x&lt;x_0$ 时 $f'(x)&lt;0$，$x>x_0$ 时 $f'(x)>0$，由第一充分条件极小。</div></div>
+
+  <h3>7.3 求函数单调区间与极值的完整步骤</h3>
+  <div class="ex"><b>例 1：</b>求 $f(x)=x^3-3x^2-9x+5$ 的单调区间与极值。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$f'(x)=3x^2-6x-9=3(x-3)(x+1)$。驻点 $x=-1,3$。
+  符号表：$x&lt;-1$ 时 $f'>0$；$-1&lt;x&lt;3$ 时 $f'&lt;0$；$x>3$ 时 $f'>0$。
+  故 $(-\infty,-1),(3,+\infty)$ 增；$(-1,3)$ 减。极大 $f(-1)=10$；极小 $f(3)=-22$。</div></details></div>
+  <div class="ex"><b>例 2：</b>求 $f(x)=x^4-2x^2$ 的极值。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$f'=4x^3-4x=4x(x-1)(x+1)$，驻点 $-1,0,1$。$f''=12x^2-4$：$f''(\pm1)=8>0$ 极小 $f=-1$；$f''(0)=-4&lt;0$ 极大 $f=0$。</div></details></div>
+
+  <h3>7.4 最值应用题</h3>
+  <div class="ex"><b>例 3：</b>求点 $(0,1)$ 到曲线 $y=x^2$ 的最短距离。<details><summary>查看解答</summary><div class="sol"><b>解：</b>距离平方 $d^2=x^2+(x^2-1)^2$。令 $u=x^2$，$d^2=u+(u-1)^2=u^2-u+1$，$(d^2)'=2u-1=0$，$u=1/2$。最短距离 $=\sqrt{1/2+(1/2-1)^2}=\sqrt{3/4}=\frac{\sqrt{3}}{2}$。</div></details></div>
+
+  <h3>7.5 本节习题</h3>
+  <div class="ex"><b>习 1：</b>求 $f(x)=2x^3-6x^2-18x+7$ 的极值。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$f'=6(x-3)(x+1)$，极大 $f(-1)=17$，极小 $f(3)=-47$。</div></details></div>
+  <div class="ex"><b>习 2：</b>求 $f(x)=x+\sqrt{1-x}$ 在 $[0,1]$ 的最值。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$f'=1-\frac{1}{2\sqrt{1-x}}=0$ 得 $x=3/4$，$f(3/4)=5/4$；端点 $f(0)=1,f(1)=1$。最大 $5/4$，最小 $1$。</div></details></div>
+  <div class="ex"><b>习 3：</b>证明 $x>0$ 时 $e^x>1+x+x^2/2$。<details><summary>查看答案</summary><div class="sol"><b>答：</b>令 $g=e^x-1-x-x^2/2$，$g'=e^x-1-x$，$g''=e^x-1>0$（$x>0$），$g'(0)=0\Rightarrow g'>0$，$g(0)=0\Rightarrow g>0$。</div></details></div>
+</div>
+
+<!-- ================= 8 ================= -->
+<div class="ch" id="c8">
+  <h2>8. 凹凸性、拐点、渐近线、曲率与泰勒公式 <small>二阶导数与多项式逼近</small></h2>
+  <div class="def"><b>定义（凹凸性）：</b>f″ &gt; 0 于 (a,b) ⟹ 凹（向上凸，图像在切线之上）；f″ &lt; 0 ⟹ 凸。拐点：凹凸性改变的点（f″ 变号）。</div>
+  <div class="def"><b>定义（曲率）：</b>曲线弯曲程度的度量 K = |y″|/(1 + y′²)^(3/2)，曲率半径 R = 1/K。<div class="proof"><b>例：</b>圆 x²+y²=r² 的曲率处处 K = 1/r，曲率半径 r。</div></div>
+  <div class="thm"><b>定理（泰勒公式）：</b>f 在 x₀ 附近 n+1 阶可导，则 f(x) = Σ_{k=0}^n f⁽ᵏ⁾(x₀)/k!·(x−x₀)ᵏ + Rₙ(x)，拉格朗日余项 Rₙ = f⁽ⁿ⁺¹⁾(ξ)/(n+1)!·(x−x₀)ⁿ⁺¹。<div class="proof"><b>证明要点：</b>对 Rₙ 反复用柯西中值定理（或积分余项 + 中值定理）。</div></div>
+  <div class="thm"><b>定理（麦克劳林展开）：</b>
+  <div class="tbl"><table><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tr><th>函数</th><th>展开（前几项）</th></tr>
+  <tr><td>eˣ</td><td>1 + x + x²/2! + x³/3! + …</td></tr>
+  <tr><td>sin x</td><td>x − x³/3! + x⁵/5! − …</td></tr>
+  <tr><td>cos x</td><td>1 − x²/2! + x⁴/4! − …</td></tr>
+  <tr><td>ln(1+x)</td><td>x − x²/2 + x³/3 − …</td></tr>
+  <tr><td>1/(1−x)</td><td>1 + x + x² + x³ + …</td></tr>
+  <tr><td>(1+x)^α</td><td>1 + αx + α(α−1)x²/2! + …</td></tr></table></div></div>
+  <div class="thm"><b>定理（泰勒公式求极限）：</b>把分子分母展开到同阶再相除，是处理复杂极限的系统方法。<div class="proof"><b>例：</b>lim (sin x − x)/x³：sin x = x − x³/6 + o(x³)，原式 = (−x³/6 + o(x³))/x³ = −1/6。</div></div>
+  <div class="ex"><b>例：</b>求 e 的近似值，误差 &lt; 10⁻⁵。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>e = 1+1+1/2!+…+1/n! + Rₙ，Rₙ = e^ξ/(n+1)! &lt; 3/(n+1)!。n = 8 时 3/9! ≈ 8×10⁻⁶ &lt; 10⁻⁵，e ≈ 2.71828。</div></details></div>
+
+  <h3>8.1 凹凸性的严格定义与判定</h3>
+  <div class="def"><b>定义（凹/凸）：</b>设 $f$ 在区间 $I$ 上连续。若对任意 $x_1,x_2\in I$ 及 $t\in(0,1)$，
+  $$f(tx_1+(1-t)x_2)\le tf(x_1)+(1-t)f(x_2),$$
+  称 $f$ 在 $I$ 上（上）凹；反向称（上）凸。</div>
+  <div class="thm"><b>定理（二阶导判定）：</b>$f$ 在 $[a,b]$ 连续、$(a,b)$ 二阶可导：
+  $$f''(x)>0\Rightarrow\text{凹};\qquad f''(x)&lt;0\Rightarrow\text{凸}.$$
+  <div class="proof"><b>证明：</b>对 $x_1&lt;x_2$，记 $x_0=tx_1+(1-t)x_2$。由泰勒展开到一阶：
+  $f(x_1)=f(x_0)+f'(x_0)(x_1-x_0)+\frac{f''(\xi_1)}{2}(x_1-x_0)^2$，
+  $f(x_2)=f(x_0)+f'(x_0)(x_2-x_0)+\frac{f''(\xi_2)}{2}(x_2-x_0)^2$。
+  加权相加后线性项抵消，$f''(\cdot)>0$ 推出 $tf(x_1)+(1-t)f(x_2)\ge f(x_0)$。</div></div>
+  <div class="def"><b>定义（拐点）：</b>连续曲线 $y=f(x)$ 上凹凸性发生改变的点称为拐点。必要条件：若 $f''$ 在该点连续，则 $f''(x_0)=0$；但 $f''(x_0)=0$ 不一定是拐点（如 $y=x^4$ 在 $0$）。</div>
+  <div class="ex"><b>例 1：</b>求 $y=3x^4-4x^3+1$ 的凹凸区间与拐点。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$y'=12x^3-12x^2$，$y''=36x^2-24x=12x(3x-2)$。零点 $x=0,2/3$。
+  $x&lt;0$：$y''>0$ 凹；$0&lt;x&lt;2/3$：$y''&lt;0$ 凸；$x>2/3$：$y''>0$ 凹。
+  拐点 $(0,1)$ 与 $(2/3, 11/27)$。</div></details></div>
+
+  <h3>8.2 渐近线</h3>
+  <div class="thm"><b>定理（三类渐近线）：</b>
+  <div class="tbl"><table><colgroup><col style="width:20%"><col style="width:80%"></colgroup>
+  <tr><th>类型</th><th>求法</th></tr>
+  <tr><td>水平渐近线</td><td>若 $\lim_{x\to\infty}f(x)=c$，则 $y=c$</td></tr>
+  <tr><td>垂直渐近线</td><td>若 $\lim_{x\to x_0}f(x)=\infty$（$x_0$ 为无定义点），则 $x=x_0$</td></tr>
+  <tr><td>斜渐近线</td><td>$a=\lim_{x\to\infty}\frac{f(x)}{x}$，$b=\lim_{x\to\infty}[f(x)-ax]$，则 $y=ax+b$</td></tr>
+  </table></div></div>
+  <div class="ex"><b>例 2：</b>求 $y=\dfrac{x^2}{x+1}$ 的渐近线。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$x\to-1$ 时 $y\to\infty$，垂直渐近线 $x=-1$。斜渐近线：$a=\lim\frac{x^2}{x(x+1)}=1$，$b=\lim\left(\frac{x^2}{x+1}-x\right)=\lim\frac{-x}{x+1}=-1$。斜渐近线 $y=x-1$。无水平渐近线。</div></details></div>
+
+  <h3>8.3 曲率公式推导与应用</h3>
+  <div class="thm"><b>定理（曲率）：</b>$y=f(x)$ 二阶可导，曲率
+  $$K=\frac{|y''|}{(1+y'^2)^{3/2}}.$$
+  曲率半径 $R=\frac{1}{K}$。<div class="proof"><b>推导：</b>曲率定义为切线转角 $\alpha$ 对弧长 $s$ 的变化率 $K=|d\alpha/ds|$。$\tan\alpha=y'$，$\alpha=\arctan y'$，$d\alpha/dx=\frac{y''}{1+y'^2}$；又 $ds/dx=\sqrt{1+y'^2}$。故 $K=\frac{|d\alpha/dx|}{|ds/dx|}=\frac{|y''|}{(1+y'^2)^{3/2}}$。</div></div>
+  <div class="ex"><b>例 3：</b>求 $y=\ln x$ 在 $(1,0)$ 处的曲率与曲率半径。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$y'=1/x$，$y''=-1/x^2$。在 $x=1$：$y'=1$，$y''=-1$。$K=\frac{|-1|}{(1+1)^{3/2}}=\frac{1}{2\sqrt{2}}$，$R=2\sqrt{2}$。</div></details></div>
+
+  <h3>8.4 泰勒公式的证明（反复用柯西中值）</h3>
+  <div class="thm"><b>定理（泰勒公式·拉格朗日余项）：</b>$f$ 在含 $x_0$ 的区间有 $n+1$ 阶导数，则
+  $$f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+R_n(x),\qquad R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1},$$
+  $\xi$ 介于 $x_0$ 与 $x$ 之间。
+  <div class="proof"><b>证明（反复用柯西中值定理）：</b>
+  ① 记 $R_n(x)=f(x)-\sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k$，则 $R_n(x_0)=R_n'(x_0)=\cdots=R_n^{(n)}(x_0)=0$，而 $R_n^{(n+1)}(x)=f^{(n+1)}(x)$。
+  ② 对 $R_n(x)$ 与 $(x-x_0)^{n+1}$ 反复用柯西中值定理（共 $n+1$ 次）：
+  $$\frac{R_n(x)}{(x-x_0)^{n+1}}=\frac{R_n'(\xi_1)}{(n+1)(\xi_1-x_0)^n}=\cdots=\frac{R_n^{(n+1)}(\xi)}{(n+1)!}=\frac{f^{(n+1)}(\xi)}{(n+1)!}.$$
+  ③ 即得 $R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$。</div></div>
+
+  <h3>8.5 皮亚诺余项与常见展开</h3>
+  <div class="thm"><b>定理（皮亚诺余项）：</b>$f$ 在 $x_0$ 有 $n$ 阶导数，则
+  $$f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+o((x-x_0)^n).$$
+  适用于求极限；拉格朗日余项适用于误差估计。</div>
+  <div class="ex"><b>例 4：</b>用泰勒公式求 $\displaystyle\lim_{x\to 0}\frac{\cos x-e^{-x^2/2}}{x^4}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>展开到 $x^4$：
+  $\cos x=1-\frac{x^2}{2}+\frac{x^4}{24}+o(x^4)$；
+  $e^{-x^2/2}=1-\frac{x^2}{2}+\frac{x^4}{8}+o(x^4)$。
+  分子 $=\left(\frac{1}{24}-\frac{1}{8}\right)x^4+o(x^4)=-\frac{x^4}{12}+o(x^4)$，原式 $=-\frac{1}{12}$。</div></details></div>
+  <div class="ex"><b>例 5：</b>写出 $e^x$ 的 $n$ 阶麦克劳林公式并估计 $e$ 的误差。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$e^x=1+x+\frac{x^2}{2!}+\cdots+\frac{x^n}{n!}+\frac{e^\xi}{(n+1)!}x^{n+1}$。$x=1$ 时 $R_n=\frac{e^\xi}{(n+1)!}&lt;\frac{3}{(n+1)!}$。取 $n=9$，$3/10!\approx 7.4\times 10^{-7}$，$e\approx 2.7182818$。</div></details></div>
+
+  <h3>8.6 本节习题</h3>
+  <div class="ex"><b>习 1：</b>求 $y=x^3-3x^2$ 的凹凸区间与拐点。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$y''=6x-6=6(x-1)$。$x&lt;1$ 凸，$x>1$ 凹；拐点 $(1,-2)$。</div></details></div>
+  <div class="ex"><b>习 2：</b>求 $y=\dfrac{1}{x-1}$ 的渐近线。<details><summary>查看答案</summary><div class="sol"><b>答：</b>垂直 $x=1$；水平 $y=0$（$x\to\infty$）。无斜渐近线。</div></details></div>
+  <div class="ex"><b>习 3：</b>用泰勒公式求 $\lim_{x\to 0}\frac{\ln(1+x)-x}{x^2}$。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$\ln(1+x)=x-\frac{x^2}{2}+o(x^2)$，原式 $=-1/2$。</div></details></div>
+  <div class="ex"><b>习 4：</b>求抛物线 $y=x^2$ 在 $(0,0)$ 处的曲率。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$y'=0,y''=2$，$K=2$，$R=1/2$。</div></details></div>
+</div>
+
+<!-- ================= 9 ================= -->
+
+<!-- ================= 深度小节：9a. 深度：高阶导数与 Leibniz 公式 ================= -->
+<div class="ch" id="c9a">
+  <h2>9a. 深度：高阶导数与 Leibniz 公式 <small>乘积的高阶导数怎么算</small></h2>
+  <div class="def"><b>定义（高阶导数）</b> $f^{(n)}(x)=(f^{(n-1)})'(x)$，约定 $f^{(0)}=f$。常见高阶导数：$(\sin x)^{(n)}=\sin(x+n\pi/2)$，$(\cos x)^{(n)}=\cos(x+n\pi/2)$，$(e^{ax})^{(n)}=a^n e^{ax}$，$\left(\dfrac{1}{ax+b}\right)^{(n)}=\dfrac{(-1)^n n!\,a^n}{(ax+b)^{n+1}}$。</div>
+  <div class="thm"><b>定理（Leibniz 公式）</b> 若 $u,v$ 均 $n$ 阶可导，则
+  $$(uv)^{(n)}=\sum_{k=0}^n \binom{n}{k} u^{(k)} v^{(n-k)}.$$
+  <div class="proof"><b>证明：</b>归纳。$n=1$ 即乘积法则。设对 $n$ 成立，则 $(uv)^{(n+1)}=\left(\sum_{k=0}^n\binom{n}{k}u^{(k)}v^{(n-k)}\right)'=\sum_{k=0}^n\binom{n}{k}\left[u^{(k+1)}v^{(n-k)}+u^{(k)}v^{(n-k+1)}\right]$。利用 Pascal 恒等式 $\binom{n}{k}+\binom{n}{k-1}=\binom{n+1}{k}$ 合并即得。</div></div>
+  <div class="ex"><b>例：</b>求 $(x^2\sin x)^{(2024)}$。
+  <div class="sol"><b>解：</b>由 Leibniz 公式，$u=x^2$ 的三阶及以上导数为 0，故只需 $k=0,1,2$：
+  $$(x^2\sin x)^{(2024)}=x^2(\sin x)^{(2024)}+2024\cdot 2x\cdot(\sin x)^{(2023)}+\binom{2024}{2}\cdot 2\cdot(\sin x)^{(2022)}.$$
+  $2024\equiv0\pmod4$，故 $(\sin x)^{(2024)}=\sin x$，$(\sin x)^{(2023)}=-\cos x$，$(\sin x)^{(2022)}=-\sin x$。代入化简得 $x^2\sin x-4048x\cos x-2024\cdot2023\sin x$。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9b. 深度：微分中值定理的统一证明 ================= -->
+<div class="ch" id="c9b">
+  <h2>9b. 深度：微分中值定理的统一证明 <small>Rolle、Lagrange、Cauchy 的一条主线</small></h2>
+  <div class="thm"><b>Rolle 定理</b> 若 $f$ 在 $[a,b]$ 连续、$(a,b)$ 可导且 $f(a)=f(b)$，则 $\exists\xi\in(a,b)$ 使 $f'(\xi)=0$。</div>
+  <div class="thm"><b>Lagrange 中值定理</b> 若 $f$ 在 $[a,b]$ 连续、$(a,b)$ 可导，则 $\exists\xi\in(a,b)$ 使 $f'(\xi)=\dfrac{f(b)-f(a)}{b-a}$。<div class="proof"><b>证明（辅助函数法）：</b>构造 $\varphi(x)=f(x)-\dfrac{f(b)-f(a)}{b-a}(x-a)$。则 $\varphi(a)=f(a)$，$\varphi(b)=f(a)$，$\varphi$ 满足 Rolle 条件。故 $\exists\xi$ 使 $\varphi'(\xi)=0$，即 $f'(\xi)=\dfrac{f(b)-f(a)}{b-a}$。</div></div>
+  <div class="thm"><b>Cauchy 中值定理</b> 若 $f,g$ 在 $[a,b]$ 连续、$(a,b)$ 可导且 $g'(x)\ne0$，则 $\exists\xi$ 使 $\dfrac{f'(\xi)}{g'(\xi)}=\dfrac{f(b)-f(a)}{g(b)-g(a)}$。<div class="proof"><b>证明：</b>构造 $\psi(x)=f(x)-\dfrac{f(b)-f(a)}{g(b)-g(a)}[g(x)-g(a)]$（需先证 $g(b)\ne g(a)$：若 $g(b)=g(a)$，由 Rolle $g'(\eta)=0$，矛盾）。$\psi(a)=\psi(b)=f(a)$，由 Rolle 得 $\psi'(\xi)=0$。</div></div>
+  <div class="ex"><b>例：</b>用 Lagrange 中值定理证明：当 $x>0$ 时 $\dfrac{x}{1+x}&lt;\ln(1+x)&lt;x$。
+  <div class="sol"><b>解：</b>$f(t)=\ln(1+t)$ 在 $[0,x]$ 上满足中值定理条件，$\exists\xi\in(0,x)$ 使 $\ln(1+x)-\ln 1=\dfrac{x}{1+\xi}$。因 $0&lt;\xi&lt;x$，故 $\dfrac{1}{1+x}&lt;\dfrac{1}{1+\xi}&lt;1$，得 $\dfrac{x}{1+x}&lt;\ln(1+x)&lt;x$。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9c. 深度：Taylor 公式的余项估计 ================= -->
+<div class="ch" id="c9c">
+  <h2>9c. 深度：Taylor 公式的余项估计 <small>为什么「多项式逼近」能精确到任意阶</small></h2>
+  <div class="thm"><b>Taylor 公式（带 Lagrange 余项）</b> 若 $f$ 在含 $x_0$ 的区间内有 $n+1$ 阶导数，则
+  $$f(x)=\sum_{k=0}^n\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+R_n(x),$$
+  其中 $R_n(x)=\dfrac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$，$\xi$ 在 $x_0$ 与 $x$ 之间。</div>
+  <div class="proof"><b>证明：</b>固定 $x\ne x_0$，令 $M$ 满足 $f(x)=\sum_{k=0}^n\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+\frac{M}{(n+1)!}(x-x_0)^{n+1}$。构造 $F(t)=f(x)-\sum_{k=0}^n\frac{f^{(k)}(t)}{k!}(x-t)^k-\frac{M}{(n+1)!}(x-t)^{n+1}$。则 $F(x_0)=F(x)=0$，由 Rolle $\exists\xi$ 使 $F'(\xi)=0$。计算 $F'(t)=-\frac{f^{(n+1)}(t)}{n!}(x-t)^n+\frac{M}{n!}(x-t)^n$，故 $M=f^{(n+1)}(\xi)$。</div>
+  <div class="thm"><b>常用展开（Peano 余项）</b>
+  $$e^x=1+x+\frac{x^2}{2!}+\cdots+\frac{x^n}{n!}+o(x^n),\quad \sin x=\sum_{k=0}^{m-1}\frac{(-1)^k x^{2k+1}}{(2k+1)!}+o(x^{2m}),$$
+  $$\ln(1+x)=\sum_{k=1}^n\frac{(-1)^{k-1}x^k}{k}+o(x^n),\quad (1+x)^\alpha=\sum_{k=0}^n\binom{\alpha}{k}x^k+o(x^n).$$
+  </div>
+  <div class="ex"><b>例：</b>用 Taylor 公式求 $\lim_{x\to0}\dfrac{\sin x - x\cos x}{\sin^3 x}$。
+  <div class="sol"><b>解：</b>$\sin x=x-\frac{x^3}{6}+o(x^3)$，$x\cos x=x(1-\frac{x^2}{2}+o(x^2))=x-\frac{x^3}{2}+o(x^3)$。分子 $=(x-\frac{x^3}{6})-(x-\frac{x^3}{2})+o(x^3)=\frac{x^3}{3}+o(x^3)$。分母 $\sim x^3$，故极限 $=\frac{1}{3}$。</div></div>
+</div>
+
+
+<!-- ================= 第二轮深度小节：9d. 深度：泰勒展开与余项估计 ================= -->
+<div class="ch" id="c9d">
+  <h2>9d. 深度：泰勒展开与余项估计 <small>用多项式逼近函数的精度</small></h2>
+  <div class="def"><b>定义（Taylor 多项式）</b> $f$ 在 $x_0$ 处 $n$ 阶 Taylor 多项式 $T_n(x)=\sum_{k=0}^n\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k$。余项 $R_n=f-T_n$。</div>
+  <div class="thm"><b>定理（Taylor 展开带 Lagrange 余项）</b> 若 $f\in C^n[a,b]\cap f^{(n+1)}$ 存在，则
+  $$f(x)=\sum_{k=0}^n\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$$
+  其中 $\xi$ 在 $x_0$ 与 $x$ 之间。<div class="proof"><b>思路：</b>对 $R_n$ 反复 Rolle（$n+1$ 次）得 $R_n^{(n+1)}(\xi)=f^{(n+1)}(\xi)$；用 Cauchy 中值定理论证 $R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$。</div></div>
+  <div class="thm"><b>定理（Peano 余项）</b> 若 $f$ 在 $x_0$ 处 $n$ 次可导，则 $R_n=o((x-x_0)^n)$。<div class="proof"><b>意义：</b>Peano 要求最弱（只需 $n$ 阶导数存在），但只给局部信息（$o$ 而非 $O$）。Lagrange 给定量界但要求 $n+1$ 阶导数存在。应用选择取决于问题。</div></div>
+  <div class="ex"><b>例：</b>估计 $e$ 的近似值并控制误差。
+  <div class="sol"><b>解：</b>$e^x$ 在 $x_0=0$ 处 $T_n=\sum_{k=0}^n\frac{x^k}{k!}$，Lagrange 余项 $|R_n(1)|=\frac{e^\xi}{(n+1)!}\le\frac{e}{(n+1)!}&lt;\frac{3}{(n+1)!}$。要误差 $&lt;10^{-6}$，取 $n=9$（$10!=3628800>3\times10^6$）。$e\approx2.7182818...$。</div></div>
+</div>
+
+<!-- ================= 第二轮深度小节：9e. 深度：凸函数与 Jensen 不等式 ================= -->
+<div class="ch" id="c9e">
+  <h2>9e. 深度：凸函数与 Jensen 不等式 <small>弯曲的方向决定了不等式</small></h2>
+  <div class="def"><b>定义（凸函数）</b> $f:I\to\mathbb{R}$ 凸，若 $f(\lambda x+(1-\lambda)y)\le\lambda f(x)+(1-\lambda)f(y)$（$\forall\lambda\in[0,1]$, $x,y\in I$）。严格凸：不等号严格。</div>
+  <div class="thm"><b>定理（凸性的判别）</b> 若 $f$ 二阶可导：① $f$ 凸 $\Leftrightarrow$ $f''\ge0$；② $f$ 严格凸 $\Leftarrow$ $f''>0$（反之不真，如 $f(x)=x^4$ 在 $x=0$ 处 $f''=0$）。<div class="proof"><b>思路：</b>由 Taylor 二阶 $f(y)=f(x)+f'(x)(y-x)+\frac{f''(\xi)}2(y-x)^2$ 知 $f''\ge0$ 给割线在上。</div></div>
+  <div class="thm"><b>定理（Jensen 不等式）</b> $f$ 凸，$\lambda_i\ge0$, $\sum\lambda_i=1$：
+  $$f\left(\sum\lambda_i x_i\right)\le\sum\lambda_i f(x_i).$$
+  概率形式：$f(\mathbb{E}X)\le\mathbb{E}f(X)$。<div class="proof"><b>思路：</b>归纳。$n=2$ 是定义；$n\to n+1$：把 $\sum_1^n\lambda_i x_i$ 视为 $\lambda_n$-凸组合 $\lambda_n x_n+(1-\lambda_n)\sum_{i&lt;n}\frac{\lambda_i}{1-\lambda_n}x_i$，用归纳假设。</div></div>
+  <div class="ex"><b>例：</b>用 Jensen 不等式证明 AM–GM 不等式。
+  <div class="sol"><b>解：</b>取 $f(x)=-\ln x$（凸，因 $f''=1/x^2>0$），$\lambda_i=1/n$，$x_i=a_i>0$。Jensen 给 $-\ln\frac{\sum a_i}{n}\le-\frac1n\sum\ln a_i$，即 $\ln\frac{\sum a_i}{n}\ge\frac1n\ln(a_1\cdots a_n)=\ln(a_1\cdots a_n)^{1/n}$，故 $\frac{a_1+\cdots+a_n}{n}\ge(a_1\cdots a_n)^{1/n}$——AM–GM。</div></div>
+</div>
+
+<div class="ch" id="c9">
+  <h2>9. 练习与自测</h2>
+  <div class="ex"><b>练习 1：</b>求 y = ln(sin x) 的导数。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>y′ = cos x / sin x = cot x（链式法则）。</div></details></div>
+  <div class="ex"><b>练习 2：</b>求由 $x^2+xy+y^2=3$ 确定的 $y'$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$2x+y+xy'+2yy'=0\implies y'=-\dfrac{2x+y}{x+2y}$。</div></details></div>
+  <div class="ex"><b>练习 3：</b>求 y = $x^{1/x}$ 的导数。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>ln y = (1/x)ln x ⟹ y′/y = (1−ln x)/x² ⟹ y′ = $x^{1/x}$(1−ln x)/x²。</div></details></div>
+  <div class="ex"><b>练习 4：</b>$\lim_{x\to 0}\dfrac{\tan x-x}{x^3}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\tan x=x+x^3/3+o(x^3)$，原式 $=\dfrac{1}{3}$。</div></details></div>
+  <div class="ex"><b>练习 5：</b>求 f(x) = x⁴ − 4x³ + 2 的极值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>f′ = 4x³ − 12x² = 4x²(x−3) = 0 ⟹ x = 0、3。f″ = 12x² − 24x：f″(3) = 36 &gt; 0 极小 f(3) = −25；x = 0 处 f″(0) = 0 需用第一判别法：f′ 在 0 两侧不变号（x² 因子）⟹ 非极值。</div></details></div>
+  <div class="ex"><b>练习 6：</b>证明：x &gt; 0 时 x − x³/6 &lt; sin x &lt; x。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>sin x = x − x³/6 + x⁵cos ξ/120，x⁵cos ξ/120 的正负由 cos ξ 决定——更稳的做法：f(x) = sin x − x 递减（f′ = cos x − 1 ≤ 0）⟹ sin x &lt; x；g(x) = sin x − x + x³/6，g′ = cos x − 1 + x²/2 ≥ 0（cos x ≥ 1 − x²/2）⟹ g &gt; 0。</div></details></div>
+
+  <div class="ex"><b>补充测 1：</b>用定义求 $f(x)=e^x$ 在 $x=0$ 的导数。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$\lim_{h\to 0}\frac{e^h-1}{h}=1$。</div></details></div>
+  <div class="ex"><b>补充测 2：</b>求 $\lim_{x\to 0}\frac{e^x-e^{-x}-2x}{x-\sin x}$。<details><summary>查看答案</summary><div class="sol"><b>答：</b>洛必达三次或泰勒：$e^x-e^{-x}-2x=2(x+x^3/6+\cdots)-2x=\frac{x^3}{3}+o(x^3)$，$x-\sin x=\frac{x^3}{6}+o(x^3)$，比值 $=2$。</div></details></div>
+  <div class="ex"><b>补充测 3：</b>求 $y=xe^{-x}$ 的单调区间、极值、凹凸与拐点。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$y'=e^{-x}(1-x)$，极大 $f(1)=1/e$；$y''=e^{-x}(x-2)$，$x&lt;2$ 凸，$x>2$ 凹，拐点 $(2,2/e^2)$。</div></details></div>
+  <div class="ex"><b>补充测 4：</b>写出 $\sin x$ 的带拉格朗日余项的 $2n+1$ 阶麦克劳林公式。<details><summary>查看答案</summary><div class="sol"><b>答：</b>$\sin x=x-\frac{x^3}{3!}+\cdots+(-1)^n\frac{x^{2n+1}}{(2n+1)!}+\frac{\sin(\xi+(2n+2)\pi/2)}{(2n+2)!}x^{2n+2}$。</div></details></div>
+</div>
+
+<!-- ================= 10 ================= -->
+
+  <div class="ex"><b>练习 8：</b>求 $y=\ln(1+x)$ 的 $n$ 阶导数。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$y'=\frac{1}{1+x}$，$y''=-\frac{1}{(1+x)^2}$，归纳得 $y^{(n)}=\frac{(-1)^{n-1}(n-1)!}{(1+x)^n}$（$n\ge1$）。</div></details></div>
+
+  <div class="ex"><b>练习 9：</b>设 $f$ 在 $[0,1]$ 二阶可导，$f(0)=f(1)=0$，$|f''(x)|\le1$。证明 $|f(x)|\le\frac{1}{8}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>对任意 $x\in[0,1]$，在 $x$ 处展开：$f(0)=f(x)-x f'(x)+\frac{x^2}{2}f''(\xi_1)$，$f(1)=f(x)+(1-x)f'(x)+\frac{(1-x)^2}{2}f''(\xi_2)$。消去 $f'(x)$：$f(x)=\frac{x(1-x)}{2}[\xi_1 f''(\xi_2)+\xi_2 f''(\xi_1)]$……取绝对值得 $|f(x)|\le\frac{x(1-x)}{2}\le\frac{1}{8}$（$x=1/2$ 取最大）。</div></details></div>
+
+  <div class="ex"><b>练习 10：</b>求 $\lim_{x\to0}\dfrac{\tan x - \sin x}{x^3}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\tan x=x+\frac{x^3}{3}+o(x^3)$，$\sin x=x-\frac{x^3}{6}+o(x^3)$，差 $=\frac{x^3}{2}+o(x^3)$，极限 $=\frac{1}{2}$。</div></details></div>
+
+  <div class="ex"><b>练习 11：</b>证明不等式 $\frac{a-b}{a}&lt;\ln\frac{a}{b}&lt;\frac{a-b}{b}$（$a>b>0$）。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $f(x)=\ln x$，在 $[b,a]$ 上用 Lagrange 中值定理：$\ln a-\ln b=\frac{a-b}{\xi}$，$b&lt;\xi&lt;a$，故 $\frac{a-b}{a}&lt;\frac{a-b}{\xi}&lt;\frac{a-b}{b}$。</div></details></div>
+
+  <div class="ex"><b>练习 12：</b>用 Taylor 展开求 $\lim_{x\to0}\frac{e^x-1-x-x^2/2}{x^3}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$e^x=1+x+x^2/2+x^3/6+o(x^3)$，分子 $=x^3/6+o(x^3)$，极限 $=1/6$。</div></details></div>
+  <div class="ex"><b>练习 13：</b>$f(x)=\ln(1+x)$ 在 $x=0$ 处的 Taylor 展开到 3 阶。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+o(x^3)$（Peano 余项）。Lagrange 余项 $\frac{f^{(4)}(\xi)}{4!}x^4=\frac{-6}{4!(1+\xi)^4}x^4=-\frac{x^4}{4(1+\xi)^4}$。</div></details></div>
+
+<div class="ch" id="c10">
+  <h2>10. 术语表与在线资源</h2>
+  <div class="gloss">
+    <dt>导数 / 微分</dt><dd>变化率 / 增量的线性主部。</dd>
+    <dt>驻点 / 拐点</dt><dd>f′ = 0 的点 / 凹凸改变的点。</dd>
+    <dt>中值定理</dt><dd>罗尔、拉格朗日、柯西三大定理。</dd>
+    <dt>洛必达法则</dt><dd>未定式极限的导数方法。</dd>
+    <dt>泰勒公式</dt><dd>多项式逼近 + 余项（拉格朗日/皮亚诺）。</dd>
+    <dt>渐近线</dt><dd>水平、垂直、斜三类。</dd>
+    <dt>曲率</dt><dd>弯曲程度 $K=|y''|/(1+y'^2)^{3/2}$。</dd>
+    <dt>费马引理</dt><dd>内点极值处导数为零。</dd>
+    <dt>Leibniz 公式</dt><dd>$(uv)^{(n)}=\sum_{k=0}^n\binom{n}{k}u^{(k)}v^{(n-k)}$，乘积高阶导数。</dd>
+    <dt>Cauchy 中值定理</dt><dd>Lagrange 中值定理的参数形式，是 L&#8217;Hospital 法则的理论基础。</dd>
+    <dt>Taylor 余项</dt><dd>Lagrange 余项 $R_n=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$，给出逼近误差。</dd>
+  </div>
+  <div class="online">
+    <b>推荐在线资源：</b>
+    <ul>
+      <li><a href="https://www.wolframalpha.com" target="_blank" rel="noopener noreferrer">Wolfram Alpha</a> —— 输入 derivative $x^3$*sin(x) 求导验证</li>
+      <li><a href="https://www.desmos.com/calculator" target="_blank" rel="noopener noreferrer">Desmos</a> —— 拖动观察切线变化</li>
+    </ul>
+    <p class="hint">下一讲：<a href="03-一元积分学.html">III 一元积分学 →</a> 求导的逆运算与面积求和。</p>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="01-函数极限与连续.html">← 上一讲</a>
+  <a href="03-一元积分学.html">下一讲：一元积分学 →</a>
+</footer>
+</div>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

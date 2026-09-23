@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="no-referrer">
+<title>双摆混沌 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='28' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%9A%96%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--gold:#A8751E;--red:#C0392B;--blue:#1F4E9C;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--gold);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:42px;margin:14px 0 6px;}
+h1 .sym{color:var(--gold);font-style:italic;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif;font-size:26px;border-left:6px solid var(--gold);padding-left:14px;}
+.sec h2 small{font-size:13px;color:var(--ink2);font-family:"Noto Sans SC",sans-serif;font-weight:400;margin-left:8px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:20px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#fdfaf0;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--gold);width:170px;}
+.controls .btn{background:var(--gold);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls .btn.gray{background:#8A8270;}
+.info{font-family:Georgia,serif;font-size:14px;color:var(--ink2);margin-left:auto;}
+.explain{margin-top:16px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+.tag{display:inline-block;margin-top:10px;font-size:12px;letter-spacing:.08em;color:var(--gold);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--gold);text-decoration:none;}
+</style>
+<script>
+window.MathJax={loader:{paths:{mathjax:"../assets/mathjax/es5"}},tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="可视化导航.html">← 返回可视化</a>
+  <h1>双摆混沌 <span class="sym">♆</span></h1>
+  <p class="sub">两根杆、两个球，没有任何外力——它却能翻跟头、永不重复。打开「微差对比」，让两个初值只差百万分之一的双摆同时跑，几秒后天壤之别：这就是蝴蝶效应。</p>
+  <span class="tag">动力系统 · 混沌 · 初值敏感</span>
+</header>
+
+<div class="sec">
+  <h2>实时仿真 <small>按钮换新初值；开对比看两条轨迹分离</small></h2>
+  <div class="fig">
+    <canvas id="cv" width="880" height="600" role="img" aria-label="双摆混沌：交互式画布，内容随下方控件实时变化"></canvas>
+    <div class="controls">
+      <label>下摆质量</label><input type="range" id="m2" min="50" max="200" value="100">
+      <span id="m2V" class="info">1.00</span>
+      <button class="btn" id="go">暂停</button>
+      <button class="btn gray" id="new">新初值</button>
+      <button class="btn gray" id="cmp">微差对比：关</button>
+      <span class="info" id="sep">—</span>
+    </div>
+    <p class="explain"><b>怎么玩：</b>红杆是主摆；开「微差对比」后多出一条<b>蓝</b>尾迹——它和红摆初值仅差 $10^{-6}$。起初几乎重合，几秒后红蓝彻底分开。这就是确定性方程里「不可预测」的来源。点「新初值」换一组 $\theta_1,\theta_2$。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>数学原理 <small>拉格朗日方程 + RK4</small></h2>
+  <p>设两杆长 $L_1=L_2=1$，质量 $m_1=1,m_2=\mu$，夹角 $\theta_1,\theta_2$。令 $\Delta=\theta_1-\theta_2$，$D=m_1+\mu\sin^2\Delta$。则</p>
+  <p>$$\ddot\theta_1=\frac{\mu\sin\Delta(\dot\theta_2^2+\dot\theta_1^2\cos\Delta)-(1+\mu)\sin\theta_1+\mu g\sin\theta_2\cos\Delta}{D},$$ 本页用 RK4 积分，无显式阻尼——总能量守恒，运动永不停止。混沌来源于 $\sin\Delta$ 项的非线性耦合。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+  var W=cv.width,H=cv.height,L=150,g=0.5;
+  var m2El=document.getElementById('m2'),m2V=document.getElementById('m2V'),sep=document.getElementById('sep');
+  var playing=true,compare=false;
+  // state [th1,th2,w1,w2]
+  var A=[Math.PI/2,Math.PI/2+0.4,0,0],B=[Math.PI/2,Math.PI/2+0.4+1e-6,0,0];
+  var trailA=[],trailB=[];
+  function acc(s,mu){
+    var d=s[0]-s[1],c=Math.cos(d),sn=Math.sin(d),D=1+mu*sn*sn;
+    var a1=(mu*sn*(s[3]*s[3]+s[2]*s[2]*c)-(1+mu)*Math.sin(s[0])+mu*g*Math.sin(s[1])*c)/D;
+    var a2=(-sn*(mu*s[2]*s[2]+s[3]*s[3]*c)+(1+mu)*(Math.sin(s[0])*c-Math.sin(s[1])))/D;
+    return [s[2],s[3],a1,a2];
+  }
+  function rk4(s,dt,mu){
+    var k1=acc(s,mu);
+    var k2=acc([s[0]+dt*k1[0]/2,s[1]+dt*k1[1]/2,s[2]+dt*k1[2]/2,s[3]+dt*k1[3]/2],mu);
+    var k3=acc([s[0]+dt*k2[0]/2,s[1]+dt*k2[1]/2,s[2]+dt*k2[2]/2,s[3]+dt*k2[3]/2],mu);
+    var k4=acc([s[0]+dt*k3[0],s[1]+dt*k3[1],s[2]+dt*k3[2],s[3]+dt*k3[3]],mu);
+    for(var i=0;i<4;i++)s[i]+=dt*(k1[i]+2*k2[i]+2*k3[i]+k4[i])/6;
+  }
+  function bob(s){
+    var x1=W/2+L*Math.sin(s[0]),y1=H/3+L*Math.cos(s[0]);
+    var x2=x1+L*Math.sin(s[1]),y2=y1+L*Math.cos(s[1]);
+    return [[W/2,H/3],[x1,y1],[x2,y2]];
+  }
+  function frame(){
+    var mu=parseInt(m2El.value,10)/100;m2V.textContent=mu.toFixed(2);
+    if(playing){
+      for(var i=0;i<3;i++){rk4(A,0.08,mu);if(compare)rk4(B,0.08,mu);}
+      var pA=bob(A);trailA.push(pA[2]);
+      if(compare){var pB=bob(B);trailB.push(pB[2]);}
+      if(trailA.length>400)trailA.shift();if(trailB.length>400)trailB.shift();
+      var d=Math.hypot(A[0]-B[0],A[1]-B[1]);
+      sep.textContent='红蓝分离度 '+d.toExponential(2);
+    }
+    ctx.fillStyle='#fdfaf0';ctx.fillRect(0,0,W,H);
+    if(compare){
+      ctx.strokeStyle='rgba(31,78,156,0.6)';ctx.lineWidth=1.2;ctx.beginPath();
+      for(var i=0;i<trailB.length;i++){i?ctx.lineTo(trailB[i][0],trailB[i][1]):ctx.moveTo(trailB[i][0],trailB[i][1]);}ctx.stroke();
+    }
+    ctx.strokeStyle='rgba(192,57,43,0.55)';ctx.lineWidth=1.2;ctx.beginPath();
+    for(var j=0;j<trailA.length;j++){j?ctx.lineTo(trailA[j][0],trailA[j][1]):ctx.moveTo(trailA[j][0],trailA[j][1]);}ctx.stroke();
+    var p=bob(A);
+    ctx.strokeStyle='#A8751E';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(p[0][0],p[0][1]);ctx.lineTo(p[1][0],p[1][1]);ctx.lineTo(p[2][0],p[2][1]);ctx.stroke();
+    ctx.fillStyle='#22262B';ctx.beginPath();ctx.arc(p[1][0],p[1][1],7,0,7);ctx.fill();
+    ctx.fillStyle='#C0392B';ctx.beginPath();ctx.arc(p[2][0],p[2][1],10,0,7);ctx.fill();
+    requestAnimationFrame(frame);
+  }
+  function newIC(){var a=Math.PI*(0.5+Math.random()*0.8),b=a+(Math.random()-0.5)*1.5;A=[a,b,0,0];B=[a,b+1e-6,0,0];trailA=[];trailB=[];}
+  document.getElementById('go').addEventListener('click',function(){playing=!playing;this.textContent=playing?'暂停':'播放';});
+  document.getElementById('new').addEventListener('click',newIC);
+  document.getElementById('cmp').addEventListener('click',function(){compare=!compare;this.textContent='微差对比：'+(compare?'开':'关');if(!compare)trailB=[];});
+  frame();
+})();
+</script>
+
+</body>
+</html>

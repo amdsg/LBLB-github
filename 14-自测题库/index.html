@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>自测题库 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='45' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%B4%3C/text%3E%3C/svg%3E">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+  svg: { fontCache: 'local' },
+  startup: { typeset: true }
+};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在（本页需与 assets 目录保持原有相对位置）。';document.currentScript.after(b);"></script>
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;
+  --blue:#1F4E9C;--teal:#177E89;--gold:#A8751E;--red:#C0392B;--green:#2E7D5B;--violet:#6B4C9A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.8;}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.kicker{font-size:11px;letter-spacing:.32em;color:var(--ink2);text-transform:uppercase;margin-top:22px;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:42px;margin:10px 0 8px;}
+h1 .sym{color:var(--red);font-style:italic;}
+.sub{color:var(--ink2);font-size:16px;max-width:800px;}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.chip{background:#fffdf6;border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-size:12.5px;color:var(--ink2);}
+.chip b{color:var(--blue);}
+.note{margin-top:28px;background:#fffdf6;border:1px solid var(--line);border-left:5px solid var(--gold);
+  border-radius:10px;padding:14px 18px;font-size:13.5px;color:var(--ink2);}
+.note b{color:var(--ink);}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:15px;margin-top:26px;}
+.card{display:block;background:#fffdf6;border:1px solid var(--line);border-top:4px solid var(--c,var(--blue));
+  border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);
+  transition:transform .12s ease, box-shadow .12s ease;}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(34,38,43,.10);}
+.cardtop{display:flex;align-items:baseline;justify-content:space-between;}
+.card .ic{font-family:Georgia,serif;font-size:23px;color:var(--c,var(--blue));}
+.card .cnt{font-size:11.5px;color:var(--ink2);letter-spacing:.08em;}
+.card h3{font-family:Georgia,"Noto Serif SC",serif;font-size:18px;margin:6px 0 5px;}
+.card p{font-size:13px;color:var(--ink2);line-height:1.65;}
+.card .tg{margin-top:10px;font-size:11px;color:var(--c,var(--blue));letter-spacing:.03em;}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;color:var(--ink2);}
+footer code{background:var(--paper2);border-radius:4px;padding:1px 6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <div class="kicker">LBLB · Self-Test Problem Bank</div>
+  <h1>自测题库 <span class="sym">✎</span></h1>
+  <p class="sub">共 <b>234</b> 道题，覆盖 9 个主题。每题都给出可直接展开的参考答案与详解，答案均经 sympy 符号计算验证——不是「看起来对」，而是机器判定为真。</p>
+  <div class="stats">
+    <span class="chip">主题 <b>9</b> 个</span>
+    <span class="chip">题目 <b>234</b> 道</span>
+    <span class="chip">难度 <b>5</b> 级标注</span>
+    <span class="chip">验证 <b>sympy</b></span>
+  </div>
+  <div class="note"><b>这套题从哪来？</b>题目由本库自行编写，覆盖 9 个知识分支——因此不涉及真题原卷的著作权问题。想要真题请见 <a href="../15-应试实战/index.html">15-应试实战</a>，那里按目标考试收录了公开来源的真题。数学内容本身（定理、方法、恒等式）不受版权保护，可以自由分发。题目中的答案由符号计算逐题校验，验证表达式就写在每题详解下方，可自行复核。<br><b>与 12-高等数学、13-应试训练的分工：</b>12 区是按教材目录组织的讲义，13 区是刷题框架（需自备题库数据），本区则是可直接练手、自带答案的自测题集。</div>
+</header>
+<div class="grid">
+<a class="card" style="--c:var(--blue)" href="01-极限与连续.html"><div class="cardtop"><span class="ic">⟶</span><span class="cnt">26 题</span></div><h3>极限与连续</h3><p>从等价无穷小到夹逼定理，极限题的核心是「先看能不能代入，再看能不能化」。</p><div class="tg">三角恒等变形 · 单侧极限 · 反三角 · 取整函数 · 含参 · 因式分解 · 夹逼定理 · 对数 等</div></a>
+<a class="card" style="--c:var(--teal)" href="02-一元微分学.html"><div class="cardtop"><span class="ic">′</span><span class="cnt">26 题</span></div><h3>一元微分学</h3><p>求导本身不难，难的是判断该用哪种方法：对数求导、隐函数、参数方程各有适用场合。</p><div class="tg">三角函数 · 乘积求导 · 二阶导数 · 凹凸性 · 分段函数 · 切线 · 参数方程 · 反三角 等</div></a>
+<a class="card" style="--c:var(--red)" href="03-一元积分学.html"><div class="cardtop"><span class="ic">∫</span><span class="cnt">26 题</span></div><h3>一元积分学</h3><p>积分的技巧全在「凑」：凑微分、凑分部、凑配方。定积分还要善用对称性。</p><div class="tg">凑微分 · 分部积分 · 反三角 · 反常积分 · 含参积分 · 基本积分表 · 奇函数 · 定积分 等</div></a>
+<a class="card" style="--c:var(--gold)" href="04-无穷级数.html"><div class="cardtop"><span class="ic">∑</span><span class="cnt">26 题</span></div><h3>无穷级数</h3><p>级数先判敛散再求和。收敛半径用比值判别法，求和常靠错位相减与裂项。</p><div class="tg">p 级数 · 交错级数 · 偶数子列 · 几何级数 · 双曲函数 · 发散 · 奇子列 · 奇阶乘 等</div></a>
+<a class="card" style="--c:var(--green)" href="05-常微分方程.html"><div class="cardtop"><span class="ic">∂</span><span class="cnt">26 题</span></div><h3>常微分方程</h3><p>解方程就是「把导数消掉」：能分离就分离，不能分离就找积分因子。</p><div class="tg">一阶线性 · 三角 · 二阶常系数 · 全微分方程 · 共振 · 共轭复根 · 初值问题 · 变量代换 等</div></a>
+<a class="card" style="--c:var(--violet)" href="06-多元微积分.html"><div class="cardtop"><span class="ic">∇</span><span class="cnt">26 题</span></div><h3>多元微积分</h3><p>多元的关键是化为累次积分并选对坐标系，对称性往往能让积分瞬间归零。</p><div class="tg">三重积分 · 二重积分 · 交换积分次序 · 体积 · 偏导数 · 全微分 · 全微分近似 · 判别式 等</div></a>
+<a class="card" style="--c:var(--blue)" href="07-线性代数.html"><div class="cardtop"><span class="ic">λ</span><span class="cnt">26 题</span></div><h3>线性代数</h3><p>行列式、秩、特征值是三根支柱；几乎所有结论都能回溯到这三者。</p><div class="tg">上三角 · 内积 · 凯莱-哈密顿定理 · 可对角化 · 向量范数 · 对称矩阵 · 投影 · 正交 等</div></a>
+<a class="card" style="--c:var(--teal)" href="08-概率与统计.html"><div class="cardtop"><span class="ic">𝔼</span><span class="cnt">26 题</span></div><h3>概率与统计</h3><p>概率题先想对立事件与条件分解，统计题先看估计量是否无偏。</p><div class="tg">中心极限定理 · 二阶矩 · 二项分布 · 二项式定理 · 全概率公式 · 几何分布 · 协方差 · 古典概型 等</div></a>
+<a class="card" style="--c:var(--red)" href="09-数论与组合.html"><div class="cardtop"><span class="ic">≡</span><span class="cnt">26 题</span></div><h3>数论与组合</h3><p>同余、计数与恒等式：数论题的答案通常很小，但推到答案的过程很长。</p><div class="tg">中国剩余定理 · 二项式定理 · 二项式恒等式 · 二项式系数 · 互素 · 卡西尼恒等式 · 同余性质 · 同余方程 等</div></a>
+</div>
+<footer>
+  题目与详解由本库编写，授权见仓库根目录 <code>LICENSE</code>（内容 CC BY-NC-SA 4.0）。<br>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a> ·
+  <a class="back" href="../12-高等数学/07-速查与题库.html">配套：高数速查与题库 →</a>
+</footer>
+</div>
+</body>
+</html>

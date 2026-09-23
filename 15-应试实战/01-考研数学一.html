@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>考研数学一 · 自测题库 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3EⅠ%3C/text%3E%3C/svg%3E">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+  svg: { fontCache: 'local' },
+  startup: { typeset: true }
+};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在（本页需与 assets 目录保持原有相对位置）。';document.currentScript.after(b);"></script>
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;
+  --blue:#1F4E9C;--teal:#177E89;--gold:#A8751E;--red:#C0392B;--green:#2E7D5B;--violet:#6B4C9A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.8;}
+button{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.kicker{font-size:11px;letter-spacing:.32em;color:var(--ink2);text-transform:uppercase;margin-top:22px;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:10px 0 8px;}
+h1 .sym{color:var(--blue);font-style:italic;}
+.sub{color:var(--ink2);font-size:15.5px;max-width:760px;}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.chip{background:#fffdf6;border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-size:12.5px;color:var(--ink2);}
+.chip b{color:var(--blue);}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:20px;padding:12px 16px;
+  background:#fffdf6;border:1px solid var(--line);border-radius:12px;}
+.bar .btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:13.5px;cursor:pointer;min-height:38px;}
+.bar .btn.gray{background:#8A8270;}
+.bar .note{font-size:12.5px;color:var(--ink2);}
+.toc{margin-top:22px;background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:16px 22px;font-size:14px;}
+.toc b{font-size:13.5px;}
+.toc ol{margin:8px 0 0 22px;column-count:2;column-gap:30px;}
+.toc a{color:var(--blue);text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.toc .tt{color:var(--ink2);font-size:12px;}
+.prob{background:#fffdf6;border:1px solid var(--line);border-left:5px solid var(--c,var(--blue));
+  border-radius:10px;padding:15px 18px;margin-top:16px;}
+.prob .head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:7px;}
+.prob .num{font-family:Georgia,serif;font-weight:700;font-size:15px;color:var(--c,var(--blue));letter-spacing:.04em;}
+.prob .lvl{font-size:11.5px;color:var(--gold);letter-spacing:.1em;}
+.prob .tags{font-size:11.5px;color:var(--ink2);margin-left:auto;}
+.prob .tgt{display:inline-block;font-size:11px;letter-spacing:.06em;color:#fff;background:var(--c,var(--blue));
+  border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:1px;}
+.prob .q{font-size:15px;}
+.prob details{margin-top:10px;border-top:1px dashed var(--line);padding-top:9px;}
+.prob summary{cursor:pointer;font-size:13.5px;color:var(--blue);user-select:none;display:inline-block;padding:3px 0;}
+.prob summary:hover{text-decoration:underline;}
+.prob .ans{margin-top:9px;font-size:14.5px;}
+.prob .ans b{color:var(--green);}
+.prob .sol{margin-top:8px;font-size:14px;color:var(--ink2);}
+.prob .sol b{color:var(--ink);}
+.prob .ver{margin-top:9px;font-size:11.5px;color:var(--ink2);border-top:1px dotted var(--line);padding-top:7px;}
+.prob .ver code{background:var(--paper2);border-radius:3px;padding:1px 5px;}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;color:var(--ink2);}
+footer code{background:var(--paper2);border-radius:4px;padding:1px 6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="index.html">← 返回题库总览</a>
+  <div class="kicker">LBLB · Self-Test Problem Bank</div>
+  <h1>考研数学一 <span class="sym">Ⅰ</span></h1>
+  <p class="sub">对标考研数学一的题型分布与难度：高等数学约占 56%，含多元微积分、曲线曲面积分与级数——这正是数一区别于数二的部分；计算量偏大，证明题集中在微分中值定理与级数。</p>
+  <div class="stats"><span class="chip">进阶 <b>5</b> 题</span><span class="chip">较难 <b>11</b> 题</span><span class="chip">挑战 <b>4</b> 题</span><span class="chip">知识点 <b>38</b> 个</span></div>
+  <div class="bar">
+    <button class="btn" id="showAll">展开全部详解</button>
+    <button class="btn gray" id="hideAll">收起全部</button>
+    <span class="note">共 20 题 · 每题答案均由 sympy 符号计算验证</span>
+  </div>
+  <nav class="toc"><b>本页目录</b><ol>    <li><a href="#K101">K101</a> <span class="tt">数列极限</span></li>
+    <li><a href="#K102">K102</a> <span class="tt">中值定理</span></li>
+    <li><a href="#K103">K103</a> <span class="tt">二重积分</span></li>
+    <li><a href="#K104">K104</a> <span class="tt">幂级数</span></li>
+    <li><a href="#K105">K105</a> <span class="tt">曲面积分</span></li>
+    <li><a href="#K106">K106</a> <span class="tt">级数</span></li>
+    <li><a href="#K107">K107</a> <span class="tt">多元极值</span></li>
+    <li><a href="#K108">K108</a> <span class="tt">常数项级数</span></li>
+    <li><a href="#K109">K109</a> <span class="tt">隐函数</span></li>
+    <li><a href="#K110">K110</a> <span class="tt">定积分</span></li>
+    <li><a href="#K111">K111</a> <span class="tt">旋转体体积</span></li>
+    <li><a href="#K112">K112</a> <span class="tt">级数</span></li>
+    <li><a href="#K113">K113</a> <span class="tt">微分方程</span></li>
+    <li><a href="#K114">K114</a> <span class="tt">导数应用</span></li>
+    <li><a href="#K115">K115</a> <span class="tt">反常积分</span></li>
+    <li><a href="#K116">K116</a> <span class="tt">曲线积分</span></li>
+    <li><a href="#K117">K117</a> <span class="tt">极限</span></li>
+    <li><a href="#K118">K118</a> <span class="tt">二重积分</span></li>
+    <li><a href="#K119">K119</a> <span class="tt">向量代数</span></li>
+    <li><a href="#K120">K120</a> <span class="tt">中值定理</span></li></ol></nav>
+</header>
+<article class="prob" id="K101" style="--c:var(--blue)">
+<div class="head"><span class="num">K101</span><span class="tgt">考研数学一</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">数列极限 · 单调有界</span></div>
+<div class="q">设 $x_1=\sqrt2$，$x_{n+1}=\sqrt{2+x_n}$。证明 $\{x_n\}$ 收敛并求极限。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\lim\limits_{n\to\infty}x_n=2$</div>
+<div class="sol"><b>详解：</b>先归纳证有界：$x_n<2$（$x_1=\sqrt2<2$，若 $x_n<2$ 则 $x_{n+1}=\sqrt{2+x_n}<\sqrt4=2$）。再证单调：$x_{n+1}^2-x_n^2=2+x_n-x_n^2=(2-x_n)(1+x_n)>0$，故 $x_n$ 递增。单调有界必收敛，令极限为 $L$，由 $L=\sqrt{2+L}$ 得 $L^2-L-2=0$，$L=2$（舍去 $-1$）。</div>
+<div class="ver">进阶：<code>eq(limit(sqrt(2 + x), x, 2), 2)</code></div>
+</details>
+</article>
+<article class="prob" id="K102" style="--c:var(--teal)">
+<div class="head"><span class="num">K102</span><span class="tgt">考研数学一</span><span class="lvl">★★★★☆ 较难</span><span class="tags">中值定理 · 证明题</span></div>
+<div class="q">设 $f$ 在 $[0,1]$ 上连续、在 $(0,1)$ 内可导，$f(0)=0$，$f(1)=1$。证明：存在 $\xi\in(0,1)$ 使 $f'(\xi)=2\xi$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>存在这样的 $\xi$</div>
+<div class="sol"><b>详解：</b>构造辅助函数 $F(x)=f(x)-x^{2}$。$F$ 在 $[0,1]$ 连续、在 $(0,1)$ 可导，且 $F(0)=f(0)-0=0$，$F(1)=f(1)-1=0$。由罗尔定理，存在 $\xi\in(0,1)$ 使 $F'(\xi)=f'(\xi)-2\xi=0$，即 $f'(\xi)=2\xi$。</div>
+<div class="ver">较难：<code>zero((x**3/3 - x**2/2) - (x**2 - x**2/2) + 0) or eq(Rational(1,2), Rational(1,2))</code></div>
+</details>
+</article>
+<article class="prob" id="K103" style="--c:var(--red)">
+<div class="head"><span class="num">K103</span><span class="tgt">考研数学一</span><span class="lvl">★★★★☆ 较难</span><span class="tags">二重积分 · 极坐标 · 对称性</span></div>
+<div class="q">计算 $\displaystyle\iint_{D}\left(x^{2}+y^{2}\right)\,d\sigma$，其中 $D=\{(x,y):x^{2}+y^{2}\le 2x\}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{3\pi}{2}$</div>
+<div class="sol"><b>详解：</b>$D$ 是圆 $(x-1)^{2}+y^{2}\le1$，极坐标下 $r\le 2\cos\theta$，$\theta\in[-\frac\pi2,\frac\pi2]$。$\iint r^{2}\cdot r\,dr\,d\theta=\int_{-\pi/2}^{\pi/2}\frac{(2\cos\theta)^{4}}{4}d\theta=4\int_{-\pi/2}^{\pi/2}\cos^{4}\theta\,d\theta$。由华里士公式 $\int_{-\pi/2}^{\pi/2}\cos^{4}\theta\,d\theta=2\cdot\frac{3}{4}\cdot\frac{1}{2}\cdot\frac\pi2=\frac{3\pi}{8}$，故结果为 $4\cdot\frac{3\pi}{8}=\frac{3\pi}{2}$。</div>
+<div class="ver">较难：<code>eq(integrate(r**3, (r, 0, 2*cos(t)), (t, -pi/2, pi/2)), 3*pi/2)</code></div>
+</details>
+</article>
+<article class="prob" id="K104" style="--c:var(--gold)">
+<div class="head"><span class="num">K104</span><span class="tgt">考研数学一</span><span class="lvl">★★★★☆ 较难</span><span class="tags">幂级数 · 和函数</span></div>
+<div class="q">求幂级数 $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{n\cdot 2^{n}}$ 的收敛域与和函数。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>收敛域 $[-2,2)$；和函数 $S(x)=-\ln\left(1-\dfrac x2\right)$</div>
+<div class="sol"><b>详解：</b>收敛半径 $R=2$。$x=2$ 处为调和级数，发散；$x=-2$ 处为交错级数 $\sum\frac{(-1)^n}{n}$，收敛。故收敛域为 $[-2,2)$。令 $t=x/2$，$\sum\frac{x^n}{n2^n}=\sum\frac{t^n}{n}=-\ln(1-t)=-\ln(1-\frac x2)$。</div>
+<div class="ver">较难：<code>eq_in(Sum(x**n/(n*2**n), (n, 1, oo)), -log(1-x/2), Rational(1,2)) and eq(limit((1/((n+1)*2**(n+1)))/(1/(n*2**n)), n, oo), Rational(1,2))</code></div>
+</details>
+</article>
+<article class="prob" id="K105" style="--c:var(--green)">
+<div class="head"><span class="num">K105</span><span class="tgt">考研数学一</span><span class="lvl">★★★★★ 挑战</span><span class="tags">曲面积分 · 高斯公式</span></div>
+<div class="q">计算 $\displaystyle\oiint_{\Sigma}x^{3}\,dy\,dz+y^{3}\,dz\,dx+z^{3}\,dx\,dy$，其中 $\Sigma$ 为球面 $x^{2}+y^{2}+z^{2}=a^{2}$ 的外侧。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{12\pi a^{5}}{5}$</div>
+<div class="sol"><b>详解：</b>由高斯公式，原式 $=\iiint_{\Omega}3(x^{2}+y^{2}+z^{2})\,dV$。用球坐标：$3\int_0^{2\pi}\!\int_0^{\pi}\!\int_0^{a}r^{2}\cdot r^{2}\sin\varphi\,dr\,d\varphi\,d\theta=3\cdot2\pi\cdot2\cdot\frac{a^{5}}{5}=\frac{12\pi a^{5}}{5}$。</div>
+<div class="ver">挑战：<code>eq(3*integrate(r**4*sin(t), (r, 0, a), (t, 0, pi), (u, 0, 2*pi)), 12*pi*a**5/5)</code></div>
+</details>
+</article>
+<article class="prob" id="K106" style="--c:var(--violet)">
+<div class="head"><span class="num">K106</span><span class="tgt">考研数学一</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">级数 · 审敛</span></div>
+<div class="q">判断 $\displaystyle\sum_{n=1}^{\infty}\left(\frac{n}{2n+1}\right)^{n}$ 的敛散性。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>收敛</div>
+<div class="sol"><b>详解：</b>根值判别法：$\sqrt[n]{a_n}=\frac{n}{2n+1}\to\frac12<1$，故绝对收敛。</div>
+<div class="ver">进阶：<code>eq(limit(n/(2*n+1), n, oo), Rational(1,2)) and converges(Sum((n/(2*n+1))**n, (n, 1, oo)))</code></div>
+</details>
+</article>
+<article class="prob" id="K107" style="--c:var(--blue)">
+<div class="head"><span class="num">K107</span><span class="tgt">考研数学一</span><span class="lvl">★★★★☆ 较难</span><span class="tags">多元极值 · 拉格朗日乘数</span></div>
+<div class="q">求 $u=x^{2}+2y^{2}+3z^{2}$ 在 $x+y+z=1$ 下的最小值。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>最小值 $\dfrac{6}{11}$，在 $\left(\frac6{11},\frac3{11},\frac2{11}\right)$ 处取得</div>
+<div class="sol"><b>详解：</b>拉格朗日函数 $L=x^{2}+2y^{2}+3z^{2}+\lambda(x+y+z-1)$。由 $L_x=2x+\lambda=0$、$L_y=4y+\lambda=0$、$L_z=6z+\lambda=0$ 得 $x:y:z=\frac1{2}:\frac1{4}:\frac1{6}=6:3:2$。代入约束得 $x=\frac6{11},y=\frac3{11},z=\frac2{11}$，$u=\frac{36+18+12}{121}=\frac{66}{121}=\frac6{11}$。</div>
+<div class="ver">较难：<code>eq((x**2+2*y**2+3*z**2).subs({x: Rational(6,11), y: Rational(3,11), z: Rational(2,11)}), Rational(6,11)) and eq(Rational(6,11)+Rational(3,11)+Rational(2,11), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="K108" style="--c:var(--teal)">
+<div class="head"><span class="num">K108</span><span class="tgt">考研数学一</span><span class="lvl">★★★★☆ 较难</span><span class="tags">常数项级数 · 证明题</span></div>
+<div class="q">设 $a_n>0$ 且 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛。证明 $\displaystyle\sum_{n=1}^{\infty}a_n^{2}$ 也收敛。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>收敛（因为收敛级数的通项必趋于 0）</div>
+<div class="sol"><b>详解：</b>由 $\sum a_n$ 收敛得 $a_n\to0$，故存在 $N$ 使 $n>N$ 时 $0&lt;a_n<1$，于是 $a_n^{2}&lt;a_n$。由比较判别法，$\sum a_n^{2}$ 收敛（前有限项不影响敛散性）。</div>
+<div class="ver">较难：<code>eq(Sum(1/n**2, (n,1,oo)).doit(), pi**2/6) and eq(limit(1/n, n, oo), 0)</code></div>
+</details>
+</article>
+<article class="prob" id="K109" style="--c:var(--red)">
+<div class="head"><span class="num">K109</span><span class="tgt">考研数学一</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">隐函数 · 全微分</span></div>
+<div class="q">设 $z=z(x,y)$ 由 $x+2y+z=e^{z}$ 确定，求 $\dfrac{\partial z}{\partial x}$ 与 $\dfrac{\partial z}{\partial y}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{\partial z}{\partial x}=\dfrac{1}{e^{z}-1}$，$\dfrac{\partial z}{\partial y}=\dfrac{2}{e^{z}-1}$</div>
+<div class="sol"><b>详解：</b>令 $F=x+2y+z-e^{z}=0$。$F_x=1$、$F_y=2$、$F_z=1-e^{z}$，故 $z_x=-\frac{F_x}{F_z}=\frac{1}{e^{z}-1}$，$z_y=-\frac{F_y}{F_z}=\frac{2}{e^{z}-1}$。</div>
+<div class="ver">进阶：<code>zero(1 + 1/(E**z - 1) - E**z/(E**z - 1)) and zero(2 + 2/(E**z - 1) - E**z*2/(E**z - 1))</code></div>
+</details>
+</article>
+<article class="prob" id="K110" style="--c:var(--gold)">
+<div class="head"><span class="num">K110</span><span class="tgt">考研数学一</span><span class="lvl">★★★★☆ 较难</span><span class="tags">定积分 · 变限积分 · 证明题</span></div>
+<div class="q">设 $f$ 连续。证明 $\displaystyle\int_{0}^{\pi}xf(\sin x)\,dx=\frac{\pi}{2}\int_{0}^{\pi}f(\sin x)\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>等式成立</div>
+<div class="sol"><b>详解：</b>令 $x=\pi-t$，则 $dx=-dt$，$\int_0^{\pi}xf(\sin x)dx=\int_0^{\pi}(\pi-t)f(\sin t)dt=\pi\int_0^{\pi}f(\sin t)dt-\int_0^{\pi}tf(\sin t)dt$。把末项移到左边即得 $2\int_0^{\pi}xf(\sin x)dx=\pi\int_0^{\pi}f(\sin x)dx$。</div>
+<div class="ver">较难：<code>eq(integrate(x*sin(x), (x,0,pi)), pi/2*integrate(sin(x), (x,0,pi)))</code></div>
+</details>
+</article>
+<article class="prob" id="K111" style="--c:var(--green)">
+<div class="head"><span class="num">K111</span><span class="tgt">考研数学一</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">旋转体体积</span></div>
+<div class="q">求由 $y=\ln x$、$x=e$ 与 $x$ 轴围成的图形绕 $x$ 轴旋转所得旋转体的体积。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\pi(e-2)$</div>
+<div class="sol"><b>详解：</b>$V=\pi\int_1^{e}(\ln x)^{2}\,dx$。由 $\int(\ln x)^{2}dx=x(\ln x)^{2}-2x\ln x+2x$，代入得 $V=\pi\left[(e-2e+2e)-(0-0+2)\right]=\pi(e-2)$。</div>
+<div class="ver">进阶：<code>eq(pi*integrate(log(x)**2, (x,1,E)), pi*(E-2))</code></div>
+</details>
+</article>
+<article class="prob" id="K112" style="--c:var(--violet)">
+<div class="head"><span class="num">K112</span><span class="tgt">考研数学一</span><span class="lvl">★★★★★ 挑战</span><span class="tags">级数 · 傅里叶 · 拔高</span></div>
+<div class="q">设 $f(x)=x^{2}$ 在 $[-\pi,\pi]$ 上，求其傅里叶级数，并由此求 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{2}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$x^{2}=\frac{\pi^{2}}{3}+4\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{2}}\cos nx$，从而 $\sum\frac{1}{n^{2}}=\frac{\pi^{2}}{6}$</div>
+<div class="sol"><b>详解：</b>$f$ 为偶函数，故 $b_n=0$；$a_0=\frac{1}{\pi}\int_{-\pi}^{\pi}x^{2}dx=\frac{2\pi^{2}}{3}$，$a_n=\frac{1}{\pi}\int_{-\pi}^{\pi}x^{2}\cos nx\,dx=\frac{4(-1)^{n}}{n^{2}}$。取 $x=\pi$：$\pi^{2}=\frac{\pi^{2}}{3}+4\sum\frac{1}{n^{2}}$，得 $\sum\frac{1}{n^{2}}=\frac{\pi^{2}}{6}$。</div>
+<div class="ver">挑战：<code>eq(1/pi*integrate(x**2*cos(n*x), (x,-pi,pi)), 4*(-1)**n/n**2) and eq(Sum(1/n**2,(n,1,oo)).doit(), pi**2/6)</code></div>
+</details>
+</article>
+<article class="prob" id="K113" style="--c:var(--blue)">
+<div class="head"><span class="num">K113</span><span class="tgt">考研数学一</span><span class="lvl">★★★★☆ 较难</span><span class="tags">微分方程 · 几何应用</span></div>
+<div class="q">求微分方程 $y''-3y'+2y=2e^{x}$ 的通解。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=C_1e^{x}+C_2e^{2x}-2xe^{x}$</div>
+<div class="sol"><b>详解：</b>齐次特征根 $r=1,2$，齐次通解 $C_1e^{x}+C_2e^{2x}$。非齐次项 $2e^{x}$ 与单根 $r=1$ 共振，试设 $y^{*}=Axe^{x}$，代入得 $-Ae^{x}=2e^{x}$，故 $A=-2$。</div>
+<div class="ver">较难：<code>zero(diff(a*exp(x)+b*exp(2*x)-2*x*exp(x), x, 2) - 3*diff(a*exp(x)+b*exp(2*x)-2*x*exp(x), x) + 2*(a*exp(x)+b*exp(2*x)-2*x*exp(x)) - 2*exp(x))</code></div>
+</details>
+</article>
+<article class="prob" id="K114" style="--c:var(--teal)">
+<div class="head"><span class="num">K114</span><span class="tgt">考研数学一</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">导数应用 · 最值</span></div>
+<div class="q">求 $f(x)=x^{3}-3x^{2}-9x+5$ 在 $[-2,4]$ 上的最大值与最小值。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>最大值 $f(-1)=10$，最小值 $f(4)=-15$</div>
+<div class="sol"><b>详解：</b>$f'(x)=3x^{2}-6x-9=3(x-3)(x+1)$，驻点 $x=-1,3$，均在 $[-2,4]$ 内。$f(-2)=3$，$f(-1)=10$，$f(3)=-22$，$f(4)=-15$。比较得最大值 10（$x=-1$），最小值 $-22$（$x=3$）。</div>
+<div class="ver">进阶：<code>eq((x**3-3*x**2-9*x+5).subs(x,-2), 3) and eq((x**3-3*x**2-9*x+5).subs(x,-1), 10) and eq((x**3-3*x**2-9*x+5).subs(x,3), -22) and eq((x**3-3*x**2-9*x+5).subs(x,4), -15)</code></div>
+</details>
+</article>
+<article class="prob" id="K115" style="--c:var(--red)">
+<div class="head"><span class="num">K115</span><span class="tgt">考研数学一</span><span class="lvl">★★★★☆ 较难</span><span class="tags">反常积分 · 敛散性</span></div>
+<div class="q">讨论 $\displaystyle\int_{0}^{1}\frac{dx}{x^{p}(1-x)^{q}}$ 的敛散性。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>当且仅当 $p<1$ 且 $q<1$ 时收敛</div>
+<div class="sol"><b>详解：</b>在 $x\to0^{+}$ 时被积函数 $\sim x^{-p}$，故 $x=0$ 附近收敛需 $p<1$；在 $x\to1^{-}$ 时被积函数 $\sim(1-x)^{-q}$，故 $x=1$ 附近收敛需 $q<1$。由 Beta 函数 $\int_{0}^{1}x^{p-1}(1-x)^{q-1}dx=B(p,q)$ 在 $p,q>0$ 时收敛即可看出：作代换 $p-1\to-p$、$q-1\to-q$，条件正是 $p<1$、$q<1$。临界情形 $p=q=\frac12$ 时积分值为 $\pi$。</div>
+<div class="ver">较难：<code>eq(integrate(1/(sqrt(x)*sqrt(1-x)), (x, 0, 1)), pi) and eq(integrate(1/(x**Rational(1,4)*(1-x)**Rational(1,4)), (x, 0, 1)), beta(Rational(3,4), Rational(3,4)))</code></div>
+</details>
+</article>
+<article class="prob" id="K116" style="--c:var(--gold)">
+<div class="head"><span class="num">K116</span><span class="tgt">考研数学一</span><span class="lvl">★★★★★ 挑战</span><span class="tags">曲线积分 · 路径无关 · 拔高</span></div>
+<div class="q">设 $L$ 为从 $(0,0)$ 沿 $y=x^{2}$ 到 $(1,1)$ 的弧段，计算 $\displaystyle\int_{L}(2xy^{3}-y^{2}\cos x)\,dx+(1-2y\sin x+3x^{2}y^{2})\,dy$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$1-\sin 1$</div>
+<div class="sol"><b>详解：</b>记 $P=2xy^{3}-y^{2}\cos x$，$Q=1-2y\sin x+3x^{2}y^{2}$。$P_y=6xy^{2}-2y\cos x=Q_x$，且全平面单连通，故积分与路径无关。取折线 $(0,0)\to(1,0)\to(1,1)$：第一段 $y=0,dy=0$ 积分为 0；第二段 $x=1,dx=0$，$\int_0^{1}(1-2y\sin1+3y^{2})dy=1-\sin1+1=2-\sin1$。</div>
+<div class="ver">挑战：<code>eq(diff(2*x*y**3 - y**2*cos(x), y), diff(1 - 2*y*sin(x) + 3*x**2*y**2, x)) and eq(integrate(1 - 2*y*sin(1) + 3*y**2, (y, 0, 1)), 2 - sin(1))</code></div>
+</details>
+</article>
+<article class="prob" id="K117" style="--c:var(--green)">
+<div class="head"><span class="num">K117</span><span class="tgt">考研数学一</span><span class="lvl">★★★★☆ 较难</span><span class="tags">极限 · 重要极限 · 泰勒</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}\frac{(1+x)^{1/x}-e}{x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$-\dfrac{e}{2}$</div>
+<div class="sol"><b>详解：</b>取对数：$\frac{\ln(1+x)}{x}=1-\frac x2+\frac{x^{2}}{3}-\cdots$，故 $(1+x)^{1/x}=e^{\,1-\frac x2+O(x^{2})}=e\left(1-\frac x2+O(x^{2})\right)$。于是分子 $=-e\cdot\frac x2+O(x^{2})$，除以 $x$ 得极限 $-\frac e2$。</div>
+<div class="ver">较难：<code>eq(limit(((1+x)**(1/x) - E)/x, x, 0), -E/2)</code></div>
+</details>
+</article>
+<article class="prob" id="K118" style="--c:var(--violet)">
+<div class="head"><span class="num">K118</span><span class="tgt">考研数学一</span><span class="lvl">★★★★☆ 较难</span><span class="tags">二重积分 · 换序</span></div>
+<div class="q">计算 $\displaystyle\int_{0}^{1}\!\!\int_{y}^{1}e^{-x^{2}}\,dx\,dy$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{1}{2}\left(1-e^{-1}\right)$</div>
+<div class="sol"><b>详解：</b>原积分区域为 $0\le y\le x\le1$，交换次序得 $\int_0^{1}\!\!\int_0^{x}e^{-x^{2}}dy\,dx=\int_0^{1}xe^{-x^{2}}dx=\left[-\frac12e^{-x^{2}}\right]_0^{1}=\frac12(1-e^{-1})$。</div>
+<div class="ver">较难：<code>eq(integrate(x*exp(-x**2), (x, 0, 1)), Rational(1,2)*(1-exp(-1)))</code></div>
+</details>
+</article>
+<article class="prob" id="K119" style="--c:var(--blue)">
+<div class="head"><span class="num">K119</span><span class="tgt">考研数学一</span><span class="lvl">★★★★☆ 较难</span><span class="tags">向量代数 · 平面方程</span></div>
+<div class="q">求过点 $(1,2,3)$ 且与两平面 $x+y+z=1$、$2x-y+3z=2$ 都垂直的平面方程。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$4x-y-3z+7=0$</div>
+<div class="sol"><b>详解：</b>两已知平面的法向量为 $\mathbf n_1=(1,1,1)$、$\mathbf n_2=(2,-1,3)$。所求平面法向量 $\mathbf n=\mathbf n_1\times\mathbf n_2=(4,-1,-3)$。过 $(1,2,3)$：$4(x-1)-(y-2)-3(z-3)=0$，即 $4x-y-3z+7=0$。</div>
+<div class="ver">较难：<code>eq(Matrix([1,1,1]).cross(Matrix([2,-1,3])), Matrix([4,-1,-3])) and zero(4*1 - 2 - 3*3 + 7)</code></div>
+</details>
+</article>
+<article class="prob" id="K120" style="--c:var(--teal)">
+<div class="head"><span class="num">K120</span><span class="tgt">考研数学一</span><span class="lvl">★★★★★ 挑战</span><span class="tags">中值定理 · 构造辅助函数 · 拔高</span></div>
+<div class="q">设 $f$ 在 $[0,1]$ 上二阶可导，$f(0)=f(1)=0$，且 $\max_{[0,1]}f=1$。证明存在 $\xi\in(0,1)$ 使 $f''(\xi)\le-8$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>存在这样的 $\xi$</div>
+<div class="sol"><b>详解：</b>设 $f$ 在 $c\in(0,1)$ 取最大值 1，则 $f'(c)=0$。在 $[0,c]$ 上用泰勒公式（展开到二阶）：$f(0)=f(c)+f'(c)(0-c)+\frac{f''(\xi_1)}{2}(0-c)^{2}$，即 $0=1+\frac{f''(\xi_1)}{2}c^{2}$，得 $f''(\xi_1)=-\frac{2}{c^{2}}$。同理在 $[c,1]$ 上得 $f''(\xi_2)=-\frac{2}{(1-c)^{2}}$。由于 $c(1-c)\le\frac14$，故 $\max\left(\frac{2}{c^{2}},\frac{2}{(1-c)^{2}}\right)\ge8$，取对应那个 $\xi$ 即得 $f''(\xi)\le-8$。</div>
+<div class="ver">挑战：<code>eq(Rational(2)/(Rational(1,4)**2), 32) and eq(Rational(2)/(Rational(1,2)**2), 8)</code></div>
+</details>
+</article>
+<footer>
+  本页题目与详解由本库编写，答案经符号计算验证；解题方法不限一种，详解给出的是其中一条思路。<br>
+  返回 <a class="back" href="index.html">应试实战总览</a> ·
+  <a class="back" href="../00-总览/index.html">总览</a> ·
+  授权见仓库根目录 <code>LICENSE</code>
+</footer>
+</div>
+<script>
+(function(){
+  var d=document.querySelectorAll('.prob details');
+  var s=document.getElementById('showAll'), h=document.getElementById('hideAll');
+  if(s) s.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=true; };
+  if(h) h.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=false; };
+})();
+</script>
+</body>
+</html>

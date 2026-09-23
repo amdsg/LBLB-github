@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self';">
+<title>黎曼和与梯形法 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23177E89'/%3E%3Ctext x='32' y='45' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E∫%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--teal:#177E89;--blue:#1F4E9C;--red:#C0392B;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--teal);text-decoration:none;}
+.tag{display:inline-block;background:var(--teal);color:#fff;font-size:12px;padding:2px 10px;border-radius:20px;vertical-align:middle;margin-left:10px;}
+h1{font-family:Georgia,"Noto Serif SC",serif;font-size:40px;margin:14px 0 6px;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--teal);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#fffef9;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls .btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls label{font-size:14px;color:var(--ink2);}
+.controls select{padding:6px;border:1px solid var(--line);border-radius:8px;}
+.controls input[type=range]{width:160px;vertical-align:middle;}
+.stats{display:flex;flex-wrap:wrap;gap:18px;font-family:Georgia,serif;font-size:15px;color:var(--ink2);margin-top:10px;}
+.stats b{color:var(--ink);font-size:18px;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--teal);text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>黎曼和与梯形法 <span class="tag">数值分析</span></h1>
+<p class="sub">积分就是"曲线下面积"。把区间切成 $n$ 个小块、用矩形或梯形去近似——拖动 $n$，看近似值如何收敛到真实积分。</p>
+</header>
+
+<div class="sec">
+<h2>数值积分逼近 <small>蓝色为拟合块，黑实线为原函数</small></h2>
+<div class="fig">
+<canvas id="cv" width="880" height="440" role="img" aria-label="黎曼和与梯形法：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls">
+<label>函数：
+<select id="fn">
+<option value="sin">sin x，[0, π]</option>
+<option value="sq">x²，[0, 2]</option>
+<option value="exp">e⁻ˣ，[0, 1]</option>
+</select></label>
+<label>方法：
+<select id="meth">
+<option value="left">左黎曼</option>
+<option value="right">右黎曼</option>
+<option value="mid">中点法</option>
+<option value="trap">梯形法</option>
+</select></label>
+<label>分块 n = <span id="nVal">10</span>
+<input type="range" id="n" min="1" max="120" value="10"></label>
+</div>
+<div class="stats" id="stats"></div>
+<p class="explain">矩形法误差 $O(1/n)$；梯形法因两端取平均、误差 $O(1/n^2)$。注意凸函数上左/右黎曼误差方向相反——这正是定积分的定义。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>误差阶</h2>
+<p>对光滑 $f$，步长 $h=(b-a)/n$：</p>
+$$\text{左/右黎曼}=O(h),\qquad \text{中点与梯形}=O(h^2),\qquad \text{辛普森}=O(h^4).$$
+<p>提高一阶精度，所需函数求值次数反而更少——这就是高阶求积公式的威力。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var W=cv.width,H=cv.height;
+var fns={
+  sin:{a:0,b:Math.PI,f:function(x){return Math.sin(x);},I:2},
+  sq:{a:0,b:2,f:function(x){return x*x;},I:8/3},
+  exp:{a:0,b:1,f:function(x){return Math.exp(-x);},I:1-Math.exp(-1)}
+};
+function pick(){var o=fns[document.getElementById('fn').value]; o.h=(o.b-o.a)/(+document.getElementById('n').value); o.n=+document.getElementById('n').value; return o;}
+function draw(){
+  var o=pick(), m=document.getElementById('meth').value;
+  document.getElementById('nVal').textContent=o.n;
+  ctx.clearRect(0,0,W,H);
+  var pl=50,pr=30,pt=30,pb=50;
+  var pw=W-pl-pr,ph=H-pt-pb;
+  // y scale: 0..max f
+  var ymax=1.2;
+  function X(x){return pl+pw*(x-o.a)/(o.b-o.a);}
+  function Y(y){return pt+ph-(y/ymax)*ph;}
+  ctx.strokeStyle='#D8D0BC';ctx.strokeRect(pl,pt,pw,ph);
+  // blocks
+  var est=0;
+  ctx.fillStyle='rgba(31,78,156,0.35)';
+  ctx.strokeStyle='#1F4E9C';ctx.lineWidth=1.2;
+  for(var i=0;i<o.n;i++){
+    var x0=o.a+i*o.h, x1=x0+o.h;
+    var hL=o.f(x0), hR=o.f(x1), hM=o.f((x0+x1)/2);
+    var h=0;
+    if(m==='left'){h=hL; ctx.fillRect(X(x0),Y(h),X(x1)-X(x0),ph-(Y(h)-pt)); est+=h*o.h;}
+    else if(m==='right'){h=hR; ctx.fillRect(X(x0),Y(h),X(x1)-X(x0),ph-(Y(h)-pt)); est+=h*o.h;}
+    else if(m==='mid'){h=hM; ctx.fillRect(X(x0),Y(h),X(x1)-X(x0),ph-(Y(h)-pt)); est+=h*o.h;}
+    else { // trapezoid
+      ctx.beginPath();ctx.moveTo(X(x0),Y(0));ctx.lineTo(X(x0),Y(hL));ctx.lineTo(X(x1),Y(hR));ctx.lineTo(X(x1),Y(0));ctx.closePath();ctx.fill();ctx.stroke();
+      est+=(hL+hR)/2*o.h;
+    }
+  }
+  // curve
+  ctx.strokeStyle='#22262B';ctx.lineWidth=2.4;ctx.beginPath();
+  for(var px=0;px<=pw;px++){var xv=o.a+(o.b-o.a)*px/pw;var yv=o.f(xv);if(px===0)ctx.moveTo(X(xv),Y(yv));else ctx.lineTo(X(xv),Y(yv));}
+  ctx.stroke();
+  ctx.fillStyle='#4A5258';ctx.font='12px Georgia';ctx.textAlign='center';
+  ctx.fillText('x',pl+pw/2,H-16);
+  var err=est-o.I;
+  document.getElementById('stats').innerHTML=
+    '<span>分块 n <b>'+o.n+'</b></span>'+
+    '<span>近似积分 <b>'+est.toFixed(5)+'</b></span>'+
+    '<span>真实积分 <b>'+o.I.toFixed(5)+'</b></span>'+
+    '<span>误差 <b>'+(err>=0?'+':'')+err.toFixed(5)+'</b></span>';
+}
+['fn','meth','n'].forEach(function(id){document.getElementById(id).addEventListener('input',draw);});
+draw();
+})();
+</script>
+
+</body>
+</html>

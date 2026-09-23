@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>几何讲义 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%82%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --green:#2E7D5B; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--green); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:40px; margin:12px 0 6px;}
+h1 .sym{color:var(--green); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:740px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--green); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--green); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; margin-top:26px;}
+.ch p{font-size:15px; margin-top:10px; max-width:820px;}
+.f{font-family:Georgia,"Cambria Math",serif; font-style:italic; background:var(--paper2); border-radius:6px; padding:1px 8px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--green);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--green); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.tbl{margin-top:14px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px; table-layout:fixed;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+.demo{background:var(--paper2); border:1px solid var(--line); border-radius:16px; padding:20px; margin-top:16px;}
+.demo .btn{display:inline-block; background:var(--green); color:#fff; border:none; border-radius:8px; padding:8px 18px; font-size:14px; cursor:pointer; margin:0 8px 12px 0; min-height:44px;}
+.demo .btn.gray{background:#8A8270;}
+.chart-box{background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px; margin-top:14px;}
+.chart-box svg{width:100%; height:auto; display:block;}
+.demo p.hint{font-size:13px; color:var(--ink2);}
+.papers{display:grid; gap:10px; margin-top:12px;}
+.papers .p{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px;}
+.papers .p a{color:var(--green); text-decoration:none; font-weight:600; font-size:14.5px;}
+.papers .p a:hover{text-decoration:underline;}
+.papers .m{font-size:12.5px; color:var(--ink2); margin-top:3px;}
+.papers .empty{background:var(--paper2); border:1px dashed var(--line); border-radius:10px; padding:14px 16px; font-size:13.5px; color:var(--ink2);}
+.gloss{margin-top:14px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:14px;}
+.gloss dt{font-weight:700; margin-top:8px;}
+.gloss dt:first-child{margin-top:0;}
+.gloss dd{margin-left:18px; color:var(--ink2); font-size:13.5px;}
+.online{margin-top:16px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; font-size:14px;}
+.online a{color:var(--green); text-decoration:none;}
+.online a:hover{text-decoration:underline;}
+.online ul{margin:8px 0 0 20px;}
+.online li{margin-top:6px;}
+.online .hint{font-size:12.5px; color:var(--ink2); margin-top:8px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--green); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>几何讲义 <span class="sym">∂</span></h1>
+  <p class="sub">从欧几里得公理到黎曼流形、从勾股定理到分形维数——空间之书完整讲义：定义、定理、证明、例题与练习。</p>
+  <p class="quote">「几何学是数学中最直观的部分——它把『看见』变成『理解』。」</p>
+</header>
+
+<div class="toc">
+  <b>本讲目录</b>
+  <ol>
+    <li><a href="#c1">公理体系与三角形</a></li>
+    <li><a href="#c2">勾股定理的多种证明</a></li>
+    <li><a href="#c3">圆：圆周角与幂</a></li>
+    <li><a href="#c4">解析几何与圆锥曲线</a></li>
+    <li><a href="#c5">变换与对称</a></li>
+    <li><a href="#c6">非欧几何</a></li>
+    <li><a href="#c7">多面体与欧拉公式</a></li>
+    <li><a href="#c8">分形几何</a></li>
+    <li><a href="#cA1">深度专题：欧氏几何的公理体系</a></li>
+    <li><a href="#cA2">深度专题：微分几何入门</a></li>
+    <li><a href="#cA3">深度专题：庞加莱圆盘模型</a></li>
+    <li><a href="#c9a">深度：射影几何与对偶原理</a></li>
+    <li><a href="#c9b">深度：微分几何初步——曲率与挠率</a></li>
+    <li><a href="#c9c">深度：双曲几何的庞加莱模型</a></li>
+    <li><a href="#c9d">深度：黎曼几何与高斯–博涅定理</a></li>
+    <li><a href="#c9e">深度：代数几何初步——簇与概形</a></li>
+    <li><a href="#c9">练习与自测</a></li>
+    <li><a href="#c10">术语表、在线资源与最新研究</a></li>
+  </ol>
+</div>
+
+<!-- ================= 第 1 章 ================= -->
+<div class="ch" id="c1">
+  <h2>1. 公理体系与三角形 <small>几何从五条公设开始</small></h2>
+  <div class="def"><b>定义（欧几里得五公设）：</b>① 两点可连一直线；② 线段可任意延长；③ 以任意圆心半径可作圆；④ 所有直角相等；⑤ 平行公设：过直线外一点恰有一条平行线。第五公设最不「显然」——两千年后它成了非欧几何的入口。</div>
+  <div class="thm"><b>定理（三角形内角和）：</b>三角形内角和为 180°。<div class="proof"><b>证明要点：</b>过顶点作对边的平行线（用到平行公设），内错角相等，三个角拼成平角。非欧几何中此定理不成立——这正是「平行公设独立于其余公理」的证明手段之一。</div></div>
+  <div class="thm"><b>定理（全等判据）：</b>SAS、ASA、SSS、AAS（两边夹角、两角夹边、三边、两角一对边）。<div class="proof"><b>直觉：</b>这些判据回答「最少需要多少信息才能确定一个三角形」。SSA 不成立：已知两边与其中一边对角可能有两个三角形。</div></div>
+  <div class="thm"><b>定理（相似判据）：</b>AA（两角相等）⇒ 相似；SAS、SSS 比例版同理。<div class="proof"><b>推论：</b>平行线截三角形两边成比例（基本比例定理）——它是泰勒斯测量金字塔高度的原理。</div></div>
+  <div class="ex"><b>例：</b>泰勒斯测金字塔：同一时刻，若自己的影长=身高，则金字塔影长=金字塔高。这利用了相似三角形的等比性质。</div>
+</div>
+
+<!-- ================= 第 2 章 ================= -->
+<div class="ch" id="c2">
+  <h2>2. 勾股定理的多种证明 <small>三百种证明里挑三种思路</small></h2>
+  <div class="thm"><b>定理（勾股定理）：</b>直角三角形两直角边 a、b 与斜边 c 满足 a² + b² = c²。<div class="proof"><b>证明一（面积拼图，欧几里得《原本》I.47 的现代版）：</b>以斜边为边作正方形，用「两直角三角形面积之和」补图：四个全等的直角三角形可拼成 c² 的大正方形（边长 a+b），内部留出 c² 的空正方形；同时拼出 a²+b² 的两个小正方形。<br><b>证明二（相似，Baskara）：</b>作斜边上的高，得两个小直角三角形与大三角形相似，由比例 a² = c·p、b² = c·q（p+q=c）相加即得。<br><b>证明三（代数，坐标）：</b>两向量 (a,b) 与 (−b,a) 垂直且等长，其端点距离平方 = a²+b²。</div></div>
+  <div class="def"><b>定义（勾股三元组）：</b>满足 a²+b²=c² 的正整数。本原组公式：a=m²−n², b=2mn, c=m²+n²。</div>
+  <div class="ex"><b>例：</b>(3,4,5)、(5,12,13)、(8,15,17) 是最小的三个本原三元组。8²+15²=64+225=289=17² ✓</div>
+</div>
+
+<!-- ================= 第 3 章 ================= -->
+<div class="ch" id="c3">
+  <h2>3. 圆：圆周角与幂 <small>圆周上的角度定理家族</small></h2>
+  <div class="thm"><b>定理（泰勒斯定理）：</b>直径所对的圆周角是直角。<div class="proof"><b>证明要点：</b>连接圆心与圆周上点，得两个等腰三角形，两底角之和为 90°（外角定理）。</div></div>
+  <div class="thm"><b>定理（圆周角定理）：</b>同弧上的圆周角相等，且等于圆心角的一半。<div class="proof"><b>证明要点：</b>圆心在角内时用等腰三角形外角定理；角跨弧时用加法。</div></div>
+  <div class="thm"><b>定理（相交弦定理 / 割线定理 / 切线幂）：</b>圆内两弦交于 P，则 PA·PB = PC·PD；圆外点 P 的割线满足 PA·PB = 常数（幂），切线长² = 幂。<div class="proof"><b>证明要点：</b>同一圆幂下，用相似三角形（圆周角定理保证角相等）证明比例式。</div></div>
+  <div class="thm"><b>定理（托勒密定理）：</b>圆内接四边形对角线乘积 = 两组对边乘积之和：AC·BD = AB·CD + BC·AD。<div class="proof"><b>证明要点：</b>在对角线上取点 E 使 ∠BAE=∠CAD，构造两组相似三角形，比例相乘相加即得。托勒密用它计算弦表（三角学的雏形）。</div></div>
+  <div class="ex"><b>例：</b>正五边形边长为 a、对角线为 d，托勒密定理给出 d² = a² + ad，即 d/a = φ（黄金比）。圆内接正五边形藏着黄金比例。</div>
+</div>
+
+<!-- ================= 第 4 章 ================= -->
+<div class="ch" id="c4">
+  <h2>4. 解析几何与圆锥曲线 <small>坐标系把几何变成代数</small></h2>
+  <div class="def"><b>定义（笛卡尔坐标）：</b>平面上的点 ↔ 有序数对 (x, y)；曲线 ↔ 方程。几何问题翻译成方程求解——这就是解析几何的纲领。</div>
+  <div class="def"><b>定义（圆锥曲线）：</b>平面截圆锥所得的曲线族：圆、椭圆、抛物线、双曲线。统一方程：Ax² + Bxy + Cy² + Dx + Ey + F = 0。</div>
+  <div class="thm"><b>定理（圆锥曲线的焦点定义）：</b>椭圆 = 到两焦点距离之和为常数；双曲线 = 距离之差为常数；抛物线 = 到焦点与到准线距离相等。<div class="proof"><b>例：</b>抛物线 y² = 4px 的焦点在 (p, 0)，准线 x = −p。行星轨道（开普勒第一定律）是椭圆——太阳在焦点上。</div></div>
+  <div class="thm"><b>定理（二次曲线分类）：</b>判别式 B² − 4AC &lt; 0 为椭圆型，= 0 为抛物型，&gt; 0 为双曲型。<div class="proof"><b>直觉：</b>这是「坐标旋转归一化」的结论——适当旋转坐标系后 B 项消失，方程化成标准形。</div></div>
+  <div class="ex"><b>例：</b>求抛物线 y² = 8x 的焦点与准线。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>4p = 8 → p = 2，焦点 (2, 0)，准线 x = −2。</div></details></div>
+</div>
+
+<!-- ================= 第 5 章 ================= -->
+<div class="ch" id="c5">
+  <h2>5. 变换与对称 <small>几何对象在变换下的不变性质</small></h2>
+  <div class="def"><b>定义（等距变换）：</b>保持距离的变换：平移、旋转、反射、滑移反射。两个图形合同 ⇔ 一个可由等距变换映到另一个。<div class="proof"><b>分类定理：</b>平面的等距变换恰好是这四种——反射是「原子」，其余由反射复合生成。</div></div>
+  <div class="def"><b>定义（相似变换）：</b>距离按同一比例缩放：放大、缩小。两个图形相似 ⇔ 相似变换互映。</div>
+  <div class="thm"><b>定理（对称群）：</b>图形的对称构成群。正 n 边形的对称群是二面体群 Dₙ（2n 个元素）；正二十面体的对称群有 120 个元素（A₅）。<div class="proof"><b>直觉：</b>「保持图形不变的所有变换」在复合下封闭——这就是群论在几何中的起源，也是晶体学的基础（230 个空间群）。</div></div>
+  <div class="ex"><b>例：</b>正三角形的对称群 D₃ 有 6 个元素：3 个旋转 + 3 个反射。它同构于 S₃（3 个符号的置换群）。</div>
+</div>
+
+<!-- ================= 第 6 章 ================= -->
+<div class="ch" id="c6">
+  <h2>6. 非欧几何 <small>换掉平行公设，世界依然自洽</small></h2>
+  <div class="thm"><b>定理（双曲几何存在性）：</b>过直线外一点可作无数条平行线，三角形内角和 &lt; 180°。<div class="proof"><b>模型（庞加莱圆盘）：</b>把「直线」定义为圆盘内与边界正交的圆弧，则可验证全部欧氏公理除平行公设外成立——平行公设独立于其余公理（Bolyai、Lobachevsky，1820s）。</div></div>
+  <div class="thm"><b>定理（椭圆几何存在性）：</b>过直线外一点无平行线，三角形内角和 &gt; 180°。<div class="proof"><b>模型（球面几何）：</b>球面上的「直线」是大圆：任何两个大圆都相交（无平行），球面三角形内角和确实大于 180°。</div></div>
+  <div class="thm"><b>定理（黎曼几何与广义相对论）：</b>黎曼把「度量」内化到流形：曲率随点变化，光沿测地线走。爱因斯坦用弯曲时空解释引力——欧几里得几何的「唯一真理」地位被黎曼几何取代。<div class="proof"><b>直觉：</b>在小尺度上双曲/球面几何都接近欧氏——所以日常测量不受影响；在大尺度/强引力下才显差异。</div></div>
+  <div class="ex"><b>例：</b>球面三角形：赤道上取两点 A、B（经度差 90°），再取北极 N，则三角形 ANB 的三个角都是 90°，内角和 270° &gt; 180°。</div>
+</div>
+
+<!-- ================= 第 7 章 ================= -->
+<div class="ch" id="c7">
+  <h2>7. 多面体与欧拉公式 <small>拓扑的第一个定理</small></h2>
+  <div class="thm"><b>定理（欧拉公式）：</b>任何凸多面体 V − E + F = 2。<div class="proof"><b>证明要点：</b>把多面体表面「吹成球面」，三角剖分后用归纳删三角形——V−E+F 是拓扑不变量（这就是第 4 章「意外连接」页中的拓扑证明）。</div></div>
+  <div class="thm"><b>定理（柏拉图立体分类）：</b>正多面体恰有 5 个：正四面体、正六面体（立方体）、正八面体、正十二面体、正二十面体。<div class="proof"><b>证明要点：</b>每个顶点汇合 r 个正 p 边形，由 V−E+F=2 与计数（pF = 2E = rV）推出 (p−2)(r−2) &lt; 4 的整数解只有 (3,3),(3,4),(4,3),(3,5),(5,3)。</div></div>
+  <div class="ex"><b>例：</b>正十二面体：V=20, E=30, F=12，V−E+F = 20−30+12 = 2 ✓ 对偶关系：立方体 ↔ 正八面体，正十二面体 ↔ 正二十面体，正四面体自对偶。</div>
+</div>
+
+<!-- ================= 第 8 章 ================= -->
+<div class="ch" id="c8">
+  <h2>8. 分形几何 <small>无穷细节的几何</small></h2>
+  <div class="def"><b>定义（自相似）：</b>整体与部分相似。科赫雪花：每条线段替换为 4 段（每段长 1/3），无限迭代——周长趋于无穷而面积有限。</div>
+  <div class="def"><b>定义（豪斯多夫维数）：</b>若把图形放大 k 倍需要 N 份小拷贝拼成，则维数 d = log N / log k。科赫雪花 d = log 4 / log 3 ≈ 1.26——介于线与面之间。<div class="proof"><b>例：</b>线段：放大 3 倍需 3 份 → d=1；正方形：放大 3 倍需 9 份 → d=2。分形允许非整数维。</div></div>
+  <div class="thm"><b>定理（曼德博集合）：</b>迭代 z ← z² + c（从 z=0 出发），c 使得迭代有界的所有复数值构成曼德博集合——一个边界无限复杂、自相似的分形。<div class="proof"><b>直觉：</b>集合边界每放大一次都出现新的细节——它是「简单规则产生复杂结构」的标志性对象。去<a href="../05-可视化/曼德博集合.html">可视化页</a>亲手缩放。</div></div>
+  <div class="ex"><b>例：</b>Sierpinski 三角形：每次去掉中心倒三角，d = log 3 / log 2 ≈ 1.585。</div>
+</div>
+
+
+<!-- ================= 深度专题 A ================= -->
+<div class="ch" id="cA1">
+  <h2>9. 深度专题：欧氏几何的公理体系 <small>从欧几里得到希尔伯特</small></h2>
+  <p>《几何原本》的五条公设在严格性上并不完整：欧几里得默认了「介于」「合同」「连续」等未定义概念。希尔伯特 1899 年在《几何基础》中用五组公理完成了欧氏几何的公理化。</p>
+  <div class="def"><b>希尔伯特五组公理：</b>
+    ① <b>关联公理（I）</b>：两点确定唯一直线；直线上至少两点；不共线三点存在；
+    ② <b>顺序公理（II）</b>：点 $B$ 介于 $A,C$ 之间记作 $A*B*C$，保证直线上的「中间性」；
+    ③ <b>合同公理（III）</b>：线段可搬移、角可搬移、SAS 合同；
+    ④ <b>平行公理（IV）</b>：过直线外一点至多一条平行线；
+    ⑤ <b>连续公理（V）</b>：阿基米德公理 + 完备性公理（直线上点与实数一一对应）。</div>
+  <div class="thm"><b>定理（三角形内角和）：</b>在公理 I–IV 下，三角形内角和 $\le \pi$；加上平行公理后等于 $\pi$。<div class="proof"><b>证明思路：</b>由平行公理的等价形式「过 $A$ 作 $BC$ 的平行线」，利用内错角相等把三个内角拼成一个平角。若删去 IV，得到的绝对几何中内角和仍 $\le\pi$；黎曼几何中则严格 $>\pi$。</div></div>
+  <div class="thm"><b>定理（公理独立性）：</b>第五组连续公理中阿基米德公理不与 I–IV 独立吗？——非阿基米德几何（希尔伯特的例）证明 I–IV 本身相容，可在其上构造出「无穷小线段」而不引入矛盾。这说明平行公设才是欧氏/非欧的分水岭，而非连续性。</div>
+  <div class="ex"><b>例：从公理证「对顶角相等」。</b>设两直线交于 $O$，$A,B$ 在一直线两侧，$C,D$ 在另一直线两侧。由直线上点的顺序，$\angle AOC$ 与 $\angle BOD$ 分别与 $\angle COB$ 互补（合同公理 III 的邻补角定理），故 $\angle AOC=\pi-\angle COB=\angle BOD$。整个证明不涉及「角度数值」，纯由合同关系推出。</div>
+</div>
+
+<!-- ================= 深度专题 B ================= -->
+<div class="ch" id="cA2">
+  <h2>10. 深度专题：微分几何入门 <small>曲率与测地线</small></h2>
+  <div class="def"><b>定义（曲面第一/第二基本形式）：</b>参数曲面 $\mathbf r(u,v)$ 的第一基本形式度量弧长：
+  $$I = E\,du^2 + 2F\,du\,dv + G\,dv^2, \quad E=\mathbf r_u\!\cdot\!\mathbf r_u,\ F=\mathbf r_u\!\cdot\!\mathbf r_v,\ G=\mathbf r_v\!\cdot\!\mathbf r_v.$$
+  第二基本形式度量弯曲：$II = L\,du^2+2M\,du\,dv+N\,dv^2$，其中 $L=\mathbf r_{uu}\!\cdot\!\mathbf n$，$\mathbf n$ 为单位法向量。</div>
+  <div class="def"><b>定义（主曲率、高斯曲率、平均曲率）：</b>在每点，法曲率 $k_n$ 随切方向转动；其两个极值 $k_1,k_2$ 称主曲率。高斯曲率 $K=k_1 k_2 = (LN-M^2)/(EG-F^2)$，平均曲率 $H=(k_1+k_2)/2$。</div>
+  <div class="thm"><b>高斯绝妙定理（Theorema Elegantissima）：</b>$K$ 只依赖第一基本形式 $I$，即只依赖曲面上的内蕴度量，与曲面如何嵌入 $\mathbb R^3$ 无关。<div class="proof"><b>意义：</b>高斯曲率是「曲面自己」的几何——纸平面（$K=0$）无论怎么折都不能贴到球（$K=1/R^2$）上而不撕裂或拉伸，这就是地图不能完美平面化的数学原因。</div></div>
+  <div class="def"><b>定义（测地线）：</b>曲面上局部长度最短的曲线，其测地曲率恒为零。局部坐标下满足欧拉–拉格朗日方程
+  $$\frac{d^2 u^k}{ds^2} + \Gamma^k_{ij}\frac{du^i}{ds}\frac{du^j}{ds}=0,$$
+  其中 $\Gamma^k_{ij}$ 由 $E,F,G$ 及其一阶导数算出（克里斯托费尔符号）。</div>
+  <div class="ex"><b>例：球面 $r=R$ 上的测地线是大圆。</b>球面参数化 $\mathbf r(\theta,\varphi)=R(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta)$，第一基本形式 $I=R^2 d\theta^2 + R^2\sin^2\theta\,d\varphi^2$。沿 $\varphi=\text{const}$ 的经线，切向量 $d\mathbf r/ds$ 与法向量平行，法曲率 $k_n=1/R$，测地曲率为 $0$，故经线是测地线。由旋转对称，一切过极点的大圆都是测地线。两大圆在两个对径点相交——「平行线」在球面上会「相交两次」，这正是球面三角内角和 $>\pi$ 的几何来源。<div class="sol"><b>验证：</b>北半球一条经线上两点 $(\theta_1,\varphi),(\theta_2,\varphi)$ 的弧长 $=R|\theta_2-\theta_1|$，沿纬线绕行的长度 $=2\pi R\sin\theta$，在 $\theta=\pi/2$ 时才等于赤道大圆——直观确认大圆最短。</div></div>
+</div>
+
+<!-- ================= 深度专题 C ================= -->
+<div class="ch" id="cA3">
+  <h2>11. 深度专题：庞加莱圆盘模型 <small>非欧几何的严格模型</small></h2>
+  <div class="def"><b>定义（庞加莱圆盘）：</b>单位开圆盘 $\mathbb D=\{z\in\mathbb C:|z|&lt;1\}$，配以双曲度量
+  $$ds^2 = \frac{4\,|dz|^2}{(1-|z|^2)^2}.$$
+  两点 $z,w$ 的双曲距离为
+  $$d(z,w)=2\,\operatorname{artanh}\left|\frac{z-w}{1-\bar z w}\right|.$$</div>
+  <div class="thm"><b>定理：</b>此模型满足除平行公设外的全部希尔伯特公理，且过直线外一点可作无穷多条「平行线」。<div class="proof"><b>证明思路：</b>模型中的「直线」是与单位圆正交的圆弧（或直径）。给定一条「直线」$L$ 和圆外一点 $p$，过 $p$ 可作无穷多条与 $L$ 不相交的正交圆弧——这就是罗巴切夫斯基几何的具体实现，证明非欧几何相对相容（若欧氏几何相容则非欧几何相容）。</div></div>
+  <div class="thm"><b>定理（双曲三角形内角和）：</b>双曲三角形内角和严格小于 $\pi$，且面积 $=\pi-(\alpha+\beta+\gamma)$。<div class="proof"><b>意义：</b>与球面 $K=1$ 时「面积 $=\alpha+\beta+\gamma-\pi$」对偶，这正是高斯曲率 $K=-1$ 时 Gauss–Bonnet 公式的特例。</div></div>
+  <div class="ex"><b>例：测地距离的直接计算。</b>求圆心到点 $r\in(0,1)$ 的双曲距离。沿直径积分：
+  $$d(0,r)=\int_0^r \frac{2\,dt}{1-t^2} = \ln\frac{1+r}{1-r}.$$
+  当 $r\to 1^-$，距离 $\to +\infty$——圆盘「边界」在双曲意义下无穷远。再验证 $d(0,r)=2\operatorname{artanh} r$，与定义公式一致（令 $z=0,w=r$：$2\operatorname{artanh}|r|$）。</div>
+</div>
+
+
+<!-- ================= 第 9 章 ================= -->
+
+<!-- ================= 深度小节：9a. 深度：射影几何与对偶原理 ================= -->
+<div class="ch" id="c9a">
+  <h2>12. 深度：射影几何与对偶原理 <small>把「平行」从几何里删掉，世界更对称</small></h2>
+  <div class="def"><b>定义（射影平面）</b> 实射影平面 $\mathbb{P}^2$ 把欧氏平面添上一条「无穷远直线」，使任意两条直线恰相交于一点。等价地，$\mathbb{P}^2$ 是 $\mathbb{R}^3\setminus\{0\}$ 在 $v\sim\lambda v$（$\lambda\ne0$）下的商。</div>
+  <div class="thm"><b>定理（对偶原理）</b> 在 $\mathbb{P}^2$ 中，每条关于点与线的命题 $P$ 都对偶于把「点」与「线」互换、把「过」与「在...上」互换后得到的命题 $P^*$，且 $P$ 成立当且仅当 $P^*$ 成立。<div class="proof"><b>直觉：</b>齐次坐标下点 $(x_0,x_1,x_2)$ 与线 $[l_0,l_1,l_2]$ 的关联条件 $\sum l_i x_i=0$ 关于对换点/线完全对称。所以 $P$ 的证明逐字翻译即得 $P^*$ 的证明。</div></div>
+  <div class="ex"><b>例（德沙格定理）</b> 若两三角形对应顶点连线共点，则对应边交点共线（德沙格定理），其对偶是自身的逆——这种自对偶性揭示了二维与三维射影空间的深刻结构。
+  <div class="sol"><b>注：</b>德沙格定理在高维射影空间可证（用三维的投影），但在 $\mathbb{P}^2$ 内不能从射影公理独立证明——这催生了「非德沙格平面」的反例研究。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9b. 深度：微分几何初步——曲率与挠率 ================= -->
+<div class="ch" id="c9b">
+  <h2>13. 深度：微分几何初步——曲率与挠率 <small>沿曲线走一步，方向变多少</small></h2>
+  <div class="def"><b>定义（Frenet 标架）</b> 弧长参数化曲线 $\gamma(s)$，单位切向量 $T=\gamma'$，法向 $N=T'/\|T'\|$，副法向 $B=T\times N$。三量 $\kappa=\|T'\|$（曲率）、$\tau=-B'\cdot N$（挠率）完全确定曲线（至刚体运动）。</div>
+  <div class="thm"><b>定理（Frenet–Serret 公式）</b>
+  $$T' = \kappa N, \quad N' = -\kappa T + \tau B, \quad B' = -\tau N.$$
+  <div class="proof"><b>推导：</b>$T'=\kappa N$ 是定义；$N\perp T$ 且 $\|N\|=1$ 给 $N'\perp N$，故 $N'=aT+bB$；由 $T'\cdot N=\kappa$ 与 $(T\cdot N)'=0$ 得 $a=-\kappa$；$b$ 由 $B$ 的定义推得 $b=\tau$；$B'=-\tau N$ 由 $B=T\times N$ 求导得到。</div></div>
+  <div class="ex"><b>例：</b>圆 $\gamma(s)=(R\cos(s/R),R\sin(s/R),0)$ 的 $\kappa$ 与 $\tau$。
+  <div class="sol"><b>解：</b>$T=(-\sin(s/R),\cos(s/R),0)$，$T'=\frac{1}{R}(\cos,\sin,0)=\frac{1}{R}N$，故 $\kappa=1/R$。$B=(0,0,1)$ 常向量，$B'=0$，故 $\tau=0$——圆是平面曲线。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9c. 深度：双曲几何的庞加莱模型 ================= -->
+<div class="ch" id="c9c">
+  <h2>14. 深度：双曲几何的庞加莱模型 <small>在圆盘里画直线，但直的是弯的</small></h2>
+  <div class="def"><b>定义（庞加莱圆盘）</b> 开圆盘 $\mathbb{D}=\{z:|z|&lt;1\}$ 中，「测地线」（双曲直线）是与边界 $\partial\mathbb{D}$ 正交的圆弧或直径。庞加莱度量 $ds=\frac{2|dz|}{1-|z|^2}$ 使每条测地线长度无限。</div>
+  <div class="thm"><b>定理（双曲平行公理）</b> 过「直线」外一点存在<b>无穷多条</b>不与该直线相交的「直线」——与欧氏平行公理相反。
+  <div class="proof"><b>构造：</b>设测地线 $L$ 与外点 $P$。作两条与 $L$ 在端点处「平行」（端点相同但不相交）的测地线，它们与 $L$ 均无交点；这两条之间还容得下无穷多条。</div></div>
+  <div class="thm"><b>定理（高斯曲率恒为 $-1$）</b> 庞加莱圆盘在度量 $ds$ 下高斯曲率 $K\equiv-1$。<div class="proof"><b>注：</b>这把「负曲率」几何实现为具体的复分析对象——$\mathrm{PSL}(2,\mathbb{R})$ 的作用保持 $ds$，成为双曲几何与模形式理论的桥梁。</div></div>
+</div>
+
+
+<!-- ================= 第二轮深度小节：9d. 深度：黎曼几何与高斯–博涅定理 ================= -->
+<div class="ch" id="c9d">
+  <h2>15. 深度：黎曼几何与高斯–博涅定理 <small>曲率与拓扑的深刻联系</small></h2>
+  <div class="def"><b>定义（黎曼度量）</b> 光滑流形 $M$ 上的黎曼度量 $g$ 是每点切空间上的正定对称双线性形式。$(M,g)$ 称黎曼流形。度量决定长度 $L(\gamma)=\int\sqrt{g_{\gamma}\dot\gamma\cdot\dot\gamma}\,dt$、面积元、体积形式等。</div>
+  <div class="def"><b>定义（截面曲率）</b> 对切平面 $\sigma=\mathrm{span}(X,Y)$，截面曲率 $K(\sigma)=\frac{\langle R(X,Y)Y,X\rangle}{|X|^2|Y|^2-\langle X,Y\rangle^2}$，$R$ 为曲率张量。直觉：「沿 $\sigma$ 切出的测地三角形的内角和」偏离 $\pi$ 由 $K$ 决定。</div>
+  <div class="thm"><b>定理（高斯–博涅局部）</b> 紧有界区域 $D\subset M$，边界 $\partial D$ 由分段光滑测地线组成，则
+  $$\int_D K\,dA + \sum_i\alpha_i = 2\pi\chi(D),$$
+  其中 $\alpha_i$ 为外角，$\chi$ 为 Euler 示性数。<div class="proof"><b>思路：</b>用活动标架把 $dA$ 表成 $\omega_1\wedge\omega_2$，结构方程给出 $d\omega_{12}=K\omega_1\wedge\omega_2$，Stokes 定理把边界贡献化为 $\int K\,dA$ 加角修正。</div></div>
+  <div class="thm"><b>定理（高斯–博涅整体）</b> 紧曲面 $M$ 无边界时 $\int_M K\,dA = 2\pi\chi(M)$。故 $\chi(M)$ 由曲率积分决定——这是「曲率决定拓扑」的最早范例。<div class="proof"><b>例：</b>球面 $S^2$，$K\equiv1$，$\int K\,dA=4\pi=2\pi\cdot2$，$\chi(S^2)=2$。环面 $T^2$ 上 $\int K\,dA=0=2\pi\cdot0$，$\chi=0$——但 $T^2$ 的 $K$ 有正有负。</div></div>
+  <div class="ex"><b>例：</b>计算双曲面 $\{(x,y,z):x^2+y^2-z^2=1\}$ 的截面曲率符号。
+  <div class="sol"><b>解：</b>参数化为 $r(u,v)=(\cosh u\cos v,\cosh u\sin v,\sinh u)$，第一基本形式 $g=\cosh(2u)\,du^2+\cosh^2u\,dv^2$（$E=\sinh^2u+\cosh^2u=\cosh 2u$，$G=\cosh^2u$，$F=0$）。旋转面曲率公式给 $$K=-\frac{r''z'-r'z''}{r\bigl((r')^2+(z')^2\bigr)^2}=-\frac{\cosh^2u-\sinh^2u}{\cosh u\cdot\cosh^2(2u)}=-\frac1{\cosh u\cdot\cosh^2(2u)}&lt;0,$$处处为负。面积元 $dA=\cosh u\sqrt{\cosh 2u}\,du\,dv$，故 $K\,dA=-\operatorname{sech}^{3/2}(2u)\,du\,dv$ 在整个曲面上可积（总曲率为有限负值；非紧整体高斯–博涅定理需对端（end）附加条件）。</div></div>
+</div>
+
+<!-- ================= 第二轮深度小节：9e. 深度：代数几何初步——簇与概形 ================= -->
+<div class="ch" id="c9e">
+  <h2>16. 深度：代数几何初步——簇与概形 <small>用方程画几何，用几何读方程</small></h2>
+  <div class="def"><b>定义（仿射簇）</b> 给定域 $k$ 与多项式族 $S\subset k[x_1,\dots,x_n]$，$S$ 的公共零点集
+  $$V(S)=\{P\in\mathbb{A}^n_k: f(P)=0,\,\forall f\in S\}$$
+  称仿射簇。$\mathbb{A}^n_k$ 为仿射 $n$ 空间。$S$ 生成的理想 $I=(S)$ 决定同一簇，$V$ 与 $I$ 是 Galois 联系。</div>
+  <div class="thm"><b>定理（Hilbert 零点定理）</b> 若 $k$ 代数闭，则 $V(I)=\emptyset$ 当且仅当 $I=(1)$。更精确地：$I(V(J))=\sqrt{J}=\{f:f^m\in J\text{ 对某 }m\}$。这建立 $\{\text{簇}\}\leftrightarrow\{\text{根式理想}\}$ 的一一对应（仿射情形）。<div class="proof"><b>思路：</b>Hilbert 用「基定理」证多项式理想有限生成，再用「Rabinowitsch 技巧」化一般情形到无解情形。</div></div>
+  <div class="thm"><b>定理（Bézout 定理）</b> 在 $\mathbb{P}^2_k$ 上，次数 $m,n$ 的两条无公共分量曲线恰在 $mn$ 个点（计重数）相交。<div class="proof"><b>意义：</b>把「几何相交数」化为「代数乘积」——这是代数几何的中心思想。射影化保证有交点（无穷远补上）。</div></div>
+  <div class="ex"><b>例：</b>椭圆 $x^2/a^2+y^2/b^2=1$ 与直线 $y=c$ 的交点。
+  <div class="sol"><b>解：</b>代入得 $x^2=a^2(1-c^2/b^2)$。$|c|&lt;b$ 时两实交点 $(\pm a\sqrt{1-c^2/b^2},c)$；$c=\pm b$ 时重根（切线）；$|c|>b$ 时无实交点，但在 $\mathbb{C}$ 上仍有两个（共轭）交点——Bézout 保证恰 2 个（计重数）。</div></div>
+</div>
+
+<div class="ch" id="c9">
+  <h2>17. 练习与自测</h2>
+  <div class="ex"><b>练习 1：</b>证明：圆内接四边形对角互补。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>圆周角定理：∠A 是弧 BCD 的圆周角 = 弧 BCD 的一半；∠C 是弧 BAD 的圆周角 = 弧 BAD 的一半；两弧合成整圆 360°，故两角之和 = 180°。</div></details></div>
+  <div class="ex"><b>练习 2：</b>正八面体的顶点数、棱数、面数，验证欧拉公式。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>V=6, E=12, F=8，6−12+8 = 2 ✓</div></details></div>
+  <div class="ex"><b>练习 3：</b>求到点 (1,0) 与直线 x=−1 距离相等的点的轨迹。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>抛物线 y² = 4x（焦点 (1,0)，准线 x=−1，p=1）。</div></details></div>
+  <div class="ex"><b>练习 4：</b>球面三角形内角和能等于 180° 吗？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>不能（除退化情形）。球面三角形内角和恒 &gt; 180°，超出量正比于球面面积：∠A+∠B+∠C − 180° = 面积/R²。</div></details></div>
+  <div class="ex"><b>练习 5：</b>科赫雪花的豪斯多夫维数是多少？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>log 4 / log 3 ≈ 1.2619。</div></details></div>
+  <div class="ex"><b>练习 6：</b>用泰勒斯定理证明：直角三角形的外心在斜边中点。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>斜边是外接圆直径（泰勒斯定理的逆），外心即斜边中点。</div></details></div>
+</div>
+
+<!-- ================= 第 10 章 ================= -->
+
+  <div class="ex"><b>练习 7：</b>在射影平面上，「四线共点」的对偶命题是什么？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>「四点共线」——对偶原理把点换线、共点换共线。</div></details></div>
+
+  <div class="ex"><b>练习 8：</b>求半径为 $R$ 的球面上大圆的测地曲率。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>球面上测地线（大圆）的测地曲率为 $0$——这正是「直线」的推广。</div></details></div>
+
+  <div class="ex"><b>练习 9：</b>计算 $\kappa=1/R$、$\tau=0$ 的曲线是什么？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>由 Frenet 公式唯一确定（至刚体运动）为半径 $R$ 的圆——曲率 $\kappa$ 与挠率 $\tau$ 完全决定曲线形状。</div></details></div>
+
+  <div class="ex"><b>练习 10：</b>在庞加莱上半平面模型中，测地线是什么？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>与实轴正交的圆弧或竖直线段。与圆盘模型等价，经 Cayley 变换互转。</div></details></div>
+
+  <div class="ex"><b>练习 11：</b>用高斯–博涅定理证明环面 $T^2$ 上不存在处处 $K>0$ 的黎曼度量。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>整体 GB 给 $\int K\,dA=2\pi\chi(T^2)=0$；若 $K>0$ 处处则积分 $>0$，矛盾。</div></details></div>
+  <div class="ex"><b>练习 12：</b>Bézout 定理：抛物线 $y=x^2$ 与直线 $y=0$ 在 $\mathbb{P}^2$ 上交于几个点？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>齐次化后抛物线为 $YZ=X^2$、直线为 $Y=0$。代入得 $X^2=0$，故仅交于一点 $[0:0:1]$（即仿射原点），重数为 2（相切），计重数恰为 $2\times1=2$。注意 $[0:1:0]$ 在抛物线上但 $Y=1\ne0$，不在直线上。</div></details></div>
+
+<div class="ch" id="c10">
+  <h2>18. 术语表、在线资源与最新研究</h2>
+  <div class="gloss">
+    <dt>合同 / 相似</dt><dd>等距变换可互映 / 相似变换可互映。</dd>
+    <dt>外接圆 / 内切圆</dt><dd>过三角形三顶点的圆 / 与三边相切的圆；外心、内心。</dd>
+    <dt>垂心 / 重心</dt><dd>三条高的交点 / 三条中线的交点（重心把中线 2:1 分割）。</dd>
+    <dt>曲率</dt><dd>度量空间弯曲程度的量；高斯曲率、黎曼曲率。</dd>
+    <dt>测地线</dt><dd>曲面上「最直」的线；平面上是直线，球面上是大圆。</dd>
+    <dt>维数</dt><dd>拓扑维数、豪斯多夫维数、分形维数——「几维」不再只有一个答案。</dd>
+    <dt>对偶原理</dt><dd>射影几何中点↔线对换保持命题真值的对称性。</dd>
+    <dt>Frenet 标架</dt><dd>沿曲线的 $(T,N,B)$ 三正交单位向量，描述曲线局部几何。</dd>
+    <dt>双曲几何</dt><dd>负曲率几何，过线外一点有无穷多平行线。</dd>
+  </div>
+  <div class="online">
+    <b>在线资源（需联网打开）</b>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Geometry" target="_blank" rel="noopener noreferrer">Wikipedia: Geometry</a> —— 几何百科总览</li>
+      <li><a href="https://en.wikipedia.org/wiki/Euclidean_geometry" target="_blank" rel="noopener noreferrer">Wikipedia: Euclidean geometry</a></li>
+      <li><a href="https://arxiv.org/list/math.MG/recent" target="_blank" rel="noopener noreferrer">arXiv 度量几何最新论文</a>（含数学几何 math.MG）</li>
+      <li><a href="https://mathworld.wolfram.com" target="_blank" rel="noopener noreferrer">Wolfram MathWorld: Geometry</a> —— 经典几何辞书</li>
+    </ul>
+    <p class="hint">本页「最新研究」区加载更新器每日抓取的 arXiv 几何（math.MG）最新论文。</p>
+  </div>
+  <div class="ch" style="margin-top:34px;">
+    <h2>本主题最新研究 <small>每日自动更新 · 来源 arXiv math.MG</small></h2>
+    <div class="papers" id="topicPapers">
+      <div class="empty">等待数据……若长时间未更新，请运行 <code>python 09-前沿动态/数学前沿更新器.py</code>。</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../02-核心主题/数论.html">数论讲义 →</a>
+  <a href="../02-核心主题/代数.html">代数讲义 →</a>
+  <a href="../05-可视化/可视化导航.html">可视化 →</a>
+</footer>
+</div>
+
+<script src="../09-前沿动态/论文数据.js"></script>
+<script>
+(function(){
+  var wrap = document.getElementById('topicPapers');
+  if(!wrap) return;
+  var papers = (typeof window.LBLB_PAPERS !== 'undefined' && window.LBLB_PAPERS['几何']) || [];
+  if(!papers.length){
+    wrap.innerHTML = '<div class="empty">暂无该主题最新论文数据（更新器尚未成功抓取或已离线）。运行 <code>数学前沿更新器.py</code> 后自动填充。</div>';
+    return;
+  }
+  var html = '';
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+  for(var i=0;i<papers.length;i++){
+    var p = papers[i];
+    html += '<div class="p"><a href="' + esc(p.link) + '" target="_blank" rel="noopener noreferrer">' + esc(p.title) + '</a>' +
+      '<div class="m">' + esc(p.author||'—') + ' · ' + esc(p.date||'') + '</div></div>';
+  }
+  wrap.innerHTML = html;
+})();
+</script>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>真题整卷训练</title>
+<style>
+:root{
+  --bg:#f5f7f8;--panel:#fff;--ink:#172126;--muted:#637177;--line:#d9e0e3;
+  --teal:#0f7f86;--teal2:#e7f4f4;--blue:#245b88;--amber:#a86610;
+  --green:#25734d;--red:#a43b3b;--shadow:0 10px 28px rgba(20,35,42,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink)}
+body{font:15px/1.62 "Times New Roman", "Microsoft YaHei","Noto Sans SC",system-ui,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:var(--blue)}
+.topbar{background:#102d35;color:#fff;padding:14px 22px;display:flex;gap:18px;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:baseline;gap:12px}
+.brand b{font-size:19px;letter-spacing:.04em}
+.brand span{font-size:12px;color:#b8d1d6}
+.topStat{font-size:13px;color:#d8e8eb}
+.wrap{max-width:1540px;margin:0 auto;padding:18px}
+.toolbar{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px;display:grid;grid-template-columns:1.1fr 1fr 1.4fr auto;gap:10px;align-items:center}
+.toolbar input,.toolbar select{width:100%;border:1px solid var(--line);background:#fff;border-radius:6px;padding:8px 10px;color:var(--ink)}
+.cats{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}
+.cat{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;color:var(--muted)}
+.cat.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:12px}
+.paper{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:13px;min-height:144px;display:flex;flex-direction:column;gap:8px}
+.paper h3{margin:0;font-size:16px;line-height:1.42;min-height:46px}
+.paper .meta{display:flex;gap:6px;flex-wrap:wrap;color:var(--muted);font-size:12px}
+.chip{border:1px solid #d7e2e4;background:#f7fbfb;border-radius:999px;padding:2px 7px}
+.paper .bottom{margin-top:auto;display:flex;gap:8px;align-items:center;justify-content:space-between}
+.btn{border:1px solid var(--teal);background:var(--teal);color:#fff;border-radius:6px;padding:7px 11px}
+.btn.ghost{border-color:var(--line);background:#fff;color:var(--ink)}
+.btn.blue{border-color:var(--blue);background:var(--blue)}
+.btn.danger{border-color:#dfb8b8;background:#fff;color:var(--red)}
+.btn.sm{padding:5px 9px;font-size:13px}
+.workspace{display:none;margin-top:16px}
+.workspace.on{display:block}
+.workspaceHead{background:#fff;border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:8px;padding:14px 16px;display:flex;justify-content:space-between;gap:18px;align-items:flex-start}
+.workspaceHead h2{margin:0 0 5px;font-size:20px}
+.headMeta{color:var(--muted);font-size:13px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.examGrid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:14px;margin-top:14px}
+.viewer{background:#fff;border:1px solid var(--line);border-radius:8px;min-height:720px;overflow:hidden}
+.viewerBar{height:46px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 12px;background:#fafcfc}
+.viewer iframe{display:block;width:100%;height:674px;border:0;background:#eef1f2}
+.side{display:flex;flex-direction:column;gap:12px}
+.box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:13px}
+.box h3{margin:0 0 9px;font-size:15px}
+.timer{font-size:29px;font-weight:700;color:#153c44;font-variant-numeric:tabular-nums}
+.timerRow{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.resultStat{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.resultStat div{background:#f6f8f9;border-radius:6px;padding:8px}
+.resultStat strong{display:block;font-size:19px}
+.scoreList{display:flex;flex-direction:column;gap:10px}
+.scoreItem{border-top:1px solid var(--line);padding-top:10px}
+.scoreItem:first-child{border-top:0;padding-top:0}
+.scoreTop{display:flex;align-items:center;gap:8px}
+.scoreTop b{font-size:14px}
+.maxInput{width:62px;border:1px solid var(--line);border-radius:5px;padding:4px 6px;text-align:center}
+.rubric{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}
+.rubric label{font-size:11px;color:var(--muted);line-height:1.3}
+.rubric input{width:100%;border:1px solid var(--line);border-radius:5px;padding:5px;margin-top:3px}
+.scoreBottom{display:flex;align-items:center;gap:7px;margin-top:8px;flex-wrap:wrap}
+.scoreTotal{font-weight:700}
+.verdict{border:1px solid var(--line);background:#fff;border-radius:5px;padding:4px 8px;font-size:12px}
+.verdict.ok{border-color:#9ccbb4;background:#edf8f2;color:var(--green)}
+.verdict.bad{border-color:#e0b4b4;background:#fff1f1;color:var(--red)}
+.empty{padding:38px;background:#fff;border:1px dashed var(--line);border-radius:8px;text-align:center;color:var(--muted)}
+.hint{font-size:12px;color:var(--muted)}
+.source{word-break:break-all;font-size:12px}
+.loadMore{display:flex;align-items:center;justify-content:center;gap:10px;margin:18px 0 8px}
+@media(max-width:1050px){
+  .examGrid{grid-template-columns:1fr}
+  .viewer{min-height:560px}
+  .viewer iframe{height:520px}
+}
+@media(max-width:720px){
+  .topbar{padding:12px 14px;align-items:flex-start;flex-direction:column}
+  .wrap{padding:12px}
+  .toolbar{grid-template-columns:1fr}
+  .workspaceHead{flex-direction:column}
+  .actions{justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <b>真题整卷训练</b>
+    <span>原卷 · 官方答案 · 自评分</span>
+  </div>
+  <div class="topStat"><a href="06-真实单题训练.html" style="color:#d8e8eb;">单题模式</a> · <a href="06-真实单题训练.html?mode=exam" style="color:#d8e8eb;">自定义组卷</a> · <a href="07-题库覆盖与来源.html" style="color:#d8e8eb;">覆盖与来源</a> · <span id="topStat"></span></div>
+</header>
+
+<main class="wrap">
+  <section class="toolbar">
+    <select id="catSel"></select>
+    <select id="trackSel"></select>
+    <input id="search" placeholder="搜索年份、学校、试卷名称">
+    <button class="btn ghost" id="clearBtn">清除筛选</button>
+  </section>
+
+  <div class="cats" id="catTabs"></div>
+  <section class="list" id="paperList"></section>
+  <div class="loadMore" id="loadMoreWrap" style="display:none">
+    <button class="btn ghost" id="loadMoreBtn">加载更多</button>
+    <span class="hint" id="listCount"></span>
+  </div>
+
+  <section class="workspace" id="workspace">
+    <div class="workspaceHead">
+      <div>
+        <h2 id="wsTitle"></h2>
+        <div class="headMeta" id="wsMeta"></div>
+      </div>
+      <div class="actions">
+        <button class="btn ghost sm" id="backBtn">返回试卷库</button>
+        <a class="btn ghost sm" id="sourceLink" target="_blank" rel="noreferrer">原始来源</a>
+        <a class="btn ghost sm" id="openPaper" target="_blank">打开原卷</a>
+        <a class="btn ghost sm" id="altMethods" target="_blank">其他方法</a>
+        <button class="btn blue sm" id="showAnswer">查看官方过程</button>
+      </div>
+    </div>
+
+    <div class="examGrid">
+      <div class="viewer">
+        <div class="viewerBar">
+          <strong id="viewerTitle">正在作答</strong>
+          <span class="hint" id="viewerHint">先独立完成，再查看官方过程</span>
+        </div>
+        <iframe id="pdfFrame" title="真题 PDF"></iframe>
+      </div>
+
+      <aside class="side">
+        <div class="box">
+          <h3>整卷计时</h3>
+          <div class="timer" id="timerText">150:00</div>
+          <div class="timerRow">
+            <select id="timerMinutes">
+              <option value="60">60 分钟</option>
+              <option value="90">90 分钟</option>
+              <option value="120">120 分钟</option>
+              <option value="150" selected>150 分钟</option>
+              <option value="180">180 分钟</option>
+            </select>
+            <button class="btn sm" id="timerStart">开始</button>
+            <button class="btn ghost sm" id="timerReset">重置</button>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>自评结果</h3>
+          <div class="resultStat">
+            <div><span class="hint">累计得分</span><strong id="scoreSum">0</strong></div>
+            <div><span class="hint">判定做对</span><strong id="correctCount">0</strong></div>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>逐题评分</h3>
+          <div class="hint">每步按该题满分折算：关键方法 30%，主体推导 50%，结论 20%。可自行修改各步得分。</div>
+          <div class="scoreList" id="scoreList"></div>
+          <div class="timerRow">
+            <button class="btn ghost sm" id="addQuestion">添加一题</button>
+            <button class="btn danger sm" id="resetScore">重置自评</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<script src="123/真题卷.js"></script>
+<script src="123/文本整卷-新增.js"></script>
+<script>
+(function(){
+"use strict";
+var DATA=window.LBLB_EXAMS||{papers:[],categories:{},rubricTemplate:[]};
+var PAPERS=DATA.papers||[];
+var STORE_KEY="lb_exams_v1";
+var state={cat:"all",track:"all",search:"",paper:null,showAnswer:false,limit:120};
+var timer={id:null,left:150*60,running:false};
+var progress=load();
+
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");}
+function load(){try{return JSON.parse(localStorage.getItem(STORE_KEY)||"{}");}catch(e){return{};}}
+function save(){try{localStorage.setItem(STORE_KEY,JSON.stringify(progress));}catch(e){}}
+function pstate(id){
+  if(!progress[id])progress[id]={rows:[],correct:0,score:0,revealed:false,elapsed:0};
+  return progress[id];
+}
+function paperMax(paper,index){
+  var n=paper.questionCount||6;
+  if(paper.cat==="cmc"&&n===6){return [30,14,14,14,14,14][index]||14;}
+  var base=Math.floor(100/n),rem=100-base*n;
+  return base+(index<rem?1:0);
+}
+function defaultRows(paper){
+  var rows=[];
+  for(var i=0;i<(paper.questionCount||6);i++){
+    rows.push({max:paperMax(paper,i),parts:[0,0,0],verdict:""});
+  }
+  return rows;
+}
+function rowPoints(row){
+  return row.parts.reduce(function(a,b){return a+(Number(b)||0);},0);
+}
+function rubricParts(max){
+  var a=Math.round(max*.3),b=Math.round(max*.5);
+  return [a,b,Math.max(0,max-a-b)];
+}
+function filtered(){
+  var text=state.search.toLowerCase();
+  return PAPERS.filter(function(p){
+    if(state.cat!=="all"&&p.cat!==state.cat)return false;
+    if(state.track!=="all"&&(p.sub||p.track)!==state.track)return false;
+    if(text){
+      var blob=[p.title,p.sub,p.track,p.topic,p.stage,p.year,p.source].join(" ").toLowerCase();
+      if(blob.indexOf(text)<0)return false;
+    }
+    return true;
+  });
+}
+function assetUrl(payload){
+  var file=(payload&&payload.file)||"";
+  return payload&&payload.query?file+"?"+payload.query:file;
+}
+function renderFilters(){
+  var cats=[["all","全部"]].concat(Object.keys(DATA.categories||{}).map(function(k){return[k,DATA.categories[k]];}));
+  $("catSel").innerHTML=cats.map(function(x){return '<option value="'+esc(x[0])+'">'+esc(x[1])+'</option>';}).join("");
+  $("catTabs").innerHTML=cats.map(function(x){return '<button class="cat'+(state.cat===x[0]?" on":"")+'" data-cat="'+esc(x[0])+'">'+esc(x[1])+'</button>';}).join("");
+  var tracks=["all"].concat(Array.from(new Set(PAPERS.map(function(p){return p.sub||p.track;}).filter(Boolean))).sort());
+  $("trackSel").innerHTML=tracks.map(function(t){return '<option value="'+esc(t)+'">'+(t==="all"?"全部类别":esc(t))+'</option>';}).join("");
+  $("catSel").value=state.cat;$("trackSel").value=state.track;
+}
+function renderList(){
+  var arr=filtered();
+  var shown=arr.slice(0,state.limit);
+  $("topStat").textContent="整卷与模拟卷 "+PAPERS.length+" 套 · 真实单题 "+(DATA.questions||[]).length+" 道 · 当前筛选 "+arr.length+" 套";
+  if(!arr.length){
+    var extra=(state.cat==="zsb"||state.cat==="kaoyan")
+      ? '<p><a href="06-真实单题训练.html">该分类当前可从真实单题和自定义组卷入口练习</a></p>'
+      : '';
+    $("paperList").innerHTML='<div class="empty">没有匹配的整卷'+extra+'</div>';
+    return;
+  }
+  $("paperList").innerHTML=shown.map(function(p){
+    var done=pstate(p.id),answered=done.rows.filter(function(r){return r.verdict;}).length;
+    return '<article class="paper">'
+      +'<div class="meta"><span class="chip">'+esc((DATA.categories||{})[p.cat]||p.cat)+'</span>'
+      +(p.year?'<span class="chip">'+p.year+'</span>':'')
+      +'<span class="chip">'+esc(p.stage||"")+'</span>'
+      +(p.difficulty?'<span class="chip">'+esc(p.difficulty)+'</span>':'')+'</div>'
+      +'<h3>'+esc(p.title)+'</h3>'
+      +'<div class="meta"><span>'+esc(p.sub||p.track||"")+'</span><span>'+esc(p.topic||"")+'</span><span>'+p.paper.pages+' 页</span>'
+      +'<span>已自评 '+answered+'/'+(p.questionCount||6)+'</span>'
+      +(p.answer?'':'<span>暂无答案</span>')+'</div>'
+      +'<div class="bottom"><span class="hint">得分 '+done.score+' / 100</span>'
+      +'<button class="btn sm" data-open="'+esc(p.id)+'">开始整卷</button></div>'
+      +'</article>';
+  }).join("");
+  $("loadMoreWrap").style.display=arr.length>shown.length?"":"none";
+  $("listCount").textContent="已显示 "+shown.length+" / "+arr.length+" 套";
+  document.querySelectorAll("[data-open]").forEach(function(btn){
+    btn.onclick=function(){openPaper(this.getAttribute("data-open"));};
+  });
+}
+function openPaper(id){
+  state.paper=PAPERS.filter(function(p){return p.id===id;})[0];
+  if(!state.paper)return;
+  var st=pstate(id);if(!st.rows.length)st.rows=defaultRows(state.paper);
+  state.showAnswer=false;
+  $("workspace").classList.add("on");
+  $("wsTitle").textContent=state.paper.title;
+  $("wsMeta").innerHTML=esc([state.paper.sub||state.paper.track,state.paper.stage,state.paper.year,state.paper.difficulty,state.paper.source,state.paper.license].filter(Boolean).join(" · "));
+  $("sourceLink").href=state.paper.source||"#";
+  $("viewerTitle").textContent="正在作答";
+  $("viewerHint").textContent="先独立完成，再查看官方过程";
+  $("pdfFrame").src=assetUrl(state.paper.paper);
+  $("openPaper").href=assetUrl(state.paper.paper);
+  $("altMethods").style.display=state.paper.alt?"":"none";
+  $("altMethods").href=state.paper.alt||"#";
+  $("showAnswer").disabled=!state.paper.answer;
+  $("showAnswer").textContent=state.paper.answer?"查看官方过程":"暂无官方答案";
+  timer.left=(Number($("timerMinutes").value)||150)*60;
+  timer.running=false;clearInterval(timer.id);renderTimer();
+  renderScoreTable();
+  setTimeout(function(){window.scrollTo(0,$("workspace").offsetTop-10);},0);
+}
+function renderTimer(){
+  var m=Math.floor(timer.left/60),s=timer.left%60;
+  $("timerText").textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;
+}
+function tick(){
+  if(!timer.running)return;
+  timer.left=Math.max(0,timer.left-1);renderTimer();
+  var st=pstate(state.paper.id);st.elapsed=(st.elapsed||0)+1;save();
+  if(timer.left<=0){timer.running=false;clearInterval(timer.id);$("timerStart").textContent="开始";}
+}
+function renderScoreTable(){
+  var paper=state.paper,st=pstate(paper.id),parts=partsFor(paper);
+  $("scoreList").innerHTML=st.rows.map(function(row,index){
+    var max=Number(row.max)||0,ps=rubricParts(max),vals=row.parts||[0,0,0];
+    return '<div class="scoreItem" data-row="'+index+'">'
+      +'<div class="scoreTop"><b>第 '+(index+1)+' 题</b><span class="hint">满分</span>'
+      +'<input class="maxInput" type="number" min="0" max="100" value="'+max+'" data-max="'+index+'"></div>'
+      +'<div class="rubric">'
+      +ps.map(function(v,j){return '<label>'+esc(parts[j].label)+' '+v+'分<input type="number" min="0" max="'+v+'" value="'+(Number(vals[j])||0)+'" data-part="'+index+':'+j+'"></label>';}).join("")
+      +'</div><div class="scoreBottom"><span class="scoreTotal">本步合计 '+rowPoints(row)+' / '+max+'</span>'
+      +'<button class="verdict'+(row.verdict==="ok"?" ok":"")+'" data-verdict="'+index+':ok">做对</button>'
+      +'<button class="verdict'+(row.verdict==="bad"?" bad":"")+'" data-verdict="'+index+':bad">做错</button>'
+      +'</div></div>';
+  }).join("");
+  bindScoreInputs();refreshResult();
+}
+function partsFor(paper){
+  return (DATA.rubricTemplate||[]).map(function(x){return {label:x.label||"得分项",weight:x.weight||0};});
+}
+function bindScoreInputs(){
+  document.querySelectorAll("[data-max]").forEach(function(inp){
+    inp.onchange=function(){
+      var i=+this.getAttribute("data-max"),st=pstate(state.paper.id),row=st.rows[i];
+      row.max=Math.max(0,Math.min(100,Number(this.value)||0));row.parts=[0,0,0];
+      save();renderScoreTable();
+    };
+  });
+  document.querySelectorAll("[data-part]").forEach(function(inp){
+    inp.onchange=function(){
+      var key=this.getAttribute("data-part").split(":"),i=+key[0],j=+key[1];
+      var st=pstate(state.paper.id),row=st.rows[i],ps=rubricParts(Number(row.max)||0);
+      row.parts=row.parts||[0,0,0];row.parts[j]=Math.max(0,Math.min(ps[j],Number(this.value)||0));
+      save();renderScoreTable();
+    };
+  });
+  document.querySelectorAll("[data-verdict]").forEach(function(btn){
+    btn.onclick=function(){
+      var key=this.getAttribute("data-verdict").split(":"),i=+key[0],v=key[1];
+      var st=pstate(state.paper.id);st.rows[i].verdict=st.rows[i].verdict===v?"":v;save();renderScoreTable();
+    };
+  });
+}
+function refreshResult(){
+  var st=pstate(state.paper.id);
+  var score=st.rows.reduce(function(a,r){return a+rowPoints(r);},0);
+  var correct=st.rows.filter(function(r){return r.verdict==="ok";}).length;
+  st.score=score;st.correct=correct;save();
+  $("scoreSum").textContent=score;$("correctCount").textContent=correct;
+}
+function toggleAnswer(){
+  if(!state.paper)return;
+  if(!state.paper.answer){alert("该来源未提供答案文件");return;}
+  state.showAnswer=!state.showAnswer;
+  var st=pstate(state.paper.id);st.revealed=true;save();
+  var same=state.paper.answer.file===state.paper.paper.file;
+  $("viewerTitle").textContent=state.showAnswer?"官方过程与答案":"正在作答";
+  $("viewerHint").textContent=state.showAnswer
+    ? (same?"官方解答在试卷后部，请向下翻到对应题号核分":"对照官方过程逐步核分")
+    : "先独立完成，再查看官方过程";
+  $("showAnswer").textContent=state.showAnswer?"回到题目":"查看官方过程";
+  $("pdfFrame").src=assetUrl(state.showAnswer?state.paper.answer:state.paper.paper);
+}
+
+var initParams=new URLSearchParams(location.search);
+if(initParams.get("cat"))state.cat=initParams.get("cat");
+if(initParams.get("track"))state.track=initParams.get("track");
+renderFilters();renderList();
+var linkedPaper=initParams.get("paper");
+if(linkedPaper){
+  openPaper(decodeURIComponent(linkedPaper));
+}else if(location.hash.indexOf("#paper=")===0){
+  openPaper(decodeURIComponent(location.hash.slice(7)));
+}
+$("loadMoreBtn").onclick=function(){state.limit+=120;renderList();};
+$("catSel").onchange=function(){state.cat=this.value;state.limit=120;renderFilters();renderList();};
+$("trackSel").onchange=function(){state.track=this.value;state.limit=120;renderList();};
+$("search").oninput=function(){state.search=this.value.trim();state.limit=120;renderList();};
+$("clearBtn").onclick=function(){state.cat="all";state.track="all";state.search="";state.limit=120;$("search").value="";renderFilters();renderList();};
+$("backBtn").onclick=function(){$("workspace").classList.remove("on");state.paper=null;renderList();};
+$("showAnswer").onclick=toggleAnswer;
+$("timerStart").onclick=function(){
+  if(timer.running){timer.running=false;clearInterval(timer.id);this.textContent="继续";return;}
+  timer.running=true;this.textContent="暂停";clearInterval(timer.id);timer.id=setInterval(tick,1000);
+};
+$("timerReset").onclick=function(){
+  timer.running=false;clearInterval(timer.id);$("timerStart").textContent="开始";
+  timer.left=(Number($("timerMinutes").value)||150)*60;renderTimer();
+};
+$("timerMinutes").onchange=function(){if(!timer.running){timer.left=(Number(this.value)||150)*60;renderTimer();}};
+$("addQuestion").onclick=function(){
+  if(!state.paper)return;var st=pstate(state.paper.id);
+  st.rows.push({max:0,parts:[0,0,0],verdict:""});save();renderScoreTable();
+};
+$("resetScore").onclick=function(){
+  if(!state.paper||!confirm("重置本卷自评结果？"))return;
+  var st=pstate(state.paper.id);st.rows=defaultRows(state.paper);st.score=0;st.correct=0;st.revealed=false;
+  state.showAnswer=false;$("showAnswer").textContent=state.paper.answer?"查看官方过程":"暂无官方答案";$("pdfFrame").src=assetUrl(state.paper.paper);
+  save();renderScoreTable();
+};
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dijkstra 最短路径 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='26' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%97%8B%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--green:#2E7D5B;--magenta:#B0396E;--gold:#A8751E;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--green);text-decoration:none;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:14px 0 6px;}
+h1 .sym{color:var(--gold);}
+.tag{display:inline-block;background:var(--paper2);border:1px solid var(--line);color:var(--green);border-radius:999px;padding:2px 12px;font-size:12px;margin-left:10px;vertical-align:middle;}
+.sub{color:var(--ink2);font-size:16px;max-width:780px;}
+.sec{margin-top:36px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--green);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;background:#fffef9;border:1px solid var(--line);border-radius:8px;cursor:pointer;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--green);width:160px;}
+button{background:var(--green);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:14px;cursor:pointer;}
+button.ghost{background:var(--paper2);color:var(--ink);border:1px solid var(--line);}
+.info{font-family:Georgia,serif;font-size:15px;color:var(--ink);margin-left:auto;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>Dijkstra 最短路径 <span class="sym">◯</span><span class="tag">图论 · 算法</span></h1>
+<p class="sub">从一个起点出发，每次贪心选出当前最近的未访问点，松弛它的邻居——1959 年 Dijkstra 的算法，至今是导航软件的核心。</p>
+</header>
+
+<div class="sec">
+<h2>动画演示 <small>点一个顶点作为起点，再点另一个作为终点</small></h2>
+<div class="fig">
+<canvas id="cv" width="760" height="460" role="img" aria-label="Dijkstra 最短路径：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls">
+<label>速度</label><input type="range" id="spd" min="1" max="10" step="1" value="5">
+<button id="run">▶ 从起点跑 Dijkstra</button>
+<button id="step" class="ghost">单步</button>
+<button id="reset" class="ghost">重置</button>
+<span class="info" id="stat"></span>
+</div>
+<p class="explain"><b>怎么玩：</b>先点一个顶点设为起点（绿色），再点另一个设为终点（品红）。点"跑 Dijkstra"：橙黄表示正在被松弛的边，浅绿是已确定最短路的点，数字是当前估计距离。完成后红色高亮起点到终点的最短路径。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>原理</h2>
+<p>维护距离 $d[v]$，起点 $d[s]=0$。每步取未访问的 $u$ 使 $d[u]$ 最小，对每条边 $(u,v,w)$ 松弛：$d[v]\leftarrow\min(d[v],d[u]+w)$。用二叉堆优化后复杂度 $O((V+E)\log V)$。前提：边权非负。</p>
+</div>
+
+<footer style="margin-top:48px;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--ink2);">
+<a class="back" href="可视化导航.html">← 可视化导航</a>
+</footer>
+</div>
+
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d'),stat=document.getElementById('stat');
+var nodes=[
+ {x:110,y:110},{x:300,y:80},{x:520,y:110},{x:660,y:220},
+ {x:560,y:360},{x:330,y:400},{x:120,y:340},{x:330,y:230}
+];
+var edges=[[0,1,4],[1,2,3],[2,3,2],[3,4,4],[4,5,3],[5,6,5],[6,0,6],[1,7,2],[7,5,3],[7,4,4],[7,2,3],[6,7,4]];
+var src=0,tgt=5,dist,prev,visited,frontier,timer,pathSet;
+
+function buildAdj(){var a=nodes.map(function(){return[];});edges.forEach(function(e,i){a[e[0]].push([e[1],e[2],i]);a[e[1]].push([e[0],e[2],i]);});return a;}
+function resetRun(){
+  dist=nodes.map(function(){return Infinity;});prev=new Array(nodes.length).fill(-1);
+  visited=new Array(nodes.length).fill(false);
+  dist[src]=0;frontier=null;pathSet=null;
+  stop();draw();
+}
+function stop(){if(timer){clearInterval(timer);timer=null;}}
+function stepOnce(){
+  // pick unvisited min
+  var u=-1,bd=Infinity;
+  for(var i=0;i<nodes.length;i++)if(!visited[i]&&dist[i]<bd){bd=dist[i];u=i;}
+  if(u<0){stop();return;}
+  visited[u]=true;frontier=null;
+  var adj=buildAdj();
+  var relaxed=[];
+  adj[u].forEach(function(e){
+    var v=e[0],w=e[1],eid=e[2];
+    if(!visited[v]&&dist[u]+w<dist[v]){dist[v]=dist[u]+w;prev[v]=u;frontier=eid;relaxed.push(v);}
+  });
+  if(u===tgt){finish();}
+  draw();
+}
+function finish(){
+  pathSet=new Set();
+  var v=tgt;
+  while(v!==-1&&prev[v]!==-1){
+    // mark edge
+    for(var i=0;i<edges.length;i++){
+      var e=edges[i];
+      if((e[0]===prev[v]&&e[1]===v)||(e[1]===prev[v]&&e[0]===v)){pathSet.add(i);break;}
+    }
+    v=prev[v];
+  }
+  stat.textContent='完成！起点→终点最短路长 = '+(dist[tgt]===Infinity?'不可达':dist[tgt]);
+  stop();draw();
+}
+function draw(){
+  ctx.clearRect(0,0,cv.width,cv.height);
+  // edges
+  edges.forEach(function(e,i){
+    var a=nodes[e[0]],b=nodes[e[1]];
+    ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+    if(pathSet&&pathSet.has(i))ctx.strokeStyle='#B0396E';
+    else if(frontier===i)ctx.strokeStyle='#A8751E';
+    else ctx.strokeStyle='#9AA0A6';
+    ctx.lineWidth=(pathSet&&pathSet.has(i))?5:2.5;
+    ctx.stroke();
+    var mx=(a.x+b.x)/2,my=(a.y+b.y)/2;
+    ctx.fillStyle='#fffdf6';ctx.fillRect(mx-12,my-10,24,18);
+    ctx.fillStyle='#4A5258';ctx.font='12px Georgia';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(e[2],mx,my);
+  });
+  nodes.forEach(function(n,i){
+    ctx.beginPath();ctx.arc(n.x,n.y,18,0,2*Math.PI);
+    if(i===src)ctx.fillStyle='#2E7D5B';
+    else if(i===tgt)ctx.fillStyle='#B0396E';
+    else if(visited[i])ctx.fillStyle='#9DC9B4';
+    else ctx.fillStyle='#EFE9D8';
+    ctx.fill();
+    ctx.fillStyle=((i===src||i===tgt||visited[i]))?'#fff':'#222';
+    ctx.font='bold 13px Georgia';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(i,n.x,n.y-2);
+    if(dist&&dist[i]<Infinity){ctx.fillStyle='#222';ctx.font='12px Georgia';ctx.fillText(dist[i],n.x,n.y+30);}
+  });
+  if(!pathSet)stat.textContent='起点 '+src+' · 终点 '+tgt+' · 待运行';
+}
+cv.addEventListener('click',function(e){
+  var r=cv.getBoundingClientRect();
+  var mx=(e.clientX-r.left)*cv.width/r.width,my=(e.clientY-r.top)*cv.height/r.height;
+  var best=-1,bd=24*24;
+  for(var i=0;i<nodes.length;i++){var d=(nodes[i].x-mx)**2+(nodes[i].y-my)**2;if(d<bd){bd=d;best=i;}}
+  if(best<0)return;
+  if(src===best||tgt===best){}
+  if(src===best){src=tgt;tgt=best;}
+  else if(tgt===best){tgt=best;}
+  else {src=best;}
+  resetRun();
+});
+document.getElementById('run').onclick=function(){resetRun();var sp=parseInt(document.getElementById('spd').value);timer=setInterval(stepOnce,700/Math.max(1,sp));};
+document.getElementById('step').onclick=function(){stop();stepOnce();};
+document.getElementById('reset').onclick=function(){resetRun();};
+resetRun();
+})();
+</script>
+
+</body>
+</html>

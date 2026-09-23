@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="no-referrer">
+<title>巴恩斯利蕨 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='28' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%99%A3%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--green:#2E7D5B;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--green);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:42px;margin:14px 0 6px;}
+h1 .sym{color:var(--green);font-style:italic;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif;font-size:26px;border-left:6px solid var(--green);padding-left:14px;}
+.sec h2 small{font-size:13px;color:var(--ink2);font-family:"Noto Sans SC",sans-serif;font-weight:400;margin-left:8px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:20px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#0e1a12;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--green);width:180px;}
+.controls .btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls .btn.gray{background:#8A8270;}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.info{font-family:Georgia,serif;font-size:14px;color:var(--ink2);margin-left:auto;}
+.explain{margin-top:16px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+.tag{display:inline-block;margin-top:10px;font-size:12px;letter-spacing:.08em;color:var(--green);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--green);text-decoration:none;}
+</style>
+<script>
+window.MathJax={loader:{paths:{mathjax:"../assets/mathjax/es5"}},tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="可视化导航.html">← 返回可视化</a>
+  <h1>巴恩斯利蕨 <span class="sym">❧</span></h1>
+  <p class="sub">四条仿射变换（缩放、旋转、平移），按概率随机选用，迭代几百万次——一株由纯粹随机数长成的蕨，每一根叶脉都是整体的缩影。</p>
+  <span class="tag">分形 · IFS 迭代函数系</span>
+</header>
+
+<div class="sec">
+  <h2>生长画布 <small>点「开始」看蕨从无到有；切换预设改变形态</small></h2>
+  <div class="fig">
+    <canvas id="cv" width="880" height="600" role="img" aria-label="巴恩斯利蕨：交互式画布，内容随下方控件实时变化"></canvas>
+    <div class="controls">
+      <label>速度(点/帧)</label><input type="range" id="spd" min="50" max="3000" value="800">
+      <span id="spdV" class="info">800</span>
+      <button class="btn" id="go">开始</button>
+      <button class="btn gray" id="stop">暂停</button>
+      <button class="btn gray" id="reset">重新生长</button>
+      <span class="info" id="cnt">0 点</span>
+    </div>
+    <div class="presets">
+      <button class="btn on" data-p="fern">经典蕨</button>
+      <button class="btn" data-p="cyclone">旋风蕨</button>
+      <button class="btn" data-p="culcita">圆叶蕨</button>
+      <button class="btn" data-p="tree">灌木</button>
+    </div>
+    <p class="explain"><b>怎么玩：</b>点「开始」，绿色点按 IFS 规则飞速堆积成蕨；<b>速度</b>滑块调节每帧点数；切到「旋风蕨/圆叶蕨」等预设，同一套「随机选变换」机制换一组系数，就得到完全不同的植物。真正的奇迹：没有任何一条叶脉是直接画上去的。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>数学原理 <small>四条 affine map 藏起整株植物</small></h2>
+  <p>每条变换形如 $\begin{pmatrix}x'\\y'\end{pmatrix}=\begin{pmatrix}a&b\\c&d\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}+\begin{pmatrix}e\\f\end{pmatrix}$。经典蕨用 4 条：茎（概率 1%）、主叶（85%）、左叶（7%）、右叶（7%）。IFS 的吸引子正是这些变换全体的不变集——Hutchinson 算子 $\mathcal S(E)=\bigcup_i S_i(E)$ 的唯一不动点。</p>
+  <p><b>随机迭代法（MRCM）：</b>从任意点出发，按概率随机挑一条变换作用，几乎必然收敛到吸引子。这就是「混沌游戏」的一般形式——确定性分形由随机过程采样得到。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+  var W=cv.width,H=cv.height;
+  var presets={
+    fern:{p:[[0.01,0,0,0,0.16,0,0],[0.85,0.85,0.04,-0.04,0.85,0,1.6],[0.07,0.2,-0.26,0.23,0.22,0,1.6],[0.07,-0.15,0.28,0.26,0.24,0,0.44]]},
+    cyclone:{p:[[0.01,0,0,0,0.25,0,-0.4],[0.85,0.95,0.005,-0.005,0.93,-0.002,0.5],[0.07,0.035,-0.2,0.16,0.04,-0.09,0.02],[0.07,-0.04,0.2,0.16,0.04,0.083,0.12]]},
+    culcita:{p:[[0.02,0,0,0,0.25,0,-0.4],[0.84,0.95,0.002,-0.002,0.93,-0.002,0.5],[0.07,0.035,-0.11,0.27,0.01,-0.05,0.005],[0.07,-0.04,0.11,0.27,0.01,0.047,0.06]]},
+    tree:{p:[[0.1,0,0,0,0.5,0,0],[0.6,0.42,0,0,0.42,0,0.2],[0.15,-0.42,0,0,0.42,0,0.2],[0.15,0.42,0,0,0.42,0.02,0.2]]}
+  };
+  var cur='fern',x=0,y=0,n=0,timer=null;
+  var spdEl=document.getElementById('spd'),spdV=document.getElementById('spdV'),cnt=document.getElementById('cnt');
+  function clear(){ctx.fillStyle='#0e1a12';ctx.fillRect(0,0,W,H);x=0;y=0;n=0;cnt.textContent='0 点';}
+  function step(k){
+    var tr=presets[cur].p,r=Math.random(),acc=0,sel=tr[0];
+    for(var i=0;i<tr.length;i++){acc+=tr[i][0];if(r<=acc){sel=tr[i];break;}}
+    var nx=sel[1]*x+sel[2]*y+sel[5],ny=sel[3]*x+sel[4]*y+sel[6];
+    x=nx;y=ny;
+    // map fern coords [-? ,?] to canvas
+    var px=W/2+x*90,py=H-30-y*95;
+    var g=120+Math.floor(60*(1-Math.max(0,Math.min(1,y/10))));
+    ctx.fillStyle='rgba('+30+','+g+','+70+',0.7)';
+    ctx.fillRect(px,py,1.3,1.3);
+    n++;
+  }
+  function loop(){
+    if(timer==null)return;
+    var k=parseInt(spdEl.value,10);
+    for(var i=0;i<k;i++)step();
+    cnt.textContent=n+' 点';
+    timer=setTimeout(loop,0);
+  }
+  document.getElementById('go').addEventListener('click',function(){if(timer==null){timer=1;loop();}});
+  document.getElementById('stop').addEventListener('click',function(){timer=null;clearTimeout(timer);});
+  document.getElementById('reset').addEventListener('click',function(){timer=null;clear();});
+  spdEl.addEventListener('input',function(){spdV.textContent=this.value;});
+  document.querySelectorAll('.presets .btn').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.presets .btn').forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');cur=b.dataset.p;clear();
+    });
+  });
+  clear();
+})();
+</script>
+
+</body>
+</html>

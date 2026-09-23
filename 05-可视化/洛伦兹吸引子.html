@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="no-referrer">
+<title>洛伦兹吸引子 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='28' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%99%88%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--red:#C0392B;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--red);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:42px;margin:14px 0 6px;}
+h1 .sym{color:var(--red);font-style:italic;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif;font-size:26px;border-left:6px solid var(--red);padding-left:14px;}
+.sec h2 small{font-size:13px;color:var(--ink2);font-family:"Noto Sans SC",sans-serif;font-weight:400;margin-left:8px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:20px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#0d1117;cursor:grab;touch-action:none;}
+.fig canvas.dragging{cursor:grabbing;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--red);width:150px;}
+.controls .btn{background:var(--red);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls .btn.gray{background:#8A8270;}
+.info{font-family:Georgia,serif;font-size:14px;color:var(--ink2);margin-left:auto;}
+.explain{margin-top:16px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+.tag{display:inline-block;margin-top:10px;font-size:12px;letter-spacing:.08em;color:var(--red);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--red);text-decoration:none;}
+</style>
+<script>
+window.MathJax={loader:{paths:{mathjax:"../assets/mathjax/es5"}},tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="可视化导航.html">← 返回可视化</a>
+  <h1>洛伦兹吸引子 <span class="sym">∞</span></h1>
+  <p class="sub">1963 年 Lorenz 把大气对流简化成三个方程，却得到一只永远绕两扇翅膀转、永不重复、永不相交的「蝴蝶」。拖动可旋转视角，调参数看它收敛成不动点。</p>
+  <span class="tag">动力系统 · 混沌吸引子</span>
+</header>
+
+<div class="sec">
+  <h2>相空间轨迹 <small>拖拽旋转；调 σ、ρ、β 看流场改变</small></h2>
+  <div class="fig">
+    <canvas id="cv" width="880" height="600" role="img" aria-label="洛伦兹吸引子：交互式画布，内容随下方控件实时变化"></canvas>
+    <div class="controls">
+      <label>σ</label><input type="range" id="sig" min="0" max="30" value="10"><span id="sigV" class="info">10</span>
+      <label>ρ</label><input type="range" id="rho" min="0" max="60" value="28"><span id="rhoV" class="info">28</span>
+      <label>β</label><input type="range" id="bet" min="0" max="10" value="8" step="1"><span id="betV" class="info">2.67</span>
+      <button class="btn" id="go">暂停</button>
+      <button class="btn gray" id="reset">重新开始</button>
+    </div>
+    <p class="explain"><b>怎么玩：</b>默认 $\sigma=10,\rho=28,\beta=8/3$ 正是经典混沌参数，轨迹绕两扇翅膀乱窜。把 <b>ρ 降到 10</b> 以下，轨迹会收敛到一个点——混沌消失。<b>拖拽画面</b>旋转 3D 视角。注意轨迹永不自交：这是「确定性非周期流」。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>数学原理 <small>三个耦合的 ODE</small></h2>
+  <p>$$\dot x=\sigma(y-x),\quad \dot y=x(\rho-z)-y,\quad \dot z=xy-\beta z.$$ 本页用 RK4 步长 $0.005$ 积分。$\rho$ 小于约 24.74 时系统有两个稳定螺旋点；超过临界值后两个点失稳，轨道被「囚禁」在奇异吸引子上。Tucker（2002）严格证明了该吸引子的存在性与 SRB 测度。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+  var W=cv.width,H=cv.height;
+  var sigEl=document.getElementById('sig'),rhoEl=document.getElementById('rho'),betEl=document.getElementById('bet');
+  var sigV=document.getElementById('sigV'),rhoV=document.getElementById('rhoV'),betV=document.getElementById('betV');
+  var x=0.01,y=0,z=0,t=0,playing=true,rot=0.6,drag=false,lx=0,raf=null;
+  function params(){return {s:parseFloat(sigEl.value),r:parseFloat(rhoEl.value),b:parseInt(betEl.value,10)/3};}
+  function deriv(P,xx,yy,zz){return [P.s*(yy-xx), xx*(P.r-zz)-yy, xx*yy-P.b*zz];}
+  function rk4(P,dt){
+    var k1=deriv(P,x,y,z);
+    var k2=deriv(P,x+dt*k1[0]/2,y+dt*k1[1]/2,z+dt*k1[2]/2);
+    var k3=deriv(P,x+dt*k2[0]/2,y+dt*k2[1]/2,z+dt*k2[2]/2);
+    var k4=deriv(P,x+dt*k3[0],y+dt*k3[1],z+dt*k3[2]);
+    x+=dt*(k1[0]+2*k2[0]+2*k3[0]+k4[0])/6;
+    y+=dt*(k1[1]+2*k2[1]+2*k3[1]+k4[1])/6;
+    z+=dt*(k1[2]+2*k2[2]+2*k3[2]+k4[2])/6;
+  }
+  function proj(xx,yy,zz){
+    var cx=W/2,cy=H/2,s=7.5;
+    var X=xx-0,Y=zz-25;
+    var xr=X*Math.cos(rot)-Y*Math.sin(rot);
+    return [cx+xr*s, cy-(X*Math.sin(rot)+Y*Math.cos(rot))*s*0.9];
+  }
+  function drawDot(){
+    var p=proj(x,y,z);
+    ctx.fillStyle='rgba(192,57,43,0.5)';
+    ctx.beginPath();ctx.arc(p[0],p[1],1.4,0,7);ctx.fill();
+  }
+  function frame(){
+    if(playing){
+      var P=params();
+      for(var i=0;i<8;i++)rk4(P,0.005);
+      drawDot();
+    }
+    rot+=0.0015;
+    raf=requestAnimationFrame(frame);
+  }
+  function clear(){ctx.fillStyle='#0d1117';ctx.fillRect(0,0,W,H);}
+  function syncLbls(){sigV.textContent=sigEl.value;rhoV.textContent=rhoEl.value;betV.textContent=(parseInt(betEl.value,10)/3).toFixed(2);}
+  [sigEl,rhoEl,betEl].forEach(function(el){el.addEventListener('input',function(){syncLbls();});});
+  document.getElementById('go').addEventListener('click',function(){playing=!playing;this.textContent=playing?'暂停':'播放';});
+  document.getElementById('reset').addEventListener('click',function(){x=0.01;y=0;z=0;clear();});
+  cv.addEventListener('mousedown',function(e){drag=true;cv.classList.add('dragging');lx=e.clientX;});
+  window.addEventListener('mousemove',function(e){if(drag){rot+=(e.clientX-lx)*0.005;lx=e.clientX;}});
+  window.addEventListener('mouseup',function(){drag=false;cv.classList.remove('dragging');});
+  syncLbls();clear();frame();
+})();
+</script>
+
+</body>
+</html>

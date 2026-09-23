@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>高等数学 III：一元积分学 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%AB%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --hm:#2F5D8A; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--hm); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:38px; margin:12px 0 6px;}
+h1 .sym{color:var(--hm); font-style:italic;}
+.sub{color:var(--ink2); font-size:15.5px; max-width:780px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.series{margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;}
+.series a{font-size:12.5px; color:var(--hm); text-decoration:none; border:1px solid var(--line); border-radius:20px; padding:3px 12px; background:#fffdf6;}
+.series a:hover{background:var(--paper2);}
+.series .cur{background:var(--hm); color:#fff; border-color:var(--hm);}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--hm); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--hm); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; margin-top:26px;}
+.ch p{font-size:15px; margin-top:10px; max-width:840px;}
+.f{font-family:Georgia,"Cambria Math",serif; font-style:italic; background:var(--paper2); border-radius:6px; padding:1px 8px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--hm);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+.warn{background:#FDEDE8; border:1px solid #EAC6B8; border-left:5px solid var(--red); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14px;}
+.warn b{color:var(--red);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--hm); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.tbl{margin-top:14px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px; table-layout:fixed;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+.gloss{margin-top:14px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:14px;}
+.gloss dt{font-weight:700; margin-top:8px;}
+.gloss dt:first-child{margin-top:0;}
+.gloss dd{margin-left:18px; color:var(--ink2); font-size:13.5px;}
+.online{margin-top:16px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; font-size:14px;}
+.online a{color:var(--hm); text-decoration:none;}
+.online a:hover{text-decoration:underline;}
+.online ul{margin:8px 0 0 20px;}
+.online li{margin-top:6px;}
+.online .hint{font-size:12.5px; color:var(--ink2); margin-top:8px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--hm); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:30px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>高等数学 III · 一元积分学 <span class="sym">∫</span></h1>
+  <p class="sub">积分完整体系：不定积分的定义与三类主要方法、定积分的定义与性质、微积分基本定理、广义积分、定积分的几何与物理应用——含全部证明要点、典型例题与易错点。</p>
+  <p class="quote">「微积分基本定理把微分与积分焊接成一个整体——这是人类数学史上最重要的一条公式。」</p>
+  <div class="series">
+    <a href="01-函数极限与连续.html">I 函数极限连续</a>
+    <a href="02-一元微分学.html">II 一元微分学</a>
+    <a class="cur" href="03-一元积分学.html">III 一元积分学</a>
+    <a href="04-多元微积分.html">IV 多元微积分</a>
+    <a href="05-无穷级数.html">V 无穷级数</a>
+    <a href="06-常微分方程.html">VI 常微分方程</a>
+    <a href="07-速查与题库.html">VII 速查题库</a>
+  </div>
+</header>
+
+<div class="toc">
+  <b>本讲目录</b>
+  <ol>
+    <li><a href="#c1">不定积分：定义与基本公式</a></li>
+    <li><a href="#c2">换元积分法</a></li>
+    <li><a href="#c3">分部积分法</a></li>
+    <li><a href="#c4">有理函数与三角有理式的积分</a></li>
+    <li><a href="#c5">定积分的定义与性质</a></li>
+    <li><a href="#c6">微积分基本定理</a></li>
+    <li><a href="#c7">定积分的换元与分部</a></li>
+        <li><a href="#c9d">深度：广义积分收敛判别</a></li>
+    <li><a href="#c9e">深度：积分换元进阶</a></li>
+<li><a href="#c8">广义积分</a></li>
+    <li><a href="#c9">定积分的应用</a></li>
+        <li><a href="#c9a">深度：Riemann 可积的充要条件</a></li>
+    <li><a href="#c9b">深度：微积分基本定理的严格证明</a></li>
+    <li><a href="#c9c">深度：反常积分审敛与 Gamma 函数</a></li>
+    <li><a href="#c10">练习与自测、术语表</a></li>
+  </ol>
+</div>
+
+<!-- ================= 1 ================= -->
+<div class="ch" id="c1">
+  <h2>1. 不定积分：定义与基本公式 <small>求导的逆运算</small></h2>
+  <div class="def"><b>定义（原函数与不定积分）：</b>F′(x) = f(x) 称 F 为 f 的原函数；f 的全部原函数 F(x) + C 记作 $\int f(x)\,dx$，称 f 的不定积分。连续函数必有原函数。</div>
+  <div class="thm"><b>定理（不定积分性质）：</b>① [$\int f(x)\,dx$]′ = f(x)；② $\int F′(x)\,dx$ = F(x) + C；③ ∫[f±g] = ∫f ± ∫g；④ ∫kf = k∫f。</div>
+  <div class="thm"><b>定理（基本积分表）：</b>
+  <div class="tbl"><table><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tr><th>$\int f(x)\,dx$</th><th>结果</th></tr>
+  <tr><td>$\int x^{n}\,dx$ (n≠−1)</td><td>xⁿ⁺¹/(n+1) + C</td></tr>
+  <tr><td>$\int 1/x \,dx$</td><td>ln|x| + C</td></tr>
+  <tr><td>$\int e^{x}\,dx$ / $\int a^{x}\,dx$</td><td>eˣ + C / aˣ/ln a + C</td></tr>
+  <tr><td>$\int \sin x \,dx$ / $\int \cos x \,dx$</td><td>−cos x + C / sin x + C</td></tr>
+  <tr><td>$\int \sec^{2}x \,dx$</td><td>tan x + C</td></tr>
+  <tr><td>$\int 1/(1+x^{2})\,dx$</td><td>arctan x + C</td></tr>
+  <tr><td>$\int 1/\sqrt{1-x^{2}}\,dx$</td><td>arcsin x + C</td></tr>
+  <tr><td>$\int 1/(a^{2}+x^{2})\,dx$</td><td>(1/a)arctan(x/a) + C</td></tr>
+  <tr><td>$\int 1/\sqrt{a^{2}-x^{2}}\,dx$</td><td>arcsin(x/a) + C</td></tr></table></div></div>
+  <div class="warn"><b>易错警示：</b>$\int 1/x \,dx$ = ln|x| + C 的绝对值不能丢（x &lt; 0 时 ln x 无定义）；不定积分的结果必须带 + C。</div>
+
+  <h3>1.1 原函数存在定理与原函数不唯一性</h3>
+  <div class="thm"><b>定理（原函数存在定理）：</b>若函数 $f(x)$ 在区间 $I$ 上连续，则 $f(x)$ 在 $I$ 上必存在原函数。即连续函数一定是某个函数的导函数。<div class="proof"><b>证明思路：</b>定义变上限积分 $\Phi(x)=\int_{a}^{x} f(t)\,dt$，由微积分第一基本定理可证 $\Phi'(x)=f(x)$。此定理说明连续函数类恰好是（某函数的）导函数类的子集——但注意：有第一类间断点的函数不可能有原函数。</div></div>
+  <div class="warn"><b>易错警示：</b>原函数存在 $\neq$ 原函数可用初等函数表示。例如 $\int e^{-x^2}dx$、$\int \frac{\sin x}{x}dx$、$\int \frac{1}{\ln x}dx$ 都存在原函数，但不能用初等函数表示——称为"积不出来"。遇到这类积分不要硬凑，应识别其为非初等积分。</div>
+  <div class="thm"><b>定理（原函数的结构）：</b>若 $F(x)$ 是 $f(x)$ 在区间 $I$ 上的一个原函数，则 $F(x)+C$ 是 $f(x)$ 的全体原函数，其中 $C$ 为任意常数。<div class="proof"><b>证明思路：</b>若 $G'(x)=f(x)$ 且 $F'(x)=f(x)$，则 $(G-F)'=0$，由微分中值定理推论知 $G(x)-F(x)=C$（常数）。</div></div>
+  <h3>1.2 基本积分表的扩充</h3>
+  <div class="thm"><b>定理（补充积分公式）：</b>
+  <div class="tbl"><table><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tr><th>被积函数</th><th>原函数</th></tr>
+  <tr><td>$\int \tan x\,dx$</td><td>$-\ln|\cos x|+C$</td></tr>
+  <tr><td>$\int \cot x\,dx$</td><td>$\ln|\sin x|+C$</td></tr>
+  <tr><td>$\int \sec x\,dx$</td><td>$\ln|\sec x+\tan x|+C$</td></tr>
+  <tr><td>$\int \csc x\,dx$</td><td>$\ln|\csc x-\cot x|+C$</td></tr>
+  <tr><td>$\int \frac{dx}{x^2-a^2}$</td><td>$\frac{1}{2a}\ln\left|\frac{x-a}{x+a}\right|+C$</td></tr>
+  <tr><td>$\int \frac{dx}{\sqrt{x^2+a^2}}$</td><td>$\ln(x+\sqrt{x^2+a^2})+C$</td></tr>
+  <tr><td>$\int \frac{dx}{\sqrt{x^2-a^2}}$</td><td>$\ln|x+\sqrt{x^2-a^2}|+C$</td></tr>
+  <tr><td>$\int \sqrt{a^2-x^2}\,dx$</td><td>$\frac{x}{2}\sqrt{a^2-x^2}+\frac{a^2}{2}\arcsin\frac{x}{a}+C$</td></tr></table></div></div>
+  <div class="ex"><b>例 1：</b>计算 $\int (3x^2-2x+1)dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>逐项积分：$=3\cdot\frac{x^3}{3}-2\cdot\frac{x^2}{2}+x+C=x^3-x^2+x+C$。</div></details></div>
+  <div class="ex"><b>例 2：</b>计算 $\int \tan^2 x\,dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>利用 $\tan^2 x=\sec^2 x-1$，$=\int(\sec^2 x-1)dx=\tan x-x+C$。</div></details></div>
+  <div class="ex"><b>例 3：</b>已知曲线过点 $(e^2,3)$，且其上任一点切线斜率为 $\frac{2}{x}$，求曲线方程。<details><summary>查看解答</summary><div class="sol"><b>解：</b>设 $y=\int\frac{2}{x}dx=2\ln|x|+C$。代入 $(e^2,3)$：$3=2\cdot 2+C\Rightarrow C=-1$。故 $y=2\ln x-1$。</div></details></div>
+  <div class="ex"><b>例 4：</b>计算 $\int \frac{x^4}{1+x^2}dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>做多项式除法：$\frac{x^4}{1+x^2}=x^2-1+\frac{1}{1+x^2}$。$=\int(x^2-1)dx+\int\frac{dx}{1+x^2}=\frac{x^3}{3}-x+\arctan x+C$。</div></details></div>
+  <div class="ex"><b>例 5：</b>计算 $\int \sin^2\frac{x}{2}dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>利用降幂公式 $\sin^2\frac{x}{2}=\frac{1-\cos x}{2}$，$=\frac{1}{2}\int(1-\cos x)dx=\frac{x}{2}-\frac{\sin x}{2}+C$。</div></details></div>
+  <h3>1.3 习题</h3>
+  <div class="ex"><b>习题 1：</b>计算 $\int (1-\sqrt{x})^2 dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>展开 $=1-2\sqrt{x}+x$，积分得 $x-\frac{4}{3}x^{3/2}+\frac{x^2}{2}+C$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>计算 $\int \cot^2 x\,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\cot^2 x=\csc^2 x-1$，$=-\cot x-x+C$。</div></details></div>
+  <div class="ex"><b>习题 3：</b>计算 $\int \frac{1}{\sin^2 x\cos^2 x}dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\frac{1}{\sin^2 x\cos^2 x}=\frac{\sin^2 x+\cos^2 x}{\sin^2 x\cos^2 x}=\sec^2 x+\csc^2 x$，$=\tan x-\cot x+C$。</div></details></div>
+  <div class="ex"><b>习题 4：</b>一质点以加速度 $a(t)=6t$ 做直线运动，$t=0$ 时 $s=0$、$v=0$，求 $s(t)$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$v(t)=\int 6t\,dt=3t^2+C_1$，由 $v(0)=0$ 得 $C_1=0$；$s(t)=\int 3t^2 dt=t^3+C_2$，由 $s(0)=0$ 得 $C_2=0$。故 $s(t)=t^3$。</div></details></div>
+
+</div>
+
+<!-- ================= 2 ================= -->
+<div class="ch" id="c2">
+  <h2>2. 换元积分法 <small>凑微分与三角代换</small></h2>
+  <div class="thm"><b>定理（第一类换元——凑微分）：</b>$\int f(φ(x))φ′(x)\,dx$ = [$\int f(u)\,du$]_{u=φ(x)}。<div class="proof"><b>核心思想：</b>把 φ′(x)dx 看成 du。例：$\int 2x \cos(x^{2})\,dx$ = ∫cos(x²)d(x²) = sin(x²) + C。</div></div>
+  <div class="thm"><b>定理（第二类换元）：</b>x = ψ(t) 单调可导且 ψ′ ≠ 0，则 $\int f(x)\,dx$ = [$\int f(ψ(t))ψ′(t)\,dt$]_{t=ψ⁻¹(x)}。常用三角代换：<div class="proof">含 √(a²−x²) 令 x = a sin t；含 √(a²+x²) 令 x = a tan t；含 √(x²−a²) 令 x = a sec t。</div></div>
+  <div class="ex"><b>例：</b>∫dx/(a²+x²)（用三角代换推导）。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 x = a tan t，dx = a sec²t dt，原式 = $\int a \sec^{2}t \,dt$/(a²sec²t) = t/a + C = (1/a)arctan(x/a) + C。</div></details></div>
+  <div class="ex"><b>例：</b>$\int \sqrt{1-x^{2}}\,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 x = sin t：$\int \cos^{2}t \,dt$ = $\int (1+\cos 2t)/2 \,dt$ = t/2 + sin 2t/4 + C = arcsin x/2 + x√(1−x²)/2 + C。</div></details></div>
+  <div class="warn"><b>易错警示：</b>第二类换元后必须把变量代回 x（画直角三角形辅助）。三角代换的角范围应选单调区间（如 t ∈ [−π/2, π/2]）以确定正负号。</div>
+
+  <h3>2.1 第一类换元法（凑微分法）详解</h3>
+  <div class="def"><b>定义（第一类换元法）：</b>设 $f(u)$ 具有原函数，$u=\varphi(x)$ 可导，则有换元公式
+  $$\int f(\varphi(x))\varphi'(x)\,dx=\left[\int f(u)\,du\right]_{u=\varphi(x)}.$$
+  核心在于将被积表达式中的一部分"凑"成某个函数的微分。</div>
+  <div class="thm"><b>定理（常用凑微分类型）：</b>
+  <div class="tbl"><table><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tr><th>凑微分形式</th><th>对应关系</th></tr>
+  <tr><td>$\int f(ax+b)dx$</td><td>令 $u=ax+b$，$dx=\frac{1}{a}du$</td></tr>
+  <tr><td>$\int x^{n}f(x^{n+1})dx$</td><td>令 $u=x^{n+1}$，$x^n dx=\frac{1}{n+1}du$</td></tr>
+  <tr><td>$\int \frac{f(\ln x)}{x}dx$</td><td>令 $u=\ln x$，$\frac{dx}{x}=du$</td></tr>
+  <tr><td>$\int e^x f(e^x)dx$</td><td>令 $u=e^x$，$e^x dx=du$</td></tr>
+  <tr><td>$\int \sin x\cdot f(\cos x)dx$</td><td>令 $u=\cos x$，$\sin x\,dx=-du$</td></tr>
+  <tr><td>$\int \cos x\cdot f(\sin x)dx$</td><td>令 $u=\sin x$，$\cos x\,dx=du$</td></tr>
+  <tr><td>$\int \frac{f(\arctan x)}{1+x^2}dx$</td><td>令 $u=\arctan x$，$\frac{dx}{1+x^2}=du$</td></tr></table></div></div>
+  <div class="ex"><b>例 1：</b>计算 $\int \frac{dx}{a^2+x^2}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>凑微分：$\int\frac{dx}{a^2+x^2}=\frac{1}{a}\int\frac{d(x/a)}{1+(x/a)^2}=\frac{1}{a}\arctan\frac{x}{a}+C$。</div></details></div>
+  <div class="ex"><b>例 2：</b>计算 $\int \frac{dx}{x^2-a^2}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>部分分式：$\frac{1}{x^2-a^2}=\frac{1}{2a}\left(\frac{1}{x-a}-\frac{1}{x+a}\right)$。$=\frac{1}{2a}\left[\int\frac{dx}{x-a}-\int\frac{dx}{x+a}\right]=\frac{1}{2a}\ln\left|\frac{x-a}{x+a}\right|+C$。</div></details></div>
+  <div class="ex"><b>例 3：</b>计算 $\int \sin^3 x\,dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>拆项：$\sin^3 x=\sin x(1-\cos^2 x)$。令 $u=\cos x$，$du=-\sin x\,dx$。$=-\int(1-u^2)du=-u+\frac{u^3}{3}+C=-\cos x+\frac{\cos^3 x}{3}+C$。</div></details></div>
+  <div class="ex"><b>例 4：</b>计算 $\int \frac{\arctan x}{1+x^2}dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>注意 $\frac{dx}{1+x^2}=d(\arctan x)$。令 $u=\arctan x$：$\int u\,du=\frac{u^2}{2}+C=\frac{(\arctan x)^2}{2}+C$。</div></details></div>
+  <div class="ex"><b>例 5：</b>计算 $\int \frac{dx}{\sqrt{a^2-x^2}}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>凑成标准形式：$\int\frac{dx}{\sqrt{a^2-x^2}}=\int\frac{d(x/a)}{\sqrt{1-(x/a)^2}}=\arcsin\frac{x}{a}+C$。</div></details></div>
+  <h3>2.2 第二类换元法（三角代换与倒代换）</h3>
+  <div class="thm"><b>定理（第二类换元法）：</b>设 $x=\psi(t)$ 是单调、可导的函数，且 $\psi'(t)\neq 0$。若 $f(\psi(t))\psi'(t)$ 具有原函数，则
+  $$\int f(x)\,dx=\left[\int f(\psi(t))\psi'(t)\,dt\right]_{t=\psi^{-1}(x)}.$$
+  与第一类换元方向相反：第一类是"从左到右"凑微分，第二类是"从右到左"做变量代换。<div class="proof"><b>证明思路：</b>设 $G(t)$ 是 $f(\psi(t))\psi'(t)$ 的原函数，则 $G'(t)=f(\psi(t))\psi'(t)$。令 $F(x)=G(\psi^{-1}(x))$，则 $F'(x)=G'(\psi^{-1}(x))\cdot\frac{1}{\psi'(\psi^{-1}(x))}=f(x)$。</div></div>
+  <div class="thm"><b>定理（三角代换选择表）：</b>
+  <div class="tbl"><table><colgroup><col style="width:33%"><col style="width:33%"><col style="width:34%"></colgroup><tr><th>根式形式</th><th>代换</th><th>化简结果</th></tr>
+  <tr><td>$\sqrt{a^2-x^2}$</td><td>$x=a\sin t$，$t\in[-\pi/2,\pi/2]$</td><td>$a\cos t$</td></tr>
+  <tr><td>$\sqrt{a^2+x^2}$</td><td>$x=a\tan t$，$t\in(-\pi/2,\pi/2)$</td><td>$a\sec t$</td></tr>
+  <tr><td>$\sqrt{x^2-a^2}$</td><td>$x=a\sec t$，$t\in(0,\pi/2)$</td><td>$a\tan t$</td></tr></table></div></div>
+  <div class="ex"><b>例 6：</b>计算 $\int \frac{dx}{\sqrt{x^2+a^2}}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>令 $x=a\tan t$，$dx=a\sec^2 t\,dt$，$\sqrt{x^2+a^2}=a\sec t$。$=\int\frac{a\sec^2 t\,dt}{a\sec t}=\int\sec t\,dt=\ln|\sec t+\tan t|+C$。画辅助三角形：$\tan t=x/a$，$\sec t=\sqrt{x^2+a^2}/a$。回代得 $\ln\left|\frac{x+\sqrt{x^2+a^2}}{a}\right|+C=\ln(x+\sqrt{x^2+a^2})+C'$。</div></details></div>
+  <div class="ex"><b>例 7：</b>计算 $\int \frac{dx}{x\sqrt{x^2-1}}$（$x>1$）。<details><summary>查看解答</summary><div class="sol"><b>解：</b>令 $x=\sec t$，$dx=\sec t\tan t\,dt$，$\sqrt{x^2-1}=\tan t$。$=\int\frac{\sec t\tan t\,dt}{\sec t\tan t}=\int dt=t+C=\operatorname{arcsec}x+C=\arccos\frac{1}{x}+C$。</div></details></div>
+  <div class="ex"><b>例 8：</b>倒代换计算 $\int \frac{dx}{x(x^7+2)}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>令 $x=\frac{1}{t}$，$dx=-\frac{1}{t^2}dt$。$=\int\frac{-1/t^2\,dt}{\frac{1}{t}(\frac{1}{t^7}+1)}=-\int\frac{t^6}{1+t^7}dt=-\frac{1}{7}\ln|1+t^7|+C=-\frac{1}{7}\ln|1+x^{-7}|+C$。</div></details></div>
+  <div class="warn"><b>易错警示：</b>第二类换元后必须将 $t$ 回代为 $x$，通常借助直角三角形画出边角关系。三角代换的角范围要选单调区间以保证 $\psi'(t)\neq 0$。</div>
+  <h3>2.3 习题</h3>
+  <div class="ex"><b>习题 1：</b>计算 $\int \frac{dx}{\sqrt[3]{2x+1}}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $u=2x+1$，$dx=du/2$。$=\frac{1}{2}\int u^{-1/3}du=\frac{3}{4}u^{2/3}+C=\frac{3}{4}(2x+1)^{2/3}+C$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>计算 $\int x\sqrt{x-1}\,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $u=\sqrt{x-1}$，$x=u^2+1$，$dx=2u\,du$。$=\int(u^2+1)u\cdot 2u\,du=2\int(u^4+u^2)du=\frac{2}{5}u^5+\frac{2}{3}u^3+C=\frac{2}{5}(x-1)^{5/2}+\frac{2}{3}(x-1)^{3/2}+C$。</div></details></div>
+  <div class="ex"><b>习题 3：</b>计算 $\int \frac{dx}{\sqrt{x^2-4}}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $x=2\sec t$。$=\ln|x+\sqrt{x^2-4}|+C$。</div></details></div>
+  <div class="ex"><b>习题 4：</b>计算 $\int \frac{e^x(1+e^x)}{1-e^x}dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $u=e^x$，$du=e^x dx$。$=\int\frac{1+u}{1-u}du=\int\left(-1+\frac{2}{1-u}\right)du=-u-2\ln|1-u|+C=-e^x-2\ln|1-e^x|+C$。</div></details></div>
+
+</div>
+
+<!-- ================= 3 ================= -->
+<div class="ch" id="c3">
+  <h2>3. 分部积分法 <small>乘积求导公式的积分版</small></h2>
+  <div class="thm"><b>定理（分部积分）：</b>$\int u \,dv$ = uv − $\int v \,du$。口诀「反对幂指三」：反三角函数、对数函数、幂函数、指数函数、三角函数——把排在前面的作为 u。<div class="proof"><b>来源：</b>(uv)′ = u′v + uv′ ⟹ uv′ = (uv)′ − u′v，两边积分。</div></div>
+  <div class="ex"><b>例：</b>$\int x e^{x} \,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>u = x、dv = eˣdx：= x eˣ − $\int e^{x} \,dx$ = x eˣ − eˣ + C = eˣ(x−1) + C。</div></details></div>
+  <div class="ex"><b>例：</b>$\int \ln x \,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>u = ln x、dv = dx：= x ln x − $\int x·(1/x)\,dx$ = x ln x − x + C。</div></details></div>
+  <div class="ex"><b>例：</b>$\int e^{x} \sin x \,dx$（循环型）。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>两次分部：$\int e^{x}\sin x \,dx$ = −eˣcos x + $\int e^{x}\cos x \,dx$ = −eˣcos x + eˣsin x − $\int e^{x}\sin x \,dx$。移项：2$\int e^{x}\sin x \,dx$ = eˣ(sin x − cos x)，故 = eˣ(sin x − cos x)/2 + C。</div></details></div>
+
+  <h3>3.1 分部积分法的选择原则</h3>
+  <div class="thm"><b>定理（分部积分公式）：</b>设 $u=u(x)$、$v=v(x)$ 具有连续导数，则
+  $$\int u\,dv=uv-\int v\,du.$$
+  <div class="proof"><b>证明：</b>由乘积求导法则 $(uv)'=u'v+uv'$，即 $uv'=(uv)'-u'v$。两边对 $x$ 积分得 $\int uv' dx=uv-\int u'v dx$，即 $\int u\,dv=uv-\int v\,du$。</div></div>
+  <div class="thm"><b>定理（$u$ 的选择原则——"反对幂指三"）：</b>当被积函数为两类函数乘积时，按以下优先级选择 $u$（排在前面的优先选作 $u$）：<br>
+  <b>反</b>三角函数 → <b>对</b>数函数 → <b>幂</b>函数 → <b>指</b>数函数 → <b>三</b>角函数。<br>
+  原理：选作 $u$ 的函数求导后应变简单（或类型不变），选作 $dv$ 的函数积分后应不复杂。
+  <div class="proof"><b>说明：</b>例如 $\int x e^x dx$：幂函数排在指数前，选 $u=x$、$dv=e^x dx$；若选反了（$u=e^x$、$dv=x dx$），则 $\int v\,du=\int\frac{x^2}{2}e^x dx$ 反而更复杂。</div></div>
+  <div class="ex"><b>例 1：</b>计算 $\int x^2 e^x dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>两次分部：第一次 $u=x^2$、$dv=e^x dx$：$=x^2 e^x-\int 2x e^x dx$。第二次对 $\int x e^x dx$ 分部（已在上文算过 $=e^x(x-1)$）。$=x^2 e^x-2e^x(x-1)+C=e^x(x^2-2x+2)+C$。</div></details></div>
+  <div class="ex"><b>例 2：</b>计算 $\int x^2\cos x\,dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>选 $u=x^2$、$dv=\cos x dx$：$=x^2\sin x-\int 2x\sin x\,dx$。对 $\int x\sin x\,dx$ 再分部：$u=x$、$dv=\sin x dx$：$=-x\cos x+\int\cos x\,dx=-x\cos x+\sin x$。代回：$=x^2\sin x-2(-x\cos x+\sin x)+C=x^2\sin x+2x\cos x-2\sin x+C$。</div></details></div>
+  <div class="ex"><b>例 3：</b>计算 $\int \arcsin x\,dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>选 $u=\arcsin x$、$dv=dx$：$=x\arcsin x-\int\frac{x}{\sqrt{1-x^2}}dx$。对第二项凑微分：令 $u=1-x^2$，$du=-2x dx$。$\int\frac{x}{\sqrt{1-x^2}}dx=-\frac{1}{2}\int u^{-1/2}du=-\sqrt{1-x^2}$。故 $=x\arcsin x+\sqrt{1-x^2}+C$。</div></details></div>
+  <div class="ex"><b>例 4：</b>计算 $\int \ln(x+\sqrt{1+x^2})dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>选 $u=\ln(x+\sqrt{1+x^2})$、$dv=dx$。注意 $\frac{d}{dx}\ln(x+\sqrt{1+x^2})=\frac{1}{x+\sqrt{1+x^2}}\cdot\left(1+\frac{x}{\sqrt{1+x^2}}\right)=\frac{1}{\sqrt{1+x^2}}$。$=x\ln(x+\sqrt{1+x^2})-\int\frac{x}{\sqrt{1+x^2}}dx=x\ln(x+\sqrt{1+x^2})-\sqrt{1+x^2}+C$。</div></details></div>
+  <h3>3.2 分部积分的典型应用类型</h3>
+  <div class="thm"><b>定理（循环型积分）：</b>对 $\int e^{ax}\cos bx\,dx$ 或 $\int e^{ax}\sin bx\,dx$，连续两次分部后等式中重现原积分，通过移项求解。
+  <div class="proof"><b>步骤：</b>设 $I=\int e^{ax}\cos bx\,dx$。第一次分部（$u=e^{ax}$、$dv=\cos bx dx$）得 $I=\frac{1}{b}e^{ax}\sin bx-\frac{a}{b}\int e^{ax}\sin bx dx$。第二次分部对剩余积分（$u=e^{ax}$、$dv=\sin bx dx$），代入后右边出现 $-\frac{a^2}{b^2}I$，移项解得 $I=\frac{e^{ax}(a\cos bx+b\sin bx)}{a^2+b^2}+C$。</div></div>
+  <div class="thm"><b>定理（递推型积分）：</b>对 $\int \sin^n x\,dx$、$\int \cos^n x\,dx$、$\int \sec^n x\,dx$ 等可建立递推公式。
+  <div class="proof"><b>示例：</b>$I_n=\int\sin^n x\,dx$。拆 $\sin^n x=\sin^{n-1}x\cdot\sin x$，分部：$u=\sin^{n-1}x$、$dv=\sin x dx$。得 $I_n=-\sin^{n-1}x\cos x+(n-1)\int\sin^{n-2}x\cos^2 x\,dx=-\sin^{n-1}x\cos x+(n-1)(I_{n-2}-I_n)$。整理得 $I_n=-\frac{1}{n}\sin^{n-1}x\cos x+\frac{n-1}{n}I_{n-2}$。</div></div>
+  <div class="ex"><b>例 5：</b>求 $I_n=\int \frac{dx}{(x^2+a^2)^n}$ 的递推公式。<details><summary>查看解答</summary><div class="sol"><b>解：</b>分部：$u=\frac{1}{(x^2+a^2)^n}$、$dv=dx$。$I_n=\frac{x}{(x^2+a^2)^n}+2n\int\frac{x^2}{(x^2+a^2)^{n+1}}dx=\frac{x}{(x^2+a^2)^n}+2n\int\frac{x^2+a^2-a^2}{(x^2+a^2)^{n+1}}dx=\frac{x}{(x^2+a^2)^n}+2nI_n-2na^2 I_{n+1}$。整理得 $I_{n+1}=\frac{1}{2na^2}\cdot\frac{x}{(x^2+a^2)^n}+\frac{2n-1}{2na^2}I_n$。</div></details></div>
+  <h3>3.3 习题</h3>
+  <div class="ex"><b>习题 1：</b>计算 $\int x\cos\frac{x}{2}dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$u=x$、$dv=\cos(x/2)dx$。$=2x\sin\frac{x}{2}-\int 2\sin\frac{x}{2}dx=2x\sin\frac{x}{2}+4\cos\frac{x}{2}+C$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>计算 $\int x^2\ln x\,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$u=\ln x$、$dv=x^2 dx$。$=\frac{x^3}{3}\ln x-\int\frac{x^3}{3}\cdot\frac{1}{x}dx=\frac{x^3}{3}\ln x-\frac{x^3}{9}+C$。</div></details></div>
+  <div class="ex"><b>习题 3：</b>计算 $\int e^{\sqrt{x}}dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $t=\sqrt{x}$，$x=t^2$，$dx=2t\,dt$。$=2\int t e^t dt=2e^t(t-1)+C=2e^{\sqrt{x}}(\sqrt{x}-1)+C$。</div></details></div>
+  <div class="ex"><b>习题 4：</b>计算 $\int \sec^3 x\,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$I=\int\sec^3 x dx=\int\sec x\,d(\tan x)=\sec x\tan x-\int\sec x\tan^2 x\,dx=\sec x\tan x-\int\sec x(\sec^2 x-1)dx=\sec x\tan x-I+\int\sec x dx$。故 $2I=\sec x\tan x+\ln|\sec x+\tan x|$，$I=\frac{1}{2}(\sec x\tan x+\ln|\sec x+\tan x|)+C$。</div></details></div>
+
+</div>
+
+<!-- ================= 4 ================= -->
+<div class="ch" id="c4">
+  <h2>4. 有理函数与三角有理式的积分 <small>系统性方法</small></h2>
+  <div class="thm"><b>定理（有理函数部分分式法）：</b>真分式 P(x)/Q(x) 可分解为部分分式之和：对每个因子 (x−a)ᵏ 拆成 A₁/(x−a) + … + Aₖ/(x−a)ᵏ；对不可约二次因子 (x²+px+q)ᵐ 拆成 (B₁x+C₁)/(x²+px+q) + …。<div class="proof"><b>例：</b>1/(x²−1) = 1/[(x−1)(x+1)] = A/(x−1) + B/(x+1) ⟹ A = 1/2、B = −1/2。∫ = (1/2)ln|(x−1)/(x+1)| + C。</div></div>
+  <div class="thm"><b>定理（万能代换）：</b>$\int R(\sin x, \cos x)\,dx$ 令 t = tan(x/2)，则 sin x = 2t/(1+t²)、cos x = (1−t²)/(1+t²)、dx = 2dt/(1+t²)，化为有理函数积分。<div class="proof"><b>例：</b>∫dx/(1+sin x)（万能代换后分解）——计算较长但机械可靠。</div></div>
+  <div class="ex"><b>例：</b>∫dx/(x²+2x+5)。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>配方法：x²+2x+5 = (x+1)²+4，令 u = x+1：∫du/(u²+4) = (1/2)arctan(u/2) + C = (1/2)arctan((x+1)/2) + C。</div></details></div>
+  <div class="warn"><b>易错警示：</b>分母为不可约二次多项式的积分首选「配方 + arctan」；分子含一次项时拆成「导数部分 + 常数部分」：$\int (2x+1)/(x^{2}+2x+5)\,dx$ = $\int (2x+2)/(x^{2}+2x+5)\,dx$ − $\int 1/(x^{2}+2x+5)\,dx$ = ln|x²+2x+5| − (1/2)arctan((x+1)/2) + C。</div>
+
+  <h3>4.1 有理函数积分的系统方法</h3>
+  <div class="def"><b>定义（有理函数）：</b>两个多项式之商 $R(x)=\frac{P(x)}{Q(x)}$。若 $\deg P&lt;\deg Q$ 称真分式，否则为假分式。假分式先用多项式除法化为多项式+真分式。</div>
+  <div class="thm"><b>定理（部分分式分解定理）：</b>任何真分式 $\frac{P(x)}{Q(x)}$ 可唯一分解为以下四种最简分式之和：
+  <div class="tbl"><table><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tr><th>$Q(x)$ 的因式</th><th>对应分解项</th></tr>
+  <tr><td>$(x-a)$</td><td>$\frac{A}{x-a}$</td></tr>
+  <tr><td>$(x-a)^k$</td><td>$\frac{A_1}{x-a}+\frac{A_2}{(x-a)^2}+\cdots+\frac{A_k}{(x-a)^k}$</td></tr>
+  <tr><td>$x^2+px+q$（$p^2-4q&lt;0$）</td><td>$\frac{Bx+C}{x^2+px+q}$</td></tr>
+  <tr><td>$(x^2+px+q)^m$</td><td>$\frac{B_1x+C_1}{x^2+px+q}+\cdots+\frac{B_mx+C_m}{(x^2+px+q)^m}$</td></tr></table></div>
+  <div class="proof"><b>方法：</b>① 将 $Q(x)$ 在实数域因式分解到一次和不可约二次因子；② 按上表写出待定系数形式；③ 通分后比较分子系数（或代入特殊值）求出系数；④ 逐项积分。</div></div>
+  <div class="ex"><b>例 1：</b>计算 $\int\frac{x+3}{x^2-5x+6}dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$x^2-5x+6=(x-2)(x-3)$。设 $\frac{x+3}{(x-2)(x-3)}=\frac{A}{x-2}+\frac{B}{x-3}$。通分：$x+3=A(x-3)+B(x-2)$。令 $x=2$：$5=-A\Rightarrow A=-5$。令 $x=3$：$6=B\Rightarrow B=6$。$=\int\left(\frac{-5}{x-2}+\frac{6}{x-3}\right)dx=-5\ln|x-2|+6\ln|x-3|+C$。</div></details></div>
+  <div class="ex"><b>例 2：</b>计算 $\int\frac{x^2+1}{(x-1)^2(x+2)}dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>设 $=\frac{A}{x-1}+\frac{B}{(x-1)^2}+\frac{C}{x+2}$。通分比较系数：$x^2+1=A(x-1)(x+2)+B(x+2)+C(x-1)^2$。令 $x=1$：$2=3B\Rightarrow B=2/3$。令 $x=-2$：$5=9C\Rightarrow C=5/9$。比较 $x^2$ 系数：$1=A+C\Rightarrow A=4/9$。$=\frac{4}{9}\ln|x-1|-\frac{2}{3}\cdot\frac{1}{x-1}+\frac{5}{9}\ln|x+2|+C$。</div></details></div>
+  <div class="ex"><b>例 3：</b>计算 $\int\frac{2x+5}{x^2+2x+5}dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>分母不可约二次。拆分子：$2x+5=(2x+2)+3$。$=\int\frac{2x+2}{x^2+2x+5}dx+\int\frac{3}{(x+1)^2+4}dx$。第一项凑微分：$\ln(x^2+2x+5)$。第二项配方：$=3\cdot\frac{1}{2}\arctan\frac{x+1}{2}$。合：$=\ln(x^2+2x+5)+\frac{3}{2}\arctan\frac{x+1}{2}+C$。</div></details></div>
+  <h3>4.2 三角有理式的积分</h3>
+  <div class="thm"><b>定理（万能代换）：</b>对 $\int R(\sin x,\cos x)dx$，令 $t=\tan\frac{x}{2}$，则
+  $$\sin x=\frac{2t}{1+t^2},\quad\cos x=\frac{1-t^2}{1+t^2},\quad dx=\frac{2}{1+t^2}dt.$$
+  此代换将任意三角有理式化为 $t$ 的有理函数积分。<div class="proof"><b>推导：</b>由半角公式，令 $t=\tan\frac{x}{2}$，则 $x=2\arctan t$，$dx=\frac{2}{1+t^2}dt$。$\sin x=2\sin\frac{x}{2}\cos\frac{x}{2}=\frac{2\tan(x/2)}{1+\tan^2(x/2)}$。</div></div>
+  <div class="ex"><b>例 4：</b>计算 $\int\frac{dx}{1+\sin x+\cos x}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>万能代换：$1+\sin x+\cos x=1+\frac{2t}{1+t^2}+\frac{1-t^2}{1+t^2}=\frac{2+2t}{1+t^2}=\frac{2(1+t)}{1+t^2}$。$dx=\frac{2dt}{1+t^2}$。$=\int\frac{2dt/(1+t^2)}{2(1+t)/(1+t^2)}=\int\frac{dt}{1+t}=\ln|1+t|+C=\ln|1+\tan\frac{x}{2}|+C$。</div></details></div>
+  <div class="ex"><b>例 5：</b>计算 $\int\sin^2 x\cos^3 x\,dx$（不用万能代换，用凑微分）。<details><summary>查看解答</summary><div class="sol"><b>解：</b>凑 $\cos x\,dx=d(\sin x)$。$\cos^3 x=\cos^2 x\cdot\cos x=(1-\sin^2 x)\cos x$。令 $u=\sin x$：$=\int u^2(1-u^2)du=\int(u^2-u^4)du=\frac{u^3}{3}-\frac{u^5}{5}+C=\frac{\sin^3 x}{3}-\frac{\sin^5 x}{5}+C$。</div></details></div>
+  <div class="thm"><b>定理（三角有理式的特殊技巧）：</b>
+  <div class="tbl"><table><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tr><th>被积函数类型</th><th>技巧</th></tr>
+  <tr><td>$\sin^m x\cos^n x$（$m,n$ 一奇一偶）</td><td>拆出奇次幂凑微分</td></tr>
+  <tr><td>$\sin^m x\cos^n x$（$m,n$ 均偶）</td><td>用倍角公式降幂</td></tr>
+  <tr><td>$\tan^m x\sec^n x$</td><td>用 $\sec^2 x=1+\tan^2 x$ 化简</td></tr>
+  <tr><td>$R(\sin x,\cos x)$ 关于 $\sin x$ 为奇</td><td>令 $u=\cos x$</td></tr></table></div></div>
+  <div class="warn"><b>易错警示：</b>万能代换虽然万能但计算量大，应优先尝试凑微分和恒等变形。万能代换中 $t=\tan(x/2)$ 的定义域为 $x\neq(2k+1)\pi$，需注意间断点。</div>
+  <h3>4.3 习题</h3>
+  <div class="ex"><b>习题 1：</b>计算 $\int\frac{x}{(x+1)(x+2)(x+3)}dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>部分分式：$=\frac{A}{x+1}+\frac{B}{x+2}+\frac{C}{x+3}$。解得 $A=-1/2$、$B=2$、$C=-3/2$。$=-\frac{1}{2}\ln|x+1|+2\ln|x+2|-\frac{3}{2}\ln|x+3|+C$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>计算 $\int\frac{dx}{x^2(x^2+1)}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>拆 $\frac{1}{x^2(x^2+1)}=\frac{1}{x^2}-\frac{1}{x^2+1}$。$=-\frac{1}{x}-\arctan x+C$。</div></details></div>
+  <div class="ex"><b>习题 3：</b>计算 $\int\frac{dx}{2+\sin x}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>万能代换 $t=\tan(x/2)$。$2+\sin x=\frac{2(1+t^2)+2t}{1+t^2}=\frac{2(t^2+t+1)}{1+t^2}$。$dx=\frac{2dt}{1+t^2}$。$=\int\frac{dt}{t^2+t+1}=\int\frac{d(t+1/2)}{(t+1/2)^2+3/4}=\frac{2}{\sqrt{3}}\arctan\frac{2t+1}{\sqrt{3}}+C=\frac{2}{\sqrt{3}}\arctan\frac{2\tan(x/2)+1}{\sqrt{3}}+C$。</div></details></div>
+  <div class="ex"><b>习题 4：</b>计算 $\int\cos^4 x\,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>降幂：$\cos^4 x=\left(\frac{1+\cos 2x}{2}\right)^2=\frac{1}{4}(1+2\cos 2x+\cos^2 2x)=\frac{1}{4}+\frac{1}{2}\cos 2x+\frac{1}{8}(1+\cos 4x)$。$=\frac{3x}{8}+\frac{\sin 2x}{4}+\frac{\sin 4x}{32}+C$。</div></details></div>
+
+</div>
+
+<!-- ================= 5 ================= -->
+<div class="ch" id="c5">
+  <h2>5. 定积分的定义与性质 <small>分割-近似-求和-取极限</small></h2>
+  <div class="def"><b>定义（定积分）：</b>$\int_a^b f(x)\,dx=\lim_{\max\Delta x_i\to 0}\sum f(\xi_i)\Delta x_i$——黎曼和的极限（与分割方式和取点方式无关，当极限存在）。几何意义：曲线与 $x$ 轴围成面积的代数和（$x$ 轴下方取负）。</div>
+  <div class="thm"><b>定理（定积分性质）：</b>① 线性：∫(αf+βg) = α∫f + β∫g；② 区间可加：$\int _a^b$ + $\int _b^c$ = $\int _a^c$；③ $\int _a^b$ f = −$\int _b^a$ f；④ 保序：f ≤ g ⟹ ∫f ≤ ∫g；⑤ 估值：m(b−a) ≤ $\int _a^b$ f ≤ M(b−a)；⑥ 绝对值：|∫f| ≤ ∫|f|。<div class="proof"><b>例：</b>由估值不等式：1 ≤ $\int _0^1$ $e^{x^{2}}$dx ≤ e。</div></div>
+  <div class="thm"><b>定理（积分中值定理）：</b>f 在 [a,b] 连续，则存在 ξ ∈ [a,b] 使 $\int _a^b$ f(x)dx = f(ξ)(b−a)。<div class="proof"><b>证明要点：</b>估值不等式 + 介值定理。几何意义：存在矩形面积 = 曲边梯形面积（平均高度 f(ξ)）。</div></div>
+  <div class="ex"><b>例：</b>用定义计算 $\int _0^1$ x dx。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>n 等分：Σ (k/n)(1/n) = (1/n²)·n(n+1)/2 → 1/2。</div></details></div>
+
+  <h3>5.1 定积分的严格定义与可积条件</h3>
+  <div class="def"><b>定义（定积分的严格陈述）：</b>设函数 $f(x)$ 在 $[a,b]$ 上有界。在 $[a,b]$ 中任意插入分点 $a=x_0&lt;x_1&lt;\cdots&lt;x_n=b$，将区间分成 $n$ 个小区间 $[x_{i-1},x_i]$，长度 $\Delta x_i=x_i-x_{i-1}$。在每个小区间上任取一点 $\xi_i\in[x_{i-1},x_i]$，作乘积 $f(\xi_i)\Delta x_i$ 并求和 $\sum_{i=1}^{n}f(\xi_i)\Delta x_i$（称为<b>黎曼和</b>）。记 $\lambda=\max\{\Delta x_1,\cdots,\Delta x_n\}$。若当 $\lambda\to 0$ 时，不论如何分割、不论如何取点 $\xi_i$，该和式的极限存在且为常数 $I$，则称 $I$ 为 $f(x)$ 在 $[a,b]$ 上的定积分，记作
+  $$\int_a^b f(x)\,dx=\lim_{\lambda\to 0}\sum_{i=1}^{n}f(\xi_i)\Delta x_i.$$</div>
+  <div class="thm"><b>定理（可积的充分条件）：</b>
+  <div class="tbl"><table><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tr><th>条件</th><th>结论</th></tr>
+  <tr><td>$f(x)$ 在 $[a,b]$ 上连续</td><td>必可积</td></tr>
+  <tr><td>$f(x)$ 在 $[a,b]$ 上有界且只有有限个间断点</td><td>必可积</td></tr>
+  <tr><td>$f(x)$ 在 $[a,b]$ 上单调有界</td><td>必可积</td></tr></table></div>
+  <div class="proof"><b>说明：</b>可积的必要条件是 $f(x)$ 在 $[a,b]$ 上有界。无界函数在黎曼意义下不可积（但有"反常积分"推广）。连续函数必可积是因为一致连续性保证了当 $\lambda\to 0$ 时振幅趋于零。</div></div>
+  <div class="ex"><b>例 1：</b>用定义计算 $\int_0^1 x^2 dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>将 $[0,1]$ $n$ 等分，$\Delta x_i=1/n$，取 $\xi_i=i/n$。黎曼和 $=\sum_{i=1}^{n}(i/n)^2\cdot\frac{1}{n}=\frac{1}{n^3}\sum_{i=1}^{n}i^2=\frac{1}{n^3}\cdot\frac{n(n+1)(2n+1)}{6}\to\frac{1}{3}$。故 $\int_0^1 x^2 dx=1/3$。</div></details></div>
+  <div class="ex"><b>例 2：</b>用定义计算 $\int_0^1 e^x dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$n$ 等分，取 $\xi_i=i/n$。黎曼和 $=\sum_{i=1}^{n}e^{i/n}\cdot\frac{1}{n}=\frac{1}{n}\cdot\frac{e^{1/n}(e-1)}{e^{1/n}-1}$。注意 $n(e^{1/n}-1)\to 1$，故极限 $=e-1$。</div></details></div>
+  <h3>5.2 定积分的性质</h3>
+  <div class="thm"><b>定理（定积分的基本性质）：</b>设 $f,g$ 在 $[a,b]$ 上可积：
+  <br>① <b>线性性</b>：$\int_a^b[\alpha f(x)+\beta g(x)]dx=\alpha\int_a^b f(x)dx+\beta\int_a^b g(x)dx$；
+  <br>② <b>区间可加性</b>：$\int_a^b f(x)dx=\int_a^c f(x)dx+\int_c^b f(x)dx$；
+  <br>③ <b>端点交换</b>：$\int_a^b f(x)dx=-\int_b^a f(x)dx$；
+  <br>④ <b>保号性</b>：若 $f(x)\geq 0$，则 $\int_a^b f(x)dx\geq 0$；
+  <br>⑤ <b>比较性</b>：若 $f(x)\leq g(x)$，则 $\int_a^b f(x)dx\leq\int_a^b g(x)dx$；
+  <br>⑥ <b>估值定理</b>：若 $m\leq f(x)\leq M$，则 $m(b-a)\leq\int_a^b f(x)dx\leq M(b-a)$；
+  <br>⑦ <b>绝对可积性</b>：$\left|\int_a^b f(x)dx\right|\leq\int_a^b|f(x)|dx$。</div>
+  <div class="thm"><b>定理（积分中值定理）：</b>若 $f(x)$ 在 $[a,b]$ 上连续，则至少存在一点 $\xi\in[a,b]$，使得
+  $$\int_a^b f(x)dx=f(\xi)(b-a).$$
+  <div class="proof"><b>证明：</b>由估值定理 $m(b-a)\leq\int_a^b f\leq M(b-a)$，即 $m\leq\frac{1}{b-a}\int_a^b f\leq M$。由连续函数的介值定理，存在 $\xi\in[a,b]$ 使 $f(\xi)=\frac{1}{b-a}\int_a^b f(x)dx$。</div>
+  <b>注：</b>$\bar f=\frac{1}{b-a}\int_a^b f(x)dx$ 称为 $f(x)$ 在 $[a,b]$ 上的平均值。</div>
+  <div class="ex"><b>例 3：</b>比较 $\int_0^1 e^x dx$ 与 $\int_0^1 e^{x^2}dx$ 的大小。<details><summary>查看解答</summary><div class="sol"><b>解：</b>在 $[0,1]$ 上 $x\geq x^2$，故 $e^x\geq e^{x^2}$，且不恒等。由比较性：$\int_0^1 e^x dx>\int_0^1 e^{x^2}dx$。</div></details></div>
+  <div class="ex"><b>例 4：</b>估计 $\int_0^{2\pi}\frac{dx}{1+\sin^2 x}$ 的值。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$0\leq\sin^2 x\leq 1$，故 $\frac{1}{2}\leq\frac{1}{1+\sin^2 x}\leq 1$。由估值定理：$\pi\leq\int_0^{2\pi}\frac{dx}{1+\sin^2 x}\leq 2\pi$。（实际值为 $\pi\sqrt{2}$。）</div></details></div>
+  <h3>5.3 习题</h3>
+  <div class="ex"><b>习题 1：</b>利用定积分的几何意义求 $\int_0^1\sqrt{1-x^2}dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>该积分表示单位圆在第一象限的四分之一面积，$=\pi/4$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>比较 $\int_0^1 x\,dx$ 与 $\int_0^1\ln(1+x)dx$ 的大小。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>在 $[0,1]$ 上 $x\geq\ln(1+x)$（因 $x-\ln(1+x)$ 导数 $1-\frac{1}{1+x}=\frac{x}{1+x}\geq 0$ 且 $x=0$ 时相等）。故 $\int_0^1 x\,dx\geq\int_0^1\ln(1+x)dx$。</div></details></div>
+  <div class="ex"><b>习题 3：</b>求函数 $f(x)=x^2$ 在 $[0,3]$ 上的平均值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\bar f=\frac{1}{3}\int_0^3 x^2 dx=\frac{1}{3}\cdot 9=3$。</div></details></div>
+  <div class="ex"><b>习题 4：</b>利用积分中值定理求 $\lim_{n\to\infty}\int_0^1\frac{x^n}{1+x}dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>由积分中值定理，存在 $\xi_n\in[0,1]$ 使 $\int_0^1\frac{x^n}{1+x}dx=\frac{\xi_n^n}{1+\xi_n}$。因 $0\leq\frac{\xi_n^n}{1+\xi_n}\leq 1$ 且 $\xi_n^n\to 0$（当 $\xi_n&lt;1$），或 $\xi_n=1$ 时 $\frac{1}{2(n+1)}\to 0$。故极限为 $0$。</div></details></div>
+
+</div>
+
+<!-- ================= 6 ================= -->
+<div class="ch" id="c6">
+  <h2>6. 微积分基本定理 <small>牛顿-莱布尼茨公式</small></h2>
+  <div class="thm"><b>定理（积分上限函数）：</b>Φ(x) = $\int _a^x$ f(t)dt 在 f 连续处可导，且 Φ′(x) = f(x)。<div class="proof"><b>证明要点：</b>Φ(x+h)−Φ(x) = $\int _x^{x+h}$ f = f(ξ)h（积分中值定理），除以 h 取极限。</div></div>
+  <div class="thm"><b>定理（牛顿-莱布尼茨公式）：</b>F 是 f 的任一原函数，则 $\int _a^b$ f(x)dx = F(b) − F(a)。<div class="proof"><b>证明要点：</b>Φ(x) = F(x) − F(a)（因 Φ′ = F′ = f，差为常数），取 x = b。</div></div>
+  <div class="thm"><b>定理（变限积分的复合）：</b>d/dx $\int _{u(x)}^{v(x)}$ f(t)dt = f(v(x))v′(x) − f(u(x))u′(x)。<div class="proof"><b>例：</b>d/dx $\int _0^{x^{2}}$ sin(t²)dt = sin(x⁴)·2x。</div></div>
+  <div class="ex"><b>例：</b>$\int _0^π$ sin x dx。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>[−cos x]_0^π = −cos π + cos 0 = 2。</div></details></div>
+  <div class="ex"><b>例：</b>求 $\lim_{x\to 0}\dfrac{\int_0^x e^{t^2}\,dt}{x}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>洛必达 + 变限积分求导：$=\lim\dfrac{e^{x^2}}{1}=1$。</div></details></div>
+
+  <h3>6.1 积分上限函数及其导数</h3>
+  <div class="def"><b>定义（积分上限函数）：</b>设 $f(x)$ 在 $[a,b]$ 上连续，$x\in[a,b]$，称
+  $$\Phi(x)=\int_a^x f(t)\,dt$$
+  为积分上限函数（变上限积分）。</div>
+  <div class="thm"><b>定理（微积分第一基本定理）：</b>若 $f(x)$ 在 $[a,b]$ 上连续，则 $\Phi(x)=\int_a^x f(t)dt$ 在 $[a,b]$ 上可导，且
+  $$\Phi'(x)=\frac{d}{dx}\int_a^x f(t)\,dt=f(x).$$
+  <div class="proof"><b>证明：</b>对 $x\in[a,b)$，$\Phi(x+h)-\Phi(x)=\int_x^{x+h}f(t)dt$。由积分中值定理 $=f(\xi)h$，其中 $\xi$ 介于 $x$ 与 $x+h$ 之间。$\frac{\Phi(x+h)-\Phi(x)}{h}=f(\xi)$。当 $h\to 0$ 时 $\xi\to x$，由连续性得 $\lim=f(x)$。右端点类似。</div></div>
+  <div class="thm"><b>定理（变限积分的复合求导公式）：</b>若 $f$ 连续，$u(x)$、$v(x)$ 可导，则
+  $$\frac{d}{dx}\int_{u(x)}^{v(x)}f(t)\,dt=f(v(x))v'(x)-f(u(x))u'(x).$$
+  <div class="proof"><b>证明：</b>令 $F(x)=\int_a^x f(t)dt$，则 $\int_{u(x)}^{v(x)}f(t)dt=F(v(x))-F(u(x))$。由链式法则 $=F'(v(x))v'(x)-F'(u(x))u'(x)=f(v(x))v'(x)-f(u(x))u'(x)$。</div></div>
+  <div class="ex"><b>例 1：</b>求 $\frac{d}{dx}\int_0^{x^2}\sin(t^2)dt$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$=\sin((x^2)^2)\cdot 2x=2x\sin(x^4)$。</div></details></div>
+  <div class="ex"><b>例 2：</b>求 $\frac{d}{dx}\int_{\sin x}^{x^2}e^t dt$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$=e^{x^2}\cdot 2x-e^{\sin x}\cdot\cos x=2xe^{x^2}-e^{\sin x}\cos x$。</div></details></div>
+  <div class="ex"><b>例 3：</b>求极限 $\lim_{x\to 0}\frac{\int_0^{x^2}\cos t\,dt}{x\sin x}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>这是 $\frac{0}{0}$ 型。洛必达法则：分子导数 $=\cos(x^2)\cdot 2x$，分母导数 $=\sin x+x\cos x$。$=\lim_{x\to 0}\frac{2x\cos(x^2)}{\sin x+x\cos x}=\lim_{x\to 0}\frac{2\cos(x^2)}{\frac{\sin x}{x}+\cos x}=\frac{2}{1+1}=1$。</div></details></div>
+  <h3>6.2 牛顿-莱布尼茨公式</h3>
+  <div class="thm"><b>定理（微积分第二基本定理——牛顿-莱布尼茨公式）：</b>若 $F(x)$ 是连续函数 $f(x)$ 在 $[a,b]$ 上的任一原函数，则
+  $$\int_a^b f(x)\,dx=F(b)-F(a).$$
+  <div class="proof"><b>证明：</b>由第一基本定理，$\Phi(x)=\int_a^x f(t)dt$ 是 $f(x)$ 的一个原函数。已知 $F(x)$ 也是原函数，故 $\Phi(x)=F(x)+C$。代入 $x=a$：$\Phi(a)=0=F(a)+C$，故 $C=-F(a)$。代入 $x=b$：$\Phi(b)=\int_a^b f(x)dx=F(b)-F(a)$。</div>
+  <b>意义：</b>牛顿-莱布尼茨公式将"微分"与"积分"两个独立发展了千年的概念焊接为一体——求定积分转化为求原函数，是整个微积分学的基石。</div>
+  <div class="ex"><b>例 4：</b>计算 $\int_0^{\pi/2}\sin^2 x\,dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$\sin^2 x=\frac{1-\cos 2x}{2}$。$=\left[\frac{x}{2}-\frac{\sin 2x}{4}\right]_0^{\pi/2}=\frac{\pi}{4}-0=\frac{\pi}{4}$。</div></details></div>
+  <div class="ex"><b>例 5：</b>计算 $\int_0^2|1-x|dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>分段：$|1-x|=1-x$（$0\leq x\leq 1$），$=x-1$（$1&lt;x\leq 2$）。$=\int_0^1(1-x)dx+\int_1^2(x-1)dx=\left[x-\frac{x^2}{2}\right]_0^1+\left[\frac{x^2}{2}-x\right]_1^2=\frac{1}{2}+\frac{1}{2}=1$。</div></details></div>
+  <h3>6.3 习题</h3>
+  <div class="ex"><b>习题 1：</b>求 $\frac{d}{dx}\int_x^0\sqrt{1+t^4}dt$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$=-\sqrt{1+x^4}$（因 $\int_x^0=-\int_0^x$）。</div></details></div>
+  <div class="ex"><b>习题 2：</b>求 $\frac{d}{dx}\int_0^x(x-t)f'(t)dt$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>展开 $=x\int_0^x f'(t)dt-\int_0^x t f'(t)dt$。求导 $=\int_0^x f'(t)dt+x f'(x)-x f'(x)=\int_0^x f'(t)dt=f(x)-f(0)$。</div></details></div>
+  <div class="ex"><b>习题 3：</b>计算 $\int_0^{\pi}|\cos x|dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$|\cos x|$ 在 $[0,\pi/2]$ 为 $\cos x$，在 $[\pi/2,\pi]$ 为 $-\cos x$。$=\int_0^{\pi/2}\cos x\,dx-\int_{\pi/2}^{\pi}\cos x\,dx=1-(-1)=2$。</div></details></div>
+  <div class="ex"><b>习题 4：</b>求 $\lim_{x\to 0}\frac{\int_0^x(1-\cos t^2)dt}{x^3}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>洛必达：$=\lim\frac{1-\cos(x^2)}{3x^2}=\lim\frac{(x^2)^2/2}{3x^2}=0$（用 $1-\cos u\sim u^2/2$）。</div></details></div>
+
+</div>
+
+<!-- ================= 7 ================= -->
+<div class="ch" id="c7">
+  <h2>7. 定积分的换元与分部 <small>换元必须换限</small></h2>
+  <div class="thm"><b>定理（定积分换元法）：</b>$\int _a^b$ f(x)dx = $\int _α^β f(φ(t))φ′(t)\,dt$，其中 a = φ(α)、b = φ(β)，φ 单调。换元后<b>不代回</b>，直接把新上下限代入。<div class="proof"><b>例：</b>$\int _0^1$ x√(1−x²)dx：令 u = 1−x²，u: 1→0，= −(1/2)$\int _1^0$ √u du = (1/2)·(2/3) = 1/3。</div></div>
+  <div class="thm"><b>定理（定积分分部积分法）：</b>$\int _a^b$ u dv = [uv]_a^b − $\int _a^b$ v du。<div class="proof"><b>例：</b>$\int _0^1$ x eˣ dx = [x eˣ]_0^1 − $\int _0^1$ eˣ dx = e − (e−1) = 1。</div></div>
+  <div class="thm"><b>定理（奇偶性与周期性）：</b>f 为偶函数：$\int _{-a}^a$ f = 2$\int _0^a$ f；f 为奇函数：$\int _{-a}^a$ f = 0。f 周期 T：$\int _a^{a+T}$ f = $\int _0^T$ f。<div class="proof"><b>例：</b>$\int _{-π}^{π}$ x³cos x dx = 0（奇函数）。</div></div>
+  <div class="warn"><b>易错警示：</b>换元后忘记换限是最高频错误；先换限再代入。定积分换元不需要「回代变量」。</div>
+
+  <h3>7.1 定积分换元法</h3>
+  <div class="thm"><b>定理（定积分换元公式）：</b>设 $f(x)$ 在 $[a,b]$ 上连续，$x=\varphi(t)$ 满足：
+  <br>① $\varphi(\alpha)=a$，$\varphi(\beta)=b$；
+  <br>② $\varphi(t)$ 在 $[\alpha,\beta]$（或 $[\beta,\alpha]$）上有连续导数，且值域 $R_\varphi=[a,b]$。
+  <br>则
+  $$\int_a^b f(x)\,dx=\int_\alpha^\beta f(\varphi(t))\varphi'(t)\,dt.$$
+  <div class="proof"><b>证明：</b>设 $F(x)$ 是 $f(x)$ 的原函数，则左边 $=F(b)-F(a)$。右边被积函数的原函数为 $F(\varphi(t))$（因 $\frac{d}{dt}F(\varphi(t))=F'(\varphi(t))\varphi'(t)=f(\varphi(t))\varphi'(t)$），故右边 $=F(\varphi(\beta))-F(\varphi(\alpha))=F(b)-F(a)$。</div>
+  <b>注意：</b>换元后积分限必须相应改变；不需要将 $t$ 回代为 $x$。</div>
+  <div class="ex"><b>例 1：</b>计算 $\int_0^a\sqrt{a^2-x^2}dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>令 $x=a\sin t$，$dx=a\cos t\,dt$。$x=0\Rightarrow t=0$；$x=a\Rightarrow t=\pi/2$。$=\int_0^{\pi/2}a\cos t\cdot a\cos t\,dt=a^2\int_0^{\pi/2}\cos^2 t\,dt=a^2\cdot\frac{\pi}{4}=\frac{\pi a^2}{4}$。（即四分之一圆面积。）</div></details></div>
+  <div class="ex"><b>例 2：</b>计算 $\int_0^{\ln 2}\sqrt{e^x-1}\,dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>令 $t=\sqrt{e^x-1}$，则 $x=\ln(t^2+1)$，$dx=\frac{2t}{t^2+1}dt$。$x=0\Rightarrow t=0$；$x=\ln 2\Rightarrow t=1$。$=\int_0^1 t\cdot\frac{2t}{t^2+1}dt=2\int_0^1\frac{t^2}{t^2+1}dt=2\int_0^1(1-\frac{1}{t^2+1})dt=2(1-\pi/4)=2-\frac{\pi}{2}$。</div></details></div>
+  <h3>7.2 奇偶性与周期性在定积分中的应用</h3>
+  <div class="thm"><b>定理（奇偶函数在对称区间上的积分）：</b>设 $f(x)$ 在对称区间 $[-a,a]$ 上连续：
+  <br>① 若 $f(x)$ 为偶函数（$f(-x)=f(x)$），则 $\int_{-a}^a f(x)dx=2\int_0^a f(x)dx$；
+  <br>② 若 $f(x)$ 为奇函数（$f(-x)=-f(x)$），则 $\int_{-a}^a f(x)dx=0$。
+  <div class="proof"><b>证明：</b>$\int_{-a}^a f=\int_{-a}^0 f+\int_0^a f$。对第一项令 $x=-t$：$\int_{-a}^0 f(x)dx=\int_a^0 f(-t)(-dt)=\int_0^a f(-t)dt$。故 $\int_{-a}^a f=\int_0^a[f(-t)+f(t)]dt$。若偶 $=2\int_0^a f$；若奇 $=0$。</div></div>
+  <div class="thm"><b>定理（周期函数的积分）：</b>设 $f(x)$ 以 $T$ 为周期且连续，则对任意 $a$：
+  $$\int_a^{a+T}f(x)\,dx=\int_0^T f(x)\,dx.$$
+  <div class="proof"><b>证明：</b>令 $\Phi(a)=\int_a^{a+T}f(x)dx$，则 $\Phi'(a)=f(a+T)-f(a)=0$，故 $\Phi(a)$ 为常数，等于 $\Phi(0)=\int_0^T f$。</div></div>
+  <div class="thm"><b>定理（Wallis 公式）：</b>
+  $$\int_0^{\pi/2}\sin^n x\,dx=\int_0^{\pi/2}\cos^n x\,dx=\begin{cases}\frac{(n-1)!!}{n!!}\cdot\frac{\pi}{2},&n\text{ 偶}\\ \frac{(n-1)!!}{n!!},&n\text{ 奇}\end{cases}$$
+  其中双阶乘：$n!!=n(n-2)(n-4)\cdots$。
+  <div class="proof"><b>推导：</b>由递推公式 $I_n=-\frac{1}{n}\sin^{n-1}x\cos x\big|_0^{\pi/2}+\frac{n-1}{n}I_{n-2}=\frac{n-1}{n}I_{n-2}$。递推至 $I_0=\pi/2$（偶）或 $I_1=1$（奇）。</div></div>
+  <div class="ex"><b>例 3：</b>计算 $\int_{-1}^1\frac{x^3\cos x+x^2}{1+x^4}dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>区间对称。$\frac{x^3\cos x}{1+x^4}$ 为奇函数，积分为 $0$。$\frac{x^2}{1+x^4}$ 为偶函数。$=2\int_0^1\frac{x^2}{1+x^4}dx$。（主要展示奇偶性的应用。）</div></details></div>
+  <div class="ex"><b>例 4：</b>计算 $\int_0^{\pi/2}\sin^6 x\,dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$n=6$ 偶，$=\frac{5!!}{6!!}\cdot\frac{\pi}{2}=\frac{5\times 3\times 1}{6\times 4\times 2}\cdot\frac{\pi}{2}=\frac{5\pi}{32}$。</div></details></div>
+  <h3>7.3 定积分分部积分法</h3>
+  <div class="thm"><b>定理（定积分分部积分公式）：</b>设 $u(x)$、$v(x)$ 在 $[a,b]$ 上有连续导数，则
+  $$\int_a^b u\,dv=\left.uv\right|_a^b-\int_a^b v\,du.$$</div>
+  <div class="ex"><b>例 5：</b>计算 $\int_0^1 x\arctan x\,dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>选 $u=\arctan x$、$dv=x\,dx$。$=\left[\frac{x^2}{2}\arctan x\right]_0^1-\int_0^1\frac{x^2}{2}\cdot\frac{1}{1+x^2}dx=\frac{\pi}{8}-\frac{1}{2}\int_0^1\left(1-\frac{1}{1+x^2}\right)dx=\frac{\pi}{8}-\frac{1}{2}(1-\pi/4)=\frac{\pi}{4}-\frac{1}{2}$。</div></details></div>
+  <div class="ex"><b>例 6：</b>计算 $I_n=\int_0^1 x^m(\ln x)^n dx$ 的递推公式。<details><summary>查看解答</summary><div class="sol"><b>解：</b>分部：$u=(\ln x)^n$、$dv=x^m dx$。$I_n=\left[\frac{x^{m+1}}{m+1}(\ln x)^n\right]_0^1-\frac{n}{m+1}\int_0^1 x^m(\ln x)^{n-1}dx$。边界项在 $x\to 0^+$ 时为 $0$。故 $I_n=-\frac{n}{m+1}I_{n-1}$。</div></details></div>
+  <h3>7.4 习题</h3>
+  <div class="ex"><b>习题 1：</b>计算 $\int_0^{\pi/2}\cos^5 x\sin 2x\,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\sin 2x=2\sin x\cos x$。令 $u=\cos x$，$du=-\sin x dx$。$=-2\int_1^0 u^6 du=\frac{2}{7}$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>计算 $\int_{-\pi}^{\pi}x^4\sin x\,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>奇函数在对称区间上，$=0$。</div></details></div>
+  <div class="ex"><b>习题 3：</b>计算 $\int_0^{\pi}x\sin x\,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>分部：$u=x$、$dv=\sin x dx$。$=[-x\cos x]_0^\pi+\int_0^\pi\cos x dx=\pi+[\sin x]_0^\pi=\pi$。</div></details></div>
+  <div class="ex"><b>习题 4：</b>计算 $\int_0^{\pi/2}\sin^7 x\,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$n=7$ 奇，$=\frac{6!!}{7!!}=\frac{6\times 4\times 2}{7\times 5\times 3\times 1}=\frac{16}{35}$。</div></details></div>
+
+</div>
+
+<!-- ================= 8 ================= -->
+<div class="ch" id="c8">
+  <h2>8. 广义积分 <small>无穷区间与无界函数</small></h2>
+  <div class="def"><b>定义（无穷区间广义积分）：</b>$\int_a^{+\infty} f=\lim_{b\to\infty}\int_a^b f$（极限存在则收敛）。$\int_{-\infty}^{+\infty} f$ 收敛 $\iff$ 两部分分别收敛（不能相减抵消）。</div>
+  <div class="def"><b>定义（无界函数广义积分）：</b>$f$ 在 $b$ 处无界：$\int_a^b f=\lim_{\varepsilon\to 0^+}\int_a^{b-\varepsilon} f$（瑕积分）。</div>
+  <div class="thm"><b>定理（p 积分的收敛性）：</b>$\int _1^{+\infty }$ dx/xᵖ 收敛 ⟺ p &gt; 1；$\int _0^1$ dx/xᵖ 收敛 ⟺ p &lt; 1。这两个结论是判别一切广义积分的标尺。<div class="proof"><b>证明要点：</b>$\int _1^\infty$ dx/xᵖ = [$x^{1-p}$/(1−p)]_1^∞，p &gt; 1 时 $x^{1-p}$ → 0。</div></div>
+  <div class="thm"><b>定理（比较判别法）：</b>0 ≤ f ≤ g：g 收敛 ⟹ f 收敛；f 发散 ⟹ g 发散。极限形式：lim f/g = c ∈ (0,∞) 则同敛散。<div class="proof"><b>例：</b>$\int _1^\infty$ dx/(x³+1) 收敛（与 1/x³ 比较）。</div></div>
+  <div class="thm"><b>定理（伽马函数）：</b>Γ(s) = $\int _0^\infty$ $x^{s-1}$ $e^{-x}$dx（s &gt; 0 收敛）。性质：Γ(s+1) = sΓ(s)、Γ(n+1) = n!、Γ(1/2) = √π。<div class="proof"><b>例：</b>$\int _0^\infty$ $e^{-x^{2}}$dx = √π/2（经典的高斯积分，用极坐标计算）。</div></div>
+  <div class="ex"><b>例：</b>判断 $\int _1^\infty$ ln x / x² dx 是否收敛并求值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>分部积分：∫ ln x d(−1/x) = [−ln x/x] + $\int \,dx$/x² = [−ln x/x − 1/x]_1^∞ = 0 − (0−1) = 1。收敛且值为 1。</div></details></div>
+  <div class="warn"><b>易错警示：</b>$\int _{-1}^1$ dx/x 发散（两半各发散到 ±∞，不能相消为 0）；含瑕点（无界点）的积分先找瑕点再分段处理。</div>
+
+  <h3>8.1 无穷限广义积分的定义与计算</h3>
+  <div class="def"><b>定义（无穷限广义积分）：</b>设 $f(x)$ 在 $[a,+\infty)$ 上连续，定义
+  $$\int_a^{+\infty}f(x)\,dx=\lim_{b\to+\infty}\int_a^b f(x)\,dx.$$
+  若极限存在，称广义积分收敛；否则称发散。类似地定义 $\int_{-\infty}^b f(x)dx=\lim_{a\to-\infty}\int_a^b f(x)dx$。对 $\int_{-\infty}^{+\infty}f(x)dx$，要求对任意 $a$，$\int_{-\infty}^a f$ 和 $\int_a^{+\infty}f$ 都收敛，其和才收敛。</div>
+  <div class="ex"><b>例 1：</b>计算 $\int_0^{+\infty}xe^{-x}dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>分部积分：$u=x$、$dv=e^{-x}dx$。$\int xe^{-x}dx=-xe^{-x}-e^{-x}+C$。取极限：$\lim_{b\to\infty}[-xe^{-x}-e^{-x}]_0^b=(0-0)-(-0-1)=1$。</div></details></div>
+  <div class="ex"><b>例 2：</b>计算 $\int_{-\infty}^{+\infty}\frac{dx}{1+x^2}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$=\arctan x\big|_{-\infty}^{+\infty}=\frac{\pi}{2}-(-\frac{\pi}{2})=\pi$。</div></details></div>
+  <h3>8.2 无界函数的广义积分（瑕积分）</h3>
+  <div class="def"><b>定义（瑕积分）：</b>设 $f(x)$ 在 $(a,b]$ 上连续且 $\lim_{x\to a^+}f(x)=\infty$（$a$ 为瑕点），定义
+  $$\int_a^b f(x)\,dx=\lim_{\varepsilon\to 0^+}\int_{a+\varepsilon}^b f(x)\,dx.$$
+  若极限存在则收敛，否则发散。瑕点也可在区间内部，此时需在瑕点处分段。</div>
+  <div class="ex"><b>例 3：</b>计算 $\int_0^1\frac{dx}{\sqrt{1-x^2}}$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$x=1$ 为瑕点。$=\lim_{\varepsilon\to 0^+}\arcsin(1-\varepsilon)=\frac{\pi}{2}$。收敛。</div></details></div>
+  <div class="ex"><b>例 4：</b>判断 $\int_0^1\frac{dx}{x^p}$ 的敛散性。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$x=0$ 为瑕点。$p=1$ 时：$\lim_{\varepsilon\to 0^+}\ln x\big|_\varepsilon^1=+\infty$，发散。$p\neq 1$ 时：$\lim_{\varepsilon\to 0^+}\frac{x^{1-p}}{1-p}\big|_\varepsilon^1$。当 $p&lt;1$ 时 $\varepsilon^{1-p}\to 0$，收敛于 $\frac{1}{1-p}$；当 $p>1$ 时 $\varepsilon^{1-p}\to\infty$，发散。<b>结论：</b>$\int_0^1\frac{dx}{x^p}$ 当 $p&lt;1$ 收敛，$p\geq 1$ 发散。</div></details></div>
+  <h3>8.3 广义积分的收敛判别法</h3>
+  <div class="thm"><b>定理（比较判别法——无穷限）：</b>设 $0\leq f(x)\leq g(x)$（$x\geq a$）：
+  <br>① 若 $\int_a^{+\infty}g(x)dx$ 收敛，则 $\int_a^{+\infty}f(x)dx$ 收敛；
+  <br>② 若 $\int_a^{+\infty}f(x)dx$ 发散，则 $\int_a^{+\infty}g(x)dx$ 发散。
+  <div class="proof"><b>极限形式：</b>若 $\lim_{x\to+\infty}\frac{f(x)}{g(x)}=c\in(0,+\infty)$，则两积分同敛散。</div></div>
+  <div class="thm"><b>定理（$p$-积分作为比较标尺）：</b>
+  <div class="tbl"><table><colgroup><col style="width:50%"><col style="width:25%"><col style="width:25%"></colgroup><tr><th>积分</th><th>收敛条件</th><th>发散条件</th></tr>
+  <tr><td>$\int_1^{+\infty}\frac{dx}{x^p}$</td><td>$p>1$</td><td>$p\leq 1$</td></tr>
+  <tr><td>$\int_0^1\frac{dx}{x^p}$</td><td>$p&lt;1$</td><td>$p\geq 1$</td></tr></table></div></div>
+  <div class="ex"><b>例 5：</b>判断 $\int_1^{+\infty}\frac{dx}{x\sqrt[3]{x^2+1}}$ 的敛散性。<details><summary>查看解答</summary><div class="sol"><b>解：</b>与 $\frac{1}{x^{5/3}}$ 比较：$\lim_{x\to\infty}\frac{x^{5/3}}{x\sqrt[3]{x^2+1}}=\lim\frac{x^{5/3}}{x\cdot x^{2/3}\sqrt{1+1/x^2}}=1$。$\int_1^\infty\frac{dx}{x^{5/3}}$ 中 $p=5/3>1$，收敛。故原积分收敛。</div></details></div>
+  <div class="ex"><b>例 6：</b>判断 $\int_0^{+\infty}e^{-x^2}dx$ 的敛散性。<details><summary>查看解答</summary><div class="sol"><b>解：</b>当 $x\geq 1$ 时 $e^{-x^2}\leq e^{-x}$。$\int_1^\infty e^{-x}dx=e^{-1}$ 收敛。由比较判别法 $\int_1^\infty e^{-x^2}dx$ 收敛，加上 $[0,1]$ 上常义积分有限，故收敛。</div></details></div>
+  <h3>8.4 伽马函数</h3>
+  <div class="thm"><b>定理（Gamma 函数）：</b>定义
+  $$\Gamma(s)=\int_0^{+\infty}x^{s-1}e^{-x}dx\quad(s>0).$$
+  性质：
+  <br>① <b>递推公式</b>：$\Gamma(s+1)=s\Gamma(s)$；
+  <br>② <b>整数情形</b>：$\Gamma(n+1)=n!$；
+  <br>③ <b>特殊值</b>：$\Gamma(1/2)=\sqrt{\pi}$。
+  <div class="proof"><b>证明递推：</b>分部积分 $\Gamma(s+1)=\int_0^\infty x^s e^{-x}dx=[-x^s e^{-x}]_0^\infty+s\int_0^\infty x^{s-1}e^{-x}dx=s\Gamma(s)$。边界项在 $0$ 和 $\infty$ 处均为 $0$。</div></div>
+  <div class="ex"><b>例 7：</b>计算 $\int_0^{+\infty}x^3e^{-x}dx$。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$=\Gamma(4)=3!=6$。</div></details></div>
+  <div class="warn"><b>易错警示：</b>$\int_{-1}^1\frac{dx}{x}$ 发散！因为 $\int_0^1\frac{dx}{x}$ 和 $\int_{-1}^0\frac{dx}{x}$ 都发散到 $-\infty$，不能"抵消"为 $0$。遇到含瑕点的积分必须先找瑕点再分段处理。</div>
+  <h3>8.5 习题</h3>
+  <div class="ex"><b>习题 1：</b>计算 $\int_1^{+\infty}\frac{dx}{x^2+2x+2}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>配方 $=(x+1)^2+1$。$=[\arctan(x+1)]_1^\infty=\frac{\pi}{2}-\arctan 2$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>判断 $\int_0^{+\infty}\frac{\arctan x}{x}dx$ 的敛散性。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>当 $x\to\infty$ 时 $\frac{\arctan x}{x}\sim\frac{\pi}{2x}$。$\int_1^\infty\frac{dx}{x}$ 发散（$p=1$）。由比较判别法，原积分发散。</div></details></div>
+  <div class="ex"><b>习题 3：</b>计算 $\int_0^1\ln x\,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$x=0$ 为瑕点。$\int_\varepsilon^1\ln x\,dx=[x\ln x-x]_\varepsilon^1=(-1)-(\varepsilon\ln\varepsilon-\varepsilon)\to-1$。收敛于 $-1$。</div></details></div>
+  <div class="ex"><b>习题 4：</b>计算 $\Gamma(5/2)$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\Gamma(5/2)=\frac{3}{2}\Gamma(3/2)=\frac{3}{2}\cdot\frac{1}{2}\Gamma(1/2)=\frac{3\sqrt{\pi}}{4}$。</div></details></div>
+
+</div>
+
+<!-- ================= 9 ================= -->
+
+<!-- ================= 第二轮深度小节：9d. 深度：广义积分收敛判别 ================= -->
+<div class="ch" id="c9d">
+  <h2>9d. 深度：广义积分收敛判别 <small>积分到无穷何时有意义</small></h2>
+  <div class="def"><b>定义（广义积分）</b> $\int_a^{+\infty}f(x)dx=\lim_{A\to+\infty}\int_a^Af$。若极限存在有限称收敛。无界函数的瑕积分 $\int_a^bf=\lim_{\epsilon\to0^+}\int_a^{b-\epsilon}f$（$b$ 为奇点）类似定义。</div>
+  <div class="thm"><b>定理（比较判别法）</b> 若 $|f(x)|\le g(x)$ 且 $\int_a^\infty g$ 收敛，则 $\int_a^\infty f$ 绝对收敛。若 $f(x)\ge g(x)\ge0$ 且 $\int g$ 发散，则 $\int f$ 发散。<div class="proof"><b>思路：</b>绝对收敛 $\Rightarrow$ 收敛由 Cauchy 准则：$|\int_A^B f|\le\int_A^B|f|\le\int_A^B g\to0$。</div></div>
+  <div class="thm"><b>定理（积分判别法）</b> 设 $f\ge0$ 在 $[1,\infty)$ 上非增连续。$\int_1^\infty f$ 收敛 $\Leftrightarrow$ $\sum_{n=1}^\infty f(n)$ 收敛。<div class="proof"><b>思路：</b>$f$ 非增给 $\int_n^{n+1}f\le f(n)\le\int_{n-1}^n f$，部分和与部分积分相互夹逼。这给出 $p$-级数 $\sum 1/n^p$ 与 $\int_1^\infty 1/x^p$ 同敛散（$p>1$ 收敛）。</div></div>
+  <div class="ex"><b>例：</b>判断 $\int_0^\infty\frac{\sin x}{x}dx$ 的收敛性。
+  <div class="sol"><b>解：</b>条件收敛（非绝对）。分部积分 $\int_1^A\frac{\sin x}{x}dx=[-\frac{\cos x}{x}]_1^A-\int_1^A\frac{\cos x}{x^2}dx$，第一项 $\to0$，第二项绝对收敛（$|\cos x/x^2|\le1/x^2$）。但 $\int_0^\infty|\sin x/x|dx$ 发散（$|\sin x|\ge\sin^2 x=(1-\cos 2x)/2$，$\int_1^\infty 1/(2x)dx$ 发散）。值 $=\pi/2$（可用留数或 Laplace 变换计算）。</div></div>
+</div>
+
+<!-- ================= 第二轮深度小节：9e. 深度：积分换元与分部进阶 ================= -->
+<div class="ch" id="c9e">
+  <h2>9e. 深度：积分换元与分部进阶 <small>把积分变成另一个更容易的积分</small></h2>
+  <div class="def"><b>定义（换元法）</b> $\int f(x)dx=\int f(\varphi(t))\varphi'(t)dt$（$x=\varphi(t)$）。定积分 $\int_a^b f(x)dx=\int_\alpha^\beta f(\varphi(t))\varphi'(t)dt$（$\varphi(\alpha)=a,\varphi(\beta)=b$）。</div>
+  <div class="thm"><b>定理（Wallis 公式）</b>
+  $$\int_0^{\pi/2}\sin^n x\,dx=\frac{(n-1)!!}{n!!}\cdot\begin{cases}\pi/2&n\text{ 偶}\\1&n\text{ 奇}\end{cases}$$
+  且 $\frac{\pi}{2}=\prod_{n=1}^\infty\frac{4n^2}{4n^2-1}$（Wallis 乘积）。<div class="proof"><b>思路：</b>递推 $I_n=\frac{n-1}{n}I_{n-2}$（分部积分），$I_0=\pi/2$, $I_1=1$。取偶 $n=2m$ 与奇 $n=2m+1$ 之比取极限 $m\to\infty$ 得 Wallis 乘积。</div></div>
+  <div class="thm"><b>定理（Euler Beta–Gamma 恒等式）</b> $B(a,b)=\int_0^1t^{a-1}(1-t)^{b-1}dt=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$。<div class="proof"><b>思路：</b>由 $\Gamma(a)=\int_0^\infty u^{a-1}e^{-u}du$，做换元 $u=x+y$, $t=x/(x+y)$ 在二重积分 $\Gamma(a)\Gamma(b)$ 上，Jacobian 把它化成 Beta 积分。</div></div>
+  <div class="ex"><b>例：</b>计算 $\int_0^{\pi/2}\frac{dx}{1+\cos^2 x}$。
+  <div class="sol"><b>解：</b>令 $t=\tan x$，$dx=dt/(1+t^2)$, $\cos^2 x=1/(1+t^2)$。$\int_0^\infty\frac{dt}{t^2+2}=\frac1{\sqrt2}\arctan\frac{t}{\sqrt2}\Big|_0^\infty=\frac{\pi}{2\sqrt2}$。</div></div>
+</div>
+
+<div class="ch" id="c9">
+  <h2>9. 定积分的应用 <small>微元法：分割→近似→求和</small></h2>
+  <div class="thm"><b>定理（微元法流程）：</b>① 确定变量 x 与区间 [a,b]；② 取微元 [x, x+dx]，写出近似量 dA = f(x)dx；③ 求和 A = $\int _a^b$ f(x)dx。一切应用（面积、体积、弧长、功、压力）都是微元法。<div class="proof"><b>例：</b>平面面积 A = $\int |f(x)-g(x)|\,dx$。</div></div>
+  <div class="thm"><b>定理（旋转体体积）：</b>曲线 y = f(x) 绕 x 轴旋转：V = π$\int _a^b$ f(x)²dx（圆片法）；绕 y 轴：V = 2π$\int _a^b$ x|f(x)|dx（壳层法）。<div class="proof"><b>例：</b>y = √x 绕 x 轴，x ∈ [0,1]：V = π$\int _0^1$ x dx = π/2。</div></div>
+  <div class="thm"><b>定理（曲线弧长）：</b>y = f(x) 在 [a,b]：s = $\int _a^b$ √(1+f′²)dx。参数形式：s = $\int _α^β \sqrt{φ′^{2}+ψ′^{2}}\,dt$。<div class="proof"><b>例：</b>摆线一拱长 = 8a（参数式积分）。</div></div>
+  <div class="thm"><b>定理（旋转曲面面积）：</b>S = 2π$\int _a^b$ |f(x)|√(1+f′²)dx。<div class="proof"><b>例：</b>球面由半圆 y = √(r²−x²) 旋转：S = 2π$\int _{-r}^r$ r dx = 4πr²。</div></div>
+  <div class="thm"><b>定理（物理应用）：</b>变力做功 W = $\int F(x)\,dx$；液压力 F = $\int ρg h(x)·w(x)\,dx$；平均值 ȳ = $\int _a^b$ f/(b−a)；质心与形心公式同理用微元法。<div class="proof"><b>例：</b>弹簧从自然长度拉长 x₀：W = $\int _0^{x_{0}}$ kx dx = kx₀²/2。</div></div>
+  <div class="ex"><b>例：</b>求 y = x² 与 y = √x 围成的面积。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>交点 x = 0、1。A = $\int _0^1$ (√x − x²)dx = [2x^(3/2)/3 − x³/3]_0^1 = 1/3。</div></details></div>
+  <div class="ex"><b>例：</b>求 y = sin x（x ∈ [0, π]）绕 x 轴旋转的体积。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>V = π$\int _0^π$ sin²x dx = π$\int (1-\cos 2x)/2 \,dx$ = π²/2。</div></details></div>
+
+  <h3>9.1 平面图形的面积</h3>
+  <div class="thm"><b>定理（直角坐标系下的面积）：</b>
+  <br>① 由 $y=f(x)$、$x=a$、$x=b$ 与 $x$ 轴围成的面积：$A=\int_a^b|f(x)|dx$；
+  <br>② 由 $y=f(x)$、$y=g(x)$（$f(x)\geq g(x)$）、$x=a$、$x=b$ 围成：$A=\int_a^b[f(x)-g(x)]dx$；
+  <br>③ 参数方程 $x=\varphi(t)$、$y=\psi(t)$（$t\in[\alpha,\beta]$）与 $x$ 轴之间的面积：$A=\int_\alpha^\beta\psi(t)\varphi'(t)dt$（注意方向）。</div>
+  <div class="ex"><b>例 1：</b>求抛物线 $y=x^2$ 与 $y=\sqrt{x}$ 所围图形的面积。<details><summary>查看解答</summary><div class="sol"><b>解：</b>交点：$x^2=\sqrt{x}\Rightarrow x=0,1$。在 $[0,1]$ 上 $\sqrt{x}\geq x^2$。$A=\int_0^1(\sqrt{x}-x^2)dx=\left[\frac{2}{3}x^{3/2}-\frac{x^3}{3}\right]_0^1=\frac{2}{3}-\frac{1}{3}=\frac{1}{3}$。</div></details></div>
+  <div class="ex"><b>例 2：</b>求心形线 $r=a(1+\cos\theta)$ 所围图形的面积。<details><summary>查看解答</summary><div class="sol"><b>解：</b>极坐标面积公式 $A=\frac{1}{2}\int_\alpha^\beta r^2 d\theta$。心形线关于极轴对称，$\theta\in[0,2\pi]$。$A=\frac{1}{2}\int_0^{2\pi}a^2(1+\cos\theta)^2d\theta=\frac{a^2}{2}\int_0^{2\pi}(1+2\cos\theta+\cos^2\theta)d\theta=\frac{a^2}{2}(2\pi+0+\pi)=\frac{3\pi a^2}{2}$。</div></details></div>
+  <h3>9.2 体积</h3>
+  <div class="thm"><b>定理（旋转体体积）：</b>
+  <br>① <b>绕 $x$ 轴旋转（圆盘法）</b>：$V=\pi\int_a^b[f(x)]^2dx$；
+  <br>② <b>绕 $y$ 轴旋转（壳层法/柱壳法）</b>：$V=2\pi\int_a^b x|f(x)|dx$；
+  <br>③ <b>已知截面面积 $A(x)$</b>：$V=\int_a^b A(x)dx$（截面法）。</div>
+  <div class="ex"><b>例 3：</b>求椭圆 $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ 绕 $x$ 轴旋转所得椭球的体积。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$y^2=b^2(1-x^2/a^2)$。$V=\pi\int_{-a}^a b^2(1-x^2/a^2)dx=\pi b^2\left[x-\frac{x^3}{3a^2}\right]_{-a}^a=\pi b^2\left(2a-\frac{2a}{3}\right)=\frac{4\pi ab^2}{3}$。当 $a=b=R$ 时得球体积 $\frac{4\pi R^3}{3}$。</div></details></div>
+  <div class="ex"><b>例 4：</b>求 $y=\sin x$（$x\in[0,\pi]$）与 $x$ 轴围成的图形绕 $y$ 轴旋转所得体积。<details><summary>查看解答</summary><div class="sol"><b>解：</b>柱壳法：$V=2\pi\int_0^\pi x\sin x\,dx$。分部（已算过 $\int_0^\pi x\sin x dx=\pi$）。$V=2\pi\cdot\pi=2\pi^2$。</div></details></div>
+  <h3>9.3 平面曲线的弧长</h3>
+  <div class="thm"><b>定理（弧长公式）：</b>
+  <br>① <b>直角坐标</b> $y=f(x)$（$a\leq x\leq b$）：$s=\int_a^b\sqrt{1+[f'(x)]^2}dx$；
+  <br>② <b>参数方程</b> $x=\varphi(t)$、$y=\psi(t)$（$\alpha\leq t\leq\beta$）：$s=\int_\alpha^\beta\sqrt{[\varphi'(t)]^2+[\psi'(t)]^2}dt$；
+  <br>③ <b>极坐标</b> $r=r(\theta)$（$\alpha\leq\theta\leq\beta$）：$s=\int_\alpha^\beta\sqrt{r^2+[r'(\theta)]^2}d\theta$。</div>
+  <div class="ex"><b>例 5：</b>求摆线 $x=a(t-\sin t)$、$y=a(1-\cos t)$ 一拱（$0\leq t\leq 2\pi$）的弧长。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$x'=a(1-\cos t)$，$y'=a\sin t$。$\sqrt{x'^2+y'^2}=a\sqrt{(1-\cos t)^2+\sin^2 t}=a\sqrt{2-2\cos t}=2a\sin\frac{t}{2}$（$t\in[0,2\pi]$ 时 $\sin(t/2)\geq 0$）。$s=\int_0^{2\pi}2a\sin\frac{t}{2}dt=2a\cdot[-2\cos\frac{t}{2}]_0^{2\pi}=2a\cdot(2+2)=8a$。</div></details></div>
+  <div class="ex"><b>例 6：</b>求悬链线 $y=\cosh x$ 在 $x\in[-1,1]$ 上的弧长。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$y'=\sinh x$。$\sqrt{1+y'^2}=\sqrt{1+\sinh^2 x}=\cosh x$。$s=\int_{-1}^1\cosh x\,dx=2\sinh 1=2\frac{e-e^{-1}}{e+e^{-1}}\cdot\frac{e+e^{-1}}{2}$。$=\sinh 1\cdot 2=e-e^{-1}$。</div></details></div>
+  <h3>9.4 旋转曲面的面积</h3>
+  <div class="thm"><b>定理（旋转曲面面积）：</b>曲线 $y=f(x)$（$a\leq x\leq b$）绕 $x$ 轴旋转所得旋转曲面面积：
+  $$S=2\pi\int_a^b|f(x)|\sqrt{1+[f'(x)]^2}dx.$$</div>
+  <div class="ex"><b>例 7：</b>求半径为 $R$ 的球面面积。<details><summary>查看解答</summary><div class="sol"><b>解：</b>球面由上半圆 $y=\sqrt{R^2-x^2}$（$x\in[-R,R]$）绕 $x$ 轴旋转生成。$y'=\frac{-x}{\sqrt{R^2-x^2}}$。$\sqrt{1+y'^2}=\sqrt{1+\frac{x^2}{R^2-x^2}}=\frac{R}{\sqrt{R^2-x^2}}$。$S=2\pi\int_{-R}^R\sqrt{R^2-x^2}\cdot\frac{R}{\sqrt{R^2-x^2}}dx=2\pi R\int_{-R}^R dx=4\pi R^2$。</div></details></div>
+  <h3>9.5 物理应用</h3>
+  <div class="thm"><b>定理（变力沿直线做功）：</b>物体在变力 $F(x)$ 作用下沿 $x$ 轴从 $a$ 移动到 $b$，做功
+  $$W=\int_a^b F(x)\,dx.$$</div>
+  <div class="thm"><b>定理（液体静压力）：</b>设液体密度为 $\rho$，深度 $h(x)$ 处的压强为 $p=\rho g h(x)$。薄板竖直浸入液体，宽度为 $w(x)$，则一侧所受压力
+  $$F=\int_a^b\rho g h(x)w(x)\,dx.$$</div>
+  <div class="ex"><b>例 8：</b>一圆柱形桶盛满水，桶高 $H=4$ m、底半径 $R=1$ m，求将水全部抽出桶口所需做的功。<details><summary>查看解答</summary><div class="sol"><b>解：</b>取深度 $x$（从桶口向下为正），薄层厚度 $dx$ 的体积为 $\pi R^2 dx=\pi dx$，质量为 $\rho\pi dx$，需提升距离 $x$。$W=\int_0^4\rho g x\cdot\pi dx=\rho g\pi\cdot\frac{x^2}{2}\big|_0^4=1000\times 9.8\times\pi\times 8\approx 2.46\times 10^5$ J。</div></details></div>
+  <div class="ex"><b>例 9：</b>求函数 $f(x)=x^2$ 在 $[0,2]$ 上的平均值。<details><summary>查看解答</summary><div class="sol"><b>解：</b>$\bar f=\frac{1}{2}\int_0^2 x^2 dx=\frac{1}{2}\cdot\frac{8}{3}=\frac{4}{3}$。</div></details></div>
+  <h3>9.6 习题</h3>
+  <div class="ex"><b>习题 1：</b>求由 $y=x^2$ 与 $y=x+2$ 围成的面积。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>交点 $x=-1,2$。$A=\int_{-1}^2(x+2-x^2)dx=\left[\frac{x^2}{2}+2x-\frac{x^3}{3}\right]_{-1}^2=\frac{9}{2}$。</div></details></div>
+  <div class="ex"><b>习题 2：</b>求 $y=x^2$（$x\in[0,2]$）绕 $x$ 轴旋转的体积。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$V=\pi\int_0^2 x^4 dx=\pi\cdot\frac{32}{5}=\frac{32\pi}{5}$。</div></details></div>
+  <div class="ex"><b>习题 3：</b>求星形线 $x^{2/3}+y^{2/3}=a^{2/3}$ 的全长。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>参数式 $x=a\cos^3 t$、$y=a\sin^3 t$。$s=4\int_0^{\pi/2}\sqrt{9a^2\cos^4 t\sin^2 t+9a^2\sin^4 t\cos^2 t}dt=4\cdot 3a\int_0^{\pi/2}\sin t\cos t\,dt=12a\cdot\frac{1}{2}=6a$。</div></details></div>
+  <div class="ex"><b>习题 4：</b>弹簧自然长度为 $l_0$，劲度系数为 $k$，将其从长度 $l_0$ 拉长到 $l_0+\Delta l$ 需做功多少？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$F(x)=kx$（胡克定律）。$W=\int_0^{\Delta l}kx\,dx=\frac{k(\Delta l)^2}{2}$。</div></details></div>
+
+</div>
+
+<!-- ================= 10 ================= -->
+
+  <div class="ex"><b>练习 8：</b>证明 Riemann 函数 $R(x)=\begin{cases}1/q,&x=p/q\\0,&x\notin\mathbb{Q}\end{cases}$ 在 $[0,1]$ 上可积，且积分为 0。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>对任意 $\varepsilon>0$，使 $1/q\ge\varepsilon$ 的有理点只有有限个（记为 $N$）。取分割使这些点所在区间总长 $&lt;\varepsilon/(2N)$，其余区间振幅 $&lt;\varepsilon$。则 $S(T)-s(T)&lt;\varepsilon\cdot\frac{1}{2}+\frac{\varepsilon}{2N}\cdot N&lt;\varepsilon$，可积。下和恒为 0，故积分 $=0$。</div></details></div>
+
+  <div class="ex"><b>练习 9：</b>求 $\dfrac{d}{dx}\int_0^x \sin(x-t)^2 dt$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $u=x-t$，则 $\int_0^x\sin(x-t)^2dt=\int_0^x\sin u^2 du$，导数 $=\sin x^2$。</div></details></div>
+
+  <div class="ex"><b>练习 10：</b>判断 $\int_0^1\dfrac{\ln x}{1-x}dx$ 的敛散性并求值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$x\to0^+$：$\ln x/(1-x)\sim\ln x$，$\int_0^1\ln x dx$ 收敛（$=-1$）。$x\to1^-$：$\ln x/(1-x)\to-1$，可去奇点。故收敛。展开 $1/(1-x)=\sum x^n$，逐项积分得 $-\sum_{n=1}^\infty1/n^2=-\pi^2/6$。</div></details></div>
+
+  <div class="ex"><b>练习 11：</b>用 Gamma 函数表示 $\int_0^{+\infty}x^3 e^{-x^2}dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $t=x^2$，$x=t^{1/2}$，$dx=\frac{1}{2}t^{-1/2}dt$。原式 $=\frac{1}{2}\int_0^{+\infty}t^{3/2}e^{-t}dt=\frac{1}{2}\Gamma(5/2)=\frac{1}{2}\cdot\frac{3}{2}\cdot\frac{1}{2}\Gamma(1/2)=\frac{3\sqrt{\pi}}{8}$。</div></details></div>
+
+
+<!-- ================= 深度小节：9a. 深度：Riemann 可积的充要条件 ================= -->
+  <div class="ex"><b>练习 12：</b>判断 $\int_1^\infty\frac{\ln x}{x^2}dx$ 的收敛性。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>收敛。$\ln x/x^2\le\sqrt{x}/x^2=1/x^{3/2}$（$\ln x\le\sqrt{x}$ 当 $x$ 大），$\int_1^\infty 1/x^{3/2}$ 收敛。值 $=1$（分部积分 $\int\ln x/x^2=[-\ln x/x]+\int1/x^2=0+1$）。</div></details></div>
+  <div class="ex"><b>练习 13：</b>用 Wallis 公式估计 $\pi$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\pi\approx2\prod_{n=1}^N\frac{4n^2}{4n^2-1}$（$N$ 大）。$N=10$：$\pi\approx2\cdot\frac{4\cdot16\cdot36\cdots400}{3\cdot15\cdot35\cdots399}\approx3.002$（收敛慢但简单）。Stirling 给更快收敛：$\pi\sim\frac{2^{4n}}{n\binom{2n}{n}^2}$。</div></details></div>
+
+<div class="ch" id="c9a">
+  <h2>9a. 深度：Riemann 可积的充要条件 <small>从「面积」到「Darboux 和」的严格化</small></h2>
+  <div class="def"><b>定义（Darboux 和）</b> 对 $[a,b]$ 的分割 $T:\{a=x_0&lt;\cdots&lt;x_n=b\}$，记 $M_i=\sup_{[x_{i-1},x_i]}f$，$m_i=\inf_{[x_{i-1},x_i]}f$，$\Delta x_i=x_i-x_{i-1}$。<b>上和</b> $S(T)=\sum M_i\Delta x_i$，<b>下和</b> $s(T)=\sum m_i\Delta x_i$。</div>
+  <div class="thm"><b>定理（可积第一充要条件）</b> $f$ 在 $[a,b]$ 上 Riemann 可积 $\iff$ $\forall\varepsilon>0$，$\exists$ 分割 $T$ 使 $S(T)-s(T)&lt;\varepsilon$。<div class="proof"><b>证明思路：</b>必要性由 $\int_a^b f = \inf_T S(T) = \sup_T s(T)$ 推出。充分性：若 $S(T)-s(T)&lt;\varepsilon$，则 $0\le\inf S - \sup s\le S(T)-s(T)&lt;\varepsilon$，由 $\varepsilon$ 任意性得 $\inf S=\sup s$，即可积。</div></div>
+  <div class="thm"><b>定理（可积第二充要条件）</b> $f$ 可积 $\iff$ $\forall\varepsilon,\sigma>0$，$\exists$ 分割 $T$，使振幅 $\omega_i\ge\sigma$ 的小区间长度之和 $&lt;\varepsilon$。<div class="proof"><b>说明：</b>这刻画了「不连续点不能太多」——可积函数的不连续点集是零测集（Lebesgue 定理）。</div></div>
+  <div class="ex"><b>例：</b>证明 Dirichlet 函数 $D(x)=\begin{cases}1,&x\in\mathbb{Q}\\0,&x\notin\mathbb{Q}\end{cases}$ 在 $[0,1]$ 上不可积。
+  <div class="sol"><b>解：</b>任意分割的每个小区间内既有有理点又有无理点，故 $M_i=1$，$m_i=0$，$S(T)=1$，$s(T)=0$，$S(T)-s(T)=1\not&lt;\varepsilon$。不满足可积第一充要条件。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9b. 深度：微积分基本定理的严格证明 ================= -->
+<div class="ch" id="c9b">
+  <h2>9b. 深度：微积分基本定理的严格证明 <small>微分与积分为何互为逆运算</small></h2>
+  <div class="thm"><b>微积分第一基本定理</b> 若 $f$ 在 $[a,b]$ 可积，$F(x)=\int_a^x f(t)\,dt$，则 $F$ 在 $[a,b]$ 连续；若 $f$ 在 $x_0$ 连续，则 $F'(x_0)=f(x_0)$。<div class="proof"><b>证明：</b>$|F(x+h)-F(x)|=\left|\int_x^{x+h}f(t)dt\right|\le M|h|$（$M$ 为 $|f|$ 的界），故连续。若 $f$ 在 $x_0$ 连续，$\left|\frac{F(x_0+h)-F(x_0)}{h}-f(x_0)\right|=\left|\frac{1}{h}\int_{x_0}^{x_0+h}[f(t)-f(x_0)]dt\right|\le\sup_{t\in[x_0,x_0+h]}|f(t)-f(x_0)|\to0$（$h\to0$）。</div></div>
+  <div class="thm"><b>微积分第二基本定理（Newton–Leibniz 公式）</b> 若 $f$ 在 $[a,b]$ 连续，$F$ 是 $f$ 的任一原函数，则 $\int_a^b f(x)dx=F(b)-F(a)$。<div class="proof"><b>证明：</b>令 $G(x)=\int_a^x f(t)dt$。由第一定理 $G'(x)=f(x)$，故 $(F-G)'=0$，$F-G=C$（常数）。于是 $F(b)-F(a)=G(b)-G(a)=\int_a^b f-0=\int_a^b f$。</div></div>
+  <div class="ex"><b>例：</b>求 $\dfrac{d}{dx}\int_{x^2}^{\sin x} e^{-t^2}dt$。
+  <div class="sol"><b>解：</b>$\int_{x^2}^{\sin x}=\int_0^{\sin x}-\int_0^{x^2}$。由变限积分求导法则：$\dfrac{d}{dx}\int_0^{u(x)}f(t)dt=f(u(x))u'(x)$。故原式 $=e^{-\sin^2 x}\cos x - e^{-x^4}\cdot 2x$。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9c. 深度：反常积分审敛与 Gamma 函数 ================= -->
+<div class="ch" id="c9c">
+  <h2>9c. 深度：反常积分审敛与 Gamma 函数 <small>无穷积分与无界函数积分的严格处理</small></h2>
+  <div class="thm"><b>比较审敛法（无穷限）</b> 设 $0\le f(x)\le g(x)$ 在 $[a,+\infty)$ 上。若 $\int_a^{+\infty}g$ 收敛则 $\int_a^{+\infty}f$ 收敛；若 $\int_a^{+\infty}f$ 发散则 $\int_a^{+\infty}g$ 发散。</div>
+  <div class="thm"><b>Cauchy 判别法</b> 设 $f\ge0$ 在 $[a,+\infty)$。若 $\exists p>1,\ M>0$ 使 $f(x)\le M/x^p$，则 $\int_a^{+\infty}f$ 收敛；若 $f(x)\ge M/x$（$p=1$），则发散。<div class="proof"><b>关键积分：</b>$\int_1^{+\infty}\frac{dx}{x^p}$ 当 $p>1$ 收敛（$=\frac{1}{p-1}$），$p\le1$ 发散。这是比较审敛的「标尺」。</div></div>
+  <div class="def"><b>定义（Gamma 函数）</b> $\Gamma(s)=\int_0^{+\infty}x^{s-1}e^{-x}dx$（$s>0$）。</div>
+  <div class="thm"><b>Gamma 函数性质</b> (i) $\Gamma(s+1)=s\Gamma(s)$（分部积分）；(ii) $\Gamma(n+1)=n!$（$n\in\mathbb{N}$）；(iii) $\Gamma(1/2)=\sqrt{\pi}$。<div class="proof"><b>$\Gamma(1/2)=\sqrt{\pi}$ 的证明：</b>$\Gamma(1/2)=\int_0^{+\infty}x^{-1/2}e^{-x}dx$。令 $x=t^2$，得 $2\int_0^{+\infty}e^{-t^2}dt=\sqrt{\pi}$（Gauss 积分）。</div></div>
+  <div class="ex"><b>例：</b>判断 $\int_1^{+\infty}\dfrac{\arctan x}{x}dx$ 的敛散性。
+  <div class="sol"><b>解：</b>$x\to+\infty$ 时 $\arctan x\to\pi/2$，故 $\frac{\arctan x}{x}\sim\frac{\pi}{2x}$。由 Cauchy 判别法（$p=1$），$\int_1^{+\infty}\frac{dx}{x}$ 发散，故原积分发散。</div></div>
+</div>
+
+<div class="ch" id="c10">
+  <h2>10. 练习与自测、术语表</h2>
+  <div class="ex"><b>练习 1：</b>$\int x \ln x \,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>分部：= x²ln x/2 − $\int x/2 \,dx$ = x²ln x/2 − x²/4 + C。</div></details></div>
+  <div class="ex"><b>练习 2：</b>$\int \sin^{3}x \,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>= $\int (1-\cos^{2}x)\sin x \,dx$ = −cos x + cos³x/3 + C。</div></details></div>
+  <div class="ex"><b>练习 3：</b>$\int _0^1$ dx/(1+x²)。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>[arctan x]_0^1 = π/4。</div></details></div>
+  <div class="ex"><b>练习 4：</b>判断 $\int _1^\infty$ dx/√x 的敛散性。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>p = 1/2 ≤ 1，发散。</div></details></div>
+  <div class="ex"><b>练习 5：</b>求 y = eˣ 在 [0,1] 段绕 x 轴的体积。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>V = π$\int _0^1$ $e^{2x}$dx = π(e²−1)/2。</div></details></div>
+  <div class="ex"><b>练习 6：</b>$\int _0^{π/2}$ cos x/(1+sin x) dx。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 u = 1+sin x：= $\int _1^2$ du/u = ln 2。</div></details></div>
+  
+  <div class="ex"><b>练习 7：</b>计算 $\int\frac{dx}{x^2+4x+8}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>配方 $=(x+2)^2+4$。$=\frac{1}{2}\arctan\frac{x+2}{2}+C$。</div></details></div>
+  <div class="ex"><b>练习 8：</b>计算 $\int_0^4 e^{\sqrt{x}}dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $t=\sqrt{x}$，$x=t^2$，$dx=2t\,dt$。$=\int_0^2 2te^t dt=2[e^t(t-1)]_0^2=2(e^2+1)$。</div></details></div>
+  <div class="ex"><b>练习 9：</b>判断 $\int_0^1\frac{\ln x}{\sqrt{x}}dx$ 的敛散性并求值。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$x=0$ 为瑕点。分部：$u=\ln x$、$dv=x^{-1/2}dx$。$=[2\sqrt{x}\ln x]_0^1-\int_0^1\frac{2}{\sqrt{x}}dx=0-4\sqrt{x}\big|_0^1=-4$。收敛，值为 $-4$。</div></details></div>
+  <div class="ex"><b>练习 10：</b>求 $y=\ln x$ 在 $[1,e]$ 上的弧长。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$y'=1/x$。$s=\int_1^e\sqrt{1+1/x^2}dx=\int_1^e\frac{\sqrt{x^2+1}}{x}dx$。令 $x=\tan t$ 或直接查公式得 $=\left[\sqrt{x^2+1}+\ln\frac{\sqrt{x^2+1}-1}{x}\right]_1^e=\sqrt{e^2+1}-\sqrt{2}+\ln\frac{\sqrt{e^2+1}-1}{e(\sqrt{2}-1)}$。</div></details></div>
+  <div class="ex"><b>练习 11：</b>计算 $\int_{-1}^1\frac{x^3\sin^2 x}{x^4+2x^2+1}dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>被积函数为奇函数（$x^3$ 奇、$\sin^2 x$ 偶、分母偶），对称区间上积分 $=0$。</div></details></div>
+  <div class="ex"><b>练习 12：</b>求 $\lim_{n\to\infty}\left(\frac{1}{n+1}+\frac{1}{n+2}+\cdots+\frac{1}{n+n}\right)$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>写成黎曼和：$\frac{1}{n}\sum_{i=1}^n\frac{1}{1+i/n}\to\int_0^1\frac{dx}{1+x}=\ln 2$。</div></details></div>
+
+<div class="gloss">
+    <dt>原函数 / 不定积分</dt><dd>F′ = f 的 F；全体原函数。</dd>
+    <dt>黎曼和</dt><dd>分割-求和-取极限的中间产物。</dd>
+    <dt>微积分基本定理</dt><dd>积分上限函数求导 = 被积函数；N-L 公式。</dd>
+    <dt>广义积分</dt><dd>无穷区间 / 无界函数的积分。</dd>
+    <dt>瑕点</dt><dd>被积函数趋于无穷的点。</dd>
+    <dt>微元法</dt><dd>应用的通用框架（面积/体积/功）。</dd>
+    <dt>Darboux 和</dt><dd>上和 $S(T)$ 与下和 $s(T)$，可积当且仅当 $\inf S=\sup s$。</dd>
+    <dt>Newton–Leibniz 公式</dt><dd>$\int_a^b f=F(b)-F(a)$，连接微分与积分的桥梁。</dd>
+    <dt>Gamma 函数</dt><dd>$\Gamma(s)=\int_0^\infty x^{s-1}e^{-x}dx$，阶乘的连续推广。</dd>
+  </div>
+  <div class="online">
+    <b>在线资源（需联网打开）</b>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus" target="_blank" rel="noopener noreferrer">Wikipedia: Fundamental theorem of calculus</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Integral" target="_blank" rel="noopener noreferrer">Wikipedia: Integral</a></li>
+      <li><a href="https://www.wolframalpha.com" target="_blank" rel="noopener noreferrer">Wolfram Alpha</a> —— 输入 integrate x*ln(x) 验证不定积分</li>
+      <li><a href="https://www.desmos.com/calculator" target="_blank" rel="noopener noreferrer">Desmos</a> —— 可视化定积分的面积含义</li>
+    </ul>
+    <p class="hint">下一讲：<a href="04-多元微积分.html">IV 多元微积分 →</a> 偏导、重积分与曲线曲面积分。</p>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="02-一元微分学.html">← 上一讲</a>
+  <a href="04-多元微积分.html">下一讲：多元微积分 →</a>
+</footer>
+</div>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

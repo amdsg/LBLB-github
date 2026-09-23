@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="referrer" content="strict-origin-when-cross-origin">
+<title>数学史时间线 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%86%96%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B; --violet:#6B4E9E;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--gold); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--gold); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:700px;}
+.era{margin-top:44px;}
+.era h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--gold); padding-left:14px;}
+.era h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.tl{--date:120px; --axis:40px; position:relative; margin-top:22px; display:grid; grid-template-columns:var(--date) var(--axis) 1fr; row-gap:18px;}
+.tl::before{content:""; position:absolute; left:calc(var(--date) + var(--axis)/2 - 1px); top:4px; bottom:4px; width:2px; background:var(--line);}
+.tn{text-align:right; padding-top:4px; font-family:Georgia,serif; font-size:15px; color:var(--ink2);}
+.dot{justify-self:center; align-self:start; margin-top:10px; width:13px; height:13px; border-radius:50%; background:var(--paper); border:3px solid var(--gold); position:relative; z-index:1;}
+.item{background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:12px 16px;}
+.item h3{font-family:Georgia,"Noto Serif SC",serif; font-size:16.5px;}
+.item p{font-size:13.5px; margin-top:4px; color:var(--ink2);}
+.item p b{color:var(--ink);}
+.item .c{display:inline-block; font-size:11px; padding:1px 8px; border-radius:999px; margin-right:6px;}
+.c-gold{background:#F7E9D6; color:#A8751E;} .c-red{background:#F3DDE6; color:#B0396E;}
+.c-blue{background:#E4EFF7; color:#1F4E9C;} .c-green{background:#E4EFE7; color:#2E7D5B;} .c-violet{background:#EFE7F7; color:#6B4E9E;}
+.closing{margin-top:52px; background:var(--paper2); border:1px solid var(--line); border-radius:14px; padding:20px 24px; font-size:14.5px; color:var(--ink2);}
+.closing b{color:var(--ink);}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px;}
+footer a{color:var(--gold); text-decoration:none;}
+#mj-fallback{display:none; position:fixed; bottom:16px; left:50%; transform:translateX(-50%); background:#C0392B; color:#fff; padding:10px 18px; border-radius:10px; font-size:13px; z-index:9999; box-shadow:0 4px 16px rgba(0,0,0,.25);}
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true, processEnvironments: true, processRefs: true },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code','option'] },
+  startup: {
+    typeset: true,
+    pageReady: function () {
+      var fb = document.getElementById('mj-fallback');
+      if (fb) { fb.style.display = 'none'; }
+      return MathJax.startup.defaultPageReady();
+    }
+  }
+};
+window.__mjTimer = setTimeout(function(){
+  var fb = document.getElementById('mj-fallback');
+  if (fb) { fb.style.display = 'block'; }
+}, 6000);
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var fb=document.getElementById('mj-fallback');if(fb){fb.textContent='MathJax 离线文件加载失败，请检查 ../assets/mathjax/es5/tex-svg.js';fb.style.display='block';}"></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>数学史时间线 <span class="sym">↖</span></h1>
+  <p class="sub">三千年里，数学从「丈量与计数」长成「关于模式的科学」。时间线按时代分节，重要转折以不同颜色标注。</p>
+</header>
+
+<div class="era">
+  <h2>古代：从计数到公理 <small>约公元前 3000 – 公元 300 年</small></h2>
+  <div class="tl">
+    <div class="tn">约前2000</div><div class="dot"></div>
+    <div class="item"><h3>巴比伦泥板 <span class="c c-gold">算术</span></h3><p>六十进制、平方表与勾股数。普林普顿 322 号泥板上是完整的勾股数表——比毕达哥拉斯早了一千多年。</p></div>
+    <div class="tn">约前1650</div><div class="dot"></div>
+    <div class="item"><h3>莱因德数学纸草书 <span class="c c-gold">算术</span></h3><p>古埃及抄书人阿默士抄录的 85 道问题集，含分数拆分与一元一次方程解法——现存最完整的古埃及数学文献。</p></div>
+    <div class="tn">约前1100</div><div class="dot"></div>
+    <div class="item"><h3>商高答周公·勾股 <span class="c c-blue">几何</span></h3><p>《周髀算经》开篇「勾三、股四、弦五」——中国最早的勾股定理特例，比毕达哥拉斯学派早约六百年。</p></div>
+    <div class="tn">约前600</div><div class="dot"></div>
+    <div class="item"><h3>泰勒斯：演绎的开端 <span class="c c-blue">几何</span></h3><p>第一次把几何命题当作「需要证明」的对象。数学开始与经验分离。</p></div>
+    <div class="tn">约前530</div><div class="dot"></div>
+    <div class="item"><h3>毕达哥拉斯学派 <span class="c c-violet">数论</span></h3><p>「万物皆数」。传说他们发现 √2 无理后震惊不已——「数」第一次暴露出不和谐。</p></div>
+    <div class="tn">约前350</div><div class="dot"></div>
+    <div class="item"><h3>亚里士多德逻辑学 <span class="c c-red">逻辑</span></h3><p>建立三段论与演绎推理规则——形式逻辑成为数学证明的脚手架，影响西方推理传统近两千年。</p></div>
+    <div class="tn">约前300</div><div class="dot"></div>
+    <div class="item"><h3>欧几里得《几何原本》<span class="c c-blue">公理化</span></h3><p>十三条公设推出一整座几何大厦。此后两千年的数学都在这本书的阴影与光亮里。</p></div>
+    <div class="tn">约前250</div><div class="dot"></div>
+    <div class="item"><h3>阿基米德 <span class="c c-gold">穷竭法</span></h3><p>用无穷逼近（穷竭法）计算面积与体积，π 逼近到 3.14 上下——微积分的前夜。</p></div>
+    <div class="tn">约前240</div><div class="dot"></div>
+    <div class="item"><h3>埃拉托斯特尼测地 <span class="c c-blue">几何</span></h3><p>用夏至日影与两城距离算出地球周长约三万九千公里——与现代值仅差百分之几，地理学的第一次定量。</p></div>
+    <div class="tn">约前100</div><div class="dot"></div>
+    <div class="item"><h3>《九章算术》成书 <span class="c c-gold">算术</span></h3><p>中国古代数学体系确立：方田、粟米、方程等九章 246 题，负数与联立一次方程组解法领先世界千年。</p></div>
+    <div class="tn">约150</div><div class="dot"></div>
+    <div class="item"><h3>托勒密《天文学大成》<span class="c c-blue">三角</span></h3><p>弦表与地心说模型——托勒密定理与最早的三角函数表，支配西方天文学一千三百年。</p></div>
+    <div class="tn">约250</div><div class="dot"></div>
+    <div class="item"><h3>丢番图《算术》<span class="c c-violet">数论</span></h3><p>系统研究整数的方程。1500 年后，费马正是在这本书的页边写下了他的「大定理」。</p></div>
+  </div>
+</div>
+
+<div class="era">
+  <h2>中世纪与东方：代数的名字 <small>约 300 – 1400 年</small></h2>
+  <div class="tl">
+    <div class="tn">约263</div><div class="dot"></div>
+    <div class="item"><h3>刘徽割圆术 <span class="c c-gold">计算</span></h3><p>注《九章算术》，以「割之又割」的多边形逼近圆，求得 π≈3.1416——极限思想的中国先声。</p></div>
+    <div class="tn">约480</div><div class="dot"></div>
+    <div class="item"><h3>祖冲之算 π <span class="c c-gold">计算</span></h3><p>将 π 精确到 3.1415926–3.1415927 之间，并给出密率 355/113——这一纪录保持了近千年。</p></div>
+    <div class="tn">约628</div><div class="dot"></div>
+    <div class="item"><h3>婆罗摩笈多与零 <span class="c c-violet">代数</span></h3><p>印度数学家首次系统讨论零与负数的运算规则，给出二次方程求根公式——「零」正式成为数。</p></div>
+    <div class="tn">约820</div><div class="dot"></div>
+    <div class="item"><h3>花拉子米《代数学》<span class="c c-violet">代数</span></h3><p>「al-jabr」——移项与合并同类项的规则书。「代数」（algebra）一词即源于此；算法（algorithm）源于他的名字。</p></div>
+    <div class="tn">约980</div><div class="dot"></div>
+    <div class="item"><h3>阿尔·卡拉吉 <span class="c c-violet">代数</span></h3><p>把代数从几何论证中解放出来，研究多项式运算与数学归纳法雏形——代数走向抽象符号化。</p></div>
+    <div class="tn">约1050</div><div class="dot"></div>
+    <div class="item"><h3>贾宪三角 <span class="c c-violet">代数</span></h3><p>北宋贾宪在《黄帝九章算经细草》中给出二项式系数表（「开方作法本源图」），比帕斯卡早约六百年。</p></div>
+    <div class="tn">约1150</div><div class="dot"></div>
+    <div class="item"><h3>婆什迦罗《丽罗娃提》<span class="c c-gold">算术</span></h3><p>印度中世纪数学集大成之作，以他女儿的名字命名——含不定方程、无理数与循环极限的讨论。</p></div>
+    <div class="tn">1202</div><div class="dot"></div>
+    <div class="item"><h3>斐波那契《算盘书》<span class="c c-gold">数列</span></h3><p>把阿拉伯数字与「兔子数列」介绍给欧洲。斐波那契数列就此登上历史舞台。</p></div>
+    <div class="tn">约1247</div><div class="dot"></div>
+    <div class="item"><h3>秦九韶《数书九章》<span class="c c-violet">数论</span></h3><p>「大衍求一术」系统求解一次同余方程组（中国剩余定理），正负开方术给出高次方程数值解。</p></div>
+    <div class="tn">约1261</div><div class="dot"></div>
+    <div class="item"><h3>杨辉与乘除捷法 <span class="c c-gold">算术</span></h3><p>详解九章算法，保存了贾宪三角（后世称「杨辉三角」），并系统总结乘除捷算法与垛积问题。</p></div>
+    <div class="tn">约1303</div><div class="dot"></div>
+    <div class="item"><h3>朱世杰《四元玉鉴》<span class="c c-violet">代数</span></h3><p>四元术（四元高次方程组消元法）与垛积招差术——中国宋元数学的巅峰，高次内插法的先声。</p></div>
+    <div class="tn">约1350</div><div class="dot"></div>
+    <div class="item"><h3>奥雷姆：调和级数 <span class="c c-red">分析</span></h3><p>证明 1 + 1/2 + 1/3 + … 发散——中世纪最接近现代分析的成就。</p></div>
+  </div>
+</div>
+
+<div class="era">
+  <h2>近代：解析与微积分 <small>15 – 17 世纪</small></h2>
+  <div class="tl">
+    <div class="tn">1545</div><div class="dot"></div>
+    <div class="item"><h3>卡尔达诺《大术》<span class="c c-violet">代数</span></h3><p>三次、四次方程求根公式公开（含塔尔塔利亚的成果与复数的幽灵）。</p></div>
+    <div class="tn">1572</div><div class="dot"></div>
+    <div class="item"><h3>邦贝利引入虚数 <span class="c c-violet">代数</span></h3><p>在解三次方程时系统使用 √−1，写下 a+b√−1 形式——复数从「幽灵」变成合法对象。</p></div>
+    <div class="tn">1585</div><div class="dot"></div>
+    <div class="item"><h3>斯蒂文十进小数 <span class="c c-gold">计算</span></h3><p>佛兰德工程师发表《论十进》，用十进制小数替代分数计算——商业与科学计算的效率革命。</p></div>
+    <div class="tn">1614</div><div class="dot"></div>
+    <div class="item"><h3>纳皮尔：对数 <span class="c c-gold">计算</span></h3><p>把乘除变成加减。开普勒称对数让他的天文计算「延寿一倍」。</p></div>
+    <div class="tn">1637</div><div class="dot"></div>
+    <div class="item"><h3>笛卡尔解析几何 <span class="c c-blue">几何</span></h3><p>坐标架起代数与几何的桥。</p></div>
+    <div class="tn">1637</div><div class="dot"></div>
+    <div class="item"><h3>费马页边注 <span class="c c-violet">数论</span></h3><p>在丢番图《算术》批注：xⁿ+yⁿ=zⁿ 当 n&gt;2 无正整数解，「我发现了奇妙证明，页边太窄写不下」——358 年悬案的开端。</p></div>
+    <div class="tn">1654</div><div class="dot"></div>
+    <div class="item"><h3>帕斯卡与费马通信 <span class="c c-green">概率</span></h3><p>围绕「赌金分配问题」的通信，被视为概率论的诞生时刻。</p></div>
+    <div class="tn">1665–84</div><div class="dot"></div>
+    <div class="item"><h3>牛顿与莱布尼茨 <span class="c c-red">微积分</span></h3><p>各自独立发明微积分（流数法与无穷小）。随之而来的是两百年才平息的方法论争论。</p></div>
+    <div class="tn">约1670</div><div class="dot"></div>
+    <div class="item"><h3>巴罗微积分前导 <span class="c c-red">分析</span></h3><p>牛顿的老师在《几何讲义》中提出切线与面积互逆关系——微积分临门一脚，他随即把讲座让给牛顿。</p></div>
+    <div class="tn">1687</div><div class="dot"></div>
+    <div class="item"><h3>《自然哲学的数学原理》<span class="c c-blue">数学物理</span></h3><p>牛顿用微积分写下力学三定律与万有引力——数学第一次成为物理的语言。</p></div>
+  </div>
+</div>
+
+<div class="era">
+  <h2>18 世纪：分析的黄金时代 <small>1700 – 1800</small></h2>
+  <div class="tl">
+    <div class="tn">1735</div><div class="dot"></div>
+    <div class="item"><h3>欧拉解决巴塞尔问题 <span class="c c-red">分析</span></h3><p>Σ 1/n² = π²/6。欧拉之后三十年，分析的每一页都有他的名字。</p></div>
+    <div class="tn">1736</div><div class="dot"></div>
+    <div class="item"><h3>欧拉七桥问题 <span class="c c-blue">拓扑</span></h3><p>哥尼斯堡七桥问题无解——「一笔画」问题开创图论，欧拉被尊为图论之父。</p></div>
+    <div class="tn">1748</div><div class="dot"></div>
+    <div class="item"><h3>欧拉恒等式登场 <span class="c c-red">分析</span></h3><p>《无穷小分析引论》：$e^{iπ}$ + 1 = 0 让五个常数同框。欧拉一生署名论文近 900 篇，死后 50 年仍在陆续发表。</p></div>
+    <div class="tn">1752</div><div class="dot"></div>
+    <div class="item"><h3>欧拉多面体公式 <span class="c c-blue">拓扑</span></h3><p>V − E + F = 2——多面体顶点、棱、面数关系，拓扑不变量的最早例子。</p></div>
+    <div class="tn">1770</div><div class="dot"></div>
+    <div class="item"><h3>拉格朗日四平方和定理 <span class="c c-violet">数论</span></h3><p>每个正整数都是四个平方数之和——「平方数的语言」开始成形。</p></div>
+    <div class="tn">1788</div><div class="dot"></div>
+    <div class="item"><h3>拉格朗日《分析力学》<span class="c c-blue">数学物理</span></h3><p>全书无一张图，用纯分析（变分法）统一静力学与动力学——被称为「分析的诗」。</p></div>
+    <div class="tn">1799</div><div class="dot"></div>
+    <div class="item"><h3>高斯代数基本定理 <span class="c c-violet">代数</span></h3><p>22 岁的高斯在博士论文中给出第一个严格证明：n 次多项式在复数域有 n 个根。</p></div>
+  </div>
+</div>
+
+<div class="era">
+  <h2>19 世纪：严格化与解放 <small>1800 – 1900</small></h2>
+  <div class="tl">
+    <div class="tn">1801</div><div class="dot"></div>
+    <div class="item"><h3>高斯《算术研究》<span class="c c-violet">数论</span></h3><p>数论被整理成现代学科。高斯 24 岁写下它，之后数十年数学界都在「追高斯」。</p></div>
+    <div class="tn">1824</div><div class="dot"></div>
+    <div class="item"><h3>阿贝尔：五次方程 <span class="c c-violet">代数</span></h3><p>证明一般五次方程没有根式解——两百年的努力一朝定论。</p></div>
+    <div class="tn">1829</div><div class="dot"></div>
+    <div class="item"><h3>罗巴切夫斯基非欧几何 <span class="c c-blue">几何</span></h3><p>宣布「平行线可相交」的几何体系——欧式几何两千年独霸的局面被打破，高斯私下称之为「星空的几何」。</p></div>
+    <div class="tn">1832</div><div class="dot"></div>
+    <div class="item"><h3>伽罗瓦与群论 <span class="c c-violet">代数</span></h3><p>20 岁的伽罗瓦在决斗前夜写下群论手稿。五年后手稿发表，抽象代数的大门打开。</p></div>
+    <div class="tn">1843</div><div class="dot"></div>
+    <div class="item"><h3>哈密顿四元数 <span class="c c-violet">代数</span></h3><p>在爱尔兰运河桥上刻下 i²=j²=k²=ijk=−1——第一个不满足乘法交换律的数系，向量代数的源头。</p></div>
+    <div class="tn">1854</div><div class="dot"></div>
+    <div class="item"><h3>黎曼几何 <span class="c c-blue">几何</span></h3><p>就职演讲提出「流形」概念，空间可以是弯曲的。60 年后它成为广义相对论的数学舞台。</p></div>
+    <div class="tn">1858</div><div class="dot"></div>
+    <div class="item"><h3>凯莱矩阵代数 <span class="c c-violet">代数</span></h3><p>把矩阵作为独立代数对象研究，定义乘法与特征方程——线性代数形式化的开端。</p></div>
+    <div class="tn">1859</div><div class="dot"></div>
+    <div class="item"><h3>黎曼猜想 <span class="c c-gold">数论</span></h3><p>关于 ζ 函数零点的一页论文，悬赏至今。它至今是数学最昂贵的单页纸。</p></div>
+    <div class="tn">1872</div><div class="dot"></div>
+    <div class="item"><h3>魏尔斯特拉斯 <span class="c c-red">分析</span></h3><p>处处连续处处不可导的函数让「直觉」臣服于「定义」；ε-δ 语言成型。</p></div>
+    <div class="tn">1872</div><div class="dot"></div>
+    <div class="item"><h3>戴德金分割 <span class="c c-red">分析</span></h3><p>用有理数集合的「分割」严格定义实数——分析终于建立在算术基础上，不再依赖几何直觉。</p></div>
+    <div class="tn">1874</div><div class="dot"></div>
+    <div class="item"><h3>康托尔：集合论 <span class="c c-green">无穷</span></h3><p>无穷也有基数；实数比自然数多。同时代的人称之为「疯子的数学」，今天它是数学的地基。</p></div>
+    <div class="tn">1882</div><div class="dot"></div>
+    <div class="item"><h3>林德曼：π 超越 <span class="c c-gold">分析</span></h3><p>π 是超越数，化圆为方不可能——两千年的作图问题被一笔终结。</p></div>
+    <div class="tn">1895</div><div class="dot"></div>
+    <div class="item"><h3>庞加莱《位置分析》<span class="c c-blue">拓扑</span></h3><p>六篇论文创立组合拓扑学——引入基本群与同调，拓扑从欧拉的零散观察变成独立学科。</p></div>
+    <div class="tn">1896</div><div class="dot"></div>
+    <div class="item"><h3>素数定理证明 <span class="c c-violet">数论</span></h3><p>Hadamard 与 de la Vallée Poussin 独立证明 π(x) ~ x/ln x，黎曼论文的「下脚料」终于收尾。</p></div>
+  </div>
+</div>
+
+<div class="era">
+  <h2>20 世纪：结构、逻辑与计算机 <small>1900 – 2000</small></h2>
+  <div class="tl">
+    <div class="tn">1900</div><div class="dot"></div>
+    <div class="item"><h3>希尔伯特 23 问 <span class="c c-gold">纲领</span></h3><p>巴黎演讲列出的 23 个问题，为 20 世纪数学导航。一半左右已解决，另一半仍在远征。</p></div>
+    <div class="tn">1908</div><div class="dot"></div>
+    <div class="item"><h3>策梅洛公理化集合论 <span class="c c-red">逻辑</span></h3><p>为消除罗素悖论，提出七条公理限制集合构造——公理集合论（ZFC）的起点。</p></div>
+    <div class="tn">1910</div><div class="dot"></div>
+    <div class="item"><h3>罗素与怀特海《数学原理》<span class="c c-red">逻辑</span></h3><p>三大卷试图把全部数学还原为逻辑——虽失败，却催生了类型论与证明论。</p></div>
+    <div class="tn">1915</div><div class="dot"></div>
+    <div class="item"><h3>广义相对论 <span class="c c-blue">数学物理</span></h3><p>爱因斯坦用黎曼几何写下引力场方程——时空弯曲被数学精确描述，理论物理迎来几何化。</p></div>
+    <div class="tn">1931</div><div class="dot"></div>
+    <div class="item"><h3>哥德尔不完备定理 <span class="c c-red">逻辑</span></h3><p>足够强的公理系统必不完备。希尔伯特「我们必然知道」的豪言，从此有了边界。</p></div>
+    <div class="tn">1933</div><div class="dot"></div>
+    <div class="item"><h3>柯尔莫哥洛夫概率公理化 <span class="c c-green">概率</span></h3><p>用测度论定义概率——概率论从「赌徒直觉」成为严格数学分支。</p></div>
+    <div class="tn">1936</div><div class="dot"></div>
+    <div class="item"><h3>图灵机 <span class="c c-blue">计算</span></h3><p>「可计算」的严格定义。停机问题不可判定——计算机科学在此刻诞生。</p></div>
+    <div class="tn">1939</div><div class="dot"></div>
+    <div class="item"><h3>布尔巴基 <span class="c c-violet">结构</span></h3><p>一群法国数学家以「结构」重写全部数学。抽象化的浪潮席卷全球。</p></div>
+    <div class="tn">1944</div><div class="dot"></div>
+    <div class="item"><h3>冯·诺依曼博弈论 <span class="c c-green">应用</span></h3><p>《博弈论与经济行为》出版——理性冲突的数学分析，经济学与决策科学的基石。</p></div>
+    <div class="tn">1948</div><div class="dot"></div>
+    <div class="item"><h3>香农信息论 <span class="c c-blue">计算</span></h3><p>《通信的数学理论》用比特量化信息——数字时代的数学宣言。</p></div>
+    <div class="tn">1960</div><div class="dot"></div>
+    <div class="item"><h3>格罗滕迪克概形理论 <span class="c c-violet">代数</span></h3><p>EGA 开始出版，用概形统一代数几何与数论——后被怀尔斯称为「费马大定理真正的语言」。</p></div>
+    <div class="tn">1963</div><div class="dot"></div>
+    <div class="item"><h3>科恩力迫法 <span class="c c-red">逻辑</span></h3><p>发明「力迫法」证明连续统假设与 ZFC 独立——集合论模型论的革命，1966 年获菲尔兹奖。</p></div>
+    <div class="tn">1966</div><div class="dot"></div>
+    <div class="item"><h3>阿蒂亚–辛格指标定理 <span class="c c-blue">几何</span></h3><p>连接分析、拓扑与几何的大一统定理——此后半个世纪数学物理的核心。</p></div>
+    <div class="tn">1976</div><div class="dot"></div>
+    <div class="item"><h3>四色定理（计算机）<span class="c c-red">图论</span></h3><p>Appel–Haken 用 1200 小时机时完成证明。数学界吵了二十年，最终接受了「计算机也是证明工具」。</p></div>
+    <div class="tn">1977</div><div class="dot"></div>
+    <div class="item"><h3>RSA 加密 <span class="c c-green">应用</span></h3><p>数论（大数分解的困难）直接变成密码学。今天每一次网购都在用 1770 年前的数学。</p></div>
+    <div class="tn">1983</div><div class="dot"></div>
+    <div class="item"><h3>法尔廷斯定理 <span class="c c-violet">数论</span></h3><p>莫德尔猜想获证——费马大定理每个指数至多有限多组解的「大方向」被锁死。</p></div>
+    <div class="tn">1994</div><div class="dot"></div>
+    <div class="item"><h3>费马大定理获证 <span class="c c-red">数论</span></h3><p>怀尔斯用谷山–志村–韦伊猜想完成最后一跳。358 年的传奇落幕，数学方法论同时被改写。</p></div>
+    <div class="tn">1998</div><div class="dot"></div>
+    <div class="item"><h3>黑尔斯开普勒猜想 <span class="c c-blue">几何</span></h3><p>用计算机辅助证明「最密堆橘子」是面心立方——后经十年 Lean 形式化验证，2014 年正式发表。</p></div>
+  </div>
+</div>
+
+<div class="era">
+  <h2>21 世纪：计算机证明、AI 与千禧难题 <small>2000 至今</small></h2>
+  <div class="tl">
+    <div class="tn">2000</div><div class="dot"></div>
+    <div class="item"><h3>千禧年问题公布 <span class="c c-gold">纲领</span></h3><p>克雷数学研究所公布七个悬赏百万美元的问题——P 与 NP、黎曼猜想、纳维–斯托克斯等。</p></div>
+    <div class="tn">2003</div><div class="dot"></div>
+    <div class="item"><h3>庞加莱猜想获证 <span class="c c-red">拓扑</span></h3><p>佩雷尔曼用里奇流完成证明，随后拒绝菲尔兹奖与百万奖金——数学家的纯粹性成为新闻头条。</p></div>
+    <div class="tn">2013</div><div class="dot"></div>
+    <div class="item"><h3>张益唐突破孪生素数间隙 <span class="c c-violet">数论</span></h3><p>证明存在无穷多对素数差小于 7000 万，孪生素数猜想第一次出现有界间隙；此后经 Maynard 与 Polymath 逐步压到 246。</p></div>
+    <div class="tn">2014</div><div class="dot"></div>
+    <div class="item"><h3>米尔扎哈尼获菲尔兹奖 <span class="c c-gold">颁奖</span></h3><p>在国际数学家大会获奖——首位女性菲尔兹奖得主，研究黎曼面与双曲几何。</p></div>
+    <div class="tn">2016</div><div class="dot"></div>
+    <div class="item"><h3>Viazovska 解决八维球堆积 <span class="c c-blue">几何</span></h3><p>用模形式构造「神奇函数」，同时解决八维与二十四维最密球堆积——四年后获菲尔兹奖。</p></div>
+    <div class="tn">2022</div><div class="dot"></div>
+    <div class="item"><h3>菲尔兹奖：Viazovska 等 <span class="c c-gold">颁奖</span></h3><p>因疫情延后的国际数学家大会颁奖，Maryna Viazovska 等四人获奖；她是第二位女性菲尔兹奖得主。</p></div>
+    <div class="tn">2025</div><div class="dot"></div>
+    <div class="item"><h3>三维 Kakeya 猜想完整获证 <span class="c c-blue">分析</span></h3><p>王虹与 Joshua Zahl 发表百页论文，证明三维 Kakeya 集的 Hausdorff 与 Minkowski 维数均为满维 3——调和分析与几何测度论的里程碑。</p></div>
+    <div class="tn">2026-07</div><div class="dot"></div>
+    <div class="item"><h3>费城 ICM 菲尔兹奖 <span class="c c-gold">颁奖</span></h3><p>2026-07-23 大会开幕，王虹、邓煜、John Pardon、Jacob Tsimerman 四人获奖；王虹与邓煜均为中国籍——中国籍数学家首次折桂菲尔兹奖。</p></div>
+    <div class="tn">2026-09</div><div class="dot"></div>
+    <div class="item"><h3>OpenAI 声称纳维–斯托克斯爆破 <span class="c c-red">争议中</span></h3><p>OpenAI 宣布用大规模自主 agent 给出三维不可压 N–S 有限时间爆破证明并完成 Lean 4 形式化；截至目前独立专家复核与优先权争议尚未结束，CMI 未颁奖，不能视为已解决。</p></div>
+  </div>
+</div>
+
+<div class="closing">
+  <b>读史的收获：</b>数学不是一条笔直的大道，而是无数「问题 → 直觉 → 失败 → 定义 → 证明 → 新问题」的循环。欧几里得等了 2000 年才等到非欧几何；费马大定理等了 358 年；黎曼猜想等了一个多世纪仍在等。看历史最大的意义是：<b>难题不是终点，而是下一轮数学的起点。</b>
+</div>
+
+
+<div class="era">
+  <h2>专题补充：三条暗线与四种视角 <small>主线之外，这些线索同样塑造了数学</small></h2>
+  <p class="sub" style="margin-bottom:14px">下面四组内容不属于单一时代，因此单列。它们回答的是时间线本身答不了的问题：
+  数学为什么会在某些时刻「崩塌又重建」、谁长期被排除在这个故事之外、以及东方除了中国还有哪些算学传统。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:21px;margin-top:26px">一、三次数学危机：每次崩塌都换来了更牢的地基</h3>
+  <div class="tl">
+    <div class="tn">约前5世纪</div><div class="dot"></div>
+    <div class="item"><h3>第一次危机：无理数的发现 <span class="c c-red">危机</span></h3>
+      <p>毕达哥拉斯学派相信「万物皆可用整数与整数之比表达」。但正方形对角线与边不可公度（即 $\sqrt2$ 不是分数）——
+      这个发现直接推翻了学派的信条。传说希帕索斯（Hippasus）因此被逐出学派。危机的代价是「比例论」的重建：
+      欧多克索斯（Eudoxus，约前408–前355）用「量的比」绕开无理数，这套理论被完整写进《几何原本》第五卷，
+      并在两千年后成为戴德金分割的先声。</p></div>
+
+    <div class="tn">1734</div><div class="dot"></div>
+    <div class="item"><h3>第二次危机：无穷小的合法性 <span class="c c-red">危机</span></h3>
+      <p>微积分已被牛顿与莱布尼茨发明，但「无穷小」到底是什么没人说得清。1734 年贝克莱主教（George Berkeley）
+      在《分析家》中质问：无穷小量既然是零，为什么可以拿它做除数？不是零，又为什么最后可以丢掉？
+      他称之为「消失量的鬼魂」。这场质疑持续近百年，直到柯西（1821 年起）与魏尔斯特拉斯（1860 年代）
+      用极限与 $\varepsilon$-$\delta$ 语言把它彻底严格化。</p></div>
+
+    <div class="tn">1901</div><div class="dot"></div>
+    <div class="item"><h3>第三次危机：集合论的悖论 <span class="c c-red">危机</span></h3>
+      <p>康托尔的集合论让数学有了统一基础，但 1901 年罗素发现：考虑「所有不包含自身的集合」组成的集合，
+      它包含自身吗？两个答案都导致矛盾。类似的还有布拉利-福尔蒂悖论与康托尔悖论。
+      应对方式是公理化：1908 年策梅洛提出公理集合论（后经弗兰克尔完善为 ZF／ZFC），
+      把「什么样的集合存在」交给公理规定，而不是交给直觉。代价是 1931 年哥德尔证明了任何这样的公理系统
+      都必然不完备。</p></div>
+  </div>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:21px;margin-top:30px">二、女性数学家：一个长期被系统排除的群体</h3>
+  <div class="tl">
+    <div class="tn">约350–415</div><div class="dot"></div>
+    <div class="item"><h3>希帕蒂娅 Hypatia <span class="c c-violet">古代</span></h3>
+      <p>亚历山大城的数学家与天文学家，已知最早留下数学工作的女性。她注释了丢番图《算术》与阿波罗尼奥斯《圆锥曲线论》，
+      并主持新柏拉图学派的教学。415 年在政治动乱中被暴民杀害，其著作几乎全部散佚，仅存后世引用。</p></div>
+
+    <div class="tn">1718–1799</div><div class="dot"></div>
+    <div class="item"><h3>玛丽亚·阿涅西 Maria Gaetana Agnesi <span class="c c-violet">分析</span></h3>
+      <p>1738 年出版《分析讲义》（Instituzioni analitiche），系统整理了从代数到微积分的完整教程，
+      是史上第一本由女性完成的数学教科书。其中讨论的曲线 $y=\dfrac{a^3}{x^2+a^2}$ 后来被称为「阿涅西的女巫」——
+      这个名字源于早期英译本把意大利语「versiera（曲线）」误译成「女巫」。1738 年她被任命为博洛尼亚大学荣誉教授。</p></div>
+
+    <div class="tn">1776–1831</div><div class="dot"></div>
+    <div class="item"><h3>索菲·热尔曼 Sophie Germain <span class="c c-violet">数论</span></h3>
+      <p>因性别被巴黎综合理工拒收，便用男性化名「M. LeBlanc」索要讲义自学。她证明了费马大定理的一条重要情形：
+      若 $p$ 为奇素数且 $2p+1$ 也是素数，则 $x^p+y^p=z^p$ 无正整数解——这是费马大定理最早的系统性进展之一。
+      她还以「热尔曼素数」留名。后来凭弹性表面振动的研究获巴黎科学院大奖。</p></div>
+
+    <div class="tn">1815–1852</div><div class="dot"></div>
+    <div class="item"><h3>阿达·洛芙莱斯 Ada Lovelace <span class="c c-violet">计算</span></h3>
+      <p>为巴贝奇的分析机写了详细注释，其中包含计算伯努利数的完整步骤序列——被普遍视为「第一个计算机程序」。
+      更重要的是她指出：机器不只可以算数，还可以操作符号，「可以被赋予任何可被逻辑表达的内容」。</p></div>
+
+    <div class="tn">1850–1891</div><div class="dot"></div>
+    <div class="item"><h3>索菲娅·柯瓦列夫斯卡娅 Sofia Kovalevskaya <span class="c c-violet">分析</span></h3>
+      <p>因俄国不招收女性大学生，以「形式婚姻」出国求学。1884 年成为斯德哥尔摩大学数学教授——
+      近代欧洲第一位女性数学教授。1888 年以刚体绕定点旋转的研究获巴黎科学院鲍尔丹奖，
+      该奖此前三次空缺、此次评委会还特意提高奖金以确认成就。</p></div>
+
+    <div class="tn">1882–1935</div><div class="dot"></div>
+    <div class="item"><h3>埃米·诺特 Emmy Noether <span class="c c-violet">代数</span></h3>
+      <p>诺特定理（1918）指出连续对称与守恒律的对应关系，是理论物理的基石之一。
+      她在抽象代数上开创了诺特环、戴德金整环等概念，被称为「代数学之母」。
+      在哥廷根长期无薪授课（课题挂希尔伯特名下），1933 年因犹太身份被驱逐，赴美任教两年后去世。
+      爱因斯坦称她是「数学史上最重要的女性」。</p></div>
+
+    <div class="tn">1942–</div><div class="dot"></div>
+    <div class="item"><h3>卡伦·乌伦贝克 Karen Uhlenbeck <span class="c c-violet">几何</span></h3>
+      <p>规范场论与几何分析的奠基者之一，与 Uhlenbeck–Yau 定理、气泡分析紧密相关。
+      2019 年获阿贝尔奖，成为该奖首位女性得主。</p></div>
+
+    <div class="tn">1977–2017</div><div class="dot"></div>
+    <div class="item"><h3>玛丽安·米尔扎哈尼 Maryam Mirzakhani <span class="c c-violet">几何</span></h3>
+      <p>研究模空间与泰希米勒理论中的动力学。2014 年获菲尔兹奖——
+      1936 年设奖以来首位女性得主，也是首位伊朗籍得主。她 40 岁因癌症去世。</p></div>
+  </div>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:21px;margin-top:30px">三、东方算学的另两支：日本和算与朝鲜算学</h3>
+  <div class="tl">
+    <div class="tn">约1642–1708</div><div class="dot"></div>
+    <div class="item"><h3>关孝和：和算的开创者 <span class="c c-teal">和算</span></h3>
+      <p>日本江户时代的数学家，在与外界几乎隔离的条件下独立发展出多项成果：
+      行列式的早期形式「解伏题之法」早于莱布尼茨；求数值解的方法与后来的霍纳法（1819）同源；
+      还建立了「円理」（圆理），用级数逼近圆面积。注意这些是<b>独立重新发明</b>，
+      说明数学发现有其内在必然性，而不仅是某一条传播路径的产物。</p></div>
+
+    <div class="tn">1664–1739</div><div class="dot"></div>
+    <div class="item"><h3>建部贤弘：把 π 算到 41 位 <span class="c c-teal">和算</span></h3>
+      <p>关孝和的学生，用「缀术」方法把圆周率计算到小数点后 41 位。
+      同一时期欧洲也在做类似精度竞赛——两边都在用无穷级数逼近，方法不同，方向相同。</p></div>
+
+    <div class="tn">15–19世纪</div><div class="dot"></div>
+    <div class="item"><h3>朝鲜算学：从《九章算术》到《算学启蒙》 <span class="c c-teal">朝鲜</span></h3>
+      <p>朝鲜半岛的算学长期以中国算经为教材，国立机构「户曹算学」（后称「观象监」）负责培养算官。
+      13 世纪朱世杰《算学启蒙》（1299）传入后成为朝鲜算学的核心教材，影响持续到 19 世纪。
+      朝鲜学者在此基础上有所推进，如 17 世纪崔锡鼎的《九数略》对中算做了系统整理与分类。
+      理解这一点很重要：东亚算学不是单点传播，而是一个持续数百年的共享知识网络。</p></div>
+  </div>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:21px;margin-top:30px">四、数学如何变成一门职业：机构、期刊与奖项</h3>
+  <div class="tl">
+    <div class="tn">1826</div><div class="dot"></div>
+    <div class="item"><h3>克雷尔期刊创刊 <span class="c c-gold">机构</span></h3>
+      <p>《Journal für die reine und angewandte Mathematik》由克雷尔创办，
+      成为第一本以「纯数学与应用数学」为定位的专业期刊。数学研究从此有了固定的发表与流通渠道，
+      阿贝尔、雅可比、施泰纳等人的工作由此快速传播。</p></div>
+
+    <div class="tn">1897</div><div class="dot"></div>
+    <div class="item"><h3>首届国际数学家大会（ICM） <span class="c c-gold">机构</span></h3>
+      <p>在苏黎世举行。数学第一次有了全球性的定期集会，此后每四年一次（两次世界大战期间中断）。</p></div>
+
+    <div class="tn">1900</div><div class="dot"></div>
+    <div class="item"><h3>希尔伯特的 23 个问题 <span class="c c-blue">纲领</span></h3>
+      <p>希尔伯特在巴黎 ICM 上提出 23 个未决问题，为 20 世纪的数学划出了方向。
+      这些问题引导了此后数十年的研究：连续统假设、算术公理的一致性、素数分布等。
+      其中大部分已被解决或部分解决，但仍有若干悬而未决——这使它成为数学史上最有影响力的演讲之一。</p></div>
+
+    <div class="tn">1936</div><div class="dot"></div>
+    <div class="item"><h3>首届菲尔兹奖 <span class="c c-gold">奖项</span></h3>
+      <p>在奥斯陆 ICM 上颁给 Lars Ahlfors 与 Jesse Douglas。该奖每四年颁给不超过 4 位
+      40 岁以下的数学家（因诺奖不设数学奖，它常被称作数学界的最高荣誉之一）。
+      与诺奖不同，它奖励的是<b>潜力与已见的方向</b>，而非终身成就。</p></div>
+
+    <div class="tn">1950</div><div class="dot"></div>
+    <div class="item"><h3>战后重组与国际交流 <span class="c c-gold">机构</span></h3>
+      <p>国际数学联盟（IMU）在战后重建，ICM 恢复举办。数学中心从欧洲单极转向欧美双极，
+      普林斯顿、莫斯科、巴黎形成三大传统。</p></div>
+
+    <div class="tn">2003–</div><div class="dot"></div>
+    <div class="item"><h3>阿贝尔奖与千禧难题 <span class="c c-gold">奖项</span></h3>
+      <p>2003 年挪威设立阿贝尔奖，填补数学界缺少「终身成就奖」的空白。
+      2000 年克雷数学研究所公布 7 个千禧年大奖难题，每题悬赏 100 万美元，
+      其中庞加莱猜想已在 2003 年由佩雷尔曼解决（他拒绝领奖）。</p></div>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../07-趣味数学/谜题与悖论.html">趣味数学 ←</a>
+  <a href="中国数学史长编.html">中国数学史长编 →</a>
+</footer>
+</div>
+
+<div id="mj-fallback" role="alert">数学公式渲染组件未在 6 秒内就绪，请确认本地 MathJax 文件存在</div>
+
+</body>
+</html>

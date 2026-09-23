@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>数学阅读路线图 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%98%B0%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+--paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+--line:#D8D0BC; --green:#2E7D5B; --gold:#A8751E; --blue:#1F4E9C; --red:#C0392B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--green); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--green); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:700px;}
+.sec{margin-top:48px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--green); padding-left:14px;}
+.sec h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.tbl{margin-top:18px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+.bk{font-family:Georgia,"Noto Serif SC",serif; font-weight:700; font-size:14.5px;}
+.tbl td .au{font-size:12.5px; color:var(--ink2);}
+.diff{font-size:12px; color:var(--gold); white-space:nowrap;}
+.note{margin-top:26px; background:var(--paper2); border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:13.5px; color:var(--ink2);}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px;}
+footer a{color:var(--green); text-decoration:none;}
+h3{font-family:Georgia,"Noto Serif SC",serif; font-size:18px; margin-top:26px; padding-bottom:5px; border-bottom:1px dashed var(--line);}
+a{color:var(--blue); text-decoration:none;}
+a:hover{text-decoration:underline;}
+p{margin-top:10px;}
+ul{margin:10px 0 0 22px;}
+li{margin:4px 0;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="../00-总览/index.html">← 返回总览</a>
+<h1>数学阅读路线图 <span class="sym">↦</span></h1>
+<p class="sub">一份「什么时候读、为什么读、读到什么程度」的顺序表。每本书都写清脾气：写给谁、假设你会什么、会在哪里伤到你。难度标 ★ 是相对位置，不是绝对等级。</p>
+</header>
+
+<div class="sec">
+<h2>零、怎么用这份路线图 <small>三条原则</small></h2>
+<p><b>先算后证。</b>严格性是对已有直觉的重整：没算过一百个积分的人读「一致收敛与积分交换」只能背结论，算过的人读 $\varepsilon$-$\delta$ 时每个条件都对应一个踩过的坑。进任何一门前沿一点的课之前，先确认它的计算层过关——分析是极限与积分的手感，代数是矩阵与多项式操作，拓扑是一批画得出来的例子。</p>
+<p><b>以题带书。</b>判断读进去的唯一证据是：合上书能复现证明，并做得出中等难度的习题。所以本页给的是脾气而不是评价。</p>
+<p><b>一本读完再换。</b>并行结构是一本主教材（通读做题）+ 一本参考书（只查只对答案）+ 一段随时可放下的读物；换书要有写下来的具体理由。</p>
+<div class="note"><b>关于准确性：</b>本页只收能确认书名与作者的著作，年份与出版社只写有把握的部分；同一本中译本常有多个版本，请以书封信息为准。本页无购书链接，也不复制出版社简介。</div>
+</div>
+
+<div class="sec">
+<h2>一、阶段 0：中学到大学的衔接 <small>补的不是知识，是运算的自动性</small></h2>
+<p>症状好认：看得懂推导，自己一动笔就卡在代数变形上——大脑还在处理符号，没有余力处理结构。达标标志：分式不等式顺畅解完，能自己导出和差化积，不描点就能画出 $y=x^3-3x$ 的形状。</p>
+<table class="tbl">
+<thead><tr><th>书与作者</th><th>这本书的脾气</th><th>难度</th></tr></thead>
+<tbody>
+<tr><td class="bk">《代数》《三角函数》《函数和图像》《坐标方法》《几何》<br><span class="au">盖尔范德 等；中国科学技术大学出版社中译本</span></td><td>正文只做最少说明，主体是一道道问题，假设你愿意先受挫再对答案。</td><td class="diff">★★</td></tr>
+<tr><td class="bk">《高观点下的初等数学》三卷<br><span class="au">F. 克莱因；复旦大学出版社中译本</span></td><td>给中学教师的讲座稿，不是教材。收益是视点，但德式叙述、离题多。</td><td class="diff">★★★</td></tr>
+<tr><td class="bk"><i>Basic Mathematics</i><br><span class="au">Serge Lang；Springer</span></td><td>补课书：代数运算、坐标几何、三角、函数与归纳法。干、快、题多，从不解释动机。</td><td class="diff">★★</td></tr>
+</tbody>
+</table>
+<p>要严格感可读 Hardy 的 <i>A Course of Pure Mathematics</i>（Cambridge，初版 1908），第一章就用 $\varepsilon$-$\delta$ 讲话；要全景感可读柯尔莫哥洛夫等主编的《数学：它的内容、方法和意义》。止损线：连续三个月卡在「变形慢」，别再买书，回到每天二十道变形题、坚持一个月。</p>
+</div>
+
+<div class="sec">
+<h2>二、阶段 1：微积分与分析 <small>单变量 → 多变量 → 实分析</small></h2>
+<p>两类常见错误：直接上最严格的书（第 3 章就卡死），或只读可视化书（写不出一行证明）。正确做法是把直观与严格当两条腿交替走。</p>
+<h3>1.1 单变量</h3>
+<table class="tbl">
+<thead><tr><th>书与作者</th><th>这本书的脾气</th><th>难度</th></tr></thead>
+<tbody>
+<tr><td class="bk">《普林斯顿微积分读本》<br><span class="au">Adrian Banner</span></td><td>课堂讲稿成书，口语化，把极限导数积分当技能教。证明基本绕过，不能当分析基础。</td><td class="diff">★★</td></tr>
+<tr><td class="bk">《微积分学教程》三卷<br><span class="au">菲赫金哥尔茨；高等教育出版社中译本，据原书第 8 版</span></td><td>俄式训练代表：追手上功夫而非抽象。体量大、顺序与现代课程不对齐，当题库用，别通读。</td><td class="diff">★★★★</td></tr>
+<tr><td class="bk"><i>Calculus</i><br><span class="au">Michael Spivak</span></td><td>叫微积分，第一章却谈最小上界公理；习题第三部分可对上真分析，全做会耗尽时间。</td><td class="diff">★★★★</td></tr>
+</tbody>
+</table>
+<p>再往上是卓里奇《数学分析》两卷（高教社中译本）：理论完整且往现代方向走，卷二超前于国内课程。柯朗与约翰的《微积分和数学分析引论》最适合当第二遍微积分，最擅长交代动机，代价是两卷成本高。</p>
+<h3>1.2 多变量</h3>
+<table class="tbl">
+<thead><tr><th>书与作者</th><th>这本书的脾气</th><th>难度</th></tr></thead>
+<tbody>
+<tr><td class="bk"><i>Calculus on Manifolds</i><br><span class="au">Michael Spivak</span></td><td>不到 150 页，用线代加微分形式重写多元微积分。极度压缩，要先学过普通多元微积分再来升级。</td><td class="diff">★★★★</td></tr>
+</tbody>
+</table>
+<h3>1.3 实分析</h3>
+<table class="tbl">
+<thead><tr><th>书与作者</th><th>这本书的脾气</th><th>难度</th></tr></thead>
+<tbody>
+<tr><td class="bk">《陶哲轩实分析》<br><span class="au">Terence Tao；人民邮电出版社中译本</span></td><td>从 Peano 公理搭出实数与微积分，最独特处是教你写证明。前五章慢，第六章起突然加速。</td><td class="diff">★★★★</td></tr>
+<tr><td class="bk"><i>Understanding Analysis</i><br><span class="au">Stephen Abbott</span></td><td>温和的严格派：先动机、再反例、再证明。从会算到会证最平滑，但测度与多元都没有。</td><td class="diff">★★★★</td></tr>
+<tr><td class="bk"><i>Principles of Mathematical Analysis</i><br><span class="au">Walter Rudin；McGraw-Hill</span></td><td>密度之王：无动机段、无插图。不适合第一遍，习题极难且不给提示，用法是第二遍补严整性。</td><td class="diff">★★★★★</td></tr>
+<tr><td class="bk"><i>Real Analysis</i><br><span class="au">Stein、Shakarchi；Princeton University Press</span></td><td>测度论、$L^p$、Hilbert 空间串成一条线，例子质量极高，默认你会本科分析。</td><td class="diff">★★★★★</td></tr>
+</tbody>
+</table>
+<p>要更多图与反例用 Pugh 的 <i>Real Mathematical Analysis</i>（手绘图极多，排版自绘）；中文实变用周民强《实变函数论》（北京大学出版社），体系完整、习题难，坑是答案不全。</p>
+<div class="note"><b>读不完也没关系：</b>务实组合是「直观派一本（Banner 或 Courant）落实计算 + 严格派一本（Tao 或 Abbott）落实证明」。Rudin、Zorich、Stein 属于第二遍层次，现在读不完不是你的问题，是书的位置问题。</div>
+</div>
+
+<div class="sec">
+<h2>三、阶段 2：线性代数与抽象代数 <small>为什么必须先线代后抽代</small></h2>
+<p>抽代的困难从不出在公理，而在你没有可随时调用的例子库。最好的例子恰好来自线代：可逆矩阵与正交矩阵都是群，线性变换环、商空间、同态基本定理都是现成模型。所以先把线代读到结构性层次，再学抽代。<b>两个反例：</b>线代只用行列式与消元法过关，等于没留例子，抽代就成了符号游戏；跳过线代直接学抽代，能复述定理却不理解为什么要发明群。</p>
+<h3>2.1 线性代数</h3>
+<table class="tbl">
+<thead><tr><th>书与作者</th><th>这本书的脾气</th><th>难度</th></tr></thead>
+<tbody>
+<tr><td class="bk">《线性代数应该这样学》<br><span class="au">Sheldon Axler（<i>Linear Algebra Done Right</i>）</span></td><td>行列式放最后，从向量空间与线性映射开始，用算子理论组织全书。不做题等于没读。</td><td class="diff">★★★</td></tr>
+<tr><td class="bk"><i>Introduction to Linear Algebra</i><br><span class="au">Gilbert Strang</span></td><td>从消元法与四个基本子空间讲起，直觉与应用优先，配套公开课是很多人的入门。证明少。</td><td class="diff">★★</td></tr>
+<tr><td class="bk"><i>Linear Algebra</i><br><span class="au">Kenneth Hoffman、Ray Kunze</span></td><td>老派严格：行列式、双线性形式、若尔当与有理标准形一个不落，是抽代例子库的良好来源。</td><td class="diff">★★★★</td></tr>
+</tbody>
+</table>
+<p>中文课程主线用丘维声《高等代数》或北大版（高教社）：与考研大纲对得上，但偏课程导向，读完要再过一遍 Axler 才有结构感。</p>
+<h3>2.2 抽象代数</h3>
+<table class="tbl">
+<thead><tr><th>书与作者</th><th>这本书的脾气</th><th>难度</th></tr></thead>
+<tbody>
+<tr><td class="bk">《代数》<br><span class="au">Michael Artin（<i>Algebra</i>）</span></td><td>以矩阵群与对称群做入口，把抽代讲成线代与几何的自然延伸，例题极扎实。覆盖广，须按章挑读。</td><td class="diff">★★★★★</td></tr>
+<tr><td class="bk"><i>Abstract Algebra</i><br><span class="au">David S. Dummit、Richard M. Foote；Wiley</span></td><td>参考手册式教材：群环模域、伽罗瓦全覆盖，习题海量且藏着重要反例。厚，很多人当查证工具用。</td><td class="diff">★★★★</td></tr>
+<tr><td class="bk"><i>Algebra: Chapter 0</i><br><span class="au">Paolo Aluffi；AMS</span></td><td>第二章起就上范畴语言，收益是一次性获得现代代数语言。对泛性质不熟会耗掉大量时间。</td><td class="diff">★★★★★</td></tr>
+</tbody>
+</table>
+<p>入门最友好的是 Gallian 的《抽象代数基础教程》（有动机段落，但环论域论较浅）；中文简明入门可读张禾瑞《近世代数基础》（高教社）。柯斯特利金《代数学引论》三卷（高教社中译本）走莫斯科大学路线，编排本身就是「先线代后抽代」的证明，代价是习题极多。</p>
+</div>
+
+<div class="sec">
+<h2>四、阶段 3：概率统计 <small>频率派与贝叶斯派两条入口</small></h2>
+<p>同一公式两种哲学都能解释，路线却完全不同。建议先走频率派的地基（它是测度论概率的前身），再补贝叶斯派的视角（它决定你怎么做实际推断）。入门阶段不要站队，站队会让你看不懂另一派的书。</p>
+<table class="tbl">
+<thead><tr><th>书与作者</th><th>这本书的脾气</th><th>难度</th></tr></thead>
+<tbody>
+<tr><td class="bk">《概率论基础教程》<br><span class="au">Sheldon M. Ross；人民邮电出版社与机械工业出版社均有中译本</span></td><td>入门最稳，例子与习题极多，把「一句话怎么翻译成概率模型」训练得扎实。测度论为零。</td><td class="diff">★★★</td></tr>
+<tr><td class="bk">《概率导论》<br><span class="au">Bertsekas、Tsitsiklis；人民邮电出版社中译本</span></td><td>MIT 讲稿风格：图多、例子偏工程，把条件期望当核心工具，末章拉进随机过程与统计推断。</td><td class="diff">★★★</td></tr>
+<tr><td class="bk">《概率论与数理统计》<br><span class="au">陈希孺；中国科学技术大学出版社</span></td><td>中文里最肯解释「为什么这样定义」的一本，把概率与统计打通。不厚但密度高，常需读两遍。</td><td class="diff">★★★★</td></tr>
+<tr><td class="bk"><i>Probability with Martingales</i><br><span class="au">David Williams；Cambridge University Press</span></td><td>两百多页讲完测度论概率的骨架，写得像散文。需要实分析，细节被压进习题。</td><td class="diff">★★★★★</td></tr>
+<tr><td class="bk"><i>A First Course in Bayesian Statistical Methods</i><br><span class="au">Peter D. Hoff；Springer</span></td><td>真正的贝叶斯第一本：共轭先验 → 后验推断 → MCMC，全程配 R 代码。不谈哲学争论。</td><td class="diff">★★★</td></tr>
+<tr><td class="bk"><i>Probability Theory: The Logic of Science</i><br><span class="au">E. T. Jaynes；Cambridge University Press</span></td><td>把概率当作逻辑的延伸：从 Cox 定理与最大熵推出整个理论。立场极强，是世界观书不是教材。</td><td class="diff">★★★★★</td></tr>
+<tr><td class="bk">《统计推断》<br><span class="au">George Casella、Roger L. Berger</span></td><td>标准教材：充分性与完备性、UMVUE、Rao–Blackwell、似然比检验。理论集中，需自己动手。</td><td class="diff">★★★★</td></tr>
+</tbody>
+</table>
+<p>更严格的参考是 Durrett 的 <i>Probability: Theory and Examples</i> 与 Billingsley 的 <i>Probability and Measure</i>；想学品味读 Feller 的《概率论及其应用》第一卷（记号停留在 1950 年代）；贝叶斯深入读 McElreath 的 <i>Statistical Rethinking</i> 或 Gelman 等的 <i>Bayesian Data Analysis</i>（应用圣经，非入门）；考研用茆诗松等《概率论与数理统计教程》（高教社）。</p>
+</div>
+
+<div class="sec">
+<h2>五、阶段 4：几何与拓扑 <small>从曲线的曲率到同调群</small></h2>
+<p>坡道比分析更陡，因为跳台阶需要额外语言（流形、微分形式、同调）。路线：古典微分几何（会算）→ 流形（换语言）→ 微分拓扑（会用横截性）→ 代数拓扑（会用代数不变量）。没有「会算的几何」打底，流形会退化成纯形式定义。</p>
+<table class="tbl">
+<thead><tr><th>书与作者</th><th>这本书的脾气</th><th>难度</th></tr></thead>
+<tbody>
+<tr><td class="bk"><i>Differential Geometry of Curves and Surfaces</i><br><span class="au">Manfredo P. do Carmo</span></td><td>古典微分几何的标准入口：曲率挠率、两个基本形式、测地线、Gauss–Bonnet。习题让你把每种曲面亲手摸一遍。</td><td class="diff">★★★★</td></tr>
+<tr><td class="bk"><i>Topology</i><br><span class="au">James R. Munkres（中译名《拓扑学》）</span></td><td>点集拓扑的规范标准，后半有基本群与覆盖空间。证明细到你可能读得太顺而忘了做题。</td><td class="diff">★★★★</td></tr>
+<tr><td class="bk"><i>Algebraic Topology</i><br><span class="au">Allen Hatcher；Cambridge University Press（作者主页有免费电子版）</span></td><td>现代标准：基本群 → 同调 → 上同调 → 同伦论，图极多。排版被吐槽，且默认读者会自己想。</td><td class="diff">★★★★★</td></tr>
+<tr><td class="bk">《复分析：可视化方法》<br><span class="au">Tristan Needham（<i>Visual Complex Analysis</i>）；人民邮电出版社中译本</span></td><td>把复数乘法看成旋转与伸缩、把留数与共形映射画出来。不够严格、考点不全，只读它考试会翻车。</td><td class="diff">★★★★</td></tr>
+</tbody>
+</table>
+<p>换语言那一站读 Lee 的 <i>Introduction to Smooth Manifolds</i>（定义清楚到不需要猜，但厚，按需选读）；微分拓扑另一入口是 Guillemin 与 Pollack 的 <i>Differential Topology</i>；Milnor 的 <i>Topology from the Differentiable Viewpoint</i> 六十多页讲完映射度与不动点。中文点集拓扑用熊金城《点集拓扑讲义》或尤承业《基础拓扑学讲义》；复分析的严格那一半用 Ahlfors 或 Stein 与 Shakarchi 的 <i>Complex Analysis</i>，中文课程教材用钟玉泉《复变函数论》。</p>
+<div class="note"><b>一个真实的分水岭：</b>很多人学到代数拓扑突然「不会了」，原因通常不是同调代数难，而是拓扑直觉不足——读过 Munkres，却没自己能画出环面、Klein 瓶、射影平面的基本多边形。补救只需一天：画出这些曲面的基本多边形与三角剖分，亲手算三个同调群。</div>
+</div>
+
+<div class="sec">
+<h2>六、阶段 5：数论、组合与离散数学 <small>反馈最快的一段</small></h2>
+<p>这段反馈快：许多题目只需初等工具就能上手，结论却可以很深。对刚进大学的人，这里最适合训练构造与反例；对有方向的人，这是通向代数数论、代数几何、概率组合与理论计算机科学的入口。</p>
+<table class="tbl">
+<thead><tr><th>书与作者</th><th>这本书的脾气</th><th>难度</th></tr></thead>
+<tbody>
+<tr><td class="bk">《数论导引》/《哈代数论》<br><span class="au">Hardy、Wright（<i>An Introduction to the Theory of Numbers</i>）；人民邮电出版社中译本</span></td><td>数论经典体系书：同余、二次剩余、连分数、素数分布、椭圆曲线初步。章节可跳读，但老派、习题落差大。勿与华罗庚同名著作混淆。</td><td class="diff">★★★★</td></tr>
+<tr><td class="bk">《初等数论》<br><span class="au">潘承洞、潘承彪；北京大学出版社</span></td><td>国内最常用的初等数论教材，习题量足、阶梯清楚。不谈解析与代数数论，视野止于初等。</td><td class="diff">★★★</td></tr>
+<tr><td class="bk"><i>A Classical Introduction to Modern Number Theory</i><br><span class="au">Ireland、Rosen；Springer（GTM 84）</span></td><td>从初等平滑上坡到现代：二次互反 → 理想 → 有限域与 $\zeta$ 函数 → 椭圆曲线与模形式。有些证明依赖前面习题。</td><td class="diff">★★★★</td></tr>
+<tr><td class="bk">《具体数学》<br><span class="au">Graham、Knuth、Patashnik；人民邮电出版社中译本</span></td><td>Knuth 为读《计算机程序设计艺术》做的热身：求和、递归、生成函数、离散概率、渐近。扰动法第一次几乎人人被难住。</td><td class="diff">★★★★</td></tr>
+</tbody>
+</table>
+<p>解析数论的标准入门是 Apostol 的 <i>Introduction to Analytic Number Theory</i>（需要复分析与留数）。按需再补：Stanley 的 <i>Enumerative Combinatorics</i> 第一卷把组合学从技巧升级为理论；Diestel 的 <i>Graph Theory</i>（作者提供免费电子版）现代简练，Bondy 与 Murty 的同名书更适合第一本；Rosen 的《离散数学及其应用》不值得通读，但「证明方法」一章对刚上大学的人帮助很大。</p>
+</div>
+
+<div class="sec">
+<h2>七、阶段 6：应用与计算 <small>数值分析、优化、计算数学</small></h2>
+<p>两类读者：数学专业的人想学会把定理变成程序，工程与数据方向的人想知道自己在用什么工具。前者重点是误差与稳定性，后者重点是知道算法的适用条件与失效方式。</p>
+<table class="tbl">
+<thead><tr><th>书与作者</th><th>这本书的脾气</th><th>难度</th></tr></thead>
+<tbody>
+<tr><td class="bk">《数值分析》<br><span class="au">李庆扬、王能超、易大义；清华大学出版社</span></td><td>中文标准教材，与国内课程和考研衔接最顺。现代性不足，稀疏矩阵与并行几乎不涉及。</td><td class="diff">★★★</td></tr>
+<tr><td class="bk"><i>Numerical Linear Algebra</i><br><span class="au">Trefethen、Bau；SIAM</span></td><td>数值线代的思想书：QR、条件数、奇异值、迭代法、共轭梯度，每讲短而清楚。许多话题只到入门，要自己写代码补足。</td><td class="diff">★★★★</td></tr>
+<tr><td class="bk"><i>Numerical Optimization</i><br><span class="au">Nocedal、Wright；Springer</span></td><td>优化算法标准教材：线搜索与信赖域、拟牛顿、约束优化与内点法，收敛性证明齐全。工程式条件多。</td><td class="diff">★★★★</td></tr>
+<tr><td class="bk"><i>Convex Optimization</i><br><span class="au">Boyd、Vandenberghe；Cambridge University Press（作者提供免费电子版）</span></td><td>凸优化的圣经：凸集凸函数、对偶理论、KKT 条件、内点法。对偶那章要读几遍，习题难。</td><td class="diff">★★★★</td></tr>
+</tbody>
+</table>
+<p>想做动态系统读 Strogatz 的 <i>Nonlinear Dynamics and Chaos</i>（分岔、相平面、极限环、Lorenz 方程，先看图再讲理，严格性有限），严格那一半用 Arnold 的 <i>Mathematical Methods of Classical Mechanics</i>。Golub 与 Van Loan 的 <i>Matrix Computations</i> 是矩阵计算的参考手册，只适合查阅；从数学到实际问题可用姜启源等的《数学模型》（高教社）。</p>
+</div>
+
+<div class="sec">
+<h2>八、速查表：阶段—书目—难度—配套 <small>先看这张表再决定从哪本开始</small></h2>
+<table class="tbl">
+<thead><tr><th>阶段</th><th>书目（入口为主）</th><th>难度</th><th>本库配套</th></tr></thead>
+<tbody>
+<tr><td>0 衔接</td><td>盖尔范德思维丛书；克莱因；Lang</td><td class="diff">★★–★★★</td><td><a href="../12-高等数学/01-函数极限与连续.html">函数极限与连续</a></td></tr>
+<tr><td>1 单变量</td><td>《普林斯顿微积分读本》；菲赫金哥尔茨；Spivak；卓里奇</td><td class="diff">★★–★★★★</td><td><a href="../12-高等数学/03-一元积分学.html">一元积分学</a></td></tr>
+<tr><td>1 多变量与实分析</td><td>Spivak <i>Calculus on Manifolds</i>；Tao；Abbott；Rudin；Stein–Shakarchi</td><td class="diff">★★★★–★★★★★</td><td><a href="../02-核心主题/分析.html">核心主题·分析</a></td></tr>
+<tr><td>2 线代</td><td>Axler；Strang；Hoffman–Kunze；丘维声或北大版</td><td class="diff">★★–★★★★</td><td><a href="../02-核心主题/线性代数.html">线性代数</a></td></tr>
+<tr><td>2 抽代</td><td>Artin；Dummit–Foote；Aluffi；Gallian</td><td class="diff">★★★–★★★★★</td><td><a href="../02-核心主题/代数.html">核心主题·代数</a></td></tr>
+<tr><td>3 概率</td><td>Ross；Bertsekas–Tsitsiklis；陈希孺；Williams；Durrett</td><td class="diff">★★★–★★★★★</td><td><a href="../05-可视化/中心极限定理.html">中心极限定理</a></td></tr>
+<tr><td>3 贝叶斯与统计</td><td>Hoff；Jaynes；Casella–Berger；茆诗松</td><td class="diff">★★★–★★★★★</td><td><a href="../14-自测题库/08-概率与统计.html">自测题库·概率统计</a></td></tr>
+<tr><td>4 几何与流形</td><td>do Carmo；Lee；Spivak 微分几何卷一</td><td class="diff">★★★★–★★★★★</td><td><a href="../02-核心主题/几何.html">核心主题·几何</a></td></tr>
+<tr><td>4 拓扑与复分析</td><td>Munkres；Hatcher；Guillemin–Pollack；Milnor；Needham；Ahlfors</td><td class="diff">★★★★–★★★★★</td><td><a href="../02-核心主题/拓扑学.html">拓扑学</a></td></tr>
+<tr><td>5 数论</td><td>Hardy–Wright；潘承洞；Ireland–Rosen；Apostol</td><td class="diff">★★★–★★★★</td><td><a href="../02-核心主题/数论.html">核心主题·数论</a></td></tr>
+<tr><td>5 组合与离散</td><td>《具体数学》；Stanley；Diestel 或 Bondy–Murty</td><td class="diff">★★★★–★★★★★</td><td><a href="../02-核心主题/组合与图论.html">组合与图论</a></td></tr>
+<tr><td>6 数值与优化</td><td>李庆扬；Trefethen–Bau；Nocedal–Wright；Boyd</td><td class="diff">★★★–★★★★</td><td><a href="../05-可视化/梯度下降可视化.html">梯度下降可视化</a></td></tr>
+<tr><td>6 应用</td><td>Strogatz；Arnold；姜启源《数学模型》</td><td class="diff">★★–★★★★★</td><td><a href="../05-可视化/相空间摆.html">相空间摆</a></td></tr>
+</tbody>
+</table>
+<div class="note"><b>用法：</b>先找你现在愿意投入的阶段，再挑一本难度不超过当前做题能力的书。★★★★ 及以上是第二遍或选读层次，不是第一遍的入口。</div>
+</div>
+
+<div class="sec">
+<h2>九、做题与习题资源怎么挑 <small>三类题的用途完全不同</small></h2>
+<p><b>教材习题</b>用来看你是否真懂定义与定理，补估计、构造、反例这些技术细节：概念题必做、技术题选做。<b>方法书与题典</b>（裴礼文《数学分析中的典型问题与方法》、吉米多维奇《数学分析习题集》、谢惠民等《数学分析习题课讲义》）用来把同一技巧训练成条件反射，但不要把题典当教材从头刷——吉米多维奇数千题，从第一题刷起会吃掉整年。<b>高观点习题</b>（Pólya 与 Szegő 的 <i>Problems and Theorems in Analysis</i>、Lovász 的 <i>Combinatorial Problems and Exercises</i>）训练从零构造思路，基础不牢时硬上只会读答案读懂。<b>竞赛真题</b>（Zeitz 的 <i>The Art and Craft of Problem Solving</i>、Engel 的 <i>Problem-Solving Strategies</i>、Larson 的 <i>Problem-Solving Through Problems</i>、Gelca 与 Andreescu 的 <i>Putnam and Beyond</i>）练的是没有路径时的探索力，价值在思路而不在题型覆盖。<b>考研真题</b>练速度、规范与得分策略，基础未过就刷只是重复确认自己不会，本库 <a href="../13-应试训练/05-真题模拟卷.html">真题模拟卷</a> 与 <a href="../15-应试实战/index.html">应试实战</a> 备有全套；<b>自测题</b>用于定位薄弱环节，见 <a href="../14-自测题库/index.html">自测题库</a>。</p>
+<p>做法：概念题不限时，技术题限时以逼出自动化解法；卡住时先写下三行思路再看提示，哪怕全错，这三行是以后复习最有价值的记录；把「不会做」分类成读不懂题目（语言问题）、知道定理但用不对（理解问题）、没有入手方向（经验问题），第一类查定义，第二类回头补条件与反例，第三类去找同类题看人家的第一步。</p>
+</div>
+
+<div class="sec">
+<h2>十、读数学书的方法 <small>主动阅读、三遍法、错题本、用计算机验证</small></h2>
+<p><b>主动阅读。</b>定理先自己试：读完陈述合上书，想五分钟「如果我是作者怎么写这个证明」，哪怕只想出第一步，之后效率也会翻倍。定义必须能自己复述，复述时问三件事：条件有哪些、每个条件在哪里被用到、去掉哪个会出反例。每章结束写五句话（解决了什么、用了什么方法、留下什么问题），读数学时永远不要放下笔。</p>
+<p><b>三遍法。</b>第一遍读结构（每章一两小时）：只读目录、小标题、定理陈述与总结，跳过证明，回答「这一章在解决什么问题」，这一遍能过滤掉不值得投入的书。第二遍精读并复现（主要时间在这里）：逐行读证明、把理由写在旁边、定理自己重证、做题。第三遍重建主线：合上书用一页纸写出这本书的逻辑链条，写不出主线说明你记住的是碎片。</p>
+<p><b>笔记与错题本。</b>比摘要式笔记更有用的是四张清单：定义清单、定理清单（陈述、关键条件、用在哪）、反例清单（去掉条件后坏成什么样）、待解决问题清单；反例清单最重要，数学能力的分水岭常在于你能立刻举出多少反例。错题本不抄正确答案，要写「我当时以为……实际是……属于哪一类错」：概念错、技术错、思路缺。每周只做错题，三周后仍错的才是真正薄弱点。</p>
+<p><b>用计算机验证。</b>计算机有三个正当用途：验证猜想、检查代数、制造反例；不该代替证明。用 SymPy 一类工具核对导数、积分、级数展开与矩阵特征值；对「极限与积分能否交换」这类问题先做数值实验，数值上就崩说明证明一定有漏洞；用 Desmos 一类工具把「一致连续」这类概念变成画面，本库 <a href="../05-可视化/可视化导航.html">可视化导航</a> 正为此准备。但不要用它「看懂证明」：它给的是例子，证明要求对全部情形成立。</p>
+<p><b>节奏。</b>每周固定五次、每次 90 分钟，比周末连续读 8 小时有效——数学需要「带着问题过夜」的次数。给每本书定周计划，同时开的主教材永远只有一本。</p>
+</div>
+
+<div class="sec">
+<h2>十一、常见误区与读不下去时怎么办 <small>把挫折分类，而不是归因于天赋</small></h2>
+<p><b>八个误区：</b>①只读不做题，这是最普遍的失败模式；②书单症，不断收藏书单、比较版本，实际每天读不到二十分钟，选书时间应少于读书时间的百分之一；③过早啃最严格的书，把 Rudin 当第一本分析，从第 3 章读不动，还把「分析很难」刻进自我认知；④一本没读完就换，换书必须有写下来的具体理由；⑤把「看懂证明」当成「会证」，看懂是识别、会证是生成；⑥用视频代替书，视频不给你卡住的机会；⑦永远在打基础，基础是在使用中变牢的；⑧要求每个概念先有直觉才继续，直觉大多是读出来、算出来的。</p>
+<p><b>先给卡点分类。</b>记法不熟：把符号逐个抄下标注含义，找另一本书对比记法，暂不推进。前置概念缺失（反复看到「由……可得」却不知哪来的）：回退一档——Rudin 卡住回 Abbott 或 Tao，Hatcher 卡住回 Munkres 后半，这是正确操作。证明技术缺失：集中补两周反证与构造、对角线法、$\varepsilon$-$\delta$ 与 $\varepsilon/3$ 技巧、紧致性论证，可读 Solow 的 <i>How to Read and Do Proofs</i>、Velleman 的 <i>How to Prove It</i>、Hammack 的 <i>Book of Proof</i>。动机不明：换一本讲动机的书读同一章（Pugh、Arnold 都是动机型作者）。精力问题：把「读」改成「做」。书不适合你：允许弃书，换同主题另一风格的书。</p>
+<p><b>两条止损规则：</b>八小时规则——新书投入八小时（不是八天）后完全没进入状态就换；两周规则——读到 60% 后停滞超过两周，改用目录驱动读法，只读结论与小标题、做少量标志性习题，降级为参考书并另选一本继续主线。真想放弃时：把「卡在哪一句话」写到纸上（页码、行、原句），模糊的挫败无法解决而具体的卡点几乎都能解决；用十分钟对着假想听众讲这一节，讲不通的地方就是卡点；允许「跳过并标记」，标记后继续读两节，疑问常在后面的框架里自动消失。</p>
+</div>
+
+<div class="sec">
+<h2>十二、附录：按目标倒推的三条路线 <small>做研究 / 考研 / 把工程数学用明白</small></h2>
+<p><b>路线 A，想做数学研究。</b>阶段 0（3–6 个月）盖尔范德丛书补运算自动性；阶段 1（12–18 个月）Tao 或 Abbott → Rudin，直观派辅助 Spivak 或菲赫金哥尔茨，指标是能独立写出 $\varepsilon$-$\delta$ 证明与一致收敛的反例；阶段 2（12 个月，可并行）Axler 或 Hoffman–Kunze → Artin，指标是能说明为什么可逆矩阵构成群、能自己证同态基本定理；阶段 3（6–12 个月）Ross 或 Bertsekas → Williams 或 Durrett；阶段 4（12 个月）Munkres → do Carmo → Lee → Hatcher 前两章，指标是手算环面、Klein 瓶、射影平面的同调群；阶段 5–6 按方向（数论走 Ireland–Rosen → Apostol → Silverman，代数几何走交换代数 → Hartshorne，分析走 Stein 三部曲，应用走 Trefethen 与 Boyd），指标是能读懂本方向入门综述的引言与主要定理陈述。总时长通常 4–6 年，已有本科基础可压到 2–3 年。</p>
+<p><b>路线 B，想考研或应试。</b>主教材只要四本：高等数学（<a href="../12-高等数学/00-同济版精读.html">同济版精读</a> 或陈纪修《数学分析》）、线性代数（北大版《高等代数》或课程教材，配 <a href="../14-自测题库/07-线性代数.html">自测题库</a>）、概率统计（茆诗松或陈希孺），加一本习题书（裴礼文或吉米多维奇选做）。基础 3–4 个月一章教材一章习题；强化 2–3 个月专题加题典（<a href="../13-应试训练/02-考研数学-高等数学强化.html">高等数学强化</a>）；冲刺 1–2 个月真题限时。指标是近十年真题在 180 分钟内稳定达到目标分数。备考期间不要读 Rudin、Artin 或《具体数学》。竞赛路线（<a href="../13-应试训练/01-CMC全国大学生数学竞赛.html">CMC</a>）另加 Zeitz 或 Engel，练法与考研完全不同。</p>
+<p><b>路线 C，只想把工程数学用明白。</b>微积分 3 个月（《普林斯顿微积分读本》或标准教材，会算会看图会建模，不求严格）；线性代数 3 个月（Strang，把矩阵、秩、特征值、最小二乘与 SVD 变成可用工具）；概率统计 3 个月（Ross 或 Bertsekas → 补一本应用统计，涉及推断决策再读 Hoff 或 McElreath）；数值与优化 3–6 个月（李庆扬打基础 → Trefethen–Bau → 做机器学习或运筹读 Boyd）。选读 Strogatz 用于动态系统，Arnold 用于几何直觉。指标：面对实际问题能写出数学形式、选一个算法、给出误差或置信度的说法，并用数值实验验证结论对你手上的数据成立。</p>
+<div class="note"><b>三句话总结：</b>①书的难度是相对位置而不是绝对等级，同一本书放第一遍读会摧毁信心、放第二遍读会打通关节；②每本书的脾气比它的评分重要，本页不写推荐语，只写它假设你会什么、会在哪里伤到你；③唯一稳定的进步方式是一本、一题、一天。</div>
+</div>
+
+<div class="sec">
+<h2>十三、延伸阅读与相关页面 <small>本库内的配套入口</small></h2>
+<ul>
+<li><a href="数学书单与资源.html">数学书单与资源</a>、<a href="../01-学习路线/数学学习路线图.html">数学学习路线图</a>。</li>
+<li>分支要点：<a href="../02-核心主题/分析.html">分析</a>、<a href="../02-核心主题/代数.html">代数</a>、<a href="../02-核心主题/几何.html">几何</a>、<a href="../02-核心主题/拓扑学.html">拓扑学</a>、<a href="../02-核心主题/复分析.html">复分析</a>、<a href="../02-核心主题/概率与统计.html">概率与统计</a>、<a href="../02-核心主题/数论.html">数论</a>、<a href="../02-核心主题/组合与图论.html">组合与图论</a>、<a href="../02-核心主题/线性代数.html">线性代数</a>、<a href="../02-核心主题/微分方程.html">微分方程</a>——检查是否漏了核心结论。</li>
+<li>其他：<a href="../03-经典难题/经典难题与猜想.html">经典难题与猜想</a>、<a href="../04-美丽证明/美丽证明集锦.html">美丽证明集锦</a>、<a href="../07-趣味数学/谜题与悖论.html">谜题与悖论</a>、<a href="../08-数学史/数学史时间线.html">数学史时间线</a>、<a href="../09-前沿动态/数学前沿.html">数学前沿</a>、<a href="../10-数学手册/公式速查.html">公式速查</a>、<a href="../12-高等数学/07-速查与题库.html">高等数学速查与题库</a>、<a href="../13-应试训练/00-应试总览.html">应试总览</a>。</li>
+</ul>
+</div>
+
+<footer>
+<a href="../00-总览/index.html">← 总览</a>
+<a href="数学书单与资源.html">数学书单与资源 →</a>
+<a href="../01-学习路线/数学学习路线图.html">配套学习路线 →</a>
+</footer>
+</div>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5B66\u516C\u5F0F\u79BB\u7EBF\u7EC4\u4EF6\u672A\u52A0\u8F7D');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516C\u5F0F\u672A\u80FD\u6E32\u67D3\uff1a\u8BF7\u68C0\u67E5 assets/mathjax \u7EC4\u4EF6\u662F\u5426\u5B8C\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

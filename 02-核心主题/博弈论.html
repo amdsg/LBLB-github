@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>博弈论讲义 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='28' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%89%A0%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --magenta:#B0396E; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--magenta); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:40px; margin:12px 0 6px;}
+h1 .sym{color:var(--magenta); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:740px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--magenta); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--magenta); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; margin-top:26px;}
+.ch p{font-size:15px; margin-top:10px; max-width:820px;}
+.f{font-family:Georgia,"Cambria Math",serif; font-style:italic; background:var(--paper2); border-radius:6px; padding:1px 8px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--magenta);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--magenta); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.demo{background:var(--paper2); border:1px solid var(--line); border-radius:16px; padding:20px; margin-top:16px;}
+.demo .btn{display:inline-block; background:var(--magenta); color:#fff; border:none; border-radius:8px; padding:8px 18px; font-size:14px; cursor:pointer; margin:0 8px 12px 0; min-height:44px;}
+.demo .btn.gray{background:#8A8270;}
+.demo p.hint{font-size:13px; color:var(--ink2);}
+.demo table{margin-top:10px; border-collapse:collapse; background:#fffdf6; font-size:14px; width:100%; table-layout:fixed;}
+.demo th,.demo td{border:1px solid var(--line); padding:8px 10px; text-align:center;}
+.demo th{background:var(--paper2);}
+.demo input{width:70px; padding:5px; border:1px solid var(--line); border-radius:6px; text-align:center; font-size:14px;}
+.solve-out{margin-top:12px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 16px; font-size:14.5px; min-height:60px;}
+.papers{display:grid; gap:10px; margin-top:12px;}
+.papers .p{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px;}
+.papers .p a{color:var(--magenta); text-decoration:none; font-weight:600; font-size:14.5px;}
+.papers .p a:hover{text-decoration:underline;}
+.papers .m{font-size:12.5px; color:var(--ink2); margin-top:3px;}
+.papers .empty{background:var(--paper2); border:1px dashed var(--line); border-radius:10px; padding:14px 16px; font-size:13.5px; color:var(--ink2);}
+.gloss{margin-top:14px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:14px;}
+.gloss dt{font-weight:700; margin-top:8px;}
+.gloss dt:first-child{margin-top:0;}
+.gloss dd{margin-left:18px; color:var(--ink2); font-size:13.5px;}
+.online{margin-top:16px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; font-size:14px;}
+.online a{color:var(--magenta); text-decoration:none;}
+.online a:hover{text-decoration:underline;}
+.online ul{margin:8px 0 0 20px;}
+.online li{margin-top:6px;}
+.online .hint{font-size:12.5px; color:var(--ink2); margin-top:8px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--magenta); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>博弈论讲义 <span class="sym">≠</span></h1>
+  <p class="sub">理性相遇的地方：占优策略、纳什均衡、混合策略、重复博弈与机制设计——从囚徒困境到拍卖，完整讲义含定义、定理、证明与可交互求解器。</p>
+  <p class="quote">「博弈论是理解『策略性互动』的数学——别人也在思考你在思考什么。」</p>
+</header>
+
+<div class="toc">
+  <b>本讲目录</b>
+  <ol>
+    <li><a href="#c1">博弈的基本要素</a></li>
+    <li><a href="#c2">占优策略与囚徒困境</a></li>
+    <li><a href="#c3">纳什均衡</a></li>
+    <li><a href="#c4">混合策略均衡</a></li>
+    <li><a href="#c5">重复博弈与合作</a></li>
+    <li><a href="#c6">序贯博弈与子博弈完美均衡</a></li>
+    <li><a href="#c7">拍卖与机制设计</a></li>
+    <li><a href="#c8">动手实验：2×2 求解器</a></li>
+        <li><a href="#c9a">深度：纳什均衡存在性</a></li>
+    <li><a href="#c9b">深度：零和博弈与最小最大定理</a></li>
+        <li><a href="#c9a">深度：纳什均衡的存在性</a></li>
+    <li><a href="#c9b">深度：机制设计与 VCG 拍卖</a></li>
+        <li><a href="#c9f">深度：重复博弈与子博弈完美</a></li>
+    <li><a href="#c9g">深度：合作博弈与 Shapley 值</a></li>
+<li><a href="#c9c">深度：演化博弈与复制动态</a></li>
+    <li><a href="#c9">练习与自测</a></li>
+    <li><a href="#c10">术语表、在线资源与最新研究</a></li>
+  </ol>
+</div>
+
+<!-- ================= 第 1 章 ================= -->
+<div class="ch" id="c1">
+  <h2>1. 博弈的基本要素 <small>策略、收益与理性</small></h2>
+  <div class="def"><b>定义（标准式博弈）：</b>玩家集合 {1,…,n}，每人有策略集 Sᵢ，收益函数 uᵢ(s₁,…,sₙ)。「理性」= 最大化自己的收益（并知道别人也如此）。</div>
+  <div class="thm"><b>定理（博弈的分类）：</b>零和 / 非零和（总收益固定/可变）；完全信息 / 不完全信息（是否知道别人收益）；同时行动 / 序贯行动。<div class="proof"><b>例：</b>石头剪刀布是零和同时行动；国际象棋是完全信息序贯；扑克是不完全信息。</div></div>
+  <div class="ex"><b>例：</b>「猎鹿博弈」：两人可合作猎鹿（每人 5）或单独猎兔（每人 1），合作收益高但需信任——这是非零和博弈的经典开场。</div>
+</div>
+
+<!-- ================= 第 2 章 ================= -->
+<div class="ch" id="c2">
+  <h2>2. 占优策略与囚徒困境 <small>「理性」可能带来集体灾难</small></h2>
+  <div class="def"><b>定义（严格占优）：</b>sᵢ 严格占优于 tᵢ，若无论别人怎么选，sᵢ 的收益都更高。理性玩家剔除严格劣策略。</div>
+  <div class="thm"><b>定理（囚徒困境）：</b>坦白是每个人的严格占优策略，但 (坦白, 坦白) 的收益严格劣于 (沉默, 沉默)。<div class="proof"><b>支付矩阵：</b>双方各选「沉默/坦白」：都沉默各 −1；一人坦白一人沉默 → 坦白者 0、沉默者 −10；都坦白各 −8。占优 → 都坦白（−8），但合作最优（−1）——个体理性与集体理性冲突。</div></div>
+  <div class="thm"><b>定理（公共品与搭便车）：</b>公共品博弈：人人贡献最优，但搭便车是占优策略——「公地悲剧」的博弈论模型。<div class="proof"><b>出路：</b>制度（税收、监督、声誉）改变收益结构，把合作变成占优。</div></div>
+  <div class="ex"><b>例：</b>两寡头广告战：广告相互抵消但被迫跟投——广告预算的囚徒困境。</div>
+</div>
+
+<!-- ================= 第 3 章 ================= -->
+<div class="ch" id="c3">
+  <h2>3. 纳什均衡 <small>没有单方改动的动机</small></h2>
+  <div class="def"><b>定义（纳什均衡）：</b>策略组合 (s₁*,…,sₙ*) 是纳什均衡，若无人能单方面改策略而提高自己的收益：uᵢ(sᵢ*, s₋ᵢ*) ≥ uᵢ(sᵢ, s₋ᵢ*) 对一切 sᵢ。<div class="proof"><b>直觉：</b>每个玩家都在「给定别人策略」下最优——没人后悔。</div></div>
+  <div class="thm"><b>定理（纳什定理）：</b>任何有限博弈（允许混合策略）至少存在一个纳什均衡。<div class="proof"><b>证明要点：</b>纳什 1950 年用角谷不动点定理（对应点集的不动点）——这是博弈论与拓扑学的第一次联姻，1994 年诺奖。注意均衡的存在 ≠ 均衡的可计算性（PPAD 完全）。</div></div>
+  <div class="thm"><b>定理（帕累托效率）：</b>纳什均衡未必帕累托最优——囚徒困境 (坦白, 坦白) 是均衡但不效率；「帕累托改进」是无人受损的改进。</div>
+  <div class="ex"><b>例：</b>猜数博弈：1–100 写数字，最接近「平均数 2/3」者胜。唯一纳什均衡是都写 1——但现实中人们写 20~40（级数推理深度有限）。</div>
+</div>
+
+<!-- ================= 第 4 章 ================= -->
+<div class="ch" id="c4">
+  <h2>4. 混合策略均衡 <small>随机化有时是唯一的理性选择</small></h2>
+  <div class="def"><b>定义（混合策略）：</b>玩家按概率分布在纯策略上随机化。混合均衡：每个玩家的混合分布使对方在支撑集上无差异。</div>
+  <div class="thm"><b>定理（零和博弈的 minimax）：</b>二人零和博弈中 max min = min max（冯·诺依曼 minimax 定理）。<div class="proof"><b>证明要点：</b>线性规划对偶定理的博弈论表述。石头剪刀布：双方都 1/3 均匀——任何偏离都降低胜率。</div></div>
+  <div class="thm"><b>定理（混合均衡的计算）：</b>2×2 博弈中，若行玩家以 p 概率选上，列玩家无差异条件：p·u₁(上,左) + (1−p)u₁(下,左) = p·u₁(上,右) + (1−p)u₁(下,右)。<div class="proof"><b>例：</b>网球发球：发内/发外的混合比例使接球者无法预判——体育中的 minimax。</div></div>
+  <div class="ex"><b>例：</b>「懦夫博弈」两车对开：转向(胆小鬼) vs 直行(勇者)。混合均衡：若直行收益 10/转向 0、相撞 −100，则直行概率 p 满足对方无差异：10p + 0(1−p) = −100p + 0(1−p)？不——正确做法：令对方转向收益期望相等。</div>
+</div>
+
+<!-- ================= 第 5 章 ================= -->
+<div class="ch" id="c5">
+  <h2>5. 重复博弈与合作 <small>名声让合作成为理性</small></h2>
+  <div class="thm"><b>定理（民间定理）：</b>无限重复博弈中，任何「可行且个体理性」的收益都能由某个均衡支持（当贴现因子足够接近 1）。<div class="proof"><b>证明要点：</b>「冷酷触发」策略：合作直到对方背叛，此后永远惩罚——背叛的短期收益 &lt; 合作的长期收益时，合作是子博弈完美均衡。</div></div>
+  <div class="thm"><b>定理（以牙还牙）：</b>Axelrod 锦标赛（1980）胜者是 Tit-for-Tat：先合作，然后复制对方上一步。<div class="proof"><b>性质：</b>善良（先合作）、可激怒（报复背叛）、宽容（背叛后回归合作）、清晰（易被理解）——合作涌现的条件。</div></div>
+  <div class="ex"><b>例：</b>商业合作、卡特尔价格同盟（为何崩盘——有限次博弈的逆推：最后一次必背叛，倒数第二次也……除非无限期或不确定终点）。</div>
+</div>
+
+<!-- ================= 第 6 章 ================= -->
+<div class="ch" id="c6">
+  <h2>6. 序贯博弈与子博弈完美均衡 <small>先行者优势与可信承诺</small></h2>
+  <div class="def"><b>定义（扩展式博弈）：</b>博弈树 + 信息集。子博弈完美均衡 = 在每个子博弈都构成纳什均衡的策略组合。</div>
+  <div class="thm"><b>定理（逆向归纳法）：</b>有限完美信息博弈的子博弈完美均衡由「从末节点倒推」得到（泽尔腾）。<div class="proof"><b>例：</b>「抢蛋糕」：一方提出分配，另一方接受或拒绝（拒绝则双零）。理性提议者给 1 分钱、留 99 分——因为接受者拒绝会得 0。</div></div>
+  <div class="thm"><b>定理（可信威胁）：</b>「如果……我就报复」的威胁必须在子博弈中对自己也最优才可信。<div class="proof"><b>例：</b>进入者威胁进入，在位者威胁降价——降价对自己不利（两败俱伤）则威胁不可信，进入者应该进入。声誉与沉没成本可以「制造」可信性。</div></div>
+  <div class="ex"><b>例：</b>下棋的「后手优势」/「先手优势」取决于具体博弈；序贯纳什博弈（硬币先手必胜，数字游戏后手必胜）。</div>
+</div>
+
+<!-- ================= 第 7 章 ================= -->
+<div class="ch" id="c7">
+  <h2>7. 拍卖与机制设计 <b style="font-weight:400;color:var(--ink2);font-size:14px;">反向博弈论：设计规则</b></h2>
+  <div class="thm"><b>定理（收益等价定理）：</b>标准对称拍卖（英式、荷式、一价密封、二价密封）在对称均衡下卖主期望收益相同。<div class="proof"><b>证明要点：</b>均衡出价策略由「胜者支付预期 = 次高价值条件期望」决定，与格式无关。</div></div>
+  <div class="thm"><b>定理（维克瑞拍卖）：</b>二价密封拍卖（出价最高者付次高价）激励「如实出价」——真实报价是弱占优策略。<div class="proof"><b>证明要点：</b>报 b 高于真实值 v 只可能在「赢了但支付 &gt; v」时更糟；报低了只会在「本可赢但输了」时更糟。如实报永远不差。</div></div>
+  <div class="thm"><b>定理（VCG 机制）：</b>机制设计的一般框架：按「社会价值最大」分配 + 按「外部性」收费，可实现真实报价与效率。<div class="proof"><b>应用：</b>广告竞价（Google AdWords 就是广义二价拍卖）、频谱拍卖、众包任务分配——反向工程博弈，让「说真话」成为最优。</div></div>
+  <div class="ex"><b>例：</b>柠檬市场（信息不对称）：二手车买家只愿付平均价 → 好车退出 → 市场萎缩——机制设计（质保、认证）修复市场。</div>
+</div>
+
+<!-- ================= 第 8 章 ================= -->
+<div class="ch" id="c8">
+  <h2>8. 动手实验：2×2 均衡求解器 <small>输入收益矩阵，看均衡</small></h2>
+  <div class="demo">
+    <p class="hint">行玩家（红）选上/下，列玩家（蓝）选左/右。每个格子填 (行收益, 列收益)。点「求解」得到纯策略与混合策略均衡。</p>
+    <table>
+      <tr><th></th><th>左</th><th>右</th></tr>
+      <tr><th>上</th><td><input id="a11" value="3,3"></td><td><input id="a12" value="0,5"></td></tr>
+      <tr><th>下</th><td><input id="a21" value="5,0"></td><td><input id="a22" value="1,1"></td></tr>
+    </table>
+    <button class="btn" id="solveBtn">求解</button>
+    <button class="btn gray" id="resetBtn">囚徒困境</button>
+    <button class="btn gray" id="resetBtn2">性别之争</button>
+    <div class="solve-out" id="solveOut">点击「求解」查看结果。</div>
+  </div>
+</div>
+
+<!-- ================= 第 9 章 ================= -->
+
+<!-- ================= 深度小节：纳什均衡存在性 ================= -->
+<div class="ch" id="c9a">
+  <h2>9a. 深度：纳什均衡的存在性 <small>为什么混合策略纳什均衡必然存在</small></h2>
+  <p>第 3 节给出了纳什均衡的定义，但「是否一定存在」并不是显然的：石头剪刀布没有纯策略均衡，却有混合策略均衡。纳什 1950 年的博士论文证明了：<b>任何有限博弈都至少存在一个混合策略纳什均衡</b>。</p>
+
+  <div class="def"><b>定义（混合策略）</b> 玩家 $i$ 的一个混合策略是其纯策略集合上的概率分布 $p_i \in \Delta(S_i)$。期望收益 $u_i(p_1,\dots,p_n)$ 是 $p$ 的多线性函数（对每个 $p_i$ 线性）。</div>
+
+  <div class="thm"><b>定理（Nash 1950）</b> 任何 $n$ 人有限博弈 $\Gamma = \langle I,\{S_i\},\{u_i\}\rangle$ 都存在混合策略纳什均衡，即存在 $p^* \in \prod_i \Delta(S_i)$ 使得对每个 $i$ 与每个纯策略 $s_i$：
+  $$u_i(p^*_{-i}, s_i) \le u_i(p^*_{-i}, p_i^*).$$
+  </div>
+
+  <div class="proof"><b>证明思路（Kakutani 不动点）：</b>
+  对每个玩家 $i$ 定义「最优反应对应」$B_i(p_{-i}) = \arg\max_{p_i} u_i(p_i, p_{-i})$。由于 $u_i$ 多线性且 $\Delta(S_i)$ 是紧凸多面体，$B_i(p_{-i})$ 是非空紧凸集，且 $B = \prod_i B_i$ 是上半连续的集值映射。Kakutani 不动点定理（紧凸集到自身的上半连续、非空凸值对应必有不动点）给出 $p^* \in B(p^*)$。在这个点上，没有玩家能通过单方改变混合策略提高收益——正是纳什均衡。
+  </div>
+
+  <div class="ex"><b>例：</b>验证「性别之争」的混合均衡。行玩家以概率 $p$ 选球赛、$1-p$ 选歌剧；列玩家以 $q$ 选球赛、$1-q$ 选歌剧。行玩家在两纯策略间无差异要求：
+  $$2q + 0\cdot(1-q) = 0\cdot q + 1\cdot(1-q) \Rightarrow 2q = 1-q \Rightarrow q = 1/3.$$
+  对称地 $p = 2/3$。代入得双方期望收益 $2\cdot(1/3)\cdot(2/3) + 1\cdot(2/3)\cdot(1/3) = 2/3$。</div>
+</div>
+
+<!-- ================= 深度小节：零和博弈与最小最大定理 ================= -->
+<div class="ch" id="c9b">
+  <h2>9b. 深度：零和博弈与最小最大定理 <small>冯·诺依曼 1928：博弈论的起点</small></h2>
+
+  <div class="def"><b>定义（零和博弈）</b> 两人博弈中 $u_1 + u_2 \equiv 0$，即一方之得即另一方之失。可用一个收益矩阵 $A = (a_{ij})$（行玩家收益）表示：列玩家收益为 $-A$。</div>
+
+  <div class="thm"><b>定理（Minimax Theorem, von Neumann 1928）</b> 对任意 $m\times n$ 矩阵 $A$，存在混合策略 $x^* \in \Delta_m$、$y^* \in \Delta_n$ 与数值 $v$（博弈值）使得
+  $$\max_{x}\min_{y} x^{\top} A y \;=\; \min_{y}\max_{x} x^{\top} A y \;=\; v \;=\; (x^*)^{\top} A y^*.$$
+  即行玩家能保证至少 $v$，列玩家能保证至多 $v$。</div>
+
+  <div class="proof"><b>证明思路（线性规划对偶）：</b>
+  行玩家的问题 $\max_{x} \min_j \sum_i x_i a_{ij}$ 等价于 LP：
+  $$\max v \quad \text{s.t.}\quad \sum_i x_i a_{ij} \ge v\;(\forall j),\; \sum_i x_i = 1,\; x_i \ge 0.$$
+  列玩家的对偶问题恰为 $\min v$ s.t. $\sum_j y_j a_{ij} \le v\;(\forall i),\; \sum_j y_j = 1,\; y_j \ge 0$。强对偶定理给出两个最优值相等，且存在最优解 $(x^*, y^*)$。</div>
+
+  <div class="ex"><b>例：</b>猜硬币矩阵 $A = \begin{pmatrix} 1 & -1 \ -1 & 1 \end{pmatrix}$（配对行玩家赢 1，猜错输 1）。由对称性猜测 $x^* = (1/2,1/2)$。验证：对任意 $y=(q,1-q)$，
+  $$x^{\top} A y = \tfrac12(q-(1-q)) + \tfrac12(-q+(1-q)) = 0.$$
+  故 $v = 0$。行玩家无论怎么猜都不亏不赚；这正是「混合策略消除了可预测性」。</div>
+</div>
+
+
+<!-- ================= 深度小节：9a. 深度：纳什均衡的存在性 ================= -->
+<div class="ch" id="c9d">
+  <h2>9a. 深度：纳什均衡的存在性 <small>用不动点定理证明「总有人不傻」</small></h2>
+  <div class="def"><b>定义（纳什均衡）</b> $n$ 人博弈中，策略组合 $s^*=(s_1^*,\dots,s_n^*)$ 是纳什均衡，若每个玩家 $i$ 在他人策略固定时不能单方面改进：$u_i(s_i^*,s_{-i}^*)\ge u_i(s_i,s_{-i}^*)$ 对所有 $s_i$。</div>
+  <div class="thm"><b>定理（Nash 1950）</b> 有限博弈（有限玩家、有限纯策略）至少存在一个纳什均衡（可能是混合策略）。<div class="proof"><b>证明（Kakutani 不动点）：</b>构造最佳响应多值映射 $r(s)=(\arg\max u_1(\cdot,s_{-1}),\dots)$，由凸性（混合策略单纯形）+ Kakutani 不动点定理得不动点 $s^*=r(s^*)$——此即纳什均衡。</div></div>
+  <div class="ex"><b>例：</b>性别博弈：男喜欢足球，女喜欢歌剧，但宁愿在一起。纯策略纳什（足球,足球）与（歌剧,歌剧），混合策略纳什各以 $1/3$ 概率选自己偏好。期望收益 $2/3$，低于协调纯策略的 $2$ 或 $1$——混合均衡「最差但稳定」。</div>
+</div>
+
+
+<!-- ================= 深度小节：9b. 深度：机制设计与 VCG 拍卖 ================= -->
+<div class="ch" id="c9e">
+  <h2>9b. 深度：机制设计与 VCG 拍卖 <small>设计规则让每个人说真话</small></h2>
+  <div class="def"><b>定义（激励相容）</b> 机制 $(f,p)$（分配 $f$ + 支付 $p$）激励相容，若每个玩家如实报告估值 $v_i$ 是占优策略：$u_i(v_i,\text{真})\ge u_i(v_i,\text{谎报})$。</div>
+  <div class="thm"><b>定理（Vickrey–Clarke–Groves）</b> VCG 机制：分配 $f(v)=\arg\max\sum_i v_i(\text{分配})$，支付 $p_i=\sum_{j\ne i}v_j(f_{-i}^*)-\sum_{j\ne i}v_j(f(v))$（$f_{-i}^*$ 是去掉 $i$ 的最优）。VCG 激励相容且配置效率最大。<div class="proof"><b>直觉：</b>支付等于「自己对其他人造成的损失」——这正是社会边际成本。每人最优化自己的支付等价于最优化社会福利——讲真话是占优策略。</div></div>
+  <div class="ex"><b>例（Vickrey 二价拍卖）</b> 单物品拍卖，最高价者得，付第二高价。这就是 VCG 的特例：如实报价是占优策略，占优者获得物品，社会福利最大。</div>
+</div>
+
+
+<!-- ================= 深度小节：9c. 深度：演化博弈与复制动态 ================= -->
+<div class="ch" id="c9c">
+  <h2>9c. 深度：演化博弈与复制动态 <small>把策略变成「种群比例」</small></h2>
+  <div class="def"><b>定义（复制动态）</b> 策略 $i$ 的比例 $x_i$ 满足 $\dot x_i=x_i[(Ax)_i-x\cdot Ax]$，$A$ 为收益矩阵。直觉：表现好的策略比例增长（适应度 = 收益 - 平均）。</div>
+  <div class="thm"><b>定理（演化稳定策略 ESS）</b> $s^*$ 是 ESS，若小入侵 $\epsilon$ 比例的 $s'$ 后，$s^*$ 适应度 $>$ $s'$：$u(s^*,(1-\epsilon)s^*+\epsilon s')>u(s',(1-\epsilon)s^*+\epsilon s')$。<div class="proof"><b>例（鹰鸽）</b> 收益矩阵 $\begin{pmatrix}1/2&1\\0&1/2\end{pmatrix}$（鹰遇鸽胜、遇鹰半损、鸽遇鸽半分）。ESS 是 $\epsilon$-混合：鹰占 $1/2$——这是「生物界的保守性」与「非理性博弈」的桥梁。</div></div>
+</div>
+
+
+<!-- ================= 第二轮深度小节：9f. 深度：重复博弈与子博弈完美均衡 ================= -->
+<div class="ch" id="c9f">
+  <h2>9f. 深度：重复博弈与子博弈完美均衡 <small>合作如何在自利中涌现</small></h2>
+  <div class="def"><b>定义（重复博弈）</b> 阶段博弈 $G$ 重复 $T$ 次（$T$ 有限或无限），贴现因子 $\delta\in[0,1)$。策略是从历史到阶段行动的映射。子博弈完美均衡（SPE）在每个子博弈（每个历史之后）都是纳什均衡。</div>
+  <div class="thm"><b>定理（Folk 定理）</b> 在无限重复囚徒困境中，对 $\delta$ 足够接近 1，任何个体理性收益 $v\in V^*$ 都可作为 SPE 的平均收益实现——包括完全合作。<div class="proof"><b>思路：</b>策略「合作到有人偏离，之后永久背叛」（冷酷触发， grim trigger ）。合作收益 $R/(1-\delta)$，偏离短期得 $T$ 加永久 $P/(1-\delta)$，故 $T+\delta P/(1-\delta)\le R/(1-\delta)\Leftrightarrow\delta\ge(T-R)/(T-P)$ 时合作是 SPE。</div></div>
+  <div class="thm"><b>定理（有限重复与逆向归纳）</b> 阶段博弈有唯一纳什均衡时，有限重复的唯一 SPE 是每阶段都选该均衡（Selten 逆向推理）。<div class="proof"><b>意义：</b>这给出「合作悖论」——若已知博弈将在有限 $T$ 步结束，最后一阶段必背叛，倒推到第一步就背叛。无限期或未知终点是合作涌现的关键。</div></div>
+  <div class="ex"><b>例：</b>囚徒困境 $R=3,S=0,T=5,P=1$，求冷酷触发合作 SPE 的最小 $\delta$。
+  <div class="sol"><b>解：</b>$\delta^*=(T-R)/(T-P)=(5-3)/(5-1)=1/2$。$\delta\ge1/2$ 时合作可维持；$\delta&lt;1/2$ 时背叛更有利。这量化了「耐心」与「合作」的关系。</div></div>
+</div>
+
+<!-- ================= 第二轮深度小节：9g. 深度：合作博弈与 Shapley 值 ================= -->
+<div class="ch" id="c9g">
+  <h2>9g. 深度：合作博弈与 Shapley 值 <small>联盟的蛋糕怎么分</small></h2>
+  <div class="def"><b>定义（合作博弈）</b> 特征函数 $v:2^N\to\mathbb R$ 满足 $v(\emptyset)=0$，$v(S)$ 为联盟 $S$ 的总收益。分配 $x\in\mathbb R^n$ 满足个人理性 $x_i\ge v(\{i\})$ 与有效性 $\sum x_i=v(N)$。</div>
+  <div class="def"><b>定义（核心 core）</b> 核心 $C(v)=\{x:\sum x_i=v(N),\,\sum_{i\in S}x_i\ge v(S),\,\forall S\}$——无联盟能通过单干改善。核心可能为空。</div>
+  <div class="thm"><b>定理（Shapley 值）</b> 存在唯一值 $\varphi(v)$ 满足：效率 $\sum\varphi_i=v(N)$；对称性；载体性；线性性。公式
+  $$\varphi_i(v)=\sum_{S\subseteq N\setminus\{i\}}\frac{|S|!(n-|S|-1)!}{n!}\,[v(S\cup\{i\})-v(S)].$$
+  <div class="proof"><b>直觉：</b>玩家 $i$ 的 Shapley 值是他加入所有可能顺序的「边际贡献」的均值。每联盟 $S$（不含 $i$）出现的概率恰为权重——故 $\varphi_i$ 是「平均贡献」。</div></div>
+  <div class="ex"><b>例：</b>三人投票博弈 $[2;1,1,1]$（2 票过半，三人均 1 票），求 Shapley 值。
+  <div class="sol"><b>解：</b>对称，故 $\varphi_1=\varphi_2=\varphi_3=1/3$。验证：$i$ 加入时只有前面已有一人才使其成为关键（联盟从 1 票变 2 票）。$i$ 为关键的概率 $=2\cdot(1!\cdot 1!)/3!=2/6=1/3$，边际贡献为 1，故 $\varphi_i=1/3$。</div></div>
+</div>
+
+<div class="ch" id="c9">
+  <h2>9. 练习与自测</h2>
+  <div class="ex"><b>练习 1：</b>囚徒困境中为什么 (沉默,沉默) 不是均衡？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>给定对方沉默，坦白从 −1 变 0 更优——单方偏离有好处，不满足均衡定义。</div></details></div>
+  <div class="ex"><b>练习 2：</b>石头剪刀布的纳什均衡是什么？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>唯一均衡是双方各以 1/3 随机——任何确定性选择都可被针对。</div></details></div>
+  <div class="ex"><b>练习 3：</b>矩阵 [[3,0],[5,1]]（行玩家收益），纯策略均衡是什么？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>(下, 右)：(1,1)。检查：行玩家给列选右，下 1 &gt; 上 0；列玩家给行选下，右 1 &gt; 左 5 的列收益？不——这里给的只是行收益，需完整矩阵才能判。若列收益对称，则 (下,右) 是均衡。</div></details></div>
+  <div class="ex"><b>练习 4：</b>「性别之争」博弈有几个纯策略纳什均衡？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>两个：(球赛, 球赛) 与 (歌剧, 歌剧)——协调问题，外加一个混合均衡。</div></details></div>
+  <div class="ex"><b>练习 5：</b>为什么二价拍卖中如实出价是弱占优？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>报低只会失去本可赢且支付低于价值的拍卖；报高只在「支付超过价值」时更糟。如实报价两种风险都避免。</div></details></div>
+  <div class="ex"><b>练习 6：</b>有限次重复囚徒困境（双方知道最后一轮）能维持合作吗？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>不能：最后一轮必背叛（单次博弈逻辑），倒数第二轮已知最后一轮必背叛也背叛……逆向归纳到第一轮全背叛。</div></details></div>
+</div>
+
+<!-- ================= 第 10 章 ================= -->
+
+  <div class="ex"><b>练习 7：</b>囚徒困境的纳什均衡？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>严格占优策略：两人都背叛。这是帕累托劣（两人 5 年 vs 合作 1 年），但（背叛,背叛）是唯一纳什——经典的非合作结果。</div></details></div>
+
+  <div class="ex"><b>练习 8：</b>Vickrey 拍卖中估值 100,80,50 的三人，谁赢、付多少？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>最高 100 赢，付第二高 80。如实报价是占优策略——激励相容。</div></details></div>
+
+  <div class="ex"><b>练习 9：</b>鹰鸽博弈 ESS 中鹰占多少？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$1/2$。复制动态稳定点 $x^*=1/2$：偏离则适应度差把比例拉回。</div></details></div>
+
+  <div class="ex"><b>练习 10：</b>为什么 Nash 均衡在无限博弈可能不存在？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>Kakutani 要求紧致凸集 + 闭图，无限博弈策略空间不紧致时可能失效。反例：Bertrand 价格博弈（连续策略）常无纯策略均衡。</div></details></div>
+
+  <div class="ex"><b>练习 11：</b>冷酷触发在 $\delta&lt;1/2$ 时为何不是 SPE？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>偏离短期得 $T-R=2$，未来损失 $\delta(R-P)/(1-\delta)=\delta\cdot2/(1-\delta)$。$\delta&lt;1/2$ 时 $2>\delta\cdot2/(1-\delta)$，偏离有利可图——背叛的长期成本不够大。</div></details></div>
+  <div class="ex"><b>练习 12：</b>$v(S)=|S|-1$（$S\ne\emptyset$）的合作博弈中核心是什么？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$C=\emptyset$：$\sum x_i=v(N)=n-1$ 但 $x_i\ge v(\{i\})=0$；对 $N\setminus\{i\}$ 要求 $\sum_{j\ne i}x_j\ge n-2$ 即 $x_i\le1$；累加给 $\sum x_i\le n$ 但还要 $\ge n-1$——存在性需 $n\le2$。$n\ge3$ 时空。</div></details></div>
+
+<div class="ch" id="c10">
+  <h2>10. 术语表、在线资源与最新研究</h2>
+  <div class="gloss">
+    <dt>零和博弈</dt><dd>一方的收益恰是另一方的损失。</dd>
+    <dt>帕累托最优</dt><dd>无法在不损害任何人下改进某人。</dd>
+    <dt>共同知识</dt><dd>「我知道你知道我知道……」的无限层级。</dd>
+    <dt>贝叶斯博弈</dt><dd>玩家对类型有先验信念的不完全信息博弈。</dd>
+    <dt>机制设计</dt><dd>反向博弈论：设计规则使均衡达到目标。</dd>
+    <dt>演化稳定策略（ESS）</dt><dd>种群中入侵者无法取代的策略。</dd>
+    <dt>纳什均衡</dt><dd>单方面偏离无利可图的策略组合。</dd>
+    <dt>VCG 机制</dt><dd>支付 = 社会边际成本；激励相容的最大化机制。</dd>
+    <dt>ESS</dt><dd>演化稳定策略；小入侵被自然选择压回。</dd>
+  </div>
+  <div class="online">
+    <b>在线资源（需联网打开）</b>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Game_theory" target="_blank" rel="noopener noreferrer">Wikipedia: Game theory</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Nash_equilibrium" target="_blank" rel="noopener noreferrer">Wikipedia: Nash equilibrium</a></li>
+      <li><a href="https://arxiv.org/list/math.OC/recent" target="_blank" rel="noopener noreferrer">arXiv 优化与控制最新论文（math.OC，含博弈）</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Mechanism_design" target="_blank" rel="noopener noreferrer">Wikipedia: Mechanism design</a></li>
+    </ul>
+    <p class="hint">本页「最新研究」区加载更新器每日抓取的 arXiv 优化与控制（math.OC）最新论文（博弈论相关论文常归此类）。</p>
+  </div>
+  <div class="ch" style="margin-top:34px;">
+    <h2>本主题最新研究 <small>每日自动更新 · 来源 arXiv math.OC</small></h2>
+    <div class="papers" id="topicPapers">
+      <div class="empty">等待数据……若长时间未更新，请运行 <code>python 09-前沿动态/数学前沿更新器.py</code>。</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../02-核心主题/微分方程.html">微分方程讲义 →</a>
+  <a href="../02-核心主题/数理逻辑与集合论.html">数理逻辑讲义 →</a>
+  <a href="../07-趣味数学/数学游戏与策略.html">游戏与策略 →</a>
+</footer>
+</div>
+
+<script src="../09-前沿动态/论文数据.js"></script>
+<script>
+(function(){
+  var wrap = document.getElementById('topicPapers');
+  if(!wrap) return;
+  var papers = (typeof window.LBLB_PAPERS !== 'undefined' && window.LBLB_PAPERS['博弈论']) || [];
+  if(!papers.length){
+    wrap.innerHTML = '<div class="empty">暂无该主题最新论文数据（更新器尚未成功抓取或已离线）。运行 <code>数学前沿更新器.py</code> 后自动填充。</div>';
+    return;
+  }
+  var html = '';
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+  for(var i=0;i<papers.length;i++){
+    var p = papers[i];
+    html += '<div class="p"><a href="' + esc(p.link) + '" target="_blank" rel="noopener noreferrer">' + esc(p.title) + '</a>' +
+      '<div class="m">' + esc(p.author||'—') + ' · ' + esc(p.date||'') + '</div></div>';
+  }
+  wrap.innerHTML = html;
+})();
+(function(){
+  var solveBtn = document.getElementById('solveBtn');
+  var resetBtn = document.getElementById('resetBtn');
+  var resetBtn2 = document.getElementById('resetBtn2');
+  var out = document.getElementById('solveOut');
+  if(!solveBtn || !out) return;
+  function parse(v){
+    var p = String(v).split(',');
+    return [parseFloat(p[0])||0, parseFloat(p[1])||0];
+  }
+  function setVals(a,b,c,d){
+    document.getElementById('a11').value = a;
+    document.getElementById('a12').value = b;
+    document.getElementById('a21').value = c;
+    document.getElementById('a22').value = d;
+  }
+  function solve(){
+    var m = [[parse(document.getElementById('a11').value), parse(document.getElementById('a12').value)],
+             [parse(document.getElementById('a21').value), parse(document.getElementById('a22').value)]];
+    var eq = [];
+    // 纯策略均衡
+    for(var r=0;r<2;r++){
+      for(var c=0;c<2;c++){
+        var rowBest = m[r][c][0] >= m[1-r][c][0];
+        var colBest = m[r][c][1] >= m[r][1-c][1];
+        if(rowBest && colBest){
+          eq.push('纯策略均衡：(' + (r?'下':'上') + ', ' + (c?'右':'左') + ') = (' + m[r][c][0] + ', ' + m[r][c][1] + ')');
+        }
+      }
+    }
+    if(!eq.length) eq.push('无纯策略纳什均衡');
+    // 混合均衡（行玩家概率 p 选上，列玩家概率 q 选左）
+    var a = m[0][0], b = m[0][1], c = m[1][0], d = m[1][1];
+    var p = (d[0] - c[0]) / (a[0] - b[0] - c[0] + d[0]);
+    var q = (d[1] - b[1]) / (a[1] - c[1] - b[1] + d[1]);
+    var mix = '';
+    if(isFinite(p) && isFinite(q) && p >= 0 && p <= 1 && q >= 0 && q <= 1){
+      mix = '混合均衡：行玩家以 ' + p.toFixed(2) + ' 选上，列玩家以 ' + q.toFixed(2) + ' 选左（对方无差异）。';
+    } else {
+      mix = '该矩阵无内部混合均衡（边界情形）。';
+    }
+    out.innerHTML = '<b>结果：</b><br>' + eq.join('<br>') + '<br>' + mix;
+  }
+  if(solveBtn) solveBtn.addEventListener('click', solve);
+  if(resetBtn) resetBtn.addEventListener('click', function(){ setVals('3,3','0,5','5,0','1,1'); solve(); });
+  if(resetBtn2) resetBtn2.addEventListener('click', function(){ setVals('2,1','0,0','0,0','1,2'); solve(); });
+  solve();
+})();
+</script>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

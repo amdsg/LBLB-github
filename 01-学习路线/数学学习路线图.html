@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>数学学习路线图 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='44' font-size='36' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif' font-style='italic'%3E%CE%A3%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --blue:#1F4E9C; --gold:#A8751E; --red:#C0392B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+.wrap{max-width:920px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--blue); text-decoration:none; letter-spacing:.06em;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--blue); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:680px;}
+.hero-svg{background:var(--paper2); border:1px solid var(--line); border-radius:16px; padding:24px 16px; margin:28px 0;}
+.hero-svg svg{width:100%; height:auto; display:block;}
+.sec{margin-top:52px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:28px; border-left:6px solid var(--blue); padding-left:14px;}
+.sec h2 small{font-size:14px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:10px;}
+.tl{--date:120px; --axis:44px; position:relative; margin-top:28px; display:grid; grid-template-columns:var(--date) var(--axis) 1fr; row-gap:22px;}
+.tl::before{content:""; position:absolute; left:calc(var(--date) + var(--axis)/2 - 1px); top:6px; bottom:6px; width:2px; background:var(--line);}
+.stage-num{text-align:right; padding-top:6px;}
+.stage-num .no{font-family:Georgia,serif; font-size:30px; color:var(--blue); font-weight:700;}
+.stage-num .nm{font-size:12px; color:var(--ink2); letter-spacing:.1em;}
+.dot{justify-self:center; align-self:start; margin-top:14px; width:14px; height:14px; border-radius:50%;
+  background:var(--paper); border:3px solid var(--blue); position:relative; z-index:1;}
+.stage{background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px;}
+.stage h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px;}
+.stage .goals{font-size:14px; color:var(--ink2); margin-top:4px;}
+.stage ul{margin:10px 0 0 20px; font-size:14px;}
+.stage li{margin:3px 0;}
+.kv{font-size:13px; margin-top:10px; background:var(--paper2); border-radius:8px; padding:8px 12px;}
+.kv b{color:var(--blue);}
+.check{font-size:13.5px; margin-top:10px; border-top:1px dashed var(--line); padding-top:10px;}
+.check b{color:var(--red);}
+.task{background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px;}
+.task h3{font-family:Georgia,"Noto Serif SC",serif; font-size:18px;}
+.task .meta{font-size:12px; color:var(--ink2); margin:2px 0 4px;}
+.prog{height:8px; background:var(--paper2); border-radius:99px; overflow:hidden; margin:6px 0 4px;}
+.prog i{display:block; height:100%; width:0; background:var(--blue); border-radius:99px; transition:width .3s;}
+.task label{display:flex; gap:10px; align-items:flex-start; margin:7px 0; font-size:14px; cursor:pointer;}
+.task input[type=checkbox]{margin-top:5px; accent-color:var(--blue); width:15px; height:15px; flex:none;}
+.task label.done{color:var(--ink2); text-decoration:line-through; opacity:.75;}
+.reset{display:inline-block; margin-top:16px; background:var(--blue); color:#fff; border:none; border-radius:8px; padding:8px 18px; font-size:13px; cursor:pointer; letter-spacing:.05em;}
+.reset:hover{opacity:.9;}
+.books{margin-top:12px; font-size:13.5px; background:#FBF6E8; border:1px solid #E4D9BC; border-radius:8px; padding:8px 12px;}
+.books b{color:var(--gold);}
+.tips{margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px;}
+.tip{background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 16px;}
+.tip h4{font-family:Georgia,"Noto Serif SC",serif; font-size:16px; color:var(--blue);}
+.tip p{font-size:13.5px; color:var(--ink2); margin-top:6px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2);}
+footer a{color:var(--blue); text-decoration:none;}
+</style>
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true, processEnvironments: true }, options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code','option'] }, startup: { typeset: true } };
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>数学学习路线图 <span class="sym">Σ</span></h1>
+  <p class="sub">给自学者的七级阶梯：每一级都有明确的目标、标志性概念、推荐书目和一个“通关检测”。不求快，求每一步都踩实。</p>
+</header>
+
+<div class="hero-svg">
+  <svg viewBox="0 0 900 330" role="img" aria-label="七级学习阶梯示意图">
+    <defs>
+      <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="#B9AF96"/>
+      </marker>
+    </defs>
+    <line x1="40" y1="300" x2="860" y2="300" stroke="#B9AF96" stroke-width="2"/>
+    <line x1="860" y1="300" x2="860" y2="60" stroke="#B9AF96" stroke-width="2" marker-end="url(#a2)"/>
+    <g font-family="Georgia,serif" text-anchor="middle">
+      <rect x="70" y="270" width="80" height="30" rx="6" fill="#1F4E9C"/>
+      <text x="110" y="290" font-size="15" fill="#fff">L1</text>
+      <rect x="210" y="240" width="80" height="30" rx="6" fill="#1F4E9C"/>
+      <text x="250" y="260" font-size="15" fill="#fff">L2</text>
+      <rect x="350" y="210" width="80" height="30" rx="6" fill="#1F4E9C"/>
+      <text x="390" y="230" font-size="15" fill="#fff">L3</text>
+      <rect x="490" y="180" width="80" height="30" rx="6" fill="#1F4E9C"/>
+      <text x="530" y="200" font-size="15" fill="#fff">L4</text>
+      <rect x="630" y="150" width="80" height="30" rx="6" fill="#1F4E9C"/>
+      <text x="670" y="170" font-size="15" fill="#fff">L5</text>
+      <rect x="770" y="120" width="80" height="30" rx="6" fill="#1F4E9C"/>
+      <text x="810" y="140" font-size="15" fill="#fff">L6</text>
+      <text x="810" y="90" font-size="13" fill="#A8751E">→ 前沿</text>
+    </g>
+    <g font-size="13" fill="#4A5258" text-anchor="middle">
+      <text x="110" y="322">兴趣与基础</text>
+      <text x="250" y="322">初等数学</text>
+      <text x="390" y="322">微积分</text>
+      <text x="530" y="322">代数与线代</text>
+      <text x="670" y="322">实分析</text>
+      <text x="810" y="322">结构数学</text>
+    </g>
+  </svg>
+</div>
+
+<div class="sec">
+  <h2>七级阶梯 <small>点击推荐书目可对照书单页</small></h2>
+  <div class="tl">
+    <div class="stage-num"><div class="no">L1</div><div class="nm">兴趣层</div></div>
+    <div class="dot"></div>
+    <div class="stage">
+      <h3>与数学重新做朋友</h3>
+      <p class="goals">目标：找回「数学很好玩」的直觉，不被公式吓退。</p>
+      <ul>
+        <li>读数学科普与故事：费马大定理的百年追寻、π 的传奇、哥德尔与希尔伯特旅馆。</li>
+        <li>玩数学游戏：数独、折纸几何、七桥问题、幻方。</li>
+        <li>建立「问题 > 答案」的心态：每个定理背后都有一个值得追问的为什么。</li>
+      </ul>
+      <div class="check"><b>通关检测：</b>能向朋友讲清楚「为什么 √2 不是分数」或者「为什么有无限多个素数」中的任意一个。</div>
+      <div class="books"><b>推荐：</b>《什么是数学》（柯朗）· 《费马大定理》（西蒙·辛格）· 《数学女孩》系列（结城浩）</div>
+    </div>
+
+    <div class="stage-num"><div class="no">L2</div><div class="nm">初等层</div></div>
+    <div class="dot"></div>
+    <div class="stage">
+      <h3>把中学数学练到「自动化」</h3>
+      <p class="goals">目标：代数运算、函数图像、平面几何成为不假思索的工具。</p>
+      <ul>
+        <li>多项式与因式分解、指数对数、三角函数与恒等式。</li>
+        <li>函数与图像：单调性、奇偶性、周期性、反函数。</li>
+        <li>平面几何：全等与相似、圆的性质、勾股定理的多种证明。</li>
+        <li>数列与数学归纳法——归纳法是你遇到的第一种「真正的证明」。 </li>
+      </ul>
+      <div class="check"><b>通关检测：</b>能徒手画出 sin、cos、eˣ、ln x、1/x 的图像，并说出各自的关键性质；能用归纳法证明 1+2+…+n = n(n+1)/2。</div>
+      <div class="books"><b>推荐：</b>人教版/苏教版高中数学教材 · 《普林斯顿微积分读本》前 3 章（衔接） · 《怎样解题》（波利亚）</div>
+    </div>
+
+    <div class="stage-num"><div class="no">L3</div><div class="nm">分析入门</div></div>
+    <div class="dot"></div>
+    <div class="stage">
+      <h3>极限：打开无穷的大门</h3>
+      <p class="goals">目标：真正理解微积分，而不是只会套求导公式。</p>
+      <ul>
+        <li>极限的直觉与 ε-δ 定义雏形；连续与间断。</li>
+        <li>导数：瞬时变化率；中值定理的几何意义。</li>
+        <li>积分：黎曼和的极限；微积分基本定理（微分与积分互为逆运算）。</li>
+        <li>级数初步：几何级数、调和级数发散、幂级数与泰勒展开。</li>
+      </ul>
+      <div class="check"><b>通关检测：</b>能解释为什么 Σ 1/n 发散而 Σ 1/n² 收敛；能用泰勒展开近似 eˣ 在 x=0.5 处的值并估计误差。</div>
+      <div class="books"><b>推荐：</b>《普林斯顿微积分读本》（Banner）· 《微积分的力量》（斯托加茨）· 3Blue1Brown《微积分的本质》</div>
+    </div>
+
+    <div class="stage-num"><div class="no">L4</div><div class="nm">代数支柱</div></div>
+    <div class="dot"></div>
+    <div class="stage">
+      <h3>线性代数 + 抽象代数</h3>
+      <p class="goals">目标：两条腿走路——一条通向高维几何，一条通向「结构」的世界。</p>
+      <ul>
+        <li>线性代数：向量空间、线性映射、矩阵、行列式、特征值与特征向量。</li>
+        <li>抽象代数：群、环、域的公理化定义；对称群、置换群、循环群。</li>
+        <li>感受「同构」：不同对象拥有相同的结构，这是现代数学的通用语言。</li>
+      </ul>
+      <div class="check"><b>通关检测：</b>能说出为什么矩阵乘法不交换（举例）；能验证整数模 n 加法构成一个群，并找出它的一两个子群。</div>
+      <div class="books"><b>推荐：</b>《线性代数应该这样学》（Axler，第2版）· 《线性代数及其应用》（Lay）· 《抽象代数基础教程》（Fraleigh）</div>
+    </div>
+
+    <div class="stage-num"><div class="no">L5</div><div class="nm">分析深化</div></div>
+    <div class="dot"></div>
+    <div class="stage">
+      <h3>实分析：给微积分打地基</h3>
+      <p class="goals">目标：理解为什么微积分「成立」，学会严谨地证明。</p>
+      <ul>
+        <li>实数系的完备性：确界原理、单调有界收敛、柯西收敛。</li>
+        <li>极限、连续、导数的严格定义；一致连续与一致收敛。</li>
+        <li>黎曼积分到黎曼-斯蒂尔杰斯积分；可测与测度（预备）。</li>
+        <li>开始写自己的证明：ε-δ 论证成为日常。</li>
+      </ul>
+      <div class="check"><b>通关检测：</b>能证明「两个收敛数列的和仍收敛」；能构造一个处处连续但处处不可导的函数的例子（狄利克雷式构造，理解思路即可）。</div>
+      <div class="books"><b>推荐：</b>《陶哲轩实分析》（Tao）· 《数学分析原理》（Rudin，第3章起）· 《普林斯顿数学分析读本》（Raffi Grinberg）</div>
+    </div>
+
+    <div class="stage-num"><div class="no">L6</div><div class="nm">结构数学</div></div>
+    <div class="dot"></div>
+    <div class="stage">
+      <h3>拓扑、复分析与前沿入口</h3>
+      <p class="goals">目标：从「算」走向「看结构」，为研究级阅读做准备。</p>
+      <ul>
+        <li>点集拓扑：开集、连续、紧致、连通——连续性的本质定义。</li>
+        <li>复分析：解析函数、柯西积分定理、留数定理的魔力。</li>
+        <li>按兴趣分支：数论前沿 / 测度论与概率 / 组合与图论 / 微分几何与流形。</li>
+      </ul>
+      <div class="check"><b>通关检测：</b>能说出「紧致」在实数轴上与一般拓扑空间中的直观差异；能解释为什么 $e^{iπ}$+1=0 不是魔术而是幂级数的必然。</div>
+      <div class="books"><b>推荐：</b>《拓扑学》（Munkres）· 《复分析：可视化方法》（Needham）· 《具体数学》（Graham-Knuth-Patashnik）</div>
+    </div>
+
+    <div class="stage-num"><div class="no">L7</div><div class="nm">持续层</div></div>
+    <div class="dot"></div>
+    <div class="stage">
+      <h3>让数学成为生活方式</h3>
+      <p class="goals">目标：保持手感，向「前沿」持续靠近。</p>
+      <ul>
+        <li>每天 20 分钟：做一道题、读两页书、或玩一次本库的可视化。</li>
+        <li>追踪 arXiv 与数学新闻；挑一个未解决问题长期关注（如考拉兹）。</li>
+        <li>写作与讲授：费曼学习法——把读到的证明用自己的话写下来。</li>
+      </ul>
+      <div class="check"><b>通关检测：</b>已养成习惯——一个月里没有连续三天不碰数学。</div>
+      <div class="books"><b>推荐：</b>《Proofs from THE BOOK》（艾格纳/齐格勒）· 任何一期《数学译林》或 Notices of the AMS</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>四条心法</h2>
+  <div class="tips">
+    <div class="tip"><h4>慢即是快</h4><p>一个定理读三遍，胜过三个定理各读一遍。卡住时回到更基础的层级补洞。</p></div>
+    <div class="tip"><h4>证明优先于答案</h4><p>做习题时先写「为什么对」，再写「答案」。错题是最高价值的学习材料。</p></div>
+    <div class="tip"><h4>多通道学习</h4><p>同一个概念：看书（符号）、画图（直觉）、写程序（验证）、讲给别人（检验）。</p></div>
+    <div class="tip"><h4>用工具但不依赖工具</h4><p>计算器与计算机帮你验证，但「为什么」必须由你亲自走一遍。</p></div>
+  </div>
+</div>
+
+
+<div class="sec">
+  <h2>各阶段学习时长与里程碑</h2>
+  <table class="tbl">
+    <thead><tr><th>阶段</th><th>建议时长</th><th>里程碑</th></tr></thead>
+    <tbody>
+      <tr><td>基础（高数+线代+概率）</td><td>6–12 个月</td><td>能独立完成教材课后题 80%</td></tr>
+      <tr><td>分析（实变+复变+泛函）</td><td>4–6 个月</td><td>理解 Lebesgue 积分、Banach 空间</td></tr>
+      <tr><td>代数（抽代+表示论）</td><td>4–6 个月</td><td>掌握群环域、模、Galois 理论</td></tr>
+      <tr><td>几何拓扑</td><td>4–6 个月</td><td>理解流形、基本群、同调</td></tr>
+      <tr><td>专题深入</td><td>持续</td><td>阅读论文、做研究问题</td></tr>
+    </tbody>
+  </table>
+  <div class="key"><b>建议：</b>不要跳级。高数不扎实就学实变会很痛苦；抽代没学好就碰代数几何会劝退。</div>
+</div>
+
+<div class="sec">
+  <h2>不同方向的纵深地图 <small>从 L6 之后该往哪走</small></h2>
+  <p>L6 完成后，数学的世界会分出多条小径，每条都通向不同的研究前沿。下面是五大方向的纵深地图：</p>
+  <ul>
+    <li><b>分析方向</b>：实分析 → 调和分析 → 偏微分方程 → 几何测度论 → 算子代数。对应人物：Tao、Stein、Caffarelli；对应问题：Navier–Stokes 千禧问题、Riemann 假设。</li>
+    <li><b>代数方向</b>：抽象代数 → 交换代数 → 同调代数 → 代数几何 → 算术几何。对应人物：Grothendieck、Hartshorne、Lurie；对应问题：Weil 猜想（已证）、Taniyama–Shimura（已证，推出费马大定理）。</li>
+    <li><b>几何方向</b>：微分几何 → 黎曼几何 → 复几何 → 辛几何 → 几何分析。对应人物：Yau、Perelman、Donaldson；对应问题：Poincaré 猜想（已证）、Calabi 猜想（已证）。</li>
+    <li><b>拓扑方向</b>：点集拓扑 → 代数拓扑 → 微分拓扑 → 几何拓扑 → 同伦论。对应人物：Serre、Milnor、Thurston；对应问题：Novikov 猜想、平滑 Poincaré 4 维（开）。</li>
+    <li><b>数论方向</b>：初等数论 → 解析数论 → 代数数论 → 自守形式 → Langlands 纲领。对应人物：Wiles、Taylor、Scholze；对应问题：BSD 猜想、孪生素数、Langlands 对偶。</li>
+  </ul>
+  <p><b>跨领域桥梁</b>：算术几何 = 代数几何 + 数论；几何表示论 = 表示论 + 几何；调和分析 + 解析数论 = 自守形式理论；信息几何 + 概率 = 机器学习理论。现代数学的"重大突破"几乎都来自跨域融合。</p>
+  <div class="key"><b>选择建议</b>：跟兴趣走，但要避免"什么都学一点、什么都不精"。先在一个方向深入到能读论文的程度，再横向扩展——Lurie 的 derived algebraic geometry 就是经典案例，要懂代数几何 + 同调代数 + 范畴论三件套。</div>
+</div>
+
+<div class="sec">
+  <h2>常见误区与避坑指南 <small>自学者最容易踩的雷</small></h2>
+  <ul>
+    <li><b>误区一：跳级</b>。没学过实分析就啃 Rudin 的《实复分析》，没学过抽象代数就碰代数几何——结果劝退。规则：<b>上一级通关检测不过，不要进入下一级</b>。</li>
+    <li><b>误区二：只读不练</b>。数学不是小说，只读不做题等于没学。每章至少做 30% 习题；遇到难题思考 30 分钟无思路再看答案。</li>
+    <li><b>误区三：贪多嚼不烂</b>。同时开 5 本书，每本读两章就放下——不如一本读完再开下一本。<b>"完成 &gt; 完美"</b>，没读完的书等于没读。</li>
+    <li><b>误区四：沉迷新概念名词</b>。"范畴""函子""流形"听上去高大上，但没真懂就搬弄——这叫"数学名词党"。检验：能否用初等语言给大一学生讲明白？</li>
+    <li><b>误区五：拒绝工具</b>。坚持手算，拒绝用 Wolfram Alpha、Python 验证——浪费时间。但反过来，<b>只依赖工具、不练手算</b>也错。平衡：手算 + 工具验证。</li>
+    <li><b>误区六：闭门造车</b>。自学最忌独学无友。找学习伙伴、加入 MathOverflow、读博客（Tao、Gowers、Lior Pachter）——你的疑问可能别人已有答案。</li>
+    <li><b>误区七：追前沿忘基础</b>。听到 Langlands 纲领、几何 Langlands 就兴奋——但没学过表示论、代数数论根本读不懂。前沿论文要等基础扎实后才能"读懂"。</li>
+  </ul>
+  <p><b>心态调适</b>：每个学数学的人都卡过——Tao 在博客上写过他读研究生时被 qualifying exam 卡了一年。卡住是常态，关键是<b>"今天比昨天多懂一点"</b>。</p>
+</div>
+
+<div class="sec">
+  <h2>工具与社区资源 <small>21 世纪自学者的福利</small></h2>
+  <p>互联网时代，世界顶级数学资源几乎免费可得。下面是经过验证的高质量来源：</p>
+  <ul>
+    <li><b>公开课</b>：MIT OCW 18.xxx 系列（Strang 线代、Artin 抽代、Axler）；Stanford 数学系；IAS 公开研讨。视频 + 讲义 + 习题全开放。</li>
+    <li><b>互动教材</b>：3Blue1Brown 的"线性代数的本质""微积分的本质"是<b>直觉神器</b>；Project Euler 是用编程学数学的宝库；Brilliant.org 有付费互动课程。</li>
+    <li><b>论文与百科</b>：arXiv.org（预印本）；Wikipedia 数学条目（英文版质量极高，常由数学家维护）；MathOverflow（研究级问答）；nLab（范畴论/同伦论百科）。</li>
+    <li><b>软件工具</b>：SageMath（开源，整合 GAP/Maxima/PARI 等）；Mathematica（闭源但功能最全）；Lean 4（形式化证明语言，正在用来证明数学前沿）；Python + SymPy + NumPy（数据科学场景）。</li>
+    <li><b>博客与社群</b>：Terence Tao 的博客（What's new）；Gowers's Weblog；Secret Blogging Seminar；Reddit r/math；中文 MathOlympiad 频道。</li>
+    <li><b>竞赛与挑战</b>：IMO、Putnam、数学建模美赛（MCM/ICM）；Project Euler 用编程解题；Codeforces 数学题。</li>
+  </ul>
+  <p><b>本库的角色</b>：本库定位是<b>"纸书与论文之间的桥梁"</b>——比书更动态（随时更新前沿）、比论文更亲民（用初等语言解释）。</p>
+</div>
+
+<div class="sec">
+  <h2>每级清单与通关示例 <small>把抽象目标变成可勾选的任务</small></h2>
+  <p>下列清单把每级“通关检测”细化成可勾选的子任务。把每条做完，那一级就过了。勾选进度自动保存在本机（localStorage），可随时点「重置全部进度」清空：</p>
+  <div class="tl">
+
+    <div class="stage-num"><div class="no">L1</div><div class="nm">兴趣层</div></div>
+    <div class="dot"></div>
+    <div class="task">
+      <h3>与数学重新做朋友</h3>
+      <div class="prog"><i></i></div>
+      <div class="meta prog-label">已完成 0/4</div>
+      <label><input type="checkbox" id="L1_0">读完 1 本数学科普</label>
+      <label><input type="checkbox" id="L1_1">看 5 集 Numberphile 视频</label>
+      <label><input type="checkbox" id="L1_2">解决 1 道开放问题（七桥问题/幻方）</label>
+      <label><input type="checkbox" id="L1_3">向朋友讲清楚 √2 无理</label>
+      <div class="check"><b>通关检测：</b>能向朋友讲清楚「为什么 √2 不是分数」或「为什么有无限多个素数」中的任意一个。</div>
+    </div>
+
+    <div class="stage-num"><div class="no">L2</div><div class="nm">初等层</div></div>
+    <div class="dot"></div>
+    <div class="task">
+      <h3>把中学数学练到“自动化”</h3>
+      <div class="prog"><i></i></div>
+      <div class="meta prog-label">已完成 0/4</div>
+      <label><input type="checkbox" id="L2_0">徒手画 6 个初等函数图</label>
+      <label><input type="checkbox" id="L2_1">掌握三角恒等式 8 个（和差/倍半/和差化积）</label>
+      <label><input type="checkbox" id="L2_2">完成平面几何 30 题（含相似/圆/四点共圆）</label>
+      <label><input type="checkbox" id="L2_3">归纳法证明 $\sum_{k=1}^n k^2=\frac{n(n+1)(2n+1)}6$ 与 $\sum k^3=\left(\frac{n(n+1)}2\right)^2$</label>
+      <div class="check"><b>通关检测：</b>能徒手画出 sin、cos、eˣ、ln x、1/x 的图像并说出关键性质；能用归纳法证明 $1+2+\cdots+n=\frac{n(n+1)}2$。</div>
+    </div>
+
+    <div class="stage-num"><div class="no">L3</div><div class="nm">分析入门</div></div>
+    <div class="dot"></div>
+    <div class="task">
+      <h3>极限：打开无穷的大门</h3>
+      <div class="prog"><i></i></div>
+      <div class="meta prog-label">已完成 0/4</div>
+      <label><input type="checkbox" id="L3_0">用 ε-N 证明 $\lim1/n=0$</label>
+      <label><input type="checkbox" id="L3_1">用 Taylor 估 $e^{0.5}$ 至 3 位</label>
+      <label><input type="checkbox" id="L3_2">算 $\int_0^1 x^2(1-x)\,dx$ 与 $\int_0^\pi\sin^2x\,dx$</label>
+      <label><input type="checkbox" id="L3_3">判 $\sum 1/n^2, \sum 1/n^3, \sum 1/(n\ln n)$ 收敛性</label>
+      <div class="check"><b>通关检测：</b>能解释为什么 $\sum 1/n$ 发散而 $\sum 1/n^2$ 收敛；能用泰勒展开近似 $e^{0.5}$ 并估计误差。</div>
+    </div>
+
+    <div class="stage-num"><div class="no">L4</div><div class="nm">代数支柱</div></div>
+    <div class="dot"></div>
+    <div class="task">
+      <h3>线性代数 + 抽象代数</h3>
+      <div class="prog"><i></i></div>
+      <div class="meta prog-label">已完成 0/4</div>
+      <label><input type="checkbox" id="L4_0">证明矩阵乘法结合律</label>
+      <label><input type="checkbox" id="L4_1">算 3 维旋转矩阵的特征值（含复数情形）</label>
+      <label><input type="checkbox" id="L4_2">验证 $\mathbb{Z}/n\mathbb{Z}$ 加法群</label>
+      <label><input type="checkbox" id="L4_3">证明 $S_3$ 是最小非交换群</label>
+      <div class="check"><b>通关检测：</b>能举例说明矩阵乘法不交换；能验证整数模 $n$ 加法构成一个群，并找出它的一两个子群。</div>
+    </div>
+
+    <div class="stage-num"><div class="no">L5</div><div class="nm">分析深化</div></div>
+    <div class="dot"></div>
+    <div class="task">
+      <h3>实分析：给微积分打地基</h3>
+      <div class="prog"><i></i></div>
+      <div class="meta prog-label">已完成 0/4</div>
+      <label><input type="checkbox" id="L5_0">ε-δ 证明 $\lim_{x\to2}x^2=4$</label>
+      <label><input type="checkbox" id="L5_1">构造 $f(x)=\sum\frac{\sin(n^2 x)}{n^2}$（连续但有一阶导数发散点）</label>
+      <label><input type="checkbox" id="L5_2">用 Cauchy 收敛准则证 $\sum(-1)^n/n$ 收敛</label>
+      <label><input type="checkbox" id="L5_3">理解 Weierstrass 逼近定理的证法思路</label>
+      <div class="check"><b>通关检测：</b>能证明“两个收敛数列的和仍收敛”；能举出处处连续但处处不可导函数的思路性构造。</div>
+    </div>
+
+    <div class="stage-num"><div class="no">L6</div><div class="nm">结构数学</div></div>
+    <div class="dot"></div>
+    <div class="task">
+      <h3>拓扑、复分析与前沿入口</h3>
+      <div class="prog"><i></i></div>
+      <div class="meta prog-label">已完成 0/4</div>
+      <label><input type="checkbox" id="L6_0">证明 $[0,1]$ 紧致、$(0,1)$ 不紧致</label>
+      <label><input type="checkbox" id="L6_1">算 $\oint_{|z|=1}\frac{dz}{z}$ 用留数定理</label>
+      <label><input type="checkbox" id="L6_2">证明 $e^{i\pi}+1=0$ 由幂级数推出</label>
+      <label><input type="checkbox" id="L6_3">说出紧致 Lenguel、Bolzano–Weierstrass、Heine–Borel 三定理的等价性</label>
+      <div class="check"><b>通关检测：</b>能说出“紧致”在实数轴与一般拓扑空间中的直观差异；能解释为什么 $e^{i\pi}+1=0$ 是幂级数的必然而非魔术。</div>
+    </div>
+
+    <div class="stage-num"><div class="no">L7</div><div class="nm">持续层</div></div>
+    <div class="dot"></div>
+    <div class="task">
+      <h3>让数学成为生活方式</h3>
+      <div class="prog"><i></i></div>
+      <div class="meta prog-label">已完成 0/4</div>
+      <label><input type="checkbox" id="L7_0">每月做 1 套考研/竞赛真题</label>
+      <label><input type="checkbox" id="L7_1">读 1 篇 arXiv 论文（即使只看懂摘要）</label>
+      <label><input type="checkbox" id="L7_2">给本库提 1 条改进建议</label>
+      <label><input type="checkbox" id="L7_3">保持每周至少 5 小时学习</label>
+      <div class="check"><b>通关检测：</b>已养成习惯——一个月里没有连续三天不碰数学。</div>
+    </div>
+
+  </div>
+  <button class="reset" id="roadmapReset" type="button">重置全部进度</button>
+  <div class="key"><b>"一万小时"的合理分配</b>：从 L1 到 L6 大约需 2000-3000 小时（每天 2-3 小时，3-5 年）。L7 是终身——<b>数学不是终点，是生活方式</b>。</div>
+</div>
+
+<script>
+(function(){
+  var KEY = 'LBLB_roadmap_tasks';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ state = {}; }
+
+  function updateCard(card){
+    var bxs = card.querySelectorAll('input[type=checkbox]');
+    var done = 0;
+    bxs.forEach(function(b){ if(b.checked) done++; });
+    var n = bxs.length || 1;
+    var bar = card.querySelector('.prog i');
+    var lbl = card.querySelector('.prog-label');
+    var pct = Math.round(done / n * 100);
+    if(bar) bar.style.width = pct + '%';
+    if(lbl) lbl.textContent = '已完成 ' + done + '/' + n;
+    bxs.forEach(function(b){
+      var row = b.closest('label');
+      if(row){ if(b.checked) row.classList.add('done'); else row.classList.remove('done'); }
+    });
+  }
+
+  document.querySelectorAll('.task input[type=checkbox]').forEach(function(b){
+    var id = b.id;
+    if(state[id]) b.checked = true;
+    b.addEventListener('change', function(){
+      state[id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
+      updateCard(b.closest('.task'));
+    });
+  });
+  document.querySelectorAll('.task').forEach(updateCard);
+
+  var rst = document.getElementById('roadmapReset');
+  if(rst){
+    rst.addEventListener('click', function(){
+      if(!confirm('确定要重置全部进度吗？此操作不可撤销。')) return;
+      state = {};
+      try { localStorage.removeItem(KEY); } catch(e){}
+      document.querySelectorAll('.task input[type=checkbox]').forEach(function(b){ b.checked = false; });
+      document.querySelectorAll('.task').forEach(updateCard);
+    });
+  }
+})();
+</script>
+
+<footer>
+  <a href="../00-总览/index.html">← 返回总览</a> · <a href="../06-书单/数学书单与资源.html">配套书单 →</a>
+</footer>
+</div>
+
+</body>
+</html>

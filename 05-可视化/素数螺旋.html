@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>素数螺旋 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='32' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%9E%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --green:#2E7D5B; --magenta:#B0396E; --gold:#A8751E;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--green); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--green); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:700px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--green); padding-left:14px;}
+.sec h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.fig{background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:18px; margin-top:20px;}
+.fig canvas{width:100%; height:auto; display:block; border:1px solid var(--line); border-radius:8px; background:#fffef9;}
+.controls{display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--green); width:220px;}
+.info{font-family:Georgia,serif; font-size:14px; color:var(--ink2); margin-left:auto;}
+.explain{margin-top:16px; font-size:14px; color:var(--ink2);}
+.explain b{color:var(--ink);}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px;}
+footer a{color:var(--green); text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="可视化导航.html">← 返回可视化</a>
+  <h1>Ulam 素数螺旋 <span class="sym">∞</span></h1>
+  <p class="sub">1963 年，数学家乌拉姆在会议草稿上随手把自然数排成螺旋，惊喜地发现：素数（深色点）常常排成对角线——至今没人完全解释为什么。</p>
+</header>
+
+<div class="sec">
+  <h2>观察螺旋 <small>调节边长，看素数的对角线如何出现与消散</small></h2>
+  <div class="fig">
+    <canvas id="cv" width="880" height="880" role="img" aria-label="素数螺旋：交互式画布，内容随下方控件实时变化"></canvas>
+    <div class="controls">
+      <label>边长（奇数）</label>
+      <input type="range" id="sl" min="21" max="201" step="2" value="101">
+      <span id="slV" style="font-family:Georgia,serif;">101</span>
+      <span class="info" id="stat">素数 0 个</span>
+    </div>
+    <p class="explain"><b>怎么玩：</b>中心是 1，向右为 2，向上为 3……按逆时针螺旋展开。拖动滑块改变网格大小；素数标记为深色。对角线上的深色点——尤其是 45° 方向的——远多于随机应有的密度。</p>
+  </div>
+</div>
+
+
+<div class="sec">
+  <h2>数学原理：素数螺旋中的规律</h2>
+  <p>乌拉姆螺旋（1963）：将正整数按正方形螺旋排列，素数呈现出沿对角线聚集的惊人模式。</p>
+  <div class="thm"><b>Hardy–Littlewood 素数 k 元组猜想</b> 形如 $n^2+n+c$ 的二次多项式能取无穷多个素值（对某些 $c$）。这解释了螺旋中的「素数对角线」。</div>
+  <p><b>已知结果：</b>Friedlander–Iwaniec 定理（1998）证明 $a^2+b^4$ 形式的素数有无穷多个；这是二次多项式素数问题的重大突破。</p>
+</div>
+
+<div class="sec">
+  <h2>为什么是对角线？ <small>从二次多项式到 Euler 的遗产</small></h2>
+  <p>螺旋中的对角线对应形如 $4n^2+bn+c$ 的二次多项式。原因是螺旋构造使得<b>同一条对角线上的整数共享同一个二次式</b>。如果这个二次式在大量 $n$ 上取素值，对角线就亮起来。</p>
+  <div class="thm"><b>Euler 欧拉公式</b>（1772）$n^2+n+41$ 对 $n=0,1,\dots,39$ 连续 40 项都是素数！这是<b>类数 1 的虚二次域</b>的副产品：$\mathbb{Z}[\tfrac{1+\sqrt{-163}}{2}]$ 唯一分解导致 $n^2+n+41$ 对 $|n|\lt40$ 都素。$n=40$ 时 $n^2+n+41=41^2$——套路终止。</div>
+  <p><b>更亮的对角线</b>：螺旋中<b>水平/竖直/对角</b>四方向各自对应一个二次式 $4n^2+bn+c$。这些二次式的判别式 $\Delta=b^2-16c$ 取某些值时（如 $\Delta=-163$），素数密度极高。Bouniakowsky 猜想断言：若 $\gcd$ 条件满足，必取无穷多个素值——但仍是开问题。</p>
+</div>
+
+<div class="sec">
+  <h2>素数定理与渐近密度 <small>素数有多稀？</small></h2>
+  <p>螺旋边长 $N$ 时共有 $N^2$ 个整数，约 $N^2/\ln N^2$ 个素数。素数密度 $\sim 1/\ln N^2$。$N=100$ 时密度约 $1/\ln 10000\approx10.86\%$——和本页演示吻合。</p>
+  <div class="thm"><b>素数定理</b>（Hadamard、de la Vallée Poussin 1896 独立证明） $\pi(x)\sim\frac{x}{\ln x}$，即不超过 $x$ 的素数个数 $\pi(x)$ 渐近于 $x/\ln x$。等价于：第 $n$ 个素数 $p_n\sim n\ln n$。</div>
+  <p><b>更精细的误差</b>：$\pi(x)=\text{Li}(x)+O(x e^{-a\sqrt{\ln x}})$，其中 $\text{Li}(x)=\int_2^x\frac{dt}{\ln t}$。Riemann 猜想等价于误差 $O(\sqrt{x}\ln x)$——这是 1 千万美元的悬赏问题（Clay 2000）。</p>
+  <p><b>直观看法：</b>螺旋上的素数比例随 $N$ 慢慢减少，但对角线上的某些多项式保持高密度——这种"反常"远超素数定理的预测，正是二次多项式素值问题的魅力。</p>
+</div>
+
+<div class="sec">
+  <h2>Hardy–Littlewood 猜想与无理性 <small>对角线密度的精确预测</small></h2>
+  <p>1923 年 Hardy 和 Littlewood 提出 <b>conjecture F</b>：若二次式 $f(n)=an^2+bn+c$ 满足（i）$a,b,c$ 互质、$a+b$ 与 $c$ 互质、$a\gt0$、（ii）$f$ 无固定素因子、（iii）判别式 $\Delta=b^2-4ac$ 非平方——则 $f$ 取无穷多个素值，且</p>
+  $$\#\{n\le x:f(n)\text{ 为素}\}\sim C_f\cdot\frac{\sqrt x}{\ln x},\quad C_f=\varepsilon\prod_{p\mid\Delta}\frac{p}{p-(\Delta/p)}\prod_{p\nmid\Delta}\left(1-\frac{1}{p-1}\bigl(\tfrac{\Delta}{p}\bigr)\right).$$
+  <p>其中 $(\Delta/p)$ 是 Legendre 符号。常数 $C_f$ 量化了"对角线有多亮"。$f(n)=n^2+n+41$ 的 $C_f\approx3.32$，是 $n^2+n+1$ 的 5 倍多——正对应螺旋上明亮的对角线。</p>
+  <div class="key"><b>未解问题</b>：没有任何一个二次式被证明取无穷多个素值（包括 $n^2+1$，这是 Landau 第四问题）。Euler 公式 $n^2+n+41$ 也是猜的——只是经验上异常频繁。这是 21 世纪最大的解析数论挑战之一。</div>
+</div>
+
+<div class="sec">
+  <h2>素数分布的其他模式 <small>双胞胎、四胞胎与_prime gap_</small></h2>
+  <p>除 Ulam 外，素数还呈现多种惊人模式：</p>
+  <ul>
+    <li><b>孪生素数</b>（$p, p+2$）：3-5、5-7、11-13、17-19、29-31……。Maynard–Tao 2013 证明存在无穷多对差 $\le600$ 的素数（已优化到 246）。孪生素数猜想（差 $=2$）仍未证。</li>
+    <li><b>素数四胞胎</b>（$p,p+2,p+6,p+8$）：5,7,11,13、11,13,17,19……。 Hardy–Littlewood 猜想预测其密度 $\sim O(x/\ln^4 x)$。</li>
+    <li><b>Green–Tao 定理</b>（2004）：素数序列包含任意长度的等差数列！3,7,11 是长度 3，5,11,17,23,29 是长度 5，目前最长已知长度 27。</li>
+    <li><b>素数间隙</b>：间隙 $g_n=p_{n+1}-p_n$，平均约 $\ln p_n$。Zhang 2013 证明 $\liminf g_n\lt600$（现优化至 246）；Erdős 提出 $g_n$ 任意大（已证）。</li>
+  </ul>
+  <p><b>音乐中的素数</b>：Tom Johnson 2004 年的乐曲 "Three Notes" 用素数间隙构造节奏——音乐家与数学家都能听到"乌拉姆的旋律"。</p>
+</div>
+
+<div class="sec">
+  <h2>从乌拉姆到当代 <small>计算、猜想、未决问题</small></h2>
+  <p><b>乌拉姆生平</b>：Stanislaw Ulam（1909–1984），波兰裔美国数学家。除螺旋外，他还有<b>蒙特卡洛法</b>、<b>Teller–Ulam 氢弹设计</b>、<b>非线性脉冲激发（ACERA）</b>等贡献。1963 年在一个无聊的会议草稿纸上随手排出螺旋，是<b>"消遣数学"带来重大发现</b>的典范。</p>
+  <p><b>变体螺旋</b>：Sacks 螺旋（2003，整数绕原点以螺旋方式展开，相邻数夹固定角）、Klauba 螺旋（2002，以整数倍 $2\pi/\phi$ 展开）、Vos Savant 等距螺旋——不同展开给出不同的对角线模式，但 Euler 多项式主导的明亮方向总在。</p>
+  <p><b>计算规模</b>：1994 至 2024，最大已知素数一直是 Mersenne 素数 $2^p-1$。$2^{82589933}-1$（2018 年）有 24,862,048 位。Crandall 与 Pomerance 的《素数：计算视角》（2005）是这方面权威著作。</p>
+  <p><b>未决问题清单</b>：Riemann 猜想（zeta 零点都在临界线）、Goldbach 猜想（每个大于 2 的偶数都是两素数和）、孪生素数猜想、$n^2+1$ 素值无限性、奇完全数存在性——这些"千年难题"的每一步进展都来自对素数分布模式的更精细理解。</p>
+</div>
+
+<footer>
+  <a href="可视化导航.html">← 可视化导航</a>
+  <a href="傅里叶级数.html">傅里叶级数 →</a>
+</footer>
+</div>
+
+<script>
+(function(){
+  var cv = document.getElementById('cv');
+  if(!cv) return;
+  var ctx = cv.getContext('2d');
+  var sl = document.getElementById('sl');
+  var slV = document.getElementById('slV');
+  var stat = document.getElementById('stat');
+
+  function sieve(n){
+    var isP = new Uint8Array(n+1).fill(1);
+    if(n >= 0) isP[0] = 0;
+    if(n >= 1) isP[1] = 0;
+    for(var i=2;i*i<=n;i++){ if(isP[i]){ for(var j=i*i;j<=n;j+=i){ isP[j]=0; } } }
+    return isP;
+  }
+
+  function draw(){
+    var N = parseInt(sl.value, 10);
+    if(N % 2 === 0) N++;
+    slV.textContent = N;
+    var maxV = N*N;
+    var isP = sieve(maxV);
+    var grid = new Int32Array(N*N);
+    var r = Math.floor(N/2), c = Math.floor(N/2);
+    grid[r*N+c] = 1;
+    var val = 1;
+    var step = 1, dir = 0;
+    var dr = [0,-1,0,1], dc = [1,0,-1,0];
+    while(val < maxV){
+      for(var rep=0; rep<2; rep++){
+        for(var s=0; s<step && val < maxV; s++){
+          r += dr[dir]; c += dc[dir];
+          if(r>=0 && r<N && c>=0 && c<N){ val++; grid[r*N+c] = val; }
+        }
+        dir = (dir+1)%4;
+      }
+      step++;
+    }
+    var cell = Math.floor(cv.width / N);
+    var size = cell * N;
+    var ox = Math.floor((cv.width - size)/2);
+    ctx.clearRect(0,0,cv.width,cv.height);
+    ctx.fillStyle = '#FFFDF6';
+    ctx.fillRect(ox, 0, size, size);
+    var cnt = 0;
+    for(var i=0;i<N;i++){
+      for(var j=0;j<N;j++){
+        var v = grid[i*N+j];
+        if(v > 1 && isP[v]){ cnt++; ctx.fillStyle = '#B0396E'; }
+        else if(v === 1){ ctx.fillStyle = '#C9C2AC'; }
+        else { ctx.fillStyle = '#EDE7D6'; }
+        ctx.fillRect(ox + j*cell, i*cell, cell-1, cell-1);
+      }
+    }
+    ctx.fillStyle = '#2E7D5B';
+    ctx.fillRect(ox + Math.floor(N/2)*cell, Math.floor(N/2)*cell, cell, cell);
+    stat.textContent = '素数 ' + cnt + ' 个（密度 ' + (100*cnt/maxV).toFixed(2) + '%）';
+  }
+  sl.addEventListener('input', draw);
+  draw();
+})();
+</script>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

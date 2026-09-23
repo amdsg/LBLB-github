@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self';">
+<title>大数定律 · 骰子试验 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23177E89'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E∑%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--teal:#177E89;--blue:#1F4E9C;--red:#C0392B;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--teal);text-decoration:none;}
+.tag{display:inline-block;background:var(--teal);color:#fff;font-size:12px;padding:2px 10px;border-radius:20px;vertical-align:middle;margin-left:10px;}
+h1{font-family:Georgia,"Noto Serif SC",serif;font-size:40px;margin:14px 0 6px;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--teal);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#fffef9;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls .btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls .btn.gray{background:#8A8270;}
+.controls label{font-size:14px;color:var(--ink2);}
+.controls input[type=range]{width:160px;vertical-align:middle;}
+.stats{display:flex;flex-wrap:wrap;gap:18px;font-family:Georgia,serif;font-size:15px;color:var(--ink2);margin-top:10px;}
+.stats b{color:var(--ink);font-size:18px;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--teal);text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>大数定律 · 骰子试验 <span class="tag">概率统计</span></h1>
+<p class="sub">前几十次掷骰子，平均值上蹿下跳；但只要一直掷下去，样本均值必然稳稳落在期望 $E[X]$ 附近——偶然被无限次重复驯服成必然。</p>
+</header>
+
+<div class="sec">
+<h2>掷骰与均值收敛 <small>曲线随掷骰次数 n 逼近理论期望</small></h2>
+<div class="fig">
+<canvas id="cv" width="880" height="460" role="img" aria-label="大数定律：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls">
+<label>骰子面数 = <span id="sidesVal">6</span>
+<input type="range" id="sides" min="2" max="20" value="6"></label>
+<label>x 轴
+<select id="xscale"><option value="lin">线性</option><option value="log">对数</option></select></label>
+<button class="btn" id="one">掷一次</button>
+<button class="btn" id="ten">连掷 10 次</button>
+<button class="btn" id="thou">连掷 1000 次</button>
+<button class="btn" id="run">动画连掷</button>
+<button class="btn gray" id="clr">清空</button>
+</div>
+<div class="stats" id="stats"></div>
+<p class="explain">左格是当前掷出的点数；右格是<b>滚动均值</b>随次数 $n$ 的变化。黑色虚线是理论期望 $E[X]=(s+1)/2$；
+浅色带是 $\mu\pm 2\sigma/\sqrt{n}$——由中心极限定理给出的<b>误差包络</b>，它按 $1/\sqrt n$ 收窄，这正是大数定律「收敛有多快」的定量答案。
+x 轴切到<b>对数</b>可以看清跨多个数量级的收敛过程；小 $n$ 时会画出每个数据点。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>数学陈述</h2>
+<p>设 $X_1,X_2,\dots$ 独立同分布，$E[X_i]=\mu$ 有限，则样本均值 $\bar X_n=\frac1n\sum_{i=1}^n X_i$ <b>依概率收敛</b>于 $\mu$：</p>
+$$\bar X_n\ \xrightarrow{p}\ \mu,\qquad \forall\varepsilon>0,\ \Pr\bigl(|\bar X_n-\mu|>\varepsilon\bigr)\to 0.$$
+<p>对 $s$ 面骰子，$E[X]=\frac{s+1}{2}$，方差 $\sigma^2=\frac{s^2-1}{12}$。由切比雪夫不等式给出非渐近估计 $\Pr(|\bar X_n-\mu|>\varepsilon)\le \sigma^2/(n\varepsilon^2)$——误差按 $O(1/\sqrt n)$ 衰减。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var W=cv.width,H=cv.height;
+var rolls=[]; var current=1; var timer=null;
+function sides(){return +document.getElementById('sides').value;}
+function drawDie(x,y,size,val){
+  ctx.save();
+  ctx.fillStyle='#fffdf6';ctx.strokeStyle='#22262B';ctx.lineWidth=2;
+  roundRect(x,y,size,size,10);ctx.fill();ctx.stroke();
+  ctx.fillStyle='#22262B';
+  var c=size/2, r=size/12;
+  var pts=diePoints(val,c,size/3.2);
+  pts.forEach(function(p){ctx.beginPath();ctx.arc(x+p[0],y+p[1],r,0,Math.PI*2);ctx.fill();});
+  ctx.restore();
+}
+function roundRect(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+function diePoints(v,c,off){
+  var m={1:[[0,0]],2:[[-off,-off],[off,off]],3:[[-off,-off],[0,0],[off,off]],
+    4:[[-off,-off],[off,-off],[-off,off],[off,off]],
+    5:[[-off,-off],[off,-off],[0,0],[-off,off],[off,off]],
+    6:[[-off,-off],[off,-off],[-off,0],[off,0],[-off,off],[off,off]]};
+  return (m[v]||m[6]).map(function(p){return [c+p[0],c+p[1]];});
+}
+function draw(){
+  var s=sides();
+  document.getElementById('sidesVal').textContent=s;
+  var mu=(s+1)/2;
+  var sigma=Math.sqrt((s*s-1)/12);          // 均匀分布 1..s 的标准差
+  ctx.clearRect(0,0,W,H);
+
+  /* ---- 左格：当前点数 ---- */
+  var dx=70,dy=150,dsize=150;
+  ctx.strokeStyle='#D8D0BC';ctx.lineWidth=1;ctx.strokeRect(30,60,260,340);
+  ctx.fillStyle='#4A5258';ctx.font='14px Georgia';ctx.textAlign='center';
+  ctx.fillText('当前点数',160,90);
+  if(rolls.length) drawDie(dx,dy,dsize,current);
+  ctx.font='20px Georgia';ctx.fillStyle='#22262B';
+  ctx.fillText(current+'',160,340);
+
+  /* ---- 右格：滚动均值 ---- */
+  var pl=340,pr=48,pt=56,pb=54;
+  var pw=W-pl-pr,ph=H-pt-pb;
+  ctx.strokeStyle='#D8D0BC';ctx.strokeRect(pl,pt,pw,ph);
+
+  var n=rolls.length;
+  // 原来这里把 x 轴固定按 1000 次缩放（Math.max(N,1000)），
+  // 结果只掷几次时所有点都挤在最左边一条线上，看起来像「只有几个点」。
+  // 改成按实际次数自适应：数据少时铺满整个面板，数据多时才对到上限。
+  var NMAX=Math.max(n,10);
+  var isLog=(document.getElementById('xscale').value==='log');
+  function X(i){                              // i 从 1 开始
+    if(!isLog) return pl+pw*i/NMAX;
+    var top=Math.max(NMAX,10);
+    return pl+pw*Math.log(i)/Math.log(top);
+  }
+
+  var lo=1-0.0, hi=s+0.0;
+  function Y(v){ return pt+ph-(v-lo)/(hi-lo)*ph; }
+
+  // 期望线
+  var yE=Y(mu);
+  ctx.strokeStyle='#22262B';ctx.setLineDash([5,4]);ctx.beginPath();
+  ctx.moveTo(pl,yE);ctx.lineTo(pl+pw,yE);ctx.stroke();ctx.setLineDash([]);
+  ctx.fillStyle='#4A5258';ctx.font='12px Georgia';ctx.textAlign='right';
+  ctx.fillText('E[X]='+mu.toFixed(2),pl+pw-6,yE-4);
+
+  if(n){
+    // ±2σ/√n 误差带：CLT 给出的收敛速度包络
+    ctx.beginPath();
+    var k;
+    for(k=1;k<=n;k++){
+      var band=2*sigma/Math.sqrt(k);
+      ctx.lineTo(X(k),Y(Math.min(hi,mu+band)));
+    }
+    for(k=n;k>=1;k--){
+      var band2=2*sigma/Math.sqrt(k);
+      ctx.lineTo(X(k),Y(Math.max(lo,mu-band2)));
+    }
+    ctx.closePath();
+    ctx.fillStyle='rgba(23,126,137,.13)';
+    ctx.fill();
+    ctx.strokeStyle='rgba(23,126,137,.45)';ctx.lineWidth=1;ctx.stroke();
+
+    // 滚动均值曲线
+    var sum=0;
+    ctx.strokeStyle='#177E89';ctx.lineWidth=2;ctx.beginPath();
+    for(var i=0;i<n;i++){
+      sum+=rolls[i];
+      var mean=sum/(i+1);
+      if(i===0)ctx.moveTo(X(1),Y(mean));else ctx.lineTo(X(i+1),Y(mean));
+    }
+    ctx.stroke();
+
+    // 数据点少时把每个点画出来，否则退化成一条看不见的线
+    if(n<=60){
+      sum=0;ctx.fillStyle='#0F5560';
+      for(i=0;i<n;i++){
+        sum+=rolls[i];
+        ctx.beginPath();
+        ctx.arc(X(i+1),Y(sum/(i+1)),2.2,0,Math.PI*2);
+        ctx.fill();
+      }
+    }
+    // 末点标注
+    sum=0;for(i=0;i<n;i++)sum+=rolls[i];
+    var lastMean=sum/n;
+    ctx.fillStyle='#0F5560';ctx.font='12px Georgia';ctx.textAlign='left';
+    ctx.fillText(lastMean.toFixed(3),X(n)+4,Y(lastMean)+4);
+  }
+
+  // 坐标轴刻度：让读者能读出数值，而不是只看形状
+  ctx.fillStyle='#4A5258';ctx.font='11px Georgia';
+  ctx.textAlign='center';
+  var ticks=isLog?[1,10,100,1000,10000,100000].filter(function(v){return v<=NMAX;})
+                 :[0,0.25,0.5,0.75,1].map(function(f){return Math.round(f*NMAX);});
+  for(var ti=0;ti<ticks.length;ti++){
+    var tv=ticks[ti]; if(tv<1) continue;
+    var tx=isLog?pl+pw*Math.log(tv)/Math.log(NMAX):pl+pw*tv/NMAX;
+    ctx.strokeStyle='#EDE7D8';ctx.beginPath();ctx.moveTo(tx,pt);ctx.lineTo(tx,pt+ph);ctx.stroke();
+    ctx.fillText(String(tv),tx,pt+ph+16);
+  }
+  ctx.textAlign='right';
+  for(var f2=0;f2<=4;f2++){
+    var yv=lo+(hi-lo)*f2/4;
+    ctx.fillText(yv.toFixed(1),pl-6,Y(yv)+4);
+  }
+  ctx.textAlign='center';
+  ctx.fillText(isLog?'掷骰次数 n（对数轴，i 为序号）→':'掷骰次数 n →',pl+pw/2,pt+ph+34);
+
+  // 统计：加上理论标准误 σ/√n，与实测误差对照
+  var m=0; for(var j=0;j<n;j++)m+=rolls[j]; m/=Math.max(1,n);
+  var se=n?sigma/Math.sqrt(n):0;
+  var inBand=n?Math.abs(m-mu)<=2*se+1e-12:false;
+  document.getElementById('stats').innerHTML=
+    '<span>次数 n <b>'+n+'</b></span>'+
+    '<span>期望 E[X] <b>'+mu.toFixed(2)+'</b></span>'+
+    '<span>样本均值 <b>'+(n?m.toFixed(3):'—')+'</b></span>'+
+    '<span>实测误差 <b>'+(n?((m-mu>=0?'+':'')+(m-mu).toFixed(3)):'—')+'</b></span>'+
+    '<span>理论 σ/√n <b>'+(n?se.toFixed(3):'—')+'</b></span>'+
+    '<span>是否落入 ±2σ/√n <b style="color:'+(n?(inBand?'#2E7D5B':'#C0392B'):'#4A5258')+'">'+
+      (n?(inBand?'是':'否'):'—')+'</b></span>';
+}
+function roll(k){
+  var s=sides();
+  for(var i=0;i<k;i++){var v=1+Math.floor(Math.random()*s);rolls.push(v);current=v;}
+  draw();
+}
+document.getElementById('sides').addEventListener('input',function(){rolls=[];current=1;draw();});
+document.getElementById('xscale').addEventListener('change',function(){draw();});
+document.getElementById('one').addEventListener('click',function(){roll(1);});
+document.getElementById('ten').addEventListener('click',function(){roll(10);});
+document.getElementById('thou').addEventListener('click',function(){roll(1000);});
+document.getElementById('run').addEventListener('click',function(){
+  if(timer){clearInterval(timer);timer=null;document.getElementById('run').textContent='动画连掷';return;}
+  document.getElementById('run').textContent='暂停';
+  timer=setInterval(function(){roll(5);},40);
+});
+document.getElementById('clr').addEventListener('click',function(){rolls=[];current=1;draw();});
+draw();
+})();
+</script>
+
+</body>
+</html>

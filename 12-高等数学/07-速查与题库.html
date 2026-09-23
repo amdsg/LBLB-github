@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>高等数学 VII：速查与经典题库 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%9A%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --hm:#2F5D8A; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--hm); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:38px; margin:12px 0 6px;}
+h1 .sym{color:var(--hm); font-style:italic;}
+.sub{color:var(--ink2); font-size:15.5px; max-width:780px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.series{margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;}
+.series a{font-size:12.5px; color:var(--hm); text-decoration:none; border:1px solid var(--line); border-radius:20px; padding:3px 12px; background:#fffdf6;}
+.series a:hover{background:var(--paper2);}
+.series .cur{background:var(--hm); color:#fff; border-color:var(--hm);}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--hm); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--hm); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; margin-top:26px;}
+.ch p{font-size:15px; margin-top:10px; max-width:840px;}
+.f{font-family:Georgia,"Cambria Math",serif; font-style:italic; background:var(--paper2); border-radius:6px; padding:1px 8px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--hm);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+.warn{background:#FDEDE8; border:1px solid #EAC6B8; border-left:5px solid var(--red); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14px;}
+.warn b{color:var(--red);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--hm); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.tbl{margin-top:14px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px; table-layout:fixed;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+.gloss{margin-top:14px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:14px;}
+.gloss dt{font-weight:700; margin-top:8px;}
+.gloss dt:first-child{margin-top:0;}
+.gloss dd{margin-left:18px; color:var(--ink2); font-size:13.5px;}
+.online{margin-top:16px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; font-size:14px;}
+.online a{color:var(--hm); text-decoration:none;}
+.online a:hover{text-decoration:underline;}
+.online ul{margin:8px 0 0 20px;}
+.online li{margin-top:6px;}
+.online .hint{font-size:12.5px; color:var(--ink2); margin-top:8px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--hm); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:30px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>高等数学 VII · 速查与经典题库 <span class="sym">√</span></h1>
+  <p class="sub">整套高等数学的浓缩：全部公式总表（极限/导数/积分/级数/微分方程）、25 道经典题型与详解、高频易错点清单——考前冲刺与日常查阅两用。</p>
+  <p class="quote">「把公式表贴在手边，把易错点刻进脑子——剩下的是练习。」</p>
+  <div class="series">
+    <a href="01-函数极限与连续.html">I 函数极限连续</a>
+    <a href="02-一元微分学.html">II 一元微分学</a>
+    <a href="03-一元积分学.html">III 一元积分学</a>
+    <a href="04-多元微积分.html">IV 多元微积分</a>
+    <a href="05-无穷级数.html">V 无穷级数</a>
+    <a href="06-常微分方程.html">VI 常微分方程</a>
+    <a class="cur" href="07-速查与题库.html">VII 速查题库</a>
+  </div>
+</header>
+
+<div class="toc">
+  <b>本讲目录</b>
+  <ol>
+    <li><a href="#c1">极限与连续速查</a></li>
+    <li><a href="#c1b">极限与连续公式大表（考前速查）</a></li>
+    <li><a href="#c2">导数与微分速查</a></li>
+    <li><a href="#c2b">导数与中值定理公式表（求导与应用）</a></li>
+    <li><a href="#c3">积分速查</a></li>
+    <li><a href="#c3b">常用积分表大全（凑微分、换元、分部）</a></li>
+    <li><a href="#c4">级数与微分方程速查</a></li>
+    <li><a href="#c4b">级数展开表与判别法对照（全一册速查）</a></li>
+    <li><a href="#c5">经典题型 1–8（极限与导数）</a></li>
+    <li><a href="#c6">经典题型 9–16（积分）</a></li>
+    <li><a href="#c7">经典题型 17–25（多元/级数/方程）</a></li>
+    <li><a href="#c8">分章自测选择题（每题折叠解析）</a></li>
+    <li><a href="#c9">分章自测计算题（每题折叠详解）</a></li>
+    <li><a href="#c10">高频易错点清单</a></li>
+    <li><a href="#c11">补充自测题与公式速记（冲刺加练）</a></li>
+    <li><a href="#c12">更多经典例题与综合公式（冲刺加练二）</a></li>
+    <li><a href="#c13">高频公式默写与易错点补充（考前最后一遍）</a></li>
+    <li><a href="#c14">综合冲刺题组（最后加练）</a></li>
+    <li><a href="#c15">最后五题（合上书自测）</a></li>
+    <li><a href="#c16">专题强化：易混点对比与综合应用（考前最后冲刺）</a></li>
+    <li><a href="#c17">考前最终叮嘱（把分拿到手）</a></li>
+    <li><a href="#c18">学习路径建议（怎么把七讲串起来）</a></li>
+    <li><a href="#c19">核心定理速查（考前必背）（极限·微分·积分·级数·方程）</a></li>
+    <li><a href="#c20">历年考研真题精选（从真题中把握命题方向）</a></li>
+    <li><a href="#c21">易错题集锦（区分「看起来对」与「真的对」）</a></li>
+    <li><a href="#c22">术语表与在线资源</a></li>
+  </ol>
+</div>
+
+<!-- ================= 1 ================= -->
+<div class="ch" id="c1">
+  <h2>1. 极限与连续速查</h2>
+  <div class="thm"><b>定理（等价无穷小 x→0）：</b>sin x ~ x；tan x ~ x；arcsin x ~ x；arctan x ~ x；ln(1+x) ~ x；eˣ − 1 ~ x；1 − cos x ~ x²/2；(1+x)^α − 1 ~ αx。<div class="proof"><b>规则：</b>只在乘除因子中替换。</div></div>
+  <div class="thm"><b>定理（重要极限）：</b>lim sin x/x = 1；lim (1+1/x)ˣ = e；lim (1+x)^(1/x) = e。<div class="proof"><b>常用结论：</b>lim (aˣ − 1)/x = ln a；lim x ln x = 0（x→0⁺）；lim $x^n$ $e^{-x}$ = 0（x→∞）。</div></div>
+  <div class="thm"><b>定理（连续性判定流程）：</b>① 分段点：算左右极限，等于函数值才连续；② 间断点分类：极限存在（可去/跳跃）/ 极限不存在（第二类）。</div>
+</div>
+
+
+<!-- ================= 1b ================= -->
+<div class="ch" id="c1b">
+  <h2>1b. 极限与连续公式大表 <small>考前速查</small></h2>
+  <div class="tbl"><table><colgroup><col style="width:34%"><col style="width:66%"></colgroup><tr><th>类别</th><th>公式与结论</th></tr>
+  <tr><td>两个重要极限</td><td>$\displaystyle\lim_{x\to0}\frac{\sin x}{x}=1$；$\displaystyle\lim_{x\to\infty}\!\left(1+\frac1x\!\right)^x=e$；$\displaystyle\lim_{x\to0}(1+x)^{1/x}=e$</td></tr>
+  <tr><td>等价无穷小（$x\to0$）</td><td>$\sin x\sim x$，$\tan x\sim x$，$\arcsin x\sim x$，$\arctan x\sim x$，$e^x-1\sim x$，$\ln(1+x)\sim x$，$a^x-1\sim x\ln a$，$1-\cos x\sim\frac{x^2}{2}$，$(1+x)^\alpha-1\sim\alpha x$，$x-\sin x\sim\frac{x^3}{6}$</td></tr>
+  <tr><td>无穷大比较</td><td>$\ln^k x\ll x^\alpha\ll a^x\ll x!\ll x^x$（$\alpha>0,a>1$，$x\to+\infty$）</td></tr>
+  <tr><td>夹逼准则</td><td>$g(x)\leq f(x)\leq h(x)$ 且 $\lim g=\lim h=A$，则 $\lim f=A$</td></tr>
+  <tr><td>连续性判定</td><td>$f$ 在 $x_0$ 连续 $\iff$ $\lim_{x\to x_0}f(x)=f(x_0)$；初等函数在定义区间内连续</td></tr>
+  <tr><td>间断点分类</td><td>第一类：可去（左右极限相等但不等于函数值）、跳跃（左右极限不等）；第二类：无穷、振荡</td></tr>
+  <tr><td>零点定理</td><td>$f$ 在 $[a,b]$ 连续，$f(a)f(b)&lt;0$，则 $\exists\xi\in(a,b)$ 使 $f(\xi)=0$</td></tr>
+  <tr><td>介值定理</td><td>$f$ 在 $[a,b]$ 连续，$f(a)=A,f(b)=B$，则 $f$ 取遍 $A$ 与 $B$ 间一切值</td></tr></table></div>
+</div>
+
+<!-- ================= 2 ================= -->
+<div class="ch" id="c2">
+  <h2>2. 导数与微分速查</h2>
+  <div class="thm"><b>定理（基本导数公式）：</b>(xⁿ)′ = nxⁿ⁻¹；(eˣ)′ = eˣ；(aˣ)′ = aˣln a；(ln x)′ = 1/x；(sin x)′ = cos x；(cos x)′ = −sin x；(tan x)′ = sec²x；(cot x)′ = −csc²x；(arcsin x)′ = 1/√(1−x²)；(arccos x)′ = −1/√(1−x²)；(arctan x)′ = 1/(1+x²)。<div class="proof"><b>运算法则：</b>(uv)′ = u′v+uv′；(u/v)′ = (u′v−uv′)/v²；链式 f(g(x))′ = f′(g(x))g′(x)。</div></div>
+  <div class="thm"><b>定理（中值定理串）：</b>罗尔（f(a)=f(b) ⟹ f′(ξ)=0）→ 拉格朗日（f(b)−f(a) = f′(ξ)(b−a)）→ 柯西（两函数之比）。<div class="proof"><b>洛必达：</b>0/0、∞/∞ 型 lim f/g = lim f′/g′（f′/g′ 极限存在时）。</div></div>
+  <div class="thm"><b>定理（泰勒展开前几项）：</b>eˣ = 1+x+x²/2+x³/6+…；sin x = x−x³/6+x⁵/120−…；cos x = 1−x²/2+x⁴/24−…；ln(1+x) = x−x²/2+x³/3−…；1/(1−x) = 1+x+x²+…。</div>
+</div>
+
+
+<!-- ================= 2b ================= -->
+<div class="ch" id="c2b">
+  <h2>2b. 导数与中值定理公式表 <small>求导与应用</small></h2>
+  <div class="tbl"><table><colgroup><col style="width:34%"><col style="width:66%"></colgroup><tr><th>函数</th><th>导数</th></tr>
+  <tr><td>$x^\mu$</td><td>$\mu x^{\mu-1}$</td></tr>
+  <tr><td>$a^x$ / $e^x$</td><td>$a^x\ln a$ / $e^x$</td></tr>
+  <tr><td>$\log_a x$ / $\ln x$</td><td>$\dfrac{1}{x\ln a}$ / $\dfrac1x$</td></tr>
+  <tr><td>$\sin x$ / $\cos x$</td><td>$\cos x$ / $-\sin x$</td></tr>
+  <tr><td>$\tan x$ / $\cot x$</td><td>$\sec^2 x$ / $-\csc^2 x$</td></tr>
+  <tr><td>$\sec x$ / $\csc x$</td><td>$\sec x\tan x$ / $-\csc x\cot x$</td></tr>
+  <tr><td>$\arcsin x$ / $\arccos x$</td><td>$\dfrac{1}{\sqrt{1-x^2}}$ / $-\dfrac{1}{\sqrt{1-x^2}}$</td></tr>
+  <tr><td>$\arctan x$ / $\text{arccot}\,x$</td><td>$\dfrac{1}{1+x^2}$ / $-\dfrac{1}{1+x^2}$</td></tr>
+  <tr><td>双曲函数</td><td>$\sinh x=\dfrac{e^x-e^{-x}}2$，$\cosh x=\dfrac{e^x+e^{-x}}2$，$\sinh'=\cosh$，$\cosh'=\sinh$</td></tr></table></div>
+  <div class="tbl"><table><colgroup><col style="width:34%"><col style="width:66%"></colgroup><tr><th>运算法则</th><th>公式</th></tr>
+  <tr><td>四则</td><td>$(u\pm v)'=u'\pm v'$；$(uv)'=u'v+uv'$；$\left(\dfrac uv\right)'=\dfrac{u'v-uv'}{v^2}$</td></tr>
+  <tr><td>链式</td><td>$[f(g(x))]'=f'(g(x))\,g'(x)$</td></tr>
+  <tr><td>反函数</td><td>$[f^{-1}(y)]'=\dfrac{1}{f'(x)}$</td></tr>
+  <tr><td>参数方程</td><td>$\begin{cases}x=\varphi(t)\\y=\psi(t)\end{cases}$，$\dfrac{dy}{dx}=\dfrac{\psi'(t)}{\varphi'(t)}$</td></tr>
+  <tr><td>对数求导</td><td>$y=u^v$：$\ln y=v\ln u$，两边求导解出 $y'$</td></tr>
+  <tr><td>莱布尼茨公式</td><td>$(uv)^{(n)}=\sum_{k=0}^{n}\binom{n}{k}u^{(k)}v^{(n-k)}$</td></tr></table></div>
+  <div class="tbl"><table><colgroup><col style="width:26%"><col style="width:74%"></colgroup><tr><th>定理</th><th>条件与结论</th></tr>
+  <tr><td>罗尔</td><td>$f$ 闭连续开可导 + $f(a)=f(b)$ $\Rightarrow$ $\exists\xi,\ f'(\xi)=0$</td></tr>
+  <tr><td>拉格朗日</td><td>$f$ 闭连续开可导 $\Rightarrow$ $f(b)-f(a)=f'(\xi)(b-a)$</td></tr>
+  <tr><td>柯西</td><td>$f,g$ 闭连续开可导，$g'\neq0$ $\Rightarrow$ $\dfrac{f(b)-f(a)}{g(b)-g(a)}=\dfrac{f'(\xi)}{g'(\xi)}$</td></tr>
+  <tr><td>洛必达</td><td>$0/0$ 或 $\infty/\infty$：$\lim\dfrac{f}{g}=\lim\dfrac{f'}{g'}$（右端存在）</td></tr>
+  <tr><td>泰勒</td><td>$f(x)=\sum_{k=0}^{n}\dfrac{f^{(k)}(x_0)}{k!}(x-x_0)^k+R_n(x)$</td></tr></table></div>
+</div>
+
+<!-- ================= 3 ================= -->
+<div class="ch" id="c3">
+  <h2>3. 积分速查</h2>
+  <div class="thm"><b>定理（基本积分公式）：</b>$\int x^{n}\,dx$ = xⁿ⁺¹/(n+1)+C；∫dx/x = ln|x|+C；$\int e^{x}\,dx$ = eˣ+C；$\int \sin x \,dx$ = −cos x+C；$\int \cos x \,dx$ = sin x+C；$\int \sec^{2}x \,dx$ = tan x+C；∫dx/(1+x²) = arctan x+C；∫dx/√(1−x²) = arcsin x+C；∫dx/(a²+x²) = (1/a)arctan(x/a)+C；∫dx/(x²−a²) = (1/2a)ln|(x−a)/(x+a)|+C；∫dx/√(a²−x²) = arcsin(x/a)+C。<div class="proof"><b>换元：</b>三角代换 √(a²−x²)→x=a sin t、√(a²+x²)→x=a tan t、√(x²−a²)→x=a sec t；分部：$\int u \,dv$ = uv − $\int v \,du$（反对幂指三）。</div></div>
+  <div class="thm"><b>定理（定积分关键结论）：</b>$\int _0^{π/2}$ sinⁿx dx = $\int _0^{π/2}$ cosⁿx dx（华里士公式递推）；$\int _{-\infty }^\infty$ $e^{-x^{2}}$dx = √π；Γ 函数 Γ(n+1) = n!。<div class="proof"><b>对称性：</b>奇函数在对称区间积分为 0；偶函数为 2 倍半区间。</div></div>
+</div>
+
+
+<!-- ================= 3b ================= -->
+<div class="ch" id="c3b">
+  <h2>3b. 常用积分表大全 <small>凑微分、换元、分部</small></h2>
+  <div class="tbl"><table><colgroup><col style="width:42%"><col style="width:58%"></colgroup><tr><th>被积函数</th><th>原函数</th></tr>
+  <tr><td>$\displaystyle\int x^\mu dx$</td><td>$\dfrac{x^{\mu+1}}{\mu+1}+C$（$\mu\neq-1$）</td></tr>
+  <tr><td>$\displaystyle\int\dfrac{dx}{x}$</td><td>$\ln|x|+C$</td></tr>
+  <tr><td>$\displaystyle\int a^x dx$</td><td>$\dfrac{a^x}{\ln a}+C$；$\int e^xdx=e^x+C$</td></tr>
+  <tr><td>$\displaystyle\int\sin x\,dx$ / $\int\cos x\,dx$</td><td>$-\cos x+C$ / $\sin x+C$</td></tr>
+  <tr><td>$\displaystyle\int\tan x\,dx$ / $\int\cot x\,dx$</td><td>$-\ln|\cos x|+C$ / $\ln|\sin x|+C$</td></tr>
+  <tr><td>$\displaystyle\int\sec x\,dx$ / $\int\csc x\,dx$</td><td>$\ln|\sec x+\tan x|+C$ / $\ln|\csc x-\cot x|+C$</td></tr>
+  <tr><td>$\displaystyle\int\sec^2x\,dx$ / $\int\csc^2x\,dx$</td><td>$\tan x+C$ / $-\cot x+C$</td></tr>
+  <tr><td>$\displaystyle\int\dfrac{dx}{a^2+x^2}$</td><td>$\dfrac1a\arctan\dfrac xa+C$</td></tr>
+  <tr><td>$\displaystyle\int\dfrac{dx}{\sqrt{a^2-x^2}}$</td><td>$\arcsin\dfrac xa+C$（$a>0$）</td></tr>
+  <tr><td>$\displaystyle\int\dfrac{dx}{\sqrt{x^2\pm a^2}}$</td><td>$\ln\left|x+\sqrt{x^2\pm a^2}\right|+C$</td></tr>
+  <tr><td>$\displaystyle\int\dfrac{dx}{x^2-a^2}$</td><td>$\dfrac1{2a}\ln\left|\dfrac{x-a}{x+a}\right|+C$</td></tr>
+  <tr><td>$\displaystyle\int\sqrt{a^2-x^2}\,dx$</td><td>$\dfrac{x}{2}\sqrt{a^2-x^2}+\dfrac{a^2}{2}\arcsin\dfrac xa+C$</td></tr>
+  <tr><td>$\displaystyle\int\sqrt{x^2\pm a^2}\,dx$</td><td>$\dfrac{x}{2}\sqrt{x^2\pm a^2}\pm\dfrac{a^2}{2}\ln\left|x+\sqrt{x^2\pm a^2}\right|+C$</td></tr>
+  <tr><td>$\displaystyle\int\sinh x\,dx$ / $\int\cosh x\,dx$</td><td>$\cosh x+C$ / $\sinh x+C$</td></tr></table></div>
+  <div class="thm"><b>定理（三角代换口诀）：</b>含 $\sqrt{a^2-x^2}$ 令 $x=a\sin t$；含 $\sqrt{a^2+x^2}$ 令 $x=a\tan t$；含 $\sqrt{x^2-a^2}$ 令 $x=a\sec t$。<div class="proof"><b>分部积分选 $u$ 的优先级：</b>反、对、幂、三、指（LIATE）——排在前者取作 $u$。</div></div>
+  <div class="thm"><b>定理（定积分常用结果）：</b>
+  ① 华里士公式：$\displaystyle\int_0^{\pi/2}\sin^n x\,dx=\int_0^{\pi/2}\cos^n x\,dx=\begin{cases}\dfrac{(n-1)!!}{n!!}\cdot\dfrac{\pi}{2},&n\text{ 偶}\\\dfrac{(n-1)!!}{n!!},&n\text{ 奇}\end{cases}$
+  <br>② $\displaystyle\int_0^{+\infty}e^{-x^2}dx=\frac{\sqrt\pi}{2}$（高斯积分）。
+  <br>③ 对称区间：$\int_{-a}^{a}f=\begin{cases}0,&f\text{ 奇}\\2\int_0^a f,&f\text{ 偶}\end{cases}$。
+  <br>④ $\displaystyle\int_0^{\pi/2}f(\sin x)dx=\int_0^{\pi/2}f(\cos x)dx$；$\int_0^\pi xf(\sin x)dx=\frac{\pi}{2}\int_0^\pi f(\sin x)dx$。</div>
+</div>
+
+<!-- ================= 4 ================= -->
+<div class="ch" id="c4">
+  <h2>4. 级数与微分方程速查</h2>
+  <div class="thm"><b>定理（级数判别法速查）：</b>
+  <div class="tbl"><table><colgroup><col style="width:34%"><col style="width:66%"></colgroup><tr><th>情形</th><th>用哪个判别法</th></tr>
+  <tr><td>含 n! 或 nⁿ</td><td>比值判别法</td></tr>
+  <tr><td>含 n 次幂 (aⁿ)</td><td>根值判别法</td></tr>
+  <tr><td>与 p 级数可比</td><td>比较判别法</td></tr>
+  <tr><td>交错</td><td>莱布尼茨（单调递减→0）</td></tr>
+  <tr><td>其他</td><td>积分判别法 / 极限定义</td></tr></table></div></div>
+  <div class="thm"><b>定理（微分方程解法速查）：</b>可分离：∫dy/h(y) = $\int g(x)\,dx$；一阶线性 y′+Py = Q：y = $e^{-\int Pdx}$[∫$Qe^{\int Pdx}$dx + C]；伯努利 y′+Py = Qyⁿ：z = $y^{1-n}$；全微分 Pdx+Qdy = 0（Pᵧ = Qₓ）：F = C。<div class="proof"><b>二阶常系数：</b>特征方程 r²+pr+q = 0 → 两实根/重根/共轭复根三种通解；非齐次待定系数 y* = xᵏe^(λx)Qₘ(x)。</div></div>
+</div>
+
+
+<!-- ================= 4b ================= -->
+<div class="ch" id="c4b">
+  <h2>4b. 级数展开表与判别法对照 <small>全一册速查</small></h2>
+  <div class="tbl"><table><colgroup><col style="width:20%"><col style="width:54%"><col style="width:26%"></colgroup><tr><th>函数</th><th>麦克劳林展开</th><th>收敛域</th></tr>
+  <tr><td>$e^x$</td><td>$\sum_{n=0}^{\infty}\dfrac{x^n}{n!}$</td><td>$(-\infty,\infty)$</td></tr>
+  <tr><td>$\sin x$</td><td>$\sum_{n=0}^{\infty}\dfrac{(-1)^n x^{2n+1}}{(2n+1)!}$</td><td>$\mathbb{R}$</td></tr>
+  <tr><td>$\cos x$</td><td>$\sum_{n=0}^{\infty}\dfrac{(-1)^n x^{2n}}{(2n)!}$</td><td>$\mathbb{R}$</td></tr>
+  <tr><td>$\ln(1+x)$</td><td>$\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}x^n}{n}$</td><td>$(-1,1]$</td></tr>
+  <tr><td>$\arctan x$</td><td>$\sum_{n=0}^{\infty}\dfrac{(-1)^n x^{2n+1}}{2n+1}$</td><td>$[-1,1]$</td></tr>
+  <tr><td>$(1+x)^\alpha$</td><td>$\sum_{n=0}^{\infty}\binom{\alpha}{n}x^n$</td><td>$(-1,1)$</td></tr>
+  <tr><td>$\dfrac1{1-x}$</td><td>$\sum x^n$</td><td>$(-1,1)$</td></tr>
+  <tr><td>$\dfrac1{1+x}$</td><td>$\sum(-1)^n x^n$</td><td>$(-1,1)$</td></tr>
+  <tr><td>$\sinh x$</td><td>$\sum\dfrac{x^{2n+1}}{(2n+1)!}$</td><td>$\mathbb{R}$</td></tr>
+  <tr><td>$\cosh x$</td><td>$\sum\dfrac{x^{2n}}{(2n)!}$</td><td>$\mathbb{R}$</td></tr></table></div>
+  <div class="tbl"><table><colgroup><col style="width:24%"><col style="width:38%"><col style="width:38%"></colgroup><tr><th>判别法</th><th>条件</th><th>结论</th></tr>
+  <tr><td>必要条件</td><td>$\lim a_n\neq0$</td><td>发散</td></tr>
+  <tr><td>比较法（极限）</td><td>$\lim a_n/b_n=l\in(0,\infty)$</td><td>同敛散</td></tr>
+  <tr><td>比值法（达朗贝尔）</td><td>$\lim a_{n+1}/a_n=\rho$</td><td>$\rho&lt;1$ 收敛，$\rho>1$ 发散</td></tr>
+  <tr><td>根值法（柯西）</td><td>$\lim\sqrt[n]{a_n}=\rho$</td><td>同上</td></tr>
+  <tr><td>积分法</td><td>$a_n=f(n)$，$f$ 正递减</td><td>与 $\int_1^\infty f$ 同敛散</td></tr>
+  <tr><td>莱布尼茨</td><td>交错，$u_n\searrow0$</td><td>收敛，余项 $\leq u_{n+1}$</td></tr>
+  <tr><td>M 判别法</td><td>$|u_n(x)|\leq M_n$，$\sum M_n$ 收敛</td><td>函数项级数一致收敛</td></tr></table></div>
+  <div class="tbl"><table><colgroup><col style="width:30%"><col style="width:70%"></colgroup><tr><th>微分方程类型</th><th>解法</th></tr>
+  <tr><td>可分离变量</td><td>$dy/dx=g(x)h(y)$：$\int dy/h(y)=\int g(x)dx$</td></tr>
+  <tr><td>齐次 $y'=f(y/x)$</td><td>令 $u=y/x$，化为可分离</td></tr>
+  <tr><td>一阶线性</td><td>$y'+Py=Q$：$y=e^{-\int Pdx}\!\left[\int Qe^{\int Pdx}dx+C\right]$</td></tr>
+  <tr><td>伯努利</td><td>$y'+Py=Qy^n$：令 $z=y^{1-n}$</td></tr>
+  <tr><td>全微分</td><td>$Pdx+Qdy=0$ 且 $P_y=Q_x$：$F(x,y)=C$</td></tr>
+  <tr><td>缺 $y$ 的二阶</td><td>令 $p=y'$，$p'=f(x,p)$</td></tr>
+  <tr><td>缺 $x$ 的二阶</td><td>令 $p=y'$，$p\,dp/dy=f(y,p)$</td></tr>
+  <tr><td>二阶常系数齐次</td><td>特征方程 $r^2+pr+q=0$，三情形通解</td></tr>
+  <tr><td>二阶常系数非齐次</td><td>待定系数法 $y^*=x^ke^{\lambda x}Q_m(x)$</td></tr>
+  <tr><td>欧拉方程</td><td>$x^2y''+pxy'+qy=0$：令 $x=e^t$</td></tr></table></div>
+</div>
+
+<!-- ================= 5 ================= -->
+<div class="ch" id="c5">
+  <h2>5. 经典题型 1–8（极限与导数）</h2>
+  <div class="ex"><b>题型 1：</b>$\lim_{x\to 0}\dfrac{1-\cos 2x}{x\sin x}$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$1-\cos 2x\sim\dfrac{(2x)^2}{2}=2x^2$、$\sin x\sim x$：原式 $=\dfrac{2x^2}{x^2}=2$。</div></details></div>
+  <div class="ex"><b>题型 2：</b>$\lim_{x\to\infty}\left[\dfrac{x+1}{x-1}\right]^x$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$=\left[1+\dfrac{2}{x-1}\right]^x$，令 $t=\dfrac{x-1}{2}$：$=\left[(1+1/t)^t\right]^2\cdot(1+1/t)\to e^2$。</div></details></div>
+  <div class="ex"><b>题型 3：</b>$\lim_{x\to 0}\dfrac{x-\sin x}{x^3}$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>泰勒：$\sin x=x-x^3/6+o(x^3)\implies$ 原式 $=\dfrac{1}{6}$。等价替换不可行（加减）。</div></details></div>
+  <div class="ex"><b>题型 4：</b>$\lim_{n\to\infty}n(\sqrt{n^2+1}-n)$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>有理化：$n\cdot\dfrac{1}{\sqrt{n^2+1}+n}=\dfrac{n}{2n+\ldots}\to\dfrac{1}{2}$。</div></details></div>
+  <div class="ex"><b>题型 5：</b>f(x) = (x³−1)/(x−1)（x≠1）、f(1) = a，a 取何值时 f 在 1 连续？<details><summary>查看解答</summary><div class="sol"><b>解答：</b>lim f = lim (x²+x+1) = 3，令 a = 3。</div></details></div>
+  <div class="ex"><b>题型 6：</b>y = $x^{sin x}$ 求 y′。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>ln y = sin x ln x ⟹ y′/y = cos x ln x + sin x/x ⟹ y′ = $x^{sin x}$(cos x ln x + sin x/x)。</div></details></div>
+  <div class="ex"><b>题型 7：</b>$\lim_{x\to 0}\dfrac{e^x-1-x}{x(e^x-1)}$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>分母 $e^x-1\sim x\implies$ 分母 $\sim x^2$。分子泰勒：$x^2/2+\ldots\implies$ 原式 $=\dfrac{1}{2}$。</div></details></div>
+  <div class="ex"><b>题型 8：</b>证明 x &gt; 0 时 ln(1+x) &gt; x/(1+x)。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>f(x) = ln(1+x) − x/(1+x)，f′ = 1/(1+x) − 1/(1+x)² = x/(1+x)² &gt; 0，f(0) = 0 ⟹ f &gt; 0。</div></details></div>
+</div>
+
+<!-- ================= 6 ================= -->
+<div class="ch" id="c6">
+  <h2>6. 经典题型 9–16（积分）</h2>
+  <div class="ex"><b>题型 9：</b>∫x $e^{-x}$dx。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>分部：= −x $e^{-x}$ − ∫(−$e^{-x}$)dx = −x $e^{-x}$ − $e^{-x}$ + C = −(x+1)$e^{-x}$ + C。</div></details></div>
+  <div class="ex"><b>题型 10：</b>∫dx/(x²+4x+5)。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>= ∫dx/[(x+2)²+1] = arctan(x+2) + C。</div></details></div>
+  <div class="ex"><b>题型 11：</b>$\int _0^1$ $xe^{x^{2}}$dx。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>u = x²：= (1/2)$\int _0^1$ eᵘ du = (e−1)/2。</div></details></div>
+  <div class="ex"><b>题型 12：</b>$\int _0^π$ x sin x dx。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>分部：= [−x cos x]_0^π + $\int _0^π$ cos x dx = π + 0 = π。</div></details></div>
+  <div class="ex"><b>题型 13：</b>求 y = √x 与 y = x² 围成面积。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>交点 x = 0、1：$\int _0^1$ (√x − x²)dx = [2/3 $x^{3/2}$ − x³/3] = 1/3。</div></details></div>
+  <div class="ex"><b>题型 14：</b>$\int_0^1\ln x\,dx$（广义积分）。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$\lim_{\varepsilon\to 0}[x\ln x-x]_\varepsilon^1=-1-\lim(\varepsilon\ln\varepsilon-\varepsilon)=-1$（$\varepsilon\ln\varepsilon\to 0$）。</div></details></div>
+  <div class="ex"><b>题型 15：</b>判断 $\int _1^\infty$ $e^{-x}$/x dx 敛散性。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$e^{-x}$/x ≤ $e^{-x}$（x ≥ 1），∫$e^{-x}$ 收敛 ⟹ 原积分收敛。</div></details></div>
+  <div class="ex"><b>题型 16：</b>$\int _0^{π/2}$ sin⁴x dx。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>华里士：= (3/4)·(1/2)·(π/2) = 3π/16。</div></details></div>
+</div>
+
+<!-- ================= 7 ================= -->
+<div class="ch" id="c7">
+  <h2>7. 经典题型 17–25（多元/级数/方程）</h2>
+  <div class="ex"><b>题型 17：</b>z = xʸ，求 ∂z/∂x、∂z/∂y。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>∂z/∂x = y $x^{y-1}$（固定 y）；∂z/∂y = xʸ ln x（固定 x）。</div></details></div>
+  <div class="ex"><b>题型 18：</b>求 f(x,y) = x²+xy+y²−3x−6y 的极值。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>fₓ = 2x+y−3 = 0、fᵧ = x+2y−6 = 0 ⟹ x = 0、y = 3。A = 2、B = 1、C = 2，Δ = 3 &gt; 0、A &gt; 0 ⟹ 极小值 f(0,3) = −9。</div></details></div>
+  <div class="ex"><b>题型 19：</b>$\iint _D$ (x+y)dσ，D：x²+y² ≤ 1。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>对称性：∬x = ∬y = 0 ⟹ 原式 = 0。</div></details></div>
+  <div class="ex"><b>题型 20：</b>$\iint _D$ x²dσ，D 为单位圆。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>∬x² = ∬y²（对称），故 ∬x² = (1/2)∬(x²+y²) = (1/2)$\int _0^{2π}$$\int _0^1$ r²·r dr dθ = π/4。</div></details></div>
+  <div class="ex"><b>题型 21：</b>判别 Σ (−1)ⁿ n/(n+1)。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>通项 |aₙ| = n/(n+1) → 1 ≠ 0，必要条件不满足 ⟹ 发散。</div></details></div>
+  <div class="ex"><b>题型 22：</b>求 Σ xⁿ/3ⁿ 的和函数。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>= Σ (x/3)ⁿ = 1/(1 − x/3) = 3/(3−x)，|x| &lt; 3。</div></details></div>
+  <div class="ex"><b>题型 23：</b>解 y′ = (1+y²)/(1+x²)。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>分离：arctan y = arctan x + C ⟹ y = tan(arctan x + C) = (x + tan C)/(1 − x tan C)。</div></details></div>
+  <div class="ex"><b>题型 24：</b>解 y″ − 2y′ − 3y = 0。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>r²−2r−3 = 0 ⟹ r = 3, −1 ⟹ y = C₁e^(3x) + C₂e^(−x)。</div></details></div>
+  <div class="ex"><b>题型 25：</b>求 y″ + y = cos x 的特解。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>λ = i 是特征根（单根）⟹ 设 y* = x(A cos x + B sin x)。代入解得 A = 0、B = 1/2 ⟹ y* = x sin x / 2。</div></details></div>
+</div>
+
+
+<!-- ================= 11：分章自测选择题 ================= -->
+<div class="ch" id="c8">
+  <h2>8. 分章自测选择题 <small>每题折叠解析</small></h2>
+  <h3>极限与连续</h3>
+  <div class="ex"><b>选择 1：</b>$\lim_{x\to0}\dfrac{\tan x-\sin x}{x^3}=$？<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$\tan x-\sin x=\sin x(1/\cos x-1)\sim x\cdot(x^2/2)=x^3/2$，答案 $1/2$。</div></details></div>
+  <div class="ex"><b>选择 2：</b>当 $x\to0$ 时，$1-\cos2x$ 是 $x^2$ 的（）无穷小。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$1-\cos2x\sim(2x)^2/2=2x^2$，同阶（等价系数为 2）。</div></details></div>
+  <div class="ex"><b>选择 3：</b>$f(x)=\dfrac{x}{\sin x}$ 的可去间断点为（）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$x=0$ 时极限为 1，但函数无定义，是可去间断点；$x=k\pi(k\neq0)$ 为无穷间断点。</div></details></div>
+  <h3>一元微分学</h3>
+  <div class="ex"><b>选择 4：</b>$f(x)=|x|$ 在 $x=0$ 处（）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>连续但不可导（左导 $-1$，右导 $1$）。</div></details></div>
+  <div class="ex"><b>选择 5：</b>设在 $[0,1]$ 上 $f''(x)>0$，则 $f'(0),f'(1),f(1)-f(0)$ 大小关系？<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$f'$ 递增，$f(1)-f(0)=f'(\xi)$，$\xi\in(0,1)$，故 $f'(0)&lt;f(1)-f(0)&lt;f'(1)$。</div></details></div>
+  <div class="ex"><b>选择 6：</b>$y=x^3-3x$ 的极小值点为（）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$y'=3(x^2-1)=0$，$x=\pm1$；$y''=6x$，$x=1$ 时 $y''>0$ 极小。</div></details></div>
+  <h3>一元积分学</h3>
+  <div class="ex"><b>选择 7：</b>$\int_{-1}^{1}x^2\sin^3x\,dx=$？<details><summary>查看解析</summary><div class="sol"><b>解析：</b>被积函数是奇函数，对称区间积分为 0。</div></details></div>
+  <div class="ex"><b>选择 8：</b>$\int_0^1 e^{x^2}dx$ 的值（）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>不能用初等函数表示，但由估值定理 $1\leq\int_0^1e^{x^2}dx\leq e$。</div></details></div>
+  <div class="ex"><b>选择 9：</b>广义积分 $\int_1^\infty\dfrac{dx}{x^p}$ 收敛当（）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$p>1$ 收敛，$p\leq1$ 发散（$p$ 积分判别法）。</div></details></div>
+  <h3>多元微积分</h3>
+  <div class="ex"><b>选择 10：</b>$z=x^y$，则 $\dfrac{\partial z}{\partial y}=$？<details><summary>查看解析</summary><div class="sol"><b>解析：</b>固定 $x$，$z=x^y=e^{y\ln x}$，$\partial z/\partial y=x^y\ln x$。</div></details></div>
+  <div class="ex"><b>选择 11：</b>二重积分 $\iint_{x^2+y^2\leq1}1\,d\sigma=$？<details><summary>查看解析</summary><div class="sol"><b>解析：</b>单位圆面积 $\pi$。</div></details></div>
+  <h3>无穷级数</h3>
+  <div class="ex"><b>选择 12：</b>级数 $\sum(-1)^{n-1}/n^p$ 绝对收敛当（）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$\sum1/n^p$ 收敛即 $p>1$ 时绝对收敛；$0&lt;p\leq1$ 时条件收敛。</div></details></div>
+  <div class="ex"><b>选择 13：</b>幂级数 $\sum x^n/n$ 的收敛域为（）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$R=1$；$x=1$ 发散，$x=-1$ 收敛，域 $[-1,1)$。</div></details></div>
+  <div class="ex"><b>选择 14：</b>下列级数发散的是（）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$\sum1/\sqrt n$（$p=1/2&lt;1$）发散；其余如 $\sum1/n^2$、$\sum1/n!$、$\sum(-1)^n/n$ 均收敛。</div></details></div>
+  <h3>常微分方程</h3>
+  <div class="ex"><b>选择 15：</b>$y''-y=0$ 的通解为（）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$r=\pm1$，$y=C_1e^x+C_2e^{-x}$。</div></details></div>
+  <div class="ex"><b>选择 16：</b>方程 $y'=y$ 满足 $y(0)=1$ 的解为（）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$y=Ce^x$，$C=1$，$y=e^x$。</div></details></div>
+  <div class="ex"><b>选择 17：</b>$y''+y=\sin x$ 的特解应设为（）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$i$ 是特征根（单根），设 $y^*=x(A\cos x+B\sin x)$。</div></details></div>
+</div>
+
+<!-- ================= 12：分章自测计算题 ================= -->
+<div class="ch" id="c9">
+  <h2>9. 分章自测计算题 <small>每题折叠详解</small></h2>
+  <div class="ex"><b>计算 1：</b>$\displaystyle\lim_{x\to0}\frac{e^x-e^{-x}-2x}{x-\sin x}$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>泰勒：$e^x-e^{-x}=2x+\frac{x^3}{3}+\cdots$，分子 $\sim x^3/3$；分母 $x-\sin x\sim x^3/6$。答案 $2$。</div></details></div>
+  <div class="ex"><b>计算 2：</b>求 $y=\ln\sin(3x)$ 的导数。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$y'=\dfrac{1}{\sin3x}\cdot3\cos3x=3\cot3x$。</div></details></div>
+  <div class="ex"><b>计算 3：</b>求 $\displaystyle\int\frac{dx}{x^2\sqrt{1+x^2}}$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>令 $x=\tan t$，$dx=\sec^2t\,dt$，原式 $=\int\dfrac{\sec^2t\,dt}{\tan^2t\sec t}=\int\dfrac{\cos t}{\sin^2t}dt=-\dfrac1{\sin t}+C=-\dfrac{\sqrt{1+x^2}}{x}+C$。</div></details></div>
+  <div class="ex"><b>计算 4：</b>求由 $y=x^2$ 与 $y=x$ 围成图形绕 $x$ 轴旋转的体积。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>交点 $x=0,1$。$V=\pi\int_0^1(x^2-x^4)dx=\pi\!\left(\frac13-\frac15\right)=\frac{2\pi}{15}$。</div></details></div>
+  <div class="ex"><b>计算 5：</b>$z=e^{xy}$，求 $\dfrac{\partial^2 z}{\partial x\partial y}$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$z_x=y e^{xy}$，$z_{xy}=e^{xy}+xy e^{xy}=(1+xy)e^{xy}$。</div></details></div>
+  <div class="ex"><b>计算 6：</b>计算 $\displaystyle\iint_D xy\,d\sigma$，$D$ 由 $y=x,y=1,x=0$ 围成。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$\int_0^1\!\int_0^y xy\,dx\,dy=\int_0^1 y\cdot\frac{y^2}{2}dy=\frac18$。</div></details></div>
+  <div class="ex"><b>计算 7：</b>判别 $\displaystyle\sum_{n=1}^{\infty}\frac{n}{2^n}$ 的敛散性并求和。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>比值法收敛。由 $\sum x^n=1/(1-x)$ 逐项求导乘 $x$：$\sum nx^n=x/(1-x)^2$，令 $x=1/2$，和为 $2$。</div></details></div>
+  <div class="ex"><b>计算 8：</b>将 $f(x)=\dfrac{1}{x^2+4x+3}$ 展开为 $(x-1)$ 的幂级数。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$f=\frac1{(x+1)(x+3)}=\frac12\!\left(\frac1{x+1}-\frac1{x+3}\right)$。代入 $x-1$：$\frac1{x+1}=\frac1{2+(x-1)}=\frac12\sum(-1)^n\frac{(x-1)^n}{2^n}$；$\frac1{x+3}=\frac1{4+(x-1)}=\frac14\sum(-1)^n\frac{(x-1)^n}{4^n}$。</div></details></div>
+  <div class="ex"><b>计算 9：</b>解 $y'=\dfrac{y}{x}+\tan\dfrac{y}{x}$（齐次）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>令 $u=y/x$，$u+xu'=u+\tan u$，$\cot u\,du=dx/x$，$\ln|\sin u|=\ln|x|+C$，$\sin u=Cx$，$\sin(y/x)=Cx$。</div></details></div>
+  <div class="ex"><b>计算 10：</b>求 $y''+y=x+\cos x$ 的通解。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>齐次 $C_1\cos x+C_2\sin x$。对 $x$ 设 $ax+b$，$a=1,b=0$；对 $\cos x$ 设 $x(c\cos x+d\sin x)$，代入得 $2d\cos x-2c\sin x=\cos x$，$c=0,d=1/2$。通解 $y=C_1\cos x+C_2\sin x+x+\frac{x}{2}\sin x$。</div></details></div>
+  <div class="ex"><b>计算 11：</b>解欧拉方程 $x^2y''-2y=0$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>令 $x=e^t$：$D(D-1)-2=D^2-D-2=0$，$D=2,-1$，$y=C_1e^{2t}+C_2e^{-t}=C_1x^2+C_2/x$。</div></details></div>
+  <div class="ex"><b>计算 12：</b>用傅里叶级数求 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$x^2$ 在 $[-\pi,\pi]$ 的展开为 $\pi^2/3+4\sum(-1)^n\cos nx/n^2$，令 $x=\pi$：$\pi^2=\pi^2/3+4\sum1/n^2$，得 $\sum1/n^2=\pi^2/6$。</div></details></div>
+</div>
+
+<!-- ================= 8 ================= -->
+<div class="ch" id="c10">
+  <h2>10. 高频易错点清单</h2>
+  <div class="warn"><b>① 极限：</b>等价无穷小只在乘除中替换；「∞−∞」「0·∞」先变形；洛必达失效时换夹逼/泰勒。<b>② 连续性：</b>可导 ⟹ 连续，反之不成立；分段点必须单独验证。<b>③ 求导：</b>复合函数漏内层导数；隐函数忘乘 y′；幂指函数必须取对数。<b>④ 积分：</b>∫1/x = ln|x|；不定积分忘记 +C；换元忘记换限（定积分）；分部积分 u、dv 选错。</div>
+  <div class="warn"><b>⑤ 多元：</b>偏导存在 ≠ 可微 ≠ 连续；极值判别 Δ = 0 待定；条件极值用拉格朗日；重积分换序时上下限重定。<b>⑥ 级数：</b>通项 → 0 是收敛的必要不充分条件；比值/根值 ρ = 1 时失效；条件收敛级数不能随便重排；幂级数端点单独检验。<b>⑦ 微分方程：</b>分离变量除零丢解；一阶线性公式的积分因子不能丢；λ 是特征根时必须乘 xᵏ；二阶方程设特解后代入核对。</div>
+</div>
+
+
+<!-- ================= 13：补充自测与公式速记 ================= -->
+<div class="ch" id="c11">
+  <h2>11. 补充自测题与公式速记 <small>冲刺加练</small></h2>
+  <div class="ex"><b>补充选择 1：</b>$\lim_{x\to\infty}\dfrac{3x^2+2x-1}{x^2+5}=$？<details><summary>查看解析</summary><div class="sol"><b>解析：</b>最高次系数比 $3/1=3$。</div></details></div>
+  <div class="ex"><b>补充选择 2：</b>$f(x)=x|x|$ 在 $x=0$ 处（）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$x\geq0$ 时 $f=x^2$，$x&lt;0$ 时 $f=-x^2$。$f'(0)=0$（左右导均为 0），可导。</div></details></div>
+  <div class="ex"><b>补充选择 3：</b>函数 $f(x)=x^3-3x$ 在 $[0,2]$ 上最大值为（）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>驻点 $x=1$，$f(0)=0,f(1)=-2,f(2)=2$，最大值 2。</div></details></div>
+  <div class="ex"><b>补充选择 4：</b>$\int x e^x dx=$？<details><summary>查看解析</summary><div class="sol"><b>解析：</b>分部 $=xe^x-e^x+C=(x-1)e^x+C$。</div></details></div>
+  <div class="ex"><b>补充选择 5：</b>级数 $\sum_{n=1}^{\infty}\frac{(-1)^n}{\sqrt n}$ 是（）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>莱布尼茨收敛，$\sum1/\sqrt n$ 发散，条件收敛。</div></details></div>
+  <div class="ex"><b>补充选择 6：</b>$y''+4y=0$ 的通解为（）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$r=\pm2i$，$y=C_1\cos2x+C_2\sin2x$。</div></details></div>
+  <div class="ex"><b>补充计算 1：</b>$\lim_{x\to0}\dfrac{\ln(1+x)-x}{x^2}$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$\ln(1+x)=x-x^2/2+\cdots$，原式 $=-1/2$。</div></details></div>
+  <div class="ex"><b>补充计算 2：</b>求 $\int_0^{\pi/2}\sin^3x\,dx$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>华里士（奇数）$=2/3$。</div></details></div>
+  <div class="ex"><b>补充计算 3：</b>$z=x^2y+xy^2$，求 $dz$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$z_x=2xy+y^2$，$z_y=x^2+2xy$，$dz=(2xy+y^2)dx+(x^2+2xy)dy$。</div></details></div>
+  <div class="ex"><b>补充计算 4：</b>判别 $\sum_{n=1}^{\infty}\frac{n}{2^n}$ 敛散性并求和。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>比值法收敛。$\sum nx^n=x/(1-x)^2$，令 $x=1/2$，和为 2。</div></details></div>
+  <div class="ex"><b>补充计算 5：</b>解 $y'\cos x+y\sin x=1$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>化为 $y'+y\tan x=\sec x$，$P=\tan x$，$\mu=e^{\int\tan xdx}=1/\cos x$。$(y/\cos x)'=\sec^2x$，$y/\cos x=\tan x+C$，$y=\sin x+C\cos x$。</div></details></div>
+  <div class="ex"><b>补充计算 6：</b>求 $y''+2y'+y=xe^{-x}$ 的特解。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$r=-1$ 二重根，设 $y^*=x^2(ax+b)e^{-x}$。代入得 $6ax+2b=x$，$a=1/6,b=0$，$y^*=x^3e^{-x}/6$。</div></details></div>
+  <div class="tbl"><table><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tr><th>必背泰勒展开</th><th>前三项</th></tr>
+  <tr><td>$e^x$</td><td>$1+x+\frac{x^2}{2}$</td></tr>
+  <tr><td>$\sin x$</td><td>$x-\frac{x^3}{6}$</td></tr>
+  <tr><td>$\cos x$</td><td>$1-\frac{x^2}{2}+\frac{x^4}{24}$</td></tr>
+  <tr><td>$\ln(1+x)$</td><td>$x-\frac{x^2}{2}+\frac{x^3}{3}$</td></tr>
+  <tr><td>$\frac1{1-x}$</td><td>$1+x+x^2$</td></tr>
+  <tr><td>$\arctan x$</td><td>$x-\frac{x^3}{3}$</td></tr>
+  <tr><td>$(1+x)^{1/2}$</td><td>$1+\frac{x}{2}-\frac{x^2}{8}$</td></tr>
+  <tr><td>$\frac1{1+x}$</td><td>$1-x+x^2$</td></tr></table></div>
+</div>
+
+
+<!-- ================= 14：更多经典例题与公式表 ================= -->
+<div class="ch" id="c12">
+  <h2>12. 更多经典例题与综合公式 <small>冲刺加练二</small></h2>
+  <div class="ex"><b>综合例 1：</b>求 $\displaystyle\lim_{x\to0}\frac{(1+x)^{1/x}-e}{x}$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$(1+x)^{1/x}=e^{\frac1x\ln(1+x)}=e^{1-x/2+\cdots}=e\cdot e^{-x/2+\cdots}\approx e(1-x/2)$，分子 $\approx-ex/2$，答案 $-e/2$。</div></details></div>
+  <div class="ex"><b>综合例 2：</b>求 $\displaystyle\int\frac{\arcsin x}{\sqrt{1-x^2}}dx$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>令 $u=\arcsin x$，$du=dx/\sqrt{1-x^2}$，原式 $=\int u\,du=u^2/2+C=\frac12(\arcsin x)^2+C$。</div></details></div>
+  <div class="ex"><b>综合例 3：</b>求 $\displaystyle\int_0^{\pi/2}\frac{\sin x}{\sin x+\cos x}dx$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>利用 $\int_0^{\pi/2}f(\sin x)dx=\int_0^{\pi/2}f(\cos x)dx$，记 $I$，则 $I=\int\cos x/(\sin x+\cos x)dx$，两式相加 $2I=\int_0^{\pi/2}1\,dx=\pi/2$，$I=\pi/4$。</div></details></div>
+  <div class="ex"><b>综合例 4：</b>求幂级数 $\displaystyle\sum_{n=1}^{\infty}\frac{(x-1)^n}{n\,2^n}$ 的收敛域。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$R=\lim\frac{(n+1)2^{n+1}}{n2^n}=2$，即 $|x-1|&lt;2$。$x=3$：$\sum1/n$ 发散；$x=-1$：$\sum(-1)^n/n$ 收敛。收敛域 $[-1,3)$。</div></details></div>
+  <div class="ex"><b>综合例 5：</b>求 $\displaystyle\sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}$ 的和。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$\arctan x=\sum(-1)^n x^{2n+1}/(2n+1)$，令 $x=1$：$\pi/4=1-1/3+1/5-\cdots=\sum(-1)^n/(2n+1)$。</div></details></div>
+  <div class="ex"><b>综合例 6：</b>解 $y''+y=\sin2x$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>齐次 $C_1\cos x+C_2\sin x$。$\alpha+i\beta=2i$ 非特征根，设 $y^*=A\cos2x+B\sin2x$。代入：$(-4A+A)\cos2x+(-4B+B)\sin2x=\sin2x$，$A=0,B=-1/3$。$y^*=-\frac13\sin2x$。</div></details></div>
+  <div class="ex"><b>综合例 7：</b>求 $f(x,y)=x^3+y^3-3xy$ 的极值。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$f_x=3x^2-3y=0$，$f_y=3y^2-3x=0$，驻点 $(0,0),(1,1)$。$A=6x,B=-3,C=6y$。$(0,0)$：$\Delta=B^2-AC=9>0$ 非极值；$(1,1)$：$\Delta=9-36=-27&lt;0$，$A=6>0$，极小值 $f(1,1)=-1$。</div></details></div>
+  <div class="ex"><b>综合例 8：</b>交换积分次序 $\displaystyle\int_0^1dx\int_x^1 e^{-y^2}dy$ 并求值。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>区域 $0\leq x\leq1,x\leq y\leq1$，换序为 $0\leq y\leq1,0\leq x\leq y$：$\int_0^1dy\int_0^y e^{-y^2}dx=\int_0^1 y e^{-y^2}dy=\frac12(1-e^{-1})$。</div></details></div>
+  <div class="ex"><b>综合例 9：</b>判断 $\displaystyle\sum_{n=1}^{\infty}\int_0^{1/n}\frac{\sqrt x}{1+x^2}dx$ 的敛散性。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$0\leq a_n\leq\int_0^{1/n}\sqrt x\,dx=\frac{2}{3n^{3/2}}$，而 $\sum1/n^{3/2}$ 收敛，由比较法原级数收敛。</div></details></div>
+  <div class="ex"><b>综合例 10：</b>解初值问题 $y''-y=4xe^x,\ y(0)=0,y'(0)=1$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>齐次 $C_1e^x+C_2e^{-x}$。$\lambda=1$ 单根，设 $y^*=x(Ax+B)e^x$。代入得 $A=1,B=-1$，$y^*=(x^2-x)e^x$。通解 $y=C_1e^x+C_2e^{-x}+(x^2-x)e^x$。$y(0)=C_1+C_2=0$；$y'=C_1e^x-C_2e^{-x}+(x^2+x-1)e^x$，$y'(0)=C_1-C_2-1=1$。解得 $C_1=1,C_2=-1$。</div></details></div>
+  <div class="tbl"><table><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tr><th>多元微积分公式</th><th>内容</th></tr>
+  <tr><td>全微分</td><td>$dz=\dfrac{\partial z}{\partial x}dx+\dfrac{\partial z}{\partial y}dy$</td></tr>
+  <tr><td>链式法则</td><td>$z=f(u,v),u=u(x,y),v=v(x,y)$：$\dfrac{\partial z}{\partial x}=f_uu_x+f_vv_x$</td></tr>
+  <tr><td>隐函数</td><td>$F(x,y,z)=0$：$\dfrac{\partial z}{\partial x}=-\dfrac{F_x}{F_z}$</td></tr>
+  <tr><td>二重积分</td><td>$\iint_D f(x,y)d\sigma=\int_\alpha^\beta d\theta\int_{r_1(\theta)}^{r_2(\theta)}f(r\cos\theta,r\sin\theta)r\,dr$</td></tr>
+  <tr><td>极坐标面积元</td><td>$d\sigma=r\,dr\,d\theta$</td></tr>
+  <tr><td>拉格朗日乘数</td><td>$\nabla f=\lambda\nabla\varphi$ 求条件极值</td></tr>
+  <tr><td>曲面面积</td><td>$S=\iint_D\sqrt{1+z_x^2+z_y^2}\,dxdy$</td></tr></table></div>
+</div>
+
+
+<div class="ch" id="c13">
+  <h2>13. 高频公式默写与易错点补充 <small>考前最后一遍</small></h2>
+  <div class="tbl"><table><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tr><th>公式</th><th>内容</th></tr>
+  <tr><td>牛顿-莱布尼茨公式</td><td>$\int_a^b f(x)dx=F(b)-F(a)$</td></tr>
+  <tr><td>分部积分</td><td>$\int u\,dv=uv-\int v\,du$</td></tr>
+  <tr><td>一阶线性通解</td><td>$y=e^{-\int Pdx}\!\left[\int Qe^{\int Pdx}dx+C\right]$</td></tr>
+  <tr><td>几何级数和</td><td>$\sum_{n=0}^{\infty}ar^n=\frac{a}{1-r}$（$|r|&lt;1$）</td></tr>
+  <tr><td>$p$ 级数</td><td>$\sum1/n^p$：$p>1$ 收敛，$p\leq1$ 发散</td></tr>
+  <tr><td>收敛半径</td><td>$R=\lim|a_n/a_{n+1}|$</td></tr>
+  <tr><td>欧拉公式</td><td>$e^{ix}=\cos x+i\sin x$</td></tr>
+  <tr><td>旋转体体积</td><td>$V=\pi\int_a^b [f(x)]^2dx$（绕 $x$ 轴）</td></tr>
+  <tr><td>弧长公式</td><td>$s=\int_a^b\sqrt{1+[f'(x)]^2}\,dx$</td></tr>
+  <tr><td>格林公式</td><td>$\oint Pdx+Qdy=\iint_D(Q_x-P_y)d\sigma$</td></tr></table></div>
+  <div class="ex"><b>易错补充 1：</b>等价无穷小替换在加减法中为什么不能随便用？<details><summary>查看解析</summary><div class="sol"><b>解析：</b>等价替换只保证主项相同，高阶项可能不同。如 $\lim_{x\to0}(\tan x-\sin x)/x^3$，若替换 $\tan x\sim x,\sin x\sim x$ 得 0，实际为 $1/2$。加减法中应展开到足够阶数。</div></details></div>
+  <div class="ex"><b>易错补充 2：</b>幂级数逐项求导后收敛半径不变，端点呢？<details><summary>查看解析</summary><div class="sol"><b>解析：</b>端点可能改变。如 $\sum x^n/n$ 在 $x=-1$ 收敛，逐项求导得 $\sum x^{n-1}$ 在 $x=-1$ 发散。</div></details></div>
+  <div class="ex"><b>易错补充 3：</b>二阶非齐次方程设特解时，$\lambda$ 不是特征根也要乘 $x^k$ 吗？<details><summary>查看解析</summary><div class="sol"><b>解析：</b>不需要。$k=0$ 表示 $\lambda$ 不是特征根，直接设 $y^*=e^{\lambda x}Q_m$ 即可；$k=1,2$ 分别对应单根、重根。</div></details></div>
+  <div class="ex"><b>易错补充 4：</b>全微分方程 $P_y=Q_x$ 是充要条件吗？<details><summary>查看解析</summary><div class="sol"><b>解析：</b>在单连通域内且 $P,Q$ 有连续偏导时是充要条件。多连通域或偏导不连续时不充分。</div></details></div>
+  <div class="ex"><b>易错补充 5：</b>交错级数 $\sum(-1)^{n-1}u_n$ 中 $u_n$ 不单调递减，莱布尼茨法还能用吗？<details><summary>查看解析</summary><div class="sol"><b>解析：</b>不能。必须验证 $u_n$ 单调递减趋于 0。若不单调，可改用其他方法（如绝对收敛判别、分解为已知级数之和等）。</div></details></div>
+  <div class="ex"><b>最终自测 1：</b>求 $\displaystyle\lim_{n\to\infty}\left(1+\frac{1}{n}\right)^n$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$e$。</div></details></div>
+  <div class="ex"><b>最终自测 2：</b>$\displaystyle\int_0^1\frac{dx}{1+x^2}=$？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\arctan1-\arctan0=\pi/4$。</div></details></div>
+  <div class="ex"><b>最终自测 3：</b>$y''+y=0$ 的通解。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$y=C_1\cos x+C_2\sin x$。</div></details></div>
+  <div class="ex"><b>最终自测 4：</b>$e^x$ 的麦克劳林展开前三项。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$1+x+x^2/2$。</div></details></div>
+  <div class="ex"><b>最终自测 5：</b>$\sum1/n^2$ 的和。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\pi^2/6$。</div></details></div>
+</div>
+
+
+<div class="ch" id="c14">
+  <h2>14. 综合冲刺题组 <small>最后加练</small></h2>
+  <div class="ex"><b>冲刺 1：</b>求 $\displaystyle\lim_{x\to0}\frac{\sqrt{1+x\sin x}-1}{x^2}$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$\sqrt{1+u}-1\sim u/2$，$u=x\sin x\sim x^2$，原式 $\sim x^2/2 / x^2=1/2$。</div></details></div>
+  <div class="ex"><b>冲刺 2：</b>求 $y=(\sin x)^{\cos x}$ 的导数。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$\ln y=\cos x\ln\sin x$，$y'/y=-\sin x\ln\sin x+\cos x\cdot\cos x/\sin x$，$y'=(\sin x)^{\cos x}\!\left(-\sin x\ln\sin x+\frac{\cos^2x}{\sin x}\right)$。</div></details></div>
+  <div class="ex"><b>冲刺 3：</b>求 $\displaystyle\int\frac{dx}{x^2\sqrt{4-x^2}}$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>令 $x=2\sin t$，$dx=2\cos t\,dt$，原式 $=\int\frac{2\cos t\,dt}{4\sin^2t\cdot2\cos t}=\frac14\int\csc^2t\,dt=-\frac14\cot t+C=-\frac{\sqrt{4-x^2}}{4x}+C$。</div></details></div>
+  <div class="ex"><b>冲刺 4：</b>求 $\displaystyle\int_0^\pi\sqrt{1-\cos2x}\,dx$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$\sqrt{1-\cos2x}=\sqrt{2\sin^2x}=\sqrt2|\sin x|=\sqrt2\sin x$（$x\in[0,\pi]$），积分 $=\sqrt2[-\cos x]_0^\pi=2\sqrt2$。</div></details></div>
+  <div class="ex"><b>冲刺 5：</b>$z=\ln(x^2+y^2)$，求 $\dfrac{\partial^2 z}{\partial x^2}+\dfrac{\partial^2 z}{\partial y^2}$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$z_x=2x/(x^2+y^2)$，$z_{xx}=2(y^2-x^2)/(x^2+y^2)^2$；同理 $z_{yy}=2(x^2-y^2)/(x^2+y^2)^2$，和为 0（拉普拉斯方程）。</div></details></div>
+  <div class="ex"><b>冲刺 6：</b>计算 $\displaystyle\iint_D (x^2+y^2)d\sigma$，$D$：$x^2+y^2\leq2x$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>极坐标：$r^2\leq2r\cos\theta$，$0\leq r\leq2\cos\theta$，$\theta\in[-\pi/2,\pi/2]$。积分 $=\int_{-\pi/2}^{\pi/2}d\theta\int_0^{2\cos\theta}r^2\cdot r\,dr=\int_{-\pi/2}^{\pi/2}4\cos^4\theta\,d\theta=8\cdot\frac{3}{8}\cdot\frac{\pi}{2}=\frac{3\pi}{2}$。</div></details></div>
+  <div class="ex"><b>冲刺 7：</b>判别 $\displaystyle\sum_{n=1}^{\infty}\frac{\ln n}{n^{3/2}}$ 的敛散性。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>取 $b_n=1/n^{5/4}$，$\frac{\ln n/n^{3/2}}{1/n^{5/4}}=\frac{\ln n}{n^{1/4}}\to0$，$\sum1/n^{5/4}$ 收敛（$p=5/4>1$），原级数收敛。</div></details></div>
+  <div class="ex"><b>冲刺 8：</b>求 $\displaystyle\sum_{n=0}^{\infty}\frac{x^{2n}}{(2n)!}$ 的和函数。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>这正是 $\cosh x=(e^x+e^{-x})/2$ 的展开，和函数为 $\cosh x$，$|x|&lt;\infty$。</div></details></div>
+  <div class="ex"><b>冲刺 9：</b>解 $y'=\dfrac{y}{x}+\dfrac{x}{y}$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>齐次，令 $u=y/x$，$u+xu'=u+1/u$，$u\,du=dx/x$，$u^2/2=\ln|x|+C$，$y^2/x^2=2\ln|x|+C$，$y^2=x^2(2\ln|x|+C)$。</div></details></div>
+  <div class="ex"><b>冲刺 10：</b>求 $y''-4y'+4y=(x^2+x)e^{2x}$ 的特解。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$r=2$ 二重根，$\lambda=2$ 二重根 $k=2$，设 $y^*=x^2(ax^2+bx+c)e^{2x}$。代入得 $12ax^2+6bx+2c=x^2+x$，$a=1/12,b=1/6,c=0$，$y^*=x^2(x^2/12+x/6)e^{2x}$。</div></details></div>
+</div>
+
+
+<div class="ch" id="c15">
+  <h2>15. 最后五题 <small>合上书自测</small></h2>
+  <div class="ex"><b>终测 1：</b>求 $\displaystyle\lim_{x\to0}\frac{\sqrt{1+x}-\sqrt{1-x}}{x}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>有理化 $=\frac{2x}{x(\sqrt{1+x}+\sqrt{1-x})}=\frac{2}{2}=1$。</div></details></div>
+  <div class="ex"><b>终测 2：</b>求 $\displaystyle\int_0^1 x\sqrt{1-x^2}\,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $u=1-x^2$，$du=-2x\,dx$，$=\frac12\int_0^1\sqrt u\,du=\frac13$。</div></details></div>
+  <div class="ex"><b>终测 3：</b>$z=x^2y+xy^2$，在 $(1,1)$ 处全微分。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$z_x=2xy+y^2=3$，$z_y=x^2+2xy=3$，$dz=3dx+3dy$。</div></details></div>
+  <div class="ex"><b>终测 4：</b>求 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+1)(n+2)}$ 的和。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>部分分式 $=\frac12\!\left(\frac1{n(n+1)}-\frac1{(n+1)(n+2)}\right)$，裂项相消，部分和 $=\frac12\!\left(\frac12-\frac1{(n+1)(n+2)}\right)\to\frac14$。</div></details></div>
+  <div class="ex"><b>终测 5：</b>解 $y''+2y'+5y=0$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$r=-1\pm2i$，$y=e^{-x}(C_1\cos2x+C_2\sin2x)$。</div></details></div>
+</div>
+
+
+<div class="ch" id="c16">
+  <h2>16. 专题强化：易混点对比与综合应用 <small>考前最后冲刺</small></h2>
+  <div class="tbl"><table><colgroup><col style="width:34%"><col style="width:66%"></colgroup><tr><th>易混概念</th><th>辨析</th></tr>
+  <tr><td>收敛 vs 绝对收敛</td><td>收敛可能条件收敛；绝对收敛必收敛，反之不然</td></tr>
+  <tr><td>可导 vs 连续</td><td>可导必连续，连续不一定可导（如 $|x|$ 在 0）</td></tr>
+  <tr><td>偏导存在 vs 可微</td><td>偏导存在不一定可微；可微则偏导存在且连续</td></tr>
+  <tr><td>一阶线性 vs 伯努利</td><td>伯努利右端多 $y^n$，需换元 $z=y^{1-n}$</td></tr>
+  <tr><td>收敛半径 vs 收敛域</td><td>半径是对称区间半长；端点要单独检验</td></tr>
+  <tr><td>条件收敛 vs 绝对收敛的重排</td><td>绝对收敛重排不变；条件收敛可重排到任意和</td></tr>
+  <tr><td>缺 $y$ vs 缺 $x$ 的降阶</td><td>缺 $y$：令 $p=y'$；缺 $x$：令 $p=y'$ 且 $y''=p\,dp/dy$</td></tr></table></div>
+  <div class="ex"><b>强化 1：</b>求 $\displaystyle\int\frac{\ln x}{x^2}dx$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>分部，$u=\ln x$，$dv=dx/x^2$，$=-\frac{\ln x}{x}+\int\frac{1}{x^2}dx=-\frac{\ln x}{x}-\frac1x+C$。</div></details></div>
+  <div class="ex"><b>强化 2：</b>求 $y=x^2\ln x$ 的极值与拐点。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$y'=2x\ln x+x=x(2\ln x+1)$，驻点 $x=e^{-1/2}$。$y''=2\ln x+3$，$x=e^{-1/2}$ 时 $y''=2>0$，极小值 $y=-1/(2e)$。拐点 $x=e^{-3/2}$。</div></details></div>
+  <div class="ex"><b>强化 3：</b>判断 $\displaystyle\sum_{n=1}^{\infty}\left(\frac{n}{n+1}\right)^{n^2}$ 的敛散性。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>根值法：$\sqrt[n]{a_n}=(\frac{n}{n+1})^n=\frac{1}{(1+1/n)^n}\to1/e&lt;1$，收敛。</div></details></div>
+  <div class="ex"><b>强化 4：</b>求 $\displaystyle\sum_{n=1}^{\infty}\frac{2n-1}{2^n}$ 的和。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$\sum(2n-1)x^n=2\sum nx^n-\sum x^n=\frac{2x}{(1-x)^2}-\frac{x}{1-x}$，令 $x=1/2$：$4-1=3$。</div></details></div>
+  <div class="ex"><b>强化 5：</b>解 $y''-3y'+2y=xe^x$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>特征根 $1,2$。$\lambda=1$ 单根，设 $y^*=x(ax+b)e^x$。代入得 $-2ax+(2a-b)=x$，$a=-1/2,b=-1$。$y^*=(-x^2/2-x)e^x$。</div></details></div>
+  <div class="ex"><b>强化 6：</b>求由 $y=x^2$ 与 $y=\sqrt x$ 围成图形绕 $y$ 轴旋转的体积。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>交点 $0,1$。$V=\pi\int_0^1(y-\sqrt y\,?)...$ 用柱壳法：$V=2\pi\int_0^1 x(\sqrt x-x^2)dx=2\pi\!\left(\frac25-\frac14\right)=\frac{3\pi}{10}$。</div></details></div>
+  <div class="ex"><b>强化 7：</b>设 $z=f(x^2-y^2,e^{xy})$，求 $\dfrac{\partial z}{\partial x}$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>令 $u=x^2-y^2,v=e^{xy}$，$z_x=f_u\cdot2x+f_v\cdot y e^{xy}$。</div></details></div>
+  <div class="ex"><b>强化 8：</b>交换积分次序并计算 $\displaystyle\int_0^1dy\int_y^1\frac{\sin x}{x}dx$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>换序 $\int_0^1dx\int_0^x\frac{\sin x}{x}dy=\int_0^1\sin x\,dx=1-\cos1$。</div></details></div>
+</div>
+
+
+<div class="ch" id="c17">
+  <h2>17. 考前最终叮嘱 <small>把分拿到手</small></h2>
+  <div class="warn"><b>答题规范：</b>① 求极限先判断类型（$0/0$、$\infty-\infty$ 等），再选方法；② 积分题先想方法（换元/分部/对称性），再动笔；③ 级数判别先看通项是否趋于 0；④ 微分方程先判断类型，再套对应解法；⑤ 幂级数端点必查；⑥ 傅里叶级数注意收敛到左右平均。<b>时间分配：</b>选择填空控制在 40 分钟内，计算题分步写清步骤，证明题先写思路。</div>
+  <div class="ex"><b>最后一题：</b>求 $\displaystyle\lim_{x\to0}\frac{e^{x^2}-\cos x}{x^2}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$e^{x^2}=1+x^2+\cdots$，$\cos x=1-x^2/2+\cdots$，分子 $\sim 3x^2/2$，答案 $3/2$。</div></details></div>
+</div>
+
+<!-- ================= 9 ================= -->
+<div class="ch" id="c18">
+  <h2>18. 学习路径建议 <small>怎么把七讲串起来</small></h2>
+  <div class="thm"><b>定理（推荐学习顺序）：</b>
+  <div class="tbl"><table><colgroup><col style="width:22%"><col style="width:44%"><col style="width:34%"></colgroup><tr><th>阶段</th><th>内容</th><th>配套</th></tr>
+  <tr><td>第一周</td><td>I 函数极限连续 + II 微分学前半</td><td>每天 6 道极限 + 4 道求导</td></tr>
+  <tr><td>第二周</td><td>II 中值定理/泰勒 + III 积分</td><td>每天 4 道积分</td></tr>
+  <tr><td>第三周</td><td>IV 多元微积分</td><td>重积分 + 极值各 3 道</td></tr>
+  <tr><td>第四周</td><td>V 级数 + VI 微分方程</td><td>判别法 + 解方程各 3 道</td></tr>
+  <tr><td>考前</td><td>VII 速查 + 25 题型</td><td>限时模拟</td></tr></table></div></div>
+  <div class="proof"><b>建议：</b>每个定理先读「证明要点」理解来龙去脉，再看例题，合上答案重做练习；错题回到对应章节的易错警示。</div>
+</div>
+
+<!-- ================= 10 ================= -->
+
+<!-- ================= 核心定理速查 ================= -->
+
+<div class="ch" id="c19">
+  <h2>19. 核心定理速查（考前必背） <small>极限·微分·积分·级数·方程</small></h2>
+
+  <h3>一、极限与连续</h3>
+  <div class="tbl">
+    <tr><th>定理</th><th>内容</th></tr>
+    <tr><td>夹逼准则</td><td>$g(x)\le f(x)\le h(x)$，$\lim g=\lim h=A$ $\Rightarrow$ $\lim f=A$</td></tr>
+    <tr><td>单调有界定理</td><td>单调有界数列必收敛</td></tr>
+    <tr><td>Cauchy 准则</td><td>$\{a_n\}$ 收敛 $\iff$ $\forall\varepsilon,\exists N,\forall m,n>N,|a_m-a_n|&lt;\varepsilon$</td></tr>
+    <tr><td>两个重要极限</td><td>$\lim_{x\to0}\frac{\sin x}{x}=1$，$\lim_{x\to\infty}(1+1/x)^x=e$</td></tr>
+    <tr><td>Cantor 定理</td><td>闭区间上连续 $\Rightarrow$ 一致连续</td></tr>
+    <tr><td>介值定理</td><td>$f\in C[a,b]$，$f(a)f(b)&lt;0$ $\Rightarrow$ $\exists\xi\in(a,b),f(\xi)=0$</td></tr>
+  </div>
+
+  <h3>二、微分学</h3>
+  <div class="tbl">
+    <tr><th>定理</th><th>内容</th></tr>
+    <tr><td>Fermat 引理</td><td>极值点处可导 $\Rightarrow$ $f'(x_0)=0$</td></tr>
+    <tr><td>Rolle 定理</td><td>$f(a)=f(b)$ $\Rightarrow$ $\exists\xi,f'(\xi)=0$</td></tr>
+    <tr><td>Lagrange 中值</td><td>$f(b)-f(a)=f'(\xi)(b-a)$</td></tr>
+    <tr><td>Cauchy 中值</td><td>$\frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(\xi)}{g'(\xi)}$</td></tr>
+    <tr><td>Taylor 公式</td><td>$f(x)=\sum_{k=0}^n\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+R_n$</td></tr>
+    <tr><td>L&#8217;Hospital</td><td>$\lim\frac{f}{g}=\lim\frac{f'}{g'}$（$0/0$ 或 $\infty/\infty$）</td></tr>
+  </div>
+
+  <h3>三、积分学</h3>
+  <div class="tbl">
+    <tr><th>定理</th><th>内容</th></tr>
+    <tr><td>积分中值定理</td><td>$\int_a^b f(x)dx=f(\xi)(b-a)$，$\xi\in[a,b]$</td></tr>
+    <tr><td>Newton–Leibniz</td><td>$\int_a^b f=F(b)-F(a)$</td></tr>
+    <tr><td>变限积分求导</td><td>$\frac{d}{dx}\int_a^{\varphi(x)}f(t)dt=f(\varphi(x))\varphi'(x)$</td></tr>
+    <tr><td>华里士公式</td><td>$\int_0^{\pi/2}\sin^n x\,dx=\int_0^{\pi/2}\cos^n x\,dx$，$n$ 偶 $=\frac{(n-1)!!}{n!!}\cdot\frac{\pi}{2}$，$n$ 奇 $=\frac{(n-1)!!}{n!!}$</td></tr>
+    <tr><td>反常积分 $p$-判别</td><td>$\int_1^\infty\frac{dx}{x^p}$：$p>1$ 收敛；$\int_0^1\frac{dx}{x^p}$：$p&lt;1$ 收敛</td></tr>
+  </div>
+
+  <h3>四、多元微积分</h3>
+  <div class="tbl">
+    <tr><th>定理</th><th>内容</th></tr>
+    <tr><td>Green 公式</td><td>$\oint_L Pdx+Qdy=\iint_D(Q_x-P_y)d\sigma$</td></tr>
+    <tr><td>Gauss 公式</td><td>$∯_\Sigma\mathbf{F}\cdot d\mathbf{S}=\iiint_\Omega\nabla\cdot\mathbf{F}\,dV$</td></tr>
+    <tr><td>Stokes 公式</td><td>$\oint_\Gamma\mathbf{F}\cdot d\mathbf{r}=\iint_\Sigma(\nabla\times\mathbf{F})\cdot d\mathbf{S}$</td></tr>
+    <tr><td>极坐标换元</td><td>$dxdy=r\,drd\theta$；球坐标 $dV=r^2\sin\varphi\,drd\varphi d\theta$</td></tr>
+  </div>
+
+  <h3>五、无穷级数</h3>
+  <div class="tbl">
+    <tr><th>定理</th><th>内容</th></tr>
+    <tr><td>收敛半径</td><td>$R=\frac{1}{\limsup\sqrt[n]{|a_n|}}$ 或 $R=\lim|a_n/a_{n+1}|$</td></tr>
+    <tr><td>Abel 定理</td><td>在 $x_0$ 收敛 $\Rightarrow$ $|x|&lt;|x_0|$ 绝对收敛</td></tr>
+    <tr><td>Leibniz 判别</td><td>交错级数 $\sum(-1)^n a_n$，$a_n\downarrow0$ $\Rightarrow$ 收敛</td></tr>
+    <tr><td>Weierstrass M</td><td>$|u_n(x)|\le M_n$，$\sum M_n$ 收敛 $\Rightarrow$ 一致收敛</td></tr>
+    <tr><td>Dirichlet 条件</td><td>分段单调+有限间断点 $\Rightarrow$ Fourier 级数收敛于左右极限平均</td></tr>
+  </div>
+
+  <h3>六、常微分方程</h3>
+  <div class="tbl">
+    <tr><th>类型</th><th>解法</th></tr>
+    <tr><td>可分离变量</td><td>$\frac{dy}{dx}=f(x)g(y)$ $\Rightarrow$ $\int\frac{dy}{g(y)}=\int f(x)dx$</td></tr>
+    <tr><td>一阶线性</td><td>$y'+P(x)y=Q(x)$ $\Rightarrow$ $y=e^{-\int Pdx}(\int Qe^{\int Pdx}dx+C)$</td></tr>
+    <tr><td>二阶常系数齐次</td><td>$y''+py'+qy=0$，特征根 $r_{1,2}$：实根 $C_1e^{r_1x}+C_2e^{r_2x}$；重根 $(C_1+C_2x)e^{rx}$；复根 $e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$</td></tr>
+    <tr><td>非齐次特解</td><td>$f(x)=P_m(x)e^{\lambda x}$：设 $y^*=x^k Q_m(x)e^{\lambda x}$，$k$ 为 $\lambda$ 是特征根的重数</td></tr>
+    <tr><td>Picard 存在唯一</td><td>$f$ 连续 + Lipschitz 条件 $\Rightarrow$ 初值问题解存在唯一</td></tr>
+  </div>
+</div>
+
+
+<!-- ================= 第二轮深度小节：21. 历年考研真题精选 ================= -->
+<div class="ch" id="c20">
+  <h2>20. 历年考研真题精选 <small>从真题中把握命题方向</small></h2>
+  <div class="ex"><b>真题 1（极限）：</b>求 $\lim_{x\to0}\frac{e^{\sin x}-e^x}{x^3}$。
+  <details><summary>查看答案</summary><div class="sol"><b>解：</b>$e^{\sin x}-e^x=e^x(e^{\sin x-x}-1)$。$\sin x-x=-x^3/6+o(x^3)$，$e^{\sin x-x}-1\sim\sin x-x\sim-x^3/6$。故原式 $=e^0\cdot(-1/6)=-1/6$。<br><b>考点：</b>Taylor 展开、等价无穷小替换。</div></details></div>
+
+  <div class="ex"><b>真题 2（积分）：</b>计算 $\int_0^1\frac{\ln(1+x)}{1+x^2}dx$。
+  <details><summary>查看答案</summary><div class="sol"><b>解：</b>令 $x=\tan t$，$dx=dt/(1+t^2)$ 不好用。换 $x=\frac{1-t}{1+t}$：$\int_0^1\frac{\ln\frac{2}{1+t}}{1+t^2}\frac{2}{(1+t)^2}dt$。更直接：$I=\int_0^1\frac{\ln(1+x)}{1+x^2}dx$，令 $x=\tan\theta$（$\theta\in[0,\pi/4]$），$I=\int_0^{\pi/4}\ln(1+\tan\theta)d\theta$。用 $\theta\to\pi/4-\theta$ 变换：$I=\int_0^{\pi/4}\ln\frac{2}{1+\tan\theta}d\theta=\frac{\pi}{4}\ln2-I$。故 $I=\frac{\pi}{8}\ln2$。<br><b>考点：</b>区间对称化技巧、定积分换元。</div></details></div>
+
+  <div class="ex"><b>真题 3（级数）：</b>判断 $\sum_{n=1}^\infty(-1)^n\frac{\ln n}{\sqrt n}$ 的收敛性。
+  <details><summary>查看答案</summary><div class="sol"><b>解：</b>Leibniz 判别：$a_n=\frac{\ln n}{\sqrt n}$，$n$ 足够大时 $a_n\downarrow0$（因 $(\ln n/\sqrt n)'=\frac{1-\frac12\ln n}{n^{3/2}}&lt;0$ 当 $n>e^2$），故条件收敛。绝对值 $\sum\frac{\ln n}{\sqrt n}\ge\sum\frac1{\sqrt n}$（$\ln n\ge1$）发散——非绝对收敛。<br><b>考点：</b>Leibniz 判别、绝对/条件收敛。</div></details></div>
+
+  <div class="ex"><b>真题 4（微分方程）：</b>解 $y''+y=\frac{1}{\cos x}$（$|x|&lt;\pi/2$）。
+  <details><summary>查看答案</summary><div class="sol"><b>解：</b>齐次解 $y_h=C_1\cos x+C_2\sin x$。常数变易：设 $y_p=u_1\cos x+u_2\sin x$，方程组为 $u_1'\cos x+u_2'\sin x=0$，$-u_1'\sin x+u_2'\cos x=\sec x$。系数矩阵行列式为 $\cos^2x+\sin^2x=1$，由 Cramer 法则：$$u_1'=\begin{vmatrix}0&\sin x\\ \sec x&\cos x\end{vmatrix}=-\sin x\sec x=-\tan x,\quad u_2'=\begin{vmatrix}\cos x&0\\ -\sin x&\sec x\end{vmatrix}=\cos x\sec x=1.$$积分得 $u_1=\ln|\cos x|$, $u_2=x$。通解 $y=C_1\cos x+C_2\sin x+\cos x\ln|\cos x|+x\sin x$。<br><b>考点：</b>常数变易法。</div></details></div>
+</div>
+
+<!-- ================= 第二轮深度小节：22. 易错题集锦 ================= -->
+<div class="ch" id="c21">
+  <h2>21. 易错题集锦 <small>区分「看起来对」与「真的对」</small></h2>
+  <div class="ex"><b>易错 1：</b>$\lim_{n\to\infty}(1+\frac1n)^n=e$，那 $\lim_{n\to\infty}(1+\frac1{\sqrt n})^n=\;?$
+  <details><summary>查看答案</summary><div class="sol"><b>常见错误：</b>「$(1+\text{小})^n$ 应该 $\to e$」——错。<br><b>正解：</b>取对数 $n\ln(1+1/\sqrt n)\approx n\cdot\frac1{\sqrt n}=\sqrt n\to\infty$，故原式 $\to+\infty$。$1/\sqrt n$ 比 $1/n$ 慢消失，指数 $n$ 把它放大。<br><b>教训：</b>$\lim(1+a_n)^{b_n}=e^{\lim a_nb_n}$，不是 $(1+\text{小})^{\text{大}}$ 就一定有限。</div></details></div>
+
+  <div class="ex"><b>易错 2：</b>若 $f$ 在 $x=0$ 处可导且 $f(0)=0$，$\lim_{x\to0}\frac{f(x)}{x}=\;?$
+  <details><summary>查看答案</summary><div class="sol"><b>常见错误：</b>「0/0 型，洛必达」——需验 $f$ 在 0 的邻域可导，但题目只给「在 $x=0$ 处可导」。<br><b>正解：</b>$\frac{f(x)}{x}=\frac{f(x)-f(0)}{x-0}\to f'(0)$（导数定义）。不需洛必达，直接定义。<br><b>教训：</b>导数定义优先，洛必达要求更强条件。</div></details></div>
+
+  <div class="ex"><b>易错 3：</b>$\int_{-1}^1\frac{1}{x^2}dx=\;?$
+  <details><summary>查看答案</summary><div class="sol"><b>常见错误：</b>「$[-1/x]_{-1}^1=-1-1=-2$」——错。<br><b>正解：</b>$x=0$ 是奇点，必须拆 $\int_{-1}^0+\int_0^1$ 分别取极限。$\int_\epsilon^1\frac{dx}{x^2}=[-1/x]_\epsilon^1=-1+1/\epsilon\to+\infty$，发散。原积分发散（$+\infty$），不是 $-2$。<br><b>教训：</b>瑕积分先判奇点，再分段。</div></details></div>
+
+  <div class="ex"><b>易错 4：</b>$\frac{d}{dx}\int_0^x e^{-t^2}dt=\;?$
+  <details><summary>查看答案</summary><div class="sol"><b>常见错误：</b>「先积分再求导，应该等于 $e^{-x^2}$」——这次是对的！<br><b>注意点：</b>但若上限是 $x^2$：$\frac{d}{dx}\int_0^{x^2}e^{-t^2}dt=e^{-x^4}\cdot2x$（链式法则）。若上下限都变：$\frac{d}{dx}\int_{g(x)}^{h(x)}f=\cdots$ = $f(h)h'-f(g)g'$。<br><b>教训：</b>变限积分求导注意链式法则；常数限则直接代入。</div></details></div>
+</div>
+
+<div class="ch" id="c22">
+  <h2>22. 术语表与在线资源</h2>
+  <div class="gloss">
+    <dt>微积分基本定理</dt><dd>$\int _a^b$ f = F(b) − F(a)。</dd>
+    <dt>收敛半径 / 收敛域</dt><dd>幂级数的收敛区间。</dd>
+    <dt>特征根</dt><dd>决定二阶方程解的形式。</dd>
+    <dt>华里士公式</dt><dd>$\int _0^{π/2}$ sinⁿx dx 的递推公式。</dd>
+    <dt>拉格朗日乘数法</dt><dd>条件极值的标准方法。</dd>
+    <dt>一致连续</dt><dd>$\delta$ 不依赖点的连续；闭区间上连续必一致连续</dd>
+    <dt>Lipschitz 条件</dt><dd>$|f(x,y_1)-f(x,y_2)|\le L|y_1-y_2|$，保证 ODE 解唯一</dd>
+    <dt>Jacobi 行列式</dt><dd>重积分换元的面积伸缩率，取绝对值</dd>
+    <dt>Wronski 行列式</dt><dd>判断线性方程组解的线性无关性</dd>
+    <dt>Lyapunov 函数</dt><dd>正定函数 $V$，通过 $\dot{V}$ 符号判断稳定性</dd>
+    <dt>Dirichlet 核</dt><dd>$D_N(t)=\frac{\sin(N+1/2)t}{2\sin(t/2)}$，Fourier 部分和的卷积核</dd>
+  </div>
+  <div class="online">
+    <b>在线资源（需联网打开）</b>
+    <ul>
+      <li><a href="https://www.wolframalpha.com" target="_blank" rel="noopener noreferrer">Wolfram Alpha</a> —— 积分/极限/方程一站式验证</li>
+      <li><a href="https://www.symbolab.com" target="_blank" rel="noopener noreferrer">Symbolab</a> —— 分步解题工具</li>
+      <li><a href="https://www.desmos.com/calculator" target="_blank" rel="noopener noreferrer">Desmos</a> —— 图形直觉训练</li>
+      <li><a href="https://en.wikipedia.org/wiki/Calculus" target="_blank" rel="noopener noreferrer">Wikipedia: Calculus</a></li>
+      <li><a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/" target="_blank" rel="noopener noreferrer">MIT 18.01 单变量微积分公开课</a></li>
+    </ul>
+    <p class="hint">回到 <a href="../00-总览/index.html">总览</a> 或继续探索 <a href="../02-核心主题/分析.html">分析讲义</a>。</p>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="06-常微分方程.html">← 上一讲</a>
+  <a href="../02-核心主题/分析.html">分析讲义 →</a>
+</footer>
+</div>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

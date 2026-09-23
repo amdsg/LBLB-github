@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>LBLB · 数学爱好者宝库（入口）</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='44' font-size='36' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif' font-style='italic'%3E%CF%80%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--red:#C0392B;--teal:#177E89;--gold:#A8751E;}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;
+  line-height:1.75; display:flex; align-items:center; justify-content:center; min-height:100vh;}
+.wrap{max-width:680px; margin:0 auto; padding:40px 24px; text-align:center;}
+.kicker{font-size:12px; letter-spacing:.35em; color:var(--ink2); text-transform:uppercase;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:40px; font-weight:700; margin:12px 0 6px;}
+h1 em{font-style:italic; color:var(--red);}
+.tagline{font-size:15px; color:var(--ink2); max-width:560px; margin:8px auto 28px;}
+.entry{display:inline-block; background:var(--teal); color:#fff; text-decoration:none;
+  font-size:16px; font-weight:600; padding:14px 34px; border-radius:999px;
+  transition:transform .12s ease, box-shadow .12s ease;}
+.entry:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(23,126,137,.25);}
+.hint{margin-top:26px; font-size:13px; color:var(--ink2); line-height:2; text-align:left; max-width:560px; margin-left:auto; margin-right:auto;}
+.hint code{background:#E4DECC; border-radius:4px; padding:1px 6px; word-break:break-all;}
+h2{font-family:Georgia,"Noto Serif SC",serif; font-size:19px; margin-bottom:8px;}
+.sec{margin-top:34px; text-align:center;}
+footer{margin-top:40px; border-top:1px solid var(--line); padding-top:18px; font-size:12px; color:var(--ink2);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">数学学习资料库 · An Offline Library for Math Lovers</div>
+  <h1>LBLB · <em>数学爱好者宝库</em></h1>
+  <p class="tagline">完全离线的数学知识档案：从入门路线到千年难题，从同济高数到应试刷题。纯静态 HTML，双击即可打开。</p>
+  <a class="entry" href="00-总览/index.html">进入宝库 →</a>
+
+  <div class="sec">
+    <h2>使用指南</h2>
+    <p>按目标选择入口：<br>
+    <b>系统学习</b> → 01-学习路线 &nbsp;|&nbsp; <b>做题练手</b> → 14-自测题库（234 题）<br>
+    <b>应试冲刺</b> → 13-应试训练框架 + <b>15-应试实战</b>（考研/专升本/竞赛 68 题）<br>
+    <b>拓展视野</b> → 03 / 04 / 08 / 11 &nbsp;|&nbsp; <b>兴趣探索</b> → 05 / 07 / 09</p>
+  </div>
+
+  <footer>
+    <span>内容采用 CC BY-NC-SA 4.0 许可 · 公式渲染由 MathJax 提供（Apache-2.0）</span><br>
+    <span>第三方来源与许可见仓库 <code>THIRD-PARTY-NOTICES.md</code></span>
+  </footer>
+</div>
+</body>
+</html>

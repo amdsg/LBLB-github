@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>数学家的故事 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --teal:#177E89; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--teal); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--teal); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:720px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.sec{margin-top:44px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--teal); padding-left:14px;}
+.story{background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:20px 24px; margin-top:18px;}
+.story h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px;}
+.story .tag{display:inline-block; font-size:12px; background:var(--paper2); color:var(--teal); border-radius:999px; padding:2px 10px; margin-left:8px; vertical-align:3px;}
+.story p{font-size:14.5px; margin-top:10px;}
+.story .morale{font-size:13.5px; color:var(--ink2); font-style:italic; margin-top:10px; border-top:1px dashed var(--line); padding-top:8px;}
+.story .morale b{color:var(--gold); font-style:normal;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--teal); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+  .story{padding:16px 16px;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>数学家的故事 <span class="sym">§</span></h1>
+  <p class="sub">数学史不只是定理的年代——还有浴缸里的狂喜、决斗前的最后一夜、拒绝百万美元的背影。这些故事让「数学家」从名字变成人。</p>
+  <p class="quote">「在公式背后，是和你我一样会失眠、会狂喜、会固执的人。」</p>
+</header>
+
+<div class="sec">
+  <h2>七个值得反复讲的故事</h2>
+
+  <div class="story">
+    <h3>阿基米德与浴缸 <span class="tag">约前 250 年</span></h3>
+    <p>叙拉古国王怀疑金匠在皇冠里掺了银，请阿基米德鉴定。苦思多日无果，他踏入浴缸——水溢出的瞬间，浮力原理击中了他：皇冠排开的水的体积能揭示它的密度。他跳出浴缸，赤身跑上街头高喊「尤里卡！尤里卡！」（我找到了！）。最终他不仅识破金匠，还写下了《论浮体》。</p>
+    <p class="morale"><b>启示：</b>顿悟来自长期的浸泡——大脑在水面下工作，答案在溢出的瞬间显现。</p>
+  </div>
+
+  <div class="story">
+    <h3>高斯与 1+2+3+…+100 <span class="tag">1780 年代</span></h3>
+    <p>小学课堂上，布特纳老师想刁难学生：把 1 到 100 加起来。别的孩子埋头苦算，小高斯几秒后交出石板，上面只有一个数：5050。他发现了配对技巧——1+100、2+99……共 50 对，每对 101。老师惊呼：「他超过我了，我教不了他。」</p>
+    <p class="morale"><b>启示：</b>「别急着算，先看看结构」——对称性让工作减半，这是数学最原始的快感。</p>
+  </div>
+
+  <div class="story">
+    <h3>伽罗瓦的最后一夜 <span class="tag">1832 年 5 月 29 日</span></h3>
+    <p>20 岁的伽罗瓦因决斗（据传与一场风流韵事有关）在黎明前被写遗书。那一夜他疯狂地补写数学笔记：「没有足够的时间了」，他在页边写下有关群论的草稿。次日清晨他中枪身亡。他的手稿在十几年后被刘维尔整理出版——现代代数学就此奠基。据传遗言是：「不要哭，我在 20 岁死去需要全部勇气。」</p>
+    <p class="morale"><b>启示：</b>有些思想比寿命更长——群论等了一个世纪才等到它的时代。</p>
+  </div>
+
+  <div class="story">
+    <h3>拉马努金与 1729 <span class="tag">1918 年</span></h3>
+    <p>哈代去医院探望病中的拉马努金，随口抱怨出租车牌号 1729 「很无趣」。拉马努金立刻说：「不，它很有趣——它是能用两种不同方式写成两个立方之和的最小整数：1³+12³ = 9³+10³。」从此 1729 被称为「拉马努金数」。哈代后来写道，每一个自然数都是拉马努金的朋友。</p>
+    <p class="morale"><b>启示：</b>同一个数，在数学家眼里自带故事——观察力是天才的入口。</p>
+  </div>
+
+  <div class="story">
+    <h3>希尔伯特与 23 个问题 <span class="tag">1900 年 8 月 8 日</span></h3>
+    <p>在巴黎国际数学家大会上，38 岁的希尔伯特发表《数学问题》演讲，列出 23 个问题为 20 世纪数学立下「任务清单」：从连续统假设到丢番图方程可解性。此后一百年，「解决一个希尔伯特问题」成为数学家的最高荣耀。第 3 题（等体积四面体）由他的学生 Dehn 当场解决，第 10 题（丢番图方程可判定性）直到 1970 年才由马季亚谢维奇解决——答案是否定的。</p>
+    <p class="morale"><b>启示：</b>会提问题是一种能力——好的问题像灯塔，照亮一代人的航线。</p>
+  </div>
+
+  <div class="story">
+    <h3>佩雷尔曼与一百万美元 <span class="tag">2002–2010</span></h3>
+    <p>2002–2003 年，佩雷尔曼在 arXiv 上发布三篇论文，用 Ricci 流证明了庞加莱猜想，随后退出学术圈。2006 年他获得菲尔兹奖——他拒绝出席。2010 年克雷研究所颁发 100 万美元——他拒绝领取。他住在圣彼得堡的公寓里，靠母亲的退休金生活。他说：「如果证明是对的，不需要其他认可。」</p>
+    <p class="morale"><b>启示：</b>真理的满足感可以是全部报酬——数学最纯粹的一面。</p>
+  </div>
+
+  <div class="story">
+    <h3>格罗滕迪克的退隐 <span class="tag">1970 年之后</span></h3>
+    <p>如日中天的格罗滕迪克（代数几何重新奠基者）1970 年突然辞职，放弃 IHÉS 职位，转而投身环保与和平运动，拒绝接受军事资金。他隐居于法国南部山区，写私人回忆录《收获与播种》。1991 年他拒绝一切信件与访客。他的学说以「概形」重构了代数几何，影响力至今仍在发酵——但他的后半生属于另一种追求。</p>
+    <p class="morale"><b>启示：</b>天才的路径不只一条——有些人选择在别处重新开始。</p>
+  </div>
+</div>
+
+
+<div class="sec">
+  <h2>心灵与困境 <small>当数学与命运相撞</small></h2>
+
+  <div class="story">
+    <h3>纳什：被精神分裂症改写的人生 <span class="tag">1928–2015</span></h3>
+    <p>John Forbes Nash，22 岁写出博士论文《非合作博弈》——其中"纳什均衡"成为博弈论核心，1994 年获诺贝尔经济学奖。但 30 岁时他被诊断偏执型精神分裂症，从此陷入妄想与幻听 30 年。妻子 Alicia 让他在病发期仍与数学保持微弱联系。1980 年代后期，他奇迹般康复，回归学术。2001 年电影《美丽心灵》让他成为公众符号。2015 年他与妻子在车祸中同时遇难。</p>
+    <p class="morale"><b>启示：</b>天才不是没有伤痛，而是带着伤痛仍能创造。Nash 说："理性的思维能够战胜非理性。"</p>
+  </div>
+
+  <div class="story">
+    <h3>图灵：化学阉割与苹果 <span class="tag">1952–1954</span></h3>
+    <p>Alan Turing，二战期间破译德军 Enigma 密码，加速战争结束；提出图灵机、图灵测试。1952 年因同性恋被英国政府定罪，被迫接受化学阉割（注射雌激素）。1954 年 6 月 7 日，他咬下一口浸过氰化物的苹果后死亡——传闻苹果公司早期 logo（彩色条纹中被咬一口的苹果）是致敬，但乔布斯澄清"是巧合"。2009 年英国首相 Gordon Brown 公开道歉；2013 年女王颁发皇家赦免。</p>
+    <p class="morale"><b>启示：</b>社会对待天才的方式决定了它未来能拥有什么。图灵之死是 20 世纪最大的"损失方程"。</p>
+  </div>
+
+  <div class="story">
+    <h3>康托尔：与无穷的精神角力 <span class="tag">1845–1918</span></h3>
+    <p>Georg Cantor 创立集合论与超限基数理论，证明实数比自然数"多"——打破了亚里士多德以来两千多年的"无穷不可比"信条。但他的思想遭到 Kronecker 等权威激烈反对，多次住进精神病院。1918 年死于疗养院。希尔伯特捍卫他："无人能把我们从 Cantor 创造的天堂中驱逐出去。"</p>
+    <p class="morale"><b>启示：</b>革命性的思想在诞生时几乎总被视作疯狂——真理需要时间被时间证明。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>东西方数学家对话 <small>跨越文明的隔空交流</small></h2>
+
+  <div class="story">
+    <h3>祖冲之与牛顿：相隔千年的 π 计算 <span class="tag">5 世纪 – 17 世纪</span></h3>
+    <p>祖冲之（429–500）用"割圆术"算到正 24576 边形，得到 $3.1415926\lt\pi\lt3.1415927$，精确到 7 位——这个纪录保持 800 年直到 15 世纪 Al-Kashi 才打破。Newton 1665 年用 $\pi=2\int_0^1\sqrt{1-x^2}\,dx$ 与 $\arcsin$ 级数算到 16 位。两人都在隔绝文明中独立推进同一常数——这正是 π 作为"数学宇宙指纹"的意义。</p>
+    <p class="morale"><b>启示：</b>数学是唯一真正跨越文明的语言——祖冲之和 Newton 不需要翻译就能理解彼此。</p>
+  </div>
+
+  <div class="story">
+    <h3>秦九韶与高斯：同一种解方程的智慧 <span class="tag">1247 年 – 1799 年</span></h3>
+    <p>秦九韶《数书九章》（1247）给出"大衍求一术"求解一次同余方程组——比西方 Euler 1743 早 496 年，比 Gauss《算术研究》（1801）中的同余理论早 554 年。1973 年国际数学界将其命名为"中国剩余定理"（CRT）。今天 RSA 密码学的关键步骤就用了 CRT——一个 13 世纪中国数学家的算法守护着 21 世纪互联网安全。</p>
+    <p class="morale"><b>启示：</b>数学家的发现从不被时间打败。一个 800 年前的算法可能在 21 世纪突然成为关键技术。</p>
+  </div>
+
+  <div class="story">
+    <h3>陈省身与 Cartan：师生两代微分几何 <span class="tag">1930–2000</span></h3>
+    <p>1936 年陈省身赴巴黎师从 Élie Cartan，每天下午见面，Cartan 给他一个问题，他第二天回——持续 10 个月。Cartan 的几何观深深影响了他。1943 年陈到普林斯顿，1946 年证明<b>Chern–Gauss–Bonnet 定理</b>——把 Gauss–Bonnet 从 2 维推到任意偶维。1976 年 Cartan 的儿子 Henri Cartan 在陈省身获首届 Wolf 奖时致辞："我父亲会为他的学生骄傲。"</p>
+    <p class="morale"><b>启示：</b>数学家是历史的长链——每代人都接到上一代的火把，再传给下一代。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>天才发现的瞬间 <small>"Aha"时刻的微观解剖</small></h2>
+
+  <div class="story">
+    <h3>Poincaré 与 Fuchs 函数 <span class="tag">1881 年</span></h3>
+    <p>Henri Poincaré 描述他发现 Fuchs 函数的瞬间：在库唐斯旅行时，脚刚踏上公共汽车踏板的一刹那，灵感闪现——他立即知道变换 $\theta z$ 与 $z$ 的商给出 Fuchs 函数。回家后验证无误。这是数学史上最早被记录的"顿悟时刻"案例之一。</p>
+    <p class="morale"><b>启示：</b>Poincaré 自己强调：顿悟前有漫长的准备（他已工作两周），顿悟后有验证（他坐下来算了算）。Aha 时刻只是创造过程的小小尖端。</p>
+  </div>
+
+  <div class="story">
+    <h3>Wiles 与 Fermat 大定理 <span class="tag">1986–1994</span></h3>
+    <p>Andrew Wiles 10 岁读到 Fermat 大定理就立志解决。32 岁开始秘密研究——只有妻子知道。7 年闭门工作，1993 年 6 月在剑桥公开 3 场报告，最后一场结束时写下 Fermat 定理的结论。但同年 11 月审稿发现一个漏洞（在 Euler 系统部分）。他闭关一年，1994 年 9 月与 Richard Taylor 一起用"Taylor–Wiles 方法"补完证明。358 年的问题就此终结。</p>
+    <p class="morale"><b>启示：</b>伟大的证明常有"最后一公里"的暗礁。坚持是 Wiles 的真正武器——没有 7 年的孤独，就没有那 3 场报告。</p>
+  </div>
+
+  <div class="story">
+    <h3>张益唐与素数间距 <span class="tag">2013 年 4 月 17 日</span></h3>
+    <p>张益唐，58 岁，新罕布什尔大学讲师（非终身教职），从未发表过任何数论论文。2013 年他向 Annals of Mathematics 投稿，证明存在无穷多对差不超过 7000 万的素数——孪生素数猜想弱形式的首个突破。审稿人 Henryk Iwaniec 收到论文后说："我几乎从椅子上摔下来。"几小时内，陶哲轩等发起的 Polymath 项目把常数降到 246。</p>
+    <p class="morale"><b>启示：</b>没有"太晚"。年龄、职位、历史论文数——都不是判断创造力的标准。准备是另一种形式的"7 年孤独"。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>补充：三个改变数学史的故事</h2>
+
+  <div class="proof">
+    <h3>伽罗瓦：用生命写下群论</h3>
+    <p>Évariste Galois（1811–1832），20 岁死于决斗。前一夜他狂写数学手稿，留下「我没有时间了」的注记。他的工作：用「群」的概念证明了五次及以上方程无一般根式解，创立了抽象代数的基石。他的论文曾被柯西遗失、被泊松判为「不可理解」，直到他死后 14 年才被刘维尔发表。</p>
+    <p><b>教训：</b>超前时代的思想往往被同代人拒绝。坚持记录，哪怕无人理解。</p>
+  </div>
+
+  <div class="proof">
+    <h3>黎曼：一篇论文开创百年数学</h3>
+    <p>Bernhard Riemann（1826–1859），39 岁病逝。1859 年他发表《论小于某给定值的素数个数》，提出黎曼猜想——至今未解决的千禧难题。他还创立了黎曼几何（广义相对论的数学基础）、黎曼积分、黎曼曲面。一生只发表 10 篇论文，篇篇开创领域。</p>
+    <p><b>教训：</b>深度胜过数量。一篇改变世界的论文胜过百篇平庸之作。</p>
+  </div>
+
+  <div class="proof">
+    <h3>佩雷尔曼：拒绝百万奖金的隐士</h3>
+    <p>Grigori Perelman（1966–），2002–2003 年在 arXiv 上贴出三篇论文，用 Ricci 流证明了庞加莱猜想。2006 年菲尔兹奖委员会授予他奖章，他拒绝：「如果证明是对的，不需要其他认可。」克雷研究所的百万奖金他也拒绝。此后他隐居圣彼得堡，与母亲同住，不再发表论文。</p>
+    <p><b>教训：</b>真正的数学家追求的是真理本身，而非荣誉。但我们大多数人需要荣誉来维持生活——不必为此羞愧。</p>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../11-数学家/数学群星谱.html">数学群星谱 →</a>
+  <a href="../08-数学史/数学史时间线.html">数学史时间线 →</a>
+  <a href="../04-美丽证明/美丽证明集锦.html">美丽证明 →</a>
+  <a class="back" href="数学家名录.html">数学家名录（10,000 人检索）</a><br>
+  <a href="数学家群像-学派与传承.html">学派与传承 →</a>
+</footer>
+</div>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

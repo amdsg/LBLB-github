@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>欧拉七桥与一笔画 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='28' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%99%98%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--green:#2E7D5B;--magenta:#B0396E;--gold:#A8751E;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--green);text-decoration:none;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:14px 0 6px;}
+h1 .sym{color:var(--green);}
+.tag{display:inline-block;background:var(--paper2);border:1px solid var(--line);color:var(--green);border-radius:999px;padding:2px 12px;font-size:12px;margin-left:10px;vertical-align:middle;}
+.sub{color:var(--ink2);font-size:16px;max-width:780px;}
+.sec{margin-top:36px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--green);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;background:#fffef9;border:1px solid var(--line);border-radius:8px;cursor:crosshair;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px;}
+.controls label{font-size:14px;}
+button{background:var(--green);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:14px;cursor:pointer;}
+button.ghost{background:var(--paper2);color:var(--ink);border:1px solid var(--line);}
+button.on{background:var(--green);color:#fff;}
+.info{font-family:Georgia,serif;font-size:15px;color:var(--ink);margin-left:auto;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>欧拉七桥与一笔画 <span class="sym">♘</span><span class="tag">图论</span></h1>
+<p class="sub">1736 年欧拉把哥尼斯堡七桥问题变成图：每个顶点的度数——奇度点为 0 个或 2 个，才能一笔画完。</p>
+</header>
+
+<div class="sec">
+<h2>试一试 <small>点两个顶点加一条边；再点"演示一笔画"</small></h2>
+<div class="fig">
+<canvas id="cv" width="760" height="460" role="img" aria-label="欧拉七桥与一笔画：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls" id="preset">
+<button data-g="0" class="on">哥尼斯堡七桥</button>
+<button data-g="1">可一笔画(路径)</button>
+<button data-g="2">可一笔画(回路)</button>
+<button data-g="3">房子图</button>
+</div>
+<div class="controls" style="margin-top:8px;">
+<button id="play">▶ 演示一笔画</button>
+<button id="del" class="ghost">撤销一条边</button>
+<button id="reset" class="ghost">重置当前图</button>
+<span class="info" id="stat"></span>
+</div>
+<p class="explain"><b>怎么玩：</b>点任意两个不同顶点就在它们之间加一条边（桥）。绿色顶点是偶度，品红是奇度。点"演示一笔画"：若满足条件，红色会按顺序走过每条边恰好一次；若奇度点不是 0 或 2，欧拉会告诉你走不完。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>欧拉定理</h2>
+<p>连通图存在欧拉回路 $\iff$ 所有顶点度数为偶；存在欧拉路径（起点≠终点）$\iff$ 恰有 2 个奇度顶点。哥尼斯堡 4 个顶点全是奇度（3,3,3,3），所以七桥无解——这是图论的第一篇论文。</p>
+</div>
+
+<footer style="margin-top:48px;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--ink2);">
+<a class="back" href="可视化导航.html">← 可视化导航</a>
+</footer>
+</div>
+
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d'),stat=document.getElementById('stat');
+// presets: nodes positions + edges list
+var P={
+  nodes:[
+    {x:180,y:120},{x:560,y:110},{x:200,y:350},{x:540,y:350}
+  ],
+  edges:[[0,1],[0,1],[0,2],[0,2],[1,3],[1,3],[2,3]] // 7 bridges
+};
+var graphs=[
+ {nodes:[{x:180,y:120},{x:560,y:110},{x:200,y:350},{x:540,y:350}],edges:[[0,1],[0,2],[1,3],[2,3],[2,1]]},
+ {nodes:[{x:140,y:230},{x:330,y:120},{x:520,y:230},{x:330,y:340}],edges:[[0,1],[1,2],[2,3],[3,1]]},
+ {nodes:[{x:380,y:110},{x:560,y:230},{x:480,y:380},{x:280,y:380},{x:200,y:230}],edges:[[0,1],[1,2],[2,3],[3,4],[4,0]]},
+ {nodes:[{x:380,y:90},{x:540,y:230},{x:480,y:380},{x:280,y:380},{x:220,y:230}],edges:[[0,1],[1,2],[2,3],[3,4],[4,0],[0,2],[2,4]]}
+];
+var cur=0,nodes,edges,sel=null,played=[];
+
+function load(g){cur=g;nodes=graphs[g].nodes.map(function(n){return {x:n.x,y:n.y};});edges=graphs[g].edges.slice();sel=null;played=[];draw();}
+function deg(i){var d=0;edges.forEach(function(e){if(e[0]===i||e[1]===i)d++;});return d;}
+function findNode(mx,my){var best=-1,bd=30*30;for(var i=0;i<nodes.length;i++){var d=(nodes[i].x-mx)**2+(nodes[i].y-my)**2;if(d<bd){bd=d;best=i;}}return best;}
+function ekey(a,b){return a<b?a+'-'+b:b+'-'+a;}
+function eulerTrail(){
+  // build adjacency with edge ids
+  var m=nodes.length,adj=Array.from({length:m},()=>[]);
+  edges.forEach(function(e,id){adj[e[0]].push([e[1],id]);adj[e[1]].push([e[0],id]);});
+  var odd=[];for(var i=0;i<m;i++)if(deg(i)%2)odd.push(i);
+  if(odd.length!==0&&odd.length!==2)return {ok:false,reason:'奇度点 '+odd.length+' 个（需为 0 或 2），一笔画不成'};
+  var start=odd.length?odd[0]:0;
+  var used=new Set(),stack=[start],path=[],edgeOrder=[];
+  // Hierholzer
+  var copy=adj.map(function(a){return a.slice();});
+  var st=[start],comp=[];
+  while(st.length){
+    var v=st[st.length-1];
+    if(copy[v].length){
+      var nb=copy[v].pop();var to=nb[0],eid=nb[1];
+      if(used.has(eid))continue;
+      used.add(eid);st.push(to);
+    } else {comp.push(st.pop());}
+  }
+  var trail=comp.reverse();
+  // count edges traversed
+  return {ok:used.size===edges.length,trail:trail,odd:odd};
+}
+function draw(){
+  ctx.clearRect(0,0,cv.width,cv.height);
+  var d=new Array(nodes.length).fill(0);edges.forEach(function(e){d[e[0]]++;d[e[1]]++;});
+  // edges
+  edges.forEach(function(e,id){
+    ctx.beginPath();ctx.moveTo(nodes[e[0]].x,nodes[e[0]].y);ctx.lineTo(nodes[e[1]].x,nodes[e[1]].y);
+    ctx.strokeStyle=played.indexOf(id)>=0?'#B0396E':'#8A9299';
+    ctx.lineWidth=played.indexOf(id)>=0?4:2;
+    ctx.stroke();
+  });
+  nodes.forEach(function(n,i){
+    ctx.beginPath();ctx.arc(n.x,n.y,16,0,2*Math.PI);
+    ctx.fillStyle=(d[i]%2)?'#B0396E':'#2E7D5B';ctx.fill();
+    if(sel===i){ctx.strokeStyle='#A8751E';ctx.lineWidth=3;ctx.stroke();}
+    ctx.fillStyle='#fff';ctx.font='bold 13px Georgia';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(i,n.x,n.y);
+    ctx.fillStyle='#4A5258';ctx.font='12px Georgia';ctx.fillText('度'+d[i],n.x,n.y-26);
+  });
+  var oddCount=d.filter(function(x){return x%2;}).length;
+  stat.textContent='边 '+edges.length+' 条 · 奇度点 '+oddCount+' 个 · '+(oddCount===0?'欧拉回路（回到起点）':oddCount===2?'欧拉路径（两点起止）':'无解');
+}
+cv.addEventListener('click',function(e){
+  var r=cv.getBoundingClientRect();
+  var mx=(e.clientX-r.left)*cv.width/r.width,my=(e.clientY-r.top)*cv.height/r.height;
+  var i=findNode(mx,my);
+  if(i<0){sel=null;draw();return;}
+  if(sel===null){sel=i;draw();}
+  else if(sel!==i){edges.push([sel,i]);sel=null;played=[];draw();}
+});
+document.getElementById('del').onclick=function(){if(edges.length){edges.pop();played=[];draw();}};
+document.getElementById('reset').onclick=function(){load(cur);};
+document.getElementById('preset').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+  b.classList.add('on');load(parseInt(b.dataset.g));
+});
+document.getElementById('play').onclick=function(){
+  var res=eulerTrail();
+  if(!res.ok){stat.textContent=res.reason;return;}
+  played=[];
+  // rebuild edge order from trail
+  var used2=new Set();
+  for(var k=0;k<res.trail.length-1;k++){
+    var a=res.trail[k],b=res.trail[k+1];
+    // find edge
+    for(var eid=0;eid<edges.length;eid++){
+      if(used2.has(eid))continue;
+      var e=edges[eid];
+      if((e[0]===a&&e[1]===b)||(e[0]===b&&e[1]===a)){used2.add(eid);played.push(eid);break;}
+    }
+  }
+  draw();
+};
+load(0);
+})();
+</script>
+
+</body>
+</html>

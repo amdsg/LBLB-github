@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="no-referrer">
+<title>谢尔宾斯基三角 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='28' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%96%B2%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--green:#2E7D5B;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--green);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:42px;margin:14px 0 6px;}
+h1 .sym{color:var(--green);font-style:italic;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif;font-size:26px;border-left:6px solid var(--green);padding-left:14px;}
+.sec h2 small{font-size:13px;color:var(--ink2);font-family:"Noto Sans SC",sans-serif;font-weight:400;margin-left:8px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:20px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#fffef9;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--green);width:200px;}
+.controls .btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls .btn.gray{background:#8A8270;}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+.seg button{border:none;background:#fffdf6;padding:7px 16px;cursor:pointer;font-size:14px;color:var(--ink2);}
+.seg button.on{background:var(--green);color:#fff;}
+.info{font-family:Georgia,serif;font-size:14px;color:var(--ink2);margin-left:auto;}
+.explain{margin-top:16px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+.tag{display:inline-block;margin-top:10px;font-size:12px;letter-spacing:.08em;color:var(--green);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--green);text-decoration:none;}
+</style>
+<script>
+window.MathJax={loader:{paths:{mathjax:"../assets/mathjax/es5"}},tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="可视化导航.html">← 返回可视化</a>
+  <h1>谢尔宾斯基三角 <span class="sym">△</span></h1>
+  <p class="sub">把三角形不断挖去中心的小三角形，剩下的图案在任何尺度上都长得一样。它的 Hausdorff 维数不是整数：$\log 3/\log 2\approx1.585$。</p>
+  <span class="tag">分形 · 递归与混沌游戏</span>
+</header>
+
+<div class="sec">
+  <h2>两种生成方式 <small>「递归」看挖洞，「混沌游戏」看随机点如何自动拼出图案</small></h2>
+  <div class="fig">
+    <canvas id="cv" width="880" height="600" role="img" aria-label="谢尔宾斯基三角：交互式画布，内容随下方控件实时变化"></canvas>
+    <div class="controls">
+      <div class="seg">
+        <button id="mRec" class="on">递归挖洞</button>
+        <button id="mChaos">混沌游戏</button>
+      </div>
+      <label id="depthLbl">深度</label><input type="range" id="depth" min="0" max="8" value="6">
+      <span id="depthV" class="info">6</span>
+      <button class="btn" id="go">开始/暂停</button>
+      <button class="btn gray" id="clr">清空重画</button>
+      <span class="info" id="readout"></span>
+    </div>
+    <p class="explain"><b>怎么玩：</b>切到「递归挖洞」，拖动<b>深度</b>看三角形被一层层挖空；切到「混沌游戏」，点<b>开始</b>——从任意点出发，每步随机选一个顶点、走到中点，就留下一个点。尽管每一步都是随机的，成千上万点后，谢尔宾斯基三角自己浮现出来。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>数学原理 <small>为什么维数是 1.585？</small></h2>
+  <p>把三角放大 2 倍，图案由 <b>3</b> 个小三角拼成。若自相似维数 $d$ 满足 $2^d=3$，则 $d=\log_2 3\approx1.585$——比线（1）大、比面（2）小。</p>
+  <p><b>混沌游戏为何有效：</b>「到顶点取中点」这个仿射变换恰好把三角形映成三个半尺寸的子三角，随机迭代的不变测度正好集中在谢尔宾斯基集上——随机过程自动收敛到确定的分形。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+  var W=cv.width,H=cv.height;
+  var depthEl=document.getElementById('depth'),depthV=document.getElementById('depthV'),readout=document.getElementById('readout');
+  var mRec=document.getElementById('mRec'),mChaos=document.getElementById('mChaos');
+  var mode='rec',playing=false,raf=null,px=0.5,py=0.5,count=0;
+  function tri(cx,cy,s){return [[cx,cy-s*0.57735],[cx-s/2,cy+s*0.28867],[cx+s/2,cy+s*0.28867]];}
+  function drawRec(dep){
+    ctx.fillStyle='#fffef9';ctx.fillRect(0,0,W,H);
+    ctx.fillStyle='#2E7D5B';
+    var base=tri(W/2,H/2+30, Math.min(W*0.8,H*0.9));
+    function hole(a,b,c,d){
+      if(d===0){ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.lineTo(c[0],c[1]);ctx.closePath();ctx.fill();return;}
+      var ab=[(a[0]+b[0])/2,(a[1]+b[1])/2],bc=[(b[0]+c[0])/2,(b[1]+c[1])/2],ca=[(c[0]+a[0])/2,(c[1]+a[1])/2];
+      hole(a,ab,ca,d-1);hole(ab,b,bc,d-1);hole(ca,bc,c,d-1);
+    }
+    hole(base[0],base[1],base[2],dep);
+    var n=Math.pow(3,dep);
+    readout.textContent='递归三角数 '+n;
+  }
+  function chaosStep(){
+    var v=tri(W/2,H/2+30,Math.min(W*0.8,H*0.9))[Math.floor(Math.random()*3)];
+    px=(px+v[0])/2;py=(py+v[1])/2;
+    ctx.fillStyle='rgba(46,125,91,0.55)';
+    ctx.fillRect(px,py,1.4,1.4);
+    count++;
+    if(count%500===0)readout.textContent='已落点 '+count;
+  }
+  function loop(){
+    if(!playing)return;
+    for(var i=0;i<60;i++)chaosStep();
+    raf=setTimeout(loop,0);
+  }
+  function setMode(m){
+    mode=m;
+    mRec.classList.toggle('on',m==='rec');mChaos.classList.toggle('on',m==='chaos');
+    playing=false;if(raf){clearTimeout(raf);raf=null;}
+    depthLbl.style.display=(m==='rec')?'inline':'none';
+    depthEl.style.display=(m==='rec')?'inline':'none';
+    depthV.style.display=(m==='rec')?'inline':'none';
+    if(m==='rec')drawRec(parseInt(depthEl.value,10));
+    else{ctx.fillStyle='#fffef9';ctx.fillRect(0,0,W,H);px=W/2;py=H/2;count=0;readout.textContent='已落点 0';}
+  }
+  depthEl.addEventListener('input',function(){depthV.textContent=this.value;if(mode==='rec')drawRec(parseInt(this.value,10));});
+  mRec.addEventListener('click',function(){setMode('rec');});
+  mChaos.addEventListener('click',function(){setMode('chaos');});
+  document.getElementById('go').addEventListener('click',function(){
+    if(mode!=='chaos'){return;}
+    playing=!playing;if(playing)loop();else if(raf){clearTimeout(raf);raf=null;}
+  });
+  document.getElementById('clr').addEventListener('click',function(){setMode(mode);});
+  setMode('rec');
+})();
+</script>
+
+</body>
+</html>

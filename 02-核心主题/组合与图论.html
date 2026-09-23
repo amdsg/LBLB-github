@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>组合与图论讲义 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='32' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%91%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --magenta:#B0396E; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--magenta); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:40px; margin:12px 0 6px;}
+h1 .sym{color:var(--magenta); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:740px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--magenta); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--magenta); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; margin-top:26px;}
+.ch p{font-size:15px; margin-top:10px; max-width:820px;}
+.f{font-family:Georgia,"Cambria Math",serif; font-style:italic; background:var(--paper2); border-radius:6px; padding:1px 8px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--magenta);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--magenta); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.demo{background:var(--paper2); border:1px solid var(--line); border-radius:16px; padding:20px; margin-top:16px;}
+.demo .btn{display:inline-block; background:var(--magenta); color:#fff; border:none; border-radius:8px; padding:8px 18px; font-size:14px; cursor:pointer; margin:0 8px 12px 0; min-height:44px;}
+.demo .btn.gray{background:#8A8270;}
+.demo p.hint{font-size:13px; color:var(--ink2);}
+.papers{display:grid; gap:10px; margin-top:12px;}
+.papers .p{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px;}
+.papers .p a{color:var(--magenta); text-decoration:none; font-weight:600; font-size:14.5px;}
+.papers .p a:hover{text-decoration:underline;}
+.papers .m{font-size:12.5px; color:var(--ink2); margin-top:3px;}
+.papers .empty{background:var(--paper2); border:1px dashed var(--line); border-radius:10px; padding:14px 16px; font-size:13.5px; color:var(--ink2);}
+.gloss{margin-top:14px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:14px;}
+.gloss dt{font-weight:700; margin-top:8px;}
+.gloss dt:first-child{margin-top:0;}
+.gloss dd{margin-left:18px; color:var(--ink2); font-size:13.5px;}
+.online{margin-top:16px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; font-size:14px;}
+.online a{color:var(--magenta); text-decoration:none;}
+.online a:hover{text-decoration:underline;}
+.online ul{margin:8px 0 0 20px;}
+.online li{margin-top:6px;}
+.online .hint{font-size:12.5px; color:var(--ink2); margin-top:8px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--magenta); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>组合与图论讲义 <span class="sym">Σ</span></h1>
+  <p class="sub">计数的艺术与图的结构：排列组合、鸽巢原理、生成函数、欧拉回路、拉姆齐理论——完整讲义含定义、定理、证明、例题与练习。</p>
+  <p class="quote">「组合数学是『有限对象』的数学——它把『一共有多少种』变成一门科学。」</p>
+</header>
+
+<div class="toc">
+  <b>本讲目录</b>
+  <ol>
+    <li><a href="#c1">排列、组合与二项式系数</a></li>
+    <li><a href="#c2">鸽巢原理与容斥原理</a></li>
+    <li><a href="#c3">递推与斐波那契</a></li>
+    <li><a href="#c4">生成函数</a></li>
+    <li><a href="#c5">图：基本概念与树</a></li>
+    <li><a href="#c6">欧拉回路与哈密顿</a></li>
+    <li><a href="#c7">匹配、着色与平面图</a></li>
+    <li><a href="#c8">拉姆齐理论与无穷组合</a></li>
+        <li><a href="#c9a">深度：图着色与四色定理</a></li>
+    <li><a href="#c9b">深度：拉姆齐数与 Cayley 公式</a></li>
+        <li><a href="#c9a">深度：拉姆齐理论</a></li>
+    <li><a href="#c9b">深度：矩阵树定理</a></li>
+        <li><a href="#c9d">深度：拉姆齐理论</a></li>
+    <li><a href="#c9e">深度：极值图论与 Turán</a></li>
+<li><a href="#c9c">深度：概率方法</a></li>
+    <li><a href="#c9">练习与自测</a></li>
+    <li><a href="#c10">术语表、在线资源与最新研究</a></li>
+  </ol>
+</div>
+
+<!-- ================= 第 1 章 ================= -->
+<div class="ch" id="c1">
+  <h2>1. 排列、组合与二项式系数 <small>数数也是一门学问</small></h2>
+  <div class="def"><b>定义：</b>n 元集合的 k 排列数 P(n,k) = n!/(n−k)!；k 子集数 C(n,k) = n!/(k!(n−k)!)。重复允许时：排列 nᵏ，组合 C(n+k−1,k)。</div>
+  <div class="thm"><b>定理（二项式系数的代数性质）：</b>C(n,k) = C(n,n−k)；C(n,k) = C(n−1,k) + C(n−1,k−1)；Σ C(n,k) = 2ⁿ。<div class="proof"><b>证明要点：</b>最后一个：每个元素「选/不选」两种选择，乘法原理。也可对 (1+1)ⁿ 用二项定理。</div></div>
+  <div class="thm"><b>定理（范德蒙德恒等式）：</b>Σ_k C(m,k)C(n,r−k) = C(m+n,r)。<div class="proof"><b>证明要点（双计数）：</b>从 m+n 个元素取 r 个：先从前 m 个取 k 个、再从后 n 个取 r−k 个，对所有 k 求和。</div></div>
+  <div class="ex"><b>例：</b>从 10 人中选 3 人组成委员会，其中必须有甲或乙？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>C(10,3) − C(8,3) = 120 − 56 = 64（总选法减去两人都不选的）。</div></details></div>
+</div>
+
+<!-- ================= 第 2 章 ================= -->
+<div class="ch" id="c2">
+  <h2>2. 鸽巢原理与容斥原理 <small>最「显然」与最「反直觉」的计数工具</small></h2>
+  <div class="thm"><b>定理（鸽巢原理）：</b>n+1 只鸽子进 n 个笼子，至少一笼 ≥ 2 只。<div class="proof"><b>加强版：</b>把 kn+1 个东西分 n 组，至少一组 ≥ k+1 个。推广到实数：平均数 ≤ 最大值。</div></div>
+  <div class="thm"><b>定理（容斥原理）：</b>|A∪B∪C| = |A|+|B|+|C| − |A∩B| − |A∩C| − |B∩C| + |A∩B∩C|。<div class="proof"><b>证明要点：</b>每个元素被「计入-减去-加回」恰好一次。n 个集合的版本：奇数个交集加、偶数个减。</div></div>
+  <div class="thm"><b>定理（错排数）：</b>把 n 封信装进 n 个信封，全部装错的方法数 Dₙ = n! Σ (−1)ᵏ/k!，满足 Dₙ = (n−1)(Dₙ₋₁ + Dₙ₋₂)。<div class="proof"><b>证明要点：</b>第一封信装进第 k 封信的位置，分「第 k 封信进第 1 个位置」与「不进」两种情况递推。</div></div>
+  <div class="ex"><b>例：</b>6 人帽子随机交换，无人拿回自己帽子的概率？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>D₆/6! = 265/720 ≈ 0.368——约等于 1/e，当 n 大时 Dₙ/n! → e⁻¹。</div></details></div>
+</div>
+
+<!-- ================= 第 3 章 ================= -->
+<div class="ch" id="c3">
+  <h2>3. 递推与斐波那契 <small>从前面的项推出后面的项</small></h2>
+  <div class="def"><b>定义（线性递推）：</b>aₙ = c₁aₙ₋₁ + c₂aₙ₋₂。斐波那契 Fₙ = Fₙ₋₁ + Fₙ₋₂，F₀=0, F₁=1。</div>
+  <div class="thm"><b>定理（斐波那契通项 / 比内公式）：</b>Fₙ = (φⁿ − ψⁿ)/√5，其中 φ = (1+√5)/2，ψ = (1−√5)/2。<div class="proof"><b>证明要点：</b>猜 aₙ = rⁿ 代入递推得特征方程 r² = r+1，两根 φ、ψ，通解 aₙ = Aφⁿ + Bψⁿ，初值定 A、B。</div></div>
+  <div class="thm"><b>定理（黄金比极限）：</b>lim Fₙ₊₁/Fₙ = φ ≈ 1.618。<div class="proof"><b>证明要点：</b>比内公式：Fₙ₊₁/Fₙ → φ（ψⁿ 项衰减消失）。</div></div>
+  <div class="thm"><b>定理（组合恒等式）：</b>Σ Fᵢ = Fₙ₊₂ − 1；Fₙ² + Fₙ₊₁² = F₂ₙ₊₁。<div class="proof"><b>证明要点：</b>前一个裂项求和，后一个用比内公式或矩阵幂。</div></div>
+  <div class="ex"><b>例：</b>爬楼梯：每次上 1 或 2 级，上 n 级有多少种方法？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>Fₙ₊₁（1,2,3,5,8,… 对应 n=1,2,3,4,5）。上 10 级 = F₁₁ = 89 种。</div></details></div>
+</div>
+
+<!-- ================= 第 4 章 ================= -->
+<div class="ch" id="c4">
+  <h2>4. 生成函数 <small>把数列装进幂级数</small></h2>
+  <div class="def"><b>定义（普通生成函数）：</b>数列 aₙ 的生成函数 G(x) = Σ aₙxⁿ。形式幂级数——收敛性可暂时不管，只管系数。</div>
+  <div class="thm"><b>定理（生成函数的运算）：</b>两数列卷积 Σ aₖbₙ₋ₖ 对应生成函数相乘 G·H。<div class="proof"><b>意义：</b>「计数结构组合」↔「生成函数相乘」——组合恒等式变成代数恒等式。</div></div>
+  <div class="thm"><b>定理（经典生成函数）：</b>1/(1−x) = Σxⁿ；1/(1−x)² = Σ(n+1)xⁿ；1/(1−x)ᵏ = Σ C(n+k−1,k−1)xⁿ。<div class="proof"><b>例：</b>1/(1−x−x²) 的系数正是斐波那契数列。</div></div>
+  <div class="ex"><b>例：</b>用 1 分、2 分、5 分硬币凑 10 分有多少种方法？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>求 1/((1−x)(1−x²)(1−x⁵)) 的 x¹⁰ 系数 = 10 种。（写出来：1×10, 2×5, 5×2, 1+1+2×4, … 共 10 种）</div></details></div>
+</div>
+
+<!-- ================= 第 5 章 ================= -->
+<div class="ch" id="c5">
+  <h2>5. 图：基本概念与树 <small>关系的可视化结构</small></h2>
+  <div class="def"><b>定义（图）：</b>G = (V, E)：顶点集 + 边集。无向/有向、简单图/多重图、度（邻居数）。</div>
+  <div class="thm"><b>定理（握手引理）：</b>Σ deg(v) = 2|E|。<div class="proof"><b>证明要点：</b>每条边贡献 2 个「端点度」。</div></div>
+  <div class="thm"><b>定理（树的刻画）：</b>连通无圈图等价条件：n 个顶点 n−1 条边；任意两点唯一路径；删任一边即不连通。<div class="proof"><b>推论：</b>树是「最少边数维持连通」的结构——生成树是网络的骨架。</div></div>
+  <div class="thm"><b>定理（凯莱公式）：</b>n 个标记顶点的树有 $n^{n-2}$ 棵。<div class="proof"><b>证明要点（普吕弗序列）：</b>树 ↔ 长度 n−2 的序列双射：反复删最小叶子，记录邻居。</div></div>
+  <div class="ex"><b>例：</b>4 个标记顶点的树有 4² = 16 棵；3 个顶点只有 3^(1) = 3 棵。</div>
+</div>
+
+<!-- ================= 第 6 章 ================= -->
+<div class="ch" id="c6">
+  <h2>6. 欧拉回路与哈密顿 <small>一笔画与环球旅行</small></h2>
+  <div class="thm"><b>定理（欧拉定理）：</b>连通图有欧拉回路（一笔画回起点）⟺ 每个顶点度为偶数；有欧拉路径（一笔画不要求回起点）⟺ 恰有 0 或 2 个奇度顶点。<div class="proof"><b>证明要点：</b>必要性显然（回路每进每出消耗 2 度）；充分性用「闭合回路拼合」：把图分解为边不交的圈，再串起来。</div></div>
+  <div class="thm"><b>定理（七桥问题）：</b>哥尼斯堡七桥无欧拉路径。<div class="proof"><b>证明要点：</b>四个陆地区域的度数分别为 3、3、3、5，四个奇度顶点 &gt; 2——欧拉 1736 年以此开创图论。</div></div>
+  <div class="thm"><b>定理（哈密顿问题）：</b>判断图是否有哈密顿回路是 NP 完全的；但迪拉克定理给充分条件：n ≥ 3 且每点度 ≥ n/2 则有哈密顿回路。<div class="proof"><b>直觉：</b>欧拉看边、哈密顿看顶点——哈密顿是「环球旅行者问题」，至今无多项式算法（P ≠ NP 猜想的一部分）。</div></div>
+  <div class="ex"><b>例：</b>正十二面体（柏拉图立体）有哈密顿回路——哈密顿 1857 年把它做成益智玩具「周游世界」。</div>
+</div>
+
+<!-- ================= 第 7 章 ================= -->
+<div class="ch" id="c7">
+  <h2>7. 匹配、着色与平面图 <small>安排、着色与四色定理</small></h2>
+  <div class="thm"><b>定理（霍尔婚姻定理）：</b>二部图有完美匹配 ⟺ 任意 k 个左侧顶点的邻居并集 ≥ k 个（k = 1,…,n）。<div class="proof"><b>证明要点：</b>必要性显然；充分性用归纳或增广路（匈牙利算法）。</div></div>
+  <div class="thm"><b>定理（四色定理）：</b>每个平面图可 4 着色。<div class="proof"><b>历史：</b>1976 年 Appel–Haken 用计算机辅助证明（第一个大规模计算机证明），2016 年 Gonthier 用 Coq 形式化验证——「四色」是图论最著名的定理。</div></div>
+  <div class="thm"><b>定理（五色定理的简单证明）：</b>平面图可 5 着色。<div class="proof"><b>证明要点：</b>平面图必有度 ≤ 5 的顶点（平均度 &lt; 6），归纳删该点；若 5 个邻居已用满 5 色，用 Kempe 链换色腾出空色。</div></div>
+  <div class="thm"><b>定理（欧拉公式的图论版）：</b>连通平面图 V − E + F = 2（F 含外部面）。<div class="proof"><b>推论：</b>平面图 E ≤ 3V − 6——所以 K₅、K₃,₃ 不是平面图（它们正是「无法画在纸上不交叉」的图）。</div></div>
+  <div class="ex"><b>例：</b>K₃,₃（三户三井）不能平面嵌入——这对应「每口井连每户不交叉」的著名谜题无解。</div>
+</div>
+
+<!-- ================= 第 8 章 ================= -->
+<div class="ch" id="c8">
+  <h2>8. 拉姆齐理论与无穷组合 <small>足够大的结构必有秩序</small></h2>
+  <div class="thm"><b>定理（拉姆齐定理 R(3,3) = 6）：</b>任意 6 个人中，必有 3 人两两相识或 3 人两两不相识。<div class="proof"><b>证明要点：</b>任取一人 A，其余 5 人按「与 A 相识/不相识」分两堆，鸽巢原理一堆 ≥ 3 人；若这 3 人中两人相识则成三元组，否则 3 人两两不相识。</div></div>
+  <div class="thm"><b>定理（拉姆齐数的增长）：</b>R(k,k) ≥ 2^(k/2)——随机图证明：随机 2 着色使 K_k 单色的概率之和 &lt; 1，故存在非单色的着色。<div class="proof"><b>意义：</b>拉姆齐数只知道上界约 4ᵏ，具体值至今只能算到 R(5,5)——数学中最难的「大数」之一（R(6,6) 无人知道，有人说在原子数量级之外）。</div></div>
+  <div class="thm"><b>定理（无穷拉姆齐定理）：</b>对自然数集任意 2 着色，存在同色无穷子集。<div class="proof"><b>证明要点：</b>反复取「多数色」的无穷子集（无限鸽巢）。这是拉姆齐理论在无穷世界的对应。</div></div>
+  <div class="ex"><b>例：</b>R(3,3)=6 而 R(3,3,3) = 17（三色拉姆齐数）——增长快得惊人。</div>
+</div>
+
+<!-- ================= 第 9 章 ================= -->
+
+<!-- ================= 深度小节：图着色与四色定理 ================= -->
+<div class="ch" id="c9a">
+  <h2>9a. 深度：图着色与四色定理简介 <small>从五色到四色：计算机辅助证明的里程碑</small></h2>
+
+  <div class="def"><b>定义（着色数）</b> 图 $G$ 的一个正常 $k$-着色是把顶点染成 $k$ 种颜色使相邻顶点异色。最小的 $k$ 称为 $G$ 的色数 $\chi(G)$。</div>
+
+  <div class="thm"><b>定理（Heawood 五色定理 1890 → Appel–Haken 四色 1976）</b> 任何平面图都可用至多 4 种颜色正常着色（四色定理）。证明依赖计算机检查约 1936 个可约构型，是首个被计算机辅助证明的著名数学定理。</div>
+
+  <div class="proof"><b>证明思路（五色定理的人证明骨架）：</b>
+  欧拉公式 $V - E + F = 2$ 推出平面图必有顶点度数 $\le 5$（若全 $\ge 6$ 则 $2E \ge 6V$、$E \le 3V - 6$ 矛盾）。归纳：删去 $v$（$\deg v \le 5$），对 $G-v$ 五色着色；若 $\deg v \le 4$ 直接补一种；若 $\deg v = 5$ 且邻居用完 5 色，借助 Kempe 链交换把两色合并腾出色——Heawood 修补了 Kempe 1879 年「证明」四色时的漏洞，但只能做到五色。四色的完整证明需要更复杂的可约构型枚举。</div>
+
+  <div class="ex"><b>例：</b>$K_4$（4 个顶点两两相连）是否平面图？$\chi(K_4) = ?$
+  4 个顶点两两相连需 6 条边。平面图满足 $E \le 3V - 6 = 6$，等号成立，故 $K_4$ 可平面嵌入（四面体）。每个顶点与其余 3 个相邻，故需 4 色：$\chi(K_4) = 4$——四色定理「紧」的一个例子。
+  <div class="sol"><b>反例：</b>$K_5$ 有 $V=5, E=10$，而 $3V-6 = 9$，$10 \gt 9$，故 $K_5$ 非平面。它与 $K_{3,3}$ 是 Kuratowski 定理中的两个「禁子图」。</div></div>
+</div>
+
+<!-- ================= 深度小节：拉姆齐数与生成树计数 ================= -->
+<div class="ch" id="c9b">
+  <h2>9b. 深度：拉姆齐数与生成树计数 <small>$R(3,3)=6$ 与 Cayley 公式 $n^{n-2}$</small></h2>
+
+  <div class="thm"><b>定理（Ramsey $R(3,3) = 6$）</b> 任意 6 个人中必有 3 人两两相识或 3 人两两不相识。即完全图 $K_6$ 的边染两色必有单色三角形；而 $K_5$ 存在两色染法避免单色三角形。</div>
+
+  <div class="proof"><b>证明思路：</b>
+  任取顶点 $v$，它连出 5 条边，两色，鸽巢原理至少 3 条同色（设红色连向 $a,b,c$）。若 $a,b,c$ 之间有红边，则与 $v$ 成红三角形；若没有红边，则 $a,b,c$ 两两蓝边，本身成蓝三角形。$K_5$ 的反例：把 5 个顶点排成正五边形，红边为相邻边（5 条），蓝边为对角线（5 条）——无单色三角形。</div>
+
+  <div class="thm"><b>定理（Cayley 1889）</b> $n$ 个标号顶点的生成树数目为
+  $$T_n = n^{n-2}.$$</div>
+
+  <div class="proof"><b>证明思路（Prüfer 编码）：</b>
+  给出 $\{1,\dots,n\}$ 上的树与长度 $n-2$ 的序列（每项取 $1..n$）之间的双射：
+  ① 编码：反复删去编号最小的叶子，记录其唯一邻居，直到剩 2 个顶点，得序列 $(c_1,\dots,c_{n-2})$。
+  ② 解码：给定序列 $c$，设 $\text{deg}(i) = 1 + \#\{j : c_j = i\}$。取当前最小的 $\text{deg}=1$ 顶点 $i_1$ 与 $c_1$ 连边，$\text{deg}(i_1) \leftarrow 0$，$\text{deg}(c_1) \leftarrow \text{deg}(c_1)-1$；重复 $n-2$ 次，最后把剩余两个度数为 1 的顶点相连。
+  双射说明树数 = 序列数 $= n^{n-2}$。</div>
+
+  <div class="ex"><b>例：</b>$n=4$ 时生成树数 $= 4^{2} = 16$。
+  验证：$K_4$ 共 6 条边，选 3 条成树（无环）= $\binom{6}{3} - 4$（4 个三角形环）$= 20 - 4 = 16$ ✓。
+  <div class="sol"><b>Ramsey 与 Cayley 的对照：</b>$R(s,t)$ 是「多大的结构必含秩序」的存在性数；Cayley 是「有多少种秩序」的计数数——前者由鸽巢+归纳证明，后者由双射显式枚举。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9a. 深度：拉姆齐理论 ================= -->
+<div class="ch" id="c9g">
+  <h2>9a. 深度：拉姆齐理论 <small>完全无序是不可能的——足够大的结构必含局部有序</small></h2>
+  <div class="def"><b>定义（拉姆齐数）</b> $R(s,t)$ 是使任意 2-着色 $K_n$ 的边必含红 $K_s$ 或蓝 $K_t$ 的最小 $n$。推广：$R(r_1,\dots,r_k)$ 对 $k$ 种颜色。</div>
+  <div class="thm"><b>定理（拉姆齐，1930）</b> $R(s,t)\le R(s-1,t)+R(s,t-1)$，递归给出有限上界 $R(s,t)\le\binom{s+t-2}{s-1}$。特别 $R(3,3)=6$。<div class="proof"><b>$R(3,3)=6$ 的证明：</b>取 $K_6$ 任一点，其 5 条邻边必至少 3 条同色（鸽巢）。设 3 条红边连向 $a,b,c$——若 $a,b,c$ 间任一红边，得红三角形；否则 $a,b,c$ 间全蓝，得蓝三角形。$K_5$ 可避免：五边形边红、五角星边蓝，无单色三角形——故 $R(3,3)=6$。</div></div>
+  <div class="thm"><b>定理（Erdős 下界）</b> $R(k,k)>\lfloor 2^{k/2}\rfloor$。证明用<b>概率方法</b>——随机 2-着色 $K_n$ 的边，单色 $K_k$ 期望 $&lt;1$ 时存在无单色三角形的着色。<div class="proof"><b>意义：</b>这是「概率方法」的开山之作——用随机性证明确定性存在性。$R(5,5)$ 至今只知 $43\le R(5,5)\le48$，精确值是组合学最著名的开放问题之一。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9b. 深度：矩阵树定理 ================= -->
+<div class="ch" id="c9f">
+  <h2>9b. 深度：矩阵树定理 <small>数生成树 = 求一个矩阵的余子式</small></h2>
+  <div class="def"><b>定义（拉普拉斯矩阵）</b> 图 $G$ 有 $n$ 个顶点。度矩阵 $D=\mathrm{diag}(d_1,\dots,d_n)$，邻接矩阵 $A$，拉普拉斯 $L=D-A$。$L$ 半正定，零空间由连通分支数决定。</div>
+  <div class="thm"><b>定理（Kirchhoff 矩阵树定理，1847）</b> $G$ 的生成树数 $\tau(G)$ 等于 $L$ 的任意一个余子式：删去第 $i$ 行第 $i$ 列得 $L_i$，则 $\tau(G)=\det L_i$（与 $i$ 无关）。<div class="proof"><b>思路：</b>$L=BB^T$（$B$ 为关联矩阵）。用 Cauchy–Binet 公式 $\det(B_iB_i^T)=\sum(\text{生成树对应的子积})$，每个生成树贡献 $\pm1$，非树子图贡献 $0$。</div></div>
+  <div class="ex"><b>例：</b>完全图 $K_n$ 的生成树数。
+  <div class="sol"><b>解：</b>$K_n$ 的拉普拉斯 $L=(n-1)I-J/n$（$J$ 全 1）。删一行一列后 $L_1$ 的特征值 $n$（重数 $n-2$）和 $n-1$（一次），$\det L_1=n^{n-2}$——Cayley 公式。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9c. 深度：概率方法 ================= -->
+<div class="ch" id="c9c">
+  <h2>9c. 深度：概率方法 <small>随机构造证明存在性</small></h2>
+  <div class="thm"><b>定理（基本范式）b> 若随机对象的某「坏性质」期望 $&lt;1$，则存在不具有该性质的对象。<div class="proof"><b>模板：</b>构造概率空间 $\Omega$；定义坏事件 $A$；证 $\Pr(A)&lt;1$；得 $\Omega\setminus A\ne\varnothing$。</div></div>
+  <div class="thm"><b>定理（Erdős 1947）</b> 存在 $n$ 个顶点、边数 $\le\binom{n}{2}/2$ 且无独立集大于 $2\log_2 n$ 的图。<div class="proof"><b>证明：</b>随机 2-着色 $K_n$ 边，固定 $k$ 个顶点，全同色概率 $2/2^{\binom{k}{2}}$，存在单色 $K_k$ 的期望 $\le\binom{n}{k}\cdot2^{1-\binom{k}{2}}&lt;1$（$k>2\log_2 n$）。故存在 2-着色无单色 $K_k$。</div></div>
+  <div class="ex"><b>例（Lovász 局部引理）</b> 若坏事件各依赖 $\le d$ 个其他事件且每个概率 $\le p$，$ep(d+1)\le1$，则以正概率无一发生。<div class="sol"><b>意义：</b>局部引理把「全局期望 $&lt;1$」推广到「局部弱依赖」——是概率方法的精细工具，应用极广（路由、染色、超图）。</div></div>
+</div>
+
+
+<!-- ================= 第二轮深度小节：9d. 深度：拉姆齐理论 ================= -->
+<div class="ch" id="c9d">
+  <h2>9d. 深度：拉姆齐理论 <small>足够大必然有秩序</small></h2>
+  <div class="def"><b>定义（拉姆齐数）</b> $R(s,t)$ 是最小 $n$，使得任意 $n$ 顶点完全图的边红蓝二染色，必有红 $K_s$ 或蓝 $K_t$。$R(s,t)$ 有限即「任意大群体必有同色小团体」。</div>
+  <div class="thm"><b>定理（Ramsey 1930）</b> $R(s,t)\le R(s-1,t)+R(s,t-1)$，故 $R(s,t)\le\binom{s+t-2}{s-1}$ 有限。<div class="proof"><b>思路：</b>取一点 $v$，由鸽巢 $v$ 至少 $R(s-1,t)$ 条红边或 $R(s,t-1)$ 条蓝边；前者邻点含红 $K_{s-1}$ 加 $v$ 成红 $K_s$，后者类似。</div></div>
+  <div class="thm"><b>定理（Erdős 概率下界）</b> $R(k,k)>2^{k/2}$（$k\ge2$）。<div class="proof"><b>思路：</b>随机二染色每条边，$P(\exists K_k)\le\binom{n}{k}2^{1-\binom{k}{2}}&lt;1$ 当 $n&lt;2^{k/2}$，故存在染色无单色 $K_k$，即 $R(k,k)>n$。这是「概率方法」——证存在性不必构造。</div></div>
+  <div class="ex"><b>例：</b>计算 $R(3,3)=6$。
+  <div class="sol"><b>解：</b>5 顶点有反例（五边染红、五边染蓝得红蓝 C5）；6 顶点取 $v$，其 5 条邻边至少 3 同色（鸽巢），设红连 $a,b,c$；若 $abc$ 间任一红边则红三角含 $v$，否则 $abc$ 成蓝三角。故 $R(3,3)=6$。</div></div>
+</div>
+
+<!-- ================= 第二轮深度小节：9e. 深度：极值图论与 Turán 定理 ================= -->
+<div class="ch" id="c9e">
+  <h2>9e. 深度：极值图论与 Turán 定理 <small>不出现 $K_r$ 时最多几条边</small></h2>
+  <div class="def"><b>定义（Turán 图）</b> $T_r(n)$：$n$ 顶点分成尽可能相等的 $r-1$ 部分，两不同部分间全连，同部分内无边。记 $t_r(n)=e(T_r(n))$。</div>
+  <div class="thm"><b>定理（Turán 1941）</b> $K_r$-free 图 $G$ 的边数 $e(G)\le t_r(n)$，等号当且仅当 $G=T_r(n)$。即不含 $r$ 团的最大边数为 $t_r(n)\approx(1-1/r)n^2/2$。<div class="proof"><b>思路：</b>归纳或直接优化：取度最大的点 $v$，$N(v)$ 为 $K_{r-1}$-free，归纳给出 $e(N(v))\le t_{r-1}(d)$，再优化度数分配。</div></div>
+  <div class="thm"><b>定理（Erdős–Stone–Simonovits）</b> 对固定色数 $\chi(H)=r+1$ 的图 $H$，
+  $$\mathrm{ex}(n,H)=\left(1-\frac1r+o(1)\right)\frac{n^2}{2}.$$
+  这把 Turán 推到极致：禁二分图（$r=1$）时 $\mathrm{ex}=o(n^2)$，禁 $K_3$ 时 $(1/2+o(1))n^2/2$ 等。<div class="proof"><b>意义：</b>色数 2 的图（树、偶图）有 $O(n)$ 极值；色数 $\ge3$ 的图有 $\Theta(n^2)$ 极值——这是 Erdős–Stone 的二分性原理。</div></div>
+  <div class="ex"><b>例：</b>不含三角形（$K_3$）的 $n$ 顶点图最多 $\lfloor n^2/4\rfloor$ 条边。
+  <div class="sol"><b>解：</b>Turán 给 $r=3$，$T_3(n)\cong K_{\lfloor n/2\rfloor,\lceil n/2\rceil}$，边数 $\lfloor n/2\rfloor\lceil n/2\rceil=\lfloor n^2/4\rfloor$——完全二分图 $K_{\lfloor n/2\rfloor,\lceil n/2\rceil}$。Mantel 1907 年的定理是 Turán 的特例。</div></div>
+</div>
+
+<div class="ch" id="c9">
+  <h2>9. 练习与自测</h2>
+  <div class="ex"><b>练习 1：</b>证明：10 个人中必有 2 人认识相同数量的人（认识关系对称）。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>每个人认识 0–9 人（10 种可能），但「认识 0 人」与「认识 9 人」不能同时存在，故实际 ≤ 9 种，10 人进 9 个「度数」→ 鸽巢原理。</div></details></div>
+  <div class="ex"><b>练习 2：</b>求 D₅（5 封信全部错排）。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>D₅ = 5! Σ(−1)ᵏ/k! = 120(1 − 1 + 1/2 − 1/6 + 1/24 − 1/120) = 44。</div></details></div>
+  <div class="ex"><b>练习 3：</b>一个连通图有 12 个顶点、11 条边，它一定是树吗？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>是。连通 + E = V − 1 → 树。</div></details></div>
+  <div class="ex"><b>练习 4：</b>能否一笔画完下面的图形：一个正方形加上它的两条对角线？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>不能。四个顶点的度数：四个角各 3（正方形边 2 + 对角线 1 或 2…），奇度顶点 4 个 &gt; 2，无欧拉路径。</div></details></div>
+  <div class="ex"><b>练习 5：</b>求 1/((1−x)(1−x²)) 中 x⁷ 的系数。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>= ⌊7/2⌋+1 = 4（用 1 和 2 分硬币凑 7 分的方法数：4 种）。</div></details></div>
+  <div class="ex"><b>练习 6：</b>用容斥原理：1 到 100 中 2 或 3 或 5 的倍数的个数。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>50+33+20 − (16+10+6) + 3 = 103 − 32 + 3 = 74。</div></details></div>
+</div>
+
+<!-- ================= 第 10 章 ================= -->
+
+  <div class="ex"><b>练习 7：</b>证明 $R(3,3)\le6$ 且 $R(3,3)>5$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\le6$：$K_6$ 中任一点 5 邻边，鸽巢得至少 3 同色，再讨论。$>5$：$K_5$ 五边形+五角星，无单色三角形。</div></details></div>
+
+  <div class="ex"><b>练习 8：</b>用矩阵树定理求 $K_4$ 的生成树数。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$K_4$ 的拉普拉斯矩阵 $L=4I-J$，特征值为 $4$（重数 3）与 $0$。去掉任一行列得 $L_1=4I_3-J_3=\begin{pmatrix}3&-1&-1\\-1&3&-1\\-1&-1&3\end{pmatrix}$，特征值 $4,4,1$（$4I-J$ 作用于 $(1,1,1)$ 得 $1$，正交补得 $4$），故 $\tau(K_4)=\det L_1=4\cdot4\cdot1=16=4^{4-2}$，与 Cayley 公式 $n^{n-2}$ 一致。</div></details></div>
+
+  <div class="ex"><b>练习 9：</b>用概率方法证明存在 $n$ 顶点图色数 $>\sqrt{n/\log_2 n}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>随机 $G(n,1/2)$，独立集 $\ge k$ 期望 $\le\binom{n}{k}2^{-\binom{k}{2}}&lt;1$ 当 $k>2\log_2 n$。故存在 $\alpha(G)&lt;2\log_2 n$，色数 $\chi\ge n/\alpha>n/(2\log_2 n)$。</div></details></div>
+
+  <div class="ex"><b>练习 10：</b>$K_{3,3}$ 的生成树数？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>矩阵树定理：$L=\begin{pmatrix}3I_3&-J_3\\-J_3&3I_3\end{pmatrix}$。删一行一列，特征值含 $3$（重 4）和 $6$（一次），$\det=3^4\cdot6=486$。</div></details></div>
+
+  <div class="ex"><b>练习 11：</b>证明 $R(k,k)>k^2/4$ 对足够大 $k$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>Erdős 下界 $2^{k/2}$ 当 $k\ge16$ 时超过 $k^2/4$，因 $2^8=256>64=16^2/4$。</div></details></div>
+  <div class="ex"><b>练习 12：</b>在 $T_4(10)$ 中，各部分顶点数与边数是多少？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>分 3 部 $4,3,3$（尽可能相等），边数 $4\cdot3+4\cdot3+3\cdot3=12+12+9=33=t_4(10)$。</div></details></div>
+
+<div class="ch" id="c10">
+  <h2>10. 术语表、在线资源与最新研究</h2>
+  <div class="gloss">
+    <dt>二部图</dt><dd>顶点可分两组、边只跨组的图。</dd>
+    <dt>正则图</dt><dd>所有顶点度相同的图。</dd>
+    <dt>图着色</dt><dd>相邻顶点异色的顶点染色。</dd>
+    <dt>色数</dt><dd>所需最少颜色数。</dd>
+    <dt>生成函数</dt><dd>把数列编码进幂级数的工具。</dd>
+    <dt>偏序 / 反链</dt><dd>「≤」关系的结构；Dilworth 定理：反链大小 = 链覆盖数。</dd>
+    <dt>拉姆齐数 $R(s,t)$</dt><dd>保证单色 $K_s$ 或 $K_t$ 的最小 $n$。</dd>
+    <dt>拉普拉斯矩阵 $L=D-A$</dt><dd>图代数核心；余子式 = 生成树数。</dd>
+    <dt>概率方法</dt><dd>用随机性证明确定性存在性的非构造方法。</dd>
+  </div>
+  <div class="online">
+    <b>在线资源（需联网打开）</b>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Combinatorics" target="_blank" rel="noopener noreferrer">Wikipedia: Combinatorics</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Graph_theory" target="_blank" rel="noopener noreferrer">Wikipedia: Graph theory</a></li>
+      <li><a href="https://arxiv.org/list/math.CO/recent" target="_blank" rel="noopener noreferrer">arXiv 组合学最新论文（math.CO）</a></li>
+      <li><a href="https://oeis.org" target="_blank" rel="noopener noreferrer">OEIS 整数序列百科</a> —— 组合数列的权威索引</li>
+    </ul>
+    <p class="hint">本页「最新研究」区加载更新器每日抓取的 arXiv 组合学（math.CO）最新论文。</p>
+  </div>
+  <div class="ch" style="margin-top:34px;">
+    <h2>本主题最新研究 <small>每日自动更新 · 来源 arXiv math.CO</small></h2>
+    <div class="papers" id="topicPapers">
+      <div class="empty">等待数据……若长时间未更新，请运行 <code>python 09-前沿动态/数学前沿更新器.py</code>。</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../02-核心主题/概率与统计.html">概率讲义 →</a>
+  <a href="../02-核心主题/线性代数.html">线性代数 →</a>
+  <a href="../07-趣味数学/数学游戏与策略.html">游戏与策略 →</a>
+</footer>
+</div>
+
+<script src="../09-前沿动态/论文数据.js"></script>
+<script>
+(function(){
+  var wrap = document.getElementById('topicPapers');
+  if(!wrap) return;
+  var papers = (typeof window.LBLB_PAPERS !== 'undefined' && window.LBLB_PAPERS['组合与图论']) || [];
+  if(!papers.length){
+    wrap.innerHTML = '<div class="empty">暂无该主题最新论文数据（更新器尚未成功抓取或已离线）。运行 <code>数学前沿更新器.py</code> 后自动填充。</div>';
+    return;
+  }
+  var html = '';
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+  for(var i=0;i<papers.length;i++){
+    var p = papers[i];
+    html += '<div class="p"><a href="' + esc(p.link) + '" target="_blank" rel="noopener noreferrer">' + esc(p.title) + '</a>' +
+      '<div class="m">' + esc(p.author||'—') + ' · ' + esc(p.date||'') + '</div></div>';
+  }
+  wrap.innerHTML = html;
+})();
+</script>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

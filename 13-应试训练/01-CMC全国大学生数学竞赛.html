@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMC 全国大学生数学竞赛 · 应试训练 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='32' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3EC%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --hm:#C0392B; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--hm); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:38px; margin:12px 0 6px;}
+h1 .sym{color:var(--hm); font-style:italic;}
+.sub{color:var(--ink2); font-size:15.5px; max-width:800px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--hm); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--hm); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch p{font-size:15px; margin-top:10px; max-width:840px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--hm);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+.warn{background:#FDEDE8; border:1px solid #EAC6B8; border-left:5px solid var(--red); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14px;}
+.warn b{color:var(--red);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--hm); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.tbl{margin-top:14px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px; table-layout:fixed;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--hm); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:30px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\(','\)']],displayMath:[['$$','$$'],['\[','\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在。';document.currentScript.after(b);"></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="00-应试总览.html">← 返回应试总览</a>
+  <h1>CMC 全国大学生数学竞赛 · 冲刺国一 <span class="sym">C</span></h1>
+  <p class="sub">非数学类考点全覆盖 + 七大竞赛技巧 + 真题级题型精选。CMC 的拉分点不在计算，而在「构造」——本页把竞赛生的独门技巧拆成可复制的套路。</p>
+  <p class="quote">「国一选手和普通选手的差距，不在聪明，而在见过多少构造法。」</p>
+</header>
+
+<div class="toc">
+  <b>本页目录</b>
+  <ol>
+    <li><a href="#c1">CMC 考情与题型结构</a></li>
+    <li><a href="#c2">极限计算七大技巧</a></li>
+    <li><a href="#c3">中值定理证明题：构造辅助函数大全</a></li>
+    <li><a href="#c4">积分不等式五大方法</a></li>
+    <li><a href="#c5">级数求和与收敛判别技巧</a></li>
+    <li><a href="#c6">多元积分与对称性</a></li>
+    <li><a href="#c7">常微分方程竞赛题型</a></li>
+    <li><a href="#c8">真题级题型精选与详解</a></li>
+    <li><a href="#c9">国一训练计划</a></li>
+    <li><a href="#c10">在线资源</a></li>
+  </ol>
+</div>
+
+<!-- 1 -->
+<div class="ch" id="c1">
+  <h2>1. CMC 考情与题型结构 <small>知己知彼</small></h2>
+  <div class="thm"><b>定理（CMC 非数学类结构）：</b>初赛满分 100 分，共 3 小时：6 道填空（每题 5 分，共 30 分）+ 6 道解答题（含证明题）。复赛同理。考点分布：一元微积分约 35%、多元微积分约 25%、级数约 15%、微分方程约 10%、向量与空间解析几何约 15%。<div class="proof"><b>策略：</b>填空题抢速度（15 分钟内拿满基础分）；解答题前 4 题保分；最后 2 道证明题是国一的分水岭。</div></div>
+  <div class="warn"><b>警示：</b>CMC 比考研难一个档次——考研常规题到 CMC 就变成填空题；CMC 的解答题 = 考研大题的升级版。考研 120 分水平 ≈ CMC 省三；要国一必须额外掌握下面七类构造技巧。</div>
+</div>
+
+<!-- 2 -->
+<div class="ch" id="c2">
+  <h2>2. 极限计算七大技巧 <small>竞赛生的工具箱</small></h2>
+  <div class="thm"><b>技巧 1（Stolz 定理——数列版洛必达）：</b>$b_n$ 严格增趋于 $\infty$：$\lim \frac{a_{n+1}-a_n}{b_{n+1}-b_n} = L \Rightarrow \lim \frac{a_n}{b_n} = L$。<div class="proof"><b>例：</b>$\lim \frac{1+\sqrt2+\cdots+\sqrt n}{n^{3/2}}$：分子相邻项差 $\approx \sqrt{n+1}$、分母差 $\approx \frac{3}{2}\sqrt n$，比值 $\to \frac{2}{3}$。</div></div>
+  <div class="thm"><b>技巧 2（积分定义求极限）：</b>$\lim \frac1n \sum f(k/n) = \int_0^1 f(x)\,dx$。<div class="proof"><b>例：</b>$\lim \frac1n\sum (k/n)^2 = \int_0^1 x^2\,dx = \frac13$。推广：n 项和含 k/n 的都看积分定义。</div></div>
+  <div class="thm"><b>技巧 3（夹逼 + 中值定理）：</b>和式放缩成相邻两项的差，或用拉格朗日中值把每一项展开。<div class="proof"><b>例：</b>$\lim n\left(\arctan\frac{n+1}{n}-\frac{\pi}{4}\right)$：$\arctan x$ 在 1 处中值展开，$\Delta x = 1/n \Rightarrow$ 极限 $= f'(1) = \frac{1}{1+1} = \frac12$。</div></div>
+  <div class="thm"><b>技巧 4（泰勒展开到同阶）：</b>复杂复合函数全部展成泰勒多项式，取最低次。<div class="proof"><b>例：</b>$\lim \frac{e^{\sin x}-e^x}{\sin x-x}$：$e^u = 1+u+\frac{u^2}{2}+\cdots$，$e^{\sin x}-e^x \approx (\sin x-x)\left(1+\frac{\sin x+x}{2}\right) \to$ 分母 $= \sin x-x$，比值 $\to 1$。</div></div>
+  <div class="thm"><b>技巧 5（等价无穷小的高阶形式）：</b>$x\to0$：$\tan x-\sin x \sim x^3/2$；$\tan x-x \sim x^3/3$；$x-\sin x \sim x^3/6$。<div class="proof"><b>用法：</b>见到三个差的组合直接代换，省掉洛必达。</div></div>
+  <div class="thm"><b>技巧 6（数列极限的递推——压缩映射）：</b>$a_{n+1}=f(a_n)$：先证收敛（单调有界），再在递推式两边取极限解 $x=f(x)$。<div class="proof"><b>例：</b>$a_1=\sqrt2$、$a_{n+1}=\sqrt{2+a_n}$：$a_n$ 单调增、上界 2（归纳），极限 $L=\sqrt{2+L} \Rightarrow L=2$。</div></div>
+  <div class="thm"><b>技巧 7（Wallis 公式）：</b>$\int_0^{\pi/2}\sin^n x\,dx$ 的递推：$n$ 偶 $= \frac{(n-1)!!}{n!!}\cdot\frac{\pi}{2}$；$n$ 奇 $= \frac{(n-1)!!}{n!!}$。<div class="proof"><b>例：</b>$\int_0^{\pi/2}\sin^8 x\,dx = \frac{7}{8}\frac{5}{6}\frac{3}{4}\frac{1}{2}\frac{\pi}{2} = \frac{35\pi}{256}$。</div></div>
+  <div class="ex"><b>真题级：</b>求 $\lim_{n\to\infty} \frac1n[\ln(n!)-n\ln n]$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$\ln(n!)=\sum\ln k$，原式 $= \frac1n\sum\ln(k/n)\to \int_0^1\ln x\,dx=-1$（广义积分）。</div></details></div>
+</div>
+
+<!-- 3 -->
+<div class="ch" id="c3">
+  <h2>3. 中值定理证明题：构造辅助函数大全 <small>国一分水岭</small></h2>
+  <div class="thm"><b>套路 A（常数变易法——方程含 $f'$ 与 $f$ 的组合）：</b>欲证 $f'(\xi)+P(\xi)f(\xi)=0$：构造 $F(x)=f(x)e^{\int P(x)\,dx}$，证 $F$ 满足罗尔。<div class="proof"><b>例：</b>证 $f(1)=3\int_{2/3}^{1}f(x)\,dx$ 存在 $\xi$ 使 $f'(\xi)=0$：积分中值得 $c\in(2/3,1)$ 使 $f(c)=f(1)$，对 $f$ 在 $[c,1]$ 用罗尔。</div></div>
+  <div class="thm"><b>套路 B（柯西中值）：</b>结论含 $f'(\xi)/g'(\xi)$：选两个函数套柯西。<div class="proof"><b>例：</b>证存在 $\xi$ 使 $f'(\xi)=\frac{f(b)-f(a)}{b-a}\cdots$——标准拉格朗日；若结论含 $g(\xi)$ 作分母则换柯西。</div></div>
+  <div class="thm"><b>套路 C（含二阶导数）：</b>结论含 $f''(\xi)$：构造一次辅助函数后用两次中值，或用泰勒展开。<div class="proof"><b>例：</b>$f$ 二阶可导、$f(0)=f(1)=0$、$f'(0)=1$：在 0、1 两点泰勒展开，中间点取 $f''$。</div></div>
+  <div class="thm"><b>套路 D（双中值 ξ、η）：</b>结论同时出现 $f'(\xi)$ 与 $f'(\eta)$：在两个区间分别用一次中值定理。<div class="proof"><b>标志：</b>答案写成两个等式后相乘/相除消元。</div></div>
+  <div class="ex"><b>真题级：</b>$f$ 在 $[0,1]$ 连续、$(0,1)$ 可导、$f(0)=0$、$f(1)=1$。证明存在不同的 $\xi$、$\eta$ 使 $f'(\xi)f'(\eta)=1$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>由介值定理存在 $c$ 使 $f(c)=1/2$。在 $[0,c]$ 与 $[c,1]$ 上分别用拉格朗日：$f'(\xi)=\frac{1/2-0}{c-0}=\frac{1}{2c}$；$f'(\eta)=\frac{1-1/2}{1-c}=\frac{1}{2(1-c)}$。相乘 $= \frac{1}{4c(1-c)}$——注意本题需 $f(c)=1/2$ 处 $c$ 任意，两式乘积不恒为 1；调整：取 $f(c)=t$，$f'(\xi)=t/c$、$f'(\eta)=(1-t)/(1-c)$，令 $t/c=1-t$、$(1-t)/(1-c)=t \Rightarrow t=c(1-t)$ 与 $1-t=t(1-c) \Rightarrow t=\frac{c}{1+c}$、$t=\frac{1}{2-c}$，解得 $c^2+c=1 \Rightarrow c=\frac{\sqrt5-1}{2}$，此时 $t=c^2$，$f'(\xi)=c$、$f'(\eta)=1/c$，乘积 $=1$。</div></details></div>
+</div>
+
+<!-- 4 -->
+<div class="ch" id="c4">
+  <h2>4. 积分不等式五大方法 <small>证明题常客</small></h2>
+  <div class="thm"><b>方法 1（对称性化简）：</b>$\int_0^\pi x f(\sin x)\,dx = \frac{\pi}{2}\int_0^\pi f(\sin x)\,dx$。<div class="proof"><b>证明：</b>令 $x=\pi-t$，两式相加得 $I=\frac{\pi}{2}\int_0^\pi f(\sin x)\,dx$。这是 CMC 填空高频结论。</div></div>
+  <div class="thm"><b>方法 2（积分中值 + 估值）：</b>先估计被积函数，再用 $m(b-a)\le I\le M(b-a)$。<div class="proof"><b>例：</b>证 $2e^{-1/4}\le \int_0^2 e^{x^2-x}\,dx\le 2e^2$：指数在 $[0,2]$ 的 min $=e^{-1/4}$、max $=e^2$。</div></div>
+  <div class="thm"><b>方法 3（柯西-施瓦茨不等式）：</b>$\left(\int fg\right)^2 \le \left(\int f^2\right)\left(\int g^2\right)$。<div class="proof"><b>例：</b>证 $\left(\int_0^1 f(x)\,dx\right)^2 \le \int_0^1 f^2(x)\,dx$（取 $g=1$）。</div></div>
+  <div class="thm"><b>方法 4（分部积分放缩）：</b>把积分写成边界项 + 余下积分，边界项直接算出。<div class="proof"><b>例：</b>证 $\int_0^\pi x\sqrt{\sin x}\,dx = \frac{\pi}{2}\int_0^\pi\sqrt{\sin x}\,dx$（同方法 1 思路）。</div></div>
+  <div class="thm"><b>方法 5（变量替换化为区间对称）：</b>常用 $x=a+b-t$ 换元，把区间翻转后与原式相加。<div class="proof"><b>标志：</b>积分限 $[a,b]$ 内被积函数含 $x$ 与 $f(a+b-x)$ 的组合。</div></div>
+  <div class="ex"><b>真题级：</b>证明 $\int_0^{\pi/2}\frac{\sin x}{\sin x+\cos x}\,dx=\frac{\pi}{4}$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>令 $I=\int\frac{\sin x}{\sin x+\cos x}\,dx$。换元 $x=\pi/2-t$：$I=\int\frac{\cos t}{\cos t+\sin t}\,dt$。两式相加：$2I=\int 1\,dx=\pi/2 \Rightarrow I=\pi/4$。</div></details></div>
+</div>
+
+<!-- 5 -->
+<div class="ch" id="c5">
+  <h2>5. 级数求和与收敛判别技巧 <small>填空高频</small></h2>
+  <div class="thm"><b>技巧 1（拆项相消）：</b>$\frac{1}{n(n+1)}=\frac1n-\frac{1}{n+1}$；$\frac{1}{n(n+1)(n+2)}=\frac12\left[\frac{1}{n(n+1)}-\frac{1}{(n+1)(n+2)}\right]$。<div class="proof"><b>例：</b>$\sum_{n=1}^{\infty}\frac{1}{n(n+1)}=1$。</div></div>
+  <div class="thm"><b>技巧 2（利用已知展开式）：</b>$\sum 1/n^2=\pi^2/6$；$\sum (-1)^{n-1}/n=\ln 2$；$\sum (-1)^{n-1}/(2n-1)=\pi/4$；$\sum 1/n^2\cdots$ 均由函数展开式取特殊点得到。<div class="proof"><b>用法：</b>把待求和式配成 $\ln(1+x)$、$\arctan x$、$1/(1-x)$ 在 $x=1$、$-1$、$1/2$ 处的值。</div></div>
+  <div class="thm"><b>技巧 3（积分判别法反向用）：</b>$\sum \frac{1}{n\ln n}$ 发散（与 $\int\frac{dx}{x\ln x}$ 同）；$\sum \frac{1}{n(\ln n)^2}$ 收敛。</div>
+  <div class="thm"><b>技巧 4（幂级数求和函数）：</b>$\sum n^2 x^n$：用 $\left(\frac{1}{1-x}\right)''$ 与 $\left(\frac{1}{1-x}\right)'$ 组合。<div class="proof"><b>例：</b>$\sum n x^n=\frac{x}{(1-x)^2}$；$\sum n^2 x^n=\frac{x(1+x)}{(1-x)^3}$。</div></div>
+  <div class="ex"><b>真题级：</b>求 $\sum_{n=1}^{\infty}\frac{1}{n\cdot 2^n}$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$\ln(1+x)=\sum(-1)^{n-1}x^n/n$ 取 $x=-1/2$：$\ln(1-1/2)=-\sum(1/2)^n/n \Rightarrow \sum(1/2)^n/n=\ln 2$。</div></details></div>
+</div>
+
+<!-- 6 -->
+<div class="ch" id="c6">
+  <h2>6. 多元积分与对称性 <small>省时间的关键</small></h2>
+  <div class="thm"><b>定理（区域对称性）：</b>积分区域关于 $x$ 轴对称：被积函数关于 $y$ 是奇函数 $\Rightarrow$ 积分 $=0$；偶函数 $\Rightarrow$ 2 倍半区域。<div class="proof"><b>例：</b>$\iint_D(xy+x^2)\,dxdy$（$D$：单位圆）：$xy$ 关于 $x$ 奇 $\Rightarrow 0$；$\iint x^2=\frac12\iint(x^2+y^2)=\pi/4$。</div></div>
+  <div class="thm"><b>定理（轮换对称性）：</b>区域关于 $y=x$ 对称时 $\iint f(x,y)=\iint f(y,x)$，且 $\iint x^n=\iint y^n$。<div class="proof"><b>用法：</b>$\iint_D x^2=\iint_D y^2=\frac12\iint(x^2+y^2)$。</div></div>
+  <div class="thm"><b>定理（三重积分球坐标优先）：</b>被积函数含 $x^2+y^2+z^2$ 或区域为球：球坐标 $dV=\rho^2\sin\varphi$。<div class="proof"><b>例：</b>$\iiint_{x^2+y^2+z^2\le1} z^2\,dV = 4\pi/15$（球坐标 + 对称性）。</div></div>
+  <div class="ex"><b>真题级：</b>$\iint_D(x+y)^2\,dxdy$，$D$：$x^2+y^2\le1$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$(x+y)^2=x^2+y^2+2xy$。$\iint xy=0$（对称）；$\iint(x^2+y^2)=\int_0^{2\pi}\int_0^1 r^2\cdot r\,dr\,d\theta=\pi/2$。</div></details></div>
+</div>
+
+<!-- 7 -->
+<div class="ch" id="c7">
+  <h2>7. 常微分方程竞赛题型 <small>欧拉方程 + 伯努利 + 综合</small></h2>
+  <div class="thm"><b>题型 1（欧拉方程）：</b>$x^2 y''+a x y'+b y=0$：令 $x=e^t$ 化为常系数方程。<div class="proof"><b>例：</b>$x^2 y''-x y'+y=0$：设 $y=x^r$，$r(r-1)-r+1=(r-1)^2=0 \Rightarrow y=(C_1+C_2\ln x)x$。</div></div>
+  <div class="thm"><b>题型 2（可化为伯努利）：</b>$y'+P(x)y=Q(x)y^n$：令 $z=y^{1-n}$。<div class="proof"><b>例：</b>$y'=y^2+x^2 y^2=y^2(1+x^2)$：分离 $\frac{dy}{y^2}=(1+x^2)dx \Rightarrow -\frac1y=x+\frac{x^3}{3}+C$。</div></div>
+  <div class="thm"><b>题型 3（含参 + 初值）：</b>给定方程与初始条件，解含参常数后求极限或积分。<div class="proof"><b>标志：</b>题目问「求 $\lim y(x)$」或「$\int y\,dx$」。</div></div>
+</div>
+
+<!-- 8 -->
+<div class="ch" id="c8">
+  <h2>8. 真题级题型精选与详解 <small>限时训练用</small></h2>
+  <div class="ex"><b>精选 1：</b>$\lim_{n\to\infty}\frac1n\sum_{k=1}^{n}\sqrt{1+k/n}$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>积分定义：$\int_0^1\sqrt{1+x}\,dx=\frac23(1+x)^{3/2}\Big|_0^1=\frac23(2\sqrt2-1)$。</div></details></div>
+  <div class="ex"><b>精选 2：</b>$\int_0^{\pi/2}\ln(\sin x)\,dx$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$I=\int_0^{\pi/2}\ln\sin x\,dx=\int_0^{\pi/2}\ln\cos x\,dx$。两式相加：$2I=\int_0^{\pi/2}\ln(\sin x\cos x)\,dx=\int_0^{\pi/2}\ln(\sin 2x)\,dx-\frac{\pi}{2}\ln 2$。令 $u=2x$：$\int_0^{\pi/2}\ln\sin 2x\,dx=\frac12\int_0^\pi\ln\sin u\,du=I$。故 $2I=I-\frac{\pi}{2}\ln 2 \Rightarrow I=-\frac{\pi}{2}\ln 2$。</div></details></div>
+  <div class="ex"><b>精选 3：</b>$f$ 在 $[0,1]$ 连续、$(0,1)$ 可导、$f(0)=0$、$f(1)=1$。证明存在 $\xi\in(0,1)$ 使 $f'(\xi)=2\xi$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>构造 $F(x)=f(x)-x^2$：$F(0)=F(1)=0$，罗尔定理 $\Rightarrow F'(\xi)=f'(\xi)-2\xi=0$。</div></details></div>
+  <div class="ex"><b>精选 4：</b>$\sum_{n=1}^{\infty}\frac{1}{n(n+1)(n+2)}$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>拆项：$\frac{1}{n(n+1)(n+2)}=\frac12\left[\frac{1}{n(n+1)}-\frac{1}{(n+1)(n+2)}\right]$。望远镜和 $=\frac12\cdot[\frac{1}{1\cdot2}-0]=\frac14$。</div></details></div>
+  <div class="ex"><b>精选 5：</b>求 $y''+y=x+\sin x$ 的通解。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>齐次解 $=C_1\cos x+C_2\sin x$。非齐次特解：对 $x$ 设 $ax+b \Rightarrow a=1$、$b=0$；对 $\sin x$（$i$ 是特征根）设 $x(A\cos x+B\sin x) \Rightarrow A=0$、$B=-1/2$。通解 $=C_1\cos x+C_2\sin x+x-\frac{x\cos x}{2}$。</div></details></div>
+  <div class="ex"><b>精选 6：</b>$\lim_{x\to0}\frac{\sin x-x}{x^3}$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>泰勒：$=-1/6$。</div></details></div>
+</div>
+
+<!-- 9 -->
+<div class="ch" id="c9">
+  <h2>9. 国一训练计划 <small>八个月路线图</small></h2>
+  <div class="tbl"><table><colgroup><col style="width:22%"><col style="width:50%"><col style="width:28%"></colgroup>
+  <tr><th>阶段</th><th>任务</th><th>产出</th></tr>
+  <tr><td>第 1–2 月</td><td>过 12-高等数学 全部讲义，每天 4 道基础题</td><td>讲义笔记 1 套</td></tr>
+  <tr><td>第 3 月</td><td>本页七大技巧逐项练，每类 10 题</td><td>技巧卡片 7 张</td></tr>
+  <tr><td>第 4 月</td><td>近 10 年初赛真题限时做</td><td>每卷计时 + 错题本</td></tr>
+  <tr><td>第 5 月</td><td>按考点回刷错题，专攻证明题</td><td>证明题 30 道精练</td></tr>
+  <tr><td>第 6–7 月</td><td>复赛模拟 + 补漏（向量几何、概率）</td><td>模拟卷 5 套</td></tr>
+  <tr><td>第 8 月</td><td>考前错题本三遍 + 公式默写</td><td>考前状态</td></tr>
+  </table></div>
+  <div class="warn"><b>警示：</b>国一的关键不是「做更多题」，而是「每道证明题写出完整逻辑链」。写出一步问自己：这一步用的什么定理？为什么满足条件？</div>
+</div>
+
+<!-- 10 -->
+<div class="ch" id="c10">
+  <h2>10. 在线资源</h2>
+  <div class="thm"><b>需联网打开：</b>
+  <div class="tbl"><table><colgroup><col style="width:40%"><col style="width:60%"></colgroup>
+  <tr><th>资源</th><th>用途</th></tr>
+  <tr><td>全国大学生数学竞赛官网（官网通知与赛制）</td><td>确认赛制、报名时间、获奖比例</td></tr>
+  <tr><td>各校数学竞赛专题页 / 知乎「CMC」标签</td><td>历年真题讨论与经验帖</td></tr>
+  <tr><td>Wolfram Alpha / Symbolab</td><td>验证复杂积分与极限</td></tr>
+  <tr><td>本库 12-高等数学 讲义</td><td>地基回看</td></tr>
+  <tr><td>05-刷题系统</td><td>每日限时训练</td></tr>
+  </table></div></div>
+</div>
+
+<footer>
+  <a href="00-应试总览.html">← 应试总览</a>
+  <a href="02-考研数学-高等数学强化.html">下一页：考研高数 →</a>
+</footer>
+</div>
+
+</body>
+</html>

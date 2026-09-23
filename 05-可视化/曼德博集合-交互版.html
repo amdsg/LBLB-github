@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="no-referrer">
+<title>曼德博集合 · 交互版 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--blue:#1F4E9C;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:42px;margin:14px 0 6px;}
+h1 .sym{color:var(--blue);font-style:italic;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif;font-size:26px;border-left:6px solid var(--blue);padding-left:14px;}
+.sec h2 small{font-size:13px;color:var(--ink2);font-family:"Noto Sans SC",sans-serif;font-weight:400;margin-left:8px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:20px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#0d1117;cursor:grab;touch-action:none;}
+.fig canvas.dragging{cursor:grabbing;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--blue);width:200px;}
+.controls .btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls .btn.gray{background:#8A8270;}
+.info{font-family:Georgia,serif;font-size:14px;color:var(--ink2);margin-left:auto;}
+.explain{margin-top:16px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+.tag{display:inline-block;margin-top:10px;font-size:12px;letter-spacing:.08em;color:var(--blue);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--blue);text-decoration:none;}
+</style>
+<script>
+window.MathJax={loader:{paths:{mathjax:"../assets/mathjax/es5"}},tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="可视化导航.html">← 返回可视化</a>
+  <h1>曼德博集合 <span class="sym">M</span></h1>
+  <p class="sub">滚轮以光标为中心缩放、按住拖拽平移、双击复位——比点击版更顺手地钻进那些「迷你心脏线」里，看自相似结构一层套一层。</p>
+  <span class="tag">分形 · 复数迭代 · 自由缩放</span>
+</header>
+
+<div class="sec">
+  <h2>交互画布 <small>滚轮=缩放，拖拽=平移，双击=复位</small></h2>
+  <div class="fig">
+    <canvas id="cv" width="880" height="600" role="img" aria-label="曼德博集合：交互式画布，内容随下方控件实时变化"></canvas>
+    <div class="controls">
+      <label>最大迭代</label><input type="range" id="it" min="40" max="600" value="180">
+      <span id="itV" class="info">180</span>
+      <button class="btn gray" id="reset">复位全貌</button>
+      <span class="info" id="pos">—</span>
+    </div>
+    <p class="explain"><b>怎么玩：</b>把指针停在黑色边界附近<b>滚动滚轮</b>放大；按住<b>拖拽</b>可平移视野；<b>双击</b>复位。深入时记得把<b>最大迭代</b>调大，否则边界会糊成一团。双精度浮点大约在 $10^{-14}$ 尺度后开始失真。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>数学原理 <small>$z\gets z^2+c,\ z_0=0$</small></h2>
+  <p>对每个复数 $c$，从 $z=0$ 迭代，若 $|z_n|$ 有界则 $c\in M$。逃逸判据 $|z_n|>2$。本页用平滑逃逸时间 $\mu=n-\log_2\log|z_n|$ 上色。$M$ 边界 Hausdorff 维数为 2（Shishikura 1998）。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+  var W=cv.width,H=cv.height,RW=440,RH=300;
+  var off=document.createElement('canvas');off.width=RW;off.height=RH;
+  var octx=off.getContext('2d');
+  var itEl=document.getElementById('it'),itV=document.getElementById('itV'),pos=document.getElementById('pos');
+  var st={re:-0.6,im:0,half:1.4};
+  var busy=false,dragging=false,lx=0,ly=0,tmr=null;
+  function col(t){
+    return [Math.floor(9*(1-t)*t*t*t*255),Math.floor(15*(1-t)*(1-t)*t*t*255),Math.floor(8.5*(1-t)*(1-t)*(1-t)*t*255)];
+  }
+  function render(){
+    if(busy)return;busy=true;
+    var maxIter=parseInt(itEl.value,10);
+    var img=octx.createImageData(RW,RH),d=img.data;
+    var sc=2*st.half/RH;
+    for(var py=0;py<RH;py++){
+      var ci=st.im+st.half-sc*(py-RH/2);
+      for(var px=0;px<RW;px++){
+        var cr=st.re+(px-RW/2)*sc;
+        var zr=0,zi=0,i=0,zr2=0,zi2=0;
+        while(i<maxIter&&zr2+zi2<=4){zi=2*zr*zi+ci;zr=zr2-zi2+cr;zr2=zr*zr;zi2=zi*zi;i++;}
+        var idx=(py*RW+px)*4;
+        if(i>=maxIter){d[idx]=0;d[idx+1]=0;d[idx+2]=0;d[idx+3]=255;}
+        else{var mu=i-Math.log(Math.log(Math.sqrt(zr2+zi2)))/Math.LN2+4;var c=col((mu%48)/48);d[idx]=c[0];d[idx+1]=c[1];d[idx+2]=c[2];d[idx+3]=255;}
+      }
+    }
+    octx.putImageData(img,0,0);ctx.drawImage(off,0,0,W,H);
+    pos.textContent='中心 '+st.re.toExponential(2)+' + ('+st.im.toExponential(2)+'i) · 视野高 '+(2*st.half).toExponential(2);
+    busy=false;
+  }
+  function queueRender(){if(tmr)clearTimeout(tmr);tmr=setTimeout(render,120);}
+  function ptr(e){var r=cv.getBoundingClientRect();return {x:(e.clientX-r.left)*W/r.width,y:(e.clientY-r.top)*H/r.height};}
+  cv.addEventListener('wheel',function(e){
+    e.preventDefault();
+    var p=ptr(e);
+    var sc=2*st.half/RH;
+    var cr=st.re+(p.x-W/2)*sc, ci=st.im+st.half-(p.y-H/2)*sc;
+    st.half*= (e.deltaY<0)?0.8:1.25;
+    st.re=cr;st.im=ci;queueRender();
+  },{passive:false});
+  cv.addEventListener('mousedown',function(e){dragging=true;cv.classList.add('dragging');var p=ptr(e);lx=p.x;ly=p.y;});
+  window.addEventListener('mousemove',function(e){
+    if(!dragging)return;var p=ptr(e);var sc=2*st.half/RH;
+    st.re-=(p.x-lx)*sc;st.im+=(p.y-ly)*sc;lx=p.x;ly=p.y;queueRender();
+  });
+  window.addEventListener('mouseup',function(){dragging=false;cv.classList.remove('dragging');});
+  cv.addEventListener('dblclick',function(e){e.preventDefault();st.re=-0.6;st.im=0;st.half=1.4;render();});
+  itEl.addEventListener('input',function(){itV.textContent=this.value;queueRender();});
+  document.getElementById('reset').addEventListener('click',function(){st.re=-0.6;st.im=0;st.half=1.4;render();});
+  render();
+})();
+</script>
+
+</body>
+</html>

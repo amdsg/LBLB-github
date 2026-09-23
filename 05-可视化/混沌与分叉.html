@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>混沌与分叉 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%86%92%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --magenta:#B0396E; --blue:#1F4E9C; --red:#C0462E;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--magenta); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--magenta); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:700px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--magenta); padding-left:14px;}
+.sec h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.fig{background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:18px; margin-top:20px;}
+.fig canvas{width:100%; height:auto; display:block; border:1px solid var(--line); border-radius:8px; background:#fffef9;}
+.controls{display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--magenta); width:300px;}
+.controls .btn{background:var(--magenta); color:#fff; border:none; border-radius:8px; padding:7px 16px; font-size:14px; cursor:pointer; min-height:44px;}
+.controls .btn.gray{background:#8A8270;}
+.info{font-family:Georgia,serif; font-size:15px; color:var(--ink2);}
+.explain{margin-top:16px; font-size:14px; color:var(--ink2);}
+.explain b{color:var(--ink);}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px;}
+footer a{color:var(--magenta); text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="可视化导航.html">← 返回可视化</a>
+  <h1>混沌与分叉 <span class="sym">→</span></h1>
+  <p class="sub">逻辑斯蒂映射 x ← r·x·(1−x) 只有一行，行为却无比丰富：稳定、周期倍增、混沌。1975 年梅（Robert May）把它写成生态模型，混沌研究由此走进主流。</p>
+</header>
+
+<div class="sec">
+  <h2>分叉图 <small>参数 r 从 2.5 增长到 4，稳定点如何分裂</small></h2>
+  <div class="fig">
+    <canvas id="cv" width="880" height="520" role="img" aria-label="混沌与分叉：交互式画布，内容随下方控件实时变化"></canvas>
+    <p class="explain"><b>读图：</b>r 在 3 之前只有一个稳定点（一条线）；r = 3 时分裂为周期 2；约 3.45 再分裂为周期 4；分裂越来越快，在 r ≈ 3.56995 进入混沌（一片「雾」）。注意 r ≈ 3.8284 附近又出现周期 3 的窗口——「周期三意味着混沌」（李天岩–约克定理）。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>轨道试验 <small>拖动 r，看单个轨道如何演化</small></h2>
+  <div class="fig">
+    <canvas id="orb" width="880" height="300" role="img" aria-label="混沌与分叉：交互式画布，内容随下方控件实时变化"></canvas>
+    <div class="controls">
+      <label>r =</label>
+      <input type="range" id="rSl" min="250" max="400" value="330">
+      <span class="info" id="rV">3.30</span>
+      <button class="btn" id="play">暂停</button>
+      <button class="btn gray" id="reset">重置</button>
+      <span class="info" id="xV">x = 0.500</span>
+    </div>
+    <p class="explain"><b>怎么玩：</b>红点序列 = x 随迭代的变化。r = 3.3 时周期 2（两点往返）；r = 3.9 时完全随机（但每次运行都不一样——初值敏感）。</p>
+  </div>
+</div>
+
+
+<div class="sec">
+  <h2>数学原理：混沌与分叉的核心概念</h2>
+  <div class="def"><b>定义（混沌）</b> 确定性系统表现出对初值的敏感依赖性、拓扑传递性、周期点稠密。最著名的是逻辑斯谛映射 $x_{n+1}=rx_n(1-x_n)$。</div>
+  <div class="thm"><b>周期倍分叉路径</b> 当 $r$ 增加：$r&lt;3$ 稳定不动点 → $r\in(3,1+\sqrt{6})$ 周期 2 → $r$ 再大周期 4,8,… → 在 $r\approx3.5699$ 达到混沌。分叉参数之比收敛于 Feigenbaum 常数 $\delta\approx4.6692$。</div>
+  <p><b>蝴蝶效应：</b>Lorenz 1963 发现大气对流模型中，初始微小差异导致完全不同的天气——「巴西蝴蝶拍翅膀引发德州龙卷风」。</p>
+</div>
+
+<div class="sec">
+  <h2>不动点的稳定性 <small>从导数到乘子</small></h2>
+  <p>逻辑斯谛映射 $f_r(x)=rx(1-x)$ 的不动点满足 $x^*=f_r(x^*)$：解得 $x^*=0$ 或 $x^*=\frac{r-1}{r}$。稳定性由导数 $|f_r'(x^*)|$ 决定：</p>
+  <div class="def"><b>线性稳定性</b> 一维映射 $f$ 在不动点 $x^*$ 处，若 $|f'(x^*)|&lt;1$ 则稳定（吸引），$|f'(x^*)|&gt;1$ 则不稳定（排斥）。临界 $=1$ 处发生分叉。</div>
+  <p>对 $f_r$：在 $x^*=0$ 处 $f_r'(0)=r$，故 $r&lt;1$ 时稳定、$r\gt1$ 时不稳定；在 $x^*=\frac{r-1}{r}$ 处 $f_r'(x^*)=2-r$，故 $1\lt r\lt3$ 时稳定、$r\gt3$ 时不稳定。$r=3$ 处 $f_r'(x^*)=-1$——<b>倍周期分叉</b>开始。</p>
+  <p><b>分类（分叉类型）</b>：$f'(x^*)=1$ 是鞍结分叉（saddle-node）；$f'(x^*)=-1$ 是倍周期分叉（flip）；复导数穿越单位圆的其他点对应 Neimark–Sacker 分叉。一维逻辑斯谛只出现前两类。</p>
+</div>
+
+<div class="sec">
+  <h2>Feigenbaum 普适性 <small>为什么 4.6692 无处不在</small></h2>
+  <p>Mitchell Feigenbaum 1975 年用 HP-65 计算器算逻辑斯谛分叉点 $r_1,r_2,r_3,\dots$，发现比 $(r_n-r_{n-1})/(r_{n+1}-r_n)$ 收敛到一个数 $\delta=4.669201609\ldots$。更惊人的是：换任何<b>"光滑单峰"</b>映射 $f$，比如 $r\sin(\pi x)$、$x e^{r(1-x)}$，分叉点比也收敛到同一个 $\delta$。</p>
+  <div class="thm"><b>Feigenbaum 普适性（1978）</b> 设 $f$ 是区间 $[0,1]$ 上单峰、导数在某点为零的光滑映射。则其倍周期分叉点序列满足 $\lim_{n\to\infty}\frac{r_n-r_{n-1}}{r_{n+1}-r_n}=\delta=4.669201609\cdots$（与 $f$ 无关）。</div>
+  <p><b>第二常数</b> $\alpha=2.502907875\ldots$ 描述不动点函数的<b>缩放因子</b>：自相似函数 $g(x)$ 满足 $g(x)=-\alpha g(g(-x/\alpha))$，$\alpha$ 由这个函数方程唯一决定。<b>两个普适常数都来自重整化群</b>——和统计物理中 Wilson Kadanoff 重整化同一思想。</p>
+  <p><b>实验验证</b>：1980s 在电子线路、激光腔、流体对流、化学反应中都测出 $\delta\approx4.67$——普适性跳出数学，进入物理世界。混沌不是"杂乱"，是有<b>结构</b>的复杂。</p>
+</div>
+
+<div class="sec">
+  <h2>Lyapunov 指数与可预测时长 <small>如何量化"敏感依赖"</small></h2>
+  <p>对一维映射 $x_{n+1}=f(x_n)$，Lyapunov 指数 $\lambda=\lim_{n\to\infty}\frac1n\sum_{k=0}^{n-1}\ln|f'(x_k)|$。若 $\lambda\gt0$，初始小偏差 $|\delta x_0|$ 经 $n$ 步放大为 $|\delta x_n|\sim|\delta x_0|e^{\lambda n}$。</p>
+  <div class="exm"><b>例（逻辑斯谛 $r=4$）</b>：在不变测度 $\mu(x)=\frac{1}{\pi\sqrt{x(1-x)}}$ 下，$\lambda=\ln2\approx0.693$。$r=3.9$ 时 $\lambda\approx0.502$；$r\lt3.5699$ 时 $\lambda\le0$。</p>
+  <p><b>可预测时长</b>：若初值精度为 $\varepsilon$，则在 $\lambda\gt0$ 时大约 $T\sim\frac{\ln(1/\varepsilon)}{\lambda}$ 步后失去预测力。$\varepsilon=10^{-6}$、$\lambda=0.69$ 给出 $T\approx20$ 步——蝴蝶效应的具体尺度。</p>
+  <div class="key"><b>Kaplan–Yorke 维数猜想</b>：动力系统吸引子的信息维数 $\approx D_{KY}=j+\frac{\lambda_1+\cdots+\lambda_j}{|\lambda_{j+1}|}$（其中 $\lambda$ 排序后选最大前 $j$ 个使和 $\ge0$）。逻辑斯谛 $r=4$ 的 Cantor-like 吸引子维数 $\approx0.538$ 与此吻合。</div>
+</div>
+
+<div class="sec">
+  <h2>Lorenz 系统与确定性非周期流 <small>混沌的真正起点</small></h2>
+  <p>1963 年气象学家 Edward Lorenz 简化 Saltzman（1962）大气对流方程，得到 3 维 ODE：</p>
+  $$\dot x=\sigma(y-x),\quad \dot y=x(\rho-z)-y,\quad \dot z=xy-\beta z.$$
+  <p>取 $\sigma=10,\rho=28,\beta=8/3$ 时，几乎所有轨道最终绕两个"翅膀"随机切换——这是著名的<b>Lorenz 吸引子</b>。Lorenz 论文标题 "Deterministic Nonperiodic Flow"（JAS 1963）成为混沌理论的开山之作。</p>
+  <div class="thm"><b>Lorenz 吸引子的数学</b>（Tucker 2002 证明） 谱奇异不变集 $\Lambda\subset\mathbb{R}^3$ 是吸引的，且支持一个 Sinai–Ruelle–Bowen 测度——这是首个被严格证明的"奇异吸引子"。Tucker 凭此获 2004 年欧洲数学会奖。</p>
+  <p><b>"蝴蝶效应"</b>原指 Lorenz 1972 年在 AAAS 会议演讲题目 "Predictability: Does the Flap of a Butterfly's Wings in Brazil Set Off a Tornado in Texas?"——后来成为混沌的代名词。</p>
+</div>
+
+<div class="sec">
+  <h2>从混沌到密码学 <small>确定性系统的随机应用</small></h2>
+  <p>混沌映射是<b>"确定性伪随机数生成器"</b>的天然候选：</p>
+  <ul>
+    <li><b>混沌流密码</b>：用 $x_{n+1}=f(x_n)$ 生成密钥流。安全性依赖 $\lambda\gt0$（扩散快）和不变测度的均匀性。</li>
+    <li><b>折叠映射与 Bernoulli 移位</b>：$x\mapsto 2x\bmod1$ 把 $[0,1]$ 折半拉伸，是<b>符号动力学</b>的源头。它的 Lyapunov 指数恰为 $\ln2$。</li>
+    <li><b>Arnold 变换</b>：$\begin{pmatrix}x'\\y'\end{pmatrix}=\begin{pmatrix}1&1\\1&2\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}\bmod N$ 把图像"猫脸变换"成噪声——周期 $T(N)\sim4\sqrt{N}\ln N$ 后又恢复，是<b>数字图像水印</b>工具。</li>
+    <li><b>双向混沌</b>：用耦合映射格点（CML）模拟时空混沌，Kaneko 1985 引入，2000s 成为<b>生物多样性模型</b>的标准工具。</li>
+  </ul>
+  <div class="exm"><b>密码学脆弱性</b>：1998 年 Wheeler 提出 "Logistic-DROP" 密码被 Kœster 2007 破解。混沌映射虽敏感，但状态空间有限（有限浮点），不能替代真随机——这是<b>"混沌加密学派"</b>与<b>"密码学主流"</b>的长期争论。</div>
+  <p><b>更深的话题</b>：分形边界、磁滞、spin glass、神经动力学（脑电图的 1/f 噪声）、心脏纤维性颤动——所有这些"复杂"现象都和本页演示的 logistic 映射同源。混沌是 20 世纪科学送给数学的礼物。</p>
+</div>
+
+<footer>
+  <a href="可视化导航.html">← 可视化导航</a>
+  <a href="../00-总览/index.html">返回总览 →</a>
+</footer>
+</div>
+
+<script>
+(function(){
+  var cv = document.getElementById('cv');
+  if(cv){
+    var ctx = cv.getContext('2d');
+    var W = cv.width, H = cv.height;
+    var padL = 46, padB = 30, padT = 16;
+    var iw = W - padL - 14, ih = H - padT - padB;
+    ctx.fillStyle = '#FFFDF6';
+    ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle = '#22262B'; ctx.lineWidth = 1.5;
+    ctx.strokeRect(padL, padT, iw, ih);
+    ctx.fillStyle = '#22262B'; ctx.font = '13px Georgia,serif'; ctx.textAlign = 'center';
+    for(var i=0;i<=5;i++){
+      var rv = 2.5 + i/5*1.5;
+      ctx.fillText(rv.toFixed(2), padL + i/5*iw, H - 10);
+    }
+    ctx.textAlign = 'left';
+    ctx.fillText('x', 8, 24);
+    ctx.fillStyle = '#22262B';
+    var cols = Math.floor(iw/2);
+    for(var col=0; col<cols; col++){
+      var r = 2.5 + col/cols*1.5;
+      var x = 0.5;
+      for(var b=0; b<250; b++){ x = r*x*(1-x); }
+      for(var s=0; s<180; s++){
+        x = r*x*(1-x);
+        ctx.fillRect(padL + col*2, padT + ih*(1-x), 2, 2);
+      }
+    }
+  }
+  var orb = document.getElementById('orb');
+  var rSl = document.getElementById('rSl');
+  var rV = document.getElementById('rV');
+  var xV = document.getElementById('xV');
+  var playBtn = document.getElementById('play');
+  var resetBtn = document.getElementById('reset');
+  if(orb && rSl && rV && xV && playBtn && resetBtn){
+    var o = orb.getContext('2d');
+    var OW = orb.width, OH = orb.height;
+    var xs = [];
+    var x0 = 0.5;
+    var playing = true;
+    var rNow = 3.3;
+    function step(){
+      x0 = rNow*x0*(1-x0);
+      xs.push(x0);
+      if(xs.length > 160){ xs.shift(); }
+      drawOrb();
+    }
+    function drawOrb(){
+      o.clearRect(0,0,OW,OH);
+      o.fillStyle = '#FFFDF6';
+      o.fillRect(0,0,OW,OH);
+      o.strokeStyle = '#22262B'; o.lineWidth = 1.5;
+      o.strokeRect(0,0,OW,OH);
+      o.strokeStyle = '#D8D0BC';
+      o.beginPath(); o.moveTo(0,OH/2); o.lineTo(OW,OH/2); o.stroke();
+      o.fillStyle = '#C0462E';
+      for(var i=0;i<xs.length;i++){
+        var px = (OW-20) * i / 159;
+        var py = OH - 14 - (OH-30)*(1-xs[i]);
+        o.fillRect(px, py, 4, 4);
+      }
+      o.fillStyle = '#B0396E';
+      o.fillRect(OW-16, OH-14-(OH-30)*(1-x0), 8, 8);
+      xV.textContent = 'x = ' + x0.toFixed(4);
+    }
+    rSl.addEventListener('input', function(){
+      rNow = parseInt(rSl.value,10)/100;
+      rV.textContent = rNow.toFixed(2);
+    });
+    playBtn.addEventListener('click', function(){
+      playing = !playing;
+      playBtn.textContent = playing ? '暂停' : '播放';
+    });
+    resetBtn.addEventListener('click', function(){
+      x0 = 0.5; xs = []; drawOrb();
+    });
+    setInterval(function(){
+      if(playing){ step(); }
+    }, 60);
+    rNow = parseInt(rSl.value,10)/100;
+    rV.textContent = rNow.toFixed(2);
+    drawOrb();
+  }
+})();
+</script>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self';">
+<title>中心极限定理 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23177E89'/%3E%3Ctext x='32' y='45' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3ECLT%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--teal:#177E89;--blue:#1F4E9C;--red:#C0392B;--green:#2E7D5B;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--teal);text-decoration:none;}
+.tag{display:inline-block;background:var(--teal);color:#fff;font-size:12px;padding:2px 10px;border-radius:20px;vertical-align:middle;margin-left:10px;}
+h1{font-family:Georgia,"Noto Serif SC",serif;font-size:40px;margin:14px 0 6px;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--teal);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#fffef9;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls .btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls .btn.gray{background:#8A8270;}
+.controls label{font-size:14px;color:var(--ink2);}
+.controls input[type=range]{width:160px;vertical-align:middle;}
+.stats{display:flex;flex-wrap:wrap;gap:18px;font-family:Georgia,serif;font-size:15px;color:var(--ink2);margin-top:10px;}
+.stats b{color:var(--ink);font-size:18px;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--teal);text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>中心极限定理 <span class="tag">概率统计</span></h1>
+<p class="sub">无论原始分布多么歪斜、多么双峰，只要样本量 $n$ 足够大，样本均值的分布总会"长成"一条正态钟形曲线。拖动 $n$、换个源头分布，亲眼看见它圆起来。</p>
+</header>
+
+<div class="sec">
+<h2>抽样均值的分布 <small>直方图 vs. 理论正态曲线</small></h2>
+<div class="fig">
+<canvas id="cv" width="880" height="460" role="img" aria-label="中心极限定理：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls">
+<label>源头分布：
+<select id="dist">
+<option value="uniform">均匀 U(0,1)</option>
+<option value="exp">指数 Exp(1)（强烈右偏）</option>
+<option value="bimodal">双峰混合（左右两座山）</option>
+<option value="laplace">拉普拉斯（尖峰厚尾）</option>
+</select></label>
+<label>每组样本量 n = <span id="nVal">5</span>
+<input type="range" id="n" min="1" max="200" value="5"></label>
+<button class="btn" id="add">抽取 300 组均值</button>
+<button class="btn" id="auto">连续累积</button>
+<button class="btn gray" id="clr">清空重绘</button>
+</div>
+<div class="stats" id="stats"></div>
+<p class="explain"><b>蓝色</b>是抽样均值的直方图，<b>红色</b>是理论上的正态曲线 $N(\mu,\sigma^2/n)$。$n=1$ 时直方图还长得像原分布；把 $n$ 拖到 200，直方图几乎与红色钟形重合——这就是中心极限定理在工作。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>数学陈述</h2>
+<p>设 $X_1,\dots,X_n$ 独立同分布，$E[X_i]=\mu$，$\mathrm{Var}(X_i)=\sigma^2\in(0,\infty)$，样本均值 $\bar X_n=\frac1n\sum_{i=1}^n X_i$。则</p>
+$$\frac{\bar X_n-\mu}{\sigma/\sqrt n}\ \xrightarrow{d}\ N(0,1),\qquad \bar X_n\ \dot\sim\ N\!\left(\mu,\frac{\sigma^2}{n}\right).$$
+<p>意义：均值的<b>波动</b>只按 $1/\sqrt n$ 缩小——要把估计精度提高一位，样本量得乘以 100。这与原始分布形状无关，是概率论最普适的"普适性（universality）"结论。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var W=cv.width,H=cv.height;
+var means=[];
+var running=null;
+// source samplers
+function rnd(d){
+  if(d==='uniform') return Math.random();
+  if(d==='exp') return -Math.log(1-Math.random());
+  if(d==='bimodal'){ var u=Math.random(); return (u<0.5)? gauss(-1,0.5): gauss(1,0.5); }
+  // laplace
+  var u=Math.random()-0.5; return Math.sign(u)*Math.log(1-2*Math.abs(u));
+}
+function gauss(m,s){ var u=0,v=0; while(u===0)u=Math.random(); while(v===0)v=Math.random(); return m+s*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+// theoretical moments per distribution
+function theo(d){
+  if(d==='uniform') return {mu:0.5,var:1/12};
+  if(d==='exp') return {mu:1,var:1};
+  if(d==='bimodal') return {mu:0,var:1.25};
+  return {mu:0,var:2};
+}
+function addMeans(k,n,d){
+  for(var i=0;i<k;i++){ var s=0; for(var j=0;j<n;j++) s+=rnd(d); means.push(s/n); }
+}
+function draw(){
+  var d=document.getElementById('dist').value;
+  var n=+document.getElementById('n').value;
+  document.getElementById('nVal').textContent=n;
+  var t=theo(d);
+  ctx.clearRect(0,0,W,H);
+  // plot area
+  var pl=60,pr=30,pt=30,pb=50;
+  var pw=W-pl-pr, ph=H-pt-pb;
+  // x range from theory +/-4 sigma
+  var sd=Math.sqrt(t.var/n);
+  var lo=t.mu-4*sd, hi=t.mu+4*sd;
+  // axes
+  ctx.strokeStyle='#D8D0BC';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(pl,pt);ctx.lineTo(pl,pt+ph);ctx.lineTo(pl+pw,pt+ph);ctx.stroke();
+  // histogram
+  var NB=40;
+  var bins=new Array(NB).fill(0);
+  for(var i=0;i<means.length;i++){ var x=(means[i]-lo)/(hi-lo); var b=Math.floor(x*NB); if(b>=0&&b<NB)bins[b]++; }
+  var maxB=1; for(var k=0;k<NB;k++) if(bins[k]>maxB)maxB=bins[k];
+  var bw=pw/NB;
+  for(var b=0;b<NB;b++){
+    var bh=bins[b]/maxB*ph;
+    ctx.fillStyle='rgba(23,126,137,0.75)';
+    ctx.fillRect(pl+b*bw,pt+ph-bh,bw-1,bh);
+  }
+  // theoretical normal curve
+  ctx.strokeStyle='#C0392B';ctx.lineWidth=2.5;ctx.beginPath();
+  var xx,yy;
+  for(var px=0;px<=pw;px++){
+    var xv=lo+(hi-lo)*px/pw;
+    var pdf=(1/(sd*Math.sqrt(2*Math.PI)))*Math.exp(-0.5*((xv-t.mu)/sd)*((xv-t.mu)/sd));
+    // scale pdf to bin density: expected count per bin = N * pdf * binwidth
+    var binw=(hi-lo)/NB;
+    var dens=means.length*pdf*binw;
+    var yv=pt+ph-(dens/maxB)*ph;
+    if(px===0)ctx.moveTo(pl+px,yv); else ctx.lineTo(pl+px,yv);
+  }
+  ctx.stroke();
+  // mu vertical line
+  var mx=pl+pw*(t.mu-lo)/(hi-lo);
+  ctx.strokeStyle='#22262B';ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(mx,pt);ctx.lineTo(mx,pt+ph);ctx.stroke();ctx.setLineDash([]);
+  // axis labels
+  ctx.fillStyle='#4A5258';ctx.font='12px Georgia';ctx.textAlign='center';
+  for(var g=-3;g<=3;g++){ var gx=pl+pw*(t.mu+g*sd-lo)/(hi-lo); ctx.fillText((g>=0?'+':'')+g+'σ',gx,pt+ph+18); }
+  ctx.textAlign='left';ctx.fillText('密度',pl+6,pt+14);
+  // stats
+  var mm=0,vv=0; for(var i=0;i<means.length;i++)mm+=means[i]; mm/=Math.max(1,means.length);
+  for(var i2=0;i2<means.length;i2++)vv+=(means[i2]-mm)*(means[i2]-mm); vv/=Math.max(1,means.length-1);
+  document.getElementById('stats').innerHTML=
+    '<span>组数 <b>'+means.length+'</b></span>'+
+    '<span>理论 μ <b>'+t.mu.toFixed(3)+'</b></span>'+
+    '<span>样本均值 <b>'+mm.toFixed(3)+'</b></span>'+
+    '<span>理论 σ/√n <b>'+sd.toFixed(3)+'</b></span>'+
+    '<span>样本 std <b>'+Math.sqrt(vv).toFixed(3)+'</b></span>';
+}
+document.getElementById('dist').addEventListener('change',function(){means=[];draw();});
+document.getElementById('n').addEventListener('input',function(){means=[];draw();});
+document.getElementById('add').addEventListener('click',function(){var d=document.getElementById('dist').value;var n=+document.getElementById('n').value;addMeans(300,n,d);draw();});
+document.getElementById('clr').addEventListener('click',function(){means=[];draw();});
+document.getElementById('auto').addEventListener('click',function(){
+  if(running){ clearInterval(running); running=null; document.getElementById('auto').textContent='连续累积'; return; }
+  document.getElementById('auto').textContent='暂停累积';
+  running=setInterval(function(){ var d=document.getElementById('dist').value; var n=+document.getElementById('n').value; addMeans(120,n,d); draw(); },120);
+});
+draw();
+})();
+</script>
+
+</body>
+</html>

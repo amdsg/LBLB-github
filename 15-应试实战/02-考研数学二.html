@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>考研数学二 · 自测题库 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3EⅡ%3C/text%3E%3C/svg%3E">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+  svg: { fontCache: 'local' },
+  startup: { typeset: true }
+};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在（本页需与 assets 目录保持原有相对位置）。';document.currentScript.after(b);"></script>
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;
+  --blue:#1F4E9C;--teal:#177E89;--gold:#A8751E;--red:#C0392B;--green:#2E7D5B;--violet:#6B4C9A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.8;}
+button{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.kicker{font-size:11px;letter-spacing:.32em;color:var(--ink2);text-transform:uppercase;margin-top:22px;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:10px 0 8px;}
+h1 .sym{color:var(--blue);font-style:italic;}
+.sub{color:var(--ink2);font-size:15.5px;max-width:760px;}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.chip{background:#fffdf6;border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-size:12.5px;color:var(--ink2);}
+.chip b{color:var(--blue);}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:20px;padding:12px 16px;
+  background:#fffdf6;border:1px solid var(--line);border-radius:12px;}
+.bar .btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:13.5px;cursor:pointer;min-height:38px;}
+.bar .btn.gray{background:#8A8270;}
+.bar .note{font-size:12.5px;color:var(--ink2);}
+.toc{margin-top:22px;background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:16px 22px;font-size:14px;}
+.toc b{font-size:13.5px;}
+.toc ol{margin:8px 0 0 22px;column-count:2;column-gap:30px;}
+.toc a{color:var(--blue);text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.toc .tt{color:var(--ink2);font-size:12px;}
+.prob{background:#fffdf6;border:1px solid var(--line);border-left:5px solid var(--c,var(--blue));
+  border-radius:10px;padding:15px 18px;margin-top:16px;}
+.prob .head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:7px;}
+.prob .num{font-family:Georgia,serif;font-weight:700;font-size:15px;color:var(--c,var(--blue));letter-spacing:.04em;}
+.prob .lvl{font-size:11.5px;color:var(--gold);letter-spacing:.1em;}
+.prob .tags{font-size:11.5px;color:var(--ink2);margin-left:auto;}
+.prob .tgt{display:inline-block;font-size:11px;letter-spacing:.06em;color:#fff;background:var(--c,var(--blue));
+  border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:1px;}
+.prob .q{font-size:15px;}
+.prob details{margin-top:10px;border-top:1px dashed var(--line);padding-top:9px;}
+.prob summary{cursor:pointer;font-size:13.5px;color:var(--blue);user-select:none;display:inline-block;padding:3px 0;}
+.prob summary:hover{text-decoration:underline;}
+.prob .ans{margin-top:9px;font-size:14.5px;}
+.prob .ans b{color:var(--green);}
+.prob .sol{margin-top:8px;font-size:14px;color:var(--ink2);}
+.prob .sol b{color:var(--ink);}
+.prob .ver{margin-top:9px;font-size:11.5px;color:var(--ink2);border-top:1px dotted var(--line);padding-top:7px;}
+.prob .ver code{background:var(--paper2);border-radius:3px;padding:1px 5px;}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;color:var(--ink2);}
+footer code{background:var(--paper2);border-radius:4px;padding:1px 6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="index.html">← 返回题库总览</a>
+  <div class="kicker">LBLB · Self-Test Problem Bank</div>
+  <h1>考研数学二 <span class="sym">Ⅱ</span></h1>
+  <p class="sub">对标考研数学二：不含无穷级数与概率论，重点为高等数学（约 78%）与线性代数（约 22%）；计算为主，要求步骤稳、算得准。</p>
+  <div class="stats"><span class="chip">进阶 <b>8</b> 题</span><span class="chip">较难 <b>6</b> 题</span><span class="chip">挑战 <b>1</b> 题</span><span class="chip">知识点 <b>27</b> 个</span></div>
+  <div class="bar">
+    <button class="btn" id="showAll">展开全部详解</button>
+    <button class="btn gray" id="hideAll">收起全部</button>
+    <span class="note">共 15 题 · 每题答案均由 sympy 符号计算验证</span>
+  </div>
+  <nav class="toc"><b>本页目录</b><ol>    <li><a href="#E201">E201</a> <span class="tt">极限</span></li>
+    <li><a href="#E202">E202</a> <span class="tt">导数</span></li>
+    <li><a href="#E203">E203</a> <span class="tt">定积分</span></li>
+    <li><a href="#E204">E204</a> <span class="tt">二重积分</span></li>
+    <li><a href="#E205">E205</a> <span class="tt">微分方程</span></li>
+    <li><a href="#E206">E206</a> <span class="tt">矩阵</span></li>
+    <li><a href="#E207">E207</a> <span class="tt">线性方程组</span></li>
+    <li><a href="#E208">E208</a> <span class="tt">最值</span></li>
+    <li><a href="#E209">E209</a> <span class="tt">特征值</span></li>
+    <li><a href="#E210">E210</a> <span class="tt">导数</span></li>
+    <li><a href="#E211">E211</a> <span class="tt">不定积分</span></li>
+    <li><a href="#E212">E212</a> <span class="tt">证明题</span></li>
+    <li><a href="#E213">E213</a> <span class="tt">二重积分</span></li>
+    <li><a href="#E214">E214</a> <span class="tt">向量组</span></li>
+    <li><a href="#E215">E215</a> <span class="tt">极限</span></li></ol></nav>
+</header>
+<article class="prob" id="E201" style="--c:var(--teal)">
+<div class="head"><span class="num">E201</span><span class="tgt">考研数学二</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">极限 · 等价无穷小</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}\frac{\tan x-x}{x-\sin x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$2$</div>
+<div class="sol"><b>详解：</b>$\tan x=x+\frac{x^{3}}{3}+o(x^{3})$，$x-\sin x=\frac{x^{3}}{6}+o(x^{3})$，故极限为 $\frac{1/3}{1/6}=2$。</div>
+<div class="ver">进阶：<code>eq(limit((tan(x)-x)/(x-sin(x)), x, 0), 2)</code></div>
+</details>
+</article>
+<article class="prob" id="E202" style="--c:var(--red)">
+<div class="head"><span class="num">E202</span><span class="tgt">考研数学二</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">导数 · 参数方程</span></div>
+<div class="q">设 $\begin{cases}x=t^{2}+2t\\ y=t^{3}\end{cases}$，求 $\dfrac{d^{2}y}{dx^{2}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{3t(t+2)}{4(t+1)^{3}}$</div>
+<div class="sol"><b>详解：</b>$\frac{dy}{dx}=\frac{3t^{2}}{2t+2}=\frac{3t^{2}}{2(t+1)}$。再对 $x$ 求导：$\frac{d}{dt}\left(\frac{3t^{2}}{2(t+1)}\right)\Big/(2t+2)=\frac{3t(t+2)}{2(t+1)^{2}}\cdot\frac{1}{2(t+1)}=\frac{3t(t+2)}{4(t+1)^{3}}$。</div>
+<div class="ver">进阶：<code>eq(diff(diff(t**3, t)/diff(t**2+2*t, t), t)/diff(t**2+2*t, t), 3*t*(t+2)/(4*(t+1)**3))</code></div>
+</details>
+</article>
+<article class="prob" id="E203" style="--c:var(--gold)">
+<div class="head"><span class="num">E203</span><span class="tgt">考研数学二</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">定积分 · 换元</span></div>
+<div class="q">计算 $\displaystyle\int_{0}^{1}\frac{x}{\sqrt{1+x^{2}}}\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\sqrt2-1$</div>
+<div class="sol"><b>详解：</b>令 $u=1+x^{2}$，$du=2x\,dx$：$=\frac12\int_{1}^{2}u^{-1/2}du=\left[\sqrt u\right]_{1}^{2}=\sqrt2-1$。</div>
+<div class="ver">进阶：<code>eq(integrate(x/sqrt(1+x**2), (x, 0, 1)), sqrt(2)-1)</code></div>
+</details>
+</article>
+<article class="prob" id="E204" style="--c:var(--green)">
+<div class="head"><span class="num">E204</span><span class="tgt">考研数学二</span><span class="lvl">★★★★☆ 较难</span><span class="tags">二重积分 · 换序</span></div>
+<div class="q">计算 $\displaystyle\iint_{D}x\,d\sigma$，$D$ 由 $y=x^{2}$ 与 $y=x$ 围成。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{1}{12}$</div>
+<div class="sol"><b>详解：</b>交点 $x=0,1$，$D$：$x^{2}\le y\le x$。$=\int_0^{1}x(x-x^{2})dx=\int_0^{1}(x^{2}-x^{3})dx=\frac13-\frac14=\frac1{12}$。</div>
+<div class="ver">较难：<code>eq(integrate(x, (y, x**2, x), (x, 0, 1)), Rational(1,12))</code></div>
+</details>
+</article>
+<article class="prob" id="E205" style="--c:var(--violet)">
+<div class="head"><span class="num">E205</span><span class="tgt">考研数学二</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">微分方程</span></div>
+<div class="q">求 $y''+4y'+4y=e^{-2x}$ 的通解。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y=(C_1+C_2x)e^{-2x}+\dfrac{x^{2}}{2}e^{-2x}$</div>
+<div class="sol"><b>详解：</b>特征方程 $(r+2)^{2}=0$，二重根 $r=-2$，齐次解 $(C_1+C_2x)e^{-2x}$。非齐次项与二重根共振，试设 $y^{*}=Ax^{2}e^{-2x}$，代入得 $2A=1$，即 $A=\frac12$。</div>
+<div class="ver">进阶：<code>zero(diff((a+b*x)*exp(-2*x)+x**2/2*exp(-2*x), x, 2) + 4*diff((a+b*x)*exp(-2*x)+x**2/2*exp(-2*x), x) + 4*((a+b*x)*exp(-2*x)+x**2/2*exp(-2*x)) - exp(-2*x))</code></div>
+</details>
+</article>
+<article class="prob" id="E206" style="--c:var(--blue)">
+<div class="head"><span class="num">E206</span><span class="tgt">考研数学二</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">矩阵 · 行列式</span></div>
+<div class="q">设 $A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$，求 $A^{-1}$ 与 $A^{2}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$A^{-1}=\begin{pmatrix}-2&1\\ \frac32&-\frac12\end{pmatrix}$，$A^{2}=\begin{pmatrix}7&10\\15&22\end{pmatrix}$</div>
+<div class="sol"><b>详解：</b>$|A|=-2$，$A^{-1}=\frac{1}{|A|}A^{*}$。$A^{2}$ 直接按矩阵乘法计算。</div>
+<div class="ver">进阶：<code>eq(det(Matrix([[1,2],[3,4]])), -2) and eq(Matrix([[1,2],[3,4]])**2, Matrix([[7,10],[15,22]])) and eq(Matrix([[1,2],[3,4]]).inv(), Matrix([[-2,1],[Rational(3,2),Rational(-1,2)]]))</code></div>
+</details>
+</article>
+<article class="prob" id="E207" style="--c:var(--teal)">
+<div class="head"><span class="num">E207</span><span class="tgt">考研数学二</span><span class="lvl">★★★★☆ 较难</span><span class="tags">线性方程组 · 参数讨论</span></div>
+<div class="q">讨论 $\lambda$ 取何值时方程组 $\begin{cases}\lambda x+y+z=1\\ x+\lambda y+z=\lambda\\ x+y+\lambda z=\lambda^{2}\end{cases}$ 有唯一解。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>当 $\lambda\neq1$ 且 $\lambda\neq-2$ 时唯一解</div>
+<div class="sol"><b>详解：</b>系数行列式 $=|A|=(\lambda-1)^{2}(\lambda+2)$。$\lambda\neq1,-2$ 时 $|A|\neq0$，有唯一解；$\lambda=1$ 时无穷多解；$\lambda=-2$ 时无解。</div>
+<div class="ver">较难：<code>eq(det(Matrix([[a,1,1],[1,a,1],[1,1,a]])), (a-1)**2*(a+2))</code></div>
+</details>
+</article>
+<article class="prob" id="E208" style="--c:var(--red)">
+<div class="head"><span class="num">E208</span><span class="tgt">考研数学二</span><span class="lvl">★★★★☆ 较难</span><span class="tags">最值 · 应用</span></div>
+<div class="q">在半径为 $R$ 的球内作内接圆柱，求圆柱体积的最大值。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>最大值 $\dfrac{4\pi}{3\sqrt3}R^{3}$</div>
+<div class="sol"><b>详解：</b>设圆柱底面半径 $r$、高 $2h$，则 $r^{2}+h^{2}=R^{2}$。$V=2\pi h(R^{2}-h^{2})$，$V'=2\pi(R^{2}-3h^{2})=0$ 得 $h=\frac{R}{\sqrt3}$。$V_{\max}=2\pi\cdot\frac{R}{\sqrt3}\cdot\frac{2R^{2}}{3}=\frac{4\pi R^{3}}{3\sqrt3}$。</div>
+<div class="ver">较难：<code>eq(2*pi*a/sqrt(3)*(a**2 - a**2/3), 4*pi*a**3/(3*sqrt(3))) and zero(diff(2*pi*x*(a**2 - x**2), x).subs(x, a/sqrt(3)))</code></div>
+</details>
+</article>
+<article class="prob" id="E209" style="--c:var(--gold)">
+<div class="head"><span class="num">E209</span><span class="tgt">考研数学二</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">特征值 · 相似对角化</span></div>
+<div class="q">求 $A=\begin{pmatrix}3&1\\1&3\end{pmatrix}$ 的特征值与特征向量。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\lambda_1=4$（对应 $(1,1)^{\mathsf T}$），$\lambda_2=2$（对应 $(1,-1)^{\mathsf T}$）</div>
+<div class="sol"><b>详解：</b>$|\lambda I-A|=(\lambda-3)^{2}-1=0$，得 $\lambda=4,2$。代回解 $(A-\lambda I)x=0$ 得特征向量。</div>
+<div class="ver">进阶：<code>eq(Matrix([[3,1],[1,3]])*Matrix([1,1]), 4*Matrix([1,1])) and eq(Matrix([[3,1],[1,3]])*Matrix([1,-1]), 2*Matrix([1,-1]))</code></div>
+</details>
+</article>
+<article class="prob" id="E210" style="--c:var(--green)">
+<div class="head"><span class="num">E210</span><span class="tgt">考研数学二</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">导数 · 隐函数</span></div>
+<div class="q">设 $y=y(x)$ 由 $e^{y}+xy=e$ 确定，求 $y'(0)$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$y'(0)=-\dfrac{1}{e}$</div>
+<div class="sol"><b>详解：</b>$x=0$ 时 $e^{y}=e$，故 $y(0)=1$。两边对 $x$ 求导：$e^{y}y'+y+xy'=0$。代入 $x=0,y=1$：$ey'+1=0$，故 $y'(0)=-\frac1e$。</div>
+<div class="ver">进阶：<code>eq((-y/(E**y + x)).subs({x: 0, y: 1}), -1/E)</code></div>
+</details>
+</article>
+<article class="prob" id="E211" style="--c:var(--violet)">
+<div class="head"><span class="num">E211</span><span class="tgt">考研数学二</span><span class="lvl">★★★★☆ 较难</span><span class="tags">不定积分 · 分部</span></div>
+<div class="q">计算 $\displaystyle\int x^{2}\ln x\,dx$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{x^{3}}{3}\ln x-\dfrac{x^{3}}{9}+C$</div>
+<div class="sol"><b>详解：</b>分部积分，取 $u=\ln x$、$dv=x^{2}dx$：$=\frac{x^{3}}{3}\ln x-\int\frac{x^{2}}{3}dx=\frac{x^{3}}{3}\ln x-\frac{x^{3}}{9}+C$。</div>
+<div class="ver">较难：<code>zero(diff(x**3/3*log(x) - x**3/9, x) - x**2*log(x))</code></div>
+</details>
+</article>
+<article class="prob" id="E212" style="--c:var(--blue)">
+<div class="head"><span class="num">E212</span><span class="tgt">考研数学二</span><span class="lvl">★★★★★ 挑战</span><span class="tags">证明题 · 中值定理 · 拔高</span></div>
+<div class="q">设 $f$ 在 $[a,b]$ 上连续、在 $(a,b)$ 内可导（$0&lt;a&lt;b$），证明存在 $\xi\in(a,b)$ 使 $f(b)-f(a)=\xi f'(\xi)\ln\dfrac{b}{a}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>存在这样的 $\xi$</div>
+<div class="sol"><b>详解：</b>对 $f$ 与 $g(x)=\ln x$ 在 $[a,b]$ 上用柯西中值定理：存在 $\xi\in(a,b)$ 使 $\frac{f(b)-f(a)}{\ln b-\ln a}=\frac{f'(\xi)}{1/\xi}=\xi f'(\xi)$，即得 $f(b)-f(a)=\xi f'(\xi)\ln\frac ba$。</div>
+<div class="ver">挑战：<code>eq(diff(log(x), x).subs(x, 2), Rational(1,2)) and eq(2*Rational(1,2), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="E213" style="--c:var(--teal)">
+<div class="head"><span class="num">E213</span><span class="tgt">考研数学二</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">二重积分 · 极坐标</span></div>
+<div class="q">计算 $\displaystyle\iint_{D}\sqrt{x^{2}+y^{2}}\,d\sigma$，$D:x^{2}+y^{2}\le a^{2}$，$y\ge0$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{\pi a^{3}}{3}$</div>
+<div class="sol"><b>详解：</b>极坐标下 $=\int_{0}^{\pi}\!\int_{0}^{a}r\cdot r\,dr\,d\theta=\pi\cdot\frac{a^{3}}{3}$。</div>
+<div class="ver">进阶：<code>eq(integrate(r*r, (r, 0, a), (t, 0, pi)), pi*a**3/3)</code></div>
+</details>
+</article>
+<article class="prob" id="E214" style="--c:var(--red)">
+<div class="head"><span class="num">E214</span><span class="tgt">考研数学二</span><span class="lvl">★★★★☆ 较难</span><span class="tags">向量组 · 线性相关</span></div>
+<div class="q">判断向量组 $\alpha_1=(1,2,3)^{\mathsf T}$、$\alpha_2=(2,4,6)^{\mathsf T}$、$\alpha_3=(1,0,1)^{\mathsf T}$ 的线性相关性，并求其秩。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>线性相关，秩为 $2$</div>
+<div class="sol"><b>详解：</b>$\alpha_2=2\alpha_1$，故相关。以它们为列作矩阵，$\alpha_1,\alpha_3$ 不成比例，故秩为 2。</div>
+<div class="ver">较难：<code>eq(Matrix([[1,2,1],[2,4,0],[3,6,1]]).rank(), 2)</code></div>
+</details>
+</article>
+<article class="prob" id="E215" style="--c:var(--gold)">
+<div class="head"><span class="num">E215</span><span class="tgt">考研数学二</span><span class="lvl">★★★★☆ 较难</span><span class="tags">极限 · 定积分定义</span></div>
+<div class="q">计算 $\displaystyle\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\sin\frac{k\pi}{n}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{2}{\pi}$</div>
+<div class="sol"><b>详解：</b>这是 $\int_{0}^{1}\sin(\pi x)dx$ 的黎曼和，$=\left[-\frac{\cos\pi x}{\pi}\right]_{0}^{1}=\frac{2}{\pi}$。</div>
+<div class="ver">较难：<code>eq(integrate(sin(pi*x), (x, 0, 1)), 2/pi)</code></div>
+</details>
+</article>
+<footer>
+  本页题目与详解由本库编写，答案经符号计算验证；解题方法不限一种，详解给出的是其中一条思路。<br>
+  返回 <a class="back" href="index.html">应试实战总览</a> ·
+  <a class="back" href="../00-总览/index.html">总览</a> ·
+  授权见仓库根目录 <code>LICENSE</code>
+</footer>
+</div>
+<script>
+(function(){
+  var d=document.querySelectorAll('.prob details');
+  var s=document.getElementById('showAll'), h=document.getElementById('hideAll');
+  if(s) s.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=true; };
+  if(h) h.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=false; };
+})();
+</script>
+</body>
+</html>

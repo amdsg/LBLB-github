@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self';">
+<title>梯度下降可视化 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23177E89'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E↓%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--teal:#177E89;--blue:#1F4E9C;--red:#C0392B;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--teal);text-decoration:none;}
+.tag{display:inline-block;background:var(--teal);color:#fff;font-size:12px;padding:2px 10px;border-radius:20px;vertical-align:middle;margin-left:10px;}
+h1{font-family:Georgia,"Noto Serif SC",serif;font-size:40px;margin:14px 0 6px;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--teal);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#fffef9;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls .btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls .btn.gray{background:#8A8270;}
+.controls label{font-size:14px;color:var(--ink2);}
+.controls select{padding:6px;border:1px solid var(--line);border-radius:8px;}
+.controls input[type=range]{width:160px;vertical-align:middle;}
+.stats{display:flex;flex-wrap:wrap;gap:18px;font-family:Georgia,serif;font-size:15px;color:var(--ink2);margin-top:10px;}
+.stats b{color:var(--ink);font-size:18px;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--teal);text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>梯度下降可视化 <span class="tag">数值分析 / 优化</span></h1>
+<p class="sub">站在 loss 山坡上，每次沿最陡下降方向迈一步。学习率太小走得慢，太大直接"飞过"谷底——拖动 $\eta$ 亲自试。</p>
+</header>
+
+<div class="sec">
+<h2>等高线与下降路径 <small>填色为 loss 高低，红点为优化轨迹</small></h2>
+<div class="fig">
+<canvas id="cv" width="880" height="460" role="img" aria-label="梯度下降可视化：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls">
+<label>损失函数：
+<select id="fn">
+<option value="bowl">二次碗 f=x²+2y²</option>
+<option value="rosen">香蕉谷 Rosenbrock</option>
+</select></label>
+<label>学习率 η = <span id="etaV">0.10</span>
+<input type="range" id="eta" min="1" max="40" value="10"></label>
+<button class="btn" id="step">走一步</button>
+<button class="btn" id="anim">动画下降</button>
+<button class="btn gray" id="reset">从起点重来</button>
+</div>
+<div class="stats" id="stats"></div>
+<p class="explain">迭代公式 $x_{k+1}=x_k-\eta\,\nabla f(x_k)$。对二次碗，$\eta$ 超过曲率倒数时会来回震荡甚至发散；在香蕉谷里，梯度几乎水平，下降又慢又曲折——真实训练就是在这种地形上爬山。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>收敛性</h2>
+<p>对 $f(x)=\tfrac12 x^\top A x$（$A$ 正定，条件数 $\kappa=\lambda_{\max}/\lambda_{\min}$），固定学习率梯度下降满足</p>
+$$f(x_k)-f(x^*)\ \le\ \left(1-\frac{1}{\kappa}\right)^{2k}\bigl(f(x_0)-f(x^*)\bigr).$$
+<p>条件数越大（等高线越扁），收敛越慢——这也是为什么需要动量、自适应学习率（Adam）等改进。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var W=cv.width,H=cv.height;
+var path=[]; var timer=null;
+var fns={
+  bowl:{f:function(x,y){return x*x+2*y*y;},g:function(x,y){return [2*x,4*y];},start:[-2.5,2.8],range:[-3,3]},
+  rosen:{f:function(x,y){return (1-x)*(1-x)+100*(y-x*x)*(y-x*x);},g:function(x,y){return [-2*(1-x)-400*x*(y-x*x),200*(y-x*x)];},start:[-1.2,1.0],range:[-2.5,2.5]}
+};
+function eta(){return +document.getElementById('eta').value/100;}
+function resetPath(){var o=fns[document.getElementById('fn').value];path=[o.start.slice()];}
+function stepOnce(){
+  var o=fns[document.getElementById('fn').value];
+  var p=path[path.length-1];
+  var g=o.g(p[0],p[1]);
+  var x=p[0]-eta()*g[0], y=p[1]-eta()*g[1];
+  if(!isFinite(x)||!isFinite(y)||Math.abs(x)>50||Math.abs(y)>50){return;} // diverged
+  path.push([x,y]);
+}
+function draw(){
+  var o=fns[document.getElementById('fn').value];
+  document.getElementById('etaV').textContent=eta().toFixed(2);
+  ctx.clearRect(0,0,W,H);
+  var pl=40,pr=40,pt=30,pb=50;
+  var pw=W-pl-pr,ph=H-pt-pb;
+  var R=o.range[1];
+  function X(x){return pl+pw*(x+R)/(2*R);}
+  function Y(y){return pt+ph-(y+R)/(2*R)*ph;}
+  // heatmap (coarse grid)
+  var G=60;
+  for(var i=0;i<G;i++){for(var j=0;j<G;j++){
+    var xv=-R+2*R*(i+0.5)/G, yv=-R+2*R*(j+0.5)/G;
+    var v=o.f(xv,yv);
+    var t=Math.min(1,Math.log(1+v)/4);
+    ctx.fillStyle='rgba(23,126,137,'+(0.08+0.5*t)+')';
+    ctx.fillRect(pl+i*pw/G, pt+j*ph/G, pw/G+1, ph/G+1);
+  }}
+  // contour-ish lines (a few levels)
+  ctx.strokeStyle='rgba(34,38,43,0.25)';ctx.lineWidth=1;
+  for(var lv=1;lv<=6;lv++){
+    var level=lv*lv*0.3;
+    ctx.beginPath();
+    var drawn=false;
+    for(var i2=0;i2<G;i2++){for(var j2=0;j2<G;j2++){
+      var xv=-R+2*R*(i2+0.5)/G, yv=-R+2*R*(j2+0.5)/G;
+      var v=o.f(xv,yv);
+      if(Math.abs(v-level)<0.25){ctx.rect(pl+i2*pw/G,pt+j2*ph/G,pw/G,ph/G);drawn=true;}
+    }}
+    if(drawn)ctx.stroke();
+  }
+  // minimum marker
+  ctx.fillStyle='#2E7D5B';ctx.beginPath();ctx.arc(X(1),Y(1),5,0,Math.PI*2);ctx.fill();
+  // path
+  ctx.strokeStyle='#C0392B';ctx.lineWidth=1.8;ctx.beginPath();
+  for(var k=0;k<path.length;k++){if(k===0)ctx.moveTo(X(path[k][0]),Y(path[k][1]));else ctx.lineTo(X(path[k][0]),Y(path[k][1]));}
+  ctx.stroke();
+  for(var k2=0;k2<path.length;k2++){ctx.fillStyle='#C0392B';ctx.beginPath();ctx.arc(X(path[k2][0]),Y(path[k2][1]),2.6,0,Math.PI*2);ctx.fill();}
+  var last=path[path.length-1];
+  var loss=o.f(last[0],last[1]);
+  document.getElementById('stats').innerHTML=
+    '<span>步数 <b>'+(path.length-1)+'</b></span>'+
+    '<span>当前坐标 <b>('+last[0].toFixed(2)+', '+last[1].toFixed(2)+')</b></span>'+
+    '<span>当前 loss <b>'+loss.toFixed(4)+'</b></span>';
+}
+document.getElementById('fn').addEventListener('change',function(){resetPath();draw();});
+document.getElementById('eta').addEventListener('input',draw);
+document.getElementById('step').addEventListener('click',function(){stepOnce();draw();});
+document.getElementById('anim').addEventListener('click',function(){
+  if(timer){clearInterval(timer);timer=null;document.getElementById('anim').textContent='动画下降';return;}
+  document.getElementById('anim').textContent='暂停';
+  timer=setInterval(function(){stepOnce();draw();},120);
+});
+document.getElementById('reset').addEventListener('click',function(){resetPath();draw();});
+resetPath();draw();
+})();
+</script>
+
+</body>
+</html>

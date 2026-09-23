@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>数理逻辑与集合论讲义 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='32' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%A9%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --maroon:#7D3C55; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--maroon); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:40px; margin:12px 0 6px;}
+h1 .sym{color:var(--maroon); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:740px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--maroon); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--maroon); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; margin-top:26px;}
+.ch p{font-size:15px; margin-top:10px; max-width:820px;}
+.f{font-family:Georgia,"Cambria Math",serif; font-style:italic; background:var(--paper2); border-radius:6px; padding:1px 8px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--maroon);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--maroon); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.demo{background:var(--paper2); border:1px solid var(--line); border-radius:16px; padding:20px; margin-top:16px;}
+.demo .btn{display:inline-block; background:var(--maroon); color:#fff; border:none; border-radius:8px; padding:8px 18px; font-size:14px; cursor:pointer; margin:0 8px 12px 0; min-height:44px;}
+.demo .btn.gray{background:#8A8270;}
+.demo p.hint{font-size:13px; color:var(--ink2);}
+.demo table{margin-top:10px; border-collapse:collapse; background:#fffdf6; font-size:13.5px; width:100%; table-layout:fixed;}
+.demo th,.demo td{border:1px solid var(--line); padding:6px 8px; text-align:center;}
+.demo th{background:var(--paper2);}
+.papers{display:grid; gap:10px; margin-top:12px;}
+.papers .p{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px;}
+.papers .p a{color:var(--maroon); text-decoration:none; font-weight:600; font-size:14.5px;}
+.papers .p a:hover{text-decoration:underline;}
+.papers .m{font-size:12.5px; color:var(--ink2); margin-top:3px;}
+.papers .empty{background:var(--paper2); border:1px dashed var(--line); border-radius:10px; padding:14px 16px; font-size:13.5px; color:var(--ink2);}
+.gloss{margin-top:14px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:14px;}
+.gloss dt{font-weight:700; margin-top:8px;}
+.gloss dt:first-child{margin-top:0;}
+.gloss dd{margin-left:18px; color:var(--ink2); font-size:13.5px;}
+.online{margin-top:16px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; font-size:14px;}
+.online a{color:var(--maroon); text-decoration:none;}
+.online a:hover{text-decoration:underline;}
+.online ul{margin:8px 0 0 20px;}
+.online li{margin-top:6px;}
+.online .hint{font-size:12.5px; color:var(--ink2); margin-top:8px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--maroon); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>数理逻辑与集合论讲义 <span class="sym">∩</span></h1>
+  <p class="sub">什么是可证明？命题与谓词逻辑、哥德尔定理、ZFC 公理、基数与序数、可计算性——完整讲义含定义、定理、证明、练习与真值表生成器。</p>
+  <p class="quote">「逻辑是数学的宪法，而集合论是数学的宇宙。」</p>
+</header>
+
+<div class="toc">
+  <b>本讲目录</b>
+  <ol>
+    <li><a href="#c1">命题逻辑</a></li>
+    <li><a href="#c2">谓词逻辑与量词</a></li>
+    <li><a href="#c3">证明系统与自然演绎</a></li>
+    <li><a href="#c4">哥德尔完备性定理</a></li>
+    <li><a href="#c5">哥德尔不完备定理</a></li>
+    <li><a href="#c6">集合论：ZFC 公理</a></li>
+    <li><a href="#c7">基数与序数</a></li>
+    <li><a href="#c8">选择公理、连续统假设与可计算性</a></li>
+        <li><a href="#c9a">深度：一阶谓词逻辑推理</a></li>
+    <li><a href="#c9b">深度：可数/不可数与对角线法</a></li>
+        <li><a href="#c9a">深度：哥德尔不完备定理</a></li>
+    <li><a href="#c9b">深度：力迫法初步</a></li>
+        <li><a href="#c9f">深度：哥德尔不完备性</a></li>
+    <li><a href="#c9g">深度：模型论初步</a></li>
+<li><a href="#c9c">深度：Curry–Howard 同构</a></li>
+    <li><a href="#c9">练习与自测</a></li>
+    <li><a href="#c10">术语表、在线资源与最新研究</a></li>
+  </ol>
+</div>
+
+<!-- ================= 第 1 章 ================= -->
+<div class="ch" id="c1">
+  <h2>1. 命题逻辑 <small>原子命题与连接词</small></h2>
+  <div class="def"><b>定义（语法）：</b>命题变量 p, q, r… 与连接词 ¬（非）、∧（且）、∨（或）、→（蕴含）、↔（等价）。公式递归构造。真值表给出语义。</div>
+  <div class="thm"><b>定理（逻辑等价）：</b>德摩根律 ¬(p∧q) ≡ ¬p∨¬q；蕴含改写 p→q ≡ ¬p∨q；逆否 (p→q) ≡ (¬q→¬p)。<div class="proof"><b>证明要点：</b>真值表逐行比较——语义等价的定义。</div></div>
+  <div class="thm"><b>定理（范式定理）：</b>每个公式等价于合取范式（CNF）与析取范式（DNF）。<div class="proof"><b>证明要点：</b>按真值表的 1 行造 DNF（每行取真析取），0 行造 CNF（每行取假合取）。</div></div>
+  <div class="thm"><b>定理（可满足性）：</b>SAT（判断公式是否可满足）是第一个被证明的 NP 完全问题（库克 1971）。<div class="proof"><b>意义：</b>命题逻辑的推理困难度 = 整个计算复杂性理论的核心——P vs NP 的中心舞台。</div></div>
+  <div class="ex"><b>例：</b>「若天下雨则地湿」p→q 的逆否是「若地不湿则天没下雨」——等价，但「逆」（q→p）与「否」（¬p→¬q）不等价（常见谬误）。</div>
+</div>
+
+<!-- ================= 第 2 章 ================= -->
+<div class="ch" id="c2">
+  <h2>2. 谓词逻辑与量词 <small>「所有」与「存在」</small></h2>
+  <div class="def"><b>定义：</b>谓词 P(x)、量词 ∀（所有）、∃（存在）、个体域。公式：∀x(P(x)→Q(x))。自由/约束变量。</div>
+  <div class="thm"><b>定理（量词对偶）：</b>¬∀x φ ≡ ∃x ¬φ；¬∃x φ ≡ ∀x ¬φ。<div class="proof"><b>证明要点：</b>「并非所有人及格」=「有人不及格」——量词的德摩根律。</div></div>
+  <div class="thm"><b>定理（前束范式）：</b>每个谓词公式等价于量词在前、无量词主体在后的形式。<div class="proof"><b>证明要点：</b>量词提到前面并重命名避免碰撞——分析学的ε-δ定义正是 ∀ε∃δ 的前束形式。</div></div>
+  <div class="ex"><b>例：</b>「连续」的 ε-δ：∀ε&gt;0 ∃δ&gt;0 ∀x(|x−a|&lt;δ → |f(x)−f(a)|&lt;ε)——量词顺序不可交换（∃δ∀x 与 ∀x∃δ 天差地别）。</div>
+</div>
+
+<!-- ================= 第 3 章 ================= -->
+<div class="ch" id="c3">
+  <h2>3. 证明系统与自然演绎 <small>从公理出发的「推理游戏」</small></h2>
+  <div class="def"><b>定义（证明）：</b>从公理与假设出发，用推理规则（如肯定前件 modus ponens：φ, φ→ψ ⊢ ψ；全称引入/消去）逐步推导出结论。证明是有限的符号序列。</div>
+  <div class="thm"><b>定理（自然演绎的规则完备性）：</b>命题逻辑的规则（∧引入/消去、∨引入/消去、→引入/消去、¬引入/消去、反证法）足以证明全部重言式。<div class="proof"><b>例：</b>→引入即「假设 p 推出 q，则 p→q」——数学证明中的「假设-推出」段落就是它。</div></div>
+  <div class="ex"><b>例：</b>证明 p→q, q→r ⊢ p→r（三段论）。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>假设 p；由 p→q 得 q（肯定前件）；由 q→r 得 r；→引入消去假设 → p→r。</div></details></div>
+</div>
+
+<!-- ================= 第 4 章 ================= -->
+<div class="ch" id="c4">
+  <h2>4. 哥德尔完备性定理 <small>「可证」与「为真」重合</small></h2>
+  <div class="thm"><b>定理（哥德尔完备性定理，1930）：</b>一阶逻辑中，Γ ⊨ φ（模型论上为真）⟺ Γ ⊢ φ（可证）。<div class="proof"><b>证明要点：</b>哥德尔构造「亨金模型」：把一致的理论扩张成完全一致的理论，用项构造模型——「无矛盾 ⟹ 有模型」。这正是「一致性 = 模型存在性」。</div></div>
+  <div class="thm"><b>定理（紧致性定理）：</b>Γ 有模型 ⟺ Γ 的每个有限子集有模型。<div class="proof"><b>证明要点：</b>完备性 + 证明的有限性。推论：若「每个有限子图可着色」，则整体可着色——紧致性是模型论的引擎。</div></div>
+  <div class="ex"><b>例：</b>非标准自然数存在（含无穷大元素的「自然数」模型）——由紧致性：在 ℕ 的公理上加「c &gt; n」对每个 n，任意有限子集有模型。</div>
+</div>
+
+<!-- ================= 第 5 章 ================= -->
+<div class="ch" id="c5">
+  <h2>5. 哥德尔不完备定理 <small>数学的边界</small></h2>
+  <div class="thm"><b>定理（第一不完备定理，1931）：</b>任何包含算术的、递归可公理化的、一致的形式系统，存在既不可证也不可否证的命题。<div class="proof"><b>证明要点（自指）：</b>① 把公式编号（哥德尔编码）——「公式」变成自然数；② 算术可以表达「公式 n 可证」；③ 构造命题 G：「G 不可证」——若 G 可证则矛盾，若 ¬G 可证则系统不一致。G 独立。</div></div>
+  <div class="thm"><b>定理（第二不完备定理）：</b>这样的系统无法证明自身的一致性。<div class="proof"><b>证明要点：</b>把第一定理形式化进系统内部：系统若证明「我一致」，就能构造出「我一致 → G」的证明 → 矛盾。</div></div>
+  <div class="thm"><b>定理（塔斯基不可定义性）：</b>算术真理性不能在系统内部定义。<div class="proof"><b>证明要点：</b>「真」的定义若可表达，用自指构造说谎者悖论：「这个句子不真」。</div></div>
+  <div class="ex"><b>例：</b>连续统假设 CH 独立于 ZFC（哥德尔 1940 证明一致、科恩 1963 证明也一致）——「既不能证明也不能否证」的最著名实例。</div>
+</div>
+
+<!-- ================= 第 6 章 ================= -->
+<div class="ch" id="c6">
+  <h2>6. 集合论：ZFC 公理 <small>数学的宇宙由公理划定</small></h2>
+  <div class="def"><b>定义（ZFC 九条公理）：</b>外延（相等的集合元素相同）、空集、配对、并集、幂集、无穷（存在无穷集）、分离（子集由公式定义）、替换、正则（无 ∈-环）。加上选择公理 AC。</div>
+  <div class="thm"><b>定理（罗素悖论的化解）：</b>「所有不含自身的集合」不能构成集合——因为会矛盾。<div class="proof"><b>证明要点：</b>R = {x : x ∉ x}：R ∈ R ⟺ R ∉ R，悖论。ZFC 用分离公理禁止「全集」与「罗素类」——只能从已有集合中分离子集。罗素悖论 1902 年重创了朴素集合论。</div></div>
+  <div class="thm"><b>定理（类与集合）：</b>真类（如全体集合 V、全体序数）不是集合——它们「太大」无法被 ZFC 容纳。<div class="proof"><b>直觉：</b>「所有集合的集合」若存在，由分离公理可造罗素集合 → 矛盾。类语言（NBG、MK）处理这种「大对象」。</div></div>
+  <div class="ex"><b>例：</b>自然数的冯·诺依曼构造：0 = ∅，1 = {0}，2 = {0,1}，……每个自然数 = 它前面所有自然数的集合。</div>
+</div>
+
+<!-- ================= 第 7 章 ================= -->
+<div class="ch" id="c7">
+  <h2>7. 基数与序数 <small>比较「无穷」的大小</small></h2>
+  <div class="def"><b>定义（等势）：</b>|A| = |B| ⟺ 存在双射。可数 = 与 ℕ 等势；连续统 = 与 ℝ 等势。</div>
+  <div class="thm"><b>定理（康托尔定理）：</b>|A| &lt; |P(A)|（幂集更大）。<div class="proof"><b>证明要点（对角线）：</b>假设双射 f: A → P(A)，造 D = {x : x ∉ f(x)}——D 的逆像 d 满足 d ∈ D ⟺ d ∉ D，矛盾。推论：ℝ 不可数（ℝ ≅ P(ℕ) 的一部分）；基数的层级无穷无尽：ℵ₀ &lt; ℵ₁ &lt; …</div></div>
+  <div class="thm"><b>定理（基数算术）：</b>ℵ₀ + ℵ₀ = ℵ₀；ℵ₀ × ℵ₀ = ℵ₀；2^ℵ₀ = c（连续统）；c × c = c。<div class="proof"><b>证明要点：</b>交错列举证明 ℕ×ℕ 可数；ℝ² 与 ℝ 等势（交错十进制）。「无穷加无穷还是那个无穷」直到取幂集才变大。</div></div>
+  <div class="def"><b>定义（序数）：</b>良序集的序型。序数 ω = 全体自然数的序型，ω+1 更大，ω·2、ω²、ω^ω、ε₀……序数的世界比基数更「陡」。</div>
+  <div class="ex"><b>例：</b>ℚ 与 ℤ 等势（都可数）；[0,1] 与 ℝ 等势；但 ℝ 与 ℚ 不等势（康托尔对角线）。</div>
+</div>
+
+<!-- ================= 第 8 章 ================= -->
+<div class="ch" id="c8">
+  <h2>8. 选择公理、连续统假设与可计算性 <small>数学的「自由意志」</small></h2>
+  <div class="thm"><b>定理（选择公理 AC）：</b>每个非空集族有选择函数。等价形式：良序定理、佐恩引理、乘积非空。<div class="proof"><b>争议：</b>AC 推出「存在不可测集合」（巴拿赫-塔斯基悖论：球可分成 5 块重组成两个同体积球——测度论视角的怪诞），但 AC 又等价于数学最常用工具（佐恩引理：任何线性空间有基、任何理想含于极大理想）。数学家接受它但有争议。</div></div>
+  <div class="thm"><b>定理（连续统假设 CH 独立）：</b>CH（ℵ₁ = 2^ℵ₀）与 ZFC 独立：哥德尔（L，可构造宇宙）证明 ZFC + CH 一致；科恩（力迫法）证明 ZFC + ¬CH 一致。<div class="proof"><b>意义：</b>这是「完备性定理之外」的又一座界碑——有些问题「数学公理体系根本不回答」，不是能力不够，而是问题本来就没有唯一答案。科恩 1966 年获菲尔兹奖。</div></div>
+  <div class="thm"><b>定理（停机问题不可判定）：</b>不存在判定「任意程序是否停机」的算法（图灵 1936）。<div class="proof"><b>证明要点（对角线）：</b>假设存在停机判定器 H(P)，构造程序 D 使 D 在「H 判定 D 不停机」时停机、反之不停机——D 的行为与其预言矛盾。图灵由此定义「可计算」=「图灵机可计算」，奠定计算机科学。</div></div>
+  <div class="ex"><b>例：</b>哥德尔不完全 ⟹ 图灵停机：若算术完全则可判定停机问题（可表达 + 可证）——两条「不可判定」道路殊途同归。</div>
+</div>
+
+<!-- ================= 第 9 章 ================= -->
+
+<!-- ================= 深度小节：一阶谓词逻辑推理 ================= -->
+<div class="ch" id="c9a">
+  <h2>9a. 深度：一阶谓词逻辑推理 <small>自然演绎的量词规则与一个完整证明</small></h2>
+
+  <div class="def"><b>定义（一阶公式）</b> 项由变量、常量与函数符号递归构成；原子公式为谓词 $P(t_1,\dots,t_n)$；公式由原子公式经 $\neg,\wedge,\vee,\to$ 与量词 $\forall x,\exists x$ 递归构成。变量在 $\forall x$ 或 $\exists x$ 辖域内即被约束。</div>
+
+  <div class="thm"><b>定理（量词的自然演绎规则）</b>
+  <ul style="margin:6px 0 0 20px;">
+    <li>$(\forall\text{-引入})$：若对任意 $c$（$c$ 不在前提中出现过）证得 $\varphi(c)$，则 $\forall x\,\varphi(x)$。</li>
+    <li>$(\forall\text{-消去})$：由 $\forall x\,\varphi(x)$ 与任意项 $t$ 得 $\varphi(t)$。</li>
+    <li>$(\exists\text{-引入})$：由 $\varphi(t)$ 得 $\exists x\,\varphi(x)$。</li>
+    <li>$(\exists\text{-消去})$：由 $\exists x\,\varphi(x)$，取新常量 $c$ 假设 $\varphi(c)$ 证得 $\psi$（$c$ 不在 $\psi$ 中自由），则 $\psi$。</li>
+  </ul>
+  全称量词与存在量词互为对偶：$\neg\forall x\,\varphi \Leftrightarrow \exists x\,\neg\varphi$。</div>
+
+  <div class="ex"><b>例：</b>从 $\forall x\,(P(x) \to Q(x))$ 与 $\exists x\,P(x)$ 推出 $\exists x\,Q(x)$（三段论）。
+  <div class="sol"><b>证明：</b>
+  ① 由 $\exists x\,P(x)$，取新常量 $c$ 假设 $P(c)$。
+  ② 由 $\forall x\,(P(x)\to Q(x))$，全称消去到 $c$ 得 $P(c) \to Q(c)$。
+  ③ 由 ①② 与肯定前件得 $Q(c)$。
+  ④ 由 $Q(c)$ 存在引入得 $\exists x\,Q(x)$。
+  ⑤ ③ 的 $c$ 已在 $\exists$-消去中被卸除，结论 $\exists x\,Q(x)$ 不再依赖 $c$。QED。</div></div>
+</div>
+
+<!-- ================= 深度小节：可数/不可数与对角线法 ================= -->
+<div class="ch" id="c9b">
+  <h2>9b. 深度：可数、不可数与康托对角线法 <small>「实数比自然数多」的严格证明</small></h2>
+
+  <div class="def"><b>定义（可数）</b> 集合 $A$ 可数，若存在单射 $f: A \to \mathbb{N}$（或等价地满射 $g: \mathbb{N} \to A$）。有限集或可与 ℕ 一一对应的集合皆可数。</div>
+
+  <div class="thm"><b>定理（Cantor 1874）</b> $\mathbb{R}$ 不可数。事实上，$2^{\mathbb{N}}$（ℕ 的所有子集）不可数，$|2^{\mathbb{N}}| \gt |\mathbb{N}|$。更一般地，对任意集合 $A$，$|A| \lt |2^A|$（Cantor 定理）。</div>
+
+  <div class="proof"><b>证明思路（对角线法）：</b>
+  反设 $2^{\mathbb{N}}$ 可数，枚举 $A_1, A_2, A_3, \dots$。构造「对角集」
+  $$D = \{ n \in \mathbb{N} : n \notin A_n \}.$$
+  对每个 $k$：若 $k \in A_k$ 则 $k \notin D$；若 $k \notin A_k$ 则 $k \in D$。故 $D \neq A_k$（在第 $k$ 个元素上不同）。但 $D \subseteq \mathbb{N}$ 应当在枚举中，矛盾。故 $2^{\mathbb{N}}$ 不可数。实数与 $2^{\mathbb{N}}$ 等势（二进制小数，排除 $0.0111\cdots = 0.1000\cdots$ 少数可数重复），故 ℝ 不可数。</div>
+
+  <div class="ex"><b>例：</b>证明「所有从 ℕ 到 ℕ 的函数」不可数。
+  反设可数枚举 $f_1, f_2, \dots$。构造对角线函数 $d(n) = f_n(n) + 1$。对任意 $k$，$d(k) = f_k(k)+1 \neq f_k(k)$，故 $d \neq f_k$。但 $d: \mathbb{N} \to \mathbb{N}$ 应在枚举中，矛盾。故此类函数集合不可数。
+  <div class="sol"><b>注：</b>对角线法的本质是「构造一个与表中每一行在第 $n$ 个位置都不同的对象」——这是哥德尔不完备定理与停机证明的共同骨架。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9a. 深度：哥德尔不完备定理 ================= -->
+<div class="ch" id="c9d">
+  <h2>9a. 深度：哥德尔不完备定理 <small>足够强的形式系统必含不可判定的真命题</small></h2>
+  <div class="thm"><b>定理（第一不完备定理，Gödel 1931）</b> 任何包含算术的相容、递归可公理化形式系统 $T$ 中，存在命题 $G$ 使 $T\nvdash G$ 且 $T\nvdash\neg G$。<div class="proof"><b>思路（自指 + 对角）：</b>用哥德尔编码把「证明」算术化；构造 $G$ 等于「我在 $T$ 中不可证」（$G\iff\neg\mathrm{Prov}(\ulcorner G\urcorner)$）。若 $T\vdash G$，则 $T$ 证了「$G$ 不可证」——$T$ 不相容；若 $T\vdash\neg G$，则 $T$ 证了「$G$ 可证」——同样矛盾。</div></div>
+  <div class="thm"><b>定理（第二不完备定理）</b> 在上述条件下，$T$ 不能证明自身的相容性（$T\nvdash\mathrm{Con}(T)$）。<div class="proof"><b>意义：</b>希尔伯特「用有限方法证明数学相容性」的纲领被根本性地否定——数学无法自证清白。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9b. 深度：力迫法初步 ================= -->
+<div class="ch" id="c9e">
+  <h2>9b. 深度：力迫法初步 <small>构造 ZFC 的不同模型，让连续统假设独立</small></h2>
+  <div class="thm"><b>定理（Cohen 1963）</b> 连续统假设 $\mathrm{CH}$（$\aleph_1=2^{\aleph_0}$）与 ZFC 相对相容，且其否定也与 ZFC 相对相容——即 $\mathrm{CH}$ 独立于 ZFC。<div class="proof"><b>思路（力迫法）：</b>从可数传递模型 $M$ 出发，构造「Generic 扩张」$M[G]$，加入 $\aleph_2$ 个新实数使 $2^{\aleph_0}\ge\aleph_2$，从而 $\neg\mathrm{CH}$ 在 $M[G]$ 成立。对偶地，Gödel 1938 用可构造宇宙 $L$ 证 $\mathrm{CH}$ 在 $L$ 成立。</div></div>
+  <div class="ex"><b>例：</b>力迫法把「真不真」从「证不证」分开：CH 在某些模型真、某些模型假，但 ZFC 既不能证也不能否证——这是「数学多元宇宙」的形式化。</div>
+</div>
+
+
+<!-- ================= 深度小节：9c. 深度：Curry–Howard 同构 ================= -->
+<div class="ch" id="c9c">
+  <h2>9c. 深度：Curry–Howard 同构 <small>命题即类型，证明即程序</small></h2>
+  <div class="thm"><b>定理（Curry–Howard）</b> 直觉主义逻辑中，命题 $\to$ 类型，蕴含 $A\Rightarrow B$ $\to$ 函数类型 $A\to B$，合取 $\to$ 积类型，析取 $\to$ 和类型，否定 $\to$ 函数类型到空类型。证明 $\to$ 程序（项）。<div class="proof"><b>例：</b>$A\Rightarrow A$ 的证明 $\lambda x.x$（恒等函数）；$A\Rightarrow(B\Rightarrow A)$ 的证明 $\lambda x.\lambda y.x$（K 组合子）。每个逻辑证明都对应一个 λ-项。</div></div>
+  <div class="thm"><b>定理（扩展：经典逻辑）</b> 加 call/cc 或 Peirce 律可将 Curry–Howard 扩展至经典逻辑，对应 deliminated continuation——「排中律」=「抛出续体」。<div class="proof"><b>意义：</b>编程语言的控制流（异常、协程、call-cc）与经典逻辑的排中律同源。证明助手（Coq, Lean, Agda）基于此把数学证明形式化为可验证程序——Lean 的数学库在 2024 年完整形式化了 Scholze 的凝聚态数学。</div></div>
+</div>
+
+
+<!-- ================= 第二轮深度小节：9f. 深度：哥德尔不完备性定理 ================= -->
+<div class="ch" id="c9f">
+  <h2>9f. 深度：哥德尔不完备性定理 <small>充分强的形式系统不能自证完备</small></h2>
+  <div class="def"><b>定义（形式系统）</b> 一阶算术 $\mathsf{PA}$：语言 $L=\{0,S,+\cdot,\lt\}$；Peano 公理含归纳模式 $\varphi(0)\wedge\forall x(\varphi(x)\to\varphi(Sx))\Rightarrow\forall x\varphi(x)$。$\mathsf{PA}$ 可编码语法（Gödel 编号 $\ulcorner\varphi\urcorner\in\mathbb N$）。</div>
+  <div class="thm"><b>定理（第一不完备性定理 Gödel 1931）</b> 任何包含 $\mathsf{PA}$ 的递归可公理化一致 $T$ 存在不可判定的算术句 $G_T$：$T\nvdash G_T$ 且 $T\nvdash\neg G_T$。<div class="proof"><b>思路：</b>构造自指句 $G\leftrightarrow\ulcorner\neg\mathrm{Prov}_T(\ulcorner G\urcorner)\urcorner$（「我不可证」）。若 $T\vdash G$ 则 $T$ 不一致；若 $T\vdash\neg G$ 则 $T$ 不一致（假设 $\omega$-一致）。故 $G$ 不可判定。</div></div>
+  <div class="thm"><b>定理（第二不完备性定理）</b> 在 $T$ 一致前提下，$T$ 不能证明自身的「Con(T)」（形式一致性陈述）。即 $T\vdash\mathrm{Con}(T)\Rightarrow T$ 不一致。<div class="proof"><b>思路：</b>第一定理可在 $T$ 内形式化：「若 $T$ 一致则 $G$ 不可证」，即 $T\vdash\mathrm{Con}(T)\to\neg\mathrm{Prov}(\ulcorner G\urcorner)$。但 $T\vdash G\leftrightarrow\neg\mathrm{Prov}(\ulcorner G\urcorner)$。故 $T\vdash\mathrm{Con}(T)\to G$；若 $T\vdash\mathrm{Con}(T)$ 则 $T\vdash G$——与第一定理矛盾。</div></div>
+  <div class="ex"><b>例：</b>连续统假设 CH 与 ZFC。
+  <div class="sol"><b>解：</b>Gödel 1938 用可构成集 $L$ 证 $\mathrm{ZFC}+\mathrm{CH}$ 相对一致（若 ZFC 一致，则 ZFC+CH 一致）；Cohen 1963 用力迫法证 $\mathrm{ZFC}+\neg\mathrm{CH}$ 相对一致。故 CH 在 ZFC 中不可判定——这是不完备性定理在具体问题上的实现。</div></div>
+</div>
+
+<!-- ================= 第二轮深度小节：9g. 深度：模型论初步——紧致性与 LST 定理 ================= -->
+<div class="ch" id="c9g">
+  <h2>9g. 深度：模型论初步——紧致性与 LST 定理 <small>把语法与语义对齐</small></h2>
+  <div class="def"><b>定义（理论的可满足性）</b> 一阶语言 $L$ 的理论 $T$ 是 $L$-句的集合。$T$ 有模型 $\mathfrak M\models T$ 若 $\mathfrak M$ 满足 $T$ 的每条公理。$T\models\varphi$ 表示 $T$ 的所有模型都满足 $\varphi$。</div>
+  <div class="thm"><b>定理（紧致性定理）</b> $T$ 有模型当且仅当每个有限子集 $T_0\subseteq T$ 有模型。<div class="proof"><b>思路：</b>由 Gödel 完备性：$T$ 有模型 $\Leftrightarrow$ $T$ 一致 $\Leftrightarrow$ 每有限子集一致（证明有限）。紧致性是「无穷的有限近似」——一阶逻辑独有，二阶逻辑失效。</div></div>
+  <div class="thm"><b>定理（Löwenheim–Skolem–Tarski）</b> 可数语言 $L$ 的理论 $T$ 有模型当且仅当有可数模型；若 $T$ 有无穷模型，则对任意 $\kappa\ge|L|$ 存在势 $\kappa$ 的模型。<div class="proof"><b>意义：</b>「Skolem 悖论」：ZFC 有可数模型 $\mathfrak M$，但 $\mathfrak M\models$ 「存在不可数集」——「不可数」在 $\mathfrak M$ 内讲，外部看却可数。一阶逻辑无法控制「真正的」势。</div></div>
+  <div class="ex"><b>例：</b>用紧致性证存在 $\mathbb N$ 的非标准模型。
+  <div class="sol"><b>解：</b>添加常量 $c$ 与公理 $c>\underbrace{S\cdots S}_{n}0$（$n\in\mathbb N$）。每个有限子集有界 $n\le N$，故 $\mathbb N$ 本身（取 $c=N+1$）满足；但全体理论要求 $c$ 大于每个标准自然数——存在性由紧致性，这种模型即非标准分析的超实数雏形。</div></div>
+</div>
+
+<div class="ch" id="c9">
+  <h2>9. 练习与自测</h2>
+  <div class="ex"><b>练习 1：</b>写出 ¬(p∨q) 的等价形式。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>¬p ∧ ¬q（德摩根律）。</div></details></div>
+  <div class="ex"><b>练习 2：</b>p→q 与 q→p 逻辑等价吗？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>不等价。p=T, q=F 时 p→q 假而 q→p 真。「逆命题」谬误。</div></details></div>
+  <div class="ex"><b>练习 3：</b>「存在一个数，对所有数都更大」——形式化并判断真伪。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>∃x ∀y (y ≤ x)——在自然数中假（没有最大自然数）；若域含无穷大则真。量词顺序决定含义。</div></details></div>
+  <div class="ex"><b>练习 4：</b>为什么「所有集合的集合」不是集合？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>若是集合 V，则 {x ∈ V : x ∉ x} 是子集（分离公理），引出罗素悖论——矛盾。</div></details></div>
+  <div class="ex"><b>练习 5：</b>证明 ℤ 可数。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>双射：0→0, 1→1, 2→−1, 3→2, 4→−2, …（n → (n 为偶 ? n/2 : −(n−1)/2)）。</div></details></div>
+  <div class="ex"><b>练习 6：</b>第一不完备定理的 G 命题「G 不可证」——G 在系统内为真吗？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>G 为真（若系统一致）：G 说的正是「G 不可证」，而 G 确实不可证——所以 G 是真的但不可证。真 ≠ 可证。</div></details></div>
+</div>
+
+<!-- ================= 第 10 章 ================= -->
+
+  <div class="ex"><b>练习 7：</b>哥德尔第一不完备定理对 PA（皮亚诺算术）意味着什么？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>PA 是相容、递归可公理化、含算术的，故存在 PA 中不可判定的命题——Goodstein 定理（1982 年 Kirby/Paris 证明独立于 PA）就是这样的例子。</div></details></div>
+
+  <div class="ex"><b>练习 8：</b>连续统假设 $2^{\aleph_0}=\aleph_1$ 在 ZFC 中的地位？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>独立：Gödel 1938 证 ZFC + CH 相容；Cohen 1963 证 ZFC + $\neg$CH 相容。CH 既不可证也不可否证。</div></details></div>
+
+  <div class="ex"><b>练习 9：</b>Curry–Howard 下，$A\wedge B\Rightarrow A$ 的证明是什么程序？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\lambda\langle x,y\rangle.x$——积类型的第一个投影。逻辑上是从 $A$ 且 $B$ 推 $A$；程序上是取二元组的左分量。</div></details></div>
+
+  <div class="ex"><b>练习 10：</b>为什么排中律 $A\vee\neg A$ 在直觉主义逻辑不成立？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>直觉主义把析取视为「已构造的证明」，而经典逻辑把排中律视为公理。Curry–Howard 下，$A\vee\neg A$ 的项需要「知道 $A$ 或 $\neg A$ 哪个」——但不存在这样的统一算法（判定任意命题真值不可计算）。</div></details></div>
+
+  <div class="ex"><b>练习 11：</b>哥德尔第一不完备性定理中，$G_T$ 说的是什么？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$G_T$ 等价于「$G_T$ 在 $T$ 中不可证」——通过固定点引理（diagonalization）构造的自指句。它「谈论自己」的形式化版本。</div></details></div>
+  <div class="ex"><b>练习 12：</b>紧致性定理如何推出「一阶逻辑无法区分有限与无限」？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>若理论 $T=\{$「至少 $n$ 个元素」$:n\in\mathbb N\}$ 有模型，每有限子集有有限模型（$\ge N$ 个元素），但全体 $T$ 无有限模型——紧致性给无穷模型。但若想加一句「全体有限」不行：一阶无穷析取不合法。</div></details></div>
+
+<div class="ch" id="c10">
+  <h2>10. 术语表、在线资源与最新研究</h2>
+  <div class="gloss">
+    <dt>重言式 / 矛盾式</dt><dd>恒真 / 恒假公式。</dd>
+    <dt>模型</dt><dd>使公式为真的结构（域 + 解释）。</dd>
+    <dt>可判定性</dt><dd>是否存在算法判定公式是否可证。</dd>
+    <dt>力迫法</dt><dd>科恩发明的构造新模型技术（证明独立性）。</dd>
+    <dt>大基数</dt><dd>比 ℵ₀ 大得多的基数公理（可测基数、强紧基数）。</dd>
+    <dt>构造主义数学</dt><dd>只承认可构造对象（直觉主义逻辑）。</dd>
+    <dt>哥德尔编码</dt><dd>把形式语言符号算术化的注入；使「证明」自指。</dd>
+    <dt>力迫法</dt><dd>Cohen 1963 构造 ZFC 模型扩张的技巧；CH 独立性证明核心。</dd>
+    <dt>Curry–Howard</dt><dd>命题=类型、证明=程序；逻辑与计算的同构映射。</dd>
+  </div>
+  <div class="online">
+    <b>在线资源（需联网打开）</b>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Mathematical_logic" target="_blank" rel="noopener noreferrer">Wikipedia: Mathematical logic</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems" target="_blank" rel="noopener noreferrer">Wikipedia: Gödel's incompleteness theorems</a></li>
+      <li><a href="https://arxiv.org/list/math.LO/recent" target="_blank" rel="noopener noreferrer">arXiv 数理逻辑最新论文（math.LO）</a></li>
+      <li><a href="https://us.metamath.org" target="_blank" rel="noopener noreferrer">Metamath</a> —— 机器可验证的数学证明库</li>
+    </ul>
+    <p class="hint">本页「最新研究」区加载更新器每日抓取的 arXiv 数理逻辑（math.LO）最新论文。</p>
+  </div>
+  <div class="ch" style="margin-top:34px;">
+    <h2>本主题最新研究 <small>每日自动更新 · 来源 arXiv math.LO</small></h2>
+    <div class="papers" id="topicPapers">
+      <div class="empty">等待数据……若长时间未更新，请运行 <code>python 09-前沿动态/数学前沿更新器.py</code>。</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../02-核心主题/博弈论.html">博弈论讲义 →</a>
+  <a href="../03-经典难题/经典难题与猜想.html">千年难题 →</a>
+  <a href="../08-数学史/数学史时间线.html">数学史 →</a>
+</footer>
+</div>
+
+<script src="../09-前沿动态/论文数据.js"></script>
+<script>
+(function(){
+  var wrap = document.getElementById('topicPapers');
+  if(!wrap) return;
+  var papers = (typeof window.LBLB_PAPERS !== 'undefined' && window.LBLB_PAPERS['数理逻辑']) || [];
+  if(!papers.length){
+    wrap.innerHTML = '<div class="empty">暂无该主题最新论文数据（更新器尚未成功抓取或已离线）。运行 <code>数学前沿更新器.py</code> 后自动填充。</div>';
+    return;
+  }
+  var html = '';
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+  for(var i=0;i<papers.length;i++){
+    var p = papers[i];
+    html += '<div class="p"><a href="' + esc(p.link) + '" target="_blank" rel="noopener noreferrer">' + esc(p.title) + '</a>' +
+      '<div class="m">' + esc(p.author||'—') + ' · ' + esc(p.date||'') + '</div></div>';
+  }
+  wrap.innerHTML = html;
+})();
+</script>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

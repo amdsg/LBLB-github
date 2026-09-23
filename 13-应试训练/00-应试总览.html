@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>应试训练统一入口 · CMC / 考研 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='32' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%98%85%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+  --violet:#6B4E9E; --teal:#177E89; --magenta:#B0396E;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--gold); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:38px; margin:12px 0 6px;}
+h1 .sym{color:var(--gold); font-style:italic;}
+.sub{color:var(--ink2); font-size:15.5px; max-width:800px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:26px;}
+.card{border:1px solid var(--line); border-top:4px solid var(--c,var(--gold)); background:#fffdf6; border-radius:12px; padding:18px 20px; text-decoration:none; color:var(--ink); display:block; transition:transform .12s ease, box-shadow .12s ease;}
+.card:hover{transform:translateY(-3px); box-shadow:0 8px 24px rgba(34,38,43,.10);}
+.card h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; color:var(--c,var(--gold));}
+.card .p{font-size:13px; color:var(--ink2); margin-top:6px;}
+.card .hit{display:inline-block; margin-top:10px; font-size:12px; background:var(--c,var(--gold)); color:#fff; border-radius:999px; padding:2px 12px;}
+.badge{display:inline-block; margin-top:14px; font-size:12.5px; letter-spacing:1px; color:#fff; background:var(--red); border-radius:999px; padding:3px 14px;}
+.core{margin-top:26px; border:2px solid var(--gold); border-radius:14px; background:linear-gradient(180deg,#FBF3E4,#fffdf6); padding:22px 24px;}
+.core h2{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:24px; color:var(--gold);}
+.core .lead{font-size:14.5px; color:var(--ink2); margin-top:6px; max-width:760px;}
+.core .modes{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-top:16px;}
+.mode{display:block; border:1px solid var(--line); border-radius:12px; background:#fffdf6; padding:16px 18px; text-decoration:none; color:var(--ink); transition:transform .12s ease, box-shadow .12s ease;}
+.mode:hover{transform:translateY(-3px); box-shadow:0 8px 24px rgba(34,38,43,.12);}
+.mode .mt{font-family:Georgia,"Noto Serif SC",serif; font-size:18px; color:var(--blue);}
+.mode .mp{font-size:13px; color:var(--ink2); margin-top:5px;}
+.mode .go{display:inline-block; margin-top:10px; font-size:12.5px; color:#fff; background:var(--blue); border-radius:999px; padding:2px 12px;}
+.mode.alt .mt{color:var(--teal);} .mode.alt .go{background:var(--teal);}
+.tbl{margin-top:14px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px; table-layout:fixed;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--gold); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.warn{background:#FDEDE8; border:1px solid #EAC6B8; border-left:5px solid var(--red); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14px;}
+.warn b{color:var(--red);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--gold); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:30px;}
+}
+</style>
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true, processEnvironments: true, processRefs: true }, options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code','option'] }, svg: { fontCache: 'local' }, startup: { typeset: true } };
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>应试训练 · 总览 <span class="sym">★</span></h1>
+  <span class="badge">统一入口 2026-09-18</span>
+  <p class="sub">把 LBLB 从「知识库」升级为「武器库」：两轨应试体系（CMC 全国大学生数学竞赛 / 考研数学），每条轨道给出考点地图、必背清单、核心技巧与真题级训练。目标：不是了解数学，而是考得赢。</p>
+  <p class="quote">「考试数学和数学本身是两回事——考试考的是熟练度、套路与稳定性。」</p>
+</header>
+
+
+<div class="cards">
+  <a class="card" style="--c:var(--red)" href="01-CMC全国大学生数学竞赛.html">
+    <h3>01 CMC 全国大学生数学竞赛</h3>
+    <p class="p">非数学类全考点 + 竞赛技巧（夹逼放缩、中值定理构造、积分不等式五大方法、级数求和）、真题精选详解、冲击国一的训练计划。</p>
+    <span class="hit">目标：国一 / 省一</span>
+  </a>
+  <a class="card" style="--c:var(--blue)" href="02-考研数学-高等数学强化.html">
+    <h3>02 考研数学 · 高等数学强化</h3>
+    <p class="p">数一/数二/数三大纲高数全覆盖：高频考点命中表、必背公式、真题风格题型、易错点清单。</p>
+    <span class="hit">目标：120+</span>
+  </a>
+  <a class="card" style="--c:var(--violet)" href="03-考研数学-线性代数与概率强化.html">
+    <h3>03 考研数学 · 线代与概率强化</h3>
+    <p class="p">线性代数（行列式/矩阵/秩/方程组/特征值/二次型）与概率统计（一维二维随机变量/数字特征/大数定律/数理统计）考点+题型。</p>
+    <span class="hit">目标：两门不失分</span>
+  </a>
+  <a class="card" style="--c:var(--teal)" href="05-真题模拟卷.html">
+    <h3>05 真题整卷训练</h3>
+    <p class="p">收录公开真题与模拟卷，按专升本、考研、CMC、练习题四类整理；整卷限时作答，查看官方过程后按步骤自评并记录得分。</p>
+    <span class="hit">目标：每卷独立完成</span>
+  </a>
+  <a class="card" style="--c:var(--blue)" href="06-真实单题训练.html">
+    <h3>06 真实单题训练</h3>
+    <p class="p">专升本按地区、考研按数一/数二/数三、CMC 与练习题分轨；每题显示原始出处和难度，支持顺序、随机、专项、错题与限时练习。</p>
+    <span class="hit">目标：每日 20 题</span>
+  </a>
+  <a class="card" style="--c:var(--gold)" href="07-题库覆盖与来源.html">
+    <h3>07 覆盖与来源</h3>
+    <p class="p">逐省检查专升本公开真题，分轨核对数一、数二、数三，并逐届核对 CMC；授权不清或需要登录的内容只保留官方入口。</p>
+    <span class="hit">目标：来源可核验</span>
+  </a>
+</div>
+
+<div class="ch">
+  <h2>三轨对比与选择 <small>先确认你要考哪个</small></h2>
+  <div class="tbl"><table><colgroup><col style="width:20%"><col style="width:40%"><col style="width:40%"></colgroup>
+  <tr><th>维度</th><th>CMC 竞赛</th><th>考研数学</th></tr>
+  <tr><td>难度</td><td>高于考研，重技巧与证明</td><td>中等偏难，重计算与综合</td></tr>
+  <tr><td>核心能力</td><td>构造、放缩、不等式</td><td>计算准确率 + 题型识别</td></tr>
+  <tr><td>题量需求</td><td>刷竞赛真题 + 精做证明</td><td>真题 3 遍 + 模拟卷</td></tr>
+  <tr><td>本分区入口</td><td>01 页</td><td>02、03 页</td></tr>
+  <tr><td>通用底盘</td><td colspan="2">12-高等数学 七讲讲义（全部考试的共同基础）+ 05 刷题系统每日训练</td></tr>
+  </table></div>
+</div>
+
+<div class="ch">
+  <h2>通用复习引擎 <small>三条轨道都适用的方法论</small></h2>
+  <div class="thm"><b>定理（三轮复习法）：</b>第一轮（地基）：跟 12-高等数学 讲义逐章过，每天 6 题基础题保手感；第二轮（题型）：按考点分类刷题，每类题总结「识别标志 → 解题套路 → 易错点」三步卡；第三轮（套卷）：限时整套，按考试标准计时，训练时间分配。<div class="proof"><b>推荐时间配比：</b>地基 30% / 题型 45% / 套卷 25%。</div></div>
+  <div class="thm"><b>定理（错题本的正确用法）：</b>错题不是抄题，而是写「错因 + 正确标志 + 一句话解法」。每周回刷错题本；连续两周没错过的题才能删。<div class="proof"><b>错因三分法：</b>计算错（练速度）/ 方法错（补题型）/ 概念错（回讲义重读）。</div></div>
+  <div class="warn"><b>警示：</b>「看懂了」不等于「会做了」。看懂例题后必须合上答案重做；每一道真题至少独立做两遍。刷题系统的价值就在于此——把被动看变成主动练。</div>
+</div>
+
+<div class="ch">
+  <h2>每日作战表 <small>四小时高效方案</small></h2>
+  <div class="tbl"><table><colgroup><col style="width:20%"><col style="width:50%"><col style="width:30%"></colgroup>
+  <tr><th>时段</th><th>内容</th><th>产出</th></tr>
+  <tr><td>45 min</td><td>限时刷题（刷题系统 10–15 题）</td><td>错题自动入错题本</td></tr>
+  <tr><td>90 min</td><td>当前轨道专题（竞赛技巧/考研题型）</td><td>笔记 1 页 + 例题 4 道</td></tr>
+  <tr><td>60 min</td><td>回刷错题本 + 复习昨日专题</td><td>错题清零 3–5 道</td></tr>
+  <tr><td>45 min</td><td>阅读讲义章节 + 整理考点卡</td><td>考点卡 1 张</td></tr>
+  </table></div>
+</div>
+
+<div class="ch">
+  <h2>能力自检清单 <small>考前两周逐项打钩</small></h2>
+  <div class="thm"><b>必背清单（打钩项）：</b>□ 等价无穷小表（10 条）□ 基本导数公式（12 条）□ 基本积分公式（16 条）□ 六个麦克劳林展开 □ 三大中值定理叙述与使用条件 □ 二阶常系数方程通解三种情形 □ 格林/高斯/斯托克斯公式条件与用途 □ 线代：秩的性质、特征值性质、二次型正定判据 □ 概率：全概率/贝叶斯、常见分布表、中心极限定理条件。</div>
+  <div class="warn"><b>警示：</b>每一行必须能在 30 秒内默写或叙述完整，做不到的回到对应讲义页重学，再回刷题系统针对性练。</div>
+</div>
+
+
+<div class="sec">
+  <h2>各考试差异与备考策略</h2>
+  <table class="tbl">
+    <thead><tr><th>考试</th><th>难度</th><th>核心策略</th></tr></thead>
+    <tbody>
+      <tr><td>CMC（数学类）</td><td>★★★★★</td><td>竞赛思维，重视证明与构造，多刷裴礼文《数学分析中的典型问题》</td></tr>
+      <tr><td>CMC（非数学类）</td><td>★★★★</td><td>高数为主，技巧性强，填空争取满分</td></tr>
+      <tr><td>考研数学一</td><td>★★★★</td><td>高数+线代+概率，覆盖面广，真题为主</td></tr>
+      <tr><td>考研数学二</td><td>★★★</td><td>高数+线代，不考概率，计算量大</td></tr>
+      <tr><td>考研数学三</td><td>★★★</td><td>经济类，难度略低于数一，重视应用</td></tr>
+
+    </tbody>
+  </table>
+</div>
+
+<div class="ch">
+  <h2>命题规律与高频考点 <small>从历年真题反推重点</small></h2>
+  <div class="thm"><b>定理（高频恒定律）：</b>对近 15 年考研真题与 CMC 真题做考点频次统计，会发现约 20% 的考点承载了 80% 的分值。极限计算、中值定理构造、级数判敛、线代方程组、二维随机变量这五大块几乎每年必考，合计占总分的 $65\% \pm 5\%$。<div class="proof"><b>数据支撑：</b>考研数学一 2010–2024 共 15 套卷，高数部分出现「中值定理」相关大题 12 次，「级数求和/展开」11 次，「多元极值/条件极值」10 次。</div></div>
+  <div class="tbl"><table><colgroup><col style="width:22%"><col style="width:26%"><col style="width:26%"><col style="width:26%"></colgroup>
+  <tr><th>高频考点</th><th>考研出现率</th><th>CMC 出现率</th></tr>
+  <tr><td>等价无穷小与 Taylor 展开</td><td>$\sim 95\%$</td><td>$\sim 90\%$</td><td>$\sim 70\%$</td></tr>
+  <tr><td>中值定理 / 积分等式</td><td>$\sim 80\%$</td><td>$\sim 85\%$</td><td>$\sim 30\%$</td></tr>
+  <tr><td>级数判敛与求和</td><td>$\sim 73\%$</td><td>$\sim 80\%$</td><td>$\sim 25\%$</td></tr>
+  <tr><td>线性方程组 + 矩阵秩</td><td>$\sim 87\%$</td><td>—</td><td>—</td></tr>
+  <tr><td>二维随机变量 / 期望方差</td><td>$\sim 80\%$</td><td>—</td><td>—</td></tr>
+  </table></div>
+  <div class="warn"><b>警示：</b>「冷门考点」不等于「不考」。每隔 3–5 年会轮换一次冷门（如 2020 年考研数一突然考了斯托克斯公式的应用题），押宝式放弃冷门会损失 8–15 分。建议对冷门至少做到「能写出公式 + 识别题型」的程度。</div>
+</div>
+
+<div class="ch">
+  <h2>心理训练与临场策略 <small>真正拉开差距的是稳定性</small></h2>
+  <div class="thm"><b>定理（三段式心态）：</b>考试 180 分钟分为三段：前 30 分钟「热身期」做选择填空稳住手感；中 120 分钟「攻坚期」按由易到难的顺序做大题；后 30 分钟「收尾期」检查答题卡与涂卡、回头啃硬骨头。把会做的题做对，比啃难题多拿 5 分更划算。</div>
+  <div class="thm"><b>定理（卡题止损法则）：</b>任何一道题超过预定用时 1.5 倍仍无思路，立即跳过标记。整场考试中跳过的题不超过 3 道，否则说明基础不牢，应回到对应章节重学，而不是再多刷综合题。<div class="proof"><b>止损阈值：</b>选择填空 ≤ 6 分钟，常规大题 ≤ 15 分钟，压轴大题 ≤ 25 分钟。</div></div>
+  <div class="warn"><b>警示：</b>考场上的「顿悟」往往不是真的顿悟，而是潜意识在后台运行的结果。平时训练要把这种「等灵感」的依赖降到最低——把套路练到条件反射，灵感只用于加分题。</div>
+  <div class="thm"><b>定理（涂卡顺序）：</b>建议做完一个题型（如全部选择）就立即涂卡，而不是留到最后统一涂。理由：最后 5 分钟涂卡出错率是分段涂卡的 $3\times$；且万一时间失控，至少能保证已做题的卡已涂好。</div>
+</div>
+
+<div class="ch">
+  <h2>备考时间线与里程碑 <small>从现在到考场的节奏表</small></h2>
+  <div class="tbl"><table><colgroup><col style="width:18%"><col style="width:42%"><col style="width:40%"></colgroup>
+  <tr><th>阶段</th><th>主线任务</th><th>里程碑指标</th></tr>
+  <tr><td>打基期<br>考前 6–4 月</td><td>跟 12-高等数学 讲义逐章过；同步刷题系统基础题</td><td>每章正确率 $\geq 75\%$；必背清单全部过关</td></tr>
+  <tr><td>题型期<br>考前 4–2 月</td><td>按考点分类专项刷题；整理三步卡</td><td>每个高频考点积累 ≥ 10 题；三步卡 ≥ 30 张</td></tr>
+  <tr><td>套卷期<br>考前 2–1 月</td><td>限时整套真题；错题二刷</td><td>近 10 年真题整套做过；分数稳定 $\geq$ 目标分 - 10</td></tr>
+  <tr><td>冲刺期<br>考前 1–0 月</td><td>回刷错题本；记忆公式；模拟考场作息</td><td>错题本清零 ≥ 70%；公式 30 秒默写</td></tr>
+  </table></div>
+  <div class="thm"><b>定理（倒推法）：</b>先定考试日期，再倒推每个阶段的时间节点。例如距考试 90 天，则基期 30 天 / 题型期 35 天 / 套卷期 20 天 / 冲刺期 5 天。每个阶段结束时做一次完整的诊断测试，不达标就压缩下一阶段而非延长当前阶段——避免「地基没打好就硬上题型」。</div>
+  <div class="warn"><b>警示：</b>「再给我两周我一定能搞定」是考生最大的自我欺骗。把所有计划都按 80% 完成度估算，留出 20% 的缓冲给突发情况（生病、状态低谷、新发现的薄弱章节）。</div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="01-CMC全国大学生数学竞赛.html">下一页：CMC 竞赛 →</a>
+</footer>
+</div>
+<script>
+(function(){var el=document.createElement('div');el.id='mjx-offline-warn';el.style.cssText='display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:#fff3cd;color:#856404;padding:8px 16px;font:14px/1.6 sans-serif;text-align:center;';document.body.appendChild(el);var t0=Date.now();var iv=setInterval(function(){if(window.MathJax&&MathJax.version){clearInterval(iv);return;}if(Date.now()-t0>6000){clearInterval(iv);el.textContent='数学公式渲染组件未加载完成（本地离线 MathJax）：请确认 ../assets/mathjax 目录完整。';el.style.display='block';}},500);})();
+</script>
+
+</body>
+</html>

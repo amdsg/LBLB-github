@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>线性代数 · 自测题库 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3Eλ%3C/text%3E%3C/svg%3E">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+  svg: { fontCache: 'local' },
+  startup: { typeset: true }
+};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在（本页需与 assets 目录保持原有相对位置）。';document.currentScript.after(b);"></script>
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;
+  --blue:#1F4E9C;--teal:#177E89;--gold:#A8751E;--red:#C0392B;--green:#2E7D5B;--violet:#6B4C9A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.8;}
+button{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.kicker{font-size:11px;letter-spacing:.32em;color:var(--ink2);text-transform:uppercase;margin-top:22px;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:10px 0 8px;}
+h1 .sym{color:var(--blue);font-style:italic;}
+.sub{color:var(--ink2);font-size:15.5px;max-width:760px;}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.chip{background:#fffdf6;border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-size:12.5px;color:var(--ink2);}
+.chip b{color:var(--blue);}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:20px;padding:12px 16px;
+  background:#fffdf6;border:1px solid var(--line);border-radius:12px;}
+.bar .btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:13.5px;cursor:pointer;min-height:38px;}
+.bar .btn.gray{background:#8A8270;}
+.bar .note{font-size:12.5px;color:var(--ink2);}
+.toc{margin-top:22px;background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:16px 22px;font-size:14px;}
+.toc b{font-size:13.5px;}
+.toc ol{margin:8px 0 0 22px;column-count:2;column-gap:30px;}
+.toc a{color:var(--blue);text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.toc .tt{color:var(--ink2);font-size:12px;}
+.prob{background:#fffdf6;border:1px solid var(--line);border-left:5px solid var(--c,var(--blue));
+  border-radius:10px;padding:15px 18px;margin-top:16px;}
+.prob .head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:7px;}
+.prob .num{font-family:Georgia,serif;font-weight:700;font-size:15px;color:var(--c,var(--blue));letter-spacing:.04em;}
+.prob .lvl{font-size:11.5px;color:var(--gold);letter-spacing:.1em;}
+.prob .tags{font-size:11.5px;color:var(--ink2);margin-left:auto;}
+.prob .tgt{display:inline-block;font-size:11px;letter-spacing:.06em;color:#fff;background:var(--c,var(--blue));
+  border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:1px;}
+.prob .q{font-size:15px;}
+.prob details{margin-top:10px;border-top:1px dashed var(--line);padding-top:9px;}
+.prob summary{cursor:pointer;font-size:13.5px;color:var(--blue);user-select:none;display:inline-block;padding:3px 0;}
+.prob summary:hover{text-decoration:underline;}
+.prob .ans{margin-top:9px;font-size:14.5px;}
+.prob .ans b{color:var(--green);}
+.prob .sol{margin-top:8px;font-size:14px;color:var(--ink2);}
+.prob .sol b{color:var(--ink);}
+.prob .ver{margin-top:9px;font-size:11.5px;color:var(--ink2);border-top:1px dotted var(--line);padding-top:7px;}
+.prob .ver code{background:var(--paper2);border-radius:3px;padding:1px 5px;}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;color:var(--ink2);}
+footer code{background:var(--paper2);border-radius:4px;padding:1px 6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="index.html">← 返回题库总览</a>
+  <div class="kicker">LBLB · Self-Test Problem Bank</div>
+  <h1>线性代数 <span class="sym">λ</span></h1>
+  <p class="sub">行列式、秩、特征值是三根支柱；几乎所有结论都能回溯到这三者。</p>
+  <div class="stats"><span class="chip">入门 <b>4</b> 题</span><span class="chip">基础 <b>11</b> 题</span><span class="chip">进阶 <b>9</b> 题</span><span class="chip">较难 <b>2</b> 题</span><span class="chip">知识点 <b>25</b> 个</span></div>
+  <div class="bar">
+    <button class="btn" id="showAll">展开全部详解</button>
+    <button class="btn gray" id="hideAll">收起全部</button>
+    <span class="note">共 26 题 · 每题答案均由 sympy 符号计算验证</span>
+  </div>
+  <nav class="toc"><b>本页目录</b><ol>    <li><a href="#A01">A01</a> <span class="tt">行列式</span></li>
+    <li><a href="#A02">A02</a> <span class="tt">行列式</span></li>
+    <li><a href="#A03">A03</a> <span class="tt">特征值</span></li>
+    <li><a href="#A04">A04</a> <span class="tt">特征值</span></li>
+    <li><a href="#A05">A05</a> <span class="tt">矩阵乘法</span></li>
+    <li><a href="#A06">A06</a> <span class="tt">逆矩阵</span></li>
+    <li><a href="#A07">A07</a> <span class="tt">矩阵的秩</span></li>
+    <li><a href="#A08">A08</a> <span class="tt">线性相关</span></li>
+    <li><a href="#A09">A09</a> <span class="tt">线性方程组</span></li>
+    <li><a href="#A10">A10</a> <span class="tt">迹</span></li>
+    <li><a href="#A11">A11</a> <span class="tt">凯莱-哈密顿定理</span></li>
+    <li><a href="#A12">A12</a> <span class="tt">内积</span></li>
+    <li><a href="#A13">A13</a> <span class="tt">正定</span></li>
+    <li><a href="#A14">A14</a> <span class="tt">可对角化</span></li>
+    <li><a href="#A15">A15</a> <span class="tt">行列式性质</span></li>
+    <li><a href="#A16">A16</a> <span class="tt">转置性质</span></li>
+    <li><a href="#A17">A17</a> <span class="tt">特征向量</span></li>
+    <li><a href="#A18">A18</a> <span class="tt">秩-零化度</span></li>
+    <li><a href="#A19">A19</a> <span class="tt">齐次方程组</span></li>
+    <li><a href="#A20">A20</a> <span class="tt">矩阵幂</span></li>
+    <li><a href="#A21">A21</a> <span class="tt">对称矩阵</span></li>
+    <li><a href="#A22">A22</a> <span class="tt">向量范数</span></li>
+    <li><a href="#A23">A23</a> <span class="tt">行列式性质</span></li>
+    <li><a href="#A24">A24</a> <span class="tt">投影</span></li>
+    <li><a href="#A25">A25</a> <span class="tt">相似</span></li>
+    <li><a href="#A26">A26</a> <span class="tt">行列式</span></li></ol></nav>
+</header>
+<article class="prob" id="A01" style="--c:var(--blue)">
+<div class="head"><span class="num">A01</span><span class="lvl">★☆☆☆☆ 入门</span><span class="tags">行列式</span></div>
+<div class="q">计算 $\begin{vmatrix}1&2\\3&4\end{vmatrix}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$-2$</div>
+<div class="sol"><b>详解：</b>$1\cdot4-2\cdot3=4-6=-2$。</div>
+<div class="ver">入门：<code>eq(det(Matrix([[1,2],[3,4]])), -2)</code></div>
+</details>
+</article>
+<article class="prob" id="A02" style="--c:var(--teal)">
+<div class="head"><span class="num">A02</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">行列式</span></div>
+<div class="q">计算 $\begin{vmatrix}1&2&3\\4&5&6\\7&8&10\end{vmatrix}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$-3$</div>
+<div class="sol"><b>详解：</b>按第一行展开：$1(50-48)-2(40-42)+3(32-35)=2+4-9=-3$。</div>
+<div class="ver">基础：<code>eq(det(Matrix([[1,2,3],[4,5,6],[7,8,10]])), -3)</code></div>
+</details>
+</article>
+<article class="prob" id="A03" style="--c:var(--red)">
+<div class="head"><span class="num">A03</span><span class="lvl">★☆☆☆☆ 入门</span><span class="tags">特征值</span></div>
+<div class="q">求 $\begin{pmatrix}2&0\\0&3\end{pmatrix}$ 的特征值。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\lambda_1=2,\ \lambda_2=3$</div>
+<div class="sol"><b>详解：</b>对角矩阵的特征值就是对角元。也可由 $\lambda^{2}-5\lambda+6=0$ 解得。</div>
+<div class="ver">入门：<code>all(any(eq(v, k) for k in (2, 3)) for v in Matrix([[2,0],[0,3]]).eigenvals().keys())</code></div>
+</details>
+</article>
+<article class="prob" id="A04" style="--c:var(--gold)">
+<div class="head"><span class="num">A04</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">特征值</span></div>
+<div class="q">求 $\begin{pmatrix}1&2\\2&1\end{pmatrix}$ 的特征值。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\lambda_1=3,\ \lambda_2=-1$</div>
+<div class="sol"><b>详解：</b>$|\lambda I-A|=(\lambda-1)^{2}-4=0$，得 $\lambda=1\pm2$。</div>
+<div class="ver">基础：<code>all(any(eq(v, k) for k in (3, -1)) for v in Matrix([[1,2],[2,1]]).eigenvals().keys())</code></div>
+</details>
+</article>
+<article class="prob" id="A05" style="--c:var(--green)">
+<div class="head"><span class="num">A05</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">矩阵乘法</span></div>
+<div class="q">计算 $\begin{pmatrix}1&2\\3&4\end{pmatrix}\begin{pmatrix}0&1\\1&0\end{pmatrix}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\begin{pmatrix}2&1\\4&3\end{pmatrix}$</div>
+<div class="sol"><b>详解：</b>右乘交换矩阵相当于交换两列，故结果是把原矩阵两列对调。</div>
+<div class="ver">基础：<code>Matrix([[1,2],[3,4]])*Matrix([[0,1],[1,0]]) == Matrix([[2,1],[4,3]])</code></div>
+</details>
+</article>
+<article class="prob" id="A06" style="--c:var(--violet)">
+<div class="head"><span class="num">A06</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">逆矩阵</span></div>
+<div class="q">求 $\begin{pmatrix}1&2\\3&4\end{pmatrix}$ 的逆矩阵。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\begin{pmatrix}-2&1\\ \frac32&-\frac12\end{pmatrix}$</div>
+<div class="sol"><b>详解：</b>$A^{-1}=\frac{1}{|A|}A^{*}$，$|A|=-2$，伴随矩阵为 $\begin{pmatrix}4&-2\\-3&1\end{pmatrix}$。</div>
+<div class="ver">进阶：<code>eq(Matrix([[1,2],[3,4]]).inv(), Matrix([[-2, 1],[Rational(3,2), Rational(-1,2)]]))</code></div>
+</details>
+</article>
+<article class="prob" id="A07" style="--c:var(--blue)">
+<div class="head"><span class="num">A07</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">矩阵的秩</span></div>
+<div class="q">求 $\begin{pmatrix}1&2&3\\2&4&6\end{pmatrix}$ 的秩。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$1$</div>
+<div class="sol"><b>详解：</b>第二行是第一行的 2 倍，故秩为 1。</div>
+<div class="ver">基础：<code>eq(Matrix([[1,2,3],[2,4,6]]).rank(), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="A08" style="--c:var(--teal)">
+<div class="head"><span class="num">A08</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">线性相关</span></div>
+<div class="q">判断向量组 $(1,2,3)$、$(2,4,6)$ 是否线性相关。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>线性相关（第二个是第一个的 2 倍）</div>
+<div class="sol"><b>详解：</b>以它们为行作矩阵，秩为 1 $<2$，故线性相关。</div>
+<div class="ver">基础：<code>eq(Matrix([[1,2,3],[2,4,6]]).rank(), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="A09" style="--c:var(--red)">
+<div class="head"><span class="num">A09</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">线性方程组</span></div>
+<div class="q">解方程组 $\begin{cases}x+y=3\\ x-y=1\end{cases}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$x=2,\ y=1$</div>
+<div class="sol"><b>详解：</b>两式相加得 $2x=4$，故 $x=2$；代回得 $y=1$。</div>
+<div class="ver">基础：<code>zero((x+y-3).subs({x: 2, y: 1})) and zero((x-y-1).subs({x: 2, y: 1}))</code></div>
+</details>
+</article>
+<article class="prob" id="A10" style="--c:var(--gold)">
+<div class="head"><span class="num">A10</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">迹 · 行列式</span></div>
+<div class="q">求 $\begin{pmatrix}2&1\\1&3\end{pmatrix}$ 的迹与行列式。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\operatorname{tr}=5$，$\det=5$</div>
+<div class="sol"><b>详解：</b>迹为主对角元之和 $2+3=5$；行列式 $2\cdot3-1\cdot1=5$。</div>
+<div class="ver">基础：<code>eq(Matrix([[2,1],[1,3]]).trace(), 5) and eq(Matrix([[2,1],[1,3]]).det(), 5)</code></div>
+</details>
+</article>
+<article class="prob" id="A11" style="--c:var(--green)">
+<div class="head"><span class="num">A11</span><span class="lvl">★★★★☆ 较难</span><span class="tags">凯莱-哈密顿定理</span></div>
+<div class="q">验证 $A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$ 满足 $A^{2}-5A-2I=O$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>成立</div>
+<div class="sol"><b>详解：</b>$\operatorname{tr}A=5$、$\det A=-2$，特征多项式为 $\lambda^{2}-5\lambda-2$，由凯莱-哈密顿定理即得。</div>
+<div class="ver">较难：<code>zero(Matrix([[1,2],[3,4]])**2 - 5*Matrix([[1,2],[3,4]]) - 2*eye(2))</code></div>
+</details>
+</article>
+<article class="prob" id="A12" style="--c:var(--violet)">
+<div class="head"><span class="num">A12</span><span class="lvl">★☆☆☆☆ 入门</span><span class="tags">内积 · 正交</span></div>
+<div class="q">判断 $(1,0)$ 与 $(0,1)$ 是否正交。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>正交，内积为 $0$</div>
+<div class="sol"><b>详解：</b>内积 $1\cdot0+0\cdot1=0$。</div>
+<div class="ver">入门：<code>eq(Matrix([1,0]).dot(Matrix([0,1])), 0)</code></div>
+</details>
+</article>
+<article class="prob" id="A13" style="--c:var(--blue)">
+<div class="head"><span class="num">A13</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">正定</span></div>
+<div class="q">判断二次型 $x^{2}+2y^{2}$ 是否正定。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>正定</div>
+<div class="sol"><b>详解：</b>对应矩阵 $\begin{pmatrix}1&0\\0&2\end{pmatrix}$ 的特征值 $1,2$ 均大于 0，故正定。</div>
+<div class="ver">进阶：<code>all(v &gt; 0 for v in Matrix([[1,0],[0,2]]).eigenvals().keys())</code></div>
+</details>
+</article>
+<article class="prob" id="A14" style="--c:var(--teal)">
+<div class="head"><span class="num">A14</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">可对角化</span></div>
+<div class="q">判断 $\begin{pmatrix}2&1\\0&3\end{pmatrix}$ 是否可对角化。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>可对角化（两个相异特征值）</div>
+<div class="sol"><b>详解：</b>特征值 $2,3$ 互异，$n$ 阶矩阵有 $n$ 个相异特征值必可对角化。</div>
+<div class="ver">进阶：<code>eq(len(Matrix([[2,1],[0,3]]).eigenvals()), 2)</code></div>
+</details>
+</article>
+<article class="prob" id="A15" style="--c:var(--red)">
+<div class="head"><span class="num">A15</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">行列式性质</span></div>
+<div class="q">验证 $|AB|=|A||B|$，其中 $A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$、$B=\begin{pmatrix}2&0\\1&3\end{pmatrix}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$|A|=-2$，$|B|=6$，$|AB|=-12$，等式成立</div>
+<div class="sol"><b>详解：</b>直接计算 $AB$ 的行列式与两者行列式之积即可。</div>
+<div class="ver">基础：<code>eq(det(Matrix([[1,2],[3,4]])*Matrix([[2,0],[1,3]])), det(Matrix([[1,2],[3,4]]))*det(Matrix([[2,0],[1,3]])))</code></div>
+</details>
+</article>
+<article class="prob" id="A16" style="--c:var(--gold)">
+<div class="head"><span class="num">A16</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">转置性质</span></div>
+<div class="q">验证 $(AB)^{\mathsf T}=B^{\mathsf T}A^{\mathsf T}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>成立</div>
+<div class="sol"><b>详解：</b>取 $A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$、$B=\begin{pmatrix}2&0\\1&3\end{pmatrix}$ 直接验证。</div>
+<div class="ver">进阶：<code>zero((Matrix([[1,2],[3,4]])*Matrix([[2,0],[1,3]])).T - Matrix([[2,0],[1,3]]).T*Matrix([[1,2],[3,4]]).T)</code></div>
+</details>
+</article>
+<article class="prob" id="A17" style="--c:var(--green)">
+<div class="head"><span class="num">A17</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">特征向量</span></div>
+<div class="q">验证 $\begin{pmatrix}1\\1\end{pmatrix}$ 是 $A=\begin{pmatrix}2&1\\1&2\end{pmatrix}$ 的特征向量，并求对应特征值。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>是，对应特征值 $\lambda=3$</div>
+<div class="sol"><b>详解：</b>$A\begin{pmatrix}1\\1\end{pmatrix}=\begin{pmatrix}3\\3\end{pmatrix}=3\begin{pmatrix}1\\1\end{pmatrix}$。</div>
+<div class="ver">进阶：<code>eq(Matrix([[2,1],[1,2]])*Matrix([1,1]), 3*Matrix([1,1]))</code></div>
+</details>
+</article>
+<article class="prob" id="A18" style="--c:var(--violet)">
+<div class="head"><span class="num">A18</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">秩-零化度</span></div>
+<div class="q">求 $3\times3$ 矩阵 $\begin{pmatrix}1&2&3\\4&5&6\\7&8&9\end{pmatrix}$ 的零空间维数。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$1$</div>
+<div class="sol"><b>详解：</b>该矩阵秩为 2（第三行是前两行的线性组合），故零化度 $=3-2=1$。</div>
+<div class="ver">进阶：<code>eq(3 - Matrix([[1,2,3],[4,5,6],[7,8,9]]).rank(), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="A19" style="--c:var(--blue)">
+<div class="head"><span class="num">A19</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">齐次方程组</span></div>
+<div class="q">判断齐次方程组 $x+2y=0,\ 2x+4y=0$ 是否有非零解。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>有非零解（系数行列式为 0）</div>
+<div class="sol"><b>详解：</b>$\begin{vmatrix}1&2\\2&4\end{vmatrix}=0$，故有非零解，解空间维数为 1。</div>
+<div class="ver">基础：<code>eq(det(Matrix([[1,2],[2,4]])), 0)</code></div>
+</details>
+</article>
+<article class="prob" id="A20" style="--c:var(--teal)">
+<div class="head"><span class="num">A20</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">矩阵幂</span></div>
+<div class="q">设 $A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$，求 $A^{3}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\begin{pmatrix}1&3\\0&1\end{pmatrix}$</div>
+<div class="sol"><b>详解：</b>$A$ 是幂幺矩阵，$A^{n}=\begin{pmatrix}1&n\\0&1\end{pmatrix}$。</div>
+<div class="ver">进阶：<code>eq(Matrix([[1,1],[0,1]])**3, Matrix([[1,3],[0,1]]))</code></div>
+</details>
+</article>
+<article class="prob" id="A21" style="--c:var(--red)">
+<div class="head"><span class="num">A21</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">对称矩阵</span></div>
+<div class="q">判断 $\begin{pmatrix}2&1\\1&2\end{pmatrix}$ 是否为对称矩阵。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>是对称矩阵</div>
+<div class="sol"><b>详解：</b>$A^{\mathsf T}=A$。对称矩阵的特征值全为实数，且有正交特征向量组。</div>
+<div class="ver">基础：<code>zero(Matrix([[2,1],[1,2]]) - Matrix([[2,1],[1,2]]).T)</code></div>
+</details>
+</article>
+<article class="prob" id="A22" style="--c:var(--gold)">
+<div class="head"><span class="num">A22</span><span class="lvl">★☆☆☆☆ 入门</span><span class="tags">向量范数</span></div>
+<div class="q">求向量 $(3,4)$ 的欧几里得范数。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$5$</div>
+<div class="sol"><b>详解：</b>$\sqrt{3^{2}+4^{2}}=\sqrt{25}=5$。</div>
+<div class="ver">入门：<code>eq(sqrt(3**2 + 4**2), 5)</code></div>
+</details>
+</article>
+<article class="prob" id="A23" style="--c:var(--green)">
+<div class="head"><span class="num">A23</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">行列式性质 · 上三角</span></div>
+<div class="q">计算上三角矩阵 $\begin{pmatrix}1&2&3\\0&4&5\\0&0&6\end{pmatrix}$ 的行列式。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$24$</div>
+<div class="sol"><b>详解：</b>三角形矩阵的行列式等于主对角元之积 $1\cdot4\cdot6=24$。</div>
+<div class="ver">基础：<code>eq(det(Matrix([[1,2,3],[0,4,5],[0,0,6]])), 24)</code></div>
+</details>
+</article>
+<article class="prob" id="A24" style="--c:var(--violet)">
+<div class="head"><span class="num">A24</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">投影</span></div>
+<div class="q">求向量 $(1,1)$ 在 $(1,0)$ 方向上的投影系数。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>投影系数为 $1$，投影向量为 $(1,0)$</div>
+<div class="sol"><b>详解：</b>$\frac{\langle(1,1),(1,0)\rangle}{\langle(1,0),(1,0)\rangle}=\frac11=1$。</div>
+<div class="ver">进阶：<code>eq(Matrix([1,0]).dot(Matrix([1,1]))/Matrix([1,0]).dot(Matrix([1,0])), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="A25" style="--c:var(--blue)">
+<div class="head"><span class="num">A25</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">相似</span></div>
+<div class="q">判断 $\begin{pmatrix}1&0\\0&2\end{pmatrix}$ 与 $\begin{pmatrix}2&0\\0&1\end{pmatrix}$ 是否相似。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>相似</div>
+<div class="sol"><b>详解：</b>两者特征值集合相同（都是 $1,2$）且各有 $2$ 个线性无关特征向量，故都相似于同一个对角矩阵。</div>
+<div class="ver">进阶：<code>all(any(eq(v, k) for k in (1, 2)) for v in Matrix([[1,0],[0,2]]).eigenvals().keys()) and all(any(eq(v, k) for k in (1, 2)) for v in Matrix([[2,0],[0,1]]).eigenvals().keys())</code></div>
+</details>
+</article>
+<article class="prob" id="A26" style="--c:var(--teal)">
+<div class="head"><span class="num">A26</span><span class="lvl">★★★★☆ 较难</span><span class="tags">行列式 · 范德蒙德</span></div>
+<div class="q">计算范德蒙德行列式 $\begin{vmatrix}1&1&1\\1&2&3\\1&4&9\end{vmatrix}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$2$</div>
+<div class="sol"><b>详解：</b>范德蒙德行列式 $=\prod_{1\le i&lt;j\le3}(x_j-x_i)=(2-1)(3-1)(3-2)=2$，这里 $x=(1,2,3)$（转置不影响行列式值）。</div>
+<div class="ver">较难：<code>eq(det(Matrix([[1,1,1],[1,2,3],[1,4,9]])), (2-1)*(3-1)*(3-2))</code></div>
+</details>
+</article>
+<footer>
+  本页题目与详解由本库编写，答案经符号计算验证；解题方法不限一种，详解给出的是其中一条思路。<br>
+  返回 <a class="back" href="index.html">题库总览</a> ·
+  <a class="back" href="../00-总览/index.html">总览</a> ·
+  授权见仓库根目录 <code>LICENSE</code>
+</footer>
+</div>
+<script>
+(function(){
+  var d=document.querySelectorAll('.prob details');
+  var s=document.getElementById('showAll'), h=document.getElementById('hideAll');
+  if(s) s.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=true; };
+  if(h) h.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=false; };
+})();
+</script>
+</body>
+</html>

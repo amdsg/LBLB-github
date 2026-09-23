@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>常数与工具台 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%CF%80%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--gold); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--gold); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:720px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.sec{margin-top:44px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:24px; border-left:6px solid var(--gold); padding-left:14px;}
+.sec h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.tbl{margin-top:14px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px; table-layout:fixed;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+.tbl .f{font-family:Georgia,"Cambria Math",serif; font-style:italic;}
+.tbl td.f{font-size:14.5px;}
+.tbl .num{font-family:Georgia,serif; font-size:14px; color:var(--ink2);}
+.demo{background:var(--paper2); border:1px solid var(--line); border-radius:16px; padding:20px; margin-top:20px;}
+.demo .btn{display:inline-block; background:var(--gold); color:#fff; border:none; border-radius:8px; padding:8px 16px; font-size:14px; cursor:pointer; margin:0 8px 10px 0; min-height:44px;}
+.demo .btn.gray{background:#8A8270;}
+.demo input[type=number]{width:160px; padding:7px 10px; border:1px solid var(--line); border-radius:6px; background:#fffdf6; font-size:16px;}
+.demo label{font-size:14px;}
+.demo p.hint{font-size:13.5px; color:var(--ink2); margin-top:10px;}
+.demo .out{font-size:15px; margin-top:10px; min-height:26px; line-height:1.7;}
+.demo .out b{color:var(--red);}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--gold); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+  .tbl{font-size:13px;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>常数与工具台 <span class="sym">π</span></h1>
+  <p class="sub">数学宇宙里的「常量公民」：π、e、φ、γ……每个常数背后都有一段故事。下方还配了一组随手可用的数论小工具。</p>
+  <p class="quote">「常数是数学的指纹——每个文明都留下自己的 π。」</p>
+</header>
+
+<div class="sec">
+  <h2>著名常数一览 <small>小数点后若干位，足够日常赏玩</small></h2>
+  <table class="tbl">
+    <colgroup><col style="width:14%"><col style="width:34%"><col style="width:30%"><col style="width:22%"></colgroup>
+    <thead><tr><th>符号</th><th>名称</th><th>数值</th><th>一句话身份</th></tr></thead>
+    <tbody>
+      <tr><td class="f">π</td><td>圆周率</td><td class="num">3.14159 26535 89793…</td><td>圆的周长与直径之比，超越数</td></tr>
+      <tr><td class="f">e</td><td>自然对数的底</td><td class="num">2.71828 18284 59045…</td><td>连续增长的极限，Σ 1/n!</td></tr>
+      <tr><td class="f">φ</td><td>黄金比例</td><td class="num">1.61803 39887 49895…</td><td>(1+√5)/2，斐波那契比值的极限</td></tr>
+      <tr><td class="f">γ</td><td>欧拉-马歇罗尼常数</td><td class="num">0.57721 56649 01533…</td><td>调和级数与 ln n 的差——是否无理仍未知</td></tr>
+      <tr><td class="f">ζ(3)</td><td>阿培里常数</td><td class="num">1.20205 69031 59594…</td><td>Σ 1/n³，1978 年证明为无理数</td></tr>
+      <tr><td class="f">√2</td><td>毕达哥拉斯之痛</td><td class="num">1.41421 35623 73095…</td><td>第一个被证明无理的数</td></tr>
+      <tr><td class="f">i</td><td>虚数单位</td><td class="num">i² = −1</td><td>复数的基石</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <h2>工具台：数论小帮手 <small>浏览器内即时计算，无需联网</small></h2>
+
+  <div class="demo">
+    <label>质因数分解：</label>
+    <input type="number" id="facInput" value="2026">
+    <button class="btn" id="facBtn">分解</button>
+    <div class="out" id="facOut"></div>
+    <p class="hint">算术基本定理：每个整数唯一分解为素数之积。</p>
+  </div>
+
+  <div class="demo">
+    <label>gcd / lcm：</label>
+    <input type="number" id="gInput" value="252" style="width:100px;">
+    <input type="number" id="hInput" value="105" style="width:100px;">
+    <button class="btn" id="gcdBtn">计算</button>
+    <div class="out" id="gcdOut"></div>
+    <p class="hint">gcd = 最大公约数（欧几里得算法），lcm = 最小公倍数 = a×b/gcd。</p>
+  </div>
+
+  <div class="demo">
+    <label>素数判定：</label>
+    <input type="number" id="prInput" value="97">
+    <button class="btn" id="prBtn">判定</button>
+    <div class="out" id="prOut"></div>
+    <p class="hint">试除到 √n 即可判定；更大的数可用费马小定理做概率测试。</p>
+  </div>
+
+  <div class="demo">
+    <label>斐波那契：</label>
+    <input type="number" id="fbInput" value="20">
+    <button class="btn" id="fbBtn">求第 n 项</button>
+    <div class="out" id="fbOut"></div>
+    <p class="hint">F₀=0, F₁=1, Fₙ=Fₙ₋₁+Fₙ₋₂。通项含黄金比例 φ。</p>
+  </div>
+</div>
+
+
+<div class="sec">
+  <h2>常数之间：隐藏的等式与不等式 <small>把宇宙的"指纹"连起来</small></h2>
+  <p>看似无关的常数常以惊人方式出现：</p>
+  <ul>
+    <li><b>Euler 恒等式</b>：$e^{i\pi}+1=0$——五个基本常数 $e,i,\pi,1,0$ 联系为单式。Feynman 称它为"数学最非凡的公式"。</li>
+    <li><b>Basel 问题</b>：$\sum_{n=1}^{\infty}\frac1{n^2}=\frac{\pi^2}{6}$（Euler 1735）。$\zeta(2)$ 与圆周率的关系。</li>
+    <li><b>Wallis 乘积</b>：$\frac{\pi}{2}=\prod_{n=1}^{\infty}\frac{4n^2}{4n^2-1}$（1655）。"无理"的 $\pi$ 与有理数之积的极限。</li>
+    <li><b>Gelfond–Schneider</b>：$\pi$ 与 $e$ 的代数独立仍是开问题，但 $\pi+e$ 与 $\pi\cdot e$ 至少有一个超越（Gelfond 1934）。</li>
+    <li><b>Knuth 上取整</b>：$\phi=2\cos(\pi/5)$，由五角星与黄金比例共享同一几何根源。</li>
+    <li><b>Euler–Mascheroni $\gamma$</b>：调和级数 $H_n=\sum_{k=1}^n\frac1k$ 与 $\ln n$ 的差。$\gamma$ 是否为无理数是 200 多年来的开放问题，<b>已知任何有理数 $p/q$ 都不等于 $\gamma$</b>（如果 $\gamma$ 是有理数，分母必 $gt10^{10^{10000}}$）。</li>
+    <li><b>Apéry 常数 $\zeta(3)$</b>：$\sum1/n^3$，Apéry 1978 证明它无理，至今仍是 $\zeta(2n+1)$ 中<b>唯一</b>已知无理的奇 zeta 值。$\zeta(5),\zeta(7),\dots$ 仍开。</li>
+  </ul>
+  <div class="key"><b>Riemann zeta 与素数</b>：$\zeta(s)=\prod_p\frac{1}{1-p^{-s}}$（Euler 乘积）—— zeta 函数与素数分布的深刻联系，是 Riemann 猜想的核心。</div>
+</div>
+
+<div class="sec">
+  <h2>常数小传：每个数背后都是人 <small>从美索不达米亚到 21 世纪</small></h2>
+  <p><b>$\pi$ 的故事</b>：公元前 2000 年美索不达米亚人用 $\pi\approx3.125$；公元前 1650 年 Rhind 纸草书给出 $\pi=(4/3)^4\approx3.16$；阿基米德用多边形夹逼得 $3.1408&lt;\pi&lt;3.1429$；中国刘徽（263）"割圆术"得 3.1416，祖冲之（480）得 $\frac{355}{113}$（精度 7 位，保持 800 年世界纪录）；Lambert 1761 证明 $\pi$ 无理；Lindemann 1882 证明 $\pi$ 超越。<b>2019 年</b> Google 算到 31.4 万亿位；2022 年 Emma Haruka Iwao 算到 100 万亿位。</p>
+  <p><b>$e$ 的诞生</b>：Bernoulli 1683 研究复利 $\lim(1+1/n)^n$ 时接触；Euler 1731 命名为 $e$（非"Euler"自夸，仅是下一个字母），并得到 $e=\sum1/n!$、$e^{i\theta}=\cos\theta+i\sin\theta$。Hermite 1873 证明 $e$ 超越——这是<b>第一个</b>被证明超越的非构造数。</p>
+  <p><b>$\phi$ 的诗意</b>：Euclid《几何原本》提到"中外比"；Pacioli 1509 写《神圣比例》；Binet 1843 给出斐波那契通项 $F_n=\frac{\phi^n-(-\phi)^{-n}}{\sqrt5}$；20 世纪后被 Penrose 用到准晶体（1984 Shechtman Nobel 2011）。</p>
+  <p><b>$\gamma$ 的谜</b>：Euler 1734 年研究调和级数差时发现，Mascheroni 1790 写书详述但算错了几位。至今数学家算到 1190 亿位仍判断不出它是否有理——<b>"数字已知这么多却对其本质一无所知"是数论最浪漫的悬案</b>。</p>
+</div>
+
+<div class="sec">
+  <h2>工具背后的算法 <small>本页小工具的数学底子</small></h2>
+  <p>本页工具用 JavaScript 实现，背后都是经典算法：</p>
+  <ul>
+    <li><b>试除法分解</b>：$O(\sqrt n)$ 复杂度。算到 64 位整数（$10^{18}$）需最多 $\sqrt{10^{18}}=10^9$ 步——浏览器几秒。再大要用 Pollard–rho（$O(n^{1/4})$）或 ECM 椭圆曲线法（$O(e^{\sqrt{\ln p\ln\ln p}})$）。</li>
+    <li><b>欧几里得算法</b>：求 $\gcd(a,b)$ 用 $\le5\lceil\log_\phi(\min(a,b))\rceil$ 步（Lamé 1844 定理）。算 $\gcd(10^{10000},10^{10000}-1)$ 只需 46000 步——大数也能秒算。</li>
+    <li><b>试除素数判定</b>：$O(\sqrt n)$。更大数用<b>Miller–Rabin</b>概率测试：$O(k\log^3 n)$，$k$ 轮出错概率 $\lt4^{-k}$。10000 位数的素数判定不到 1 秒。</li>
+    <li><b>矩阵快速幂算斐波那契</b>：$\begin{pmatrix}F_{n+1}\\F_n\end{pmatrix}=\begin{pmatrix}1&1\\1&0\end{pmatrix}^n\begin{pmatrix}1\\0\end{pmatrix}$，用二分快速幂 $O(\log n)$。算 $F_{10^6}$ 模 $10^9+7$ 仅 20 次矩阵乘。</li>
+  </ul>
+  <div class="exm"><b>例</b> 分解 $n=2609\cdot 17543$ 这种 9 位素数乘积：试除约 $\sqrt{n}\approx2.1\times10^4$ 次，浏览器毫秒级。但分解 RSA-2048（617 位）需 $10^{150}$ 年——这是 RSA 密码的根基。</div>
+</div>
+
+<div class="sec">
+  <h2>常数的"普适性" <small>出现在最意想不到的地方</small></h2>
+  <p>一些常数会"穿越"到看似无关的领域：</p>
+  <ul>
+    <li><b>$\pi$ 出现在概率中</b>：Buffon 投针 $\Pr(\text{碰线})=\frac{2l}{\pi d}$；正态分布归一化常数 $\sqrt{2\pi}$；$\int_{-\infty}^{\infty}e^{-x^2}dx=\sqrt{\pi}$。</li>
+    <li><b>$e$ 出现在复利与衰减</b>：放射性衰变 $N=N_0e^{-\lambda t}$；银行复利连续化 $A=Pe^{rt}$；人口指数增长。</li>
+    <li><b>$\phi$ 出现在植物叶序</b>：松果鳞片、向日葵种子、菠萝皮——8/13、13/21、21/34 都是连续斐波那契比，与 $\phi$ 的最优分布有关（Bravais 1837）。</li>
+    <li><b>$\gamma$ 出现在 Gamma 函数</b>：$\Gamma(x)=\int_0^\infty t^{x-1}e^{-t}dt$ 在 $x=1/2$ 处与 $\pi$ 相关，在 $x=1/4$ 处涉及 Catalan 常数。$\gamma$ 是 $\Gamma$ 在 $x=1$ 处导数的 $-1$ 倍。</li>
+    <li><b>Feigenbaum $\delta$ 出现在自然界</b>：流体对流、电子电路、激光、心跳节律——所有进入混沌的途径都遇到 $4.6692$。</li>
+  </ul>
+  <p><b>"常数是宇宙的共同语言"</b>：π 描述圆，也描述高斯积分；e 描述增长，也描述衰变；$\phi$ 描述美学，也描述准晶体。这些"指纹"提示数学不是被发明而是被发现——它们就在那里。</p>
+</div>
+
+<div class="sec">
+  <h2>补充：更多数学常数与不等式</h2>
+  <table class="tbl">
+    <thead><tr><th>常数</th><th>值</th><th>来源</th></tr></thead>
+    <tbody>
+      <tr><td>欧拉常数 $\gamma$</td><td>$\approx0.5772156649$</td><td>$\gamma=\lim_{n\to\infty}(H_n-\ln n)$，是否无理数未知</td></tr>
+      <tr><td>Khinchin 常数 $K_0$</td><td>$\approx2.685452001$</td><td>几乎所有实数连分数系数的几何平均</td></tr>
+      <tr><td>Apéry 常数 $\zeta(3)$</td><td>$\approx1.202056903$</td><td>$\sum1/n^3$，Apéry 1978 证明其无理性</td></tr>
+      <tr><td>Feigenbaum 常数 $\delta$</td><td>$\approx4.669201609$</td><td>混沌理论中倍周期分岔的收敛速率</td></tr>
+    </tbody>
+  </table>
+  <h3>常用不等式速查</h3>
+  <table class="tbl">
+    <tr><td>AM–GM</td><td>$\frac{a_1+\cdots+a_n}{n}\ge\sqrt[n]{a_1\cdots a_n}$</td></tr>
+    <tr><td>Cauchy–Schwarz</td><td>$(\sum a_i b_i)^2\le(\sum a_i^2)(\sum b_i^2)$</td></tr>
+    <tr><td>Jensen</td><td>$f$ 凸 $\Rightarrow f(\sum\lambda_i x_i)\le\sum\lambda_i f(x_i)$</td></tr>
+    <tr><td>Young</td><td>$ab\le\frac{a^p}{p}+\frac{b^q}{q}$（$\frac{1}{p}+\frac{1}{q}=1$）</td></tr>
+    <tr><td>Hölder</td><td>$\sum|a_i b_i|\le(\sum|a_i|^p)^{1/p}(\sum|b_i|^q)^{1/q}$</td></tr>
+    <tr><td>Minkowski</td><td>$(\sum|a_i+b_i|^p)^{1/p}\le(\sum|a_i|^p)^{1/p}+(\sum|b_i|^p)^{1/p}$</td></tr>
+  </table>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../10-数学手册/公式速查.html">公式速查 →</a>
+  <a href="../02-核心主题/数论.html">数论 →</a>
+  <a href="../07-趣味数学/数学魔术与速算.html">魔术与速算 →</a>
+</footer>
+</div>
+
+<script>
+(function(){
+  function isPrime(n){
+    if(n < 2) return false;
+    if(n < 4) return true;
+    if(n % 2 === 0) return false;
+    for(var i=3; i*i<=n; i+=2) if(n % i === 0) return false;
+    return true;
+  }
+  function gcd(a,b){ while(b){ var t=a%b; a=b; b=t; } return a; }
+
+  var facBtn = document.getElementById('facBtn');
+  if(facBtn) facBtn.addEventListener('click', function(){
+    var n = parseInt(document.getElementById('facInput').value, 10);
+    var out = document.getElementById('facOut');
+    if(isNaN(n) || n<2){ out.innerHTML = '请输入 ≥2 的整数。'; return; }
+    var m = n, parts = [], d = 2;
+    while(m > 1){
+      if(m % d === 0){ var c=0; while(m%d===0){ m/=d; c++; } parts.push(c>1 ? d+'^'+c : d); }
+      d = d===2 ? 3 : d+2;
+      if(d*d > m && m>1){ parts.push(m); break; }
+    }
+    out.innerHTML = n + ' = <b>' + parts.join(' × ') + '</b>';
+  });
+
+  var gcdBtn = document.getElementById('gcdBtn');
+  if(gcdBtn) gcdBtn.addEventListener('click', function(){
+    var a = parseInt(document.getElementById('gInput').value, 10);
+    var b = parseInt(document.getElementById('hInput').value, 10);
+    var out = document.getElementById('gcdOut');
+    if(isNaN(a)||isNaN(b)||a<1||b<1){ out.innerHTML = '请输入正整数。'; return; }
+    var g = gcd(a,b);
+    out.innerHTML = 'gcd(' + a + ', ' + b + ') = <b>' + g + '</b>；lcm = <b>' + (a*b/g) + '</b>。';
+  });
+
+  var prBtn = document.getElementById('prBtn');
+  if(prBtn) prBtn.addEventListener('click', function(){
+    var n = parseInt(document.getElementById('prInput').value, 10);
+    var out = document.getElementById('prOut');
+    if(isNaN(n) || n<1){ out.innerHTML = '请输入正整数。'; return; }
+    out.innerHTML = n + ' 是<b>' + (isPrime(n) ? '素数' : '合数（' + (n>1?'可分解，如 ' + (function(){ for(var i=2;i*i<=n;i++) if(n%i===0) return i + ' × ' + (n/i); })() + '':'1 既非素也非合') + '）</b>';
+  });
+
+  var fbBtn = document.getElementById('fbBtn');
+  if(fbBtn) fbBtn.addEventListener('click', function(){
+    var n = parseInt(document.getElementById('fbInput').value, 10);
+    var out = document.getElementById('fbOut');
+    if(isNaN(n) || n<0 || n>75){ out.innerHTML = '请输入 0–75 的整数（再大就超出 JS 安全整数了）。'; return; }
+    var a=0, b=1;
+    for(var i=0;i<n;i++){ var t=b; b=a+b; a=t; }
+    out.innerHTML = 'F(' + n + ') = <b>' + a + '</b>。' + (n>=30 ? '<br>比值 F(n)/F(n−1) 趋于 φ ≈ ' + (a/(b-a)).toFixed(6) : '');
+  });
+})();
+</script>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

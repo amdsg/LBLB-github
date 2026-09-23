@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>矩阵线性变换与特征向量 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='26' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%5BE%5D%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--green:#2E7D5B;--magenta:#B0396E;--gold:#A8751E;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--green);text-decoration:none;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:38px;margin:14px 0 6px;}
+h1 .sym{color:var(--magenta);font-style:italic;}
+.tag{display:inline-block;background:var(--paper2);border:1px solid var(--line);color:var(--green);border-radius:999px;padding:2px 12px;font-size:12px;margin-left:10px;vertical-align:middle;}
+.sub{color:var(--ink2);font-size:16px;max-width:780px;}
+.sec{margin-top:36px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--green);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;background:#fffef9;border:1px solid var(--line);border-radius:8px;cursor:crosshair;}
+.controls{display:grid;grid-template-columns:repeat(4,1fr);gap:10px 18px;margin-top:14px;}
+.controls label{font-size:14px;display:flex;align-items:center;gap:8px;}
+.controls input[type=range]{accent-color:var(--green);width:100%;}
+button{background:var(--green);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:14px;cursor:pointer;}
+button.ghost{background:var(--paper2);color:var(--ink);border:1px solid var(--line);}
+.info{font-family:Georgia,serif;font-size:15px;color:var(--ink);margin-left:auto;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>矩阵线性变换与特征向量 <span class="sym">Mv=λv</span><span class="tag">线性代数</span></h1>
+<p class="sub">调滑块改变 $2\times2$ 矩阵，看单位网格被拉伸旋转；金色箭头是那些方向上"只伸缩不转向"的特征向量。</p>
+</header>
+
+<div class="sec">
+<h2>变换视图 <small>拖四个滑块；在画布上拖动绿色箭头 v，看 Mv</small></h2>
+<div class="fig">
+<canvas id="cv" width="760" height="520" role="img" aria-label="矩阵线性变换与特征向量：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls">
+<label>a=<span id="aV">1</span><input type="range" id="a" min="-2" max="2" step="0.1" value="1"></label>
+<label>b=<span id="bV">0</span><input type="range" id="b" min="-2" max="2" step="0.1" value="0"></label>
+<label>c=<span id="cV">0</span><input type="range" id="c" min="-2" max="2" step="0.1" value="0"></label>
+<label>d=<span id="dV">1</span><input type="range" id="d" min="-2" max="2" step="0.1" value="1"></label>
+</div>
+<div class="controls" style="grid-template-columns:auto auto;margin-top:12px;">
+<button id="resetM" class="ghost">重置为单位阵</button>
+<button id="rot" class="ghost">转 30° 旋转阵</button>
+<span class="info" id="stat"></span>
+</div>
+<p class="explain"><b>怎么玩：</b>浅灰是原始单位网格，墨绿是 $M$ 作用后的网格。在画布上拖动绿色箭头 $v$，品红箭头是 $Mv$。若 $v$ 落在某条金色线上，则 $Mv$ 与 $v$ 同向（仅伸缩）——那条线就是特征方向，伸缩倍数即特征值 $\lambda$。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>原理</h2>
+<p>特征向量满足 $Mv=\lambda v$。特征值由特征方程 $\det(M-\lambda I)=0$ 解出：$\lambda^2-(a+d)\lambda+(ad-bc)=0$。判别式 $\Delta=(a-d)^2+4bc$：$\Delta>0$ 两个实特征方向；$\Delta=0$ 重根；$\Delta<0$ 为旋转-伸缩，没有实特征方向（如纯旋转阵）。</p>
+</div>
+
+<footer style="margin-top:48px;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--ink2);">
+<a class="back" href="可视化导航.html">← 可视化导航</a>
+</footer>
+</div>
+
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d'),stat=document.getElementById('stat');
+var sliders=['a','b','c','d'].map(function(k){return document.getElementById(k);});
+var v={x:0.8,y:0.3};var dragging=false;
+function M(){return[parseFloat(sliders[0].value),parseFloat(sliders[1].value),parseFloat(sliders[2].value),parseFloat(sliders[3].value)];}
+function cx0(){return cv.width/2;}function cy0(){return cv.height/2;}function sc(){return 110;}
+function toPx(x,y){return [cx0()+x*sc(),cy0()-y*sc()];}
+function drawVec(x,y,color,label,w){
+  var p=toPx(x,y);var o=toPx(0,0);
+  ctx.strokeStyle=color;ctx.lineWidth=w||2.5;
+  ctx.beginPath();ctx.moveTo(o[0],o[1]);ctx.lineTo(p[0],p[1]);ctx.stroke();
+  // arrowhead
+  var ang=Math.atan2(p[1]-o[1],p[0]-o[0]);
+  ctx.fillStyle=color;
+  ctx.beginPath();ctx.moveTo(p[0],p[1]);
+  ctx.lineTo(p[0]-9*Math.cos(ang-0.4),p[1]-9*Math.sin(ang-0.4));
+  ctx.lineTo(p[0]-9*Math.cos(ang+0.4),p[1]-9*Math.sin(ang+0.4));
+  ctx.closePath();ctx.fill();
+  if(label){ctx.fillStyle=color;ctx.font='italic 14px Georgia';ctx.fillText(label,p[0]+8,p[1]-8);}
+}
+function drawGrid(color,alpha){
+  ctx.strokeStyle=color;ctx.globalAlpha=alpha;ctx.lineWidth=1;
+  for(var t=-3;t<=3;t++){
+    // lines parallel x
+    var a=toPx(-3,t),b=toPx(3,t);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();
+    var c=toPx(t,-3),d=toPx(t,3);ctx.beginPath();ctx.moveTo(c[0],c[1]);ctx.lineTo(d[0],d[1]);ctx.stroke();
+  }
+  ctx.globalAlpha=1;
+}
+function drawTransformedGrid(M){
+  var map=function(x,y){return [M[0]*x+M[1]*y, M[2]*x+M[3]*y];};
+  ctx.strokeStyle='#2E7D5B';ctx.globalAlpha=.55;ctx.lineWidth=1.2;
+  for(var t=-3;t<=3;t++){
+    var a=map(-3,t),b=map(3,t);var pa=toPx(a[0],a[1]),pb=toPx(b[0],b[1]);
+    ctx.beginPath();ctx.moveTo(pa[0],pa[1]);ctx.lineTo(pb[0],pb[1]);ctx.stroke();
+    var c=map(t,-3),d=map(t,3);var pc=toPx(c[0],c[1]),pd=toPx(d[0],d[1]);
+    ctx.beginPath();ctx.moveTo(pc[0],pc[1]);ctx.lineTo(pd[0],pd[1]);ctx.stroke();
+  }
+  ctx.globalAlpha=1;
+}
+function eig(M){
+  var a=M[0],b=M[1],c=M[2],d=M[3];
+  var tr=a+d,det=a*d-b*c;
+  var disc=tr*tr-4*det;
+  if(disc<0)return {real:false,lam:tr/2};
+  var s=Math.sqrt(disc);
+  var l1=(tr+s)/2,l2=(tr-s)/2;
+  function vecFor(lam){
+    // solve (a-lam)x + b y=0
+    if(Math.abs(b)>1e-6)return [b, lam-a];
+    if(Math.abs(c)>1e-6)return [lam-d, c];
+    return [1,0];
+  }
+  return {real:true,l1:l1,l2:l2,v1:vecFor(l1),v2:vecFor(l2)};
+}
+function draw(){
+  var Mx=M();
+  ['a','b','c','d'].forEach(function(k,i){document.getElementById(k+'V').textContent=sliders[i].value;});
+  ctx.clearRect(0,0,cv.width,cv.height);
+  // axes
+  ctx.strokeStyle='#E3DCC8';ctx.beginPath();ctx.moveTo(0,cy0());ctx.lineTo(cv.width,cy0());ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx0(),0);ctx.lineTo(cx0(),cv.height);ctx.stroke();
+  drawGrid('#C9C2AC',0.6);
+  drawTransformedGrid(Mx);
+  // eigenvectors
+  var e=eig(Mx);
+  if(e.real){
+    [[e.v1,e.l1],[e.v2,e.l2]].forEach(function(pair){
+      var vec=pair[0],lam=pair[1];
+      var L=Math.hypot(vec[0],vec[1]);var ux=vec[0]/L,uy=vec[1]/L;
+      drawVec(ux*2.4,uy*2.4,'#A8751E',null,1.5);
+      drawVec(-ux*2.4,-uy*2.4,'#A8751E',null,1.5);
+    });
+    stat.textContent='λ₁='+e.l1.toFixed(3)+'   λ₂='+e.l2.toFixed(3);
+  } else {
+    stat.textContent='无实特征值（迹/2='+e.lam.toFixed(3)+'）：变换含旋转，所有方向都被转动';
+  }
+  // v and Mv
+  drawVec(v.x,v.y,'#2E7D5B','v',2.5);
+  var w=[Mx[0]*v.x+Mx[1]*v.y,Mx[2]*v.x+Mx[3]*v.y];
+  drawVec(w[0],w[1],'#B0396E','Mv',2.5);
+}
+cv.addEventListener('mousedown',function(e){dragging=true;move(e);});
+window.addEventListener('mousemove',function(e){if(dragging)move(e);});
+window.addEventListener('mouseup',function(){dragging=false;});
+function move(e){
+  var r=cv.getBoundingClientRect();
+  var mx=(e.clientX-r.left)*cv.width/r.width,my=(e.clientY-r.top)*cv.height/r.height;
+  var wx=(mx-cx0())/sc(),wy=(cy0()-my)/sc();
+  var rr=Math.hypot(wx,wy);if(rr>2.6){wx*=2.6/rr;wy*=2.6/rr;}
+  v.x=wx;v.y=wy;draw();
+}
+sliders.forEach(function(s){s.addEventListener('input',draw);});
+document.getElementById('resetM').onclick=function(){sliders[0].value=1;sliders[1].value=0;sliders[2].value=0;sliders[3].value=1;draw();};
+document.getElementById('rot').onclick=function(){var r=Math.PI/6;sliders[0].value=Math.cos(r).toFixed(2);sliders[1].value=(-Math.sin(r)).toFixed(2);sliders[2].value=Math.sin(r).toFixed(2);sliders[3].value=Math.cos(r).toFixed(2);draw();};
+draw();
+})();
+</script>
+
+</body>
+</html>

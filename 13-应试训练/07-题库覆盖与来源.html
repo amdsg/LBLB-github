@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>题库覆盖与来源</title>
+<style>
+:root{--bg:#f3f6f6;--paper:#fff;--ink:#1d282d;--muted:#64747b;--line:#d8e0e2;--teal:#177e89;--green:#2e7654;--amber:#a86b18;--red:#a6483c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 "Times New Roman", "Microsoft YaHei","Noto Sans SC",system-ui,sans-serif}
+a{color:#245b88}
+.top{background:#12333b;color:#fff;padding:16px 22px}
+.topRow{max-width:1320px;margin:auto;display:flex;gap:18px;align-items:baseline;justify-content:space-between;flex-wrap:wrap}
+.top b{font-size:20px;letter-spacing:.03em}
+.top a{color:#d9e9ec;text-decoration:none}
+.wrap{max-width:1320px;margin:auto;padding:18px}
+.notice{background:#fff9e8;border:1px solid #e5d29f;border-left:4px solid var(--amber);padding:11px 14px;margin-bottom:14px}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.metric{background:#fff;border:1px solid var(--line);border-radius:8px;padding:13px}
+.metric span{color:var(--muted);font-size:12px}.metric strong{display:block;font-size:25px;color:var(--teal);margin-top:3px}
+.section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:15px;margin-top:14px}
+.section h2{margin:0 0 5px;font-size:18px}.section p.hint{color:var(--muted);font-size:12.5px;margin:0 0 12px}
+.toolbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:10px 0}
+.toolbar input{border:1px solid var(--line);border-radius:6px;padding:7px 10px;width:min(320px,100%)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{border-top:1px solid var(--line);padding:8px 9px;text-align:left;vertical-align:top}
+th{background:#f7fafb;color:var(--muted);font-weight:600;position:sticky;top:0}
+.ok{color:var(--green);font-weight:700}.miss{color:var(--red);font-weight:700}.partial{color:var(--amber);font-weight:700}
+.tracks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.track{border:1px solid var(--line);border-radius:8px;padding:12px}.track h3{margin:0 0 7px;font-size:16px}.track .big{font-size:24px;color:var(--teal);font-weight:700}
+.links{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.links a{font-size:13px}
+@media(max-width:900px){.summary{grid-template-columns:repeat(2,1fr)}.tracks{grid-template-columns:1fr}.section{overflow:auto}}
+@media(max-width:560px){.wrap{padding:12px}.summary{grid-template-columns:1fr}th,td{padding:7px 6px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="topRow">
+    <b>题库覆盖与来源</b>
+    <div><a href="05-真题模拟卷.html">整卷训练</a> · <a href="06-真实单题训练.html">单题训练</a> · <a href="00-应试总览.html">返回总览</a></div>
+  </div>
+</header>
+<main class="wrap">
+  <div class="notice">覆盖表只统计已核验并能说明来源的题目。公开页面存在但禁止下载、需要登录、授权不清或无法核验原题时，只保留官方入口，不复制题库内容。</div>
+
+  <section class="summary" id="summary"></section>
+
+  <section class="section">
+    <h2>专升本：全国省份覆盖</h2>
+    <p class="hint">“公开题目”包括整卷和单题；没有公开真题的省份不会被模拟题或生成题冒充。</p>
+    <div class="toolbar"><input id="provinceSearch" placeholder="搜索省份"></div>
+    <table>
+      <thead><tr><th>省份</th><th>整卷</th><th>单题</th><th>当前状态</th><th>官方入口</th></tr></thead>
+      <tbody id="provinceRows"></tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <h2>考研数学：数一 / 数二 / 数三</h2>
+    <p class="hint">整卷来源按“原卷”或“题库原文重组”区分；只有明确许可的公开数据才并入本地。</p>
+    <div class="tracks" id="kaoyanTracks"></div>
+  </section>
+
+  <section class="section">
+    <h2>全国大学生数学竞赛（CMC）届次核对</h2>
+    <p class="hint">第 1—17 届逐届检查。官方汇总页若只提供网盘而不提供直接下载，系统不自动绕过网盘限制。</p>
+    <table>
+      <thead><tr><th>届次</th><th>本地试卷/答案文件</th><th>状态</th><th>来源</th></tr></thead>
+      <tbody id="cmcRows"></tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <h2>其他公开数学竞赛</h2>
+    <p class="hint">已登记官方入口；仅有汇总页但不允许直接抓取的内容保持外链，不复制到本地。</p>
+    <table>
+      <thead><tr><th>竞赛</th><th>状态</th><th>官方汇总</th></tr></thead>
+      <tbody id="otherRows"></tbody>
+    </table>
+  </section>
+</main>
+
+<script src="123/真题卷.js"></script>
+<script>
+(function(){
+"use strict";
+var DATA=window.LBLB_EXAMS||{papers:[],questions:[],coverage:{}};
+var COVER=DATA.coverage||{};
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");}
+var localKaoyan=["数一","数二","数三"].map(function(t){
+  return DATA.papers.filter(function(p){return p.cat==="kaoyan"&&p.sub===t;}).length;
+});
+var coveredProvinces=(COVER.provinces||[]).filter(function(p){return p.paperCount||p.questionCount;}).length;
+var coveredCmc=(COVER.cmc||[]).filter(function(x){return x.paperCount;}).length;
+$("summary").innerHTML=[
+  ["整卷总数",DATA.papers.length],
+  ["真实单题",DATA.questions.length],
+  ["省份有公开题",coveredProvinces+" / 31"],
+  ["CMC有文件届次",coveredCmc+" / 17"]
+].map(function(x){return '<div class="metric"><span>'+esc(x[0])+'</span><strong>'+esc(x[1])+'</strong></div>';}).join("");
+
+function renderProvinces(){
+  var kw=$("provinceSearch").value.trim();
+  var rows=(COVER.provinces||[]).filter(function(x){return !kw||x.name.indexOf(kw)>=0;});
+  $("provinceRows").innerHTML=rows.map(function(x){
+    var cls=x.paperCount||x.questionCount?"ok":"miss";
+    return '<tr><td><b>'+esc(x.name)+'</b></td><td>'+x.paperCount+'</td><td>'+x.questionCount+'</td>'
+      +'<td class="'+cls+'">'+esc(x.status)+'</td><td><a href="'+esc(x.officialUrl)+'" target="_blank" rel="noreferrer">教育考试机构</a></td></tr>';
+  }).join("")||'<tr><td colspan="5">没有匹配省份</td></tr>';
+}
+$("provinceSearch").oninput=renderProvinces;renderProvinces();
+
+$("kaoyanTracks").innerHTML=(COVER.kaoyan||[]).map(function(x){
+  var cls=x.paperCount?"ok":"miss";
+  return '<article class="track"><h3>'+esc(x.track)+'</h3><div class="big">'+x.paperCount+' 套</div>'
+    +'<div>单题 '+x.questionCount+' 道</div><div class="'+cls+'">'+esc(x.status)+'</div>'
+    +'<div class="links"><a href="'+esc(x.officialUrl)+'" target="_blank" rel="noreferrer">查看来源入口</a>'
+    +(x.paperCount?'<a href="05-真题模拟卷.html">进入整卷</a>':'')
+    +'</div></article>';
+}).join("");
+
+$("cmcRows").innerHTML=(COVER.cmc||[]).map(function(x){
+  return '<tr><td>第 '+x.edition+' 届</td><td>'+x.paperCount+'</td><td class="'+(x.paperCount?"ok":"miss")+'">'+esc(x.status)+'</td>'
+    +'<td><a href="'+esc(x.officialUrl)+'" target="_blank" rel="noreferrer">官方/来源页面</a></td></tr>';
+}).join("");
+
+$("otherRows").innerHTML=(COVER.otherCompetitions||[]).map(function(x){
+  return '<tr><td>'+esc(x.name)+'</td><td class="partial">'+esc(x.status)+'</td>'
+    +'<td><a href="'+esc(x.source)+'" target="_blank" rel="noreferrer">打开汇总页</a></td></tr>';
+}).join("");
+})();
+</script>
+</body>
+</html>

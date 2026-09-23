@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>数学前沿 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%82%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --teal:#177E89; --teal-dk:#0F5B64; --teal-lt:#DCECEE;
+  --gold:#A8751E; --red:#C0392B; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75; font-size:15px;}
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--teal); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--teal); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:720px;}
+.asof{display:inline-block; margin-top:12px; font-size:13px; color:var(--teal-dk);
+  background:var(--teal-lt); border:1px solid var(--line); border-radius:999px; padding:3px 12px;}
+.sec{margin-top:48px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--teal); padding-left:14px;}
+.sec h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.lead{font-size:14px; color:var(--ink2); margin-top:10px; max-width:760px;}
+
+/* 状态徽标 */
+.badge{display:inline-block; font-size:12px; padding:2px 10px; border-radius:999px; vertical-align:2px; white-space:nowrap;}
+.b-solved{background:#E4EFE7; color:#2E7D5B;}
+.b-open{background:#F6E2DE; color:#C0392B;}
+.b-prog{background:#F7E9D6; color:#A8751E;}
+.b-doubt{background:#F3E3D0; color:#A8751E;}
+.b-new{background:var(--teal-lt); color:var(--teal-dk);}
+
+/* 菲尔兹奖卡片 */
+.medal-grid{margin-top:22px; display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.mcard{background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:18px 20px;}
+.mcard .who{font-family:Georgia,"Noto Serif SC",serif; font-size:19px;}
+.mcard .who .en{color:var(--teal-dk);}
+.mcard .unit{font-size:13px; color:var(--ink2); margin-top:2px;}
+.mcard .work{font-size:14px; margin-top:8px; color:var(--ink);}
+.mcard .work b{color:var(--teal-dk);}
+.mcard .hl{margin-top:8px; font-size:13px; color:var(--teal-dk); background:var(--teal-lt);
+  border-radius:8px; padding:6px 10px;}
+.src{display:block; font-size:12px; color:var(--ink2); margin-top:8px; border-top:1px dashed var(--line); padding-top:6px; line-height:1.6; word-break:break-all;}
+.src b{color:var(--ink2); font-weight:600;}
+
+/* 表格 */
+.tbl{margin-top:20px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px; table-layout:fixed;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+.tbl td .subnote{display:block; font-size:12.5px; color:var(--ink2); margin-top:6px;}
+.tbl .badge{white-space:normal; line-height:1.4;}
+
+/* 时间轴（照抄全库 .tl/.tn/.dot 实现） */
+.tl{--date:138px; --axis:44px; position:relative; margin-top:26px; display:grid;
+  grid-template-columns:var(--date) var(--axis) 1fr; row-gap:20px;}
+.tl::before{content:""; position:absolute; left:calc(var(--date) + var(--axis)/2 - 1px);
+  top:6px; bottom:6px; width:2px; background:var(--line);}
+.tn{text-align:right; padding-top:4px; font-family:Georgia,serif; font-size:14.5px; color:var(--ink2);}
+.dot{justify-self:center; align-self:start; margin-top:8px; width:13px; height:13px; border-radius:50%;
+  background:var(--paper); border:3px solid var(--teal); position:relative; z-index:1;}
+.item{background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:13px 16px;}
+.item h3{font-family:Georgia,"Noto Serif SC",serif; font-size:17px;}
+.item p{font-size:14px; margin-top:5px; color:var(--ink2);}
+.item p b{color:var(--ink);}
+
+/* AI 两栏 */
+.ai-grid{margin-top:22px; display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.ai-col{background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:18px 20px;}
+.ai-col h3{font-family:Georgia,"Noto Serif SC",serif; font-size:17px; padding-bottom:8px; border-bottom:2px solid var(--line);}
+.ai-col.real h3{color:var(--green);}
+.ai-col.noise h3{color:var(--red);}
+.ai-col ul{list-style:none; margin-top:10px;}
+.ai-col li{font-size:14px; margin-top:10px; padding-left:16px; position:relative; color:var(--ink2);}
+.ai-col li::before{content:""; position:absolute; left:0; top:10px; width:7px; height:7px; border-radius:50%;}
+.ai-col.real li::before{background:var(--green);}
+.ai-col.noise li::before{background:var(--red);}
+.ai-col li b{color:var(--ink);}
+.letter{margin-top:18px; background:var(--paper2); border:1px solid var(--line); border-left:6px solid var(--gold);
+  border-radius:12px; padding:16px 20px; font-size:14px; color:var(--ink2);}
+.letter b{color:var(--ink);}
+
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2);
+  display:flex; flex-wrap:wrap; gap:16px;}
+footer a{color:var(--teal); text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+footer .note{flex-basis:100%; margin-top:6px; line-height:1.7;}
+
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+  .medal-grid,.ai-grid{grid-template-columns:1fr;}
+  .tl{--date:96px; --axis:34px; row-gap:16px;}
+  .tbl{font-size:13px;}
+  .tbl th,.tbl td{padding:8px 8px;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>数学前沿 <span class="sym">∂</span></h1>
+  <p class="sub">最新一届菲尔兹奖、七大千禧难题的 2026 年现状、近两年的攻坚时间轴，以及 AI 正在怎样改变这门学科——哪些是真进展，哪些只是标题党。</p>
+  <span class="asof">资料核查截至 2026-09-14（北京时间）</span>
+</header>
+
+<!-- 1. 2026 菲尔兹奖 -->
+<div class="sec">
+  <h2>2026 菲尔兹奖：四位得主 <small>IMU 于 2026-07-23 费城 ICM 公布，共四人；中国籍数学家首次获奖</small></h2>
+  <p class="lead">2026 年 7 月 23 日，国际数学联盟（IMU）在美国费城举行的国际数学家大会（ICM 2026）开幕式上公布第 21 届菲尔兹奖。邓煜、王虹两位中国籍数学家同时获奖，为该奖 1936 年设立以来首次；王虹也是继 Mirzakhani（2014）、Viazovska（2022）之后史上第三位女性得主。</p>
+  <div class="medal-grid">
+
+    <div class="mcard">
+      <div class="who">邓煜 <span class="en">Yu Deng</span> <span class="badge b-new">中国籍首次获奖</span></div>
+      <div class="unit">美国芝加哥大学（University of Chicago）数学系教授</div>
+      <p class="work">因<b>偏微分方程</b>方面的获奖工作：与 Zaher Hani、马骁合作，从微观硬球粒子系统<b>严格推导宏观玻尔兹曼（Boltzmann）方程</b>——媒体称之为攻克「狭义希尔伯特第六问题」（官方 citation 仅表述为硬球动力学严格推导，此为媒体解读）；并推导波动动理学方程、发展非线性薛定谔动力学的概率方法。</p>
+      <p class="src"><b>来源：</b>Clay Mathematics Institute 2026-07-23 · claymath.org/news/2026-fields-medals/ ；EMS 2026-07-23 · euromathsoc.org/news/2026-fields-medallists… ；UChicago News 2026-07-23 · news.uchicago.edu</p>
+    </div>
+
+    <div class="mcard">
+      <div class="who">John Pardon <span class="en"></span> <span class="badge b-new">辛几何</span></div>
+      <div class="unit">美国石溪大学（Stony Brook University）</div>
+      <p class="work">因<b>辛几何</b>方面的成就：为虚拟基本闭链（virtual fundamental cycles）、Fukaya 范畴与全纯曲线计数发展新方法，并对三维流形上的群作用与纽结理论作出贡献；据报道亦推进了约二十年历史的 MNOP 猜想。</p>
+      <p class="src"><b>来源：</b>Clay Mathematics Institute 2026-07-23 · claymath.org/news/2026-fields-medals/ ；IMO 官网 2026-07-24 · imo-official.org</p>
+    </div>
+
+    <div class="mcard">
+      <div class="who">Jacob Tsimerman <span class="en"></span> <span class="badge b-new">算术几何</span></div>
+      <div class="unit">加拿大多伦多大学（University of Toronto）</div>
+      <p class="work">因将 <b>o-极小性（o-minimality）</b>重塑为算术与复代数几何的基本方法，并在多项核心猜想证明中起中心作用，包括 Griffiths 关于周期映射像代数性的猜想，以及 Siegel 模簇上的 André–Oort 猜想。</p>
+      <p class="src"><b>来源：</b>Clay Mathematics Institute 2026-07-23 · claymath.org/news/2026-fields-medals/ ；EMS 2026-07-23 · euromathsoc.org</p>
+    </div>
+
+    <div class="mcard">
+      <div class="who">王虹 <span class="en">Hong Wang</span> <span class="badge b-new">中国籍 · 第三位女性</span></div>
+      <div class="unit">法国高等科学研究所（IHÉS）终身教授，兼纽约大学柯朗所（NYU Courant）</div>
+      <p class="work">因<b>调和分析与几何测度论</b>：将多尺度与解耦技术用于平面波动方程局部光滑化猜想，并在 Fourier 限制、Falconer 距离集、平面 Furstenberg 集及<b>三维 Kakeya（挂谷）问题</b>上取得重大进展。</p>
+      <p class="hl">三维 Kakeya：王虹与 Joshua Zahl 于 2025 年 2 月在 arXiv 提交 127 页论文（arXiv:2502.17655），证明三维空间中任何 Kakeya 集的 Hausdorff 与 Minkowski 维数均为 3（满维）。陶哲轩称其为「once-in-a-century proof」。</p>
+      <p class="src"><b>来源：</b>Clay Mathematics Institute 2026-07-23 ；北大新闻网 2026-07-23 · news.pku.edu.cn ；三维 Kakeya：arXiv:2502.17655（2025-02）；CGTN 2026-07-24（第三位女性得主）</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- 2. 七大千禧难题 2026 状态表 -->
+<div class="sec">
+  <h2>七大千禧难题：2026 年 9 月状态 <small>克雷数学研究所（CMI）2000 年设立，每题悬赏 100 万美元</small></h2>
+  <table class="tbl">
+    <colgroup>
+      <col style="width:19%">
+      <col style="width:21%">
+      <col style="width:46%">
+      <col style="width:14%">
+    </colgroup>
+    <thead><tr><th>问题</th><th>2026-09 状态</th><th>最新进展（一句话）</th><th>来源 / 日期</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Poincaré 猜想</td>
+        <td><span class="badge b-solved">已解决</span></td>
+        <td>Grigori Perelman 于 2002–2003 年给出证明，2010 年 CMI 授予千禧年奖（本人拒绝领取）。这是七题中唯一被正式勾掉的。</td>
+        <td>CMI 官方页 2026-09-13</td>
+      </tr>
+      <tr>
+        <td>Navier–Stokes 方程（存在性与光滑性）</td>
+        <td><span class="badge b-prog">进行中 · 待复核</span></td>
+        <td>2026-09-08 OpenAI 声称用约一万个 agent、88 小时给出三维不可压 N–S 有限时间爆破证明，并用 Lean 4 形式化；CMI 9-11 措辞为「apparently been settled」，但<b>未颁奖</b>，且存在与 Buckmaster、Alpöge 之间的优先权争议。<b>不能计入「已解决」。</b></td>
+        <td>Quanta 2026-09-08；CMI 公告 2026-09-11</td>
+      </tr>
+      <tr>
+        <td>Riemann 猜想（黎曼猜想）</td>
+        <td><span class="badge b-open">未解决</span></td>
+        <td>2026-08-10 Anthropic 公布：研究版 Claude 把临界线上 ζ 函数非平凡零点比例渐近下界从 1989 年 Conrey 的 <b>41.6% 推进到 67.2%</b>（arXiv:2608.13637，后经独立核验与 Lean 4 形式化）。<span class="subnote">这只是把部分零点结果推进一步，<b>不是证明 RH</b>；Anthropic 官方亦称「未能完成证明」。</span></td>
+        <td>Anthropic 研究博客 2026-08-10；arXiv:2608.13637</td>
+      </tr>
+      <tr>
+        <td>P vs NP</td>
+        <td><span class="badge b-open">未解决</span></td>
+        <td>2025–2026 年无任何被计算复杂性共同体接受的完整证明。Zenodo / vixra 等自出版平台上的「证明」均未经同行评审，不构成有效结果（甚至有恶搞论文）。</td>
+        <td>arXiv 综述 2026-08-25</td>
+      </tr>
+      <tr>
+        <td>Hodge 猜想</td>
+        <td><span class="badge b-open">未解决</span> <span class="badge b-doubt">有炒作</span></td>
+        <td>2026-09 中旬有媒体转述《纽约时报》称 OpenAI 团队在 Hodge 上「取得实质进展、准备公布」。<b>截至核查日无论文、无形式化、CMI 未公告</b>，仅属传闻。</td>
+        <td>36氪 2026-09-11；Spektrum.de 2026-09-11</td>
+      </tr>
+      <tr>
+        <td>Yang–Mills 存在性与质量间隙</td>
+        <td><span class="badge b-open">未解决</span></td>
+        <td>2025–2026 年无被数学共同体接受的完整证明；文献中仅有自称「量子计算同时解决六题」的边缘文章，不被同行引用。</td>
+        <td>状态综述 2026-09-12</td>
+      </tr>
+      <tr>
+        <td>Birch 和 Swinnerton-Dyer 猜想（BSD）</td>
+        <td><span class="badge b-open">未解决</span></td>
+        <td>2025–2026 年无公认完整证明；Zenodo 上个别自出版预印本使用自创框架，未进入主流数学文献。</td>
+        <td>状态综述 2026-09-12</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 3. 时间轴 -->
+<div class="sec">
+  <h2>2025–2026 重大进展时间轴 <small>确有公开记录的关键节点；「进行中」者均待独立复核</small></h2>
+  <div class="tl">
+    <div class="tn">2025-02</div><div class="dot"></div>
+    <div class="item"><h3>三维 Kakeya 猜想获证 <span class="badge b-solved">已确认</span></h3><p>王虹与 Joshua Zahl 在 arXiv:2502.17655（127 页）证明三维 Kakeya 集满维。陶哲轩称「once-in-a-century proof」。<span class="src">来源：École Polytechnique 2026-07-23；IHÉS 主页</span></p></div>
+
+    <div class="tn">2024–26</div><div class="dot"></div>
+    <div class="item"><h3>几何 Langlands 纲领收尾 <span class="badge b-prog">验证整理期</span></h3><p>Arinkin、Gaitsgory、Raskin、Rozenblyum 等约九人团队 2024 年给出 Beilinson–Drinfeld「best hope」完整证明（800+ 页），2025–2026 年进入独立双验证与教科书化整理。<span class="src">来源：UCLA 综述；独立双验证整理稿</span></p></div>
+
+    <div class="tn">2026-06</div><div class="dot"></div>
+    <div class="item"><h3>Goldbach 方向 (1+1.9) 预印本 <span class="badge b-prog">待复核</span></h3><p>arXiv:2606.05224 声称无条件证明介于陈景润 (1+2) 与二元 Goldbach (1+1) 之间的 (1+1.9)；若假设 Elliott–Halberstam 猜想可改进到 1.4。<b>仍处预印本阶段，未见独立同行评审。</b><span class="src">来源：arXiv:2606.05224（2026-06）</span></p></div>
+
+    <div class="tn">2026-07-23</div><div class="dot"></div>
+    <div class="item"><h3>2026 菲尔兹奖揭晓 <span class="badge b-solved">已确认</span></h3><p>费城 ICM 公布邓煜、Pardon、Tsimerman、王虹四人；中国籍首次获奖，王虹为史上第三位女性得主。<span class="src">来源：CMI / EMS 2026-07-23；新华社 2026-07-24</span></p></div>
+
+    <div class="tn">2026-08-10</div><div class="dot"></div>
+    <div class="item"><h3>Claude 推进临界线零点比例 <span class="badge b-prog">已复核 · 非证明</span></h3><p>Anthropic 研究版 Claude 把 ζ 临界线零点比例渐近下界 41.6% → <b>67.2%</b>，并附 Lean 4 形式化；随后被 Alpöge、Furman 独立核验。<b>这是部分结果，RH 本身仍未证。</b><span class="src">来源：Anthropic 2026-08-10；arXiv:2608.13637 / 2609.02882</span></p></div>
+
+    <div class="tn">2026-08→09</div><div class="dot"></div>
+    <div class="item"><h3>相邻素数间隙：246→240→212→186 <span class="badge b-prog">待复核</span></h3><p>2026-08-31 Stadlmann 把 Polymath8b 保持十余年的上界 246 压到 240（人类首次改进）；随后 Axiom Math 压到 212，OpenAI 2026-09-03 给出 186 并附数值证书。<b>远未证明孪生素数猜想（目标是 2）。</b><span class="src">来源：Science News 2026-09-12；Saiph Institute 2026-09-04</span></p></div>
+
+    <div class="tn">2026-09-08</div><div class="dot"></div>
+    <div class="item"><h3>OpenAI 声称解决 Navier–Stokes <span class="badge b-prog">声称 · 争议中</span></h3><p>OpenAI 称约一万 agent 运行 88 小时给出三维 N–S 有限时间爆破证明并完成 Lean 4 形式化；CMI 未颁奖，独立复核与优先权争议未决。<b>不得写作「已解决」。</b><span class="src">来源：Quanta 2026-09-08；CMI 2026-09-11</span></p></div>
+
+    <div class="tn">2026-09-11</div><div class="dot"></div>
+    <div class="item"><h3>25 位菲尔兹奖得主联署公开信 <span class="badge b-solved">事件已确认</span></h3><p>陶哲轩、Scholze、Villani、Viazovska、Deligne、Maynard 等 25 位得主（奖牌跨度 1978–2026，含新科得主邓煜）联署《A Severe Misalignment of AI in Mathematics》，批评「把数学难题当排行榜刷」。<span class="src">来源：中国新闻网 2026-09-12；mathandai.org</span></p></div>
+  </div>
+</div>
+
+<!-- 4. AI 与数学 -->
+<div class="sec">
+  <h2>AI 与数学：真进展 vs 标题党 <small>公司宣传稿 ≠ 学术事实；自出版「证明」一律存疑</small></h2>
+  <div class="ai-grid">
+    <div class="ai-col real">
+      <h3>被认真对待的实质进展</h3>
+      <ul>
+        <li><b>AlphaGeometry2（2025-02，DeepMind）</b>：神经-符号系统解出近 83–84% 的 IMO 几何题，超过几何金牌平均水平；这是竞赛基准性能，不是开放定理发现。<span class="src">arXiv:2502.03544；后刊于 JMLR</span></li>
+        <li><b>Claude 临界线零点 41.6%→67.2%（2026-08）</b>：AI 首次在解析数论核心问题上给出被独立复核的新定理，并附 Lean 4 形式化。<span class="src">Anthropic 2026-08-10</span></li>
+        <li><b>OpenAI 素数间隙 186（2026-09-03）</b>：在人类 240、Axiom 212 基础上进一步压缩，附开源数值证书；属筛法参数优化，非概念突破，复核仍在进行。<span class="src">Science News 2026-09-12</span></li>
+        <li><b>OpenAI 声称 N–S 爆破证明（2026-09-08）</b>：量级重大但未完成——CMI 未颁奖、独立复核未结束、存在优先权争议。<span class="src">Quanta 2026-09-08；CMI 2026-09-11</span></li>
+      </ul>
+    </div>
+    <div class="ai-col noise">
+      <h3>炒作 / 存疑 / 不成立</h3>
+      <ul>
+        <li><b>「AI 已证明黎曼猜想」</b>：错误。Claude 只是把零点比例从 41.6% 推到 67.2%，RH 本身仍未证明。</li>
+        <li><b>「AI 已解决 P=NP」</b>：无可靠来源。Zenodo/vixra 上的自出版「证明」均未被接受，甚至出现恶搞论文。</li>
+        <li><b>「OpenAI 即将公布 Hodge 猜想证明」</b>：截至核查日仅有媒体转述，无论文、无形式化。</li>
+        <li><b>「量子计算同时解决六道千禧难题」</b>：边缘文章，不被同行引用；各类自出版「完整证明 RH」同理不采信。</li>
+        <li><b>OpenAI「不打算领 100 万美元」</b>：公司公关姿态，与数学结论是否成立无关。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="letter">
+    <b>2026-09-11 的学界表态：</b>25 位菲尔兹奖得主联署《A Severe Misalignment of AI in Mathematics》。主旨<b>不是「反对 AI」</b>（陶哲轩本人一直积极用 AI 辅助研究），而是反对把数学难题当成跑分榜——希尔伯特的那句话依然成立：问题的价值不在答案，而在解题过程中学到的东西。
+    <span class="src">来源：中国新闻网 2026-09-12；OfficeChai 2026-09-12；Global1.news 2026-09-13</span>
+  </div>
+</div>
+
+
+<div class="sec">
+  <h2>2020 年代数学前沿热点</h2>
+  <table class="tbl">
+    <thead><tr><th>方向</th><th>最新进展</th><th>意义</th></tr></thead>
+    <tbody>
+      <tr><td>机器学习与数学</td><td>DeepMind 用 AI 协助发现纽结不变量、表示论猜想；Lean 证明助手形式化越来越多定理</td><td>AI 成为数学家的「合作者」</td></tr>
+      <tr><td>Langlands 纲领</td><td>2020s 对函数域情形取得系统进展，几何 Langlands 与物理对偶的联系加深</td><td>数学大一统理论的核心线索</td></tr>
+      <tr><td>量子计算与算法</td><td>Shor 算法（大数分解）、Grover 算法（搜索加速）；拓扑量子计算实验进展</td><td>可能颠覆密码学与优化</td></tr>
+      <tr><td>深度学习理论</td><td>理解神经网络为何泛化、过参数化与双重下降现象</td><td>为 AI 提供数学基础</td></tr>
+      <tr><td>压缩感知与稀疏恢复</td><td>从 $L_1$ 最小化到深度学习重构，应用于 MRI、成像</td><td>数学驱动的工程革命</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../03-经典难题/经典难题与猜想.html">经典难题与猜想 →</a>
+  <a href="../08-数学史/数学史时间线.html">数学史时间线 →</a>
+  <a href="论文日报.html">论文日报（每天自动更新）→</a>
+  <p class="note">本页为离线知识库 LBLB 的事实整理页，内容依据 awards.md 与 frontier.md 两份研究事实包逐条核对（核查截至 2026-09-14）。所有「声称 / 预印本 / 媒体转述」均已标注，未写入「已解决」；正式结论以 Clay Mathematics Institute、IMU 及同行评议论文为准。</p>
+</footer>
+</div>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

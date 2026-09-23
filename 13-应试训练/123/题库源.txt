@@ -1,0 +1,6 @@
+# LBLB 真题周更 · 题库源配置
+# 每行一个题库源：jsDelivr / Gitee raw 的 题库.js 地址，或本地文件路径。
+# 与「06-真实单题训练.html → 检查更新」弹出的链接格式一致，例如：
+#   https://cdn.jsdelivr.net/gh/你的用户名/仓库名@main/题库.js
+#   https://gitee.com/你的用户名/仓库名/raw/main/题库.js
+# 未配置时「LBLB真题周更」计划任务会安静跳过，不影响本地刷题。

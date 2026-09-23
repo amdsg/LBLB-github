@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="referrer" content="strict-origin-when-cross-origin">
+<title>中国数学史长编 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%86%96%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B; --violet:#6B4E9E;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--gold); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--gold); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:700px;}
+.era{margin-top:44px;}
+.era h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--gold); padding-left:14px;}
+.era h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.tl{--date:120px; --axis:40px; position:relative; margin-top:22px; display:grid; grid-template-columns:var(--date) var(--axis) 1fr; row-gap:18px;}
+.tl::before{content:""; position:absolute; left:calc(var(--date) + var(--axis)/2 - 1px); top:4px; bottom:4px; width:2px; background:var(--line);}
+.tn{text-align:right; padding-top:4px; font-family:Georgia,serif; font-size:15px; color:var(--ink2);}
+.dot{justify-self:center; align-self:start; margin-top:10px; width:13px; height:13px; border-radius:50%; background:var(--paper); border:3px solid var(--gold); position:relative; z-index:1;}
+.item{background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:12px 16px;}
+.item h3{font-family:Georgia,"Noto Serif SC",serif; font-size:16.5px;}
+.item p{font-size:13.5px; margin-top:4px; color:var(--ink2);}
+.item p b{color:var(--ink);}
+.item .c{display:inline-block; font-size:11px; padding:1px 8px; border-radius:999px; margin-right:6px;}
+.c-gold{background:#F7E9D6; color:#A8751E;} .c-red{background:#F3DDE6; color:#B0396E;}
+.c-blue{background:#E4EFF7; color:#1F4E9C;} .c-green{background:#E4EFE7; color:#2E7D5B;} .c-violet{background:#EFE7F7; color:#6B4E9E;}
+.closing{margin-top:52px; background:var(--paper2); border:1px solid var(--line); border-radius:14px; padding:20px 24px; font-size:14.5px; color:var(--ink2);}
+.closing b{color:var(--ink);}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px;}
+footer a{color:var(--gold); text-decoration:none;}
+#mj-fallback{display:none; position:fixed; bottom:16px; left:50%; transform:translateX(-50%); background:#C0392B; color:#fff; padding:10px 18px; border-radius:10px; font-size:13px; z-index:9999; box-shadow:0 4px 16px rgba(0,0,0,.25);}
+p.body{font-size:15px; margin-top:14px;}
+p.body b{color:var(--ink);}
+p.body i{color:var(--ink2); font-style:normal; font-family:Georgia,"Noto Serif SC",serif;}
+ul.list{margin:12px 0 0 22px; font-size:14.5px; color:var(--ink2);}
+ul.list li{margin-top:6px;}
+ul.list li b{color:var(--ink);}
+.disp{margin:14px 0; padding:10px 14px; background:#fffdf6; border:1px solid var(--line); border-radius:10px; overflow-x:auto; text-align:center; font-size:15.5px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-size:15.5px; color:var(--ink); background:var(--paper2); border-left:5px solid var(--gold); border-radius:8px; padding:12px 18px; margin:16px 0;}
+.quote span{display:block; margin-top:6px; font-size:12.5px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif;}
+.note{background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:14px; color:var(--ink2); margin-top:16px;}
+.note b{color:var(--ink);}
+.warn{background:#FBF2E4; border-left:5px solid var(--gold); border-radius:8px; padding:12px 18px; font-size:14px; color:var(--ink2); margin-top:16px;}
+.warn b{color:var(--ink);}
+.tbl{width:100%; border-collapse:collapse; margin-top:20px; font-size:13.5px;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-family:Georgia,"Noto Serif SC",serif; font-weight:600; font-size:13.5px;}
+.tbl td.d{white-space:nowrap; font-family:Georgia,serif; color:var(--ink2);}
+.tbl tr:nth-child(even) td{background:#fffdf6;}
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true, processEnvironments: true, processRefs: true },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code','option'] },
+  startup: {
+    typeset: true,
+    pageReady: function () {
+      var fb = document.getElementById('mj-fallback');
+      if (fb) { fb.style.display = 'none'; }
+      return MathJax.startup.defaultPageReady();
+    }
+  }
+};
+window.__mjTimer = setTimeout(function(){
+  var fb = document.getElementById('mj-fallback');
+  if (fb) { fb.style.display = 'block'; }
+}, 6000);
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var fb=document.getElementById('mj-fallback');if(fb){fb.textContent='MathJax 离线文件加载失败，请检查 ../assets/mathjax/es5/tex-svg.js';fb.style.display='block';}"></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>中国数学史长编 <span class="sym">↖</span></h1>
+  <p class="sub">从《周髀算经》的勾股问答，到 2026 年费城的菲尔兹奖。这是一部以「算法」为骨架的数学史——
+  它的主角不是定理的推演，而是一代代学者写在算筹、算盘和纸上的可执行程序。</p>
+  <p class="sub" style="margin-top:10px;font-size:14px">本文按时代分节。凡年代、书名、人名有争议者，均在文中标注；
+  无法确证的内容一律不写。所有论断都可回溯到传世文献或公认的学术共识。</p>
+</header>
+
+<div class="era">
+  <h2>开篇：算法化与公理化，两种数学气质 <small>一条贯穿全篇的线索</small></h2>
+  <p class="body">如果只能用一个词概括中国传统数学，最准确的可能是<b>「算法」</b>。中国现存最重要的数学典籍《九章算术》，
+  其体例是<b>「问—答—术」</b>：先给一个具体问题，再给数值答案，最后给出「术」——一套可以照着做、且换一组数字仍然管用的操作程序。
+  「术」就是算法。它不需要先讲清楚「什么是数」，也不需要从公理出发一步步推演；它的合法性来自<b>算得对、用得上、可重复</b>。</p>
+  <p class="body">与之相对，古希腊数学的核心气质是<b>公理化</b>。欧几里得《几何原本》从定义、公设、公理出发，
+  用演绎链条把命题一个个接起来。它关心的问题不是「怎么算出来」，而是「凭什么必然成立」。
+  这两条路线不是高低之分，而是<b>不同需求长出的不同形态</b>：中国传统数学面对的是田亩丈量、赋税分配、工程土方、历法推算——
+  这些都是必须给出数值答案的现实任务；希腊数学脱胎于学园的思辨传统，抽象与论证本身就是目的。</p>
+  <p class="body">两者各有代价。算法传统在<b>数值方法、逼近、机械化计算</b>上走得极远，却在「结构性理论」的搭建上不如希腊系统；
+  公理化传统建立了清晰的证明标准，却也在相当长时间里对「方便好用的算法」兴趣有限。
+  有趣的是，进入 20 世纪后半叶，当计算机把「可执行的算法」变成数学的核心议题时，
+  中国传统的算法气质反而显出了它超前的部分——吴文俊在 1970 年代后期提出<b>数学机械化</b>纲领，
+  明确说他的灵感来自中国古算的算法精神，这不是偶然。</p>
+  <p class="body">下面按时代展开。<b>先秦至汉</b>是奠基，<b>魏晋南北朝</b>出现第一次理论高峰，<b>隋唐</b>把数学装进国家制度，
+  <b>宋元</b>抵达古代世界的高峰，<b>明清</b>在珠算普及与西学东来之间转向，
+  <b>20 世纪</b>重建为一门现代学科，最终<b>汇入国际前沿</b>。</p>
+</div>
+
+<div class="era">
+  <h2>一、先秦与汉代：算经的奠基 <small>约公元前 1 世纪 – 公元 1 世纪</small></h2>
+  <p class="body">中国数学最早的成熟形态，出现在两部书里：《周髀算经》与《九章算术》。前者是天文著作而含大量数学，
+  后者是纯粹的数学问题集。二者共同确立了中国数学此后近两千年的基本风格：<b>问题驱动、算法化、数值化</b>。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:26px">《周髀算经》与「勾三股四弦五」</h3>
+  <div class="quote">勾三、股四、弦五。<span>——《周髀算经》卷上（商高答周公问）</span></div>
+  <p class="body">这是中国文献中最早的勾股定理特例记录，出现在全书开篇的对话里。需要说明的是，
+  这条记录<b>并非定理本身</b>，而是一组具体的数组：直角边为 3 和 4，斜边为 5。
+  真正的定理形式与证明要到后来的注家才补上。</p>
+  <p class="body">从「一组数」到「一条定理」，关键的一步由三国时期<b>赵爽</b>（约 3 世纪）完成。
+  他在《周髀算经》注的「勾股圆方图注」中用一张<b>弦图</b>给出证明：把四个全等的直角三角形围成一个正方形，
+  中间留下一个小正方形，通过面积的两重计算即可验证</p>
+  <div class="disp">$$a^2 + b^2 = c^2$$</div>
+  <p class="body">这种「拼合—重排—算两次」的证明方式，本质上是<b>构造性的</b>：它不是从公理推下来，
+  而是动手把图形重新摆一遍，让面积等式自己显形。刘徽后来把这类思想提炼为一条明确的原则。</p>
+  <p class="body">关于成书年代，<b>《周髀算经》约成书于公元前 1 世纪前后</b>（西汉），但它包含的材料可能更早，
+  且全书经历过增补。因此「商高答周公」这一段是否反映西周初年的知识，学界并不能确证——
+  <b>成书年代与内容年代是两件事</b>，本文在这一点上取保守态度。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:30px">《九章算术》：一部 246 题的问题集</h3>
+  <p class="body">《九章算术》是中国古代数学最重要的著作，<b>大约成书于东汉初期（公元 1 世纪）</b>，
+  由先秦至汉代的数学知识逐步汇集而成；西汉的<b>张苍、耿寿昌</b>曾对它做过增补整理。
+  书名「九章算术」最早见于一件<b>公元 179 年的铜量器铭文</b>，这是它确实存在的硬证据。
+  全书共 <b>246 个问题</b>，按性质分为九章：</p>
+  <ul class="list">
+    <li><b>方田</b>——平面图形面积与<b>分数四则运算</b>。「合分」「减分」「乘分」「经分」等术，构成了一套完整的分数运算程序。</li>
+    <li><b>粟米</b>——比例换算，核心是「今有术」：由三个已知量求第四个，相当于解比例式。</li>
+    <li><b>衰分</b>——按比例分配，用于赋税与赏赐。</li>
+    <li><b>少广</b>——开平方、开立方，以及由面积、体积反求边长。</li>
+    <li><b>商功</b>——土木工程的体积计算，给出方堡壔、圆堡壔、阳马、鳖臑等立体体积公式。</li>
+    <li><b>均输</b>——赋役的平均摊派，涉及等差与复比例问题。</li>
+    <li><b>盈不足</b>——「双假设法」：先猜两个答案，由各自的盈亏反推正确值。此法后传入阿拉伯世界，被称为 <i>hisab al-khata'ayn</i>。</li>
+    <li><b>方程</b>——线性方程组。用算筹把系数摆成方阵再做「直除」（逐行消元），等价于今天的消元法；<b>负数在此章首次成体系出现</b>，以「卖」为正、「买」为负。</li>
+    <li><b>勾股</b>——直角三角形问题，含勾股互求、勾股容方、勾股容圆。</li>
+  </ul>
+  <p class="body">其中最值得注意的是<b>方程章</b>。这里不仅有联立一次方程组的完整程序，
+  还给出了<b>负数的加减法则</b>（「正负术」：同名相除，异名相益）。欧洲直到 16 世纪才在韦达、笛卡尔那里
+  逐步接受负数，而中国在公元 1 世纪已经用量化的规则在算筹上操作负数了。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:30px">筹算：被算法驯服的「计算硬件」</h3>
+  <p class="body">支撑这一切的工具是<b>算筹</b>——一把细长的小棍。它用<b>位置</b>表示十进制，
+  并在不同数位上交替使用纵横两种摆法，以避免相邻数位混淆。算筹的关键优势是<b>可以移动、重排、腾挪</b>：
+  摆成方阵就是方程组，挪动就是消元，翻面或换色就能表示正负。</p>
+  <p class="body">这一点很重要。中国传统数学之所以能在<b>数值解高次方程、多元消元、分数与负数运算</b>上走得那么远，
+  与它把「纸笔符号」换成「可操作的实体」有直接关系。算法不是写在纸上的公式，而是<b>手指的动作</b>。
+  这也解释了为什么后来的算盘能够顺利接替算筹——两者共享同一个「操作化」的思路。</p>
+
+  <div class="note"><b>史料说明：</b>《九章算术》的成书年代在学界有「西汉说」与「东汉说」两派，
+  本文采用较通行的东汉初期说，并在年表中标注为「约」。
+  全书 246 题的定本面貌亦有不同统计方式（部分版本因分并而得出 246 或 246 余的差异），此处采用通行的 246 题之说。</div>
+</div>
+
+<div class="era">
+  <h2>二、魏晋南北朝：第一次理论高峰 <small>约 220 – 589 年</small></h2>
+  <p class="body">这个时代贡献了中国古代数学最深刻的一位思想家。他做的事，相当于把一本工程手册
+  提升成了一部有理论基础、有方法论自觉的著作。</p>
+
+  <div class="tl">
+    <div class="tn">263</div><div class="dot"></div>
+    <div class="item"><h3>刘徽注《九章算术》 <span class="c c-gold">理论奠基</span></h3>
+      <p>曹魏景元四年（263），刘徽为《九章算术》作注，撰成《九章算术注》十卷，另附《九章重差图》。他不仅解释算法，
+      更补上证明、指出错误、推广结论——这是中国数学史上第一次系统的「理论化」工作。</p></div>
+
+    <div class="tn">263</div><div class="dot"></div>
+    <div class="item"><h3>割圆术与「徽率」 <span class="c c-gold">极限思想</span></h3>
+      <p>从圆内接正六边形出发，每次把边数加倍，用多边形面积逼近圆面积。他先在正 192 边形上得到
+      $\pi = \dfrac{157}{50} = 3.14$，进一步推算得 $\pi = \dfrac{3927}{1250} = 3.1416$，后者被称为「徽率」。</p></div>
+
+    <div class="tn">3世纪</div><div class="dot"></div>
+    <div class="item"><h3>出入相补原理 <span class="c c-blue">构造性几何</span></h3>
+      <p>刘徽明确提出「出入相补，各从其类」：图形经过分、合、移、补重新拼合后，面积（或体积）不变。
+      这条原则他用来证明勾股定理、求勾股数、处理勾股容方与立体体积——它是中国传统几何的<b>核心工具</b>。</p></div>
+
+    <div class="tn">3世纪</div><div class="dot"></div>
+    <div class="item"><h3>《海岛算经》与重差术 <span class="c c-blue">测量</span></h3>
+      <p>刘徽另著《海岛算经》，总结「重差术」：通过两次观测的数据差来推算不可及的远方目标，
+      如海岛高度、山峰距离。这是实用测量数学的经典之作。</p></div>
+
+    <div class="tn">约400</div><div class="dot"></div>
+    <div class="item"><h3>《孙子算经》「物不知数」 <span class="c c-violet">数论</span></h3>
+      <p>书中提出「今有物不知其数，三三数之剩二，五五数之剩三，七七数之剩二，问物几何」——
+      这是<b>一次同余方程组</b>问题的最早明确表述，八百年后被秦九韶发展为「大衍求一术」。</p></div>
+
+    <div class="tn">429–500</div><div class="dot"></div>
+    <div class="item"><h3>祖冲之：π 精确到小数点后七位 <span class="c c-gold">精算</span></h3>
+      <p>在刘徽基础上继续推算，得到 $3.1415926 < \pi < 3.1415927$，并给出两个分数近似：
+      <b>约率</b> $\dfrac{22}{7}$ 与<b>密率</b> $\dfrac{355}{113}$。密率是分母分子均小于 1000 时最好的近似，
+      欧洲得到同一结果要晚到 16 世纪。</p></div>
+
+    <div class="tn">5世纪</div><div class="dot"></div>
+    <div class="item"><h3>《缀术》与《大明历》 <span class="c c-red">已佚</span></h3>
+      <p>祖冲之撰《缀术》，唐代曾被列为国子监算学课本，但因「学官莫能究其深奥」，北宋后失传，
+      其具体内容今天只能通过后世转述推测。《大明历》则首次把<b>岁差</b>引入历法，
+      采用 391 年置 144 闰的闰周，回归年长度取 365.2428148 日。</p></div>
+
+    <div class="tn">6世纪</div><div class="dot"></div>
+    <div class="item"><h3>祖暅与球体积 <span class="c c-blue">体积</span></h3>
+      <p>祖冲之之子祖暅在球体积问题上提出「幂势既同，则积不容异」——两个立体若在每一高度处的截面积相同，
+      则体积相等。此说见于《九章算术》李淳风注所引。它与一千多年后卡瓦列里提出的原理实质相同。</p></div>
+  </div>
+
+  <p class="body" style="margin-top:26px">刘徽的割圆术值得单独走一遍，因为它把「无穷逼近」的思路讲得异常清楚。
+  设 $S_n$ 为圆内接正 $n$ 边形的面积，$S$ 为圆面积。刘徽注意到：$S_n$ 单调递增地逼近 $S$，
+  而且可以给出两面夹逼的估计</p>
+  <div class="disp">$$S_{2n} < S < S_{2n} + (S_{2n} - S_n)$$</div>
+  <p class="body">右边那一项正是「多算一点」的余量：把本次加倍带来的增量再加上去，就足以包住真实值。
+  这样既保证了逼近，又给出了误差控制。刘徽自己的表述是：</p>
+  <div class="quote">割之弥细，所失弥少。割之又割，以至于不可割，则与圆周合体，而无所失矣。<span>——《九章算术注·方田章》刘徽</span></div>
+  <p class="body">「以至于不可割」这句话里已经有了极限过程的意思。当然要诚实地说：刘徽所说的
+  <b>是面积逼近的极限，不是实数完备性意义上的极限</b>；他没有、也不可能给出 $\varepsilon$-$\delta$ 定义。
+  把它称为「极限思想的先声」是恰当的，说成「已经建立了极限理论」则过头了。</p>
+
+  <div class="note"><b>史料说明：</b>
+  <ul class="list" style="margin-top:8px">
+    <li>$\pi = \dfrac{3927}{1250}$ 究竟出自刘徽还是祖冲之，学术史上有过争论（清代李潢主张后者），
+    但多数学者认为刘徽已得出此值。本文采多数学者之说，并在此注明争议。</li>
+    <li>《缀术》已佚，祖冲之求 π 的<b>具体方法</b>不可确知。他的 π 值见于《隋书·律历志》等后世记载，
+    但记载的是<b>结果</b>，不是过程。因此「他用割圆术算到一万二千边形」之类的说法属于推测，本文不写。</li>
+    <li>「祖暅原理」这一名称是后人所加，古代并无此名；其内容见李淳风注引祖暅之说。</li>
+  </ul></div>
+</div>
+
+<div class="era">
+  <h2>三、隋唐：数学进入国家制度 <small>589 – 907 年</small></h2>
+  <p class="body">隋唐对中国数学最大的贡献，不是某个新定理，而是<b>制度</b>。数学第一次被系统地纳入国家教育与考试体系，
+  并因此获得了稳定的教材、考核标准和从业人群。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:26px">算学馆与明算科</h3>
+  <p class="body">唐代国子监下设<b>算学馆</b>，设算学博士与助教，招收学生（额定约 30 人）学习算经；
+  与之配套的科举科目叫<b>明算科</b>。这套制度的核心是「教科书 + 考试 + 官职」的闭环：
+  学好算经可以做官，做官需要考算经——数学由此获得了持续的社会需求。</p>
+  <p class="body">值得注意的是考核的深度。以《缉古算经》为例，规定学习者需投入<b>整整三年</b>，
+  可见其技术难度。教材也不是泛泛而读，而是分组分年限、按难度递进。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:30px">《算经十书》：一次官方教科书工程</h3>
+  <p class="body"><b>唐高宗显庆元年（656 年）</b>，<b>李淳风</b>等人奉诏校订、注释十部数学著作，
+  作为算学馆教材并用于明算科考试。这十部书后世通称<b>《算经十书》</b>（唐代原称「十部算经」）。唐代十部为：</p>
+  <ul class="list">
+    <li>《周髀算经》</li>
+    <li>《九章算术》</li>
+    <li>《海岛算经》（刘徽）</li>
+    <li>《孙子算经》</li>
+    <li>《夏侯阳算经》</li>
+    <li>《张丘建算经》</li>
+    <li>《五曹算经》</li>
+    <li>《五经算术》</li>
+    <li>《缉古算经》（王孝通）</li>
+    <li>《缀术》（祖冲之）</li>
+  </ul>
+  <p class="body">一个常被忽略的细节：<b>唐代的这十部，与今天所说的《算经十书》并不完全相同</b>。
+  由于《缀术》在北宋后失传，清代整理者用别的书（如《数术记遗》或《夏侯阳算经》的不同处理）来凑足「十」这个数。
+  所以「算经十书」在不同时代指的可能不是同一份书目，读书时要把这一点分清。</p>
+  <p class="body">另外，李淳风等人的注释实际覆盖范围有限：传本中带注的主要是《周髀算经》《九章算术》
+  《海岛算经》《张丘建算经》《五经算术》等，并非每一部都有同等详尽的注。
+  还有一个命名演变：汉唐诸书原名多称「某某算术」，大约经这次整理后才普遍改称「算经」。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:30px">王孝通与《缉古算经》：三次方程的数值解</h3>
+  <p class="body">《缉古算经》一卷，约 <b>20 问</b>，作者<b>王孝通</b>在唐初任算历博士，后官至太史丞。
+  书中问题涉及修筑堤坝、开挖河道、建造粮仓等工程，其中有若干题导出了<b>一元三次方程</b>（全书的方程数量统计为二十余个），
+  并用「带从开立方」的方法求解。</p>
+  <p class="body">它的意义在于：这是中国数学文献中<b>较早的、成体系的实用三次方程求解记录</b>。
+  工程问题（不同宽高的堤坝、需要按体积反求边长）自然地生出高次方程，
+  而中国古代数学一贯的数值开方传统正好能接住它。这条线索一直延续到宋元的「增乘开方法」和「正负开方术」，
+  最终形成了世界上最早的、系统的高次方程数值解法。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:30px">历法与内插法：藏在天文里的分析雏形</h3>
+  <p class="body">隋唐数学另一个重要战场是历法。天文观测给出的是若干离散时刻的数据，
+  但推算需要任意时刻的数值——这就逼出了<b>内插法</b>。</p>
+  <ul class="list">
+    <li><b>刘焯《皇极历》（604 年）</b>：创<b>等间距二次内插法</b>，用一阶与二阶差分计算任意时刻的修正值。
+    写成现代形式就是
+    $$f(w+s) = f(w) + s\,\Delta + \frac{1}{2}s(s-1)\,\Delta^2$$
+    其中 $\Delta$ 与 $\Delta^2$ 是一阶与二阶有限差分。该历因太史令张胄玄反对而未正式颁行，但方法流传了下来。</li>
+    <li><b>一行《大衍历》（727 年）</b>：在「步日躔术」中把它改进为<b>不等间距二次内插法</b>，
+    以适应实际观测数据间隔不均匀的情况。</li>
+  </ul>
+  <p class="body">这类公式与后来欧洲的有限差分内插形式相通，时间上早了很多个世纪。
+  但同样要诚实：它们的<b>语境是历法推算</b>，不是为了研究函数而研究函数；
+  把它们直接等同于「微积分的雏形」是一种事后追认。准确的说法是：中国古代在<b>离散数据的函数逼近</b>
+  这个具体方向上积累了极高水准的技术。</p>
+</div>
+
+<div class="era">
+  <h2>四、宋元黄金时代（上）：贾宪、秦九韶与李冶 <small>约 1000 – 1279 年</small></h2>
+  <p class="body">宋元时期，中国数学在代数与数值方法上抵达古代世界的高峰。
+  这一时代的成就集中在四个人身上，后世合称<b>「宋元数学四大家」</b>：秦九韶、李冶、杨辉、朱世杰。
+  而他们共同的技术起点，是一位著作失传、只靠别人引用才留下名字的数学家。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:26px">贾宪：一个「失传的作者」与两张表</h3>
+  <p class="body"><b>贾宪</b>是北宋人，活动于 11 世纪上半叶，师承历算家楚衍，著作有《黄帝九章算经细草》九卷
+  与《算法敩古集》二卷。他的书<b>已经全部失传</b>，今天能知道他的贡献，全靠杨辉在《详解九章算法》里
+  转引并特别注明：「出释锁算书，贾宪用此术」。</p>
+  <p class="body">他留下的两项关键技术是：</p>
+  <ul class="list">
+    <li><b>开方作法本源图</b>——即二项式展开的系数表。表中第 $n$ 行给出 $(a+b)^{n-1}$ 的各项系数 $\binom{n-1}{k}$，
+    排成等腰三角形。它比欧洲的帕斯卡三角（1654 年前后）早了约六百年。因为杨辉的转录，
+    这张表在中文语境里也常被称为「杨辉三角」——但杨辉自己明确说了它的来源，所以更准确的名称是「贾宪三角」。</li>
+    <li><b>增乘开方法</b>——一种求高次方程数值根的迭代程序：逐次「随乘随加」，从最高次系数开始向下推进，
+    每一步只做乘加，因此极易在算筹上执行。它与 19 世纪初欧洲的霍纳法在算法结构上实质相同，
+    时间上早了约七百年。</li>
+  </ul>
+  <p class="body">还有一项叫「立成释锁法」：「立成」指预先列好的常数算表，「释锁」把开方比作开锁——
+  用查表的方式辅助开方。这说明宋代的算法设计已经在考虑<b>如何减少重复计算</b>，是一种工程化的算法思维。</p>
+  <div class="warn"><b>年代争议：</b>贾宪的生卒年不详。《黄帝九章算经细草》的成书年代有
+  <b>约 1023–1034 年</b>与<b>约 1050 年</b>两说，学界无定论。本文因此只写「11 世纪上半叶」，
+  不给具体年份；年表中亦标注为「约 11 世纪」。</div>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:30px">秦九韶《数书九章》：大衍求一术与正负开方术</h3>
+  <p class="body"><b>秦九韶</b>（约 1202–1261），四川安岳人。<b>1247 年</b>成书《数书九章》，
+  全书 <b>81 个问题</b>，分为大衍、天时、田域、测望、赋役、钱谷、营建、军旅、市易<b>九类</b>。
+  据其自述，书成于为母守孝期间（约 1244–1247）。书中两项成果具有世界意义。</p>
+  <p class="body"><i>第一项：大衍求一术。</i>它系统解决<b>一次同余方程组</b>问题：给定若干模数 $m_i$ 与余数 $r_i$，
+  求满足</p>
+  <div class="disp">$$N \equiv r_i \pmod{m_i}, \qquad i = 1, 2, \ldots, k$$</div>
+  <p class="body">的 $N$。这个问题在中国的源头是《孙子算经》的「物不知数」题。
+  秦九韶的贡献在于把它<b>普遍化、程序化</b>：他引入「定数」「衍母」「衍数」「乘率」等一系列概念，
+  并给出了在算筹上逐步求「乘率」的完整算法（即今日所谓大衍总数术）。
+  这一成果在西方被称为<b>中国剩余定理</b>；欧洲要到 18 世纪的欧拉与 19 世纪初的高斯才有相当的结论，
+  晚了约五百年。</p>
+  <p class="body"><i>第二项：正负开方术。</i>他把贾宪的增乘开方法发展到成熟形态，
+  使之能求<b>任意次、且系数可正可负</b>的多项式方程</p>
+  <div class="disp">$$a_n x^n + a_{n-1}x^{n-1} + \cdots + a_1 x + a_0 = 0$$</div>
+  <p class="body">的数值根。允许系数为负是关键的一步：现实问题导出的方程系数常常有正有负，
+  只有把方法推广到一般情形，它才真正通用。这相当于提前五百年给出了霍纳–鲁菲尼方法的完整版本。</p>
+  <div class="warn"><b>年代争议：</b>秦九韶的生卒年（约 1202–1261）为后人推定，
+  不同文献给出的年份略有出入；《数书九章》成书于 1247 年这一点则比较一致。</div>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:30px">李冶与天元术：把「未知数」写出来</h3>
+  <p class="body"><b>李冶</b>（1192–1279），真定栾城人，号敬斋。<b>1248 年</b>成书《测圆海镜》，
+  共 <b>12 卷 170 问</b>，专论直角三角形与圆的关系（勾股容圆问题），
+  典型场景是求一座「圆城」的直径。这是现存<b>最早系统发展「天元术」</b>的著作。</p>
+  <p class="body">天元术的核心是<b>设未知数</b>。李冶的做法可以概括为四步：</p>
+  <ul class="list">
+    <li><b>「立天元一」</b>——把所求量设为「天元」，相当于今天写 $x$；</li>
+    <li>根据题设条件，用两种不同的方式各列出同一个量的表达式，得到两个等价的多项式；</li>
+    <li><b>「如积相消」</b>——令两者相等并相减，化归为一个多项式等于零的方程；</li>
+    <li>用增乘开方法求这个高次方程的数值根。</li>
+  </ul>
+  <p class="body">这一步「立天元一」在数学史上意义重大：它把「未知量」从文字叙述里解放出来，
+  变成一个<b>可以被符号运算的对象</b>。有了它，列方程从「凭技巧凑」变成了「按程序走」。
+  李冶后来又写了更浅显的入门书《益古演段》（1259 年），用于教学。</p>
+  <p class="body">以勾股容圆为例，直角三角形两直角边 $a$、$b$、斜边 $c$，其内切圆半径为</p>
+  <div class="disp">$$r = \frac{a + b - c}{2}$$</div>
+  <p class="body">《测圆海镜》里的大量问题就是围绕这类量的组合互求展开的——
+  而天元术让这些问题变成了一套可以机械执行的流程。</p>
+</div>
+
+<div class="era">
+  <h2>五、宋元黄金时代（下）：杨辉与朱世杰 <small>约 1261 – 1303 年</small></h2>
+  <p class="body">这一节的两位主角，一位是极出色的<b>整理者与普及者</b>，一位是把时代技术推到顶点的<b>集大成者</b>。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:26px">杨辉：保存与简化</h3>
+  <p class="body"><b>杨辉</b>，南宋人，<b>1261 年</b>成《详解九章算法》。
+  他的工作有三重价值：</p>
+  <ul class="list">
+    <li><b>保存</b>——贾宪的开方作法本源图与增乘开方法，正因为他的转录才没有彻底失掉。
+    他在书中明确注明来源，这种学术诚实本身就很可贵。</li>
+    <li><b>简化</b>——他系统总结「乘除捷法」，把繁琐的乘除运算化成便于口算与筹算的步骤，
+    直接服务于日常商业与田亩计算。</li>
+    <li><b>开拓</b>——他研究<b>垛积问题</b>，即高阶等差级数的求和，这是从堆垛实物（如坛、垛、堆）的计数中提炼出的数学。</li>
+  </ul>
+  <p class="body">此外他还著有《乘除通变本末》等实用算书。杨辉的定位提醒我们：
+  一个学科的成熟，不只靠创造新定理的人，也靠那些把已有成果<b>整理清楚、降低门槛</b>的人。</p>
+  <div class="warn"><b>年代说明：</b>杨辉生卒年不详，各书的准确成书年份在文献记载中有出入。
+  本文只明确使用其《详解九章算法》成书于 <b>1261 年</b>这一较为一致的结论，其余著作不标具体年份。</div>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:30px">朱世杰：四元术与垛积招差</h3>
+  <p class="body"><b>朱世杰</b>（约 1249–约 1314），字汉卿，号松庭，燕山（今北京附近）人。
+  他是一位游历讲学二十余年的数学教育家，把秦九韶、李冶、杨辉的成果融会贯通并向前推进。他有两部书：</p>
+  <ul class="list">
+    <li><b>《算学启蒙》（1299 年）</b>——入门教材，3 卷 20 门 <b>259 题</b>，从乘除口诀一路讲到天元术，
+    编排由浅入深。此书曾传入朝鲜与日本，反而在中国本土失传，
+    直到 <b>1839 年</b>才依据朝鲜刻本重新回传中国。</li>
+    <li><b>《四元玉鉴》（1303 年）</b>——他的代表作，3 卷 24 门 <b>288 题</b>，
+    被誉为中国宋元数学的巅峰，也是中世纪世界最重要的数学著作之一。</li>
+  </ul>
+
+  <p class="body"><i>四元术。</i>天元术处理一个未知数，四元术处理四个。<b>朱世杰</b>用
+  「天、地、人、物」四元对应今天的 $x, y, z, w$，把各项按元次摆在一块筹算板上：
+  常数项「太」置于中央，四个未知数的各次幂按固定方位环绕排列。
+  解方程组的办法是<b>消元</b>——通过「剔消」「易位」「互隐通分」等一整套操作，
+  把多元高次方程组逐步化归为一个一元高次方程，再用增乘开方法求根。</p>
+  <p class="body">这是真正的技术奇迹：在没有任何符号代数系统的情况下，
+  仅靠<b>位置化的筹算布局</b>，就完成了四个未知数的高次方程组消元。</p>
+
+  <p class="body"><i>垛积术。</i>朱世杰系统解决了高阶等差级数的求和。例如对三角垛（每层是三角形的堆垛），</p>
+  <div class="disp">$$\sum_{k=1}^{n} \frac{k(k+1)}{2} = \frac{n(n+1)(n+2)}{6}$$</div>
+  <p class="body">更一般地，他的结果可以写成组合数恒等式</p>
+  <div class="disp">$$\sum_{k=1}^{n} \binom{k+p-1}{p} = \binom{n+p}{p+1}$$</div>
+  <p class="body">这与今天所谓「朱世杰恒等式」及帕斯卡的垛积结论形式相通。</p>
+
+  <p class="body"><i>招差术。</i>这是用于历法推算的<b>有限差分内插</b>。朱世杰在《四元玉鉴》的「如象招数」门中
+  给出了三次差内插的完整公式，通常写作</p>
+  <div class="disp">$$f(n) = n\,\Delta + \frac{n(n-1)}{2}\,\Delta^2 + \frac{n(n-1)(n-2)}{6}\,\Delta^3$$</div>
+  <p class="body">其中 $\Delta, \Delta^2, \Delta^3$ 是一阶、二阶、三阶差分。
+  这与牛顿后来给出的内插公式在形式上一致，时间上早了约三个半世纪。
+  它与隋唐刘焯、一行的二次内插一脉相承，只是差分的阶数更高、适用的运动更复杂。</p>
+
+  <div class="note"><b>一串共同的线索：</b>贾宪的增乘开方 → 秦九韶的正负开方 → 李冶天元术 → 朱世杰四元术与招差术，
+  这条链条的每一个环节都建立在同一套基础设施上：<b>算筹 + 位置化表示 + 逐次逼近</b>。
+  宋元数学的辉煌不是几个孤立天才的闪光，而是一个<b>技术体系</b>走到了它的极限。</div>
+</div>
+
+<div class="era">
+  <h2>六、明清：珠算普及与西学东来 <small>1368 – 1722 年</small></h2>
+  <p class="body">元以后，中国数学的气质发生了一次明显的转向：从<b>解方程与造算法</b>，
+  转向<b>实用的商业算术与日常计算</b>。这个转向同时带来了一个高峰和一段停滞。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:26px">珠算时代与程大位《算法统宗》</h3>
+  <p class="body">算盘在元代已见使用，到明代全面取代算筹成为主流计算工具。
+  珠算的优势是<b>快</b>——口诀化、手指化、无需摆放空间，非常适合商业与赋税场景。
+  这与宋元式的「摆方程式」是完全不同的使用情境：算盘擅长四则运算，不擅长多元高次方程。</p>
+  <p class="body"><b>程大位</b>（1533–1606），字汝思，号宾渠，安徽休宁人，原本是商人，
+  四十岁弃商归乡，历经二十年写成《算法统宗》。
+  <b>《算法统宗》</b>（全称《新编直指算法统宗》）成书于<b>明万历二十年（1592 年）</b>，
+  共 <b>17 卷、595 个问题</b>，按《九章算术》的九章次序编排，但内容全面转向实用：</p>
+  <ul class="list">
+    <li>系统阐述<b>珠算术</b>：算盘形制、定位方法、加减乘除口诀及其在各种实际问题中的应用；</li>
+    <li><b>最早记述珠算开平方与开立方的方法</b>（含带纵平方、带纵立方）；</li>
+    <li>完善了珠算口诀——今天仍在用的《九归歌》「二一添作五，逢二进一十……」即由此定型；</li>
+    <li>创制<b>丈量步车</b>（类似今天的卷尺），用于田亩测量；</li>
+    <li>全书多用口诀与诗歌写成，通俗易记，这是它能广泛流传的直接原因。</li>
+  </ul>
+  <div class="quote">三人同行七十稀，五树梅花廿一枝；七子团圆正半月，除百零五便得知。<span>——《算法统宗》「物不知数」题口诀（对应《孙子算经》同余问题）</span></div>
+  <p class="body">程大位后来又把全书删繁就简，写成《算法纂要》四卷。
+  《算法统宗》流传极广，不仅风行全国，还传入日本、朝鲜、东南亚乃至欧洲，
+  对日本和算的开山之作《尘劫记》有深远影响。
+  <b>2013 年 12 月，珠算被联合国教科文组织列入人类非物质文化遗产名录。</b></p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:30px">徐光启与利玛窦：欧几里得来到中国</h3>
+  <p class="body">明末，耶稣会传教士采取「学术传教」策略进入中国。意大利人<b>利玛窦</b>（Matteo Ricci, 1552–1610）
+  1582 年抵达澳门，随后北上。他与<b>徐光启</b>（1562–1633）的合作产生了中国科学史上影响最深远的译本。</p>
+  <p class="body">1604 年徐光启中进士后，几乎每日到利玛窦住所，
+  采用<b>「利玛窦口授、徐光启笔译」</b>的方式工作。底本是利玛窦的老师
+  <b>克拉维乌斯</b>（Christopher Clavius, 1538–1612）1574 年出版的拉丁文本《欧几里得原本》评注本。
+  <b>1607 年（万历三十五年）</b>，<b>《几何原本》前六卷</b>译就并刻印出版，
+  前六卷主要内容是平面几何：定义、公设与公理、比例论、相似形等。</p>
+  <p class="body">这次翻译的贡献远不止「引进了一本书」：</p>
+  <ul class="list">
+    <li>确定了「<b>几何</b>」这一学科名称，以及点、线、面、直角、钝角等基本术语的中文译名——
+    这些词今天仍在用。</li>
+    <li>第一次把<b>公理化的演绎体系</b>完整呈现在中文世界面前。对习惯了「问题—算法」体例的中国读者来说，
+    这是一种完全不同的数学写作方式。</li>
+    <li>徐光启由此提出了他著名的治学路径：<b>翻译 → 会通 → 超胜</b>。
+    他认为必须先老老实实读懂别人的东西，才能融会贯通，最终才谈得上超越。</li>
+  </ul>
+  <div class="quote">万象之形囿，百家之学海。<span>——徐光启《刻几何原本序》评《几何原本》</span></div>
+  <p class="body">译完六卷后，徐光启希望一口气译完十五卷，但利玛窦主张先止于此，让后来的同道慢慢消化。
+  <b>后九卷直到 1857 年才由李善兰与伟烈亚力合译完成</b>——距前六卷问世整整两百五十年。
+  这个数字本身就说明了此后中西数学交流的曲折。</p>
+  <p class="body">与利玛窦合作的另一位重要人物是<b>李之藻</b>，他编译的《同文算指》把西方笔算方法介绍进来，
+  使中国读者第一次看到不依赖算筹与算盘的纸笔计算体系。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:30px">梅文鼎与「中西会通」</h3>
+  <p class="body"><b>梅文鼎</b>（1633–1721）是清初最重要的历算学家，著述宏富，后人编为《勿庵历算全书》七十五卷。
+  他是<b>第一个真正实践「中西会通」</b>的人：把传入的西方几何、三角、代数知识与中国传统算法放在一起比较、
+  互证、改造，试图熔为一炉。</p>
+  <p class="body">但他同时主张「<b>西学中源</b>」说——认为西方几何源于中国的勾股。
+  这个论调在当时有其心理与现实功能（降低接受外来知识的阻力），
+  但作为一种历史判断显然是错误的，而且后来加剧了自满，成为一个值得记取的教训。</p>
+</div>
+
+<div class="era">
+  <h2>七、清代中期：官方教科书与古算复兴 <small>1722 – 1840 年</small></h2>
+  <p class="body">这一百年里发生了两件方向相反的事：一场自上而下的<b>数学百科编纂</b>，
+  以及一场由考据学风带动的<b>古算文献复兴</b>。两者都没有把中国数学推向 18 世纪欧洲分析的高度，
+  但都极大地改变了知识的流通方式。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:26px">《数理精蕴》：康熙朝的数学百科全书</h3>
+  <p class="body">康熙五十年（1712 年）前后，康熙接受陈厚耀「定步算诸书以惠天下」的建议，
+  命<b>梅穀成</b>等人编修《律历渊源》。该丛书约 1721 年编成，共 <b>100 卷</b>，
+  由《历象考成》42 卷、《律吕正义》5 卷、《<b>数理精蕴</b>》53 卷组成，
+  于<b>雍正元年（1723 年）</b>交武英殿刊行。</p>
+  <p class="body">《数理精蕴》自身 53 卷，结构相当清晰：</p>
+  <ul class="list">
+    <li><b>上编 5 卷</b>（「立纲明体」）——卷一《数理本源》《周髀算经》，卷二至卷四为《几何原本》
+    （依据传教士张诚讲稿修订，实为当时法国流行的几何教科书译本），卷五《算法原本》；</li>
+    <li><b>下编 40 卷</b>（「分条致用」）——各种实用算法与应用问题；</li>
+    <li><b>表 8 卷</b>——四种数学用表。</li>
+  </ul>
+  <p class="body">它的历史地位在于：这是明末清初传入的西方数学的<b>集大成总结</b>，
+  在相当长的时期内是清代学者学习数学的<b>必读书</b>。
+  当西方数学的持续输入中断之后，它成了清中叶学者主要的数学知识来源，
+  影响了明安图、汪莱、董祐诚、项名达、戴煦、李善兰等一批人。
+  它还传入朝鲜，朝鲜数学家据此撰写了《数理精蕴补解》一类研究著作。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:30px">戴震与《四库全书》：把失传的书找回来</h3>
+  <p class="body"><b>戴震</b>（1723/1724–1777）是乾嘉学派皖派领袖。
+  他参与编纂《四库全书》的<b>天文算法类</b>，做了一件功德无量的事：
+  从《永乐大典》中<b>辑出七部早已散佚的古算书</b>——</p>
+  <ul class="list">
+    <li>《九章算术》《海岛算经》《孙子算经》《张丘建算经》《夏侯阳算经》《五曹算经》《五经算术》</li>
+  </ul>
+  <p class="body">这些书在明代已极难见到，若没有这次辑佚，今天能否读到一个完整的《九章算术》都很成问题。
+  此后<b>孔继涵</b>《微波榭丛书》将这批书与《周髀算经》《缉古算经》等合刻，
+  形成了后世通行的《算经十书》面貌。</p>
+  <p class="body">乾嘉学者的工作方式以<b>辑佚、校勘、注释</b>为主，
+  除戴震外，还有阮元（撰《畴人传》，中国第一部数学与天文人物传记集）、
+  焦循、汪莱、李锐、李潢、钱大昕等。他们让一批珍贵文献重新可用，这是实打实的贡献。</p>
+  <div class="warn"><b>代价与局限：</b>乾嘉学派把大量精力投向「复昌中算」，
+  同时「西学中源」论被推得更远（戴震在《勾股割圆记》中试图用勾股论证西方三角学），
+  结果是在 18 世纪欧洲分析学（欧拉、拉格朗日、拉普拉斯）急速发展的同一时期，
+  中国数学界的主流关注点回到了古代文本。
+  这不是某个人能力的问题，而是<b>知识输入渠道中断 + 考据学风主导</b>共同造成的结构性停顿。</div>
+</div>
+
+<div class="era">
+  <h2>八、清末民初到 1949：译介、留学与现代共同体 <small>1840 – 1949 年</small></h2>
+  <p class="body">从 19 世纪下半叶开始，中国数学重新与外部世界接轨。这一次不只是「引进几本书」，
+  而是重建整套学术生态：翻译、留学、大学数学系、学会、期刊。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:26px">李善兰：把微积分翻译成中文</h3>
+  <p class="body"><b>李善兰</b>（1811–1882）是这个转折点上最重要的人物。他与传教士
+  <b>伟烈亚力</b>（Alexander Wylie）合作，完成了三项奠基性工作：</p>
+  <ul class="list">
+    <li><b>1857 年</b>——译完《几何原本》<b>后九卷</b>，与徐光启、利玛窦的前六卷合为全璧。自 1607 年算起，已过 250 年。</li>
+    <li><b>1859 年</b>——《代数学》（译自西方代数著作）。西方<b>符号代数学</b>由此开始系统传入中国。</li>
+    <li><b>1859 年</b>——《代微积拾级》十八卷，由上海墨海书馆出版。
+    这是西方<b>解析几何与微积分</b>在中国的<b>第一部译著</b>，
+    底本是美国数学家卢米斯（Loomis）的解析几何与微积分教材。</li>
+  </ul>
+  <p class="body">李善兰在翻译中创制了一大批数学术语，其中许多沿用至今，并且东渡日本被日文采纳：
+  <b>代数、函数、方程式、微分、积分、级数、根、系数</b>等。
+  他在译文中还曾用「微」的偏旁「亻」表示微分、用「积」的偏旁「禾」表示积分——
+  一种很有汉字特色的符号尝试，虽然最终被世界通行的 $\mathrm{d}$ 与 $\int$ 取代了。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:30px">留学与大学数学系的建立</h3>
+  <p class="body">19 世纪末到 20 世纪初，大批学生赴日本、美国、欧洲学习现代数学，
+  他们回国后最重要的建制性工作是<b>创办大学数学系</b>。
+  1920 年代起，<b>姜立夫</b>在南开（1920 年）创办数学系，
+  随后清华、浙江大学、北京大学等校陆续设立数学系或算学系，
+  并由<b>熊庆来、陈建功、苏步青、江泽涵</b>等人建立研讨班式的培养机制。</p>
+  <p class="body">这一步的意义常被低估：<b>没有稳定的院系和研讨班，就不会有持续的数学研究</b>。
+  从「个人治算学」到「学科共同体」，是这一段最实质的变化。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:30px">中国数学会（1935）与《数学学报》</h3>
+  <p class="body"><b>1935 年 7 月 25 日</b>，中国数学会在<b>上海交通大学图书馆</b>正式成立，
+  成立大会持续三天（7 月 25–27 日），共有 <b>33 名代表</b>出席。
+  <b>胡敦复</b>被推选为会议主席，并当选第一届董事会主席（董事长）。
+  学会由胡敦复、何鲁、熊庆来、朱公瑾、顾澄等倡议筹建，宗旨为「谋数学之进步及其普及」。
+  大会通过了学会章程，确立<b>董事会、理事会、评议会</b>三级组织。
+  主要成员包括胡敦复、冯祖荀、周美权（周达）、姜立夫、熊庆来、陈建功、苏步青、江泽涵、钱宝琮、傅种孙等。</p>
+  <p class="body">成立大会同时决定出版两种刊物：</p>
+  <ul class="list">
+    <li><b>《中国数学会学报》</b>——学术性会刊，<b>1936 年 8 月创刊于上海</b>，
+    是中国第一本数学学术性刊物。总编辑<b>苏步青</b>，助理编辑<b>华罗庚</b>。
+    论文可用中、英、法、德、意等国文字发表。因战乱，出至第二卷第 2 期即被迫停刊。
+    <b>1952 年起改名为《数学学报》</b>。</li>
+    <li><b>《数学杂志》</b>——普及性刊物，1936 年 8 月 1 日创刊于上海，总编辑顾澄，用中文发表。
+    <b>1953 年起改称《数学通报》</b>。</li>
+  </ul>
+  <p class="body">此后是长期的战争与动荡。在极端艰苦的条件下，中国数学家仍产出了重要成果，
+  例如<b>华罗庚</b>在战时写出《堆垒素数论》。但整体而言，1937 年之后学术活动被迫分散与内迁，
+  直到 1949 年之后才重新组织起来。</p>
+</div>
+
+<div class="era">
+  <h2>九、1949 年以后：从研究所到国际前沿 <small>1949 – 1978 年</small></h2>
+  <p class="body">1949 年之后，中国数学的重建有几个明确的路标：一个国家级研究所、一批归国学者、
+  以及若干在计算与数论方向上具有国际水准的成果。</p>
+
+  <div class="tl">
+    <div class="tn">1952</div><div class="dot"></div>
+    <div class="item"><h3>中国科学院数学研究所成立 <span class="c c-gold">建制</span></h3>
+      <p>筹备始于 1950 年 3 月；1951 年 1 月政务院任命<b>华罗庚</b>为所长；<b>1952 年</b>数学研究所正式成立。
+      这是中国第一个国家级数学研究机构，此后成为全国数学研究的组织核心。</p></div>
+
+    <div class="tn">1950</div><div class="dot"></div>
+    <div class="item"><h3>华罗庚回国 <span class="c c-violet">数论</span></h3>
+      <p><b>华罗庚</b>（1910–1985）放弃美国教职回国。他在解析数论（华林问题、哥德巴赫问题方向）、
+      矩阵几何、多复变函数论（典型域上的调和分析）等方面有开创性工作，
+      并长期主导中国的数学研究与人才培养体系。</p></div>
+
+    <div class="tn">1911–2004</div><div class="dot"></div>
+    <div class="item"><h3>陈省身与整体微分几何 <span class="c c-blue">几何</span></h3>
+      <p><b>陈省身</b>在整体微分几何与<b>示性类</b>（后世称 Chern 类）方面的工作是 20 世纪几何学的基石之一，
+      1983/84 年获沃尔夫奖。<b>1985 年 10 月 17 日</b>，南开数学研究所成立，陈省身任首任所长；
+      <b>2005 年 12 月 3 日</b>更名为<b>陈省身数学研究所</b>，以纪念他。</p></div>
+
+    <div class="tn">1910–1970</div><div class="dot"></div>
+    <div class="item"><h3>许宝騄与中国概率统计 <span class="c c-green">统计</span></h3>
+      <p><b>许宝騄</b>是中国最早获得国际声誉的数理统计学家。他在伦敦大学学院获博士学位，
+      在 Neyman–Pearson 理论、多元分析与极限定理方面有奠基性工作，
+      以他命名的「许方法」（Hsu method）至今仍是实用检验方法之一。
+      1940 年回国后，他在西南联大、北京大学开创了中国的概率统计教学与研究，
+      1948 年当选中央研究院院士，1955 年当选中国科学院学部委员。</p></div>
+
+    <div class="tn">1965</div><div class="dot"></div>
+    <div class="item"><h3>冯康与有限元方法 <span class="c c-red">计算数学</span></h3>
+      <p><b>冯康</b>（1920–1993）是中国计算数学的奠基人。契机来自国家任务：
+      刘家峡大坝设计中的计算问题。1963 年他承担该任务，1964 年获得满意计算结果，
+      <b>1965 年在《应用数学与计算数学》发表《基于变分原理的差分格式》</b>——
+      这是中国学者<b>独立于西方系统创立有限元方法</b>的标志性论文。
+      他用十六个字概括有限元思想：「化整为零，裁弯取直，以简驭繁，化难为易」。</p></div>
+
+    <div class="tn">1966/1973</div><div class="dot"></div>
+    <div class="item"><h3>陈景润与「1+2」 <span class="c c-violet">数论</span></h3>
+      <p><b>陈景润</b>（1933–1996）<b>1966 年</b>在《科学通报》发表《表达偶数为一个素数及一个不超过两个素数的乘积之和》，
+      首次宣告证明哥德巴赫猜想的「1+2」；因当时只给出引理而未附详细证明，国际数论界未立即承认。
+      <b>1973 年</b>他在《中国科学》发表完整详细证明，原稿从两百多页精简到百余页。
+      这一结果被国际数学界称为<b>陈氏定理</b>，公认为筛法理论的光辉顶点。</p></div>
+
+    <div class="tn">1970s</div><div class="dot"></div>
+    <div class="item"><h3>吴文俊与数学机械化 <span class="c c-gold">方法论</span></h3>
+      <p><b>吴文俊</b>（1919–2017）早年以拓扑学中的示性类、示嵌类工作闻名国际；
+      1970 年代后期，他转向<b>数学机械化</b>，提出用机器证明几何定理的系统方法（后称「吴方法」），
+      开创了机器证明的一个新方向。他明确表示这一纲领的灵感来自中国古算的<b>算法精神</b>——
+      这正是本文开篇那条线索在 20 世纪的回响。</p></div>
+  </div>
+</div>
+
+<div class="era">
+  <h2>十、当代：走向世界 <small>1978 年至今</small></h2>
+  <p class="body">1980 年代以后，中国数学逐步恢复与扩大国际交流：大批学者出国访学与工作，
+  国内高校数学系与研究所规模持续扩张，与国际数学界的信息差迅速缩小。
+  到 2000 年前后，中国已能在世界数学地图上承担节点性的角色。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:26px">2002 年：国际数学家大会在北京</h3>
+  <p class="body"><b>2002 年 8 月 20 日至 28 日</b>，第 24 届国际数学家大会（ICM）在北京人民大会堂举行。
+  这是 21 世纪的第一次 ICM，也是历史上<b>第一次在发展中国家举办的国际数学家大会</b>。
+  来自 101 个国家和地区的 4270 余名数学家参加。菲尔兹奖授予法国数学家<b>拉佛阁</b>（Laurent Lafforgue）
+  与俄罗斯数学家<b>沃沃斯基</b>（Vladimir Voevodsky）；内万林纳奖授予 Madhu Sudan。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:30px">2006 年：马德里与陶哲轩</h3>
+  <p class="body">2006 年 ICM 在西班牙马德里举行，菲尔兹奖由四人分享：
+  <b>佩雷尔曼</b>（Grigori Perelman，因几何学与 Ricci 流的工作，<b>拒绝领奖</b>）、
+  <b>奥昆科夫</b>（Andrei Okounkov）、<b>维尔纳</b>（Wendelin Werner）、
+  以及澳大利亚华裔数学家<b>陶哲轩</b>（Terence Tao）。
+  陶哲轩是继 1982 年<b>丘成桐</b>之后第二位获菲尔兹奖的华人。
+  本届还首次颁发了高斯奖，得主为日本数学家伊藤清。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;margin-top:30px">2026 年：费城与中国籍数学家的突破</h3>
+  <p class="body"><b>2026 年 7 月 23 日</b>，2026 年国际数学家大会在美国费城开幕，菲尔兹奖同时揭晓，
+  四位得主为<b>王虹、邓煜</b>、John Pardon 与 Jacob Tsimerman。
+  其中王虹与邓煜均为中国籍——这是中国籍数学家首次获得菲尔兹奖，且首次有两位中国籍数学家同届获奖。
+  两人都毕业于北京大学数学科学学院。</p>
+  <ul class="list">
+    <li><b>王虹</b>（1991 年生，广西桂林人）——因在<b>调和分析与几何测度论</b>方面的工作获奖。
+    2025 年，她与 Joshua Zahl 合作证明三维<b>Kakeya（挂谷）猜想</b>。
+    她现任法国高等科学研究所（IHES）数学学科终身教授，兼任纽约大学柯朗数学科学研究所教授。
+    她是历史上<b>第三位女性菲尔兹奖得主</b>（前两位为 2014 年米尔扎哈尼、2022 年维亚佐夫斯卡）。</li>
+    <li><b>邓煜</b>（1989 年生，广东深圳人）——因在<b>偏微分方程</b>方面的工作获奖。
+    他与马骁、Zaher Hani 合作研究<b>希尔伯特第六问题</b>（狭义版本），
+    首次以严格数学方式给出从微观粒子系统到宏观玻尔兹曼方程的完整推导链条。
+    他现任美国芝加哥大学数学系教授。</li>
+  </ul>
+  <div class="warn"><b>时效说明：</b>2026 年费城 ICM 的颁奖属于本文写作时的近期事件，
+  以上内容依据公开报道记述。关于获奖理由的完整学术评价，仍需等待后续的专业综述与评审文件；
+  本文不对其长期历史地位作任何预判。另外，ICM 每四年举办一次，2022 年那届因故改为线上举行，
+  其菲尔兹奖亦由四人分享（详见《<a href="数学史时间线.html" style="color:var(--gold);text-decoration:none">数学史时间线</a>》）。</div>
+</div>
+
+<div class="era">
+  <h2>十一、史料与考据说明：哪些是定论，哪些仍有争议 <small>诚实标注</small></h2>
+  <p class="body">数学史与数学不同，它的结论依赖于残缺不全的文献。以下把本文涉及的
+  「确定度分级」集中说明，以便读者知道哪些可以放心引用、哪些需要保留。</p>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:19px;margin-top:24px">A. 有传世文献直接支持（确定度较高）</h3>
+  <ul class="list">
+    <li>刘徽 <b>263 年</b>注《九章算术》——《九章算术注》原书传世。</li>
+    <li>秦九韶《数书九章》<b>1247 年</b>成书——原书传世，作者自序中有明确纪年。</li>
+    <li>李冶《测圆海镜》<b>1248 年</b>成书——原书传世。</li>
+    <li>朱世杰《算学启蒙》<b>1299 年</b>、《四元玉鉴》<b>1303 年</b>——原书（或早期刻本）传世。</li>
+    <li>程大位《算法统宗》<b>1592 年</b>——原书传世，序中纪年明确。</li>
+    <li>徐光启、利玛窦《几何原本》前六卷 <b>1607 年</b>刻印——原书传世。</li>
+    <li>李善兰《代微积拾级》<b>1859 年</b>——墨海书馆刊本传世。</li>
+    <li>中国数学会 <b>1935 年 7 月</b>成立、《中国数学会学报》<b>1936 年 8 月</b>创刊——有成立记录与刊物实物。</li>
+    <li>冯康 <b>1965 年</b>发表《基于变分原理的差分格式》——论文可查。</li>
+    <li>陈景润 <b>1966 年</b>《科学通报》、<b>1973 年</b>《中国科学》——论文可查。</li>
+  </ul>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:19px;margin-top:26px">B. 年代学上有争议或只能取约数</h3>
+  <ul class="list">
+    <li><b>《周髀算经》</b>——约成书于公元前 1 世纪前后，但其材料来源更早，
+    「商高答周公」段落的实际年代无法确证。<b>成书年代不等于内容年代。</b></li>
+    <li><b>《九章算术》</b>——有「西汉说」与「东汉说」，本文取较通行的东汉初期（公元 1 世纪），
+    并明确标注为「约」。</li>
+    <li><b>贾宪</b>——生卒年不详；《黄帝九章算经细草》成书年代有约 1023–1034 年与约 1050 年两说。<b>本文只写「11 世纪上半叶」。</b></li>
+    <li><b>秦九韶</b>——生卒年（约 1202–1261）为后人推定。</li>
+    <li><b>杨辉</b>——生卒年不详，除《详解九章算法》（1261）外，其余著作的成书年份记载有出入，本文不标。</li>
+    <li><b>朱世杰</b>——生卒年（约 1249–约 1314）为推定值。</li>
+    <li><b>戴震</b>——生年有 1723 年与 1724 年两说。</li>
+    <li><b>《数理精蕴》</b>——编纂始于 1712 年前后，约 1721 年编成，1723 年刊行；
+    各环节的具体年份在不同文献中略有差异，本文写「约 1721 年编成，1723 年刊行」。</li>
+    <li><b>$\pi = \dfrac{3927}{1250}$</b>——出自刘徽还是祖冲之，学术史上有争论（清代李潢主张后者），本文采多数学者之说并注明争议。</li>
+  </ul>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:19px;margin-top:26px">C. 因著作失传而无法确知的内容</h3>
+  <ul class="list">
+    <li><b>祖冲之《缀术》</b>——唐代尚在，北宋后失传。今天无法知道其具体内容与求 π 的详细方法；
+    流传的「算到一万二千边形」之类说法属于推测。</li>
+    <li><b>贾宪原著</b>——全部失传，所有关于他的知识都来自《永乐大典》残卷与杨辉《详解九章算法》的转录。</li>
+    <li><b>朱世杰《算学启蒙》</b>——曾在中国本土失传，1839 年依据朝鲜刻本回传，
+    因此今天所见的文本与元代原刻之间可能存在传抄差异。</li>
+  </ul>
+
+  <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:19px;margin-top:26px">D. 表述上的自我约束</h3>
+  <p class="body">本文刻意回避了几类常见但不可靠的说法：</p>
+  <ul class="list">
+    <li><b>不给未确证的年份。</b>凡生卒年、成书年不详者，一律写「约」或只写世纪。</li>
+    <li><b>不逐字抄录古文长段。</b>仅引用一句话级别的名句并标明出处，其余用自己的话概括，
+    以避免版权与断句错误两方面的风险。</li>
+    <li><b>不把「领先 N 年」当作价值判断。</b>这类比较有意义，
+    但它衡量的是时间先后，不是优劣。数学史的价值在于理解<b>不同传统如何回应各自的问题</b>。
+    本文提到「早于欧洲若干年」时，指的是同类成果的<b>时间先后</b>，不含褒贬。</li>
+    <li><b>不把古算直接等同于现代理论。</b>刘徽的割圆术含极限思想，但不是极限理论；
+    朱世杰的招差术与牛顿内插公式形式一致，但它的语境是历法推算。
+    承认相似性，也要承认差别。</li>
+  </ul>
+</div>
+
+<div class="era">
+  <h2>年表一：朝代 · 人物 · 著作 · 贡献速查 <small>按时代排列</small></h2>
+  <table class="tbl">
+    <thead>
+      <tr><th style="width:110px">时代</th><th style="width:130px">人物</th><th style="width:180px">著作</th><th>主要贡献</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="d">约前1世纪</td><td>（佚名，后赵爽注）</td><td>《周髀算经》</td><td>「勾三股四弦五」的勾股特例；盖天说天文体系；赵爽以弦图给出勾股定理的构造性证明</td></tr>
+      <tr><td class="d">约1世纪</td><td>（汇集，张苍、耿寿昌增补）</td><td>《九章算术》</td><td>246 题九章体例；分数四则运算、线性方程组解法、负数运算法则、盈不足术</td></tr>
+      <tr><td class="d">263</td><td>刘徽</td><td>《九章算术注》《海岛算经》</td><td>割圆术与徽率 3.1416；出入相补原理；重差术；为中国数学补上理论证明</td></tr>
+      <tr><td class="d">约4世纪</td><td>（佚名）</td><td>《孙子算经》</td><td>「物不知数」题——一次同余方程组的最早表述</td></tr>
+      <tr><td class="d">429–500</td><td>祖冲之</td><td>《缀术》（已佚）、《大明历》</td><td>π 精确到 3.1415926–3.1415927；密率 355/113；历法引入岁差</td></tr>
+      <tr><td class="d">6世纪</td><td>祖暅</td><td>（说见李淳风注所引）</td><td>「幂势既同，则积不容异」——截面积相等则体积相等，用于球体积</td></tr>
+      <tr><td class="d">604</td><td>刘焯</td><td>《皇极历》</td><td>等间距二次内插法，用于历法推算</td></tr>
+      <tr><td class="d">约630</td><td>王孝通</td><td>《缉古算经》</td><td>工程问题导出三次方程，以「带从开立方」求解</td></tr>
+      <tr><td class="d">656</td><td>李淳风等</td><td>「十部算经」（《算经十书》）</td><td>奉诏校注十部算经，作为算学馆教材与明算科考试书目</td></tr>
+      <tr><td class="d">727</td><td>一行</td><td>《大衍历》</td><td>不等间距二次内插法</td></tr>
+      <tr><td class="d">约11世纪</td><td>贾宪</td><td>《黄帝九章算经细草》（已佚）</td><td>开方作法本源图（贾宪三角）；增乘开方法；立成释锁法</td></tr>
+      <tr><td class="d">1247</td><td>秦九韶</td><td>《数书九章》</td><td>大衍求一术（中国剩余定理）；正负开方术求高次方程数值根</td></tr>
+      <tr><td class="d">1248</td><td>李冶</td><td>《测圆海镜》《益古演段》</td><td>系统发展天元术（设未知数立方程）；勾股容圆</td></tr>
+      <tr><td class="d">1261</td><td>杨辉</td><td>《详解九章算法》</td><td>保存贾宪三角与增乘开方；乘除捷法；垛积问题</td></tr>
+      <tr><td class="d">1299 / 1303</td><td>朱世杰</td><td>《算学启蒙》《四元玉鉴》</td><td>四元术（四元高次方程组消元）；垛积术；招差术（三次差内插）</td></tr>
+      <tr><td class="d">1592</td><td>程大位</td><td>《算法统宗》《算法纂要》</td><td>珠算集大成：算盘形制与口诀、珠算开方；丈量步车；影响日本和算</td></tr>
+      <tr><td class="d">1607</td><td>徐光启、利玛窦</td><td>《几何原本》前六卷</td><td>公理化体系首次系统进入中文世界；确定「几何」及点线面等译名</td></tr>
+      <tr><td class="d">约1721 / 1723</td><td>梅穀成等（康熙敕编）</td><td>《数理精蕴》（53 卷）</td><td>清初西方数学的集大成教科书，清中叶学者的主要知识来源</td></tr>
+      <tr><td class="d">1773 前后</td><td>戴震</td><td>（《四库全书》天文算法类辑佚）</td><td>自《永乐大典》辑出七部失传古算书，古算文献得以复活</td></tr>
+      <tr><td class="d">1857 / 1859</td><td>李善兰、伟烈亚力</td><td>《几何原本》后九卷、《代数学》、《代微积拾级》</td><td>补全《几何原本》；西方符号代数与微积分首次系统传入中国；创制「微分」「积分」「函数」等译名</td></tr>
+      <tr><td class="d">1935 / 1936</td><td>胡敦复、苏步青、华罗庚等</td><td>《中国数学会学报》《数学杂志》</td><td>中国数学会成立；创办最早的数学学术期刊与普及期刊</td></tr>
+      <tr><td class="d">1952</td><td>华罗庚（首任所长）</td><td>——</td><td>中国科学院数学研究所成立，中国数学研究体制化</td></tr>
+      <tr><td class="d">1965</td><td>冯康</td><td>《基于变分原理的差分格式》</td><td>独立于西方创立有限元方法</td></tr>
+      <tr><td class="d">1966 / 1973</td><td>陈景润</td><td>「1+2」论文</td><td>陈氏定理，筛法理论的高峰</td></tr>
+      <tr><td class="d">1970s 后期</td><td>吴文俊</td><td>（数学机械化系列论文）</td><td>机器证明几何定理的系统方法，灵感源自中国古算的算法精神</td></tr>
+      <tr><td class="d">1985 / 2005</td><td>陈省身</td><td>——</td><td>南开数学研究所成立（1985），2005 年更名为陈省身数学研究所</td></tr>
+      <tr><td class="d">2002</td><td>——</td><td>——</td><td>第 24 届 ICM 在北京举行，首次在发展中国家举办</td></tr>
+      <tr><td class="d">2026</td><td>王虹、邓煜</td><td>——</td><td>费城 ICM 菲尔兹奖，中国籍数学家首次获奖</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="era">
+  <h2>年表二：技术线索的三条长线 <small>把散落各处的成果连起来看</small></h2>
+  <p class="body">孤立地记年代容易忘。如果把中国数学史看成三条平行的<b>技术长线</b>，
+  各时代的成果就会自己归位。</p>
+  <table class="tbl">
+    <thead>
+      <tr><th style="width:150px">线索</th><th style="width:80px">起点</th><th style="width:110px">发展</th><th style="width:110px">高峰</th><th>终点 / 后续</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>① 方程求解</b><br><span style="color:#4A5258;font-size:12.5px">从线性到多元高次</span></td>
+        <td class="d">约1世纪<br>《九章算术》方程章：线性方程组用算筹摆方阵「直除」</td>
+        <td class="d">约630<br>王孝通：三次方程的「带从开立方」</td>
+        <td class="d">1247<br>秦九韶：正负开方术，任意次、系数可正可负</td>
+        <td>天元术（李冶 1248）把「设未知数」程序化；四元术（朱世杰 1303）做到四个未知数的高次消元。
+        此后中国在这条线上转入实用方向，直到 20 世纪计算数学重建时才与新方法接上。</td>
+      </tr>
+      <tr>
+        <td><b>② 圆周率与逼近</b><br><span style="color:#4A5258;font-size:12.5px">从估到割</span></td>
+        <td class="d">约1世纪<br>《九章算术》取「周三径一」的粗值</td>
+        <td class="d">263<br>刘徽：割圆术，徽率 3.1416，并给出误差包夹</td>
+        <td class="d">429–500<br>祖冲之：3.1415926–3.1415927；密率 355/113</td>
+        <td>祖暅以截面积原理处理球体积。密率这一纪录在他之后保持了近千年。
+        这条线的思想内核是<b>用可计算的有限过程逼近不可直接得到的量</b>。</td>
+      </tr>
+      <tr>
+        <td><b>③ 内插与差分</b><br><span style="color:#4A5258;font-size:12.5px">从历法需求中长出</span></td>
+        <td class="d">604<br>刘焯《皇极历》：等间距二次内插</td>
+        <td class="d">727<br>一行《大衍历》：不等间距二次内插</td>
+        <td class="d">1303<br>朱世杰《四元玉鉴》：三次差内插 + 垛积求和</td>
+        <td>与欧洲后来发展出的有限差分内插形式相通，语境是历法推算。
+        这条线说明：<b>中国古代的分析技术是从天文数据处理的现实需求中长出来的</b>，而非从抽象函数理论出发。</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note"><b>三条线的共同点：</b>它们都被同一个基础设施支撑——
+  <b>算筹的位置化表示</b>。方程求解靠摆方阵，割圆术靠递推记录，内插与垛积靠逐行差分表。
+  当算筹在明代被算盘取代，这套基础设施随之退场，
+  与之配套的高次方程与消元技术也就失去了生长的土壤。这可能是理解「宋元高峰之后为何转向」的关键一环。</div>
+</div>
+
+<div class="closing">
+  <b>读中国数学史，会得到一种特别的视角：</b>数学不必只有一种长相。
+  希腊人问「凭什么必然成立」，中国古代的数学家问「怎样算得出来、算得快、算得准」。
+  前者给了我们公理、证明与结构，后者给了我们算法、逼近与可执行的计算程序。
+  两千多年来，这两条路各自走到了自己的深处，也各自撞上了自己的墙。
+  <br><br>
+  真正让人感慨的是时间尺度。徐光启 1607 年译出《几何原本》前六卷时，希望立刻译完十五卷；
+  后九卷要等到 <b>1857 年</b>。刘徽 263 年写下「割之又割，以至于不可割」，
+  一千多年后祖冲之把它推到小数点后七位。朱世杰 1303 年的三次差内插，
+  与欧洲几个世纪后的公式形式相合。而到了 20 世纪，
+  一位从拓扑学转向机器证明的数学家（吴文俊）回过头说：我的灵感来自中国古算的算法精神。
+  <br><br>
+  <b>数学的进展从来不是一条直线的接力，而是无数条线索在漫长时间里的断续、遗忘与重逢。</b>
+  这也是读数学史最实在的收获：知道哪些东西曾被想到过，为什么被遗忘，又为什么在另一天重新变得重要。
+  <br><br>
+  <span style="font-size:13px">延伸阅读：<a href="数学史时间线.html" style="color:var(--gold);text-decoration:none">数学史时间线（全球视角）</a> ·
+  <a href="../11-数学家/数学家群像-学派与传承.html" style="color:var(--gold);text-decoration:none">数学家群像：学派与传承</a> ·
+  <a href="../11-数学家/当代华人数学家.html" style="color:var(--gold);text-decoration:none">当代华人数学家</a> ·
+  <a href="../02-核心主题/数论.html" style="color:var(--gold);text-decoration:none">数论</a> ·
+  <a href="../02-核心主题/代数.html" style="color:var(--gold);text-decoration:none">代数</a> ·
+  <a href="../02-核心主题/几何.html" style="color:var(--gold);text-decoration:none">几何</a> ·
+  <a href="../05-可视化/蒙特卡洛求π.html" style="color:var(--gold);text-decoration:none">可视化：用随机数求 π</a> ·
+  <a href="../11-数学家/数学大奖与荣誉.html" style="color:var(--gold);text-decoration:none">数学大奖与荣誉</a></span>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="数学史时间线.html">数学史时间线 →</a>
+  <a href="../11-数学家/数学家群像-学派与传承.html">数学家群像 →</a>
+</footer>
+</div>
+
+<div id="mj-fallback" role="alert">数学公式渲染组件未在 6 秒内就绪，请确认本地 MathJax 文件存在</div>
+
+</body>
+</html>

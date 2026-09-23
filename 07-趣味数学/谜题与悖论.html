@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>谜题与悖论 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%9C%93%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --magenta:#B0396E; --blue:#1F4E9C; --red:#C0392B; --gold:#A8751E; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--magenta); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--magenta); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:700px;}
+.sec{margin-top:48px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--magenta); padding-left:14px;}
+.sec h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.para{background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin-top:16px;}
+.para h3{font-family:Georgia,"Noto Serif SC",serif; font-size:18px;}
+.para .tag2{font-size:11px; padding:2px 10px; border-radius:999px; margin-left:8px; vertical-align:2px;}
+.para p{font-size:14px; margin-top:8px; color:var(--ink2);}
+.para p b{color:var(--ink);}
+.para .why{font-size:13px; margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2);}
+.para .why b{color:var(--gold);}
+.puzzle{background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin-top:16px;}
+.puzzle h3{font-family:Georgia,"Noto Serif SC",serif; font-size:18px;}
+.puzzle .q{font-size:14px; margin-top:6px;}
+details{margin-top:10px;}
+summary{cursor:pointer; font-size:14px; color:var(--magenta); display:inline-block; user-select:none;}
+summary:hover{text-decoration:underline;}
+details .a{font-size:14px; margin-top:8px; background:var(--paper2); border-radius:8px; padding:10px 14px;}
+.fig{background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:18px; margin-top:16px;}
+.fig svg{width:100%; height:auto; display:block;}
+.fig .cap{font-size:13px; color:var(--ink2); text-align:center; margin-top:6px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px;}
+footer a{color:var(--magenta); text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>谜题与悖论 <span class="sym">✓</span></h1>
+  <p class="sub">数学的乐趣不止在证明里，也在「直觉失灵」的瞬间。先猜，再看答案——猜错的那些，才是最好的老师。</p>
+</header>
+
+<div class="sec">
+  <h2>反直觉悖论 <small>每一个都值得讲给朋友听</small></h2>
+
+  <div class="para">
+    <h3>三门问题 <span class="tag2" style="background:#F7E9D6;color:#A8751E;">概率</span></h3>
+    <p>三扇门，一扇后有车，两扇后有羊。你先选一扇，主持人（知道车在哪）打开另一扇有羊的门，然后问：换不换？</p>
+    <p><b>答案：换，胜率 2/3。</b>关键：主持人不是随机开门，他「永远」选择有羊的门。你的初选有 1/3 概率命中车（此时换必输）、2/3 概率选羊（此时换必赢）。</p>
+    <p class="why"><b>直觉陷阱：</b>剩下两扇门看起来各 1/2，但主持人的行为泄露了信息——他帮你排除了一个「确定错误」的选项。</p>
+  </div>
+
+  <div class="fig">
+    <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:18px;">生日悖论：多少人才有 50% 两人同日？</h3>
+    <svg viewBox="0 0 860 260" role="img" aria-label="生日悖论概率曲线">
+      <line x1="70" y1="220" x2="830" y2="220" stroke="#B9AF96" stroke-width="1.5"/>
+      <line x1="70" y1="220" x2="70" y2="16" stroke="#B9AF96" stroke-width="1.5"/>
+      <line x1="430" y1="220" x2="430" y2="16" stroke="#D8D0BC" stroke-width="1" stroke-dasharray="5 4"/>
+      <line x1="70" y1="110" x2="830" y2="110" stroke="#D8D0BC" stroke-width="1" stroke-dasharray="5 4"/>
+      <polyline id="bday" fill="none" stroke="#B0396E" stroke-width="3"/>
+      <g font-size="12" fill="#4A5258" text-anchor="middle">
+        <text x="70" y="238">0</text>
+        <text x="430" y="238">23</text>
+        <text x="600" y="238">35</text>
+        <text x="750" y="238">50</text>
+        <text x="830" y="238">60 人</text>
+      </g>
+      <text x="430" y="100" font-size="13" fill="#B0396E" text-anchor="middle">≈50.7%</text>
+      <text x="70" y="14" font-size="12" fill="#4A5258">两人同生日概率</text>
+    </svg>
+    <div class="cap">p(n) = 1 − 365·364·…·(365−n+1)/365ⁿ。直觉说「要 183 人」，数学说只要 23 人。</div>
+  </div>
+
+  <div class="para">
+    <h3>芝诺悖论 <span class="tag2" style="background:#E4EFE7;color:#2E7D5B;">分析</span></h3>
+    <p>阿喀琉斯跑得快，乌龟先走一步。阿喀琉斯追到乌龟的出发点时，乌龟又前进了一点；再追到新位置，乌龟又前进了一点……所以永远追不上？</p>
+    <p><b>答案：</b>追及时间 = 各段追赶时间之和，这是一个收敛的几何级数。比如每段耗时 1, 1/2, 1/4, …，总和 = 2——2 秒后追上。「无穷多个步骤」不意味着「无穷长时间」。</p>
+    <p class="why"><b>直觉陷阱：</b>把「步骤无限」误当成「时间无限」。这是微积分诞生前 2000 年最锋利的思想实验。</p>
+  </div>
+
+  <div class="para">
+    <h3>罗素悖论 <span class="tag2" style="background:#E4EFF7;color:#1F4E9C;">逻辑</span></h3>
+    <p>考虑「所有不包含自身的集合组成的集合」S。问：S 包含自身吗？若包含，则按定义它不该包含；若不包含，则按定义它又该包含。矛盾。</p>
+    <p class="why"><b>直觉陷阱：</b>1901 年罗素用它动摇了弗雷格的集合论地基，直接催生了公理化集合论（策梅洛–弗兰克尔 ZF）。理发师悖论是它的通俗版。</p>
+  </div>
+
+  <div class="para">
+    <h3>希尔伯特旅馆 <span class="tag2" style="background:#EFE7F7;color:#6B4E9E;">无穷</span></h3>
+    <p>旅馆有无穷多房间（已住满）。又来了一位客人——能安排吗？又来了一辆载着无穷多客人的大巴——还能安排吗？</p>
+    <p><b>答案：</b>都能。一位客人：所有人搬到 n+1 号房。无穷多客人：所有人搬到 2n 号房，腾出所有奇数房。这就是「ℵ₀ + 1 = ℵ₀」与「ℵ₀ × 2 = ℵ₀」。</p>
+    <p class="why"><b>直觉陷阱：</b>「住满」在无穷情形不再意味着「没有空位」——无限集可以和自己的真子集一一对应。</p>
+  </div>
+
+  <div class="para">
+    <h3>巴拿赫–塔斯基悖论 <span class="tag2" style="background:#F7E9D6;color:#A8751E;">选择公理</span></h3>
+    <p>一个球可以被切成有限多块，经过平移和旋转重新拼成两个与原球一模一样的球。</p>
+    <p class="why"><b>直觉陷阱：</b>1924 年定理，依赖选择公理；切割出的「块」是测度论意义下的极端集合，无法物理实现。它告诉你：我们的「体积直觉」在不可测集合上完全失效。</p>
+  </div>
+
+  <div class="para">
+    <h3>加百列号角 <span class="tag2" style="background:#F7E9D6;color:#A8751E;">分析</span></h3>
+    <p>把 y = 1/x (x ≥ 1) 绕 x 轴旋转。号角体积有限（π），表面积却无限。</p>
+    <p class="why"><b>直觉陷阱：</b>积分 Σ 1/x² 收敛而 Σ 1/x 发散。想象「装不满的号角」——恰好对应调和级数的怪脾气。</p>
+  </div>
+
+  <div class="para">
+    <h3>意外绞刑悖论 <span class="tag2" style="background:#F3DDE6;color:#B0396E;">自指</span></h3>
+    <p>法官宣布：下周某天中午绞刑，且日期「无法被提前猜到」。囚犯推理：不会是周五（周四晚上就能确定），不会是周四（排除周五后……），一路排除到周一——所以根本没有绞刑。结果周三中午执行，他完全没料到。</p>
+    <p class="why"><b>直觉陷阱：</b>「无法被猜到」是一个自指声明，不能简单归纳。逻辑学家与哲学家吵了一个世纪也没吵完。</p>
+  </div>
+
+  <div class="para">
+    <h3>辛普森悖论 <span class="tag2" style="background:#E4EFE7;color:#2E7D5B;">统计</span></h3>
+    <p>1973 年加州大学伯克利分校：每个院系男生的录取率都高于女生，但全校女生录取率反而更高？</p>
+    <p><b>答案：</b>女生多申请竞争激烈的院系（录取率低），男生多申请宽松院系。分层看（每个院系内）男生占优；合并看（全校）女生占优。方向可以反转！</p>
+    <p class="why"><b>直觉陷阱：</b>「合并数据」不等于「加权平均」——隐藏变量（院系选择）在作怪。读统计结论前，先问：分层了吗？</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>经典谜题集 <small>先自己试，再点答案</small></h2>
+
+  <div class="puzzle">
+    <h3>1. 狼、羊、白菜过河</h3>
+    <p class="q">农夫带狼、羊、白菜过河，船每次只能带一样（农夫必须开船）。狼吃羊、羊吃白菜，不能单独留下它们俩。最少几次全部过河？</p>
+    <details><summary>看答案</summary>
+      <div class="a"><b>7 次。</b>① 带羊过去；② 空船回；③ 带狼过去；④ 把羊带回来；⑤ 带白菜过去；⑥ 空船回；⑦ 带羊过去。关键：先把「中立者」羊运走，再把会冲突的一对拆开。</div>
+    </details>
+  </div>
+
+  <div class="puzzle">
+    <h3>2. 100 个囚犯与 100 个盒子</h3>
+    <p class="q">100 个囚犯各有一个编号，100 个盒子各装一个随机编号（一一对应）。囚犯依次进入房间，每人可打开 50 个盒子找自己的编号，找到即成功，找不到全员处决。全员必须成功。他们可以事先商量策略，但进房间后不能交流。存活率能超过 1/2¹⁰⁰ 吗？</p>
+    <details><summary>看答案</summary>
+      <div class="a"><b>能，约 31%。</b>策略：先打开自己编号的盒子，然后按盒子里的编号继续打开对应盒子——沿「置换的循环」走。全员成功 ⇔ 最长循环长度 ≤ 50。随机置换的最长循环 ≤ 50 的概率约为 1 − ln2 ≈ 0.307。这是组合数学里最漂亮的「意外存活」策略。</div>
+    </details>
+  </div>
+
+  <div class="puzzle">
+    <h3>3. 四人过桥（17 分钟）</h3>
+    <p class="q">四人过桥，分别需要 1、2、5、10 分钟。桥一次最多过两人，且必须打手电（只有一支）。两人同行按慢者计时。17 分钟内能全部过桥吗？</p>
+    <details><summary>看答案</summary>
+      <div class="a"><b>能。</b>① 1 和 2 过（2 分钟）；② 1 回（1）；③ 5 和 10 过（10）；④ 2 回（2）；⑤ 1 和 2 过（2）。合计 17。关键是让 1 分钟的人当「信使」，避免 10 分钟的人来回跑。</div>
+    </details>
+  </div>
+
+  <div class="puzzle">
+    <h3>4. 约瑟夫问题</h3>
+    <p class="q">n 个人围成一圈，从第 1 人开始报数，每数到 k 就出局，然后下一个人从 1 重新报数。最后剩下谁？（试试 n=41, k=3 的经典版本。）</p>
+    <details><summary>看答案</summary>
+      <div class="a">n=41、k=3 时幸存者是第 <b>31</b> 位。一般情形可用递推 J(1)=0，J(n) = (J(n−1)+k) mod n（从 0 编号），或直接模拟。约瑟夫问题出现在《犹太战争》的传说里——幸存者用数学救了自己。</div>
+    </details>
+  </div>
+
+  <div class="puzzle">
+    <h3>5. 三盏灯与三个开关</h3>
+    <p class="q">三个开关在门外控制屋里三盏灯。你只能进屋一次，如何确定每个开关对应哪盏灯？</p>
+    <details><summary>看答案</summary>
+      <div class="a">开开关 A，等几分钟后关掉；开开关 B，进屋。亮着的是 B；摸灯泡：热的是 A；冷的是 C。诀窍：把「时间」用成第四种状态——灯不止有亮/灭，还有冷/热。</div>
+    </details>
+  </div>
+
+  <div class="puzzle">
+    <h3>6. 柯尼斯堡七桥</h3>
+    <p class="q">能否从某地出发，不重复地走过全部七座桥再回到起点？</p>
+    <details><summary>看答案</summary>
+      <div class="a"><b>不能。</b>四个陆地的度数都是奇数（5、3、3、3），欧拉判据要求一笔画回路所有顶点度数为偶。这道「不能做到」的问题，开创了整个图论。详见<a href="../02-核心主题/组合与图论.html" style="color:var(--blue);">组合与图论页</a>。</div>
+    </details>
+  </div>
+</div>
+
+
+<div class="sec">
+  <h2>补充：更多经典悖论</h2>
+  <div class="proof">
+    <h3>巴拿赫-塔斯基悖论</h3>
+    <p>一个三维球可以分成有限个（5 个）部分，仅通过旋转和平移重新组合成两个与原来全等的球。</p>
+    <p><b>本质：</b>选择公理的推论——分块是「不可测集」，无法定义体积。物理上不可能，但在数学上（承认选择公理）成立。</p>
+  </div>
+  <div class="proof">
+    <h3>辛普森悖论</h3>
+    <p>分组比较中占优的一方，合并后反而落后。</p>
+    <p><b>例子：</b>A 药在轻症组治愈率 80%（B 药 70%），重症组 20%（B 药 10%），分组看 A 优。但轻症组 A 有 100 人、B 有 10 人，重症组 A 有 10 人、B 有 100 人——合并后 A 治愈率 $(80+2)/110\approx75\%$，B 治愈率 $(7+10)/110\approx15\%$？反了……实际 B 合并后更高。<b>教训：</b>混杂变量（病情轻重）必须控制。</p>
+  </div>
+  <div class="proof">
+    <h3>罗素悖论</h3>
+    <p>设 $R=\{x:x\notin x\}$，则 $R\in R\iff R\notin R$——矛盾。</p>
+    <p><b>意义：</b>摧毁了弗雷格的集合论体系，催生了公理集合论（ZFC）和类型论。</p>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../08-数学史/数学史时间线.html">数学史 →</a>
+</footer>
+</div>
+
+<script>
+(function(){
+  var pl = document.getElementById('bday');
+  if(!pl) return;
+  var pts = [];
+  for(var n=1;n<=60;n++){
+    var p = 1;
+    for(var k=1;k<n;k++){ p *= (365-k)/365; }
+    p = 1 - p;
+    var x = 70 + (n-1)/59 * 760;
+    var y = 220 - p * 200;
+    pts.push(x.toFixed(1) + ',' + y.toFixed(1));
+  }
+  pl.setAttribute('points', pts.join(' '));
+})();
+</script>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

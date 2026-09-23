@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>埃拉托斯特尼筛法 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%25%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--green:#2E7D5B;--magenta:#B0396E;--gold:#A8751E;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.75;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--green);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:14px 0 6px;}
+h1 .sym{color:var(--green);font-style:italic;}
+.tag{display:inline-block;background:var(--paper2);border:1px solid var(--line);color:var(--green);border-radius:999px;padding:2px 12px;font-size:12px;margin-left:10px;vertical-align:middle;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:36px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif;font-size:24px;border-left:6px solid var(--green);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;background:#fffef9;border:1px solid var(--line);border-radius:8px;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--green);width:180px;}
+button{background:var(--green);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:14px;cursor:pointer;}
+button.ghost{background:var(--paper2);color:var(--ink);border:1px solid var(--line);}
+button:hover{opacity:.92;}
+.info{font-family:Georgia,serif;font-size:14px;color:var(--ink2);margin-left:auto;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>埃拉托斯特尼筛法 <span class="sym">∿</span><span class="tag">数论</span></h1>
+<p class="sub">约公元前 240 年，昔兰尼的埃拉托斯特尼发明了这张"素数渔网"：从 2 开始，每发现一个素数，就把它的所有倍数划掉，剩下的全是素数。</p>
+</header>
+
+<div class="sec">
+<h2>动画演示 <small>播放看"筛子"如何一层层落下</small></h2>
+<div class="fig">
+<canvas id="cv" width="880" height="560" role="img" aria-label="埃拉托斯特尼筛法：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls">
+<label>范围 1–<span id="nV">120</span></label>
+<input type="range" id="n" min="60" max="400" step="20" value="120">
+<label>速度</label>
+<input type="range" id="spd" min="1" max="10" step="1" value="5">
+<button id="play">▶ 播放</button>
+<button id="step" class="ghost">单步</button>
+<button id="reset" class="ghost">重置</button>
+<span class="info" id="stat">素数 0 个</span>
+</div>
+<p class="explain"><b>怎么玩：</b>格子里是 1 到 N 的自然数。绿色是已确认的素数，灰色叉掉的是被筛掉的合数。点"播放"自动按素数从小到大筛除；"单步"一次筛掉一个素数的所有倍数。拖动"范围"改变数字上限。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>原理</h2>
+<p>对每个素数 $p$，只需从 $p^2$ 开始划去 $2p,3p,\dots$——更小的倍数早已被更小的素数筛过。复杂度 $O(N\log\log N)$，是求不超过 $N$ 全体素数最快的经典算法。</p>
+<p style="margin-top:8px;"><b>筛到 $N$ 时素数个数约为</b> $\pi(N)\sim \dfrac{N}{\ln N}$（素数定理，1896）。</p>
+</div>
+
+<footer style="margin-top:48px;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--ink2);">
+<a class="back" href="可视化导航.html">← 可视化导航</a>
+</footer>
+</div>
+
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var nEl=document.getElementById('n'),nV=document.getElementById('nV');
+var spd=document.getElementById('spd'),stat=document.getElementById('stat');
+var N=parseInt(nEl.value,10),cols=20;
+var primes=[],cur=0,composite,isP,timer=null;
+
+function computePrimes(limit){
+  var s=new Uint8Array(limit+1).fill(1);s[0]=s[1]=0;
+  for(var i=2;i*i<=limit;i++)if(s[i])for(var j=i*i;j<=limit;j+=i)s[j]=0;
+  var arr=[];for(var k=2;k<=limit;k++)if(s[k])arr.push(k);
+  return {s:s,list:arr};
+}
+function reset(){
+  var r=computePrimes(N);isP=r.s;primes=r.list;cur=0;
+  composite=new Uint8Array(N+1);
+  draw();
+}
+function cellSize(){return Math.floor((cv.width-40)/cols);}
+function draw(){
+  var cs=cellSize(),cw=cs*cols;
+  var ox=Math.floor((cv.width-cw)/2),oy=10;
+  ctx.clearRect(0,0,cv.width,cv.height);
+  ctx.font='12px Georgia,serif';ctx.textAlign='center';ctx.textBaseline='middle';
+  var cnt=0;
+  for(var v=1;v<=N;v++){
+    var r=Math.floor((v-1)/cols),c=(v-1)%cols;
+    var x=ox+c*cs,y=oy+r*cs;
+    var struck=composite[v];
+    if(v===1){ctx.fillStyle='#C9C2AC';}
+    else if(struck){ctx.fillStyle='#E4DECC';}
+    else if(isP[v]){ctx.fillStyle='#DCEAE2';}
+    else {ctx.fillStyle='#FBF7EA';}
+    ctx.fillRect(x+1,y+1,cs-2,cs-2);
+    ctx.strokeStyle='#D8D0BC';ctx.strokeRect(x+1,y+1,cs-2,cs-2);
+    if(struck){ctx.fillStyle='#B7B0A0';}
+    else if(isP[v]){ctx.fillStyle='#2E7D5B';cnt++;}
+    else{ctx.fillStyle='#6B6F75';}
+    ctx.fillText(v,x+cs/2,y+cs/2);
+    if(struck){ctx.strokeStyle='#B0396E';ctx.beginPath();ctx.moveTo(x+4,y+4);ctx.lineTo(x+cs-4,y+cs-4);ctx.stroke();}
+  }
+  var cp=primes[cur];
+  stat.textContent='当前筛到 p='+(cp!==undefined?cp:'完成')+'，已确认素数 '+cnt+' 个';
+}
+function stepOnce(){
+  if(cur>=primes.length){stop();return;}
+  var p=primes[cur];
+  for(var m=p*p;m<=N;m+=p)composite[m]=1;
+  cur++;
+  draw();
+}
+function play(){
+  if(timer)return;
+  document.getElementById('play').textContent='⏸ 暂停';
+  timer=setInterval(function(){stepOnce();if(cur>=primes.length)stop();},120/Math.max(1,parseInt(spd.value)));
+}
+function stop(){if(timer){clearInterval(timer);timer=null;}document.getElementById('play').textContent='▶ 播放';}
+document.getElementById('play').onclick=function(){if(timer)stop();else play();};
+document.getElementById('step').onclick=function(){stop();stepOnce();};
+document.getElementById('reset').onclick=function(){stop();reset();};
+nEl.oninput=function(){N=parseInt(nEl.value);nV.textContent=N;stop();reset();};
+reset();
+})();
+</script>
+
+</body>
+</html>

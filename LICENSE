@@ -1,0 +1,49 @@
+# 授权说明
+
+本仓库采用**分项授权**（split licensing）。不同性质的文件适用不同许可，请按你使用的内容类型选择。
+
+## 1. 文字内容与图片 —— CC BY-NC-SA 4.0
+
+适用于各分区 `*.html` 页面中的讲义正文、定理陈述、证明讲解、题解文字、说明性图表，
+以及 `docs/` 下的文档与预览图、各分区 `_shots/` 下的页面截图。
+
+**Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International**
+（知识共享 署名—非商业性使用—相同方式共享 4.0 国际）
+
+- 署名（BY）：使用时须注明来源并标明是否作出修改；
+- 非商业性使用（NC）：不得用于商业目的；
+- 相同方式共享（SA）：若基于本内容再创作，须以相同许可分发。
+
+许可全文（中文参考译本）：
+<https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>
+许可法律文本（权威版本，英文）：
+<https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode>
+
+完整法律文本未逐字复制到本文件，以上链接所指的官方文本为许可的权威依据。
+
+## 2. 代码 —— MIT
+
+适用于：
+
+- `03-经典难题/经典难题更新器.py`
+- `09-前沿动态/数学前沿更新器.py`
+- `13-应试训练/123/代码/` 下的全部脚本（`scan_deep.py`、`scan_formulas.py`、`scan_js.py`、`build_unified.js`）
+- 各 HTML 页面中实现交互与可视化的 JavaScript / CSS 逻辑代码
+- `09-前沿动态/打开数学前沿并更新.bat`
+
+全文见 [LICENSE-MIT](LICENSE-MIT)。
+
+## 3. 第三方组件
+
+`assets/` 目录下的 MathJax 为第三方软件，版权归其作者所有，按 Apache License 2.0 分发，
+**不在**上述授权的覆盖范围内。详见 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)。
+
+## 4. 未收录的内容
+
+本项目**刻意不包含**任何考试真题、模拟卷 PDF、试题扫描图或由试卷转录的题库数据。
+此类材料的版权属于各命题单位、出版社或原整理者，不随本仓库分发，因而也不在以上任何授权范围内。
+
+## 5. 数学内容的准确性
+
+仓库内的数学内容为学习整理，力求准确但不作正确性担保。以 MIT 授权提供的代码同样
+按「原样」提供，不附带任何形式的明示或默示担保。

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>高等数学 VI：常微分方程 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3Ey%E2%80%B2%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --hm:#2F5D8A; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--hm); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:38px; margin:12px 0 6px;}
+h1 .sym{color:var(--hm); font-style:italic;}
+.sub{color:var(--ink2); font-size:15.5px; max-width:780px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.series{margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;}
+.series a{font-size:12.5px; color:var(--hm); text-decoration:none; border:1px solid var(--line); border-radius:20px; padding:3px 12px; background:#fffdf6;}
+.series a:hover{background:var(--paper2);}
+.series .cur{background:var(--hm); color:#fff; border-color:var(--hm);}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--hm); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--hm); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; margin-top:26px;}
+.ch p{font-size:15px; margin-top:10px; max-width:840px;}
+.f{font-family:Georgia,"Cambria Math",serif; font-style:italic; background:var(--paper2); border-radius:6px; padding:1px 8px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--hm);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+.warn{background:#FDEDE8; border:1px solid #EAC6B8; border-left:5px solid var(--red); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14px;}
+.warn b{color:var(--red);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--hm); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.tbl{margin-top:14px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px; table-layout:fixed;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+.gloss{margin-top:14px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:14px;}
+.gloss dt{font-weight:700; margin-top:8px;}
+.gloss dt:first-child{margin-top:0;}
+.gloss dd{margin-left:18px; color:var(--ink2); font-size:13.5px;}
+.online{margin-top:16px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; font-size:14px;}
+.online a{color:var(--hm); text-decoration:none;}
+.online a:hover{text-decoration:underline;}
+.online ul{margin:8px 0 0 20px;}
+.online li{margin-top:6px;}
+.online .hint{font-size:12.5px; color:var(--ink2); margin-top:8px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--hm); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:30px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>高等数学 VI · 常微分方程 <span class="sym">y′</span></h1>
+  <p class="sub">常微分方程完整体系：一阶方程五大类型、可降阶高阶方程、二阶常系数线性方程、非齐次特解求法、微分方程的应用建模——含推导过程、例题与易错点。</p>
+  <p class="quote">「微分方程是科学的语言——牛顿第二定律、电路、人口增长，都是同一个数学形式。」</p>
+  <div class="series">
+    <a href="01-函数极限与连续.html">I 函数极限连续</a>
+    <a href="02-一元微分学.html">II 一元微分学</a>
+    <a href="03-一元积分学.html">III 一元积分学</a>
+    <a href="04-多元微积分.html">IV 多元微积分</a>
+    <a href="05-无穷级数.html">V 无穷级数</a>
+    <a class="cur" href="06-常微分方程.html">VI 常微分方程</a>
+    <a href="07-速查与题库.html">VII 速查题库</a>
+  </div>
+</header>
+
+<div class="toc">
+  <b>本讲目录</b>
+  <ol>
+    <li><a href="#c1">基本概念与解的存在唯一性</a></li>
+    <li><a href="#c2">可分离变量与齐次方程</a></li>
+    <li><a href="#c3">一阶线性方程与伯努利方程</a></li>
+    <li><a href="#c4">全微分方程</a></li>
+    <li><a href="#c5">可降阶的高阶方程</a></li>
+    <li><a href="#c6">二阶线性方程解的结构</a></li>
+    <li><a href="#c7">二阶常系数齐次线性方程</a></li>
+        <li><a href="#c9e">深度：稳定性理论</a></li>
+    <li><a href="#c9f">深度：边值问题与 SL 理论</a></li>
+<li><a href="#c8">二阶常系数非齐次方程</a></li>
+    <li><a href="#c9">应用：建模实例</a></li>
+        <li><a href="#c9a">深度：解的存在唯一性定理（Picard 迭代）</a></li>
+    <li><a href="#c9c">深度：线性方程组的基本解矩阵</a></li>
+    <li><a href="#c9d">深度：稳定性与 Lyapunov 直接方法</a></li>
+    <li><a href="#c10">练习与自测、术语表</a></li>
+  
+    <li><a href="#c1b">微分方程的几何意义与解的结构</a></li>
+    <li><a href="#c2b">可化为变量可分离的方程</a></li>
+    <li><a href="#c6b">朗斯基行列式与线性无关解</a></li>
+    <li><a href="#c8b">非齐次特解的常数变易法</a></li>
+    <li><a href="#c9b">二阶方程建模：振动与电路</a></li></ol>
+</div>
+
+<!-- ================= 1 ================= -->
+<div class="ch" id="c1">
+  <h2>1. 基本概念与解的存在唯一性 <small>方程的分类是解题第一步</small></h2>
+  <div class="def"><b>定义（常微分方程）：</b>含有未知函数及其导数的方程。阶数 = 最高阶导数的阶数。n 阶方程通解含 n 个任意常数；初值条件确定这些常数得特解。</div>
+  <div class="thm"><b>定理（解的存在唯一性定理——皮卡）：</b>y′ = f(x,y) 中 f 与 ∂f/∂y 在 (x₀,y₀) 附近连续，则初值问题在 x₀ 附近有唯一解。<div class="proof"><b>证明要点：</b>转化为积分方程 y(x) = y₀ + $\int f(t, y(t))\,dt$，用皮卡迭代 + 压缩映射（完备度量空间的不动点定理）。</div></div>
+  <div class="warn"><b>易错警示：</b>y′ = √y 过 (0,0) 有无穷多解（y = 0 与 y = (x/2)² 都满足）——因为 √y 在 0 处不可导，唯一性条件不满足。解方程时若除零会丢解。</div>
+</div>
+
+
+<!-- ================= 1b ================= -->
+<div class="ch" id="c1b">
+  <h2>1b. 微分方程的几何意义与解的结构 <small>方向场、通解与初值</small></h2>
+  <div class="def"><b>定义（微分方程的阶与解）：</b>含未知函数 $y(x)$ 及其导数 $y',y'',\cdots,y^{(n)}$ 的方程 $F(x,y,y',\cdots,y^{(n)})=0$ 称常微分方程。最高阶导数 $n$ 称方程的阶。使方程成为恒等式的函数称解；含 $n$ 个独立任意常数的解称通解；由初值条件 $y(x_0)=y_0,\ y'(x_0)=y_1,\cdots$ 确定常数后的解称特解。
+  <div class="proof"><b>几何意义：</b>$y'=f(x,y)$ 在每点 $(x,y)$ 给出一个斜率 $f(x,y)$，全体构成方向场。积分曲线是处处与方向场相切的曲线族；初值条件 $(x_0,y_0)$ 从曲线族中选出一条。</div></div>
+  <div class="thm"><b>定理（一阶方程解的存在唯一性——皮卡）：</b>若 $f(x,y)$ 与 $f_y(x,y)$ 在闭矩形域 $R=\{|x-x_0|\leq a,|y-y_0|\leq b\}$ 上连续，则初值问题
+  $$y'=f(x,y),\quad y(x_0)=y_0$$
+  在 $|x-x_0|\leq h$（$h=\min(a,b/M)$，$M=\max_R|f|$）内存在唯一解。
+  <div class="proof"><b>证明思路（皮卡逐步逼近）：</b>将方程化为等价积分方程 $y(x)=y_0+\int_{x_0}^{x}f(t,y(t))dt$，构造迭代序列 $y_0(x)\equiv y_0$、$y_{n+1}(x)=y_0+\int_{x_0}^{x}f(t,y_n(t))dt$，证明 $\{y_n\}$ 一致收敛到唯一不动点。这是压缩映射原理的经典应用。</div></div>
+  <div class="warn"><b>警示：</b>若 $f_y$ 不连续，唯一性可能失效。典型反例 $y'=\sqrt y$ 过 $(0,0)$ 有无穷多解：$y\equiv0$ 与 $y=x^2/4$ 均满足。解方程时两边除以含 $y$ 的因子要检查 $y\equiv0$ 是否丢解。</div>
+  <div class="ex"><b>例 1b-1：</b>验证 $y=Cx^3$ 是 $x y'=3y$ 的通解，并求满足 $y(1)=2$ 的特解。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$y'=3Cx^2$，$xy'=3Cx^3=3y$ ✓。$y(1)=C=2$，特解 $y=2x^3$。</div></details></div>
+  <div class="ex"><b>例 1b-2：</b>指出 $(y')^2+xy'+y=0$ 的阶数，并说明它是一阶方程。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>最高阶为 $y'$，一阶。注意 $(y')^2$ 是一阶导数的平方，阶数仍为 1。</div></details></div>
+  <div class="ex"><b>例 1b-3：</b>验证 $y=C_1 e^x+C_2 e^{-x}$ 是 $y''-y=0$ 的通解。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$y'=C_1e^x-C_2e^{-x}$，$y''=C_1e^x+C_2e^{-x}=y$，故 $y''-y=0$。含两个独立常数，二阶方程，为通解。</div></details></div>
+</div>
+
+<!-- ================= 2 ================= -->
+<div class="ch" id="c2">
+  <h2>2. 可分离变量与齐次方程 <small>把变量分到两边</small></h2>
+  <div class="thm"><b>定理（可分离变量方程）：</b>dy/dx = g(x)h(y) ⟹ ∫dy/h(y) = $\int g(x)\,dx$。<div class="proof"><b>例：</b>dy/dx = xy ⟹ ∫dy/y = $\int x \,dx$ ⟹ ln|y| = x²/2 + C ⟹ y = C $e^{x^{2}/2}$。</div></div>
+  <div class="thm"><b>定理（齐次方程）：</b>dy/dx = f(y/x)：令 u = y/x（即 y = ux），化为可分离变量：u + x du/dx = f(u)。<div class="proof"><b>例：</b>dy/dx = (x+y)/(x−y)：令 u = y/x，u + xu′ = (1+u)/(1−u)，分离后解出 u 再代回。</div></div>
+  <div class="ex"><b>例：</b>求 dy/dx = 2xy 满足 y(0) = 1 的特解。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>y = C $e^{x^{2}}$，由 y(0) = C = 1 ⟹ y = $e^{x^{2}}$。</div></details></div>
+</div>
+
+
+<!-- ================= 2b ================= -->
+<div class="ch" id="c2b">
+  <h2>2b. 可化为变量可分离的方程 <small>齐次与可化为齐次</small></h2>
+  <div class="thm"><b>定理（可分离变量方程的标准解法）：</b>对 $\dfrac{dy}{dx}=g(x)h(y)$，分离变量得
+  $$\int\frac{dy}{h(y)}=\int g(x)\,dx.$$
+  <div class="proof"><b>注意：</b>分离时 $h(y)\neq0$，要单独检查 $h(y)=0$ 的根是否为奇解（常数列解）。积分后得到隐式通解，必要时解出 $y$。</div></div>
+  <div class="thm"><b>定理（齐次方程 $dy/dx=f(y/x)$）：</b>令 $u=y/x$（即 $y=ux$），则 $dy/dx=u+x\,du/dx$，代入得 $u+x\,du/dx=f(u)$，分离变量：
+  $$\frac{du}{f(u)-u}=\frac{dx}{x}.$$
+  积分后回代 $u=y/x$。
+  <div class="proof"><b>推导：</b>$y=ux$，两边对 $x$ 求导 $y'=u'x+u$，而原方程 $y'=f(u)$，故 $u'x=f(u)-u$。</div></div>
+  <div class="thm"><b>定理（可化为齐次的方程）：</b>对 $\dfrac{dy}{dx}=f\!\left(\dfrac{a_1x+b_1y+c_1}{a_2x+b_2y+c_2}\right)$，若行列式 $\Delta=\begin{vmatrix}a_1&b_1\\a_2&b_2\end{vmatrix}\neq0$，解方程组 $\begin{cases}a_1h+b_1k+c_1=0\\a_2h+b_2k+c_2=0\end{cases}$ 得 $(h,k)$，令 $X=x+h,\ Y=y+k$ 化为齐次；若 $\Delta=0$，令 $v=a_1x+b_1y$ 直接分离。</div>
+  <div class="ex"><b>例 2b-1：</b>解 $\dfrac{dy}{dx}=\dfrac{y}{\sqrt{x^2+1}}$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>分离 $dy/y=dx/\sqrt{x^2+1}$，积分 $\ln|y|=\ln|x+\sqrt{x^2+1}|+C$，即 $y=C(x+\sqrt{x^2+1})$。</div></details></div>
+  <div class="ex"><b>例 2b-2：</b>解 $\dfrac{dy}{dx}=\dfrac{y+x}{x-y}$（齐次）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>令 $u=y/x$，$u+xu'=\frac{1+u}{1-u}$，$xu'=\frac{1+u^2}{1-u}$，分离 $\frac{1-u}{1+u^2}du=\frac{dx}{x}$，积分 $\arctan u-\frac12\ln(1+u^2)=\ln|x|+C$，代回 $u=y/x$。</div></details></div>
+  <div class="ex"><b>例 2b-3：</b>解初值问题 $y'=\frac{y}{x},\ y(1)=2$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>齐次：$u+xu'=u\Rightarrow xu'=0$，$u=C$，$y=Cx$。$y(1)=C=2$，特解 $y=2x$。</div></details></div>
+  <div class="ex"><b>例 2b-4：</b>解 $y'=\frac{x-y+1}{x+y-3}$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>解 $\begin{cases}h-k+1=0\\h+k-3=0\end{cases}$ 得 $h=1,k=2$。令 $X=x-1,Y=y-2$，方程化为 $Y'=\frac{X-Y}{X+Y}$，齐次方程，再令 $u=Y/X$ 求解。</div></details></div>
+  <div class="ex"><b>例 2b-5：</b>求曲线族 $y=Cx^2$ 满足的微分方程。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>消去 $C$：$y'=2Cx$，而 $C=y/x^2$，故 $y'=2y/x$，即 $xy'=2y$。</div></details></div>
+</div>
+
+<!-- ================= 3 ================= -->
+<div class="ch" id="c3">
+  <h2>3. 一阶线性方程与伯努利方程 <small>积分因子法</small></h2>
+  <div class="thm"><b>定理（一阶线性方程）：</b>y′ + P(x)y = Q(x)。通解公式：y = $e^{-\int Pdx}$ [∫Q $e^{\int Pdx}$ dx + C]。<div class="proof"><b>证明要点（积分因子）：</b>乘 $e^{\int Pdx}$ 后左边 = [y $e^{\int Pdx}$]′，直接积分。解 = 齐次通解 + 非齐次特解。</div></div>
+  <div class="thm"><b>定理（伯努利方程）：</b>y′ + P(x)y = Q(x)yⁿ（n ≠ 0, 1）：令 z = $y^{1-n}$，化为 z′ + (1−n)Pz = (1−n)Q 线性方程。<div class="proof"><b>证明要点：</b>两边乘 $y^{-n}$：$y^{-n}$y′ + $Py^{1-n}$ = Q，而 ($y^{1-n}$)′ = (1−n)$y^{-n}$y′。</div></div>
+  <div class="ex"><b>例：</b>解 y′ + y = eˣ。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>P = 1，积分因子 eˣ：[y eˣ]′ = e²ˣ ⟹ y eˣ = e²ˣ/2 + C ⟹ y = eˣ/2 + C $e^{-x}$。</div></details></div>
+  <div class="ex"><b>例：</b>解 y′ + y/x = y²（伯努利）。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 z = y⁻¹：z′ − z/x = −1，线性方程：z = $e^{\int dx/x}$[∫(−1)$e^{-\int dx/x}$dx + C] = x(−ln x + C)，故 y = 1/[x(C − ln x)]。</div></details></div>
+</div>
+
+
+<!-- ================= 3b ================= -->
+<div class="ch" id="c3b">
+  <h2>3b. 一阶线性方程与伯努利方程深入 <small>积分因子法的系统化</small></h2>
+  <div class="thm"><b>定理（一阶线性方程通解公式——正式推导）：</b>方程 $y'+P(x)y=Q(x)$。
+  ① <strong>齐次情形</strong> $Q=0$：$dy/y=-Pdx$，得 $y=C\,e^{-\int P\,dx}$。
+  ② <strong>非齐次情形</strong>：用积分因子 $\mu(x)=e^{\int P\,dx}$ 乘方程两边：
+  $$e^{\int Pdx}y'+P e^{\int Pdx}y=Q e^{\int Pdx}\quad\Longleftrightarrow\quad\frac{d}{dx}\!\left(y e^{\int Pdx}\right)=Q e^{\int Pdx}.$$
+  积分得 $y e^{\int Pdx}=\int Q e^{\int Pdx}dx+C$，即
+  $$y=e^{-\int Pdx}\!\left[\int Q(x)e^{\int Pdx}dx+C\right].$$
+  <div class="proof"><b>结构意义：</b>通解 = 对应齐次通解 $Ce^{-\int Pdx}$ + 非齐次特解 $e^{-\int Pdx}\int Qe^{\int Pdx}dx$。</div></div>
+  <div class="thm"><b>定理（伯努利方程）：</b>$y'+P(x)y=Q(x)y^n$（$n\neq0,1$）。两边除以 $y^n$，令 $z=y^{1-n}$，则 $z'=(1-n)y^{-n}y'$，代入：
+  $$\frac{1}{1-n}z'+Pz=Q\quad\Longleftrightarrow\quad z'+(1-n)Pz=(1-n)Q,$$
+  化为一阶线性方程。
+  <div class="proof"><b>注意：</b>$n=0$ 时已是线性方程；$n=1$ 时为可分离变量 $y'/y=Q-P$。</div></div>
+  <div class="ex"><b>例 3b-1：</b>解 $y'-\dfrac{2y}{x+1}=(x+1)^{5/2}$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$P=-2/(x+1)$，$\mu=e^{\int -2/(x+1)dx}=(x+1)^{-2}$。乘之：$(y(x+1)^{-2})'=(x+1)^{1/2}$，积分 $y(x+1)^{-2}=\frac23(x+1)^{3/2}+C$，$y=(x+1)^2[\frac23(x+1)^{3/2}+C]$。</div></details></div>
+  <div class="ex"><b>例 3b-2：</b>解 $y'=\dfrac{1}{x+y}$（注意把 $x$ 当函数）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>改写为 $dx/dy=x+y$，即 $x'-x=y$，$P=-1$，$\mu=e^{-y}$，$(xe^{-y})'=ye^{-y}$，积分 $xe^{-y}=-(y+1)e^{-y}+C$，$x=Ce^y-y-1$。</div></details></div>
+  <div class="ex"><b>例 3b-3：</b>解伯努利方程 $y'-y=xy^2$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$n=2$，令 $z=y^{-1}$，$z'+z=-x$。$\mu=e^x$，$(ze^x)'=-xe^x$，积分 $ze^x=-(x-1)e^x+C$，$z=Ce^{-x}-x+1$，$y=1/(Ce^{-x}-x+1)$。</div></details></div>
+  <div class="ex"><b>例 3b-4：</b>求 $y'=\dfrac{y}{2x-y}$ 的通解。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>视为 $dx/dy=2x/y-1$，即 $x'-2x/y=-1$，$P=-2/y$，$\mu=y^{-2}$，$(xy^{-2})'=-y^{-2}$，积分 $xy^{-2}=1/y+C$，$x=y+Cy^2$。</div></details></div>
+  <div class="ex"><b>例 3b-5：</b>解初值问题 $xy'+y=e^x,\ y(1)=e$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$(xy)'=e^x$，$xy=e^x+C$，$y=(e^x+C)/x$。$y(1)=e+C=e\Rightarrow C=0$，$y=e^x/x$。</div></details></div>
+</div>
+
+<!-- ================= 4 ================= -->
+<div class="ch" id="c4">
+  <h2>4. 全微分方程 <small>凑成某个函数的全微分</small></h2>
+  <div class="def"><b>定义：</b>P(x,y)dx + Q(x,y)dy = 0 若存在 F 使 dF = P dx + Q dy（即 Fₓ = P、Fᵧ = Q），称为全微分方程，通解 F(x,y) = C。</div>
+  <div class="thm"><b>定理（全微分判别与求解）：</b>P、Q 有连续偏导时，方程为全微分方程 ⟺ ∂P/∂y = ∂Q/∂x。求解：F = $\int P \,dx$ + φ(y)（把 φ 由 Fᵧ = Q 定出），或沿折线路径积分。<div class="proof"><b>证明要点：</b>Fₓᵧ = Fᵧₓ 即 Pᵧ = Qₓ——混合偏导相等的必要条件。</div></div>
+  <div class="thm"><b>定理（积分因子）：</b>非全微分方程有时可乘积分因子 μ(x,y) 化为全微分方程。若 (Pᵧ − Qₓ)/Q 只与 x 有关，则 μ = $e^{\int (Pᵧ-Q_{x})/Q dx}$；若 (Qₓ − Pᵧ)/P 只与 y 有关，则 μ = $e^{\int (Q_{x}-Pᵧ)/P dy}$。<div class="proof"><b>例：</b>y dx + x dy = 0 不是全微分（Pᵧ = 1 ≠ Qₓ = 1？——此处 Pᵧ = 1、Qₓ = 1 相等，实际是全微分：d(xy) = 0）。选例子：(x+y)dx + x dy = 0：Pᵧ = 1、Qₓ = 1，是全微分，F = x²/2 + xy。</div></div>
+  <div class="ex"><b>例：</b>解 (2x+y)dx + (x+2y)dy = 0。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>Pᵧ = 1 = Qₓ ✓。F = $\int (2x+y)\,dx$ = x² + xy + φ(y)，Fᵧ = x + φ′(y) = x + 2y ⟹ φ′ = 2y ⟹ φ = y²。通解 x² + xy + y² = C。</div></details></div>
+</div>
+
+
+<!-- ================= 4b ================= -->
+<div class="ch" id="c4b">
+  <h2>4b. 全微分方程与积分因子 <small>凑微分法</small></h2>
+  <div class="thm"><b>定理（全微分方程的充要条件）：</b>设 $P(x,y),Q(x,y)$ 在单连通域 $D$ 内有连续一阶偏导，则 $Pdx+Qdy=0$ 为全微分方程 $\iff$ $\dfrac{\partial P}{\partial y}=\dfrac{\partial Q}{\partial x}$ 在 $D$ 内恒成立。
+  <div class="proof"><b>证明：</b>若 $dF=Pdx+Qdy$，则 $F_x=P,F_y=Q$，由混合偏导连续 $P_y=F_{xy}=F_{yx}=Q_x$。反之，由曲线积分与路径无关，$F(x,y)=\int_{(x_0,y_0)}^{(x,y)}Pdx+Qdy$ 满足 $dF=Pdx+Qdy$。</div></div>
+  <div class="thm"><b>定理（观察法求原函数）：</b>利用常见全微分公式"凑"原函数 $F$：
+  $x dy+y dx=d(xy)$；$\frac{x dy-y dx}{x^2}=d\!\left(\frac{y}{x}\right)$；$\frac{x dy-y dx}{x^2+y^2}=d\!\left(\arctan\frac{y}{x}\right)$；$\frac{x dx+y dy}{x^2+y^2}=\frac12 d\ln(x^2+y^2)$。
+  <div class="proof"><b>要点：</b>把方程重新分组，使每组是某个已知函数的微分，凑成 $dF=0$，即 $F=C$。</div></div>
+  <div class="thm"><b>定理（特殊积分因子）：</b>若 $\dfrac{1}{Q}\!\left(\dfrac{\partial P}{\partial y}-\dfrac{\partial Q}{\partial x}\right)=\varphi(x)$ 仅为 $x$ 的函数，则积分因子 $\mu(x)=e^{\int\varphi(x)dx}$；若 $\dfrac{1}{P}\!\left(\dfrac{\partial Q}{\partial x}-\dfrac{\partial P}{\partial y}\right)=\psi(y)$ 仅为 $y$ 的函数，则 $\mu(y)=e^{\int\psi(y)dy}$。
+  <div class="proof"><b>证明：</b>乘 $\mu$ 后要求 $(\mu P)_y=(\mu Q)_x$，展开 $\mu_y P+\mu P_y=\mu_x Q+\mu Q_x$。若 $\mu=\mu(x)$，$\mu_y=0$，得 $\mu' Q=\mu(P_y-Q_x)$，即 $\mu'/\mu=(P_y-Q_x)/Q$。</div></div>
+  <div class="ex"><b>例 4b-1：</b>解 $(x^3-3xy^2)dx+(y^3-3x^2y)dy=0$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$P_y=-6xy=Q_x$ ✓。分项凑：$x^3dx+y^3dy-3xy(ydx+xdy)=0$，即 $d\!\left(\frac{x^4}{4}+\frac{y^4}{4}-\frac{3x^2y^2}{2}\right)=0$，通解 $x^4+y^4-6x^2y^2=C$。</div></details></div>
+  <div class="ex"><b>例 4b-2：</b>解 $(x+y)dx+(x-y)dy=0$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$P_y=1=Q_x$ ✓。$F=\int(x+y)dx=\frac{x^2}{2}+xy+\varphi(y)$，$F_y=x+\varphi'=x-y$，$\varphi=-y^2/2$。通解 $x^2/2+xy-y^2/2=C$。</div></details></div>
+  <div class="ex"><b>例 4b-3：</b>求积分因子并解 $y dx-x dy=0$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$P_y=1,Q_x=-1$，$P_y-Q_x=2$，$(P_y-Q_x)/P=2/y$ 仅与 $y$ 有关，$\mu=y^{-2}$。乘之：$(y dx-x dy)/y^2=0$，即 $d(x/y)=0$，$x/y=C$。</div></details></div>
+  <div class="ex"><b>例 4b-4：</b>解 $(2xy^2-y)dx+(y^2+x+y)dy=0$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$P_y=4xy-1$，$Q_x=1$，$P_y-Q_x=4xy-2$。$(P_y-Q_x)/Q=(4xy-2)/(y^2+x+y)$ 不单一变量，分组凑：$2xy^2dx+y^2dy+(y-x)dy=0$，试 $\mu=1/y$：$2xy dx+y dy+(1-x/y)dy=0$，$d(x^2y)+d(y^2/2)+d(y-x\ln|y|)=0$。</div></details></div>
+</div>
+
+<!-- ================= 5 ================= -->
+<div class="ch" id="c5">
+  <h2>5. 可降阶的高阶方程 <small>三种降阶套路</small></h2>
+  <div class="thm"><b>定理（不显含 y 型）：</b>y″ = f(x, y′)：令 p = y′，化为 p′ = f(x, p) 一阶方程。<div class="proof"><b>例：</b>y″ = 2x：p′ = 2x ⟹ p = x² + C₁ ⟹ y = x³/3 + C₁x + C₂。</div></div>
+  <div class="thm"><b>定理（不显含 x 型）：</b>y″ = f(y, y′)：令 p = y′，把 y 当自变量：y″ = p dp/dy，化为 p dp/dy = f(y, p)。<div class="proof"><b>例：</b>y″ = (y′)²：p dp/dy = p² ⟹ dp/p = dy ⟹ p = C₁eʸ ⟹ dy/dx = C₁eʸ ⟹ $e^{-y}$dy = C₁dx ⟹ y = −ln(C₂ − C₁x)。</div></div>
+  <div class="ex"><b>例：</b>解 y″ = y′ + x。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>p′ = p + x ⟹ p′ − p = x ⟹ p = eˣ[∫x $e^{-x}$dx + C₁] = −x − 1 + C₁eˣ ⟹ y = −x²/2 − x + C₁eˣ + C₂。</div></details></div>
+</div>
+
+
+<!-- ================= 5b ================= -->
+<div class="ch" id="c5b">
+  <h2>5b. 可降阶高阶方程的三种类型 <small>系统对比</small></h2>
+  <div class="tbl"><table><colgroup><col style="width:24%"><col style="width:38%"><col style="width:38%"></colgroup><tr><th>类型</th><th>换元</th><th>降阶后方程</th></tr>
+  <tr><td>$y^{(n)}=f(x)$</td><td>逐次积分</td><td>积分 $n$ 次得通解</td></tr>
+  <tr><td>$y''=f(x,y')$（缺 $y$）</td><td>令 $p=y'$，$p'=y''$</td><td>$p'=f(x,p)$ 一阶方程</td></tr>
+  <tr><td>$y''=f(y,y')$（缺 $x$）</td><td>令 $p=y'$，$y''=p\,dp/dy$</td><td>$p\,dp/dy=f(y,p)$，$y$ 为自变量</td></tr></table></div>
+  <div class="thm"><b>定理（为什么缺 $x$ 型要用 $y''=p\,dp/dy$）：</b>当方程不显含 $x$ 时，把 $p=y'$ 视为 $y$ 的函数 $p=p(y)$，则 $y''=\dfrac{dp}{dx}=\dfrac{dp}{dy}\cdot\dfrac{dy}{dx}=p\,\dfrac{dp}{dy}$，于是方程化为关于 $p(y)$ 的一阶方程。
+  <div class="proof"><b>易错点：</b>缺 $x$ 型若仍用 $p'=y''$ 会出现三个变量 $x,y,p$，必须换用 $y$ 作自变量。</div></div>
+  <div class="ex"><b>例 5b-1：</b>解 $y''=x+\sin x$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>逐次积分：$y'=x^2/2-\cos x+C_1$，$y=x^3/6-\sin x+C_1x+C_2$。</div></details></div>
+  <div class="ex"><b>例 5b-2：</b>解 $y''=1+(y')^2$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>缺 $y$，令 $p=y'$：$p'=1+p^2$，$dp/(1+p^2)=dx$，$\arctan p=x+C_1$，$p=\tan(x+C_1)$，$y=-\ln|\cos(x+C_1)|+C_2$。</div></details></div>
+  <div class="ex"><b>例 5b-3：</b>解 $y y''-(y')^2=0$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>缺 $x$，令 $p=y'$，$y''=p dp/dy$：$yp dp/dy=p^2$。$p=0$ 得 $y=C$；$p\neq0$ 时 $dp/p=dy/y$，$p=C_1y$，$dy/dx=C_1y$，$y=C_2e^{C_1x}$。</div></details></div>
+  <div class="ex"><b>例 5b-4：</b>解初值问题 $y''=e^y,\ y(0)=0,\ y'(0)=0$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>缺 $x$，$p dp/dy=e^y$，$\frac12p^2=e^y+C_1$。初值 $p(0)=0,y(0)=0$ 得 $C_1=-1$，$p^2=2(e^y-1)$，$dy/dx=\sqrt{2(e^y-1)}$，$dx=dy/\sqrt{2(e^y-1)}$，积分得 $x=\ln(\sqrt{e^y}-1)-\ln(\sqrt{e^y}+1)+C_2$，$C_2=0$。</div></details></div>
+  <div class="ex"><b>例 5b-5：</b>解 $x y''=y'$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>缺 $y$，令 $p=y'$：$xp'=p$，$dp/p=dx/x$，$p=C_1x$，$y=C_1x^2/2+C_2$。</div></details></div>
+</div>
+
+<!-- ================= 6 ================= -->
+<div class="ch" id="c6">
+  <h2>6. 二阶线性方程解的结构 <small>叠加原理</small></h2>
+  <div class="def"><b>定义：</b>y″ + P(x)y′ + Q(x)y = f(x)：f = 0 齐次、f ≠ 0 非齐次。</div>
+  <div class="thm"><b>定理（齐次解的结构）：</b>y₁、y₂ 是齐次方程的两个线性无关解（y₁/y₂ 非常数），则通解 y = C₁y₁ + C₂y₂。<div class="proof"><b>证明要点：</b>解空间是二维线性空间（由初值 y(x₀)、y′(x₀) 两组独立条件 + 唯一性）。</div></div>
+  <div class="thm"><b>定理（非齐次解的结构）：</b>非齐次方程通解 = 对应齐次方程通解 + 非齐次特解。<div class="proof"><b>证明要点：</b>两个非齐次解之差满足齐次方程。</div></div>
+  <div class="thm"><b>定理（常数变易法）：</b>设 y = u₁(x)y₁ + u₂(x)y₂，令 u₁′y₁ + u₂′y₂ = 0，则 u₁′y₁′ + u₂′y₂′ = f，解出 u₁′、u₂′ 后积分。<div class="proof"><b>例：</b>y″ + y = tan x：y₁ = cos x、y₂ = sin x，u₁′ = −sin x tan x、u₂′ = cos x tan x，积分得特解。</div></div>
+</div>
+
+
+<!-- ================= 6b ================= -->
+<div class="ch" id="c6b">
+  <h2>6b. 朗斯基行列式与线性解的结构 <small>理论基础</small></h2>
+  <div class="def"><b>定义（朗斯基行列式 Wronskian）：</b>对 $n$ 个可导函数 $y_1,\cdots,y_n$，定义
+  $$W(y_1,\cdots,y_n)(x)=\begin{vmatrix}y_1&y_2&\cdots&y_n\\ y_1'&y_2'&\cdots&y_n'\\ \vdots&&&\vdots\\ y_1^{(n-1)}&\cdots&&y_n^{(n-1)}\end{vmatrix}.$$
+  <div class="proof"><b>意义：</b>对二阶齐次线性方程 $y''+Py'+Qy=0$ 的两个解 $y_1,y_2$，$W\equiv0\iff y_1,y_2$ 线性相关（$y_1/y_2\equiv$ 常数）；$W\neq0\iff$ 线性无关。</div></div>
+  <div class="thm"><b>定理（刘维尔公式）：</b>对二阶齐次线性方程，$W(x)=W(x_0)e^{-\int_{x_0}^{x}P(t)dt}$。
+  <div class="proof"><b>推论：</b>只要在一点 $W(x_0)\neq0$，则在整个区间 $W(x)\neq0$；$W$ 要么恒为 0 要么处处不为 0。</div></div>
+  <div class="thm"><b>定理（二阶线性非齐次解的结构——正式陈述）：</b>设 $y_1,y_2$ 是 $y''+P(x)y'+Q(x)y=0$ 的两个线性无关解，$y^*$ 是非齐次方程 $y''+P(x)y'+Q(x)y=f(x)$ 的一个特解，则非齐次通解为
+  $$y=C_1y_1+C_2y_2+y^*.$$
+  <div class="proof"><b>证明：</b>① 叠加原理：$C_1y_1+C_2y_2$ 满足齐次方程；② 两非齐次解之差满足齐次方程，故任一非齐次解 $y$ 满足 $y-y^*\in$ 齐次解空间，即 $y-y^*=C_1y_1+C_2y_2$。</div></div>
+  <div class="thm"><b>定理（解的叠加原理——右端可加）：</b>若 $y_1^*$ 是 $L[y]=f_1$ 的特解、$y_2^*$ 是 $L[y]=f_2$ 的特解，则 $y_1^*+y_2^*$ 是 $L[y]=f_1+f_2$ 的特解。</div>
+  <div class="ex"><b>例 6b-1：</b>验证 $y_1=e^x,\ y_2=e^{2x}$ 是 $y''-3y'+2y=0$ 的线性无关解。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$W=\begin{vmatrix}e^x&e^{2x}\\e^x&2e^{2x}\end{vmatrix}=e^{3x}\neq0$，线性无关。</div></details></div>
+  <div class="ex"><b>例 6b-2：</b>已知 $y_1=x,\ y_2=x^2$ 是齐次方程的解，验证线性无关。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$W=\begin{vmatrix}x&x^2\\1&2x\end{vmatrix}=2x^2-x^2=x^2$，在 $x\neq0$ 时 $W\neq0$，线性无关（$y_1/y_2=1/x$ 非常数）。</div></details></div>
+  <div class="ex"><b>例 6b-3：</b>已知 $y''+y=\sec x$，对应齐次通解 $C_1\cos x+C_2\sin x$，用常数变易法求特解。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>设 $y^*=u_1\cos x+u_2\sin x$，$W=\cos^2x+\sin^2x=1$。$u_1'=-\sin x\sec x=-\tan x$，$u_2'=\cos x\sec x=1$。积分 $u_1=\ln|\cos x|$，$u_2=x$。$y^*=\cos x\ln|\cos x|+x\sin x$。</div></details></div>
+</div>
+
+<!-- ================= 7 ================= -->
+<div class="ch" id="c7">
+  <h2>7. 二阶常系数齐次线性方程 <small>特征方程法</small></h2>
+  <div class="thm"><b>定理（特征方程法）：</b>y″ + py′ + qy = 0 的特征方程 r² + pr + q = 0：
+  <div class="tbl"><table><colgroup><col style="width:30%"><col style="width:70%"></colgroup><tr><th>特征根情形</th><th>通解</th></tr>
+  <tr><td>两相异实根 r₁, r₂</td><td>y = C₁e^(r₁x) + C₂e^(r₂x)</td></tr>
+  <tr><td>重根 r</td><td>y = (C₁ + C₂x)$e^{rx}$</td></tr>
+  <tr><td>共轭复根 α ± iβ</td><td>y = $e^{αx}$(C₁cos βx + C₂sin βx)</td></tr></table></div><div class="proof"><b>证明要点：</b>把 y = $e^{rx}$ 代入得特征方程。重根时 $xe^{rx}$ 是第二个解（用常数变易或极限取法）。</div></div>
+  <div class="ex"><b>例：</b>解 y″ − 3y′ + 2y = 0。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>r²−3r+2 = 0 ⟹ r = 1, 2 ⟹ y = C₁eˣ + C₂e²ˣ。</div></details></div>
+  <div class="ex"><b>例：</b>解 y″ + 2y′ + 5y = 0。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>r = −1 ± 2i ⟹ y = $e^{-x}$(C₁cos 2x + C₂sin 2x)。</div></details></div>
+  <div class="thm"><b>定理（欧拉方程）：</b>x²y″ + pxy′ + qy = 0：令 x = eᵗ（或令 y = xʳ 代入），化为常系数方程。<div class="proof"><b>例：</b>x²y″ − 2y = 0：y = xʳ ⟹ r(r−1) − 2 = 0 ⟹ r = 2, −1 ⟹ y = C₁x² + C₂/x。</div></div>
+</div>
+
+
+<!-- ================= 7b ================= -->
+<div class="ch" id="c7b">
+  <h2>7b. 特征方程法与欧拉方程 <small>系统求解</small></h2>
+  <div class="thm"><b>定理（二阶常系数齐次方程通解总表）：</b>对 $y''+py'+qy=0$，特征方程 $r^2+pr+q=0$：
+  <div class="tbl"><table><colgroup><col style="width:30%"><col style="width:35%"><col style="width:35%"></colgroup><tr><th>判别式 $\Delta=p^2-4q$</th><th>特征根</th><th>通解</th></tr>
+  <tr><td>$\Delta>0$</td><td>两不同实根 $r_1,r_2$</td><td>$y=C_1e^{r_1x}+C_2e^{r_2x}$</td></tr>
+  <tr><td>$\Delta=0$</td><td>重根 $r$</td><td>$y=(C_1+C_2x)e^{rx}$</td></tr>
+  <tr><td>$\Delta&lt;0$</td><td>共轭复根 $\alpha\pm i\beta$</td><td>$y=e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$</td></tr></table></div>
+  <div class="proof"><b>重根时 $xe^{rx}$ 为何是解：</b>对 $y=e^{rx}$ 已得解，用降阶法（刘维尔公式）求第二个线性无关解 $y_2=y_1\int e^{-\int pdx}/y_1^2\,dx=e^{rx}\int e^{-px}/e^{2rx}dx$。重根时 $r=-p/2$，指数相消，$\int dx=x$，得 $y_2=xe^{rx}$。</div></div>
+  <div class="thm"><b>定理（$n$ 阶常系数齐次方程）：</b>$y^{(n)}+a_1y^{(n-1)}+\cdots+a_ny=0$，特征方程 $r^n+a_1r^{n-1}+\cdots+a_n=0$。每个 $k$ 重实根 $r$ 对应 $k$ 个解 $e^{rx},xe^{rx},\cdots,x^{k-1}e^{rx}$；每个 $k$ 重共轭复根 $\alpha\pm i\beta$ 对应 $2k$ 个解 $e^{\alpha x}\cos\beta x,xe^{\alpha x}\cos\beta x,\cdots,x^{k-1}e^{\alpha x}\cos\beta x$ 及正弦项。</div>
+  <div class="thm"><b>定理（欧拉方程）：</b>$x^2y''+pxy'+qy=0$（$x>0$）。令 $x=e^t$（$t=\ln x$），记 $D=d/dt$，则 $xD=D$、$x^2D^2=D(D-1)$，代入化为常系数方程
+  $$D(D-1)y+pDy+qy=0,\quad\text{即}\quad y_t''+(p-1)y_t'+qy=0.$$
+  <div class="proof"><b>推导：</b>$dy/dx=(dy/dt)(dt/dx)=\frac1x dy/dt$，$x y'=Dy$。$y''=\frac{d}{dx}(Dy/x)=\frac1x\frac{d}{dt}(Dy/x)=\frac1{x^2}(D^2y-Dy)$，故 $x^2y''=D(D-1)y$。</div></div>
+  <div class="ex"><b>例 7b-1：</b>解 $y''+4y'+13y=0$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$r^2+4r+13=0$，$r=-2\pm3i$，通解 $y=e^{-2x}(C_1\cos3x+C_2\sin3x)$。</div></details></div>
+  <div class="ex"><b>例 7b-2：</b>解 $y^{(3)}-3y''+3y'-y=0$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$(r-1)^3=0$，三重根 $r=1$，通解 $y=(C_1+C_2x+C_3x^2)e^x$。</div></details></div>
+  <div class="ex"><b>例 7b-3：</b>解欧拉方程 $x^2y''+xy'+y=0$（$x>0$）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>令 $x=e^t$：$D(D-1)y+Dy+y=0$，$D^2y+y=0$，$y=C_1\cos t+C_2\sin t$，回代 $t=\ln x$：$y=C_1\cos(\ln x)+C_2\sin(\ln x)$。</div></details></div>
+  <div class="ex"><b>例 7b-4：</b>解欧拉方程 $x^2y''-xy'+y=0$。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$D(D-1)y-Dy+y=0$，$D^2-2D+1=0$，重根 $D=1$，$y=(C_1+C_2t)e^t=(C_1+C_2\ln x)x$。</div></details></div>
+  <div class="ex"><b>例 7b-5：</b>求 $y''+2y'+y=0$ 满足 $y(0)=1,y'(0)=0$ 的特解。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$r=-1$ 二重根，$y=(C_1+C_2x)e^{-x}$。$y(0)=C_1=1$；$y'=(-C_1+C_2-C_2x)e^{-x}$，$y'(0)=-1+C_2=0$，$C_2=1$。特解 $y=(1+x)e^{-x}$。</div></details></div>
+</div>
+
+<!-- ================= 8 ================= -->
+<div class="ch" id="c8">
+  <h2>8. 二阶常系数非齐次方程 <small>待定系数法</small></h2>
+  <div class="thm"><b>定理（f = $e^{λx}$Pₘ(x) 型）：</b>y″ + py′ + qy = $e^{λx}$Pₘ(x)：设特解 y* = xᵏ $e^{λx}$ Qₘ(x)，其中 k 是 λ 作为特征根的重数（0、1 或 2）。<div class="proof"><b>例：</b>y″ − 3y′ + 2y = eˣ：λ = 1 是单根 ⟹ k = 1，设 y* = x(A)eˣ… 解得 y* = −x eˣ。</div></div>
+  <div class="thm"><b>定理（f = $e^{αx}$[P cos βx + Q sin βx] 型）：</b>设 y* = xᵏ $e^{αx}$[A cos βx + B sin βx]，k = α+iβ 作为特征根的重数。<div class="proof"><b>例：</b>y″ + y = sin x：α+iβ = i 是单根 ⟹ k = 1，设 y* = x(A cos x + B sin x)，解得 A = 0、B = −1/2 ⟹ y* = −x cos x/2。</div></div>
+  <div class="thm"><b>定理（叠加原理）：</b>f = f₁ + f₂ 时特解 = 分别的特解之和。<div class="proof"><b>例：</b>y″ + y = x + sin x：特解 = x（对 x）+ (−x cos x/2)（对 sin x）。</div></div>
+  <div class="warn"><b>易错警示：</b>λ 与特征根重合时必须乘 xᵏ（共振！）；重根时乘 x²。不乘会算不出特解。例：y″ − 2y′ + y = eˣ（λ = 1 是二重根）设 y* = Ax²eˣ。</div>
+  <div class="ex"><b>例：</b>求 y″ − 2y′ + y = eˣ 的特解。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>特征根 r = 1（二重），设 y* = Ax²eˣ。y*′ = A(x²+2x)eˣ、y*″ = A(x²+4x+2)eˣ。代入：A(x²+4x+2) − 2A(x²+2x) + Ax² = 2A = 1 ⟹ A = 1/2。y* = x²eˣ/2。</div></details></div>
+</div>
+
+
+<!-- ================= 8b ================= -->
+<div class="ch" id="c8b">
+  <h2>8b. 待定系数法的两种标准类型 <small>系统掌握</small></h2>
+  <div class="thm"><b>定理（类型 I：$f(x)=e^{\lambda x}P_m(x)$）：</b>设 $\lambda$ 是特征方程 $\varphi(r)=r^2+pr+q=0$ 的 $k$ 重根（$k=0,1,2$），则非齐次方程 $y''+py'+qy=e^{\lambda x}P_m(x)$ 有形如
+  $$y^*=x^k e^{\lambda x} Q_m(x)$$
+  的特解，其中 $Q_m(x)$ 是与 $P_m(x)$ 同次（$m$ 次）的待定多项式。
+  <div class="proof"><b>推导：</b>设 $y^*=e^{\lambda x}Q(x)$，代入方程得 $e^{\lambda x}[Q''+(2\lambda+p)Q'+(\lambda^2+p\lambda+q)Q]=e^{\lambda x}P_m$，即 $\varphi(\lambda)Q+\varphi'(\lambda)Q'+Q''=P_m$。若 $\varphi(\lambda)\neq0$（$k=0$）取 $Q=Q_m$；若 $\varphi(\lambda)=0,\varphi'(\lambda)\neq0$（$k=1$）取 $Q=xQ_m$；若均为 0（$k=2$）取 $Q=x^2Q_m$。</div></div>
+  <div class="thm"><b>定理（类型 II：$f(x)=e^{\alpha x}[P_l(x)\cos\beta x+Q_n(x)\sin\beta x]$）：</b>设 $\alpha+i\beta$ 是特征方程的 $k$ 重根，令 $m=\max(l,n)$，则特解形如
+  $$y^*=x^k e^{\alpha x}[R_m^{(1)}(x)\cos\beta x+R_m^{(2)}(x)\sin\beta x].$$
+  <div class="proof"><b>说明：</b>用欧拉公式把三角函数化为复指数 $e^{(\alpha+i\beta)x}$，套用类型 I，再取实部/虚部合并。</div></div>
+  <div class="tbl"><table><colgroup><col style="width:38%"><col style="width:22%"><col style="width:40%"></colgroup><tr><th>右端 $f(x)$</th><th>$k$ 的取法</th><th>特解形式</th></tr>
+  <tr><td>$e^{\lambda x}P_m(x)$</td><td>$\lambda$ 是特征根重数</td><td>$x^k e^{\lambda x}Q_m(x)$</td></tr>
+  <tr><td>$e^{\alpha x}\cos\beta x$</td><td>$\alpha+i\beta$ 是否特征根</td><td>$x^k e^{\alpha x}(A\cos\beta x+B\sin\beta x)$</td></tr>
+  <tr><td>$e^{\alpha x}\sin\beta x$</td><td>同上</td><td>同上</td></tr>
+  <tr><td>$P_m(x)$（即 $\lambda=0$）</td><td>0 是否特征根</td><td>$x^k Q_m(x)$</td></tr></table></div>
+  <div class="warn"><b>易错警示：</b>① $k$ 是"重数"——单根 $k=1$、二重根 $k=2$；② 类型 II 中即使 $f$ 只含余弦，特解也要同时设 $A\cos\beta x+B\sin\beta x$（不能只设一个）；③ 右端是两项之和时分别求特解再相加。</div>
+  <div class="ex"><b>例 8b-1：</b>求 $y''-2y'-3y=3x+1$ 的通解。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>特征根 $r=3,-1$，齐次通解 $C_1e^{3x}+C_2e^{-x}$。$\lambda=0$ 非特征根，设 $y^*=ax+b$。代入 $-3ax-2a-3b=3x+1$：$a=-1,\ b=1/3$。$y^*=-x+1/3$。</div></details></div>
+  <div class="ex"><b>例 8b-2：</b>求 $y''+y=x\cos2x$ 的特解。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$\alpha+i\beta=2i$ 非特征根（特征根 $\pm i$），设 $y^*=(ax+b)\cos2x+(cx+d)\sin2x$。代入解得 $a=-1/3,b=0,c=0,d=4/9$，$y^*=-\frac{x}{3}\cos2x+\frac49\sin2x$。</div></details></div>
+  <div class="ex"><b>例 8b-3：</b>求 $y''-2y'+y=e^x$ 的通解。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>特征根 $r=1$（二重），齐次通解 $(C_1+C_2x)e^x$。$\lambda=1$ 二重根 $k=2$，设 $y^*=Ax^2e^x$。代入得 $2Ae^x=e^x$，$A=1/2$，$y^*=\frac12x^2e^x$。</div></details></div>
+  <div class="ex"><b>例 8b-4：</b>求 $y''+4y=x+\sin2x$ 的特解（叠加原理）。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>对 $x$：$\lambda=0$ 非根，设 $y_1^*=ax+b$，代入得 $4ax+4b=x$，$a=1/4,b=0$。对 $\sin2x$：$\alpha+i\beta=2i$ 是单根，设 $y_2^*=x(A\cos2x+B\sin2x)$，代入解得 $A=-1/4,B=0$。$y^*=x/4-\frac{x}{4}\cos2x$。</div></details></div>
+  <div class="ex"><b>例 8b-5：</b>求 $y''-y'=xe^x$ 的特解。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>特征根 $r=0,1$。$\lambda=1$ 是单根，设 $y^*=x(ax+b)e^x$。代入得 $2ax+(a+b)=x$，$a=1/2,b=-1/2$，$y^*=\left(\frac{x^2}{2}-\frac{x}{2}\right)e^x$。</div></details></div>
+</div>
+
+<!-- ================= 9 ================= -->
+
+<!-- ================= 第二轮深度小节：9e. 深度：稳定性理论初步 ================= -->
+<div class="ch" id="c9e">
+  <h2>9e. 深度：稳定性理论初步 <small>解会不会「跑掉」</small></h2>
+  <div class="def"><b>定义（Lyapunov 稳定）</b> $\dot x=f(x)$ 的平衡点 $x^*$ 稳定，若 $\forall\epsilon>0,\exists\delta>0$ 使 $|x_0-x^*|&lt;\delta\Rightarrow|\phi_t(x_0)-x^*|&lt;\epsilon$（$\forall t\ge0$）。渐近稳定还要求 $\phi_t(x_0)\to x^*$。</div>
+  <div class="thm"><b>定理（线性化判据）</b> 设 $f\in C^1$, $x^*$ 为平衡点。$A=Df(x^*)$。
+  ① $A$ 所有特征值实部 $&lt;0$ $\Rightarrow$ $x^*$ 渐近稳定；
+  ② $A$ 有特征值实部 $>0$ $\Rightarrow$ $x^*$ 不稳定；
+  ③ $A$ 有纯虚特征值且无正实部 $\Rightarrow$ 线性化无法判断（临界情形）。
+  <div class="proof"><b>思路：</b>解 $\approx e^{At}(x_0-x^*)$，$e^{At}$ 衰减 $\Leftrightarrow$ 特征值实部负。严格证明用 Gronwall 不等式控制非线性项 $O(|x-x^*|^2)$。</div></div>
+  <div class="thm"><b>定理（Lyapunov 函数法）</b> 若存在 $V$ 在 $x^*$ 正定、$\dot V=\nabla V\cdot f$ 负定，则 $x^*$ 渐近稳定。<div class="proof"><b>意义：</b>临界情形（线性化失效）用 $V$ 判断。阻尼摆 $\ddot\theta+\sin\theta+\gamma\dot\theta=0$，取 $V=\frac12\dot\theta^2+1-\cos\theta$，$\dot V=-\gamma\dot\theta^2\le0$——稳定（非严格负定，用 LaSalle 不变性原理进一步得渐近稳定）。</div></div>
+  <div class="ex"><b>例：</b>判断 $\dot x=x(1-x)$ 的平衡点稳定性。
+  <div class="sol"><b>解：</b>平衡点 $x^*=0$ 与 $x^*=1$。在 $x^*=0$：$f'(0)=1>0$——不稳定。在 $x^*=1$：$f'(1)=-1&lt;0$——渐近稳定。解 $x(t)=\frac{x_0e^t}{1-x_0+x_0e^t}$ 验证：$x_0&lt;1$ 时 $x\to1$；$x_0>1$ 也 $\to1$；$x_0=0$ 留在 0（不稳定平衡）。Logistic 增长模型。</div></div>
+</div>
+
+<!-- ================= 第二轮深度小节：9f. 深度：边值问题与 Sturm–Liouville 理论 ================= -->
+<div class="ch" id="c9f">
+  <h2>9f. 深度：边值问题与 Sturm–Liouville 理论 <small>从初值到边值</small></h2>
+  <div class="def"><b>定义（边值问题）</b> 二阶 ODE $y''+p(x)y'+q(x)y=\lambda r(x)y$ 配边界 $y(a)=y(b)=0$（或导数边界）。与初值不同，边值问题可能无解或多解。</div>
+  <div class="thm"><b>定理（Sturm–Liouville）</b> SL 方程 $(py')'+qy+\lambda ry=0$（$p>0,r>0$）配适当边界有：
+  ① 特征值 $\lambda_1&lt;\lambda_2&lt;\cdots\to+\infty$ 全实；
+  ② 特征函数 $\{y_n\}$ 关于权 $r$ 正交：$\int_a^b r\,y_my_n=0$（$m\ne n$）；
+  ③ $\{y_n\}$ 在 $L^2_r$ 中完备。
+  <div class="proof"><b>思路：</b>SL 算子 $L=-(py')'/r$ 自伴（$\int uLv=\int vLu$），自伴算子特征值实、特征函数正交。完备性需要紧自伴算子谱分解（Hilbert 的梦想之一）。</div></div>
+  <div class="thm"><b>定理（振动比较定理 Sturm）</b> 若 $q_1(x)\le q_2(x)$，$y_1''+q_1y_1=0$ 的解 $y_1$ 的相邻零点间至少有 $y_2''+q_2y_2=0$ 的解的一个零点。<div class="proof"><b>意义：</b>「$q$ 越大振荡越快」——这给出特征值排序 $\lambda_n\uparrow$ 的几何直觉。$q=\lambda$（常数）时 $\sqrt\lambda$ 越大频率越高，零点越密。</div></div>
+  <div class="ex"><b>例：</b>求 $y''+\lambda y=0$, $y(0)=y(\pi)=0$ 的特征值与特征函数。
+  <div class="sol"><b>解：</b>通解 $y=A\sin(\sqrt\lambda x)+B\cos(\sqrt\lambda x)$。$y(0)=0$ 给 $B=0$。$y(\pi)=A\sin(\sqrt\lambda\pi)=0$ 给 $\sqrt\lambda=n$（$n=1,2,\dots$），即 $\lambda_n=n^2$。特征函数 $y_n=\sin(nx)$。这正是 Fourier 正弦展开的基础——热传导方程分离变量法中出现。</div></div>
+</div>
+
+<div class="ch" id="c9">
+  <h2>9. 应用：建模实例 <small>从物理到生物</small></h2>
+  <div class="thm"><b>定理（牛顿冷却定律）：</b>dT/dt = −k(T − T₀) ⟹ T = T₀ + (T(0) − T₀)$e^{-kt}$。<div class="proof"><b>例：</b>尸体 20:00 温度 32.5°C，22:00 为 30.5°C，室温 20°C，正常体温 37°C——可反推死亡时刻（法医学应用）。</div></div>
+  <div class="thm"><b>定理（逻辑斯蒂人口模型）：</b>dP/dt = rP(1 − P/K)，解 P = K/(1 + $Ce^{-rt}$)。<div class="proof"><b>证明要点：</b>可分离变量 + 部分分式：∫dP/[P(1−P/K)] = $\int rdt$。P → K（环境容纳量）。</div></div>
+  <div class="thm"><b>定理（弹簧振动）：</b>mx″ + cx′ + kx = F(t)。无阻尼自由振动 x″ + ω²x = 0：x = A cos(ωt + φ)。受迫振动共振：驱动频率 = 固有频率时振幅无界增大。<div class="proof"><b>例：</b>x″ + 9x = 0：x = C₁cos 3t + C₂sin 3t，周期 2π/3。</div></div>
+  <div class="thm"><b>定理（RL 电路）：</b>L di/dt + Ri = E。解 i = E/R + (i(0) − E/R)$e^{-Rt/L}$。<div class="proof"><b>例：</b>E = 12V、R = 4Ω、L = 2H、i(0) = 0：i = 3(1 − $e^{-2t}$)，稳态电流 3A。</div></div>
+  <div class="ex"><b>例：</b>放射性衰变 dN/dt = −λN，半衰期 T₁/₂ = ln 2/λ。已知碳-14 半衰期 5730 年，求衰变常数。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>λ = ln 2 / 5730 ≈ 1.21×10⁻⁴ /年。</div></details></div>
+</div>
+
+
+<!-- ================= 9b ================= -->
+  <div class="ex"><b>练习 12：</b>判断 $\dot x=-x^3$ 的原点稳定性。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$f'(0)=0$（线性化失效）。取 $V=x^2/2$，$\dot V=x\dot x=-x^4&lt;0$——渐近稳定。线性化在临界情形失效但 Lyapunov 函数仍然有效。</div></details></div>
+  <div class="ex"><b>练习 13：</b>SL 问题 $y''+\lambda y=0$, $y(0)=y'(L)=0$（Neumann 在右端）的特征值是什么？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$y=A\sin(\sqrt{\lambda}\,x)$（$y(0)=0$ 给 $B=0$）；$y'(L)=A\sqrt{\lambda}\cos(\sqrt{\lambda}\,L)=0$ 给 $\sqrt{\lambda}\,L=(n-\tfrac12)\pi$，即 $\lambda_n=\left(\dfrac{(2n-1)\pi}{2L}\right)^2$（$n=1,2,\dots$），特征函数 $y_n(x)=\sin\!\left(\dfrac{(2n-1)\pi x}{2L}\right)$。</div></details></div>
+
+<div class="ch" id="c9b">
+  <h2>9b. 二阶方程建模：振动与电路 <small>物理背景完整</small></h2>
+  <div class="thm"><b>定理（弹簧振动方程）：</b>质量为 $m$ 的物体挂在弹簧上，受弹力 $-kx$、阻尼 $-cx'$、外力 $F(t)$，由牛顿第二定律：
+  $$m x''+c x'+k x=F(t).$$
+  ① 无阻尼自由振动 $x''+\omega_0^2x=0$（$\omega_0=\sqrt{k/m}$）：$x=A\cos(\omega_0 t+\varphi)$，周期 $T=2\pi/\omega_0$。
+  ② 有阻尼自由振动：$c>0$ 时解指数衰减；$c&lt;2\sqrt{mk}$ 欠阻尼振荡衰减，$c=2\sqrt{mk}$ 临界阻尼，$c>2\sqrt{mk}$ 过阻尼非振荡。
+  ③ 受迫振动：外力 $F(t)=F_0\cos\omega t$，当驱动频率 $\omega=\omega_0$ 时发生<strong>共振</strong>，振幅随 $t$ 线性增长（$x\propto t\sin\omega_0 t$）。
+  <div class="proof"><b>共振的数学：</b>$x''+\omega_0^2x=F_0\cos\omega_0t$，$\alpha+i\beta=i\omega_0$ 是特征根（单根），特解 $x^*=At\sin\omega_0t$，振幅 $\propto t$。</div></div>
+  <div class="thm"><b>定理（RLC 串联电路）：</b>由基尔霍夫电压定律 $L q''+R q'+\frac1C q=E(t)$（$q$ 为电容电荷），电流 $i=q'$。令 $i=q'$ 得 $L i''+R i'+\frac1C i=E'(t)$。直流稳态 $E=E_0$ 时 $i\to0$（电容开路）。</div>
+  <div class="ex"><b>例 9b-1：</b>弹簧振子 $m=1,k=4$，初位移 $x(0)=1,x'(0)=0$，求运动。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$x''+4x=0$，$x=C_1\cos2t+C_2\sin2t$。$x(0)=C_1=1$，$x'(0)=2C_2=0$，$x=\cos2t$，周期 $\pi$。</div></details></div>
+  <div class="ex"><b>例 9b-2：</b>阻尼振动 $x''+2x'+2x=0$，分析运动类型。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$r=-1\pm i$，$x=e^{-t}(C_1\cos t+C_2\sin t)$，欠阻尼，振幅按 $e^{-t}$ 衰减。</div></details></div>
+  <div class="ex"><b>例 9b-3：</b>放射性衰变 $dN/dt=-\lambda N$，半衰期 $T_{1/2}=\ln2/\lambda$。已知 C-14 半衰期 5730 年，某化石 C-14 残留为活体的 60%，求年代。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$N/N_0=e^{-\lambda t}=0.6$，$t=-\ln0.6/\lambda=5730\cdot(-\ln0.6)/\ln2\approx5730\times0.737\approx4220$ 年。</div></details></div>
+  <div class="ex"><b>例 9b-4：</b>RL 电路 $L=2,R=10,E=20$，$i(0)=0$，求 $i(t)$ 与稳态电流。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>$2i'+10i=20$，$i'+5i=10$，$i=2+Ce^{-5t}$。$i(0)=0\Rightarrow C=-2$，$i=2(1-e^{-5t})$，稳态 2A。</div></details></div>
+  <div class="ex"><b>例 9b-5：</b>种群增长逻辑斯蒂模型 $dP/dt=rP(1-P/K)$，求通解。<details><summary>查看解析</summary><div class="sol"><b>解析：</b>分离 $dP/[P(1-P/K)]=rdt$，部分分式 $\frac{K}{P(K-P)}=\frac1P+\frac1{K-P}$，积分 $\ln\frac{P}{K-P}=rt+C$，$P=K/(1+Ce^{-rt})$，$P\to K$。</div></details></div>
+</div>
+
+<!-- ================= 10 ================= -->
+
+  <div class="ex"><b>练习 8：</b>用 Gronwall 不等式证明：若 $|y'|\le a|y|+b$ 在 $[0,T]$ 上，$y(0)=0$，则 $|y(t)|\le\frac{b}{a}(e^{at}-1)$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>由 $y(t)=\int_0^t y'(s)ds$，$|y(t)|\le\int_0^t(a|y(s)|+b)ds=bt+a\int_0^t|y(s)|ds$。令 $u(t)=|y(t)|$，由 Gronwall 不等式 $u(t)\le bt\cdot\exp(a t)$……更精确：$u(t)\le\frac{b}{a}(e^{at}-1)$（积分形式的 Gronwall）。</div></details></div>
+
+  <div class="ex"><b>练习 9：</b>求方程组 $\dot{x}=2x-y$，$\dot{y}=3x-2y$ 的通解。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>矩阵 $A=\begin{pmatrix}2&-1\\3&-2\end{pmatrix}$，特征方程 $\lambda^2-1=0$，$\lambda=\pm1$。$\lambda=1$：特征向量 $(1,1)^T$；$\lambda=-1$：$(1,3)^T$。通解 $(x,y)^T=C_1 e^t(1,1)^T+C_2 e^{-t}(1,3)^T$。</div></details></div>
+
+  <div class="ex"><b>练习 10：</b>用 Lyapunov 函数判断 $\dot{x}=-x+2y^3$，$\dot{y}=-2x y^2-y^3$ 零解稳定性。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>取 $V=x^2+y^2$。$\dot{V}=2x(-x+2y^3)+2y(-2xy^2-y^3)=-2x^2+4xy^3-4xy^3-2y^4=-2x^2-2y^4&lt;0$（$(x,y)\ne(0,0)$）。故零解渐近稳定。</div></details></div>
+
+  <div class="ex"><b>练习 11：</b>用常数变易法求 $y''+y=\sec x$ 的特解。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>齐次解 $y_h=C_1\cos x+C_2\sin x$。设特解 $y_p=C_1(x)\cos x+C_2(x)\sin x$。解方程组 $C_1'\cos x+C_2'\sin x=0$，$-C_1'\sin x+C_2'\cos x=\sec x$。得 $C_1'=-\tan x$，$C_2'=1$。$C_1=\ln|\cos x|$，$C_2=x$。$y_p=\cos x\ln|\cos x|+x\sin x$。</div></details></div>
+
+
+<!-- ================= 深度小节：9a. 深度：解的存在唯一性定理（Picard 迭代） ================= -->
+<div class="ch" id="c9a">
+  <h2>9a. 深度：解的存在唯一性定理（Picard 迭代） <small>为什么常微分方程的解存在且唯一</small></h2>
+  <div class="thm"><b>Picard–Lindelöf 定理</b> 考虑初值问题 $y'=f(x,y)$，$y(x_0)=y_0$。若 $f$ 在矩形 $R:\{|x-x_0|\le a,\ |y-y_0|\le b\}$ 上连续，且关于 $y$ 满足 Lipschitz 条件：$\exists L>0$ 使 $|f(x,y_1)-f(x,y_2)|\le L|y_1-y_2|$，则在 $|x-x_0|\le h$ 上存在唯一解，其中 $h=\min(a,b/M)$，$M=\max_R|f|$。<div class="proof"><b>证明（Picard 迭代）：</b>构造迭代序列 $y_{n+1}(x)=y_0+\int_{x_0}^x f(t,y_n(t))dt$，$y_0(x)\equiv y_0$。用 Lipschitz 条件归纳证明 $|y_{n+1}-y_n|\le\frac{M L^n}{(n+1)!}|x-x_0|^{n+1}$，故 $\sum(y_{n+1}-y_n)$ 一致收敛，极限函数 $y(x)$ 满足积分方程，即微分方程的解。唯一性由 Gronwall 不等式推出。</div></div>
+  <div class="def"><b>Gronwall 不等式</b> 若 $u(x)\le C+\int_{x_0}^x\lambda(t)u(t)dt$（$C\ge0$，$\lambda\ge0$），则 $u(x)\le C\exp\left(\int_{x_0}^x\lambda(t)dt\right)$。</div>
+  <div class="ex"><b>例：</b>用 Picard 迭代求 $y'=x+y$，$y(0)=0$ 的前几项。
+  <div class="sol"><b>解：</b>$y_0(x)=0$。$y_1=\int_0^x(t+0)dt=x^2/2$。$y_2=\int_0^x(t+t^2/2)dt=x^2/2+x^3/6$。$y_3=x^2/2+x^3/6+x^4/24$。归纳得 $y_n=\sum_{k=2}^{n+1}\frac{x^k}{k!}$，极限 $y=e^x-x-1$（验证：$y'=e^x-1=x+y$）。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9c. 深度：线性方程组的基本解矩阵 ================= -->
+<div class="ch" id="c9c">
+  <h2>9c. 深度：线性方程组的基本解矩阵 <small>高阶线性方程的矩阵化处理</small></h2>
+  <div class="def"><b>线性方程组</b> $\mathbf{y}'=A(x)\mathbf{y}+\mathbf{f}(x)$，其中 $\mathbf{y}=(y_1,\dots,y_n)^T$，$A(x)$ 为 $n\times n$ 矩阵。齐次方程 $\mathbf{y}'=A(x)\mathbf{y}$ 的 $n$ 个线性无关解构成<b>基本解矩阵</b> $\Phi(x)$。</div>
+  <div class="thm"><b>定理</b> 齐次线性方程组的通解为 $\mathbf{y}=\Phi(x)\mathbf{C}$，$\mathbf{C}\in\mathbb{R}^n$。非齐次通解为 $\mathbf{y}=\Phi(x)\mathbf{C}+\mathbf{y}_p$，其中特解 $\mathbf{y}_p=\Phi(x)\int\Phi^{-1}(x)\mathbf{f}(x)dx$（常数变易法）。</div>
+  <div class="def"><b>Wronski 行列式</b> $n$ 个解 $\mathbf{y}_1,\dots,\mathbf{y}_n$ 的 Wronski 行列式 $W(x)=\det[\mathbf{y}_1,\dots,\mathbf{y}_n]$。Liouville 公式：$W(x)=W(x_0)\exp\left(\int_{x_0}^x\mathrm{tr}\,A(t)dt\right)$。<div class="proof"><b>说明：</b>$W(x)$ 要么恒为 0（解线性相关），要么恒不为 0（解线性无关）——这由 Liouville 公式保证，因为指数函数永不为 0。</div></div>
+  <div class="ex"><b>例：</b>求 $y''+y=0$ 的基本解矩阵。
+  <div class="sol"><b>解：</b>化为方程组：$y_1=y$，$y_2=y'$，则 $\mathbf{y}'=\begin{pmatrix}0&1\\-1&0\end{pmatrix}\mathbf{y}$。两个线性无关解 $\mathbf{y}_1=(\cos x,-\sin x)^T$，$\mathbf{y}_2=(\sin x,\cos x)^T$。基本解矩阵 $\Phi(x)=\begin{pmatrix}\cos x&\sin x\\-\sin x&\cos x\end{pmatrix}$，$W(x)=\cos^2x+\sin^2x=1$。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9d. 深度：稳定性与 Lyapunov 直接方法 ================= -->
+<div class="ch" id="c9d">
+  <h2>9d. 深度：稳定性与 Lyapunov 直接方法 <small>不求解也能判断解的行为</small></h2>
+  <div class="def"><b>定义（Lyapunov 稳定）</b> 自治系统 $\mathbf{x}'=\mathbf{f}(\mathbf{x})$ 的平衡点 $\mathbf{x}_0$（$\mathbf{f}(\mathbf{x}_0)=0$）称为 Lyapunov 稳定，若 $\forall\varepsilon>0,\ \exists\delta>0$，使 $\|\mathbf{x}(0)-\mathbf{x}_0\|&lt;\delta$ 时 $\|\mathbf{x}(t)-\mathbf{x}_0\|&lt;\varepsilon$（$\forall t>0$）。若还满足 $\lim_{t\to\infty}\|\mathbf{x}(t)-\mathbf{x}_0\|=0$，称<b>渐近稳定</b>。</div>
+  <div class="thm"><b>Lyapunov 直接方法</b> 若存在正定函数 $V(\mathbf{x})$（$V(\mathbf{x}_0)=0$，$V(\mathbf{x})>0$ 当 $\mathbf{x}\ne\mathbf{x}_0$）使得 $\dot{V}=\nabla V\cdot\mathbf{f}\le0$，则 $\mathbf{x}_0$ 稳定；若 $\dot{V}&lt;0$（$\mathbf{x}\ne\mathbf{x}_0$），则渐近稳定。<div class="proof"><b>直觉：</b>$V$ 像「能量」。$\dot{V}\le0$ 意味着能量不增，解被「困」在等势面 $V=C$ 内；$\dot{V}&lt;0$ 则能量持续衰减，解最终趋于平衡点。</div></div>
+  <div class="ex"><b>例：</b>判断 $\ddot{x}+\dot{x}+x=0$ 零解的稳定性。
+  <div class="sol"><b>解：</b>令 $x_1=x$，$x_2=\dot{x}$，方程组 $\dot{x}_1=x_2$，$\dot{x}_2=-x_1-x_2$。取 $V=x_1^2+x_2^2$（正定）。$\dot{V}=2x_1x_2+2x_2(-x_1-x_2)=-2x_2^2\le0$，稳定。进一步用 Lasalle 不变集原理或直接求解（特征根 $-1/2\pm i\sqrt{3}/2$ 负实部），可得渐近稳定。</div></div>
+</div>
+
+<div class="ch" id="c10">
+  <h2>10. 练习与自测、术语表</h2>
+  <div class="ex"><b>练习 1：</b>解 dy/dx = (y²+1)/(x²+1)。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>∫dy/(y²+1) = ∫dx/(x²+1) ⟹ arctan y = arctan x + C ⟹ y = tan(arctan x + C)。</div></details></div>
+  <div class="ex"><b>练习 2：</b>解 y′ + 2xy = x。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>积分因子 $e^{x^{2}}$：[y $e^{x^{2}}$]′ = x $e^{x^{2}}$ ⟹ y = 1/2 + C $e^{-x^{2}}$。</div></details></div>
+  <div class="ex"><b>练习 3：</b>解 y″ − 4y′ + 4y = 0。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>特征根 r = 2（二重）⟹ y = (C₁ + C₂x)$e^{2x}$。</div></details></div>
+  <div class="ex"><b>练习 4：</b>求 y″ + y = 2eˣ 的特解。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>λ = 1 非特征根（特征根 ±i），设 y* = Aeˣ，代入 2A = 2 ⟹ A = 1 ⟹ y* = eˣ。</div></details></div>
+  <div class="ex"><b>练习 5：</b>求 y″ + 2y′ + y = $e^{-x}$ 的特解。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>特征根 r = −1（二重），设 y* = Ax²e^(−x)。y*″ + 2y*′ + y* = 2Ae^(−x) = $e^{-x}$ ⟹ A = 1/2。</div></details></div>
+  <div class="ex"><b>练习 6：</b>解伯努利方程 y′ + y = xy³。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 z = y⁻²：z′ − 2z = −2x，z = $e^{2x}$[∫(−2x)$e^{-2x}$dx + C] = x + 1/2 + $Ce^{2x}$，y = ±1/√(x + 1/2 + $Ce^{2x}$)。</div></details></div>
+  
+  <div class="ex"><b>练习 7：</b>解 $y'=\dfrac{y^2-x}{2y(x+1)}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>改写 $2yy'=\frac{y^2-x}{x+1}$，令 $z=y^2$，$z'=\frac{z-x}{x+1}$，即 $z'-\frac{1}{x+1}z=-\frac{x}{x+1}$，一阶线性，解得 $z=(x+1)(C-\ln|x+1|)$。</div></details></div>
+  <div class="ex"><b>练习 8：</b>解 $y''-a^2y=0$（$a>0$）。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$r=\pm a$，$y=C_1e^{ax}+C_2e^{-ax}=C_1\cosh(ax)+C_2\sinh(ax)$。</div></details></div>
+  <div class="ex"><b>练习 9：</b>求 $y''+y=\cos x$ 的通解。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>齐次 $C_1\cos x+C_2\sin x$。$\alpha+i\beta=i$ 是单根，设 $y^*=x(A\cos x+B\sin x)$，代入得 $2B\cos x-2A\sin x=\cos x$，$A=0,B=1/2$。$y^*=\frac{x}{2}\sin x$。</div></details></div>
+  <div class="ex"><b>练习 10：</b>解欧拉方程 $x^2y''+3xy'+y=0$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$D(D-1)+3D+1=D^2+2D+1=0$，重根 $D=-1$，$y=(C_1+C_2t)e^{-t}=(C_1+C_2\ln x)/x$。</div></details></div>
+  <div class="ex"><b>练习 11：</b>求 $y''+y=e^x+\cos x$ 的特解。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>叠加：对 $e^x$（$\lambda=1$ 非根）设 $Ae^x$，$2Ae^x=e^x$，$A=1/2$；对 $\cos x$ 设 $x(B\cos x+C\sin x)$，$B=0,C=1/2$。$y^*=e^x/2+x\sin x/2$。</div></details></div>
+  <div class="ex"><b>练习 12：</b>解 $y''=(y')^2+y$（缺 $x$）。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $p=y'$，$p dp/dy=p^2+y$，这是关于 $p(y)$ 的伯努利方程，令 $z=p^2$，$z'/2=z+y$，$z'-2z=-2y$，$z=Ce^{2y}+y+1/2$，$dy/dx=\pm\sqrt{Ce^{2y}+y+1/2}$。</div></details></div>
+
+  
+<!-- ================= 10b：更多练习与方法总结 ================= -->
+<div class="ch" id="c10b">
+  <h2>10b. 解题方法总结与补充练习 <small>一阶方程识别流程图</small></h2>
+  <div class="tbl"><table><colgroup><col style="width:30%"><col style="width:70%"></colgroup><tr><th>观察方程特征</th><th>首选方法</th></tr>
+  <tr><td>$dy/dx=g(x)h(y)$</td><td>可分离变量，直接积分</td></tr>
+  <tr><td>$dy/dx=f((a_1x+b_1y+c_1)/(a_2x+b_2y+c_2))$</td><td>平移化为齐次或齐次</td></tr>
+  <tr><td>$y'+P(x)y=Q(x)$</td><td>积分因子法 / 通解公式</td></tr>
+  <tr><td>$y'+P(x)y=Q(x)y^n$</td><td>伯努利换元 $z=y^{1-n}$</td></tr>
+  <tr><td>$Pdx+Qdy=0$ 且 $P_y=Q_x$</td><td>全微分，求原函数 $F$</td></tr>
+  <tr><td>非全微分但 $(P_y-Q_x)/Q$ 仅 $x$</td><td>乘积分因子 $\mu(x)$</td></tr>
+  <tr><td>$y''=f(x)$</td><td>逐次积分</td></tr>
+  <tr><td>$y''=f(x,y')$</td><td>令 $p=y'$</td></tr>
+  <tr><td>$y''=f(y,y')$</td><td>令 $p=y'$，$y''=p\,dp/dy$</td></tr>
+  <tr><td>常系数齐次线性</td><td>特征方程法</td></tr>
+  <tr><td>常系数非齐次 $e^{\lambda x}P_m$</td><td>待定系数 $x^k e^{\lambda x}Q_m$</td></tr>
+  <tr><td>欧拉方程 $x^2y''+\cdots=0$</td><td>令 $x=e^t$</td></tr></table></div>
+  <div class="ex"><b>补充练习 1：</b>解 $y'=\dfrac{y-x+1}{y+x+5}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>解 $\begin{cases}-h+k+1=0\\h+k+5=0\end{cases}$ 得 $h=-2,k=-3$。令 $X=x+2,Y=y+3$，方程 $dY/dX=(Y-X)/(Y+X)$，齐次令 $u=Y/X$，解得 $\arctan u-\frac12\ln(1+u^2)=\ln|X|+C$。</div></details></div>
+  <div class="ex"><b>补充练习 2：</b>解 $y'=\dfrac{y}{x+y^3}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>视 $x$ 为函数：$dx/dy=(x+y^3)/y=x/y+y^2$，即 $x'-x/y=y^2$，积分因子 $1/y$，$(x/y)'=y$，$x/y=y^2/2+C$，$x=y^3/2+Cy$。</div></details></div>
+  <div class="ex"><b>补充练习 3：</b>解 $(x^2+y)dx+(x-2y)dy=0$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$P_y=1=Q_x$ ✓。$F=\int(x^2+y)dx=x^3/3+xy+\varphi(y)$，$F_y=x+\varphi'=x-2y$，$\varphi=-y^2$。通解 $x^3/3+xy-y^2=C$。</div></details></div>
+  <div class="ex"><b>补充练习 4：</b>求 $y''+y'=x^2$ 的通解。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>特征根 $r=0,-1$，齐次 $C_1+C_2e^{-x}$。$\lambda=0$ 是单根，设 $y^*=x(ax^2+bx+c)=ax^3+bx^2+cx$。$(y^*)'=3ax^2+2bx+c$，$(y^*)''=6ax+2b$。代入：$6ax+2b+3ax^2+2bx+c=x^2$，$a=1/3,b=-1,c=2$。$y^*=x^3/3-x^2+2x$。</div></details></div>
+  <div class="ex"><b>补充练习 5：</b>解 $y''-2y'+2y=e^x\cos x$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>特征根 $1\pm i$。$\alpha+i\beta=1+i$ 是单根，设 $y^*=xe^x(A\cos x+B\sin x)$。代入得 $2B\cos x-2A\sin x=\cos x$，$A=0,B=1/2$。$y^*=\frac12 xe^x\sin x$。</div></details></div>
+  <div class="ex"><b>补充练习 6：</b>求一曲线，使其任一点切线在 $y$ 轴截距等于切点横坐标平方。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>切线 $Y-y=y'(X-x)$，令 $X=0$ 得截距 $y-xy'=x^2$，即 $y'-y/x=-x$。一阶线性，$\mu=1/x$，$(y/x)'=-1$，$y/x=-x+C$，$y=Cx-x^2$。</div></details></div>
+</div>
+
+  
+  <div class="ex"><b>补充练习 7：</b>解 $y'=\dfrac{1}{x\cos y+\sin2y}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>视 $x$ 为函数：$dx/dy=x\cos y+\sin2y$，即 $x'-x\cos y=\sin2y$，一阶线性。$\mu=e^{-\sin y}$，$(xe^{-\sin y})'=e^{-\sin y}\sin2y=2\sin y\cos y\,e^{-\sin y}$，令 $u=\sin y$ 积分得 $xe^{-\sin y}=-2(\sin y+1)e^{-\sin y}+C$，$x=Ce^{\sin y}-2(\sin y+1)$。</div></details></div>
+  <div class="ex"><b>补充练习 8：</b>求 $y''+3y'+2y=e^{-x}\sin x$ 的特解。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>特征根 $-1,-2$。$\alpha+i\beta=-1+i$ 非特征根，设 $y^*=e^{-x}(A\cos x+B\sin x)$。代入得 $(-2B)\cos x+2A\sin x=\sin x$，$A=1/2,B=0$，$y^*=\frac12 e^{-x}\cos x$。</div></details></div>
+  <div class="ex"><b>补充练习 9：</b>设曲边梯形 $0\leq y\leq f(x),0\leq x\leq a$ 的面积与 $a^4$ 成正比，$f(0)=0,f(a)=a$，求 $f(x)$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\int_0^a f(x)dx=k a^4$，对 $a$ 求导 $f(a)=4ka^3$，即 $f(x)=Cx^3$。$f(a)=a$ 得 $C=1/a^2$，$f(x)=x^3/a^2$。</div></details></div>
+  <div class="ex"><b>补充练习 10：</b>解 $y''+y=\cos x\cos2x$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\cos x\cos2x=\frac12(\cos3x+\cos x)$。对 $\cos3x$：$3i$ 非根，设 $A\cos3x$，$(-9+1)A=1/2$，$A=-1/16$。对 $\cos x$：$i$ 是单根，设 $x(B\cos x+C\sin x)$，$2C\cos x-2B\sin x=1/2\cos x$，$B=0,C=1/4$。$y^*=-\frac1{16}\cos3x+\frac{x}{4}\sin x$。</div></details></div>
+
+  
+  <div class="ex"><b>补充练习 11：</b>解 $y'=\dfrac{2x-y+1}{x-2y}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$(x-2y)dx-(2x-y+1)dy=0$，$P_y=-2$，$Q_x=-2$，全微分。$F=\int(x-2y)dx=x^2/2-2xy+\varphi(y)$，$F_y=-2x+\varphi'= -2x+y-1$，$\varphi'=y-1$，$\varphi=y^2/2-y$。通解 $x^2/2-2xy+y^2/2-y=C$。</div></details></div>
+  <div class="ex"><b>补充练习 12：</b>求 $y''+y'=\cos x$ 的通解。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>特征根 $r=0,-1$，齐次 $C_1+C_2e^{-x}$。$\lambda=i$ 非根，设 $y^*=A\cos x+B\sin x$。$(y^*)'=-A\sin x+B\cos x$，$(y^*)''=-A\cos x-B\sin x$。代入：$(-A+B)\cos x+(-B-A)\sin x=\cos x$，$A=B=1/2$。$y^*=\frac12(\cos x+\sin x)$。</div></details></div>
+  <div class="ex"><b>补充练习 13：</b>一桶水 100L，含盐 50g，以 3L/min 注入浓度 2g/L 的盐水，同时以 3L/min 流出，求 t 分钟后含盐量。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>设 $x(t)$ 为含盐量，$dx/dt=3\cdot2-3\cdot(x/100)=6-0.03x$。分离 $dx/(6-0.03x)=dt$，$x=200+Ce^{-0.03t}$。$x(0)=50$，$C=-150$，$x=200-150e^{-0.03t}$。</div></details></div>
+
+  
+  <div class="ex"><b>补充练习 14：</b>解 $y''+y=\sin^2x$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\sin^2x=\frac{1-\cos2x}{2}$。对常数 $1/2$：设 $A$，$A=1/2$。对 $-\cos2x/2$：$2i$ 非根，设 $B\cos2x$，$(-4+1)B=-1/2$，$B=1/6$。$y^*=1/2+\frac16\cos2x$。</div></details></div>
+  <div class="ex"><b>补充练习 15：</b>降落伞下落问题：质量 $m$，阻力 $kv$，初速 0，求速度与位移。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$m dv/dt=mg-kv$，分离 $dv/(mg-kv/m)=dt$，$v=mg/k(1-e^{-kt/m})$。位移 $x=mg/k\,t-\frac{m^2g}{k^2}(1-e^{-kt/m})$。终极速度 $mg/k$。</div></details></div>
+
+  <div class="gloss">
+    <dt>阶 / 通解 / 特解</dt><dd>最高导数的阶 / 含 n 个常数 / 初值确定。</dd>
+    <dt>可分离变量</dt><dd>dy/dx = g(x)h(y)。</dd>
+    <dt>积分因子</dt><dd>乘后变全微分的因子。</dd>
+    <dt>特征方程</dt><dd>常系数齐次方程的解法核心。</dd>
+    <dt>共振</dt><dd>驱动频率 = 固有频率。</dd>
+    <dt>常数变易法</dt><dd>把常数换成函数求特解。</dd>
+    <dt>Picard 迭代</dt><dd>通过积分方程迭代构造解序列，证明存在唯一性。</dd>
+    <dt>基本解矩阵</dt><dd>齐次线性方程组 $n$ 个线性无关解构成的矩阵。</dd>
+    <dt>Lyapunov 函数</dt><dd>正定函数 $V$，通过 $\dot{V}$ 的符号判断稳定性。</dd>
+  </div>
+  <div class="online">
+    <b>在线资源（需联网打开）</b>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Ordinary_differential_equation" target="_blank" rel="noopener noreferrer">Wikipedia: Ordinary differential equation</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Logistic_function" target="_blank" rel="noopener noreferrer">Wikipedia: Logistic function</a></li>
+      <li><a href="https://www.wolframalpha.com" target="_blank" rel="noopener noreferrer">Wolfram Alpha</a> —— 输入 y''+y=sin(x) 验证解</li>
+      <li><a href="https://www.desmos.com/calculator" target="_blank" rel="noopener noreferrer">Desmos</a> —— 可视化斜率场与解曲线</li>
+    </ul>
+    <p class="hint">下一讲：<a href="07-速查与题库.html">VII 速查与题库 →</a> 全部公式总表与经典题型。</p>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="05-无穷级数.html">← 上一讲</a>
+  <a href="07-速查与题库.html">下一讲：速查与题库 →</a>
+</footer>
+</div>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

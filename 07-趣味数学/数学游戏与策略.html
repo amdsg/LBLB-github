@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>数学游戏与策略 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3EN%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --teal:#177E89; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B; --gold:#A8751E;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--teal); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--teal); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:720px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.sec{margin-top:48px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--teal); padding-left:14px;}
+.sec h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; margin-top:20px;}
+.card{background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 18px;}
+.card h3{font-family:Georgia,"Noto Serif SC",serif; font-size:18px; color:var(--teal);}
+.card p{font-size:14px; margin-top:6px;}
+.card .f{font-family:Georgia,"Cambria Math",serif; font-style:italic; color:var(--ink); background:var(--paper2); border-radius:6px; padding:2px 8px; font-size:14px; display:inline-block; margin-top:6px;}
+.demo{background:var(--paper2); border:1px solid var(--line); border-radius:16px; padding:20px; margin-top:20px;}
+.demo .btn{display:inline-block; background:var(--teal); color:#fff; border:none; border-radius:8px; padding:8px 16px; font-size:14px; cursor:pointer; margin:0 8px 10px 0; min-height:44px;}
+.demo .btn.gray{background:#8A8270;}
+.demo .btn.warn{background:var(--red);}
+.pile{display:flex; gap:8px; flex-wrap:wrap; margin:12px 0;}
+.pile .stone{width:34px; height:34px; border-radius:50%; background:var(--teal); color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; font-family:Georgia,serif;}
+.pile .stone.taken{background:#D8D0BC; color:#9A927E;}
+.demo p.hint{font-size:13.5px; color:var(--ink2); margin-top:10px;}
+.demo .out{font-size:15px; margin-top:10px; min-height:24px;}
+.demo .out b{color:var(--red);}
+.demo .out.good b{color:var(--green);}
+/* ===== 博弈与策略类 新增组件样式 ===== */
+.ctl{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:10px 0;}
+.ctl input[type=range]{width:160px;}
+.ctl label{font-size:13.5px; color:var(--ink2);}
+.tag{display:inline-block; font-size:12px; padding:1px 8px; border-radius:999px; background:var(--paper2); color:var(--ink2); border:1px solid var(--line); margin-left:6px;}
+/* 井字棋 */
+.ttt{display:grid; grid-template-columns:repeat(3,56px); grid-template-rows:repeat(3,56px); gap:6px; margin:12px 0;}
+.ttt button{width:56px; height:56px; font-size:30px; font-family:Georgia,serif; background:#fffdf6; border:1px solid var(--line); border-radius:8px; cursor:pointer; color:var(--ink);}
+.ttt button.x{color:var(--blue);} .ttt button.o{color:var(--red);} .ttt button:disabled{cursor:default;}
+/* 汉诺塔 */
+.tow{display:flex; justify-content:space-around; margin:14px 0; gap:10px;}
+.peg{flex:1; min-height:180px; border-bottom:3px solid var(--ink2); border-radius:6px; display:flex; flex-direction:column-reverse; align-items:center; padding-bottom:0; background:var(--paper2);}
+.disk{height:20px; border-radius:6px; margin:2px 0; color:#fff; font-size:12px; display:flex; align-items:center; justify-content:center; font-family:Georgia,serif;}
+/* 2048 */
+.g2048{display:grid; grid-template-columns:repeat(4,54px); grid-template-rows:repeat(4,54px); gap:6px; margin:12px 0;}
+.g2048 .cell{width:54px; height:54px; border-radius:8px; background:var(--paper2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family:Georgia,serif; font-size:18px; color:var(--ink);}
+.g2048 .cell.max{outline:3px solid var(--gold);}
+/* 骰子表 */
+.dice{border-collapse:collapse; margin:12px 0; font-size:13px;}
+.dice th,.dice td{width:40px; height:34px; text-align:center; border:1px solid var(--line); background:#fffdf6; cursor:pointer;}
+.dice th{background:var(--paper2);}
+.dice td.hl{background:var(--teal); color:#fff;}
+/* 博弈矩阵 */
+.matrix{border-collapse:collapse; margin:10px 0; font-size:13.5px;}
+.matrix th,.matrix td{border:1px solid var(--line); padding:6px 10px; text-align:center; background:#fffdf6;}
+.matrix th{background:var(--paper2);}
+/* 海盗条 */
+.pirate-row{display:flex; align-items:center; gap:8px; margin:4px 0; font-size:13.5px;}
+.pirate-row .nm{width:60px; color:var(--ink2);}
+.pirate-row .bar{height:16px; border-radius:4px; background:var(--teal); color:#fff; font-size:12px; display:flex; align-items:center; padding:0 6px; min-width:24px;}
+.pirate-row .bar.zero{background:var(--paper2); color:var(--ink2); border:1px solid var(--line);}
+.big{font-size:18px; color:var(--red); font-weight:bold;}
+/* ===== 谜题与算法策略类 新增组件样式 ===== */
+.sudoku{display:grid; grid-template-columns:repeat(9,30px); grid-template-rows:repeat(9,30px); gap:0; border:2px solid var(--ink2); width:max-content;}
+.sudoku .sc{width:30px; height:30px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family:Georgia,serif; font-size:16px; cursor:pointer; background:#fffdf6; color:var(--ink);}
+.sudoku .sc.given{color:var(--ink2); background:var(--paper2); cursor:default;}
+.sudoku .sc.err{color:#fff; background:var(--red);}
+.sudoku .sc.hl{outline:3px solid var(--gold); outline-offset:-3px; background:#fff3d6;}
+.sudoku .sc.b3{border-right:2px solid var(--ink2);}
+.sudoku .sc.bb{border-bottom:2px solid var(--ink2);}
+.ktour{display:grid; grid-template-columns:repeat(8,34px); grid-template-rows:repeat(8,34px); gap:0; border:2px solid var(--ink2); width:max-content;}
+.ktour .kc{width:34px;height:34px;border:1px solid var(--line); display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:11px;background:#fffdf6;}
+.ktour .kc.dark{background:var(--paper2);}
+.ktour .kc.visit{background:var(--teal); color:#fff;}
+.ktour .kc.cur{outline:3px solid var(--gold);}
+.gcbox{margin:8px 0;}
+.gcbox svg{background:#fffdf6; border:1px solid var(--line); border-radius:8px; display:block;}
+.nq{display:grid; gap:0; border:2px solid var(--ink2); width:max-content;}
+.nq .qc{width:30px;height:30px;border:1px solid var(--line); background:#fffdf6; display:flex;align-items:center;justify-content:center;font-size:15px;}
+.nq .qc.alt{background:var(--paper2);}
+.nq .qc.q{color:var(--blue); font-weight:bold;}
+.nq .qc.back{background:#f3d6d2;}
+.cake{height:30px; border:1px solid var(--line); border-radius:6px; display:flex; overflow:hidden; margin:10px 0; font-size:12px; color:#fff; font-family:Georgia,serif;}
+.cake .piece{display:flex;align-items:center;justify-content:center;}
+.ansrow{display:flex; gap:8px; flex-wrap:wrap; margin:8px 0; align-items:center;}
+.palbtn{width:26px;height:26px;border-radius:50%;border:2px solid var(--ink2);cursor:pointer;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--teal); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+}
+</style>
+<script>
+window.MathJax = {
+  options: { enableMenu: false, enableAssistiveMml: false, skipHtmlTags: ['script','noscript','style','textarea','pre','code','option'] },
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true, processEnvironments: true, processRefs: true },
+  startup: { typeset: true }
+};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>数学游戏与策略 <span class="sym">N</span></h1>
+  <p class="sub">游戏是数学的游乐场：尼姆游戏的必胜策略藏在二进制里，猜数字靠信息论，三门问题挑战直觉。这里既可玩，也能学会「必赢」的思考方式。</p>
+  <p class="quote">「数学游戏的精髓：先想清楚『后手能不能抄作业』——那是确定性的第一课。」</p>
+</header>
+
+<div class="sec">
+  <h2>经典游戏里的数学 <small>每个游戏都对应一个数学原理</small></h2>
+  <div class="cards">
+    <div class="card">
+      <h3>尼姆游戏（Nim）</h3>
+      <p>若干堆石子，双方轮流取（至少一颗，可从任一堆取任意颗），取走最后一颗者胜。必胜策略：把堆大小写成二进制，异或（nim-sum）为 0 时后手必胜。</p>
+      <span class="f">a ⊕ b ⊕ c = 0 ⇒ 当前为必败态</span>
+    </div>
+    <div class="card">
+      <h3>猜数字（二分）</h3>
+      <p>1 到 100 猜一个数，每次被告知大了/小了：最多 log₂100 ≈ 7 次。信息量 = 每次提问最多二分不确定性。</p>
+      <span class="f">次数 ≥ ⌈log₂N⌉</span>
+    </div>
+    <div class="card">
+      <h3>三门问题</h3>
+      <p>三扇门后一辆车，主持人知道车在哪、总开一扇羊门。换门胜率 2/3，不换 1/3——条件概率的著名反直觉。</p>
+      <span class="f">P(换赢) = 2/3</span>
+    </div>
+    <div class="card">
+      <h3>100 囚徒问题</h3>
+      <p>100 个囚徒各找自己的号码，每人最多开 50 个抽屉。随机策略胜率 (1/2)¹⁰⁰，而循环策略胜率 ≈ 31%——意外地高。</p>
+      <span class="f">循环分解的胜率 &gt; 1 − ln 2</span>
+    </div>
+    <div class="card">
+      <h3>公平分割</h3>
+      <p>两个人分蛋糕：我切你选。n 个人怎么办？「一刀切」递归法（Dubins–Spanier）或「最后一个削减者」都能做到无嫉妒。</p>
+      <span class="f">无嫉妒分割总存在</span>
+    </div>
+    <div class="card">
+      <h3>取石子变体</h3>
+      <p>每次只能取 1~3 颗、取最后一颗胜：总数是 4 的倍数时后手必胜——「周期策略」的原型。</p>
+      <span class="f">模 4 = 0 ⇒ 必败态</span>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>动手玩：尼姆游戏 vs 电脑 <small>点击石子取走，谁取走最后一颗谁赢</small></h2>
+  <div class="demo">
+    <p style="font-size:14px;">石子堆：[3, 4, 5]。电脑按最优策略走，你试试能不能赢！</p>
+    <div class="pile" id="nimPile"></div>
+    <button class="btn" id="nimNew">新开局</button>
+    <button class="btn gray" id="nimHint">提示（当前 nim-sum）</button>
+    <div class="out" id="nimOut"></div>
+    <p class="hint">Nim-sum = 各堆数量的按位异或。若你走后 nim-sum = 0，你正处于必败位——对手总能回敬到 0。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>动手玩：猜数字挑战 <small>7 次以内猜出 1–100 中的数</small></h2>
+  <div class="demo">
+    <p style="font-size:14px;" id="guessStatus">电脑想好了一个 1–100 的数，开始猜吧。</p>
+    <div style="margin:10px 0;display:flex;gap:8px;flex-wrap:wrap;">
+      <input type="number" id="guessInput" value="50" style="width:100px;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:#fffdf6;font-size:16px;">
+      <button class="btn" id="guessBtn">猜！</button>
+      <button class="btn gray" id="guessNew">重新开始</button>
+    </div>
+    <div class="out" id="guessOut"></div>
+    <p class="hint">最优策略：永远猜当前范围的中点。每猜一次，不确定性减半。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>博弈与策略：从必败态到演化稳定 <small>8 个可交互实验 · 规则 / 原理 / 公式</small></h2>
+  <div class="cards">
+    <div class="card">
+      <h3>威佐夫博弈 <span class="tag">黄金比</span></h3>
+      <p>两堆石子：可从某一堆取任意颗，或从两堆取同样多颗，取最后一颗者胜。必败态恰为 (⌊kφ⌋, ⌊kφ²⌋)，其中 φ=(1+√5)/2。</p>
+      <span class="f">φ=(1+√5)/2≈1.618，P=(⌊kφ⌋,⌊kφ²⌋)</span>
+    </div>
+    <div class="card">
+      <h3>巴什博弈 <span class="tag">模 (m+1)</span></h3>
+      <p>一堆 n 颗，每次取 1~m 颗，取最后一颗胜。必败态是 n ≡ 0 (mod m+1)。必胜法：每次取走 n mod (m+1) 颗，把 (m+1) 的倍数留给对手。</p>
+      <span class="f">取走 r = n mod (m+1)</span>
+    </div>
+    <div class="card">
+      <h3>海盗分金 <span class="tag">倒推法</span></h3>
+      <p>n 个海盗按资历提案，≥半数通过；否则提案者喂鱼，由下一位提案。理性倒推：提案者只需 ⌈n/2⌉ 票，用 1 金收买「上一轮将得 0」的海盗。</p>
+      <span class="f">需 ⌈n/2⌉ 票</span>
+    </div>
+    <div class="card">
+      <h3>囚徒困境（重复） <span class="tag">以牙还牙</span></h3>
+      <p>单次博弈中背叛是占优策略；但重复博弈里 Tit-for-Tat 可维持合作。维持合作需折扣因子 δ &gt; (T−R)/(T−P)。</p>
+      <span class="f">T=5,R=3,P=1,S=0 ⇒ δ&gt;1/2</span>
+    </div>
+    <div class="card">
+      <h3>井字棋 Minimax <span class="tag">最优必和</span></h3>
+      <p>3×3 连三子为胜。Minimax 递归：己方取最大分、对手取最小分。估值函数：胜=+10−步数，负=−(10−步数)，和=0。</p>
+      <span class="f">$v(s)=\max_{a}\min_{a'}v(s')$</span>
+    </div>
+    <div class="card">
+      <h3>汉诺塔 <span class="tag">2ⁿ−1</span></h3>
+      <p>3 柱 n 盘，大盘不能压小盘，一次移一盘。递归：把上面 n−1 盘移到中转，移最大盘，再把 n−1 盘移到目标。</p>
+      <span class="f">H(n)=2H(n−1)+1 ⇒ H(n)=2ⁿ−1</span>
+    </div>
+    <div class="card">
+      <h3>2048 贪心 <span class="tag">角位启发式</span></h3>
+      <p>4×4 滑动合并相同数字。工程上常用贪心：最大牌固定在一角，盘面沿该行/列单调递减，避免把大牌逼到中间。</p>
+      <span class="f">score≈角位奖励+单调相邻奖励</span>
+    </div>
+    <div class="card">
+      <h3>双骰概率表 <span class="tag">均匀分布</span></h3>
+      <p>两颗骰子共 36 种等可能结果。点数和 s 的组合数 N(s)：N(7)=6 最大，P(7)=1/6；两端 2、12 各 1 种。</p>
+      <span class="f">P(s)=N(s)/36</span>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>动手玩：博弈与策略实验室 <small>点击 / 滑杆 / 按钮，看策略实时生效</small></h2>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">① 威佐夫博弈（两堆石子）</h3>
+    <p style="font-size:14px;">左堆 <b id="wytA">8</b> 颗，右堆 <b id="wytB">5</b> 颗。你可以从某一堆取任意颗，或两堆同取相同颗数。电脑按最优策略。</p>
+    <div class="pile"><span style="font-size:13px;color:var(--ink2);min-width:48px;">左堆</span><span id="wytPileA"></span></div>
+    <div class="pile"><span style="font-size:13px;color:var(--ink2);min-width:48px;">右堆</span><span id="wytPileB"></span></div>
+    <div class="ctl">
+      <span>左堆取 <input type="number" id="wytInA" min="1" value="1" style="width:52px;padding:4px;border:1px solid var(--line);border-radius:6px;background:#fffdf6;"></span>
+      <button class="btn" id="wytGoA">左堆取</button>
+      <span>右堆取 <input type="number" id="wytInB" min="1" value="1" style="width:52px;padding:4px;border:1px solid var(--line);border-radius:6px;background:#fffdf6;"></span>
+      <button class="btn" id="wytGoB">右堆取</button>
+      <span>两堆同取 <input type="number" id="wytInE" min="1" value="1" style="width:52px;padding:4px;border:1px solid var(--line);border-radius:6px;background:#fffdf6;"></span>
+      <button class="btn warn" id="wytGoE">同取</button>
+      <button class="btn gray" id="wytHint">提示</button>
+      <button class="btn gray" id="wytNew">新开局</button>
+    </div>
+    <div class="out" id="wytOut"></div>
+    <p class="hint">必败态：(1,2)(3,5)(4,7)(6,10)(8,13)(9,15)… 形如 (⌊kφ⌋,⌊kφ²⌋)。你走完一步若能落在这些点，电脑就无解了。</p>
+  </div>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">② 巴什博弈（一堆取 1~m）</h3>
+    <div class="ctl">
+      <label>每次最多取 m = <b class="big" id="bashM">3</b></label>
+      <input type="range" id="bashSlider" min="1" max="6" value="3">
+      <label>剩余 n = <b class="big" id="bashN">10</b></label>
+    </div>
+    <div class="ctl" id="bashBtns"></div>
+    <button class="btn gray" id="bashHint">提示（n mod (m+1)）</button>
+    <button class="btn gray" id="bashNew">新开局</button>
+    <div class="out" id="bashOut"></div>
+    <p class="hint">必败态是 n 为 (m+1) 的倍数。你应每次取走 r = n mod (m+1) 颗，把 (m+1) 的倍数留给电脑；若开局 n 已是 (m+1) 的倍数，先手必败。</p>
+  </div>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">③ 海盗分金（倒推法）</h3>
+    <div class="ctl">
+      <label>海盗数 n = <b class="big" id="pirN">5</b>（P1 最浅 · Pn 最资深，先提案）</label>
+      <input type="range" id="pirSlider" min="1" max="7" value="5">
+    </div>
+    <div id="pirOut"></div>
+    <p class="hint">理性假设：海盗贪婪、怕死、且不信任他人。最资深者只需 ⌈n/2⌉ 票，就用 1 金收买「上一轮将得 0 金」的海盗，自己拿走剩余。</p>
+  </div>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">④ 重复囚徒困境（10 轮）</h3>
+    <table class="matrix">
+      <tr><th></th><th>对手合作 C</th><th>对手背叛 D</th></tr>
+      <tr><th>你合作 C</th><td>(3,3)</td><td>(0,5)</td></tr>
+      <tr><th>你背叛 D</th><td>(5,0)</td><td>(1,1)</td></tr>
+    </table>
+    <div class="ctl">
+      <label>对手策略：</label>
+      <select id="pdOpp" style="padding:6px;border:1px solid var(--line);border-radius:6px;background:#fffdf6;">
+        <option value="tft">以牙还牙（第一轮合作，之后复制你上一轮）</option>
+        <option value="alld">永远背叛</option>
+        <option value="allc">永远合作</option>
+        <option value="rand">随机</option>
+      </select>
+      <button class="btn" id="pdC">我合作</button>
+      <button class="btn warn" id="pdD">我背叛</button>
+      <button class="btn gray" id="pdNew">重开</button>
+    </div>
+    <div class="out" id="pdOut"></div>
+    <p class="hint">单次博弈背叛占优；但重复 10 轮且对手「以牙还牙」时，持续合作你得 30，互相背叛只得 10——重复改变了激励。</p>
+  </div>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">⑤ 井字棋 vs Minimax（你执 X）</h3>
+    <div class="ttt" id="tttBoard"></div>
+    <button class="btn gray" id="tttNew">重开</button>
+    <div class="out" id="tttOut"></div>
+    <p class="hint">Minimax 对每个候选点递归：己方取最大分、对手取最小分。井字棋理论上先手无法必胜，最优应对下必和。</p>
+  </div>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">⑥ 汉诺塔（自动演示 2ⁿ−1 步）</h3>
+    <div class="ctl">
+      <label>盘数 n = <b class="big" id="towN">3</b>　最少步数 = <b class="big" id="towMin">7</b></label>
+      <input type="range" id="towSlider" min="3" max="5" value="3">
+      <button class="btn" id="towStep">走一步</button>
+      <button class="btn" id="towAuto">自动播放</button>
+      <button class="btn gray" id="towReset">重置</button>
+    </div>
+    <div class="tow">
+      <div class="peg" id="peg0"></div>
+      <div class="peg" id="peg1"></div>
+      <div class="peg" id="peg2"></div>
+    </div>
+    <div class="out" id="towOut"></div>
+    <p class="hint">H(n)=2H(n−1)+1 ⇒ H(n)=2ⁿ−1。先把上面 n−1 盘移到中转柱，再把最大盘移到目标柱，最后把 n−1 盘移过去。</p>
+  </div>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">⑦ 2048 贪心演示（最大牌守角）</h3>
+    <div class="ctl">
+      <button class="btn" id="g2Next">走一步</button>
+      <button class="btn gray" id="g2Reset">重开</button>
+      <label>分数 <b class="big" id="g2Score">0</b>　最大牌 <b class="big" id="g2Max">-</b>　<span id="g2Corner"></span></label>
+    </div>
+    <div class="g2048" id="g2Grid"></div>
+    <div class="out" id="g2Out"></div>
+    <p class="hint">AI 在四个方向里选「角位奖励 + 单调相邻奖励」最高的一步：把最大牌固定在左下角，盘面尽量单调递减。</p>
+  </div>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">⑧ 双骰概率表（点击格子）</h3>
+    <table class="dice" id="diceTable"></table>
+    <div class="out" id="diceOut">点击任意格子，高亮所有点数和相同的组合。</div>
+    <p class="hint">两颗骰子共 36 种等可能结果。和为 7 有 6 种（1/6）最高；和为 2、12 各 1 种（1/36）。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>谜题与算法策略：从搜索到不变量 <small>8 个算法 · 规则 / 原理 / 公式</small></h2>
+  <div class="cards">
+    <div class="card">
+      <h3>数独 <span class="tag">约束满足</span></h3>
+      <p>9×9 拉丁方，每行、每列、每个 3×3 宫各含 1–9。<b>唯一余数</b>：某格候选数只剩 1 个即填入；<b>排除法</b>：某数字在某行/列/宫只剩一个位置可放。候选数 = {1..9} 去掉所在行、列、宫已出现的数。</p>
+      <span class="f">$C(r,c)=\{1,\dots,9\}\setminus(R_r\cup C_c\cup B_{\rm box})$</span>
+    </div>
+    <div class="card">
+      <h3>骑士巡逻 <span class="tag">Warnsdorff</span></h3>
+      <p>马步 (±1,±2)/(±2,±1) 走遍 64 格各一次。Warnsdorff 规则：每步走向「未访邻居中、后续出路最少」的格子——先堵死边角，是贪心搜索里少有的几乎必成启发式。</p>
+      <span class="f">$v=\arg\min_{u\notin V}|N(u)\setminus V|$</span>
+    </div>
+    <div class="card">
+      <h3>欧拉路径 / 一笔画 <span class="tag">奇点判定</span></h3>
+      <p>无向图能一笔画 ⇔ 连通且奇度顶点数为 0（起点=终点，成回路）或 2（从一奇点起、另一奇点止）。哥尼斯堡七桥四块陆地全是奇度，故无解。</p>
+      <span class="f">$\#\{v:\deg(v)\ \text{为奇}\}\in\{0,2\}$</span>
+    </div>
+    <div class="card">
+      <h3>图着色 <span class="tag">色数 χ(G)</span></h3>
+      <p>相邻顶点必须异色。色数 χ(G) 是最少颜色数；按顺序贪心着色即可做到 χ≤Δ+1（Brooks 定理）。平面图（地图）由四色定理至多 4 色。</p>
+      <span class="f">$\chi(G)\le \Delta(G)+1$，平面图 $\chi\le 4$</span>
+    </div>
+    <div class="card">
+      <h3>蒙提霍尔模拟器 <span class="tag">大数定律</span></h3>
+      <p>换门胜率 2/3 是理论值。真跑 N 次换、N 次不换，经验频率随 N 增大逼近 2/3 与 1/3——大数定律把直觉钉在地上。</p>
+      <span class="f">$\lim_{N\to\infty}\frac{W_{\rm swap}(N)}{N}=\frac23$</span>
+    </div>
+    <div class="card">
+      <h3>二十问（最优提问） <span class="tag">信息熵</span></h3>
+      <p>每次是/否回答最多消除 1 bit 不确定性。最优提问永远把区间对半切，使剩余熵最小；猜中 [1,N] 必问 ⌈log₂N⌉ 次。</p>
+      <span class="f">$Q\ge\lceil\log_2 N\rceil$，每问 $\approx1$ bit</span>
+    </div>
+    <div class="card">
+      <h3>N 皇后 <span class="tag">回溯剪枝</span></h3>
+      <p>n×n 放 n 个皇后，同行/列/对角线不互吃。逐行试放，用列集合与两条对角线（r−c、r+c）集合剪枝；无路即回退上一行换列。</p>
+      <span class="f">冲突 $\Leftrightarrow$ 同列 或 $r_i-c_i=r_j-c_j$ 或 $r_i+c_i=r_j+c_j$</span>
+    </div>
+    <div class="card">
+      <h3>切蛋糕（无嫉妒） <span class="tag">公平分割</span></h3>
+      <p>两人「我切你选」即无嫉妒：切者自认两半相等，选者挑大的。三人 Selfridge–Conway 协议在有限步内做到每人都觉得自己不比别人少。</p>
+      <span class="f">两人：切者使 $v(L)=v(R)=\tfrac12\Rightarrow$ 各得 $\ge\tfrac12$</span>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>动手玩：谜题与算法策略实验室 <small>看算法一步步跑，而不是只听结论</small></h2>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">① 数独：唯一余数 / 排除法</h3>
+    <div class="ctl">
+      <button class="btn" id="sdkFill">唯一余数（自动填一格）</button>
+      <button class="btn" id="sdkCheck">检查错误</button>
+      <button class="btn gray" id="sdkClr">清空我填的数</button>
+    </div>
+    <div class="sudoku" id="sdkGrid"></div>
+    <div class="ansrow" id="sdkNums"></div>
+    <div class="out" id="sdkOut"></div>
+    <p class="hint">先点一个空格，再点 1–9 填数。「唯一余数」：算出某格候选集，若只剩 1 个候选就该填它——这是人类解数独最常用的第一招。灰格是题目给定，不能改。</p>
+  </div>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">② 骑士巡逻（Warnsdorff 启发）</h3>
+    <div class="ctl">
+      <button class="btn" id="ktStep">走一步</button>
+      <button class="btn" id="ktAuto">自动走完</button>
+      <button class="btn gray" id="ktReset">重置</button>
+      <label>已走 <b class="big" id="ktCnt">1</b>/64　当前格未访邻居 <b class="big" id="ktDeg">0</b> 个</label>
+    </div>
+    <div class="ktour" id="ktBoard"></div>
+    <div class="out" id="ktOut"></div>
+    <p class="hint">Warnsdorff：每步走向「未访邻居中、后续出路最少」的格子。数字是访问顺序。</p>
+  </div>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">③ 欧拉路径 / 一笔画（奇点判定）</h3>
+    <div class="ctl">
+      <label>选图：</label>
+      <select id="eulSel" style="padding:6px;border:1px solid var(--line);border-radius:6px;background:#fffdf6;">
+        <option value="0">双三角共顶点（0 奇点 → 成回路）</option>
+        <option value="1">两奇点图（2 奇点 → 可一笔画）</option>
+        <option value="2">哥尼斯堡式（4 奇点 → 不可一笔画）</option>
+      </select>
+      <button class="btn" id="eulRun">判定并画欧拉路径</button>
+    </div>
+    <div class="gcbox"><svg id="eulSvg" width="430" height="230"></svg></div>
+    <div class="out" id="eulOut"></div>
+    <p class="hint">统计每个顶点度数（连了几条边）：奇度点标红。奇度点为 0 或 2 才能一笔画；有 2 个奇点时必须从其中一个出发。</p>
+  </div>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">④ 图着色（相邻不同色）</h3>
+    <div class="ctl">
+      <div class="ansrow" id="gcPalette"></div>
+      <button class="btn" id="gcAuto">贪心自动着色</button>
+      <button class="btn gray" id="gcReset">清空</button>
+    </div>
+    <div class="gcbox"><svg id="gcSvg" width="430" height="250"></svg></div>
+    <div class="out" id="gcOut"></div>
+    <p class="hint">先在下面选一支色笔，再点顶点上色；相邻顶点同色即冲突（边变红）。贪心按顶点顺序，取邻居没用过的第一色。</p>
+  </div>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">⑤ 蒙提霍尔模拟器（多次试验看胜率）</h3>
+    <div class="ctl">
+      <label>每策略试验 N = <b class="big" id="mhN">1000</b> 次</label>
+      <input type="range" id="mhSlider" min="10" max="10000" step="10" value="1000">
+      <button class="btn" id="mhRun">跑：换 vs 不换</button>
+    </div>
+    <div class="out" id="mhOut"></div>
+    <p class="hint">换门与不换门各跑 N 次并统计胜率。N 越大，两条经验频率越贴近 2/3 与 1/3。</p>
+  </div>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">⑥ 二十问：最优提问（信息熵）</h3>
+    <p style="font-size:14px;">你心里想一个 1–100 的数，AI 用「对半切」最优策略来猜，你只需回答大了/小了/对了。</p>
+    <div class="ctl">
+      <span>AI 猜：<b class="big" id="itGuess">50</b>　第 <b class="big" id="itStep">0</b> 问　剩余不确定性 <b class="big" id="itBits">6.6</b> bit</span>
+      <button class="btn" id="itLow">我的数更大</button>
+      <button class="btn" id="itHigh">我的数更小</button>
+      <button class="btn warn" id="itYes">对！就是它</button>
+      <button class="btn gray" id="itNew">想一个新数</button>
+    </div>
+    <div class="out" id="itOut"></div>
+    <p class="hint">区间每次减半，剩余不确定性 = log₂(区间长度) bit。理论上 ⌈log₂100⌉=7 问必中；最优提问就是让每一问砍掉一半不确定性。</p>
+  </div>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">⑦ N 皇后回溯可视化</h3>
+    <div class="ctl">
+      <label>n = <b class="big" id="nqN">6</b>　已搜索节点 <b class="big" id="nqNodes">0</b></label>
+      <input type="range" id="nqSlider" min="4" max="8" value="6">
+      <button class="btn" id="nqStep">回溯一步</button>
+      <button class="btn" id="nqAuto">自动演示</button>
+      <button class="btn gray" id="nqReset">重置</button>
+    </div>
+    <div class="nq" id="nqBoard"></div>
+    <div class="out" id="nqOut"></div>
+    <p class="hint">逐行试放，用列集合与两条对角线（r−c、r+c）剪枝。放不下去就回退到上一行换列（红格=刚回退的位置）。</p>
+  </div>
+
+  <div class="demo">
+    <h3 style="color:var(--teal);font-family:Georgia,serif;">⑧ 切蛋糕：两人「我切你选」 / 三人无嫉妒</h3>
+    <div class="ctl">
+      <label>切蛋糕人 A 的切点 t = <b class="big" id="cakeT">0.50</b>（左块占 t，右块占 1−t）</label>
+      <input type="range" id="cakeSlider" min="0.2" max="0.8" step="0.02" value="0.5">
+      <button class="btn" id="cakeRun">B 来挑一块</button>
+      <button class="btn" id="cake3">三人 Selfridge–Conway</button>
+    </div>
+    <div class="cake" id="cakeBar"></div>
+    <div class="out" id="cakeOut"></div>
+    <p class="hint">两人：A 自认两半价值相等（切点在 0.5），B 按自己的估值挑大的。于是 A、B 各自都觉得拿到了 ≥ 1/2——这就是「无嫉妒」。</p>
+  </div>
+</div>
+
+
+<div class="sec">
+  <h2>补充：更多数学游戏与策略</h2>
+
+  <div class="proof">
+    <h3>Nim 游戏与异或和策略</h3>
+    <p>$n$ 堆石子，两人轮流从某一堆取任意颗，取最后一颗者胜。设各堆石子数为 $a_1,\dots,a_n$，则<b>先手必胜当且仅当 $a_1\oplus a_2\oplus\cdots\oplus a_n\ne0$</b>（$\oplus$ 为二进制异或）。</p>
+    <p><b>证明：</b>若异或和 $S\ne0$，取最高位上 $S$ 为 1 的位，找到该位为 1 的堆 $a_i$，将其变为 $a_i\oplus S$（变少），新异或和为 0。若异或和为 0，任何操作都使其非 0。终态（全 0）异或和为 0，故异或和为 0 是必败态。</p>
+  </div>
+
+  <div class="proof">
+    <h3>蒙提霍尔问题（三门问题）</h3>
+    <p>三扇门后一车两羊。你选一扇，主持人开另一扇有羊的门，问你换不换？</p>
+    <p><b>答案：</b>换！换后中奖概率 $2/3$，不换 $1/3$。</p>
+    <p><b>证明：</b>初始选错概率 $2/3$（选到羊）。主持人开另一扇羊门后，你选错时换必中，选对时换必错。故换的胜率 $=$ 初始选错率 $=2/3$。</p>
+  </div>
+
+  <div class="proof">
+    <h3>15 谜题的奇偶性不变量</h3>
+    <p>$4\times4$ 滑块拼图，15 块带 1 空位。一个排列可达当且仅当逆序数 + 空位所在行（从下数）为偶数。</p>
+    <p><b>证明：</b>每次移动改变逆序数奇偶性 + 空位行奇偶性，其和的奇偶性不变。</p>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../07-趣味数学/谜题与悖论.html">谜题与悖论 →</a>
+  <a href="../07-趣味数学/数学魔术与速算.html">魔术与速算 →</a>
+  <a href="../02-核心主题/博弈论.html">博弈论 →</a>
+</footer>
+</div>
+
+<script>
+(function(){
+  /* ---- Nim ---- */
+  var piles = [3,4,5];
+  var playerTurn = true;
+  var pileEl = document.getElementById('nimPile');
+  var out = document.getElementById('nimOut');
+  function nimSum(a){ var s=0; for(var i=0;i<a.length;i++) s^=a[i]; return s; }
+  function render(){
+    pileEl.innerHTML = '';
+    for(var i=0;i<piles.length;i++){
+      for(var j=0;j<piles[i];j++){
+        var s = document.createElement('div');
+        s.className = 'stone';
+        s.textContent = (i+1) + '·' + (j+1);
+        s.dataset.pile = i;
+        (function(st){
+          st.addEventListener('click', function(){
+            if(!playerTurn) return;
+            piles[+st.dataset.pile]--;
+            if(piles[+st.dataset.pile] < 0) piles[+st.dataset.pile] = 0;
+            playerTurn = false;
+            render();
+            if(total()===0){ out.innerHTML = '<b>你赢了！</b>（或者……电脑让了你？）'; out.className='out good'; }
+            else setTimeout(computerMove, 300);
+          });
+        })(s);
+      }
+    }
+  }
+  function total(){ var t=0; for(var i=0;i<piles.length;i++) t+=piles[i]; return t; }
+  function computerMove(){
+    var ns = nimSum(piles);
+    var moved = false;
+    for(var i=0;i<piles.length && !moved;i++){
+      var target = piles[i] ^ ns;
+      if(target < piles[i]){
+        piles[i] = target;
+        moved = true;
+      }
+    }
+    if(!moved && total()>0){ /* 必败位：随便取一颗 */
+      for(var i=0;i<piles.length;i++){ if(piles[i]>0){ piles[i]--; break; } }
+    }
+    playerTurn = true;
+    render();
+    if(total()===0){ out.innerHTML = '<b>电脑赢了。</b>它走完后 nim-sum 归零，你已经无解。'; out.className='out'; }
+    else out.innerHTML = '电脑走完，轮到你了。';
+  }
+  render();
+  document.getElementById('nimNew').addEventListener('click', function(){ piles=[3,4,5]; playerTurn=true; out.innerHTML=''; out.className='out'; render(); });
+  document.getElementById('nimHint').addEventListener('click', function(){
+    out.innerHTML = '当前 nim-sum = <b>' + nimSum(piles) + '</b>（' + piles.join(' ⊕ ') + '）。' + (nimSum(piles)===0?'处于必败位：对手可回敬为 0。':'你此刻有一步可把 nim-sum 变成 0（必胜步）。');
+    out.className='out';
+  });
+
+  /* ---- Guess ---- */
+  var secret = 0, lo = 1, hi = 100, tries = 0;
+  var gOut = document.getElementById('guessOut');
+  function newGame(){
+    secret = Math.floor(Math.random()*100)+1;
+    lo = 1; hi = 100; tries = 0;
+    document.getElementById('guessStatus').textContent = '电脑想好了一个 1–100 的数，开始猜吧（最多 7 次）。';
+    gOut.innerHTML = '';
+  }
+  newGame();
+  document.getElementById('guessBtn').addEventListener('click', function(){
+    var g = parseInt(document.getElementById('guessInput').value, 10);
+    if(isNaN(g) || g<1 || g>100){ gOut.innerHTML = '请输入 1–100 的整数。'; return; }
+    tries++;
+    if(g === secret){
+      gOut.innerHTML = '<b>猜中了！</b>用了 ' + tries + ' 次' + (tries<=7?'（≤7，完美！）':'（超过 7 次了）') + '。';
+      return;
+    }
+    if(g < secret){ lo = Math.max(lo, g+1); gOut.innerHTML = '小了。范围变为 [' + lo + ', ' + hi + ']，已用 ' + tries + ' 次。' + (tries>=7?'<br>警告：只剩最后一猜了！':''); }
+    else { hi = Math.min(hi, g-1); gOut.innerHTML = '大了。范围变为 [' + lo + ', ' + hi + ']，已用 ' + tries + ' 次。' + (tries>=7?'<br>警告：只剩最后一猜了！':''); }
+    if(tries>=7 && lo<hi){ gOut.innerHTML += '<br><b>提示：</b>最优下一步猜 ' + Math.floor((lo+hi)/2) + '。'; }
+  });
+  document.getElementById('guessNew').addEventListener('click', newGame);
+})();
+</script>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  function setOut(el, html, good){ el.innerHTML = html; el.className = 'out' + (good ? ' good' : ''); }
+
+  /* ============ ① 威佐夫博弈 ============ */
+  var PHI = (1 + Math.sqrt(5)) / 2;
+  var wa = 8, wb = 5, busy = false;
+  function wytRenderPiles(){
+    function row(el, n){ el.innerHTML=''; for(var i=0;i<n;i++){ var s=document.createElement('div'); s.className='stone'; s.textContent=i+1; el.appendChild(s); } }
+    row($('wytPileA'), wa); row($('wytPileB'), wb);
+    $('wytA').textContent = wa; $('wytB').textContent = wb;
+  }
+  function wytIsP(a,b){ var lo=Math.min(a,b), hi=Math.max(a,b), k=hi-lo; return lo===Math.floor(k*PHI) && hi===Math.floor(k*PHI*PHI); }
+  function wytWinCheck(){ if(wa===0 && wb===0){ setOut($('wytOut'), '<b>你取走了最后一颗，你赢了！</b>', true); busy=true; return true; } return false; }
+  function wytComputer(){
+    if(wa===0 && wb===0){ setOut($('wytOut'), '<b>电脑取走最后一颗，电脑赢。</b>'); busy=true; return; }
+    var best = null;
+    // vertical moves
+    for(var take=1; take<=wa && !best; take++){ var na=wa-take, nb=wb; if(wytIsP(na,nb)) best={a:na,b:nb,desc:'从左堆取 '+take+' 颗'}; }
+    for(var take=1; take<=wb && !best; take++){ var na=wa, nb=wb-take; if(wytIsP(na,nb)) best={a:na,b:nb,desc:'从右堆取 '+take+' 颗'}; }
+    for(var take=1; take<=Math.min(wa,wb) && !best; take++){ var na=wa-take, nb=wb-take; if(wytIsP(na,nb)) best={a:na,b:nb,desc:'两堆同取 '+take+' 颗'}; }
+    if(!best){ // 当前已是必败态，随便取一颗
+      if(wb>=wa && wb>0){ wb--; best={a:wa,b:wb,desc:'（必败态）从右堆取 1 颗'}; }
+      else if(wa>0){ wa--; best={a:wa,b:wb,desc:'（必败态）从左堆取 1 颗'}; }
+    } else { wa=best.a; wb=best.b; }
+    wytRenderPiles();
+    if(wa===0 && wb===0){ setOut($('wytOut'), '<b>电脑取走最后一颗，电脑赢。</b>你刚才把必败态让给了电脑。'); busy=true; }
+    else setOut($('wytOut'), '电脑：' + best.desc + ' → 现 (左 ' + wa + ', 右 ' + wb + ')。轮到你。' + (wytIsP(wa,wb) ? ' 注意：当前已是必败态！' : ''));
+  }
+  function wytPlayerMove(fn){
+    if(busy) return;
+    fn();
+    wytRenderPiles();
+    if(wytWinCheck()) return;
+    busy = true; setTimeout(function(){ busy=false; wytComputer(); }, 350);
+  }
+  $('wytGoA').onclick = function(){ var n=parseInt($('wytInA').value,10); if(isNaN(n)||n<1||n>wa){ setOut($('wytOut'), '左堆只剩 '+wa+' 颗，取 1~'+wa+'。'); return; } wytPlayerMove(function(){ wa-=n; }); };
+  $('wytGoB').onclick = function(){ var n=parseInt($('wytInB').value,10); if(isNaN(n)||n<1||n>wb){ setOut($('wytOut'), '右堆只剩 '+wb+' 颗，取 1~'+wb+'。'); return; } wytPlayerMove(function(){ wb-=n; }); };
+  $('wytGoE').onclick = function(){ var n=parseInt($('wytInE').value,10); if(isNaN(n)||n<1||n>Math.min(wa,wb)){ setOut($('wytOut'), '同取不能超过较小堆（'+Math.min(wa,wb)+'）。'); return; } wytPlayerMove(function(){ wa-=n; wb-=n; }); };
+  $('wytHint').onclick = function(){
+    var lo=Math.min(wa,wb), hi=Math.max(wa,wb), k=hi-lo;
+    var p1=Math.floor(k*PHI), p2=Math.floor(k*PHI*PHI);
+    setOut($('wytOut'), '当前 ('+wa+','+wb+')' + (wytIsP(wa,wb) ? ' <b>已是必败态</b> (⌊'+k+'φ⌋,⌊'+k+'φ²⌋)='+p1+','+p2+'。' : ' 对应必败态应为 ('+p1+','+p2+')，想办法走到它。'));
+  };
+  $('wytNew').onclick = function(){ wa=8; wb=5; busy=false; wytRenderPiles(); setOut($('wytOut'), '新开局 (8,5)。你先手。'); };
+  wytRenderPiles();
+
+  /* ============ ② 巴什博弈 ============ */
+  var bm=3, bn=10;
+  function bashRenderBtns(){
+    var box=$('bashBtns'); box.innerHTML='';
+    for(var k=1;k<=bm;k++){ (function(k){
+      var b=document.createElement('button'); b.className='btn'; b.textContent='取 '+k;
+      b.onclick=function(){
+        if(busy) return;
+        if(k>bn){ setOut($('bashOut'), '只剩 '+bn+' 颗，不能取 '+k+'。'); return; }
+        bn-=k; $('bashN').textContent=bn;
+        if(bn===0){ setOut($('bashOut'), '<b>你取走最后一颗，你赢了！</b>', true); busy=true; return; }
+        busy=true;
+        setTimeout(function(){
+          var r=bn%(bm+1), take = (r===0?1:r);
+          if(take>bn) take=bn;
+          bn-=take; $('bashN').textContent=bn;
+          if(bn===0){ setOut($('bashOut'), '电脑取 '+take+' 颗并取走最后一颗，<b>电脑赢。</b>'); busy=true; }
+          else { setOut($('bashOut'), '电脑取 '+take+' 颗，剩 '+bn+'（n mod (m+1) = '+(bn%(bm+1))+'）。'); busy=false; }
+        }, 350);
+      };
+      box.appendChild(b);
+    })(k); }
+  }
+  $('bashSlider').oninput = function(){ bm=parseInt(this.value,10); $('bashM').textContent=bm; bashRenderBtns(); };
+  $('bashHint').onclick = function(){ var r=bn%(bm+1); setOut($('bashOut'), 'n mod (m+1) = '+bn+' mod '+(bm+1)+' = <b>'+r+'</b>。' + (r===0 ? '你正处必败态（除非电脑失误）。' : '你应取走 '+r+' 颗，把 '+(bm+1)+' 的倍数留给电脑。')); };
+  $('bashNew').onclick = function(){ bn=10; busy=false; $('bashN').textContent=bn; bashRenderBtns(); setOut($('bashOut'), '新开局：n=10，m='+bm+'。你先手。'); };
+  bashRenderBtns();
+
+  /* ============ ③ 海盗分金 ============ */
+  function pirateAlloc(n){
+    var prev=[100];
+    for(var k=2;k<=n;k++){
+      var need=Math.ceil(k/2)-1;
+      var zeros=[]; for(var i=0;i<prev.length;i++) if(prev[i]===0) zeros.push(i);
+      var cur=new Array(k).fill(0), bribed=0;
+      for(var j=0;j<zeros.length && bribed<need;j++){ cur[zeros[j]]=1; bribed++; }
+      cur[k-1]=100-bribed; prev=cur;
+    }
+    return prev;
+  }
+  function pirRender(){
+    var n=parseInt($('pirSlider').value,10); $('pirN').textContent=n;
+    var a=pirateAlloc(n), html='';
+    for(var i=0;i<n;i++){
+      var label='P'+(i+1)+(i===n-1?'（最资深·提案者）':'');
+      var bar = a[i]===0 ? '<div class="bar zero">0</div>' : '<div class="bar" style="width:'+Math.max(24,a[i]*3)+'px">'+a[i]+' 金</div>';
+      html+='<div class="pirate-row"><span class="nm">'+label+'</span>'+bar+'</div>';
+    }
+    $('pirOut').innerHTML = html + '<p class="hint">P'+n+' 提案：自己拿 '+a[n-1]+' 金，给上一轮会得 0 金的海盗各 1 金。</p>';
+  }
+  $('pirSlider').oninput = pirRender;
+  pirRender();
+
+  /* ============ ④ 囚徒困境 ============ */
+  var pdRound, pdMe, pdOp, pdMyLast, pdBusy;
+  function pdPayoff(m,o){ // m,o = 'C'/'D'
+    if(m==='C'&&o==='C') return [3,3];
+    if(m==='C'&&o==='D') return [0,5];
+    if(m==='D'&&o==='C') return [5,0];
+    return [1,1];
+  }
+  function pdReset(){ pdRound=1; pdMe=0; pdOp=0; pdMyLast=null; pdBusy=false; setOut($('pdOut'), '第 1 / 10 轮。你：0　对手：0。请选择合作或背叛。'); }
+  function pdOppMove(){
+    var s=$('pdOpp').value;
+    if(s==='alld') return 'D';
+    if(s==='allc') return 'C';
+    if(s==='rand') return Math.random()<0.5?'C':'D';
+    return pdMyLast || 'C'; // tit-for-tat
+  }
+  function pdPlay(my){
+    if(pdBusy) return;
+    if(pdRound>10) return;
+    var o=pdOppMove(), pay=pdPayoff(my,o);
+    pdMe+=pay[0]; pdOp+=pay[1]; pdMyLast=my;
+    var line='第 '+pdRound+'/10 轮：你 '+(my==='C'?'合作':'背叛')+'，对手 '+(o==='C'?'合作':'背叛')+' → 你 +'+pay[0]+'，对手 +'+pay[1]+'。<br>累计：你 <b>'+pdMe+'</b>　对手 <b>'+pdOp+'</b>';
+    pdRound++;
+    if(pdRound>10){ pdBusy=true; line+='<br><b>结束。</b>' + (pdMe>pdOp?'你得分更高。':(pdMe<pdOp?'对手得分更高。':'平局。')); }
+    setOut($('pdOut'), line);
+  }
+  $('pdC').onclick=function(){ pdPlay('C'); };
+  $('pdD').onclick=function(){ pdPlay('D'); };
+  $('pdNew').onclick=pdReset;
+  pdReset();
+
+  /* ============ ⑤ 井字棋 Minimax ============ */
+  var ttt = Array(9).fill('');
+  function tttWinner(b){
+    var L=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+    for(var i=0;i<L.length;i++){ var a=L[i][0],c=L[i][1],d=L[i][2]; if(b[a]&&b[a]===b[c]&&b[a]===b[d]) return b[a]; }
+    return null;
+  }
+  function tttFull(b){ for(var i=0;i<9;i++) if(!b[i]) return false; return true; }
+  function tttMinimax(b,isMax,depth){
+    var w=tttWinner(b);
+    if(w==='O') return 10-depth;
+    if(w==='X') return depth-10;
+    if(tttFull(b)) return 0;
+    if(isMax){ var best=-Infinity; for(var i=0;i<9;i++){ if(!b[i]){ b[i]='O'; best=Math.max(best,tttMinimax(b,false,depth+1)); b[i]=''; } } return best; }
+    else { var best=Infinity; for(var i=0;i<9;i++){ if(!b[i]){ b[i]='X'; best=Math.min(best,tttMinimax(b,true,depth+1)); b[i]=''; } } return best; }
+  }
+  function tttAIRun(){
+    var best=-Infinity, move=-1;
+    for(var i=0;i<9;i++){ if(!ttt[i]){ ttt[i]='O'; var v=tttMinimax(ttt,false,0); ttt[i]=''; if(v>best){best=v;move=i;} } }
+    if(move>=0) ttt[move]='O';
+  }
+  function tttRender(){
+    var box=$('tttBoard'); box.innerHTML='';
+    for(var i=0;i<9;i++){
+      (function(i){
+        var b=document.createElement('button'); b.textContent=ttt[i]||'';
+        if(ttt[i]==='X') b.className='x'; if(ttt[i]==='O') b.className='o';
+        b.disabled = !!ttt[i] || !!tttWinner(ttt) || tttFull(ttt);
+        b.onclick=function(){
+          if(ttt[i]||tttWinner(ttt)||tttFull(ttt)) return;
+          ttt[i]='X'; tttRender();
+          var w=tttWinner(ttt);
+          if(w){ setOut($('tttOut'), '<b>'+(w==='X'?'你赢了？！':'电脑赢了。')+'</b>', w==='X'); return; }
+          if(tttFull(ttt)){ setOut($('tttOut'), '<b>平局。</b>这正是井字棋的理论结果。'); return; }
+          setTimeout(function(){ tttAIRun(); tttRender(); var w2=tttWinner(ttt);
+            if(w2){ setOut($('tttOut'), '<b>'+(w2==='O'?'电脑赢了。':'你赢了！')+'</b>'); }
+            else if(tttFull(ttt)) setOut($('tttOut'), '<b>平局。</b>');
+            else setOut($('tttOut'), '电脑走了，轮到你。Minimax 不会输。');
+          }, 250);
+        };
+        box.appendChild(b);
+      })(i);
+    }
+  }
+  $('tttNew').onclick=function(){ ttt=Array(9).fill(''); tttRender(); setOut($('tttOut'), '新开局，你执 X 先手。'); };
+  tttRender();
+
+  /* ============ ⑥ 汉诺塔 ============ */
+  var towN=3, towMoves=[], towStep=0, peg0,peg1,peg2, towTimer=null;
+  function hanoiSeq(n,a,b,c){ if(n===0) return []; return hanoiSeq(n-1,a,c,b).concat([[a,c]]).concat(hanoiSeq(n-1,b,a,c)); }
+  function towBuild(){
+    peg0=[]; peg1=[]; peg2=[];
+    for(var d=towN; d>=1; d--) peg0.push(d);
+    towMoves=hanoiSeq(towN,0,1,2); towStep=0;
+    $('towMin').textContent = Math.pow(2,towN)-1;
+    towRender(); setOut($('towOut'), '0 / '+(Math.pow(2,towN)-1)+' 步。点击「走一步」或「自动播放」。');
+  }
+  function towRender(){
+    function paint(el, arr){ el.innerHTML=''; for(var i=0;i<arr.length;i++){ var d=arr[i]; var s=document.createElement('div'); s.className='disk'; s.style.width=(28+d*14)+'px'; s.style.background='hsl('+(d*40)+',55%,45%)'; s.textContent=d; el.appendChild(s); } }
+    paint($('peg0'),peg0); paint($('peg1'),peg1); paint($('peg2'),peg2);
+  }
+  function towDoStep(){
+    if(towStep>=towMoves.length){ if(towTimer){clearInterval(towTimer);towTimer=null;} setOut($('towOut'), '<b>完成！</b>共 '+(towMoves.length)+' 步 = 2^'+towN+'−1。', true); return; }
+    var mv=towMoves[towStep], from=[peg0,peg1,peg2][mv[0]], to=[peg0,peg1,peg2][mv[1]];
+    var d=from.pop(); to.push(d); towStep++;
+    towRender();
+    setOut($('towOut'), '第 '+towStep+' / '+towMoves.length+' 步：把盘 '+d+' 从柱 '+(mv[0]+1)+' 移到柱 '+(mv[1]+1)+'。');
+  }
+  $('towSlider').oninput=function(){ towN=parseInt(this.value,10); $('towN').textContent=towN; if(towTimer){clearInterval(towTimer);towTimer=null;} towBuild(); };
+  $('towStep').onclick=function(){ towDoStep(); };
+  $('towAuto').onclick=function(){ if(towTimer) return; towTimer=setInterval(towDoStep, 500); };
+  $('towReset').onclick=function(){ if(towTimer){clearInterval(towTimer);towTimer=null;} towBuild(); };
+  towBuild();
+
+  /* ============ ⑦ 2048 贪心 ============ */
+  var g2b, g2score;
+  function g2Empty(){ var e=[]; for(var r=0;r<4;r++) for(var c=0;c<4;c++) if(g2b[r][c]===0) e.push([r,c]); return e; }
+  function g2Spawn(){ var e=g2Empty(); if(!e.length) return; var p=e[Math.floor(Math.random()*e.length)]; g2b[p[0]][p[1]] = (Math.random()<0.9?2:4); }
+  function g2SlideRow(row){ var a=row.filter(function(x){return x;}); for(var i=0;i<a.length-1;i++){ if(a[i]===a[i+1]){ a[i]*=2; g2score+=a[i]; a.splice(i+1,1); } } while(a.length<4) a.push(0); return a; }
+  function g2Move(dir){ // 0 left,1 right,2 up,3 down
+    var nb=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]], moved=false;
+    for(var i=0;i<4;i++){
+      var line=[];
+      for(var j=0;j<4;j++){ if(dir===0||dir===1) line.push(g2b[i][j]); else line.push(g2b[j][i]); }
+      if(dir===1||dir===3) line.reverse();
+      var nl=g2SlideRow(line);
+      if(dir===1||dir===3) nl.reverse();
+      for(var j=0;j<4;j++){ if(dir===0||dir===1) nb[i][j]=nl[j]; else nb[j][i]=nl[j]; }
+    }
+    for(var r=0;r<4;r++) for(var c=0;c<4;c++) if(nb[r][c]!==g2b[r][c]) moved=true;
+    return {board:nb, moved:moved};
+  }
+  function g2Score(b){
+    var max=0, maxCorner=0;
+    for(var r=0;r<4;r++) for(var c=0;c<4;c++){ if(b[r][c]>max) max=b[r][c]; }
+    if(b[3][3]===max) maxCorner=10000; // 最大牌在右下角
+    var mono=0;
+    for(var r=0;r<4;r++) for(var c=0;c<4;c++){
+      if(c<3 && b[r][c]>=b[r][c+1]) mono+=b[r][c+1];
+      if(r<3 && b[r][c]>=b[r+1][c]) mono+=b[r+1][c];
+    }
+    return maxCorner + mono;
+  }
+  function g2Render(){
+    var grid=$('g2Grid'); grid.innerHTML=''; var max=0;
+    for(var r=0;r<4;r++) for(var c=0;c<4;c++){ var v=g2b[r][c]; if(v>max) max=v; var cell=document.createElement('div'); cell.className='cell'+(v===max&&v>0?' max':''); cell.textContent=v||''; cell.style.background = v? 'hsl('+Math.min(220,10+Math.log2(v)*28)+',60%,70%)' : ''; grid.appendChild(cell); }
+    $('g2Score').textContent=g2score; $('g2Max').textContent=max;
+    $('g2Corner').textContent = (g2b[3][3]===max&&max>0)?'· 最大牌在右下角 ✓':'';
+  }
+  function g2Next(){
+    var bestDir=-1, bestScore=-Infinity;
+    for(var d=0;d<4;d++){ var res=g2Move(d); if(res.moved){ var s=g2Score(res.board); if(s>bestScore){bestScore=s;bestDir=d;} } }
+    if(bestDir<0){ setOut($('g2Out'), '无可走方向，游戏结束。最终分数 '+g2score+'。'); return; }
+    g2b=g2Move(bestDir).board; g2Spawn(); g2Render();
+    var dn=['左','右','上','下'][bestDir];
+    setOut($('g2Out'), 'AI 选择「向'+dn+'滑」（角位+单调性得分 '+bestScore+'）。');
+  }
+  function g2Reset(){ g2b=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]; g2score=0; g2Spawn(); g2Spawn(); g2Render(); setOut($('g2Out'), '新局。点「走一步」让贪心 AI 行动。'); }
+  $('g2Next').onclick=g2Next;
+  $('g2Reset').onclick=g2Reset;
+  g2Reset();
+
+  /* ============ ⑧ 双骰概率表 ============ */
+  function diceRender(){
+    var t=$('diceTable'); t.innerHTML='';
+    var counts={}; for(var s=2;s<=12;s++) counts[s]=0;
+    for(var i=1;i<=6;i++) for(var j=1;j<=6;j++) counts[i+j]++;
+    var tr=document.createElement('tr'); tr.appendChild(document.createElement('th'));
+    for(var j=1;j<=6;j++){ var th=document.createElement('th'); th.textContent=j; tr.appendChild(th); }
+    t.appendChild(tr);
+    for(var i=1;i<=6;i++){
+      var trr=document.createElement('tr'); var th=document.createElement('th'); th.textContent=i; trr.appendChild(th);
+      for(var j=1;j<=6;j++){ (function(sum){
+        var td=document.createElement('td'); td.textContent=sum;
+        td.onclick=function(){
+          var cells=t.querySelectorAll('td');
+          for(var k=0;k<cells.length;k++) cells[k].className = (parseInt(cells[k].textContent,10)===sum)?'hl':'';
+          setOut($('diceOut'), '点数和 = <b>'+sum+'</b>：共 <b>'+counts[sum]+'</b> 种组合，概率 <b>'+counts[sum]+'/36</b> = '+(counts[sum]/36*100).toFixed(1)+'%。');
+        };
+        trr.appendChild(td);
+      })(i+j); }
+      t.appendChild(trr);
+    }
+  }
+  diceRender();
+})();
+</script>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  function setOut(el, html, good){ el.innerHTML = html; el.className='out' + (good? ' good':''); }
+
+  /* ============ ① 数独：唯一余数 / 排除法 ============ */
+  var sdkPuzzle = [
+    [5,3,0,0,7,0,0,0,0],
+    [6,0,0,1,9,5,0,0,0],
+    [0,9,8,0,0,0,0,6,0],
+    [8,0,0,0,6,0,0,0,3],
+    [4,0,0,8,0,3,0,0,1],
+    [7,0,0,0,2,0,0,0,6],
+    [0,6,0,0,0,0,2,8,0],
+    [0,0,0,4,1,9,0,0,5],
+    [0,0,0,0,8,0,0,7,9]
+  ];
+  var sdkSol = [
+    [5,3,4,6,7,8,9,1,2],
+    [6,7,2,1,9,5,3,4,8],
+    [1,9,8,3,4,2,5,6,7],
+    [8,5,9,7,6,1,4,2,3],
+    [4,2,6,8,5,3,7,9,1],
+    [7,1,3,9,2,4,8,5,6],
+    [9,6,1,5,3,7,2,8,4],
+    [2,8,7,4,1,9,6,3,5],
+    [3,4,5,2,8,6,1,7,9]
+  ];
+  var sdkUser=[], sdkSel=null;
+  for(var r=0;r<9;r++){ sdkUser.push([0,0,0,0,0,0,0,0,0]); }
+  function sdkVal(r,c){ return sdkPuzzle[r][c] || sdkUser[r][c]; }
+  function sdkCandidates(r,c){
+    if(sdkPuzzle[r][c]) return [];
+    var used={};
+    for(var k=0;k<9;k++){ used[sdkVal(r,k)]=1; used[sdkVal(k,c)]=1; }
+    var br=Math.floor(r/3)*3, bc=Math.floor(c/3)*3;
+    for(var i=0;i<3;i++) for(var j=0;j<3;j++) used[sdkVal(br+i,bc+j)]=1;
+    var cand=[]; for(var n=1;n<=9;n++) if(!used[n]) cand.push(n);
+    return cand;
+  }
+  function sdkRender(){
+    var g=$('sdkGrid'); g.innerHTML='';
+    for(var r=0;r<9;r++) for(var c=0;c<9;c++){
+      (function(r,c){
+        var d=document.createElement('div');
+        d.className='sc'+(c%3===2&&c<8?' b3':'')+(r%3===2&&r<8?' bb':'');
+        if(sdkPuzzle[r][c]){ d.className+=' given'; }
+        else{
+          if(sdkSel && sdkSel[0]===r && sdkSel[1]===c) d.className+=' hl';
+          if(sdkUser[r][c] && sdkUser[r][c]!==sdkSol[r][c]) d.className+=' err';
+          d.onclick=function(){ sdkSel=[r,c]; sdkRender(); };
+        }
+        d.textContent=sdkVal(r,c)||'';
+        g.appendChild(d);
+      })(r,c);
+    }
+  }
+  var np=$('sdkNums');
+  for(var n=1;n<=9;n++){ (function(n){
+    var b=document.createElement('button'); b.className='btn'; b.style.padding='4px 10px'; b.textContent=n;
+    b.onclick=function(){
+      if(!sdkSel){ setOut($('sdkOut'),'先点一个空格，再用 1–9 按钮填数。'); return; }
+      var r=sdkSel[0], c=sdkSel[1];
+      sdkUser[r][c]=n; sdkRender();
+      if(n===sdkSol[r][c]){
+        var done=true;
+        for(var i=0;i<9&&done;i++) for(var j=0;j<9&&done;j++) if(sdkVal(i,j)!==sdkSol[i][j]) done=false;
+        if(done) setOut($('sdkOut'),'<b>完成！</b>你用候选数法填满了整个数独。', true);
+      }
+    };
+    np.appendChild(b);
+  })(n); }
+  $('sdkFill').onclick=function(){
+    for(var r=0;r<9;r++) for(var c=0;c<9;c++){
+      if(sdkPuzzle[r][c] || sdkUser[r][c]) continue;
+      var cand=sdkCandidates(r,c);
+      if(cand.length===1){
+        sdkUser[r][c]=cand[0]; sdkRender();
+        setOut($('sdkOut'),'唯一余数：('+(r+1)+','+(c+1)+') 格候选集只剩 <b>'+cand[0]+'</b>，已自动填入。');
+        return;
+      }
+    }
+    setOut($('sdkOut'),'当前没有「唯一余数」格——试试排除法，或继续填几格让候选数变少。');
+  };
+  $('sdkCheck').onclick=function(){
+    var bad=0;
+    for(var r=0;r<9;r++) for(var c=0;c<9;c++)
+      if(!sdkPuzzle[r][c] && sdkUser[r][c] && sdkUser[r][c]!==sdkSol[r][c]) bad++;
+    sdkRender();
+    setOut($('sdkOut'), bad===0 ? '<b>目前没有错误。</b>红格才是与答案不符的填法。' : '发现 <b>'+bad+'</b> 个红格与答案不符。', bad===0);
+  };
+  $('sdkClr').onclick=function(){
+    for(var r=0;r<9;r++) for(var c=0;c<9;c++) sdkUser[r][c]=0;
+    sdkSel=null; sdkRender(); setOut($('sdkOut'),'已清空你填的数。');
+  };
+  sdkRender();
+
+  /* ============ ② 骑士巡逻 Warnsdorff ============ */
+  var KT=[[1,2],[1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]];
+  var ktVis=[], ktPath=[], ktCur=null, ktTimer=null;
+  function ktNeighbors(x,y){
+    var out=[];
+    for(var i=0;i<KT.length;i++){
+      var nx=x+KT[i][0], ny=y+KT[i][1];
+      if(nx>=0&&nx<8&&ny>=0&&ny<8&&!ktVis[nx][ny]) out.push([nx,ny]);
+    }
+    return out;
+  }
+  function ktRender(){
+    var b=$('ktBoard'); b.innerHTML='';
+    var order={};
+    for(var i=0;i<ktPath.length;i++) order[ktPath[i][0]+','+ktPath[i][1]]=i+1;
+    for(var x=0;x<8;x++) for(var y=0;y<8;y++){
+      var d=document.createElement('div');
+      d.className='kc'+((x+y)%2?' dark':'')+(order[x+','+y]?' visit':'')+((ktCur&&ktCur[0]===x&&ktCur[1]===y)?' cur':'');
+      d.textContent=order[x+','+y]||'';
+      b.appendChild(d);
+    }
+    $('ktCnt').textContent=ktPath.length;
+  }
+  function ktBuild(){
+    ktVis=[]; ktPath=[];
+    for(var i=0;i<8;i++){ var row=[]; for(var j=0;j<8;j++) row.push(false); ktVis.push(row); }
+    ktCur=[0,0]; ktVis[0][0]=true; ktPath.push([0,0]);
+    ktRender();
+    setOut($('ktOut'),'从左上角 (1,1) 出发，每步选「后续出路最少」的未访格。');
+  }
+  function ktStepOnce(){
+    if(ktPath.length===64){
+      if(ktTimer){clearInterval(ktTimer);ktTimer=null;}
+      setOut($('ktOut'),'<b>走完全部 64 格！</b>一条完整骑士巡游。', true); return false;
+    }
+    var neigh=ktNeighbors(ktCur[0],ktCur[1]);
+    if(neigh.length===0){
+      if(ktTimer){clearInterval(ktTimer);ktTimer=null;}
+      setOut($('ktOut'),'停住了：只走了 '+ktPath.length+' 格（纯 Warnsdorff 偶有死路，实际需 tie-break 或回溯修正）。'); return false;
+    }
+    var best=null, bestDeg=99;
+    for(var i=0;i<neigh.length;i++){
+      var deg=ktNeighbors(neigh[i][0],neigh[i][1]).length;
+      if(deg<bestDeg){ bestDeg=deg; best=neigh[i]; }
+    }
+    ktVis[best[0]][best[1]]=true; ktPath.push(best); ktCur=best;
+    ktRender();
+    $('ktDeg').textContent=ktNeighbors(best[0],best[1]).length;
+    return true;
+  }
+  $('ktStep').onclick=function(){ ktStepOnce(); };
+  $('ktAuto').onclick=function(){ if(ktTimer) return; ktTimer=setInterval(function(){ ktStepOnce(); },120); };
+  $('ktReset').onclick=function(){ if(ktTimer){clearInterval(ktTimer);ktTimer=null;} ktBuild(); };
+  ktBuild();
+
+  /* ============ ③ 欧拉路径 / 一笔画 ============ */
+  var EUL=[
+    { v:{A:[210,35],B:[70,90],C:[70,160],D:[350,90],E:[350,160]},
+      e:[['A','B'],['A','C'],['B','C'],['A','D'],['A','E'],['D','E']] },
+    { v:{A:[60,110],B:[180,55],C:[320,110],D:[180,170]},
+      e:[['A','B'],['B','C'],['C','D'],['B','D']] },
+    { v:{A:[90,60],B:[90,170],C:[330,60],D:[330,170]},
+      e:[['A','B'],['A','C'],['A','D'],['B','C'],['B','D'],['C','D']] }
+  ];
+  function eulDeg(g){
+    var d={}; for(var k in g.v) d[k]=0;
+    g.e.forEach(function(p){ d[p[0]]++; d[p[1]]++; });
+    return d;
+  }
+  function eulerTrail(g){
+    var adj={}; for(var k in g.v) adj[k]=[];
+    g.e.forEach(function(p){ adj[p[0]].push(p[1]); adj[p[1]].push(p[0]); });
+    var d=eulDeg(g), odd=[];
+    for(var k in d){ if(d[k]%2===1) odd.push(k); }
+    if(odd.length>2) return null;
+    var start = odd.length===2 ? odd[0] : (function(){ for(var k in adj) return k; })();
+    var stack=[start], path=[];
+    while(stack.length){
+      var v=stack[stack.length-1];
+      if(adj[v].length){
+        var u=adj[v].pop();
+        var ix=adj[u].indexOf(v); if(ix>=0) adj[u].splice(ix,1);
+        stack.push(u);
+      } else path.push(stack.pop());
+    }
+    return path.reverse();
+  }
+  function eulDraw(trail, oddSet){
+    var g=EUL[parseInt($('eulSel').value,10)];
+    var svg=$('eulSvg'); svg.innerHTML='';
+    var ns='http://www.w3.org/2000/svg';
+    g.e.forEach(function(p){
+      var a=g.v[p[0]], b=g.v[p[1]];
+      var ln=document.createElementNS(ns,'line');
+      ln.setAttribute('x1',a[0]);ln.setAttribute('y1',a[1]);ln.setAttribute('x2',b[0]);ln.setAttribute('y2',b[1]);
+      ln.setAttribute('stroke','#9A927E'); ln.setAttribute('stroke-width','2');
+      svg.appendChild(ln);
+    });
+    if(trail && trail.length>1){
+      for(var i=0;i<trail.length-1;i++){
+        var a=g.v[trail[i]], b=g.v[trail[i+1]];
+        var ln=document.createElementNS(ns,'line');
+        ln.setAttribute('x1',a[0]);ln.setAttribute('y1',a[1]);ln.setAttribute('x2',b[0]);ln.setAttribute('y2',b[1]);
+        ln.setAttribute('stroke','#177E89'); ln.setAttribute('stroke-width','3.5');
+        svg.appendChild(ln);
+      }
+    }
+    for(var k in g.v){
+      var p=g.v[k];
+      var c=document.createElementNS(ns,'circle');
+      c.setAttribute('cx',p[0]);c.setAttribute('cy',p[1]);c.setAttribute('r','13');
+      c.setAttribute('fill', oddSet[k]? '#C0392B':'#fffdf6');
+      c.setAttribute('stroke','#22262B'); c.setAttribute('stroke-width','2');
+      svg.appendChild(c);
+      var t=document.createElementNS(ns,'text');
+      t.setAttribute('x',p[0]);t.setAttribute('y',p[1]+4);t.setAttribute('text-anchor','middle');
+      t.setAttribute('font-size','12'); t.setAttribute('font-family','Georgia');
+      t.setAttribute('fill','#fff'); t.textContent=k;
+      svg.appendChild(t);
+    }
+  }
+  function eulRun(){
+    var g=EUL[parseInt($('eulSel').value,10)];
+    var d=eulDeg(g), oddSet={}, odd=[];
+    for(var k in d){ if(d[k]%2===1){ oddSet[k]=1; odd.push(k); } }
+    var trail=eulerTrail(g);
+    eulDraw(trail, oddSet);
+    var degStr=[]; for(var k in d) degStr.push(k+'='+d[k]);
+    if(odd.length===0) setOut($('eulOut'),'奇度点 0 个（度数：'+degStr.join('，')+'）。<b>存在欧拉回路</b>。路径：'+trail.join(' → '), true);
+    else if(odd.length===2) setOut($('eulOut'),'奇度点 2 个：<b>'+odd.join('、')+'</b>。<b>可一笔画</b>。路径：'+trail.join(' → '), true);
+    else setOut($('eulOut'),'奇度点 <b>'+odd.length+'</b> 个（'+odd.join('、')+'）。<b>不可一笔画</b>——哥尼斯堡七桥正是此情形。');
+  }
+  $('eulSel').onchange=eulRun;
+  $('eulRun').onclick=eulRun;
+  eulRun();
+
+  /* ============ ④ 图着色 ============ */
+  var GCv={A:[70,60],B:[215,35],C:[360,60],D:[120,160],E:[310,160],F:[215,215]};
+  var GCe=[['A','B'],['B','C'],['A','D'],['B','D'],['B','E'],['C','E'],['D','E'],['D','F'],['E','F']];
+  var GCcolors=['#1F4E9C','#C0392B','#2E7D5B','#A8751E'];
+  var gcSel=0, gcFill={}; for(var k in GCv) gcFill[k]=null;
+  function gcConflict(){
+    var bad=[];
+    GCe.forEach(function(p){ if(gcFill[p[0]]!=null && gcFill[p[0]]===gcFill[p[1]]) bad.push(p); });
+    return bad;
+  }
+  function gcReport(){
+    var bad=gcConflict().length, used={};
+    for(var k in gcFill) if(gcFill[k]!=null) used[gcFill[k]]=1;
+    setOut($('gcOut'), bad===0 ? '<b>无冲突。</b>用了 '+Object.keys(used).length+' 种颜色。' : '<b>冲突 '+bad+' 处</b>（红边：相邻同色）。', bad===0);
+  }
+  function gcDraw(){
+    var svg=$('gcSvg'); svg.innerHTML='';
+    var ns='http://www.w3.org/2000/svg';
+    var bad=gcConflict();
+    GCe.forEach(function(p){
+      var a=GCv[p[0]], b=GCv[p[1]];
+      var isBad=bad.some(function(e){return (e[0]===p[0]&&e[1]===p[1])||(e[0]===p[1]&&e[1]===p[0]);});
+      var ln=document.createElementNS(ns,'line');
+      ln.setAttribute('x1',a[0]);ln.setAttribute('y1',a[1]);ln.setAttribute('x2',b[0]);ln.setAttribute('y2',b[1]);
+      ln.setAttribute('stroke', isBad?'#C0392B':'#9A927E'); ln.setAttribute('stroke-width', isBad?3:2);
+      svg.appendChild(ln);
+    });
+    for(var k in GCv){
+      (function(k){
+        var p=GCv[k];
+        var c=document.createElementNS(ns,'circle');
+        c.setAttribute('cx',p[0]);c.setAttribute('cy',p[1]);c.setAttribute('r','15');
+        c.setAttribute('fill', gcFill[k]!=null? GCcolors[gcFill[k]]:'#fffdf6');
+        c.setAttribute('stroke','#22262B'); c.setAttribute('stroke-width','2');
+        c.style.cursor='pointer';
+        c.onclick=function(){ gcFill[k]=gcSel; gcDraw(); gcReport(); };
+        svg.appendChild(c);
+        var t=document.createElementNS(ns,'text');
+        t.setAttribute('x',p[0]);t.setAttribute('y',p[1]+4);t.setAttribute('text-anchor','middle');
+        t.setAttribute('font-size','12'); t.setAttribute('pointer-events','none');
+        t.setAttribute('fill', gcFill[k]!=null?'#fff':'#22262B'); t.textContent=k;
+        svg.appendChild(t);
+      })(k);
+    }
+  }
+  var pal=$('gcPalette');
+  GCcolors.forEach(function(col,i){
+    var b=document.createElement('button'); b.className='palbtn'; b.style.background=col;
+    b.onclick=function(){ gcSel=i; Array.prototype.forEach.call(pal.children,function(x){x.style.outline='';}); b.style.outline='3px solid var(--ink2)'; };
+    pal.appendChild(b);
+  });
+  pal.children[0].style.outline='3px solid var(--ink2)';
+  $('gcAuto').onclick=function(){
+    for(var k in GCv) gcFill[k]=null;
+    Object.keys(GCv).forEach(function(k){
+      var used={};
+      GCe.forEach(function(p){
+        var o = p[0]===k? p[1] : (p[1]===k? p[0] : null);
+        if(o && gcFill[o]!=null) used[gcFill[o]]=1;
+      });
+      for(var i=0;i<GCcolors.length;i++){ if(!used[i]){ gcFill[k]=i; break; } }
+    });
+    gcDraw(); gcReport();
+    setOut($('gcOut'),'贪心按 A→F 顺序：每个顶点取邻居未用过的第一色（构造 χ≤Δ+1）。', true);
+  };
+  $('gcReset').onclick=function(){ for(var k in GCv) gcFill[k]=null; gcDraw(); setOut($('gcOut'),'已清空。'); };
+  gcDraw();
+
+  /* ============ ⑤ 蒙提霍尔模拟器 ============ */
+  function mhTrials(swap, N){
+    var win=0;
+    for(var i=0;i<N;i++){
+      var car=Math.floor(Math.random()*3), pick=0;
+      var open=[0,1,2].filter(function(d){ return d!==car && d!==pick; });
+      var host=open[Math.floor(Math.random()*open.length)];
+      var finalPick = swap ? ([0,1,2].filter(function(d){return d!==pick&&d!==host;})[0]) : pick;
+      if(finalPick===car) win++;
+    }
+    return win;
+  }
+  $('mhSlider').oninput=function(){ $('mhN').textContent=this.value; };
+  $('mhRun').onclick=function(){
+    var N=parseInt($('mhSlider').value,10);
+    var sw=mhTrials(true,N), stay=mhTrials(false,N);
+    var psw=(sw/N*100).toFixed(1), pst=(stay/N*100).toFixed(1);
+    function bar(pct){ var n=Math.round(pct/2); return '█'.repeat(Math.max(0,n))+''.repeat(Math.max(0,50-n)); }
+    setOut($('mhOut'),
+      'N = '+N+'　换门胜 <b>'+sw+'</b> 次（'+psw+'%，理论 66.7%）　不换胜 <b>'+stay+'</b> 次（'+pst+'%，理论 33.3%）<br>'+
+      '换：'+bar(psw)+'<br>不换：'+bar(pst));
+  };
+
+  /* ============ ⑥ 二十问（信息熵） ============ */
+  var itLo=1, itHi=100, itCnt=0;
+  function itMid(){ return Math.floor((itLo+itHi)/2); }
+  function itRender(){
+    $('itGuess').textContent=itMid();
+    $('itStep').textContent=itCnt;
+    $('itBits').textContent=(Math.log(itHi-itLo+1)/Math.LN2).toFixed(1);
+  }
+  function itAnswer(branch){
+    itCnt++;
+    var g=itMid();
+    if(branch==='low') itLo=g+1; else itHi=g-1;
+    if(itLo>itHi){ setOut($('itOut'),'区间空了，你是不是把大小答反了？'); itRender(); return; }
+    itRender();
+    setOut($('itOut'),'第 '+itCnt+' 问：区间 ['+itLo+', '+itHi+']，剩余不确定性 '+$('itBits').textContent+' bit。');
+  }
+  $('itLow').onclick=function(){ itAnswer('low'); };
+  $('itHigh').onclick=function(){ itAnswer('high'); };
+  $('itYes').onclick=function(){ setOut($('itOut'),'<b>猜中了！</b>共用 '+itCnt+' 问（理论下限 ⌈log₂100⌉=7）。', true); };
+  $('itNew').onclick=function(){ itLo=1; itHi=100; itCnt=0; itRender(); setOut($('itOut'),'想好新数了吗？AI 从 50 开始对半猜。'); };
+  itRender();
+
+  /* ============ ⑦ N 皇后回溯可视化 ============ */
+  var nqN=6, nqEvents=[], nqIdx=0, nqBoard=[], nqTimer=null, nqNodes=0;
+  function nqSolve(){
+    nqEvents=[]; nqNodes=0; nqBoard=new Array(nqN).fill(-1);
+    var cols=new Set(), d1=new Set(), d2=new Set();
+    (function bt(r){
+      if(r===nqN){ nqEvents.push({t:'done'}); return true; }
+      for(var c=0;c<nqN;c++){
+        if(cols.has(c)||d1.has(r-c)||d2.has(r+c)) continue;
+        cols.add(c); d1.add(r-c); d2.add(r+c); nqBoard[r]=c;
+        nqNodes++; nqEvents.push({t:'p',r:r,c:c});
+        if(bt(r+1)) return true;
+        cols.delete(c); d1.delete(r-c); d2.delete(r+c); nqBoard[r]=-1;
+        nqNodes++; nqEvents.push({t:'b',r:r,c:c});
+      }
+      return false;
+    })(0);
+  }
+  function nqRender(backR,backC){
+    var b=$('nqBoard'); b.innerHTML='';
+    b.style.gridTemplateColumns='repeat('+nqN+',30px)';
+    for(var r=0;r<nqN;r++) for(var c=0;c<nqN;c++){
+      var d=document.createElement('div');
+      d.className='qc'+((r+c)%2?' alt':'')+(nqBoard[r]===c?' q':'')+(backR===r&&backC===c?' back':'');
+      d.textContent=(nqBoard[r]===c)? '♛':'';
+      b.appendChild(d);
+    }
+    $('nqNodes').textContent=nqNodes;
+  }
+  function nqBuild(){
+    if(nqTimer){clearInterval(nqTimer);nqTimer=null;}
+    nqSolve(); nqIdx=0; nqRender();
+    setOut($('nqOut'),'n='+nqN+'，搜索事件共 '+nqEvents.length+' 步。点「回溯一步」看剪枝过程。');
+  }
+  function nqStepOnce(){
+    if(nqIdx>=nqEvents.length){
+      if(nqTimer){clearInterval(nqTimer);nqTimer=null;}
+      setOut($('nqOut'),'<b>找到解！</b>共搜索 '+nqNodes+' 个节点。', true); return false;
+    }
+    var ev=nqEvents[nqIdx++];
+    if(ev.t==='p'){ nqBoard[ev.r]=ev.c; nqRender(); }
+    else if(ev.t==='b'){ var br=ev.r, bc=ev.c; nqBoard[ev.r]=-1; nqRender(br,bc); }
+    else { setOut($('nqOut'),'<b>完成。</b>共 '+nqNodes+' 节点。', true); }
+    return true;
+  }
+  $('nqSlider').oninput=function(){ nqN=parseInt(this.value,10); $('nqN').textContent=nqN; nqBuild(); };
+  $('nqStep').onclick=function(){ nqStepOnce(); };
+  $('nqAuto').onclick=function(){ if(nqTimer) return; nqTimer=setInterval(function(){ nqStepOnce(); },260); };
+  $('nqReset').onclick=nqBuild;
+  nqBuild();
+
+  /* ============ ⑧ 切蛋糕 ============ */
+  function cakeDraw(t, pick){
+    var bar=$('cakeBar'); bar.innerHTML='';
+    var L=document.createElement('div');
+    L.className='piece'; L.style.width=(t*100)+'%';
+    L.style.background=(pick==='L')?'#2E7D5B':'#1F4E9C';
+    L.textContent='左块 '+(t*100).toFixed(0)+'%';
+    var R=document.createElement('div');
+    R.className='piece'; R.style.width=((1-t)*100)+'%';
+    R.style.background=(pick==='R')?'#2E7D5B':'#A8751E';
+    R.textContent='右块 '+((1-t)*100).toFixed(0)+'%';
+    bar.appendChild(L); bar.appendChild(R);
+  }
+  $('cakeSlider').oninput=function(){ var t=parseFloat(this.value); $('cakeT').textContent=t.toFixed(2); cakeDraw(t,null); };
+  $('cakeRun').onclick=function(){
+    var t=parseFloat($('cakeSlider').value);
+    var pick = t>=0.5 ? 'R' : 'L';
+    cakeDraw(t,pick);
+    if(Math.abs(t-0.5)<0.001) setOut($('cakeOut'),'切点在正中：A 自认两半各值 1/2，B 任选其一。两人都觉得拿到 ≥ 1/2——<b>无嫉妒</b>。', true);
+    else setOut($('cakeOut'),'B 挑走物理上更大的一块（'+(pick==='R'?'右':'左')+'块）。切点偏离 0.5 时，B 直接拿走大块；<b>切者必须自认两半相等</b>才公平。');
+  };
+  $('cake3').onclick=function(){
+    cakeDraw(1/3,null);
+    setOut($('cakeOut'),
+      '<b>三人 Selfridge–Conway 无嫉妒协议（简述）：</b><br>'+
+      '① A 把蛋糕切成自认为各值 1/3 的三块；<br>'+
+      '② B 若认为最大两块不等，把最大那块削下一小片 M 使其与次大相等；<br>'+
+      '③ C 从三块中选一块；若 C 没选被削的那块，B 必须选它；<br>'+
+      '④ 剩余部分与削下的 M 再用两人「我切你选」分配。<br>'+
+      '有限步内，三人都觉得自己不比别人少。', true);
+  };
+  cakeDraw(0.5,null);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>经典难题与猜想 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='32' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%3F%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --gold:#A8751E; --red:#C0392B; --green:#2E7D5B; --blue:#1F4E9C;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--gold); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--gold); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:760px;}
+.quote{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.sec{margin-top:48px;}
+.sec h2{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:26px; border-left:6px solid var(--gold); padding-left:14px;}
+.sec h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+/* 状态筛选 */
+.filters{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px;}
+.filters button{border:1px solid var(--line); background:#fffdf6; color:var(--ink2);
+  border-radius:999px; padding:6px 16px; font-size:14px; cursor:pointer; min-height:38px;}
+.filters button.active{background:var(--gold); color:#fff; border-color:var(--gold);}
+.filters button .n{opacity:.75; margin-left:4px; font-size:12px;}
+/* 卡片列表 */
+.grid{display:grid; gap:16px; margin-top:22px;}
+.card{background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:18px 20px;}
+.card h3{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:19px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+.badge{font-size:12px; padding:2px 11px; border-radius:999px; font-family:"Noto Sans SC",sans-serif; font-weight:400; white-space:nowrap;}
+.badge.open{background:#F7E0DC; color:var(--red);}
+.badge.partial{background:#F7E9D6; color:var(--gold);}
+.badge.solved{background:#E4EFE7; color:var(--green);}
+.card .content{font-size:15px; margin-top:10px; color:var(--ink);}
+.card .progress{font-size:14px; margin-top:8px; color:var(--ink2);}
+.card .papers{margin-top:10px; padding-left:18px; font-size:13px; color:var(--ink2);}
+.card .papers li{margin-top:3px;}
+.card .papers a{color:var(--blue); word-break:break-all;}
+.card .upd{margin-top:10px; font-size:12px; color:var(--ink2); opacity:.8;}
+.empty{background:#fffdf6; border:1px dashed var(--line); border-radius:12px; padding:18px; color:var(--ink2); font-size:14px;}
+/* 考拉兹实验 */
+.demo{background:var(--paper2); border:1px solid var(--line); border-radius:16px; padding:20px; margin-top:20px;}
+.demo input{width:120px; padding:6px 10px; font-size:15px; border:1px solid var(--line); border-radius:8px; background:#fffdf6; font-family:Georgia,serif;}
+.demo .btn{display:inline-block; background:var(--gold); color:#fff; border:none; border-radius:8px; padding:7px 18px; font-size:14px; cursor:pointer; margin-left:10px; min-height:44px;}
+.chain{margin-top:14px; display:flex; flex-wrap:wrap; gap:6px;}
+.chain .c{font-family:Georgia,serif; font-size:13px; background:#fffdf6; border:1px solid var(--line); border-radius:6px; padding:3px 9px;}
+.chain .c.hot{background:var(--red); color:#fff; border-color:var(--red);}
+.demo p.hint{font-size:13px; color:var(--ink2); margin-top:10px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--gold); text-decoration:none;}
+.mj-warn{display:none; margin-top:14px; background:#F7E9D6; border:1px solid var(--gold); color:var(--gold);
+  border-radius:10px; padding:10px 14px; font-size:13px;}
+</style>
+<script>
+/* MathJax 本地 SVG 渲染：仅保留 $...$ 行内配置，不再引用 nofont 或外部字体 */
+window.MathJax = {
+  tex: {
+    inlineMath: [['$','$'],['\\(','\\)']],
+    displayMath: [['$$','$$'],['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code','option'] },
+  startup: { typeset: true }
+};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>经典难题与猜想 <span class="sym">?</span></h1>
+  <p class="sub">有些问题用一句话就能说清，却让最聪明的头脑耗尽一生。下面是一张「已解决 / 部分解决 / 未解决」的数据速览——状态由人工维护，最新论文由更新器从 arXiv 自动刷新。</p>
+  <p class="quote">「一个难题的价值，不在它的答案，而在它逼你想出的一切。」（希尔伯特精神）</p>
+  <div class="mj-warn" id="mjWarn">⚠ 数学公式渲染组件（本地 tex-svg.js）未加载成功——当前可能离线或文件缺失，公式以源码形式显示。联网或确认 <code>../assets/mathjax/es5/tex-svg.js</code> 存在后刷新即可。</div>
+</header>
+
+<div class="sec">
+  <h2>难题总览 <small id="cnt"></small></h2>
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="sec">
+  <h2>动手实验：考拉兹猜想 <small>试试任意起点，看看链条走向</small></h2>
+  <div class="demo">
+    <label for="cIn" style="font-size:14px;margin-right:8px;">起点 n =</label>
+    <input id="cIn" type="number" min="1" max="99999999" value="27">
+    <button class="btn" id="cBtn">开始迭代</button>
+    <p class="hint">偶数 ÷ 2，奇数 ×3+1。27 是著名的「顽皮数字」，链条长达 111 步。红色标记链条中的最大值。</p>
+    <div class="chain" id="chain"></div>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../04-美丽证明/美丽证明集锦.html">美丽证明 →</a>
+  <a href="../08-数学史/数学史时间线.html">数学史 →</a>
+</footer>
+</div>
+
+<script src="经典难题数据.js"></script>
+<script>
+(function(){
+  var DATA = window.CLASSIC_PROBLEMS;
+  var grid = document.getElementById('grid');
+  var filters = document.getElementById('filters');
+  var cnt = document.getElementById('cnt');
+  var cur = 'all';
+
+  function esc(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  // 若文本含 http(s) 链接，拆成「文字 + 可点链接」
+  function paperHtml(p){
+    var m = String(p).match(/(https?:\/\/[^\s]+)/);
+    if(!m){ return '<li>' + esc(p) + '</li>'; }
+    var text = String(p).split(m[1])[0];
+    return '<li>' + esc(text) + '<a href="' + esc(m[1]) + '" target="_blank" rel="noopener">' + esc(m[1]) + '</a></li>';
+  }
+  function badgeCls(st){
+    if(st === '已解决') return 'solved';
+    if(st === '部分解决') return 'partial';
+    return 'open';
+  }
+  function render(){
+    var items = (DATA && DATA.conjectures) || [];
+    var counts = {all: items.length, '未解决':0, '部分解决':0, '已解决':0};
+    items.forEach(function(it){ counts[it.status] = (counts[it.status]||0)+1; });
+    // 筛选按钮
+    if(!filters.children.length){
+      var order = ['all','未解决','部分解决','已解决'];
+      var labels = {all:'全部', '未解决':'未解决', '部分解决':'部分解决', '已解决':'已解决'};
+      order.forEach(function(k){
+        var b = document.createElement('button');
+        b.setAttribute('data-k', k);
+        b.innerHTML = labels[k] + '<span class="n">' + (counts[k]||0) + '</span>';
+        b.addEventListener('click', function(){ cur = k; render(); });
+        filters.appendChild(b);
+      });
+    }
+    Array.prototype.forEach.call(filters.children, function(b){
+      b.className = (b.getAttribute('data-k') === cur) ? 'active' : '';
+    });
+    cnt.textContent = '共 ' + items.length + ' 个 · 数据更新于 ' + (DATA.updatedAt || '—');
+    // 卡片
+    var list = items.filter(function(it){ return cur === 'all' || it.status === cur; });
+    if(!list.length){ grid.innerHTML = '<div class="empty">该分类下暂无条目。</div>'; return; }
+    var html = '';
+    list.forEach(function(it){
+      var papers = (it.key_papers || []).map(paperHtml).join('');
+      html += '<div class="card">'
+        + '<h3>' + esc(it.name) + ' <span class="badge ' + badgeCls(it.status) + '">' + esc(it.status) + '</span></h3>'
+        + '<div class="content">' + esc(it.content) + '</div>'
+        + '<div class="progress">' + esc(it.progress) + '</div>'
+        + (papers ? '<ul class="papers">' + papers + '</ul>' : '')
+        + '<div class="upd">最后更新：' + esc(it.last_update || '—') + '</div>'
+        + '</div>';
+    });
+    grid.innerHTML = html;
+    // MathJax 已就绪则重新排版
+    if(window.MathJax && MathJax.typesetPromise){
+      MathJax.typesetPromise([grid]).catch(function(){});
+    }
+  }
+
+  // 数学公式加载兜底
+  setTimeout(function(){
+    var ok = window.MathJax && MathJax.startup && MathJax.startup.document;
+    if(!ok){ document.getElementById('mjWarn').style.display = 'block'; }
+  }, 4000);
+
+  // 考拉兹交互
+  var inp = document.getElementById('cIn');
+  var btn = document.getElementById('cBtn');
+  var chain = document.getElementById('chain');
+  function run(){
+    var n = parseInt(inp.value, 10);
+    if(isNaN(n) || n < 1){ n = 27; inp.value = 27; }
+    var seq = [n], maxV = n, curN = n;
+    while(curN !== 1 && seq.length < 60){
+      curN = (curN % 2 === 0) ? curN/2 : 3*curN + 1;
+      if(curN > maxV){ maxV = curN; }
+      seq.push(curN);
+    }
+    var h = '';
+    for(var i=0;i<seq.length;i++){
+      h += '<span class="c' + (seq[i]===maxV?' hot':'') + '">' + seq[i] + '</span>';
+    }
+    if(seq[seq.length-1] !== 1){ h += '<span class="c">…（继续迭代中）</span>'; }
+    chain.innerHTML = h + '<p class="hint" style="width:100%;">共显示 ' + seq.length + ' 步，最大值 = ' + maxV + '。至今无人证明它总能回到 1——这就是考拉兹猜想。</p>';
+  }
+  if(btn){ btn.addEventListener('click', run); }
+
+  if(!DATA || !DATA.conjectures){
+    grid.innerHTML = '<div class="empty">未找到 经典难题数据.js，请确认文件与本页在同一目录。</div>';
+  } else {
+    render();
+  }
+  if(btn){ run(); }
+})();
+</script>
+
+</body>
+</html>

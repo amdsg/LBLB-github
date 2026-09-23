@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>美丽证明集锦 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%9A%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --red:#C0392B; --gold:#A8751E; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--red); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--red); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:700px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.sec{margin-top:44px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--red); padding-left:14px;}
+.proof{background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:20px 24px; margin-top:18px;}
+.proof h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px;}
+.proof .claim{font-size:14.5px; margin-top:8px; background:var(--paper2); border-radius:8px; padding:10px 14px;}
+.proof .claim b{color:var(--blue);}
+.proof .why{font-size:13.5px; color:var(--ink2); margin-top:10px; font-style:italic;}
+.proof .why b{color:var(--gold); font-style:normal;}
+.proof ol{margin:10px 0 0 22px; font-size:14.5px;}
+.proof li{margin:6px 0;}
+.proof .f{font-family:Georgia,"Cambria Math",serif; font-style:italic; font-size:15px;}
+details{margin-top:10px;}
+summary{cursor:pointer; font-size:14px; color:var(--red); user-select:none; display:inline-block; padding:4px 0;}
+summary:hover{text-decoration:underline;}
+.fig{background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:18px; margin-top:18px;}
+.fig svg{width:100%; height:auto; display:block;}
+.fig .cap{font-size:13px; color:var(--ink2); text-align:center; margin-top:8px;}
+.fig p{font-size:14.5px; margin-top:10px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px;}
+footer a{color:var(--red); text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>美丽证明集锦 <span class="sym">√</span></h1>
+  <p class="sub">数学家说「美」，通常指：最少的前提、最意外的连接、最干净的收束。这里收集的证明，值得一年读一遍。</p>
+  <p class="quote">「数学的证明就像诗——有的只是正确，有的美得令人屏息。」（常引戈弗雷·哈代）</p>
+</header>
+
+<div class="sec">
+  <h2>经典九证</h2>
+
+  <div class="proof">
+    <h3>1. 素数有无穷多个（欧几里得，约公元前 300 年）</h3>
+    <p class="claim"><b>结论：</b>素数的个数是无限的。</p>
+    <ol>
+      <li>假设素数只有有限多个：p₁, p₂, …, pₖ。</li>
+      <li>构造 N = p₁·p₂·…·pₖ + 1。</li>
+      <li>N 除以任何 pᵢ 都余 1，所以 N 不被任何「已知素数」整除。</li>
+      <li>但 N &gt; 1，必有素因子 q。这个 q 不在列表里——矛盾。</li>
+    </ol>
+    <p class="why"><b>为何美：</b>一个「更大的数」没有用任何新工具，只是把已有的素数乘起来再加一，就逼出了一个新素数。两千年后仍在教科书第一页。</p>
+  </div>
+
+  <div class="proof">
+    <h3>2. √2 是无理数（古希腊，反证法的教科书案例）</h3>
+    <p class="claim"><b>结论：</b>不存在整数 p, q（q ≠ 0）使 (p/q)² = 2。</p>
+    <ol>
+      <li>假设 √2 = p/q，其中 p/q 是最简分数（p、q 互素）。</li>
+      <li>两边平方：2q² = p²，所以 p² 是偶数，p 是偶数，写 p = 2m。</li>
+      <li>代回：2q² = 4m²，即 q² = 2m²，所以 q 也是偶数。</li>
+      <li>p、q 都是偶数，与「互素」矛盾。故 √2 无理。</li>
+    </ol>
+    <p class="why"><b>为何美：</b>从「假设它有理」出发，只用了「偶数的平方是偶数」这一件事，就把假设碾成粉末。传说发现者因此被扔进了海里。</p>
+  </div>
+
+  <div class="fig">
+    <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;">3. 立方和 = 和的平方：无字证明</h3>
+    <svg viewBox="0 0 620 300" role="img" aria-label="立方和等于和的平方的无字证明">
+      <g transform="translate(40,20)">
+        <rect x="0" y="0" width="300" height="300" fill="none" stroke="#22262B" stroke-width="2"/>
+        <rect x="0" y="0" width="50" height="50" fill="#F7E9D6" stroke="#C0392B" stroke-width="2"/>
+        <rect x="50" y="0" width="100" height="100" fill="#F3E3C4" stroke="#C0392B" stroke-width="2"/>
+        <rect x="150" y="0" width="150" height="150" fill="#E8F0E8" stroke="#C0392B" stroke-width="2"/>
+        <rect x="0" y="50" width="50" height="100" fill="#F3E3C4" stroke="#C0392B" stroke-width="1"/>
+        <rect x="0" y="150" width="50" height="150" fill="#E8F0E8" stroke="#C0392B" stroke-width="1"/>
+        <rect x="50" y="100" width="100" height="150" fill="#E8F0E8" stroke="#C0392B" stroke-width="1"/>
+        <text x="25" y="32" font-size="13" text-anchor="middle" fill="#C0392B">1</text>
+        <text x="100" y="60" font-size="15" text-anchor="middle" fill="#A8751E">2×2</text>
+        <text x="225" y="85" font-size="17" text-anchor="middle" fill="#2E7D5B">3×3</text>
+        <text x="25" y="118" font-size="12" text-anchor="middle" fill="#4A5258">2</text>
+        <text x="25" y="232" font-size="12" text-anchor="middle" fill="#4A5258">3</text>
+        <text x="100" y="180" font-size="12" text-anchor="middle" fill="#4A5258">3</text>
+      </g>
+      <g transform="translate(400,20)">
+        <text x="150" y="80" font-size="15" fill="#22262B" text-anchor="middle">面积 = (1+2+3)² = 36</text>
+        <text x="150" y="110" font-size="15" fill="#22262B" text-anchor="middle">而：</text>
+        <text x="150" y="145" font-size="15" fill="#C0392B" text-anchor="middle">1³ = 1</text>
+        <text x="150" y="180" font-size="15" fill="#A8751E" text-anchor="middle">2³ = 3² − 1² = 8</text>
+        <text x="150" y="215" font-size="15" fill="#2E7D5B" text-anchor="middle">3³ = 6² − 3² = 27</text>
+        <text x="150" y="255" font-size="14" fill="#22262B" text-anchor="middle">1³+2³+3³ = (1+2+3)²</text>
+      </g>
+    </svg>
+    <div class="cap">无字证明：1³ + 2³ + … + n³ = (1 + 2 + … + n)²。每一圈「L 形」的面积恰好是 k³。</div>
+    <p><b>结论：</b>1³ + 2³ + … + n³ = [n(n+1)/2]²。这也许是「看到的证明」里最美的一幅。</p>
+  </div>
+
+  <div class="proof">
+    <h3>4. 高斯求和：1 + 2 + … + n = n(n+1)/2</h3>
+    <p class="claim"><b>结论：</b>1 + 2 + … + 100 = 5050（高斯 9 岁时的「速算」）。</p>
+    <ol>
+      <li>把数列正着写一遍，再倒着写一遍：S = 1+2+…+n；S = n+(n−1)+…+1。</li>
+      <li>两式相加：2S = (n+1) 出现 n 次，即 2S = n(n+1)。</li>
+      <li>于是 S = n(n+1)/2。</li>
+    </ol>
+    <p class="why"><b>为何美：</b>没有算任何一列加法，只把数列「折叠」，答案自己跳出来。配对的思想是组合数学的种子。</p>
+  </div>
+
+  <div class="proof">
+    <h3>5. 欧拉恒等式：$e^{iπ}$ + 1 = 0</h3>
+    <p class="claim"><b>结论：</b>e、i、π、1、0——五个最重要的常数，一个式子全装下。</p>
+    <details>
+      <summary>展开证明（幂级数路线）</summary>
+      <ol>
+        <li>指数函数的幂级数：eˣ = 1 + x + x²/2! + x³/3! + x⁴/4! + …</li>
+        <li>代入 x = iθ，按 i² = −1 整理实部与虚部：</li>
+        <li>实部 = 1 − θ²/2! + θ⁴/4! − … = cos θ；虚部 = θ − θ³/3! + θ⁵/5! − … = sin θ。</li>
+        <li>故 $e^{iθ}$ = cos θ + i·sin θ；取 θ = π：$e^{iπ}$ = −1。</li>
+      </ol>
+    </details>
+    <p class="why"><b>为何美：</b>三角函数的圆、指数函数的增长、虚数的旋转——被幂级数这一条暗线焊在一起。费曼称它为「我们最卓越的珍宝」。</p>
+  </div>
+
+  <div class="proof">
+    <h3>6. 巴塞尔问题：1 + 1/4 + 1/9 + … = π²/6</h3>
+    <p class="claim"><b>结论：</b>Σ 1/n² = π²/6 ≈ 1.6449。π 出现在与圆毫无关系的级数里。</p>
+    <details>
+      <summary>展开证明（欧拉 1735 的启发式论证）</summary>
+      <ol>
+        <li>把 sin x 写成「无穷多项式」：sin x / x = 1 − x²/6 + x⁴/120 − …</li>
+        <li>sin x 的零点在 x = ±π, ±2π, ±3π, …，类比因式分解：</li>
+        <li>sin x / x = (1 − x²/π²)(1 − x²/4π²)(1 − x²/9π²)…</li>
+        <li>展开右端，x² 项的系数 = −(1/π² + 1/4π² + 1/9π² + …)；与左端系数 −1/6 比较：</li>
+        <li>−(1/π²)Σ1/n² = −1/6，得 Σ1/n² = π²/6。</li>
+      </ol>
+      <p style="font-size:13px;color:var(--ink2);margin-top:8px;">（欧拉当时省略了严格性，但答案正确；后来黎曼 ζ 函数与魏尔斯特拉斯因子分解定理补全了地基。）</p>
+    </details>
+    <p class="why"><b>为何美：</b>从「零点」反推「系数」，把多项式直觉大胆搬到无穷情形——这是「启发式 = 真理探测器」的完美标本。</p>
+  </div>
+
+  <div class="proof">
+    <h3>7. 康托尔对角线：实数比整数多</h3>
+    <p class="claim"><b>结论：</b>|N| &lt; |R|——0 和 1 之间的实数都数不完。</p>
+    <ol>
+      <li>假设 (0,1) 内所有实数可排成列表：r₁, r₂, r₃, …</li>
+      <li>构造新数 d：第 n 位小数取「不等于 rₙ 第 n 位」的数字（如遇 5 取 6，否则取 5）。</li>
+      <li>d 与每个 rₙ 都在第 n 位不同，所以 d 不在列表中——矛盾。</li>
+    </ol>
+    <p class="why"><b>为何美：</b>一条对角线同时是「构造」和「反驳」。它让你第一次看见：无穷也有大小，且一个大得吓人。</p>
+  </div>
+
+  <div class="fig">
+    <h3 style="font-family:Georgia,'Noto Serif SC',serif;font-size:20px;">8. 几何级数：1/2 + 1/4 + 1/8 + … = 1</h3>
+    <svg viewBox="0 0 620 300" role="img" aria-label="几何级数无字证明">
+      <g transform="translate(60,20)">
+        <rect x="0" y="0" width="240" height="240" fill="#F7E9D6" stroke="#22262B" stroke-width="2"/>
+        <rect x="0" y="0" width="120" height="240" fill="#E8F0E8" stroke="#C0392B" stroke-width="2"/>
+        <rect x="120" y="0" width="120" height="120" fill="#E3E9F4" stroke="#1F4E9C" stroke-width="2"/>
+        <rect x="120" y="120" width="60" height="120" fill="#F3E3C4" stroke="#A8751E" stroke-width="2"/>
+        <rect x="180" y="120" width="60" height="60" fill="#EFE7F7" stroke="#6B4E9E" stroke-width="2"/>
+        <text x="60" y="130" font-size="18" text-anchor="middle" fill="#C0392B">1/2</text>
+        <text x="180" y="65" font-size="15" text-anchor="middle" fill="#1F4E9C">1/4</text>
+        <text x="150" y="185" font-size="14" text-anchor="middle" fill="#A8751E">1/8</text>
+        <text x="210" y="155" font-size="13" text-anchor="middle" fill="#6B4E9E">1/16</text>
+      </g>
+      <g transform="translate(360,20)">
+        <text x="140" y="80" font-size="16" fill="#22262B" text-anchor="middle">每次取「剩下的」一半：</text>
+        <text x="140" y="120" font-size="16" fill="#22262B" text-anchor="middle">1/2 + 1/4 + 1/8 + …</text>
+        <text x="140" y="160" font-size="16" fill="#C0462E" text-anchor="middle">= 1（整个正方形）</text>
+        <text x="140" y="205" font-size="14" fill="#4A5258" text-anchor="middle">一般地：Σ rⁿ = 1/(1−r)，|r|&lt;1</text>
+      </g>
+    </svg>
+    <div class="cap">无字证明：正方形的一半 + 四分之一 + 八分之一……最终覆盖整个正方形。</div>
+  </div>
+
+  <div class="proof">
+    <h3>9. 费马小定理的组合证明（进阶）</h3>
+    <p class="claim"><b>结论：</b>p 为素数、p ∤ a 时，$a^p$ − a 被 p 整除，即 $a^p$ ≡ a (mod p)。</p>
+    <ol>
+      <li>想象用 a 种颜色的珠子串项链，长度为 p（不考虑旋转对称）。</li>
+      <li>总项链数 = $a^p$。其中「全部同色」的有 a 条。</li>
+      <li>其余 $a^p$ − a 条：因为 p 是素数，旋转 p 次必然产生 p 个不同的项链（无更小周期）。</li>
+      <li>所以 $a^p$ − a 是 p 的倍数。</li>
+    </ol>
+    <p class="why"><b>为何美：</b>一条数论定理，被「数项链」数出来。同一个计数，两种视角——这就是组合证明的魅力。</p>
+  </div>
+</div>
+
+
+<div class="sec">
+  <h2>补充：六个令人叫绝的证明</h2>
+
+  <div class="proof">
+    <h3>10. 巴塞尔问题（欧拉，1734）</h3>
+    <p class="claim"><b>结论：</b>$\sum_{n=1}^\infty\frac{1}{n^2}=\frac{\pi^2}{6}$。</p>
+    <p>欧拉大胆地把 $\frac{\sin x}{x}$ 当作「无穷次多项式」，用其零点 $\pm\pi,\pm2\pi,\dots$ 写出乘积展开：</p>
+    $$\frac{\sin x}{x}=\prod_{n=1}^\infty\left(1-\frac{x^2}{n^2\pi^2}\right).$$
+    <p>另一方面 $\frac{\sin x}{x}=1-\frac{x^2}{6}+\frac{x^4}{120}-\cdots$。比较 $x^2$ 系数：$-\frac{1}{6}=-\frac{1}{\pi^2}\sum\frac{1}{n^2}$，得证。</p>
+    <p class="why"><b>为何美：</b>把有限多项式的因式分解「想当然」地推广到无穷——欧拉的直觉跨越了严谨性，一个世纪后被 Weierstrass 严格化。</p>
+  </div>
+
+  <div class="proof">
+    <h3>11. 布劳威尔不动点定理（拓扑方法）</h3>
+    <p class="claim"><b>结论：</b>连续映射 $f:B^n\to B^n$（闭球到自身）必有不动点。</p>
+    <p><b>证明（反证）：</b>若 $f(x)\ne x$ 对所有 $x$，则从 $f(x)$ 向 $x$ 作射线交球面 $S^{n-1}$ 于 $r(x)$。$r:B^n\to S^{n-1}$ 是连续收缩映射（$r|_{S^{n-1}}=\mathrm{id}$）。但拓扑学证明：$n$ 维球到其边界不存在连续收缩——矛盾。</p>
+    <p class="why"><b>为何美：</b>「搅拌咖啡后总有一点没动」——用纯拓扑证明了分析事实，是「软分析」胜过「硬估计」的典范。</p>
+  </div>
+
+  <div class="proof">
+    <h3>12. 算术-几何均值不等式（反向归纳法）</h3>
+    <p class="claim"><b>结论：</b>对 $a_i>0$，$\frac{a_1+\cdots+a_n}{n}\ge\sqrt[n]{a_1\cdots a_n}$。</p>
+    <p><b>证明（柯西）：</b>先证 $n=2^k$ 时成立（对 $k$ 归纳，每步用 $\frac{a+b}{2}\ge\sqrt{ab}$）。对一般 $n$，取 $2^m>n$，令 $a_{n+1}=\cdots=a_{2^m}=A$（算术平均），则 $2^m$ 元 AGM 给出 $A\ge(a_1\cdots a_n A^{2^m-n})^{1/2^m}$，化简得 $A\ge G$。</p>
+    <p class="why"><b>为何美：</b>先跳到「容易的」$2^k$，再用「后退」覆盖所有 $n$——反向归纳是数学归纳法的优雅变体。</p>
+  </div>
+
+  <div class="proof">
+    <h3>13. 毕克定理（格点多边形面积）</h3>
+    <p class="claim"><b>结论：</b>顶点在格点上的简单多边形面积 $A=I+\frac{B}{2}-1$，$I$ 为内部格点数，$B$ 为边界格点数。</p>
+    <p><b>证明思路：</b>(1) 对格点三角形用鞋带公式+Pick 验证；(2) 两个相邻多边形合并时，$A$ 相加，$B$ 减 2（公共边两个端点各算一次），$I$ 加公共边内点数，公式守恒；(3) 任意格点多边形可剖分为格点三角形。</p>
+    <p class="why"><b>为何美：</b>面积这种「连续量」居然只由离散的格点计数决定，是离散与连续的神奇桥梁。</p>
+  </div>
+
+  <div class="proof">
+    <h3>14. $\sqrt{2}$ 是无理数（几何证明，古希腊）</h3>
+    <p class="claim"><b>结论：</b>$\sqrt{2}\notin\mathbb{Q}$。</p>
+    <p><b>证明：</b>设正方形 $ABCD$ 边长为 $a$，对角线 $AC=b$。若 $b/a=m/n$ 既约。在 $AC$ 上取 $E$ 使 $CE=CB=a$，则 $AE=b-a$。过 $E$ 作 $AC$ 垂线交 $AB$ 于 $F$，则 $AEF$ 也是等腰直角三角形，$AF=AE=b-a$，$FB=AB-AF=2a-b$。得更小的等腰直角三角形，边长 $b-a$ 与 $2a-b$，且 $\frac{b-a}{2a-b}=\frac{b}{a}$。无限递降——矛盾。</p>
+    <p class="why"><b>为何美：</b>不用任何代数，仅用直尺圆规作图和「无限递降」就证明了无理数的存在，震撼了古希腊毕达哥拉斯学派。</p>
+  </div>
+
+  <div class="proof">
+    <h3>15. 欧拉公式 $V-E+F=2$（多面体）</h3>
+    <p class="claim"><b>结论：</b>凸多面体顶点数 $V$、棱数 $E$、面数 $F$ 满足 $V-E+F=2$。</p>
+    <p><b>证明（柯西）：</b>去掉一个面并把多面体展开到平面，需证 $V-E+F=1$。反复执行：(a) 若有不属于任何三角形的面，加一条对角线——$E$、$F$ 各 +1，$V-E+F$ 不变；(b) 若只剩三角形，逐个去掉边界三角形。去一个边界三角形时，若去掉 1 棱 1 面则 $V-E+F$ 不变，若去 2 棱 1 顶点 1 面也不变。最后剩 1 个三角形：$V=3,E=3,F=1$，$V-E+F=1$。</p>
+    <p class="why"><b>为何美：</b>拓扑不变量的鼻祖——不关心形状大小，只关心「连接关系」，开启了拓扑学的大门。</p>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../03-经典难题/经典难题与猜想.html">经典难题 ←</a>
+  <a href="../05-可视化/可视化导航.html">交互可视化 →</a>
+</footer>
+</div>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

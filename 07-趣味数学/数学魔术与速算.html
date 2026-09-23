@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>数学魔术与速算 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%21%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--gold); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--gold); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:720px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.sec{margin-top:48px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--gold); padding-left:14px;}
+.sec h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; margin-top:20px;}
+.card{background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 18px;}
+.card h3{font-family:Georgia,"Noto Serif SC",serif; font-size:18px; color:var(--gold);}
+.card p{font-size:14px; margin-top:6px;}
+.card .f{font-family:Georgia,"Cambria Math",serif; font-style:italic; color:var(--ink); background:var(--paper2); border-radius:6px; padding:2px 8px; font-size:14px; display:inline-block; margin-top:6px;}
+.demo{background:var(--paper2); border:1px solid var(--line); border-radius:16px; padding:20px; margin-top:20px;}
+.demo .btn{display:inline-block; background:var(--gold); color:#fff; border:none; border-radius:8px; padding:8px 16px; font-size:14px; cursor:pointer; margin:0 8px 10px 0; min-height:44px;}
+.demo .btn.gray{background:#8A8270;}
+.demo input[type=number]{width:120px; padding:7px 10px; border:1px solid var(--line); border-radius:6px; background:#fffdf6; font-size:16px;}
+.demo input[type=text]{width:200px; padding:7px 10px; border:1px solid var(--line); border-radius:6px; background:#fffdf6; font-size:16px;}
+.demo label{font-size:14px;}
+.demo p.hint{font-size:13.5px; color:var(--ink2); margin-top:10px;}
+.demo .out{font-size:18px; font-family:Georgia,serif; margin-top:10px; min-height:28px;}
+.demo .out b{color:var(--red);}
+.demo select{padding:7px 10px; border:1px solid var(--line); border-radius:6px; background:#fffdf6; font-size:15px; margin-right:6px; min-height:44px;}
+.demo .ok{color:var(--green); font-weight:700;} .demo .bad{color:var(--red); font-weight:700;}
+.demo .step{margin-top:6px; padding-left:6px; border-left:3px solid var(--gold);}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--gold); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+}
+</style>
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true, processEnvironments: true, processRefs: true }, options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code','option'] }, startup: { typeset: true } };
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>数学魔术与速算 <span class="sym">!</span></h1>
+  <p class="sub">心算不是天赋，是同余与代数恒等式的把戏。学会这些技巧，你能在朋友面前「秒答」看似不可能的算术题——而每一步都有数学在撑腰。</p>
+  <p class="quote">「速算的秘密：永远找一个更简单的等价问题。」</p>
+</header>
+
+<div class="sec">
+  <h2>五大速算魔法 <small>每个都附原理，知其然更知其所以然</small></h2>
+  <div class="cards">
+    <div class="card">
+      <h3>① 尾数为 5 的平方</h3>
+      <p>n5² 的答案 = n(n+1) 接上 25。35² = 3×4 接 25 = 1225；115² = 11×12 接 25 = 13225。</p>
+      <span class="f">(10a+5)² = 100a(a+1) + 25</span>
+    </div>
+    <div class="card">
+      <h3>② 数字根（模 9）</h3>
+      <p>一个数模 9 的余数 = 各位数字反复相加。用来验算：和的数字根 = 数字根之和。9123 的数字根：9+1+2+3=15→1+5=6。</p>
+      <span class="f">n ≡ (数字和) (mod 9)</span>
+    </div>
+    <div class="card">
+      <h3>③ 两位数乘 11</h3>
+      <p>ab × 11 = 把 a+b 夹在中间：34×11=374（3+4=7）。若 a+b≥10 则进位：89×11=979。</p>
+      <span class="f">(10a+b)×11 = 100a + 10(a+b) + b</span>
+    </div>
+    <div class="card">
+      <h3>④ 与 99…9 相乘</h3>
+      <p>n × 99 = 100n − n；n × 999 = 1000n − n。47×99 = 4700−47 = 4653。补数法：47×99，47−1=46，补数 53 → 4653。</p>
+      <span class="f">n×10ᵏ − n = n(10ᵏ−1)</span>
+    </div>
+    <div class="card">
+      <h3>⑤ 平均法求平方</h3>
+      <p>47² = 45² + 2×45×2 + 4 = 2025+180+4 = 2209。以最近的整十数为锚点展开。</p>
+      <span class="f">(a±d)² = a² ± 2ad + d²</span>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>速算技巧类 <small>原理 + 公式 + 示例，下方配随机练习器</small></h2>
+  <div class="cards">
+    <div class="card">
+      <h3>⑥ 任意两位数平方（凑整展开）</h3>
+      <p>把接近整十的数写成「整十 ± 小尾数」，用完全平方展开，先算整十平方再补小项。</p>
+      <span class="f">$(a\pm b)^2=a^2\pm 2ab+b^2$</span>
+      <p>示例：$38^2=(40-2)^2=1600-160+4=1444$。</p>
+    </div>
+    <div class="card">
+      <h3>⑦ 11~19 区间乘法</h3>
+      <p>十几乘十几：先把一个数加上另一个的个位，乘 10，再加两个个位之积。</p>
+      <span class="f">$(10+a)(10+b)=10(10+a+b)+ab$</span>
+      <p>示例：$14\times17=(14+7)\times10+4\times7=210+28=238$。</p>
+    </div>
+    <div class="card">
+      <h3>⑧ 接近 100/1000 的补数乘法</h3>
+      <p>两数都略小于整百，补数即它与整百之差；前半段用整百减两补数，后半段乘两补数。</p>
+      <span class="f">$(100-a)(100-b)=100(100-a-b)+ab$</span>
+      <p>示例：$97\times96=100\times93+3\times4=9312$。</p>
+    </div>
+    <div class="card">
+      <h3>⑨ 乘除 5 / 25 / 125</h3>
+      <p>把「÷5」换成「×2÷10」，把「×5/×25/×125」换成先乘 10 的幂再平分。</p>
+      <span class="f">$\times5=\times10\div2$；$\times25=\times100\div4$；$\times125=\times1000\div8$</span>
+      <p>示例：$128\times25=12800\div4=3200$；$135\div5=270\div10=27$。</p>
+    </div>
+    <div class="card">
+      <h3>⑩ 平方差公式</h3>
+      <p>两数若关于某个中间数对称（一增一减同量），乘积等于中间数平方减半差平方。</p>
+      <span class="f">$(a+b)(a-b)=a^2-b^2$</span>
+      <p>示例：$53\times47=(50+3)(50-3)=2500-9=2491$。</p>
+    </div>
+    <div class="card">
+      <h3>⑪ 整除判据（7 / 11 / 13 / 37）</h3>
+      <p>$1001=7\times11\times13$ 且 $1000\equiv-1$，故从右三位一段<b>交错加减</b>判 7/11/13；$1000\equiv1\pmod{37}$（$999=27\times37$）故三位段直接相加判 37；11 另看奇偶位差。</p>
+      <span class="f">11：奇位和 − 偶位和，须被 11 整除</span>
+      <p>示例：$1331$ 奇位 $1+3=4$、偶位 $3+1=4$，差 $0$，故被 11 整除。</p>
+    </div>
+    <div class="card">
+      <h3>⑫ 快速近似开方（牛顿迭代）</h3>
+      <p>先取最接近的整数 $x_0$ 作初值，再反复用迭代式把误差平方地压小，一两次即够。</p>
+      <span class="f">$x\leftarrow \tfrac12\left(x+\dfrac{N}{x}\right)$</span>
+      <p>示例：估 $\sqrt{47}$，取 $x_0=7$，$x_1=\tfrac12(7+47/7)\approx6.86$。</p>
+    </div>
+    <div class="card">
+      <h3>⑬ 十字相乘法（因式分解）</h3>
+      <p>分解 $x^2+bx+c$：找两数 $m,n$，使其和等于一次项系数 $b$、积等于常数项 $c$。</p>
+      <span class="f">$x^2+bx+c=(x+m)(x+n)$，$m+n=b,\ mn=c$</span>
+      <p>示例：$x^2+7x+12=(x+3)(x+4)$（$3+4=7,\ 3\times4=12$）。</p>
+    </div>
+    <div class="card">
+      <h3>⑭ 循环小数规律（$1/p$）</h3>
+      <p>$p$ 为非 2、5 的质数时，$1/p$ 的循环节长度是使 $10^k\equiv1\pmod p$ 成立的最小 $k$。</p>
+      <span class="f">$\dfrac1p=0.\overline{a_1a_2\cdots a_k}$</span>
+      <p>示例：$\frac17=0.\overline{142857}$，循环节长 $k=6$。</p>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>数学魔术类 <small>原理 + 公式 + 示例，下方配可玩的交互演示</small></h2>
+  <div class="cards">
+    <div class="card">
+      <h3>⑮ 读心术（代数恒等式）</h3>
+      <p>让观众做一串运算后只告诉你最终结果，你逆一步即可还原原数——因为整套设计就是一个恒等式。</p>
+      <span class="f">$\dfrac{a(x+b)-c}{a}=x+\dfrac{ab-c}{a}$</span>
+      <p>示例：$((3(x+5)-9)/3)=x+2$，观众报 $r$，原数 $=r-2$。</p>
+    </div>
+    <div class="card">
+      <h3>⑯ 6174 卡普雷卡常数</h3>
+      <p>任取数字不全相同的四位数，各位降序排列减升序排列，反复操作，至多 7 步必得 $6174$。</p>
+      <span class="f">$D(n)=\text{降序}-\text{升序}$，迭代 $\to 6174$</span>
+      <p>示例：$3524\to5432-2345=3087\to8730-0378=8352\to8532-2358=6174$。</p>
+    </div>
+    <div class="card">
+      <h3>⑰ 奇数阶幻方（罗伯法）</h3>
+      <p>从首行中央起，斜右上填数；出界则绕回，遇占位则下移一格。三阶幻方每行/列/对角和恒为 $15$。</p>
+      <span class="f">$S_n=\dfrac{n(n^2+1)}{2}$（$n=3$ 时 $S=15$）</span>
+      <p>示例：$4\ 9\ 2\ /\ 3\ 5\ 7\ /\ 8\ 1\ 6$，每行 $=15$。</p>
+    </div>
+    <div class="card">
+      <h3>⑱ 24 点策略</h3>
+      <p>用给定的四个数各一次，通过 $+-\times\div$ 与括号凑出 $24$。倒推关键：$24=3\times8=4\times6=12\times2=30-6=120\div5$。</p>
+      <span class="f">$\{a,b,c,d\}\xrightarrow{+,-,\times,\div,()}24$</span>
+      <p>示例：$3,3,8,8\to8/(3-8/3)=24$。</p>
+    </div>
+    <div class="card">
+      <h3>⑲ 猜生日（二进制编码）</h3>
+      <p>把 1~31 号写成五位二进制，每一位做成一张卡片。观众只说「生日在这张卡上吗」，你按位相加即得日数。</p>
+      <span class="f">$d=\sum_{k=0}^{4} b_k\cdot 2^{k}$，$b_k\in\{0,1\}$</span>
+      <p>示例：生日在卡 1、卡 3、卡 5 上 $\to 1+4+16=21$ 号。</p>
+    </div>
+    <div class="card">
+      <h3>⑳ 模 11 校验码</h3>
+      <p>ISBN-10 等校验位利用加权和模 11：前 $n-1$ 位按权重乘积累加，末位补足使总和 $\equiv0\pmod{11}$。</p>
+      <span class="f">$\sum_{i=1}^{n-1} w_i d_i + d_n \equiv 0 \pmod{11}$</span>
+      <p>示例：$w=(10,9,\dots,2)$，校验位 $d_n\equiv-\sum w_i d_i\pmod{11}$。</p>
+    </div>
+    <div class="card">
+      <h3>㉑ 贝特朗盒子悖论</h3>
+      <p>三盒分别装 $\{金,金\},\{银,银\},\{金,银\}$。随机取盒再取一枚是金币，猜另一枚也是金币的概率——直觉是 $\tfrac12$，实为 $\tfrac23$。</p>
+      <span class="f">$P(\text{另=金}\mid \text{抽到金})=\dfrac{1/3}{1/2}=\dfrac23$</span>
+      <p>示例：三个金币 $g_1,g_2,g_3$，抽到任一已知是金，其中两个来自「金金盒」。</p>
+    </div>
+    <div class="card">
+      <h3>㉒ 页码乘积魔法</h3>
+      <p>翻开书左右两页是连续整数 $n$ 与 $n+1$。观众告诉你两页页码之积，你立刻报出两个页码。</p>
+      <span class="f">$P=n(n+1)\Rightarrow n=\dfrac{-1+\sqrt{1+4P}}{2}$</span>
+      <p>示例：积 $2450\to n=49$，两页为 $49$ 与 $50$。</p>
+    </div>
+    <div class="card">
+      <h3>㉓ 斐波那契 10 项和魔术</h3>
+      <p>任写两个数，按斐波那契规则续填 10 项，观众求和；你心算时只需把第 7 项乘 $11$。</p>
+      <span class="f">$\sum_{i=1}^{10}F_{m+i}=11\,F_{m+7}$</span>
+      <p>示例：$3,5,8,13,21,34,55,89,144,233$ 求和 $=605=11\times55$。</p>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>读心术逆推器 <small>观众报来运算结果，按恒等式反推原数</small></h2>
+  <div class="demo">
+    <p style="font-size:14.5px;">流程：观众想 $x$ → 加 5 → 乘 3 → 减 9 → 除以 3 → 得到结果 $r$。把 $r$ 填进来。</p>
+    <label>观众报来的结果 r = </label><input type="number" id="mrResult" value="17">
+    <button class="btn" id="mrBtn">还原原数</button>
+    <div class="out" id="mrOut"></div>
+    <p class="hint">恒等式：$((3(x+5)-9)/3)=x+2$，所以 $x=r-2$。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>卡普雷卡常数演示 <small>输入任意四位数，看几步收敛到 6174</small></h2>
+  <div class="demo">
+    <label>四位数（数字不全相同）：</label><input type="number" id="kpInput" value="3524" min="1000" max="9999">
+    <button class="btn" id="kpBtn">开始迭代</button>
+    <div class="out" id="kpOut"></div>
+    <p class="hint">每次把各位数字降序减升序，直到 6174（或 0000，当四位全相同时）。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>奇数阶幻方生成器 <small>罗伯法自动构造 3×3 / 5×5 / 7×7 幻方</small></h2>
+  <div class="demo">
+    <label>阶数：</label>
+    <select id="msOrder"><option value="3">3 × 3</option><option value="5">5 × 5</option><option value="7">7 × 7</option></select>
+    <button class="btn" id="msBtn">生成幻方</button>
+    <div id="msOut" class="out" style="font-family:monospace;"></div>
+    <p class="hint">幻和 $S=n(n^2+1)/2$；每行、每列、两条对角线之和都相等。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>24 点游戏 <small>四个数各用一次，凑出 24</small></h2>
+  <div class="demo">
+    <div id="fgNums" style="font-size:26px;letter-spacing:8px;margin:6px 0;"></div>
+    <button class="btn" id="fgNew">换一组</button>
+    <div style="margin-top:8px;">
+      <input type="text" id="fgExpr" placeholder="输入算式，如 8/(3-8/3)" style="width:280px;">
+      <button class="btn" id="fgCheck">判定</button>
+      <button class="btn gray" id="fgHint">提示一个解</button>
+    </div>
+    <div class="out" id="fgOut"></div>
+    <p class="hint">数字各用一次，可用 + − × ÷ 与括号；除以 0 视为非法。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>二进制猜生日 <small>点选「生日在这张卡上」，程序按位相加</small></h2>
+  <div class="demo">
+    <div id="bdCards" style="display:flex;flex-wrap:wrap;gap:10px;margin:8px 0;"></div>
+    <button class="btn" id="bdBtn">猜生日</button>
+    <button class="btn gray" id="bdReset">重置</button>
+    <div class="out" id="bdOut"></div>
+    <p class="hint">每张卡代表二进制的一位（1/2/4/8/16）。你的生日在哪些卡上，就把那些卡左上角的数字相加。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>模 11 校验位计算 <small>输入前 9 位，自动求 ISBN-10 校验位</small></h2>
+  <div class="demo">
+    <label>前 9 位数字：</label><input type="text" id="ckInput" value="732101111" style="width:180px;">
+    <button class="btn" id="ckBtn">计算校验位</button>
+    <div class="out" id="ckOut"></div>
+    <p class="hint">权重 10,9,8,7,6,5,4,3,2；加权和模 11，校验位使总和 ≡ 0；余 10 记为 X。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>贝特朗盒子悖论模拟器 <small>跑 1000 次，看「另一枚是金」的频率</small></h2>
+  <div class="demo">
+    <button class="btn" id="btBtn">模拟 1000 次</button>
+    <div class="out" id="btOut"></div>
+    <p class="hint">随机取盒再随机取一枚；只统计「第一枚是金」的情形，看另一枚也是金的频率趋近 2/3 而非 1/2。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>页码乘积还原 <small>输入左右两页页码之积，反推页码</small></h2>
+  <div class="demo">
+    <label>两页页码之积 P = </label><input type="number" id="pgInput" value="2450">
+    <button class="btn" id="pgBtn">还原页码</button>
+    <div class="out" id="pgOut"></div>
+    <p class="hint">左右两页是连续整数 n 与 n+1，由 P=n(n+1) 解出 n=(−1+√(1+4P))/2。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>斐波那契 10 项和魔术 <small>任写两数续填 10 项，第 7 项乘 11 即总和</small></h2>
+  <div class="demo">
+    <label>起始两数：</label>
+    <input type="number" id="fbA" value="3" style="width:80px;">
+    <input type="number" id="fbB" value="5" style="width:80px;">
+    <button class="btn" id="fbBtn">生成 10 项并求和</button>
+    <div class="out" id="fbOut"></div>
+    <p class="hint">恒等式：$F_{m+1}+\cdots+F_{m+10}=11\,F_{m+7}$，不必逐项加，直接用第 7 项 ×11。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>速算技巧练习器 <small>随机出题 · 即时判定 · 点「逐步讲解」看思路</small></h2>
+  <div class="demo">
+    <label>选择技巧：</label>
+    <select id="trickSel"></select>
+    <button class="btn" id="qNew">换一题</button>
+    <div id="qText" style="font-size:19px;margin-top:14px;min-height:28px;"></div>
+    <div style="margin-top:10px;">
+      <input type="text" id="qAns" placeholder="输入你的答案（分解题填 两数，逗号分隔）" style="width:280px;">
+      <button class="btn" id="qCheck">提交</button>
+      <button class="btn gray" id="qStep">逐步讲解</button>
+    </div>
+    <div class="out" id="qOut"></div>
+    <div id="qSteps"></div>
+    <p class="hint">答案不区分前后顺序；平方差、补数、十字相乘等以整数为准；开方题允许 ±0.1 误差。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>动手实验：数字根验算器 <small>输入任意大数，看数字根如何「一眼看穿」</small></h2>
+  <div class="demo">
+    <label>输入一个整数：</label>
+    <input type="number" id="drInput" value="9123">
+    <button class="btn" id="drBtn">计算数字根</button>
+    <div class="out" id="drOut"></div>
+    <p class="hint">数字根 = 反复把各位数字相加直到一位数。它告诉你原数除以 9 的余数（余 0 时数字根为 9）。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>猜心魔术 <small>原理是同余与代数——你「猜」的不是心，是恒等式</small></h2>
+  <div class="demo">
+    <p style="font-size:14.5px;">经典流程：<b>想一个数</b> → 加 5 → 乘 3 → 减 9 → 除以 3 → 告诉我结果。我能说出你最初想的数。</p>
+    <button class="btn" id="magicBtn">演示一次</button>
+    <div class="out" id="magicOut"></div>
+    <p class="hint">设原数为 x：((3(x+5)−9)/3) = x + 2。所以「结果 − 2 = 原数」。魔术就是恒等式的伪装。</p>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>模 9 验算实战 <small>用它检查你的乘法！</small></h2>
+  <div class="demo">
+    <label>A = </label><input type="number" id="vA" value="286">
+    <label>B = </label><input type="number" id="vB" value="49">
+    <button class="btn" id="vBtn">验算 A×B</button>
+    <div class="out" id="vOut"></div>
+    <p class="hint">数字根(A) × 数字根(B) 的数字根，必须等于 A×B 的数字根，否则必错。</p>
+  </div>
+</div>
+
+
+<div class="sec">
+  <h2>补充：更多速算技巧与数学魔术</h2>
+  <table class="tbl">
+    <tr><th>技巧</th><th>方法</th><th>例子</th></tr>
+    <tr><td>两位数平方</td><td>$(10a+b)^2=100a^2+20ab+b^2$，或用 $(a+b)(a-b)+b^2$</td><td>$47^2=(47+3)(47-3)+9=50\times44+9=2209$</td></tr>
+    <tr><td>11 倍法</td><td>两位数 $ab\times11=a(a+b)b$，进位处理</td><td>$38\times11=418$（$3+8=11$ 进位）</td></tr>
+    <tr><td>五结尾平方</td><td>$(10a+5)^2=100a(a+1)+25$</td><td>$75^2=7\times8\times100+25=5625$</td></tr>
+    <tr><td>补数乘法</td><td>接近 100 的两数相乘：$(100-a)(100-b)=100(100-a-b)+ab$</td><td>$97\times96=100\times93+12=9312$</td></tr>
+    <tr><td>等差数列求和</td><td>$\frac{(首项+末项)\times项数}{2}$</td><td>$1+2+\cdots+100=5050$</td></tr>
+  </table>
+  <div class="proof">
+    <h3>读心术：数字根魔术</h3>
+    <p>让观众想一个多位数，把各位数字打乱相减，将结果的某一位数字（非 0）告诉你其余数字，你能猜出他藏的数字。</p>
+    <p><b>原理：</b>一个数与它的重排之差必为 9 的倍数，故其数字根为 9。藏起的数字 $=9-(其余数字之和\bmod9)$。</p>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../07-趣味数学/谜题与悖论.html">谜题与悖论 →</a>
+  <a href="../07-趣味数学/数学游戏与策略.html">游戏与策略 →</a>
+  <a href="../10-数学手册/公式速查.html">公式速查 →</a>
+</footer>
+</div>
+
+<script>
+(function(){
+  var drBtn = document.getElementById('drBtn');
+  if(drBtn) drBtn.addEventListener('click', function(){
+    var v = Math.abs(parseInt(document.getElementById('drInput').value, 10));
+    if(isNaN(v)){ document.getElementById('drOut').innerHTML = '请输入整数。'; return; }
+    var s = String(v), steps = [];
+    while(s.length > 1){
+      var sum = 0;
+      for(var i=0;i<s.length;i++) sum += +s[i];
+      steps.push(s + ' → 各位和 = ' + sum);
+      s = String(sum);
+    }
+    var dr = +s;
+    document.getElementById('drOut').innerHTML = '数字根 = <b>' + dr + '</b>（即原数 ≡ ' + (dr%9===0?0:dr) + ' mod 9）。<br>' + steps.join('<br>');
+  });
+  var magicBtn = document.getElementById('magicBtn');
+  if(magicBtn) magicBtn.addEventListener('click', function(){
+    var x = Math.floor(Math.random()*90)+10;
+    var res = x + 2;
+    document.getElementById('magicOut').innerHTML = '我让程序想好数并算完，结果是 <b>' + res + '</b>。<br>你最初想的数是 <b>' + (res-2) + '</b>（结果 − 2）。';
+  });
+  var vBtn = document.getElementById('vBtn');
+  if(vBtn) vBtn.addEventListener('click', function(){
+    var a = parseInt(document.getElementById('vA').value, 10);
+    var b = parseInt(document.getElementById('vB').value, 10);
+    if(isNaN(a)||isNaN(b)){ document.getElementById('vOut').innerHTML = '请输入两个整数。'; return; }
+    function dr(n){
+      n = Math.abs(n);
+      while(n >= 10){ var s=0; while(n){ s+=n%10; n=Math.floor(n/10); } n=s; }
+      return n===0?0:(n%9===0?9:n);
+    }
+    var prod = a*b;
+    var dra = dr(a), drb = dr(b), drp = dr(prod);
+    var check = dr(dra*drb);
+    var ok = drp === check;
+    document.getElementById('vOut').innerHTML = a + '×' + b + ' = ' + prod + '<br>' +
+      '数字根：A=' + dra + '，B=' + drb + '，A×B=' + drp + '，期望 ' + check + ' → <b>' + (ok?'✔ 验算通过':'✘ 不一致，必有一处算错') + '</b>';
+  });
+})();
+</script>
+<script>
+(function(){
+  function rand(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
+  function show(n){ return n<0 ? '−'+(-n) : ''+n; }
+  function period(p){ var r=1,k=0; do{ r=(r*10)%p; k++; }while(r!==1 && k<100000); return k; }
+  function sortedPair(a,b){ var x=[a,b].sort(function(u,v){return u-v;}); return x[0]+','+x[1]; }
+
+  var TRICKS = {
+    square: function(){ var a=rand(14,96); var anchor=Math.round(a/10)*10; var d=a-anchor; var ans=a*a;
+      return { q:a+'² = ?', ans:''+ans, steps:['把 '+a+' 凑整为 '+anchor+(d>=0?'+':'−')+Math.abs(d),
+        '('+anchor+(d>=0?'+':'−')+Math.abs(d)+')² = '+anchor+'² + 2×'+anchor+'×('+d+') + ('+d+')²',
+        '= '+anchor*anchor+' + '+ (2*anchor*d) +' + '+(d*d)+' = '+ans] }; },
+    teens: function(){ var a=rand(11,19), b=rand(11,19); var ua=a-10, ub=b-10, ans=a*b;
+      return { q:a+' × '+b+' = ?', ans:''+ans, steps:['十几×十几：(10+u)(10+v)=10×(10+u+v)+u×v',
+        '= 10×(10+'+ua+'+'+ub+') + '+ua+'×'+ub, '= '+10*(10+ua+ub)+' + '+ua*ub+' = '+ans] }; },
+    complement: function(){ var a=rand(92,99), b=rand(92,99); var ca=100-a, cb=100-b, ans=a*b;
+      return { q:a+' × '+b+' = ?', ans:''+ans, steps:['补数：(100−'+a+')='+ca+'，(100−'+b+')='+cb,
+        '(100−'+ca+')(100−'+cb+') = 100×(100−'+ca+'−'+cb+') + '+ca+'×'+cb,
+        '= 100×'+(100-ca-cb)+' + '+ca*cb+' = '+ans] }; },
+    mul5: function(){ var ops=[['×5',function(n){return n*5;},function(n){return ''+n+'×10÷2='+(n*10)+'÷2='+(n*5);}],
+        ['×25',function(n){return n*25;},function(n){return ''+n+'×100÷4='+(n*100)+'÷4='+(n*25);}],
+        ['×125',function(n){return n*125;},function(n){return ''+n+'×1000÷8='+(n*1000)+'÷8='+(n*125);}],
+        ['÷5',function(n){return n/5;},function(n){return ''+n+'×2÷10='+(n*2)+'÷10='+(n/5);}]];
+      var op=ops[rand(0,ops.length-1)]; var n = op[0]==='÷5' ? rand(2,60)*5 : rand(11,99); var ans=op[1](n);
+      return { q:n+' '+op[0]+' = ?', ans:''+ans, steps:[op[0]+' 换成 10 的幂再平分', op[2](n)] }; },
+    diffsq: function(){ var m=rand(3,9)*10, d=rand(2,6); var a=m+d, b=m-d, ans=m*m-d*d;
+      return { q:a+' × '+b+' = ?', ans:''+ans, steps:['两数关于 '+m+' 对称，半差为 '+d,
+        '('+m+'+'+d+')('+m+'−'+d+') = '+m+'² − '+d+'²', '= '+m*m+' − '+d*d+' = '+ans] }; },
+    divisible: function(){ var ds=[7,11,13,37]; var d=ds[rand(0,3)]; var yes=Math.random()<0.5;
+      var base=d*rand(11,300); var N = yes ? base : base+rand(1,d-1); var rem=N%d;
+      return { q:N+' 能被 '+d+' 整除吗？（答 是 / 否）', ans: yes?'是':'否', tol:null,
+        steps:['做除法：'+N+' ÷ '+d+' = '+(N/d).toFixed(4)+'，余数 '+rem,
+          (yes?'余数为 0 → 答「是」。':'余数 '+rem+' ≠ 0 → 答「否」。')] }; },
+    sqrt: function(){ var s=rand(6,12); var N=s*s+rand(-4,4); if(N<2)N=2; var root=Math.sqrt(N);
+      var x0=Math.round(root); var x1=(x0+N/x0)/2;
+      return { q:'√'+N+' ≈ ?（保留 1 位小数）', ans:root.toFixed(1), tol:0.15,
+        steps:['初值 x₀ = '+x0+'（最接近的整数）',
+          '牛顿迭代 x₁ = ½(x₀ + '+N+'/x₀) = ½('+x0+' + '+(N/x0).toFixed(3)+') ≈ '+x1.toFixed(2),
+          '精确 √'+N+' ≈ '+root.toFixed(2)+'，答 ≈ '+root.toFixed(1)] }; },
+    cross: function(){ var m=rand(-9,9), n=rand(-9,9); if(m===0)m=3; if(n===0)n=4;
+      if(m>n){ var t=m; m=n; n=t; } var b=m+n, c=m*n;
+      return { q:'分解 x² + '+show(b)+'x + '+c+' = (x+?)(x+?)，填两数（逗号分隔）', ans:sortedPair(m,n), pair:true,
+        steps:['找 m,n 使 m+n = '+b+'，mn = '+c, '试：'+m+' + '+n+' = '+b+'，'+m+' × '+n+' = '+c,
+          '= (x+('+m+'))(x+('+n+'))'] }; },
+    cycle: function(){ var ps=[3,7,11,13,17,19,23,29]; var p=ps[rand(0,ps.length-1)]; var k=period(p);
+      return { q:'1/'+p+' 的小数循环节长度是几？', ans:''+k,
+        steps:['循环节长 = 满足 10^k ≡ 1 (mod '+p+') 的最小 k', '逐次乘 10 取模，第 '+k+' 次回到 1，故 k = '+k,
+          '例：1/7 = 0.142857 142857…，长度为 6。'] }; }
+  };
+  var NAMES = { square:'⑥ 两位数平方', teens:'⑦ 11~19 乘法', complement:'⑧ 补数乘法', mul5:'⑨ ×5/25/125 与 ÷5',
+    diffsq:'⑩ 平方差', divisible:'⑪ 整除判据', sqrt:'⑫ 近似开方', cross:'⑬ 十字相乘', cycle:'⑭ 循环节长度' };
+
+  var sel=document.getElementById('trickSel'), qText=document.getElementById('qText'),
+      qAns=document.getElementById('qAns'), qOut=document.getElementById('qOut'),
+      qSteps=document.getElementById('qSteps'), cur=null;
+  if(!sel) return;
+  Object.keys(TRICKS).forEach(function(k){ var o=document.createElement('option'); o.value=k; o.textContent=NAMES[k]; sel.appendChild(o); });
+  function newQ(){ cur=TRICKS[sel.value](); qText.textContent=cur.q; qAns.value=''; qOut.innerHTML=''; qSteps.innerHTML=''; qAns.focus(); }
+  function showSteps(){ if(!cur) return; qSteps.innerHTML=''; cur.steps.forEach(function(s){ var d=document.createElement('div'); d.className='step'; d.textContent='› '+s; qSteps.appendChild(d); }); }
+  function check(){ if(!cur) return; var v=qAns.value.trim(); if(v===''){ qOut.innerHTML='<span class="bad">请先作答。</span>'; return; }
+    var ok=false;
+    if(cur.pair){ var p=v.split(/[,，\s]+/).filter(Boolean).map(Number).sort(function(a,b){return a-b;});
+      var t=cur.ans.split(',').map(Number).sort(function(a,b){return a-b;});
+      ok = p.length===2 && !isNaN(p[0]) && !isNaN(p[1]) && p[0]===t[0] && p[1]===t[1];
+    } else if(cur.tol!=null){ ok = Math.abs(parseFloat(v)-parseFloat(cur.ans)) <= cur.tol; }
+    else { var a=cur.ans; ok = (v===a) || (/^(是|否|yes|no|y|n)$/i.test(v) && (v.toLowerCase().startsWith(a==='是'?'是':'否') || (a==='是'&&/^(yes|y)$/i.test(v)) || (a==='否'&&/^(no|n)$/i.test(v)))); }
+    qOut.innerHTML = ok ? '<span class="ok">✔ 正确！</span> 答案：'+cur.ans
+                       : '<span class="bad">✘ 不对。</span> 正确答案：'+cur.ans;
+    if(ok) showSteps();
+  }
+  sel.addEventListener('change', newQ);
+  document.getElementById('qNew').addEventListener('click', newQ);
+  document.getElementById('qCheck').addEventListener('click', check);
+  document.getElementById('qStep').addEventListener('click', showSteps);
+  qAns.addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+  newQ();
+})();
+</script>
+<script>
+(function(){
+  function el(id){ return document.getElementById(id); }
+  function rand(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
+  function fmt(n){ return Math.abs(n-Math.round(n))<1e-6 ? (n<0?'('+Math.round(n)+')':''+Math.round(n)) : (Math.round(n*100)/100); }
+
+  /* ⑮ 读心术逆推 */
+  var mrBtn=el('mrBtn');
+  if(mrBtn) mrBtn.addEventListener('click', function(){
+    var r=parseFloat(el('mrResult').value);
+    if(isNaN(r)){ el('mrOut').innerHTML='请输入数字。'; return; }
+    var x=r-2;
+    el('mrOut').innerHTML='恒等式 x = r − 2 = <b>'+r+' − 2 = '+x+'</b><br>观众最初想的数是 <b>'+x+'</b>。';
+  });
+
+  /* ⑯ 卡普雷卡常数 */
+  var kpBtn=el('kpBtn');
+  if(kpBtn) kpBtn.addEventListener('click', function(){
+    var n=el('kpInput').value.trim();
+    if(!/^\d{4}$/.test(n)){ el('kpOut').innerHTML='请输入四位数字。'; return; }
+    var steps=[], cur=n, guard=0;
+    while(guard<12){
+      var asc=cur.split('').sort().join('');
+      var desc=asc.split('').reverse().join('');
+      var diff=parseInt(desc,10)-parseInt(asc,10);
+      diff=('0000'+diff).slice(-4);
+      steps.push(desc+' − '+asc+' = '+diff);
+      if(diff===cur) break;
+      cur=diff; guard++;
+      if(cur==='6174'||cur==='0000'){ steps.push(cur==='6174'?'✔ 收敛到卡普雷卡常数 6174。':'四位全同，得到 0000。'); break; }
+    }
+    el('kpOut').innerHTML=steps.join('<br>');
+  });
+
+  /* ⑰ 奇数阶幻方（罗伯法） */
+  function makeMagicSquare(n){
+    var g=[], i, j;
+    for(i=0;i<n;i++){ g[i]=[]; for(j=0;j<n;j++) g[i][j]=0; }
+    var r=0, c=Math.floor(n/2), val=1;
+    while(val<=n*n){
+      g[r][c]=val;
+      var nr=(r-1+n)%n, nc=(c+1)%n;
+      if(g[nr][nc]!==0){ nr=(r+1)%n; nc=c; }
+      r=nr; c=nc; val++;
+    }
+    return g;
+  }
+  var msBtn=el('msBtn');
+  if(msBtn) msBtn.addEventListener('click', function(){
+    var n=parseInt(el('msOrder').value,10);
+    var g=makeMagicSquare(n);
+    var S=n*(n*n+1)/2;
+    var html='<table style="border-collapse:collapse;margin-top:8px;">';
+    for(var i=0;i<n;i++){
+      html+='<tr>';
+      for(var j=0;j<n;j++){
+        html+='<td style="border:1px solid #999;padding:8px 14px;text-align:center;font-size:18px;">'+g[i][j]+'</td>';
+      }
+      html+='</tr>';
+    }
+    html+='</table>';
+    el('msOut').innerHTML=html+'幻和 S = n(n²+1)/2 = <b>'+S+'</b>';
+  });
+
+  /* ⑱ 24 点 */
+  function solve24(nums){
+    if(nums.length===1){ return Math.abs(nums[0]-24)<1e-6 ? '' : null; }
+    for(var i=0;i<nums.length;i++){
+      for(var j=0;j<nums.length;j++){
+        if(i===j) continue;
+        var a=nums[i], b=nums[j];
+        var rest=[];
+        for(var k=0;k<nums.length;k++){ if(k!==i&&k!==j) rest.push(nums[k]); }
+        var cands=[
+          {v:a+b, e:'('+fmt(a)+'+'+fmt(b)+')'},
+          {v:a-b, e:'('+fmt(a)+'−'+fmt(b)+')'},
+          {v:a*b, e:'('+fmt(a)+'×'+fmt(b)+')'}
+        ];
+        if(Math.abs(b)>1e-6) cands.push({v:a/b, e:'('+fmt(a)+'÷'+fmt(b)+')'});
+        for(var k=0;k<cands.length;k++){
+          var r=solve24([cands[k].v].concat(rest));
+          if(r!==null) return cands[k].e + (r?(' = '+r):'');
+        }
+      }
+    }
+    return null;
+  }
+  function evalExpr(expr){
+    var toks=expr.match(/\d+\.?\d*|[+\-*\/()]/g);
+    if(!toks) return NaN;
+    var out=[], ops=[], prec={'+':1,'-':1,'*':2,'/':2};
+    for(var i=0;i<toks.length;i++){
+      var t=toks[i];
+      if(!isNaN(parseFloat(t)) && isFinite(t)) out.push(parseFloat(t));
+      else if(t==='(') ops.push(t);
+      else if(t===')'){ while(ops.length&&ops[ops.length-1]!=='(') out.push(ops.pop()); ops.pop(); }
+      else { while(ops.length&&ops[ops.length-1]!=='('&&prec[ops[ops.length-1]]>=prec[t]) out.push(ops.pop()); ops.push(t); }
+    }
+    while(ops.length) out.push(ops.pop());
+    var st=[];
+    for(var i=0;i<out.length;i++){
+      if(typeof out[i]==='number') st.push(out[i]);
+      else { var b=st.pop(), a=st.pop();
+        if(typeof a!=='number') return NaN;
+        if(out[i]==='+') st.push(a+b);
+        else if(out[i]==='-') st.push(a-b);
+        else if(out[i]==='*') st.push(a*b);
+        else { if(Math.abs(b)<1e-9) return NaN; st.push(a/b); }
+      }
+    }
+    return st.length===1?st[0]:NaN;
+  }
+  var fgCur=[], fgAns=null;
+  function fgNew(){
+    fgCur=[rand(1,13),rand(1,13),rand(1,13),rand(1,13)];
+    fgAns=solve24(fgCur.slice());
+    el('fgNums').textContent=fgCur.join('   ');
+    el('fgExpr').value='';
+    el('fgOut').innerHTML='';
+  }
+  var fgNewBtn=el('fgNew');
+  if(fgNewBtn) fgNewBtn.addEventListener('click', fgNew);
+  var fgCheckBtn=el('fgCheck');
+  if(fgCheckBtn) fgCheckBtn.addEventListener('click', function(){
+    var expr=el('fgExpr').value.trim().replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-');
+    if(!expr){ el('fgOut').innerHTML='<span class="bad">请输入算式。</span>'; return; }
+    var val=evalExpr(expr);
+    var used=(expr.match(/\d+\.?\d*/g)||[]).map(Number).sort(function(a,b){return a-b;});
+    var need=fgCur.slice().sort(function(a,b){return a-b;});
+    var numsOk=used.length===4 && need.length===4 && need.every(function(v,i){return v===used[i];});
+    if(isNaN(val)||!isFinite(val)){ el('fgOut').innerHTML='<span class="bad">算式无法计算（可能除零）。</span>'; return; }
+    if(Math.abs(val-24)<1e-6 && numsOk){
+      el('fgOut').innerHTML='<span class="ok">✔ 正确！</span> 结果 = '+fmt(val);
+    } else if(!numsOk){
+      el('fgOut').innerHTML='<span class="bad">数字未用完或用错。</span> 本次数字：'+fgCur.join('、');
+    } else {
+      el('fgOut').innerHTML='<span class="bad">不对。</span> 你的算式结果 = '+fmt(val)+'，不是 24。';
+    }
+  });
+  var fgHintBtn=el('fgHint');
+  if(fgHintBtn) fgHintBtn.addEventListener('click', function(){
+    el('fgOut').innerHTML= fgAns ? '一个解：<b>'+fgAns+'</b>' : '这组数可能无解，点「换一组」试试。';
+  });
+  if(el('fgNums')) fgNew();
+
+  /* ⑲ 二进制猜生日 */
+  var bdSel={};
+  function bdRender(){
+    var box=el('bdCards'); box.innerHTML='';
+    for(var k=0;k<5;k++){
+      var val=1<<k, nums=[];
+      for(var d=1;d<=31;d++){ if(d&val) nums.push(d); }
+      var card=document.createElement('div');
+      card.style.cssText='border:1px solid #A8751E;border-radius:8px;padding:10px 12px;cursor:pointer;width:150px;font-size:13px;'+(bdSel[k]?'background:#EFE0B8':'background:#fffdf6');
+      card.innerHTML='<b>卡 '+(k+1)+'（'+val+' 号）</b><br>'+nums.join(' ');
+      (function(k){ card.addEventListener('click', function(){ bdSel[k]=!bdSel[k]; bdRender(); }); })(k);
+      box.appendChild(card);
+    }
+  }
+  var bdBtn=el('bdBtn');
+  if(bdBtn) bdBtn.addEventListener('click', function(){
+    var sum=0, parts=[];
+    for(var k=0;k<5;k++){ if(bdSel[k]){ sum+=(1<<k); parts.push((1<<k)); } }
+    el('bdOut').innerHTML= parts.length ? '你点选了卡：'+parts.join(' + ')+' = <b>'+sum+'</b><br>你的生日是 <b>'+sum+' 号</b>' : '请先点选包含你生日的卡片。';
+  });
+  var bdReset=el('bdReset');
+  if(bdReset) bdReset.addEventListener('click', function(){ bdSel={}; bdRender(); el('bdOut').innerHTML=''; });
+  if(el('bdCards')) bdRender();
+
+  /* ⑳ 模11校验位 */
+  var ckBtn=el('ckBtn');
+  if(ckBtn) ckBtn.addEventListener('click', function(){
+    var s=el('ckInput').value.trim();
+    if(!/^\d{9}$/.test(s)){ el('ckOut').innerHTML='请输入 9 位数字。'; return; }
+    var sum=0;
+    for(var i=0;i<9;i++) sum+=(10-i)*parseInt(s[i],10);
+    var check=(11-(sum%11))%11;
+    var ch=check===10?'X':(''+check);
+    el('ckOut').innerHTML='加权和 = '+sum+'，模 11 = '+(sum%11)+'<br>校验位 = <b>'+ch+'</b><br>完整 ISBN-10：<b>'+s+ch+'</b>';
+  });
+
+  /* ㉑ 贝特朗盒子悖论 */
+  var btBtn=el('btBtn');
+  if(btBtn) btBtn.addEventListener('click', function(){
+    var goldFirst=0, goldOther=0;
+    for(var t=0;t<1000;t++){
+      var box=rand(0,2); /* 0:GG 1:SS 2:GS */
+      var drawFirst = box===0 ? 'G' : (box===1?'S':(Math.random()<0.5?'G':'S'));
+      if(drawFirst==='G'){
+        goldFirst++;
+        var other = box===0 ? 'G' : 'S'; /* GS 盒抽到金则另一枚必为银 */
+        if(other==='G') goldOther++;
+      }
+    }
+    var p=(goldFirst?goldOther/goldFirst:0);
+    el('btOut').innerHTML='「第一枚是金」共 '+goldFirst+' 次，其中「另一枚也是金」'+goldOther+' 次<br>频率 ≈ <b>'+(p*100).toFixed(1)+'%</b>（理论 2/3 ≈ 66.7%，不是 1/2）';
+  });
+
+  /* ㉒ 页码乘积还原 */
+  var pgBtn=el('pgBtn');
+  if(pgBtn) pgBtn.addEventListener('click', function(){
+    var P=parseFloat(el('pgInput').value);
+    if(isNaN(P)||P<=0){ el('pgOut').innerHTML='请输入正数。'; return; }
+    var disc=1+4*P;
+    var n=(-1+Math.sqrt(disc))/2;
+    if(Math.abs(n-Math.round(n))>1e-6){ el('pgOut').innerHTML='P='+P+' 不是两个连续整数之积。'; return; }
+    n=Math.round(n);
+    el('pgOut').innerHTML='n = (−1+√(1+4×'+P+'))/2 = '+n+'<br>左右两页为 <b>'+n+'</b> 与 <b>'+(n+1)+'</b>（积 '+n*(n+1)+'）';
+  });
+
+  /* ㉓ 斐波那契 10 项和 */
+  var fbBtn=el('fbBtn');
+  if(fbBtn) fbBtn.addEventListener('click', function(){
+    var a=parseInt(el('fbA').value,10), b=parseInt(el('fbB').value,10);
+    if(isNaN(a)||isNaN(b)){ el('fbOut').innerHTML='请输入两个整数。'; return; }
+    var seq=[a,b], sum=a+b;
+    for(var i=2;i<10;i++){ var c=seq[i-1]+seq[i-2]; seq.push(c); sum+=c; }
+    var seventh=seq[6], predicted=11*seventh;
+    el('fbOut').innerHTML='十项：'+seq.join('，')+'<br>逐项和 = <b>'+sum+'</b>；第 7 项 = '+seventh+'，×11 = <b>'+predicted+'</b>'+(sum===predicted?' ✔ 吻合！':'（不等，检查起始数）');
+  });
+})();
+</script>
+
+</body>
+</html>

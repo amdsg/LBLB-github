@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>考研数学 · 线代与概率强化 · 应试训练 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='32' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3EA%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --hm:#6B4E9E; --gold:#A8751E; --red:#C0392B; --violet:#6B4E9E; --teal:#177E89;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--hm); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:38px; margin:12px 0 6px;}
+h1 .sym{color:var(--hm); font-style:italic;}
+.sub{color:var(--ink2); font-size:15.5px; max-width:800px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--hm); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--hm); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch p{font-size:15px; margin-top:10px; max-width:840px;}
+.def{background:#F1ECF7; border:1px solid #D4C8E6; border-left:5px solid var(--violet); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--violet);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--hm);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--violet);}
+.warn{background:#FDEDE8; border:1px solid #EAC6B8; border-left:5px solid var(--red); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14px;}
+.warn b{color:var(--red);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--hm); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.tbl{margin-top:14px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px; table-layout:fixed;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--hm); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:30px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\(','\)']],displayMath:[['$$','$$'],['\[','\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在。';document.currentScript.after(b);"></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="00-应试总览.html">← 返回应试总览</a>
+  <h1>考研数学 · 线代与概率强化 <span class="sym">A</span></h1>
+  <p class="sub">线性代数（行列式/矩阵/秩/方程组/特征值/二次型）+ 概率统计（一维二维随机变量/数字特征/极限定理/数理统计）。线代 34 分、概率 34 分（数二不考概率）——这两门是「题型固定、套路明确」的送分区。</p>
+  <p class="quote">「线代是一条线：行列式 → 矩阵 → 秩 → 方程组 → 特征值 → 二次型，串起来就通透。」</p>
+</header>
+
+<div class="toc">
+  <b>本页目录</b>
+  <ol>
+    <li><a href="#c1">线代知识总图</a></li>
+    <li><a href="#c2">行列式与矩阵</a></li>
+    <li><a href="#c3">秩与线性方程组</a></li>
+    <li><a href="#c4">特征值与二次型</a></li>
+    <li><a href="#c5">概率：一维随机变量</a></li>
+    <li><a href="#c6">概率：二维与数字特征</a></li>
+    <li><a href="#c7">大数定律与数理统计</a></li>
+    <li><a href="#c8">题型精选与详解</a></li>
+    <li><a href="#c9">必背公式清单</a></li>
+  </ol>
+</div>
+
+<!-- 1 -->
+<div class="ch" id="c1">
+  <h2>1. 线代知识总图 <small>一条线串起来</small></h2>
+  <div class="thm"><b>主线：</b>行列式（数值）→ 矩阵（工具）→ 向量组（秩）→ 线性方程组（解的结构）→ 特征值/特征向量（对角化）→ 二次型（标准化）。<div class="proof"><b>关键连接：</b>$r(A)=$ 秩 $(A)=$ 方程组 $Ax=0$ 独立方程个数；$A$ 可对角化 $\Leftrightarrow$ 有 $n$ 个线性无关特征向量；实对称矩阵必可正交对角化。</div></div>
+  <div class="warn"><b>警示：</b>线代最大的失分点是「只会算不会用」。每个概念都要会两种语言：矩阵语言（秩、可逆、行列式）和几何语言（张成空间、方向、拉伸）。</div>
+</div>
+
+<!-- 2 -->
+<div class="ch" id="c2">
+  <h2>2. 行列式与矩阵 <small>工具层</small></h2>
+  <div class="thm"><b>行列式性质：</b>① 转置值不变；② 互换两行变号；③ 某行公因子可提出；④ 两行成比例值为 0；⑤ 某行 $\times k$ 加到另一行值不变；⑥ $|AB|=|A||B|$；⑦ $|A^{-1}|=1/|A|$；⑧ $|A^T|=|A|$。<div class="proof"><b>展开定理：</b>按第 $i$ 行展开 $|A|=\sum_j a_{ij}A_{ij}$；代数余子式 $A_{ij}=(-1)^{i+j}M_{ij}$。</div></div>
+  <div class="thm"><b>矩阵运算：</b>① $(AB)^T=B^T A^T$；② $(AB)^{-1}=B^{-1}A^{-1}$；③ $(A^{-1})^T=(A^T)^{-1}$；④ $(A^n)^T=(A^T)^n$；⑤ $AB\ne BA$（不交换！）。<div class="proof"><b>分块矩阵：</b>对角分块的逆 = 各块逆对角放。</div></div>
+  <div class="ex"><b>题型：</b>$A$ 为 3 阶方阵、$|A|=2$，求 $|2A^{-1}|$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$|2A^{-1}|=2^3\cdot|A^{-1}|=8\cdot(1/2)=4$。</div></details></div>
+</div>
+
+<!-- 3 -->
+<div class="ch" id="c3">
+  <h2>3. 秩与线性方程组 <small>大题核心</small></h2>
+  <div class="thm"><b>秩的性质：</b>① $r(A)\le\min(m,n)$；② $r(A^T)=r(A)$；③ $r(AB)\le r(A)$、$r(B)$；④ $r(A+B)\le r(A)+r(B)$；⑤ $r(A)=r \Leftrightarrow$ 有 $r$ 阶子式非零、所有 $r+1$ 阶为 0。</div>
+  <div class="thm"><b>方程组解的判定：</b>$Ax=0$：$r(A)=n \Leftrightarrow$ 只有零解；$r(A)&lt;n \Leftrightarrow$ 有非零解，基础解系含 $n-r$ 个向量。$Ax=b$：$r(A)=r(A|b)=n \Leftrightarrow$ 唯一解；$r(A)=r(A|b)&lt;n \Leftrightarrow$ 无穷多解；$r(A)&lt;r(A|b) \Leftrightarrow$ 无解。<div class="proof"><b>通解结构：</b>$Ax=b$ 的通解 $=$ 特解 $\eta^*$ $+$ $Ax=0$ 的基础解系线性组合。</div></div>
+  <div class="ex"><b>题型：</b>讨论 $\lambda$ 取何值时方程组 $x_1+x_2+\lambda x_3=1$、$x_1+\lambda x_2+x_3=1$、$\lambda x_1+x_2+x_3=1$ 无解/唯一解/无穷解。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>系数行列式 $|A|=(1-\lambda)^2(2+\lambda)$。$\lambda\ne1$ 且 $\lambda\ne-2$：唯一解。$\lambda=1$：三行相同，$r(A)=r(A|b)=1<3$，无穷解。$\lambda=-2$：$r(A)=2$ 但 $r(A|b)=3$，无解。</div></details></div>
+</div>
+
+<!-- 4 -->
+<div class="ch" id="c4">
+  <h2>4. 特征值与二次型 <small>线代大题压轴</small></h2>
+  <div class="thm"><b>特征值性质：</b>① $\sum\lambda_i=\mathrm{tr}(A)$（迹）；② $\prod\lambda_i=|A|$；③ $A$ 与 $A^T$ 同特征值；④ $A$ 可逆 $\Leftrightarrow$ 0 不是特征值；⑤ $f(A)$ 的特征值 $=f(\lambda)$；⑥ $A$ 与 $B$ 相似 $\Rightarrow$ 同特征多项式。<div class="proof"><b>相似对角化：</b>$A$ 可对角化 $\Leftrightarrow$ $k$ 重特征值对应 $k$ 个线性无关特征向量。实对称矩阵必可正交对角化。</div></div>
+  <div class="thm"><b>二次型：</b>$f=x^T Ax$，$A$ 实对称。正交变换化标准形：$f=\lambda_1 y_1^2+\lambda_2 y_2^2+\cdots$（$\lambda_i$ 为 $A$ 的特征值）。正定判定：① 全部特征值 $>0$；② 顺序主子式全 $>0$；③ 正惯性指数 $=n$。<div class="proof"><b>负定：</b>特征值全 < 0。</div></div>
+  <div class="ex"><b>题型：</b>$A=\begin{bmatrix}2&1\\1&2\end{bmatrix}$ 的特征值与二次型标准形。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$|A-\lambda E|=(2-\lambda)^2-1=(\lambda-1)(\lambda-3)$，$\lambda_1=1$、$\lambda_2=3$。正交变换后 $f=y_1^2+3y_2^2$。$A$ 正定（特征值全正）。</div></details></div>
+</div>
+
+<!-- 5 -->
+<div class="ch" id="c5">
+  <h2>5. 概率：一维随机变量 <small>数三重点、数一考</small></h2>
+  <div class="thm"><b>必背分布表：</b>
+  <div class="tbl"><table><colgroup><col style="width:22%"><col style="width:30%"><col style="width:24%"><col style="width:24%"></colgroup>
+  <tr><th>分布</th><th>分布律/密度</th><th>E(X)</th><th>D(X)</th></tr>
+  <tr><td>0-1 分布</td><td>$P(X=1)=p$</td><td>p</td><td>$p(1-p)$</td></tr>
+  <tr><td>二项 B(n,p)</td><td>$C_n^k p^k(1-p)^{n-k}$</td><td>$np$</td><td>$np(1-p)$</td></tr>
+  <tr><td>泊松 P(λ)</td><td>$\lambda^k e^{-\lambda}/k!$</td><td>$\lambda$</td><td>$\lambda$</td></tr>
+  <tr><td>均匀 U(a,b)</td><td>$1/(b-a)$</td><td>$(a+b)/2$</td><td>$(b-a)^2/12$</td></tr>
+  <tr><td>指数 E(λ)</td><td>$\lambda e^{-\lambda x},\ x>0$</td><td>$1/\lambda$</td><td>$1/\lambda^2$</td></tr>
+  <tr><td>正态 $N(\mu,\sigma^2)$</td><td>$e^{-(x-\mu)^2/2\sigma^2}/(\sigma\sqrt{2\pi})$</td><td>$\mu$</td><td>$\sigma^2$</td></tr>
+  </table></div></div>
+  <div class="thm"><b>正态标准化：</b>$X\sim N(\mu,\sigma^2) \Rightarrow (X-\mu)/\sigma\sim N(0,1)$。<div class="proof"><b>用法：</b>求 $P(a&lt;X&lt;b)=\Phi((b-\mu)/\sigma)-\Phi((a-\mu)/\sigma)$。</div></div>
+  <div class="ex"><b>题型：</b>$X\sim N(2,4)$，求 $P(X<0)$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$P(X<0)=\Phi((0-2)/2)=\Phi(-1)=1-\Phi(1)\approx0.1587$。</div></details></div>
+</div>
+
+<!-- 6 -->
+<div class="ch" id="c6">
+  <h2>6. 概率：二维与数字特征 <small>大题主力</small></h2>
+  <div class="thm"><b>联合密度 → 边缘密度：</b>$f_X(x)=\int f(x,y)\,dy$。<b>独立性：</b>$f(x,y)=f_X(x)\cdot f_Y(y)$。<b>条件密度：</b>$f(y|x)=f(x,y)/f_X(x)$。</div>
+  <div class="thm"><b>数字性质：</b>$E(aX+bY)=aE(X)+bE(Y)$；$D(aX+bY)=a^2D(X)+b^2D(Y)$（独立时）；$\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)$；相关系数 $\rho=\mathrm{Cov}/(\sqrt{D(X)}\sqrt{D(Y)})$。<div class="proof"><b>独立 ⟹ 不相关；不相关不一定独立（二维正态时等价）。</b></div></div>
+  <div class="ex"><b>题型：</b>$(X,Y)$ 在单位圆上均匀分布，求 $E(XY)$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>区域关于 $y$ 轴对称、$xy$ 关于 $x$ 奇，积分 $=0$。</div></details></div>
+</div>
+
+<!-- 7 -->
+<div class="ch" id="c7">
+  <h2>7. 大数定律与数理统计 <small>数一重点、数三考</small></h2>
+  <div class="thm"><b>大数定律：</b>辛钦：独立同分布、$E(X)=\mu \Rightarrow$ 样本均值 $\to\mu$。<b>中心极限定理：</b>独立同分布、方差有限 $\Rightarrow \frac{\sum X_i-n\mu}{\sigma\sqrt n}\to N(0,1)$。</div>
+  <div class="thm"><b>三大抽样分布：</b>$\chi^2(n)$（$n$ 个独立标准正态平方和）、$t(n)$（$Z/\sqrt{\chi^2/n}$）、$F(n_1,n_2)$（$\chi^2_1/n_1\div\chi^2_2/n_2$）。<div class="proof"><b>参数估计（数一）：</b>矩估计（用 $E(X)=$ 样本均值解方程）；最大似然（$L=\prod f(x_i;\theta)$，取 $\ln L$ 对 $\theta$ 求导 $=0$）。</div></div>
+</div>
+
+<!-- 8 -->
+<div class="ch" id="c8">
+  <h2>8. 题型精选与详解 <small>限时 15 分钟</small></h2>
+  <div class="ex"><b>精选 1：</b>$A$ 是 3 阶矩阵、$r(A)=2$，求 $r(A^*)$。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$r(A)=n-1=2 \Rightarrow r(A^*)=1$（公式：$r(A)=n \Rightarrow r(A^*)=n$；$r(A)=n-1 \Rightarrow r(A^*)=1$；$r(A)&lt;n-1 \Rightarrow r(A^*)=0$）。</div></details></div>
+  <div class="ex"><b>精选 2：</b>$X\sim B(100,0.2)$，用中心极限定理求 $P(X\ge30)$（$\Phi(2.5)\approx0.9938$）。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$E(X)=20$、$D(X)=16$、$\sigma=4$。$P(X\ge30)=P((X-20)/4\ge2.5)=1-\Phi(2.5)\approx0.0062$。</div></details></div>
+  <div class="ex"><b>精选 3：</b>矩阵 $A=\begin{bmatrix}1&2\\2&1\end{bmatrix}$ 的特征值与对应的特征向量。<details><summary>查看解答</summary><div class="sol"><b>解答：</b>$|A-\lambda E|=(1-\lambda)^2-4=(\lambda-3)(\lambda+1)$。$\lambda=3$：特征向量 $(1,1)^T$；$\lambda=-1$：特征向量 $(1,-1)^T$。</div></details></div>
+</div>
+
+<!-- 9 -->
+<div class="ch" id="c9">
+  <h2>9. 必背公式清单 <small>考前默写</small></h2>
+  <div class="thm"><b>线代必背：</b>行列式 8 条性质 / 矩阵运算 5 条 / 秩的 5 条性质 / 解的判定表 / 特征值 6 条性质 / 正定 3 个等价条件。</div>
+  <div class="thm"><b>概率必背：</b>6 大分布表 / 正态标准化 / $E(aX+bY)$ 与 $D(aX+bY)$ 公式 / $\mathrm{Cov}$ 与 $\rho$ / 中心极限定理条件 / $\chi^2$、$t$、$F$ 分布定义。</div>
+  <div class="warn"><b>易错 Top 5：</b>① AB 不交换；② 秩不等式方向；③ 正定 ≠ 特征值全正（必须先对称）；④ $D(aX+bY)$ 独立才等于 $a^2D(X)+b^2D(Y)$；⑤ 二项分布期望方差别搞混。</div>
+</div>
+
+<footer>
+  <a href="02-考研数学-高等数学强化.html">← 考研高数</a>
+  <a href="05-真题模拟卷.html">下一页：05 整卷训练 →</a>
+</footer>
+</div>
+
+</body>
+</html>

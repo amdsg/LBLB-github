@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>无穷级数 · 自测题库 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E∑%3C/text%3E%3C/svg%3E">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+  svg: { fontCache: 'local' },
+  startup: { typeset: true }
+};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在（本页需与 assets 目录保持原有相对位置）。';document.currentScript.after(b);"></script>
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;
+  --blue:#1F4E9C;--teal:#177E89;--gold:#A8751E;--red:#C0392B;--green:#2E7D5B;--violet:#6B4C9A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.8;}
+button{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.kicker{font-size:11px;letter-spacing:.32em;color:var(--ink2);text-transform:uppercase;margin-top:22px;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:10px 0 8px;}
+h1 .sym{color:var(--blue);font-style:italic;}
+.sub{color:var(--ink2);font-size:15.5px;max-width:760px;}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.chip{background:#fffdf6;border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-size:12.5px;color:var(--ink2);}
+.chip b{color:var(--blue);}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:20px;padding:12px 16px;
+  background:#fffdf6;border:1px solid var(--line);border-radius:12px;}
+.bar .btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:13.5px;cursor:pointer;min-height:38px;}
+.bar .btn.gray{background:#8A8270;}
+.bar .note{font-size:12.5px;color:var(--ink2);}
+.toc{margin-top:22px;background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:16px 22px;font-size:14px;}
+.toc b{font-size:13.5px;}
+.toc ol{margin:8px 0 0 22px;column-count:2;column-gap:30px;}
+.toc a{color:var(--blue);text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.toc .tt{color:var(--ink2);font-size:12px;}
+.prob{background:#fffdf6;border:1px solid var(--line);border-left:5px solid var(--c,var(--blue));
+  border-radius:10px;padding:15px 18px;margin-top:16px;}
+.prob .head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:7px;}
+.prob .num{font-family:Georgia,serif;font-weight:700;font-size:15px;color:var(--c,var(--blue));letter-spacing:.04em;}
+.prob .lvl{font-size:11.5px;color:var(--gold);letter-spacing:.1em;}
+.prob .tags{font-size:11.5px;color:var(--ink2);margin-left:auto;}
+.prob .tgt{display:inline-block;font-size:11px;letter-spacing:.06em;color:#fff;background:var(--c,var(--blue));
+  border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:1px;}
+.prob .q{font-size:15px;}
+.prob details{margin-top:10px;border-top:1px dashed var(--line);padding-top:9px;}
+.prob summary{cursor:pointer;font-size:13.5px;color:var(--blue);user-select:none;display:inline-block;padding:3px 0;}
+.prob summary:hover{text-decoration:underline;}
+.prob .ans{margin-top:9px;font-size:14.5px;}
+.prob .ans b{color:var(--green);}
+.prob .sol{margin-top:8px;font-size:14px;color:var(--ink2);}
+.prob .sol b{color:var(--ink);}
+.prob .ver{margin-top:9px;font-size:11.5px;color:var(--ink2);border-top:1px dotted var(--line);padding-top:7px;}
+.prob .ver code{background:var(--paper2);border-radius:3px;padding:1px 5px;}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;color:var(--ink2);}
+footer code{background:var(--paper2);border-radius:4px;padding:1px 6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="index.html">← 返回题库总览</a>
+  <div class="kicker">LBLB · Self-Test Problem Bank</div>
+  <h1>无穷级数 <span class="sym">∑</span></h1>
+  <p class="sub">级数先判敛散再求和。收敛半径用比值判别法，求和常靠错位相减与裂项。</p>
+  <div class="stats"><span class="chip">入门 <b>1</b> 题</span><span class="chip">基础 <b>8</b> 题</span><span class="chip">进阶 <b>12</b> 题</span><span class="chip">较难 <b>5</b> 题</span><span class="chip">知识点 <b>23</b> 个</span></div>
+  <div class="bar">
+    <button class="btn" id="showAll">展开全部详解</button>
+    <button class="btn gray" id="hideAll">收起全部</button>
+    <span class="note">共 26 题 · 每题答案均由 sympy 符号计算验证</span>
+  </div>
+  <nav class="toc"><b>本页目录</b><ol>    <li><a href="#S01">S01</a> <span class="tt">几何级数</span></li>
+    <li><a href="#S02">S02</a> <span class="tt">巴塞尔问题</span></li>
+    <li><a href="#S03">S03</a> <span class="tt">裂项相消</span></li>
+    <li><a href="#S04">S04</a> <span class="tt">交错级数</span></li>
+    <li><a href="#S05">S05</a> <span class="tt">指数级数</span></li>
+    <li><a href="#S06">S06</a> <span class="tt">奇子列</span></li>
+    <li><a href="#S07">S07</a> <span class="tt">收敛半径</span></li>
+    <li><a href="#S08">S08</a> <span class="tt">收敛半径</span></li>
+    <li><a href="#S09">S09</a> <span class="tt">p 级数</span></li>
+    <li><a href="#S10">S10</a> <span class="tt">错位相减</span></li>
+    <li><a href="#S11">S11</a> <span class="tt">泰勒级数</span></li>
+    <li><a href="#S12">S12</a> <span class="tt">几何级数</span></li>
+    <li><a href="#S13">S13</a> <span class="tt">对数级数</span></li>
+    <li><a href="#S14">S14</a> <span class="tt">莱布尼茨级数</span></li>
+    <li><a href="#S15">S15</a> <span class="tt">比较判别法</span></li>
+    <li><a href="#S16">S16</a> <span class="tt">错位相减</span></li>
+    <li><a href="#S17">S17</a> <span class="tt">偶数子列</span></li>
+    <li><a href="#S18">S18</a> <span class="tt">收敛半径</span></li>
+    <li><a href="#S19">S19</a> <span class="tt">条件收敛</span></li>
+    <li><a href="#S20">S20</a> <span class="tt">比值判别法</span></li>
+    <li><a href="#S21">S21</a> <span class="tt">幂级数求和</span></li>
+    <li><a href="#S22">S22</a> <span class="tt">裂项相消</span></li>
+    <li><a href="#S23">S23</a> <span class="tt">交错级数</span></li>
+    <li><a href="#S24">S24</a> <span class="tt">收敛半径</span></li>
+    <li><a href="#S25">S25</a> <span class="tt">双曲函数</span></li>
+    <li><a href="#S26">S26</a> <span class="tt">调和级数</span></li></ol></nav>
+</header>
+<article class="prob" id="S01" style="--c:var(--gold)">
+<div class="head"><span class="num">S01</span><span class="lvl">★☆☆☆☆ 入门</span><span class="tags">几何级数</span></div>
+<div class="q">求 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{2^{n}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$1$</div>
+<div class="sol"><b>详解：</b>首项 $\frac12$、公比 $\frac12$ 的几何级数，和为 $\frac{1/2}{1-1/2}=1$。</div>
+<div class="ver">入门：<code>eq(Sum(1/2**n, (n, 1, oo)).doit(), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="S02" style="--c:var(--green)">
+<div class="head"><span class="num">S02</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">巴塞尔问题</span></div>
+<div class="q">求 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{2}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{\pi^{2}}{6}$</div>
+<div class="sol"><b>详解：</b>巴塞尔问题，欧拉 1735 年首次求出该值。也可由 $\sin x$ 的无穷乘积展开得到。</div>
+<div class="ver">基础：<code>eq(Sum(1/n**2, (n, 1, oo)).doit(), pi**2/6)</code></div>
+</details>
+</article>
+<article class="prob" id="S03" style="--c:var(--violet)">
+<div class="head"><span class="num">S03</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">裂项相消</span></div>
+<div class="q">求 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+1)}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$1$</div>
+<div class="sol"><b>详解：</b>$\frac{1}{n(n+1)}=\frac1n-\frac{1}{n+1}$，前 $N$ 项和为 $1-\frac{1}{N+1}\to1$。</div>
+<div class="ver">基础：<code>eq(Sum(1/(n*(n+1)), (n, 1, oo)).doit(), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="S04" style="--c:var(--blue)">
+<div class="head"><span class="num">S04</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">交错级数</span></div>
+<div class="q">求 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\ln 2$</div>
+<div class="sol"><b>详解：</b>这是 $\ln(1+x)$ 在 $x=1$ 处的展开（由 Abel 定理保证收敛到该值）。</div>
+<div class="ver">进阶：<code>eq(Sum((-1)**(n+1)/n, (n, 1, oo)).doit(), log(2))</code></div>
+</details>
+</article>
+<article class="prob" id="S05" style="--c:var(--teal)">
+<div class="head"><span class="num">S05</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">指数级数</span></div>
+<div class="q">求 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n!}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$e-1$</div>
+<div class="sol"><b>详解：</b>由 $e=\sum_{n=0}^{\infty}\frac{1}{n!}$ 减去 $n=0$ 项（等于 1）。</div>
+<div class="ver">基础：<code>eq(Sum(1/factorial(n), (n, 1, oo)).doit(), E-1)</code></div>
+</details>
+</article>
+<article class="prob" id="S06" style="--c:var(--red)">
+<div class="head"><span class="num">S06</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">奇子列</span></div>
+<div class="q">求 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{(2n-1)^{2}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{\pi^{2}}{8}$</div>
+<div class="sol"><b>详解：</b>把 $\sum\frac{1}{n^{2}}=\frac{\pi^{2}}{6}$ 拆成奇数项与偶数项：偶数项之和 $=\frac14\cdot\frac{\pi^{2}}{6}$，故奇数项之和 $=\frac{\pi^{2}}{6}-\frac{\pi^{2}}{24}=\frac{\pi^{2}}{8}$。</div>
+<div class="ver">进阶：<code>eq(Sum(1/(2*n-1)**2, (n, 1, oo)).doit(), pi**2/8)</code></div>
+</details>
+</article>
+<article class="prob" id="S07" style="--c:var(--gold)">
+<div class="head"><span class="num">S07</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">收敛半径 · 比值判别法</span></div>
+<div class="q">求幂级数 $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{n}$ 的收敛半径。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$R=1$</div>
+<div class="sol"><b>详解：</b>$a_n=\frac1n$，$\lim\left|\frac{a_{n+1}}{a_n}\right|=\lim\frac{n}{n+1}=1$，故 $R=1$；端点 $x=\pm1$ 处分别条件收敛、发散。</div>
+<div class="ver">进阶：<code>eq(limit((1/(n+1))/(1/n), n, oo), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="S08" style="--c:var(--green)">
+<div class="head"><span class="num">S08</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">收敛半径</span></div>
+<div class="q">求幂级数 $\displaystyle\sum_{n=0}^{\infty}\frac{x^{n}}{n!}$ 的收敛半径。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$R=+\infty$</div>
+<div class="sol"><b>详解：</b>$\lim\left|\frac{a_{n+1}}{a_n}\right|=\lim\frac{1}{n+1}=0$，故收敛半径无穷（即 $e^{x}$ 的展开）。</div>
+<div class="ver">进阶：<code>eq(limit((1/factorial(n+1))/(1/factorial(n)), n, oo), 0)</code></div>
+</details>
+</article>
+<article class="prob" id="S09" style="--c:var(--violet)">
+<div class="head"><span class="num">S09</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">p 级数 · 发散</span></div>
+<div class="q">判断 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{\sqrt n}$ 的敛散性。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>发散（$p=\frac12\le1$）</div>
+<div class="sol"><b>详解：</b>$p$ 级数 $\sum\frac{1}{n^{p}}$ 在 $p\le1$ 时发散、$p>1$ 时收敛。这里 $p=\frac12$。</div>
+<div class="ver">基础：<code>diverges(Sum(1/sqrt(n), (n, 1, oo)))</code></div>
+</details>
+</article>
+<article class="prob" id="S10" style="--c:var(--blue)">
+<div class="head"><span class="num">S10</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">错位相减</span></div>
+<div class="q">求 $\displaystyle\sum_{n=1}^{\infty}\frac{n}{2^{n}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$2$</div>
+<div class="sol"><b>详解：</b>由 $\sum nx^{n}=\frac{x}{(1-x)^{2}}$ 取 $x=\frac12$：$\frac{1/2}{(1/2)^{2}}=2$。</div>
+<div class="ver">进阶：<code>eq(Sum(n/2**n, (n, 1, oo)).doit(), 2)</code></div>
+</details>
+</article>
+<article class="prob" id="S11" style="--c:var(--teal)">
+<div class="head"><span class="num">S11</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">泰勒级数</span></div>
+<div class="q">写出 $e^{x}$ 在 $x=0$ 处的泰勒级数，并说明其四阶导数在 0 处的值。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$e^{x}=\sum_{n=0}^{\infty}\frac{x^{n}}{n!}$，且 $e^{(4)}(0)=1$</div>
+<div class="sol"><b>详解：</b>各阶导数均为 $e^{x}$，在 $x=0$ 处取值都是 1，故系数为 $\frac{1}{n!}$。</div>
+<div class="ver">基础：<code>eq(diff(exp(x), x, 4).subs(x, 0), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="S12" style="--c:var(--red)">
+<div class="head"><span class="num">S12</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">几何级数 · 幂级数</span></div>
+<div class="q">在收敛域内求 $\displaystyle\sum_{n=0}^{\infty}x^{n}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{1}{1-x}\quad(|x|<1)$</div>
+<div class="sol"><b>详解：</b>几何级数求和公式，收敛域为 $|x|<1$。</div>
+<div class="ver">基础：<code>eq_in(Sum(x**n, (n, 0, oo)), 1/(1-x), Rational(1,3))</code></div>
+</details>
+</article>
+<article class="prob" id="S13" style="--c:var(--gold)">
+<div class="head"><span class="num">S13</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">对数级数</span></div>
+<div class="q">在收敛域内求 $\displaystyle\sum_{n=1}^{\infty}(-1)^{n+1}\frac{x^{n}}{n}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\ln(1+x)\quad(-1&lt;x\le1)$</div>
+<div class="sol"><b>详解：</b>把 $\frac{1}{1+t}$ 展开再逐项积分即得。</div>
+<div class="ver">进阶：<code>eq_in(Sum((-1)**(n+1)*x**n/n, (n, 1, oo)), log(1+x), Rational(1,3))</code></div>
+</details>
+</article>
+<article class="prob" id="S14" style="--c:var(--green)">
+<div class="head"><span class="num">S14</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">莱布尼茨级数</span></div>
+<div class="q">求 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{2n-1}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{\pi}{4}$</div>
+<div class="sol"><b>详解：</b>$\arctan x$ 的展开取 $x=1$（莱布尼茨级数）。</div>
+<div class="ver">进阶：<code>eq(Sum((-1)**(n+1)/(2*n-1), (n, 1, oo)).doit(), pi/4)</code></div>
+</details>
+</article>
+<article class="prob" id="S15" style="--c:var(--violet)">
+<div class="head"><span class="num">S15</span><span class="lvl">★★★★☆ 较难</span><span class="tags">比较判别法</span></div>
+<div class="q">判断 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{2}+1}$ 是否收敛，并求其和。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>收敛，和为 $\dfrac{\pi\coth\pi-1}{2}$</div>
+<div class="sol"><b>详解：</b>由 $\frac{1}{n^{2}+1}<\frac{1}{n^{2}}$ 知收敛。用 $\pi\coth(\pi z)$ 的部分分式展开可得闭式。</div>
+<div class="ver">较难：<code>approx(Sum(1/(n**2+1), (n, 1, oo)).doit(), (pi/tanh(pi)-1)/2, tol=1e-12)</code></div>
+</details>
+</article>
+<article class="prob" id="S16" style="--c:var(--blue)">
+<div class="head"><span class="num">S16</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">错位相减</span></div>
+<div class="q">在收敛域内求 $\displaystyle\sum_{n=1}^{\infty}nx^{n}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{x}{(1-x)^{2}}\quad(|x|<1)$</div>
+<div class="sol"><b>详解：</b>对 $\sum x^{n}=\frac{1}{1-x}$ 两边求导再乘 $x$。</div>
+<div class="ver">进阶：<code>eq_in(Sum(n*x**n, (n, 1, oo)), x/(1-x)**2, Rational(1,3))</code></div>
+</details>
+</article>
+<article class="prob" id="S17" style="--c:var(--teal)">
+<div class="head"><span class="num">S17</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">偶数子列</span></div>
+<div class="q">求 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{(2n)^{2}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{\pi^{2}}{24}$</div>
+<div class="sol"><b>详解：</b>$=\frac14\sum\frac{1}{n^{2}}=\frac14\cdot\frac{\pi^{2}}{6}$。</div>
+<div class="ver">基础：<code>eq(Sum(1/(2*n)**2, (n, 1, oo)).doit(), pi**2/24)</code></div>
+</details>
+</article>
+<article class="prob" id="S18" style="--c:var(--red)">
+<div class="head"><span class="num">S18</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">收敛半径 · 阶乘</span></div>
+<div class="q">求幂级数 $\displaystyle\sum_{n=0}^{\infty}n!\,x^{n}$ 的收敛半径。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$R=0$</div>
+<div class="sol"><b>详解：</b>$\lim\frac{(n+1)!}{n!}=\lim(n+1)=+\infty$，故只在 $x=0$ 收敛。</div>
+<div class="ver">进阶：<code>is_oo(limit(factorial(n+1)/factorial(n), n, oo))</code></div>
+</details>
+</article>
+<article class="prob" id="S19" style="--c:var(--gold)">
+<div class="head"><span class="num">S19</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">条件收敛</span></div>
+<div class="q">求 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$-\ln 2$</div>
+<div class="sol"><b>详解：</b>与 S04 相差一个符号：$\sum\frac{(-1)^{n}}{n}=-\sum\frac{(-1)^{n+1}}{n}=-\ln2$。</div>
+<div class="ver">进阶：<code>eq(Sum((-1)**n/n, (n, 1, oo)).doit(), -log(2))</code></div>
+</details>
+</article>
+<article class="prob" id="S20" style="--c:var(--green)">
+<div class="head"><span class="num">S20</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">比值判别法</span></div>
+<div class="q">用比值判别法判断 $\displaystyle\sum_{n=0}^{\infty}\frac{2^{n}}{n!}$ 的敛散性。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>收敛（比值极限为 0）</div>
+<div class="sol"><b>详解：</b>$\frac{a_{n+1}}{a_n}=\frac{2}{n+1}\to0<1$，故收敛。其和为 $e^{2}$。</div>
+<div class="ver">进阶：<code>eq(limit((2**(n+1)/factorial(n+1))/(2**n/factorial(n)), n, oo), 0)</code></div>
+</details>
+</article>
+<article class="prob" id="S21" style="--c:var(--violet)">
+<div class="head"><span class="num">S21</span><span class="lvl">★★★★☆ 较难</span><span class="tags">幂级数求和</span></div>
+<div class="q">在收敛域内求 $\displaystyle\sum_{n=0}^{\infty}\frac{x^{n}}{n+1}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$-\dfrac{\ln(1-x)}{x}\quad(|x|<1,\ x\neq0)$</div>
+<div class="sol"><b>详解：</b>记 $S=x\sum\frac{x^{n+1}}{n+1}$，而 $\sum_{n\ge1}\frac{t^{n}}{n}=-\ln(1-t)$，整理即得。</div>
+<div class="ver">较难：<code>eq_in(Sum(x**n/(n+1), (n, 0, oo)), -log(1-x)/x, Rational(1,3))</code></div>
+</details>
+</article>
+<article class="prob" id="S22" style="--c:var(--blue)">
+<div class="head"><span class="num">S22</span><span class="lvl">★★★★☆ 较难</span><span class="tags">裂项相消</span></div>
+<div class="q">求 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+1)(n+2)}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac14$</div>
+<div class="sol"><b>详解：</b>$\frac{1}{n(n+1)(n+2)}=\frac12\left(\frac{1}{n(n+1)}-\frac{1}{(n+1)(n+2)}\right)$，相加后大部分项抵消。</div>
+<div class="ver">较难：<code>eq(Sum(1/(n*(n+1)*(n+2)), (n, 1, oo)).doit(), Rational(1,4))</code></div>
+</details>
+</article>
+<article class="prob" id="S23" style="--c:var(--teal)">
+<div class="head"><span class="num">S23</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">交错级数</span></div>
+<div class="q">求 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n^{2}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{\pi^{2}}{12}$</div>
+<div class="sol"><b>详解：</b>$\eta(2)=(1-2^{1-2})\zeta(2)=\frac12\cdot\frac{\pi^{2}}{6}$。</div>
+<div class="ver">进阶：<code>eq(Sum((-1)**(n+1)/n**2, (n, 1, oo)).doit(), pi**2/12)</code></div>
+</details>
+</article>
+<article class="prob" id="S24" style="--c:var(--red)">
+<div class="head"><span class="num">S24</span><span class="lvl">★★★★☆ 较难</span><span class="tags">收敛半径</span></div>
+<div class="q">求幂级数 $\displaystyle\sum_{n=1}^{\infty}\frac{2^{n}x^{n}}{n}$ 的收敛半径。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$R=\dfrac12$</div>
+<div class="sol"><b>详解：</b>$\lim\left|\frac{a_{n+1}}{a_n}\right|=\lim 2\cdot\frac{n}{n+1}=2$，故 $R=\frac1{2}$。</div>
+<div class="ver">较难：<code>eq(limit((2**(n+1)/(n+1))/(2**n/n), n, oo), 2)</code></div>
+</details>
+</article>
+<article class="prob" id="S25" style="--c:var(--gold)">
+<div class="head"><span class="num">S25</span><span class="lvl">★★★★☆ 较难</span><span class="tags">双曲函数 · 奇阶乘</span></div>
+<div class="q">求 $\displaystyle\sum_{n=0}^{\infty}\frac{1}{(2n+1)!}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\sinh 1=\dfrac{e-e^{-1}}{2}$</div>
+<div class="sol"><b>详解：</b>把 $e$ 与 $e^{-1}$ 的级数相减，偶数项抵消、奇数项加倍。</div>
+<div class="ver">较难：<code>eq(Sum(1/factorial(2*n+1), (n, 0, oo)).doit(), sinh(1))</code></div>
+</details>
+</article>
+<article class="prob" id="S26" style="--c:var(--green)">
+<div class="head"><span class="num">S26</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">调和级数 · 发散</span></div>
+<div class="q">判断 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}$ 的敛散性。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>发散</div>
+<div class="sol"><b>详解：</b>调和级数。可用 $\sum_{n=1}^{2^{k}}\frac1n\ge1+\frac k2$ 说明部分和无界。</div>
+<div class="ver">基础：<code>diverges(Sum(1/n, (n, 1, oo)))</code></div>
+</details>
+</article>
+<footer>
+  本页题目与详解由本库编写，答案经符号计算验证；解题方法不限一种，详解给出的是其中一条思路。<br>
+  返回 <a class="back" href="index.html">题库总览</a> ·
+  <a class="back" href="../00-总览/index.html">总览</a> ·
+  授权见仓库根目录 <code>LICENSE</code>
+</footer>
+</div>
+<script>
+(function(){
+  var d=document.querySelectorAll('.prob details');
+  var s=document.getElementById('showAll'), h=document.getElementById('hideAll');
+  if(s) s.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=true; };
+  if(h) h.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=false; };
+})();
+</script>
+</body>
+</html>

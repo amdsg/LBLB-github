@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>复分析讲义 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3Ei%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--gold); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:40px; margin:12px 0 6px;}
+h1 .sym{color:var(--gold); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:740px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--gold); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--gold); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; margin-top:26px;}
+.ch p{font-size:15px; margin-top:10px; max-width:820px;}
+.f{font-family:Georgia,"Cambria Math",serif; font-style:italic; background:var(--paper2); border-radius:6px; padding:1px 8px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--gold);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--gold); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.demo{background:var(--paper2); border:1px solid var(--line); border-radius:16px; padding:20px; margin-top:16px;}
+.demo .btn{display:inline-block; background:var(--gold); color:#fff; border:none; border-radius:8px; padding:8px 18px; font-size:14px; cursor:pointer; margin:0 8px 12px 0; min-height:44px;}
+.demo .btn.gray{background:#8A8270;}
+.demo p.hint{font-size:13px; color:var(--ink2);}
+.euler-box{margin-top:12px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 18px; display:flex; align-items:center; gap:20px; flex-wrap:wrap;}
+.euler-box canvas{width:100%; max-width:300px; height:auto; border:1px solid var(--line); border-radius:8px; background:#fff;}
+.euler-box .readout{font-size:14px; color:var(--ink2); line-height:2;}
+.papers{display:grid; gap:10px; margin-top:12px;}
+.papers .p{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px;}
+.papers .p a{color:var(--gold); text-decoration:none; font-weight:600; font-size:14.5px;}
+.papers .p a:hover{text-decoration:underline;}
+.papers .m{font-size:12.5px; color:var(--ink2); margin-top:3px;}
+.papers .empty{background:var(--paper2); border:1px dashed var(--line); border-radius:10px; padding:14px 16px; font-size:13.5px; color:var(--ink2);}
+.gloss{margin-top:14px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:14px;}
+.gloss dt{font-weight:700; margin-top:8px;}
+.gloss dt:first-child{margin-top:0;}
+.gloss dd{margin-left:18px; color:var(--ink2); font-size:13.5px;}
+.online{margin-top:16px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; font-size:14px;}
+.online a{color:var(--gold); text-decoration:none;}
+.online a:hover{text-decoration:underline;}
+.online ul{margin:8px 0 0 20px;}
+.online li{margin-top:6px;}
+.online .hint{font-size:12.5px; color:var(--ink2); margin-top:8px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--gold); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>复分析讲义 <span class="sym">i</span></h1>
+  <p class="sub">复平面上的微积分：解析函数、柯西积分、留数定理与保角映射——从欧拉公式到算实积分，完整讲义含定义、定理、证明与练习。</p>
+  <p class="quote">「$e^{iπ}$ + 1 = 0——所有重要的数在一个等式中相遇。」</p>
+</header>
+
+<div class="toc">
+  <b>本讲目录</b>
+  <ol>
+    <li><a href="#c1">复数与复平面</a></li>
+    <li><a href="#c2">解析函数与柯西-黎曼方程</a></li>
+    <li><a href="#c3">初等解析函数</a></li>
+    <li><a href="#c4">柯西积分定理与公式</a></li>
+    <li><a href="#c5">幂级数与洛朗展开</a></li>
+    <li><a href="#c6">留数定理</a></li>
+    <li><a href="#c7">保角映射</a></li>
+    <li><a href="#c8">应用与动手实验</a></li>
+        <li><a href="#c9a">深度：柯西积分公式与高阶导数</a></li>
+    <li><a href="#c9b">深度：C-R 方程的等价刻画</a></li>
+        <li><a href="#c9a">深度：留数定理与实积分计算</a></li>
+    <li><a href="#c9b">深度：共形映射与 Riemann 映射定理</a></li>
+        <li><a href="#c9d">深度：黎曼映射定理</a></li>
+    <li><a href="#c9e">深度：留数定理应用</a></li>
+<li><a href="#c9c">深度：解析延拓与自然边界</a></li>
+    <li><a href="#c9">练习与自测</a></li>
+    <li><a href="#c10">术语表、在线资源与最新研究</a></li>
+  </ol>
+</div>
+
+<!-- ================= 第 1 章 ================= -->
+<div class="ch" id="c1">
+  <h2>1. 复数与复平面 <small>数轴的二维扩展</small></h2>
+  <div class="def"><b>定义（复数）：</b>z = x + iy（x、y 实，i² = −1）。加法向量式、乘法旋转式：z₁z₂ 的模 = 模之积，辐角 = 辐角之和。极坐标 z = $re^{iθ}$。</div>
+  <div class="thm"><b>定理（代数基本定理的复分析证明）：</b>非常数复多项式必有根。<div class="proof"><b>证明要点：</b>若 P(z) 无根，1/P 整函数且有界（模在无穷远处趋于 0），刘维尔定理 → 常数，矛盾。复分析「免费」给出代数的核心定理。</div></div>
+  <div class="ex"><b>例：</b>(1+i)² = 2i；(1+i)⁴ = −4；z = $e^{iπ/3}$ = 1/2 + i√3/2 是 6 次单位根 z⁶ = 1。</div>
+</div>
+
+<!-- ================= 第 2 章 ================= -->
+<div class="ch" id="c2">
+  <h2>2. 解析函数与柯西-黎曼方程 <small>「可导」在复平面上的含义</small></h2>
+  <div class="def"><b>定义（解析）：</b>f: U → ℂ 在 U 上解析（全纯），若每点复可导：lim (f(z+h)−f(z))/h 存在（h → 0 沿任意方向）。</div>
+  <div class="thm"><b>定理（柯西-黎曼方程）：</b>f = u + iv 在点 (x,y) 复可导 ⟺ u、v 可微且 uₓ = vᵧ、uᵧ = −vₓ。<div class="proof"><b>证明要点：</b>复导数沿实方向 = uₓ + ivₓ，沿虚方向 = vᵧ − iuᵧ，两条路径必须相等。</div></div>
+  <div class="thm"><b>定理（解析函数与调和函数）：</b>解析函数的实部、虚部都是调和函数（Δu = 0），且互为共轭调和。<div class="proof"><b>证明要点：</b>对 C-R 方程再求导：uₓₓ = vₓᵧ = vᵧₓ = −uᵧᵧ。</div></div>
+  <div class="ex"><b>例：</b>f(z) = z̄（共轭）处处不可导——C-R 方程 uₓ = 1 ≠ vᵧ = −1。f(z) = z² 处处可导（u = x²−y², v = 2xy，uₓ = 2x = vᵧ ✓）。</div>
+</div>
+
+<!-- ================= 第 3 章 ================= -->
+<div class="ch" id="c3">
+  <h2>3. 初等解析函数 <small>指数函数是复分析的引擎</small></h2>
+  <div class="thm"><b>定理（复指数）：</b>$e^z$ = eˣ(cos y + i sin y)。欧拉公式 $e^{iθ}$ = cos θ + i sin θ 是它的特例。<div class="proof"><b>证明要点：</b>用幂级数定义 $e^z$ = Σ zⁿ/n!，分离实虚部，或验证 C-R 方程。</div></div>
+  <div class="thm"><b>定理（复对数）：</b>Log z = ln|z| + i Arg z（主值 Arg ∈ (−π, π]）。<div class="proof"><b>注意：</b>对数在负实轴上有「割线」——绕原点一圈后辐角跳 2πi，Log 不是单值的（需要黎曼面）。</div></div>
+  <div class="thm"><b>定理（复幂）：</b>z^α = $e^{α Log z}$。三角函数 sin z = ($e^{iz}$ − $e^{-iz}$)/(2i)。<div class="proof"><b>推论：</b>复正弦无界（|sin iy| 指数增长）——复数域上「有界」的概念与实数域完全不同（刘维尔定理）。</div></div>
+  <div class="ex"><b>例：</b>$i^i$ = $e^{i Log i}$ = $e^{i·(ln 1 + iπ/2)}$ = $e^{-π/2}$ ≈ 0.208——虚数的虚数次幂是实数！</div>
+</div>
+
+<!-- ================= 第 4 章 ================= -->
+<div class="ch" id="c4">
+  <h2>4. 柯西积分定理与公式 <small>解析函数的「面积守恒」</small></h2>
+  <div class="thm"><b>定理（柯西积分定理）：</b>f 在单连通域 U 上解析，则对 U 内任何闭路 γ：∮ f dz = 0。<div class="proof"><b>证明要点（格林定理版）：</b>∮ f dz = ∮ (u dx − v dy) + i∮ (v dx + u dy)，C-R 方程使两个被积式都成为恰当微分，积分为 0。</div></div>
+  <div class="thm"><b>定理（柯西积分公式）：</b>f(a) = (1/2πi) ∮ f(z)/(z−a) dz。<div class="proof"><b>证明要点：</b>挖掉 a 的小圆，圆上 f(z)/(z−a) ≈ f(a)/(z−a)，而 ∮ 1/(z−a) dz = 2πi。解析函数由边界值「决定」内部——这是强得惊人的性质。</div></div>
+  <div class="thm"><b>定理（导数公式与刘维尔定理）：</b>f⁽ⁿ⁾(a) = (n!/2πi) ∮ f(z)/(z−a)ⁿ⁺¹ dz；有界整函数必为常数。<div class="proof"><b>推论：</b>解析函数无穷可微（实函数可导一次未必可导两次！）；代数基本定理、最大模原理都来自这里。</div></div>
+  <div class="ex"><b>例：</b>$\oint _{|z|=2}$ $e^z$/(z−1) dz = 2πi·e¹ = 2πie——柯西公式直接算出。</div>
+</div>
+
+<!-- ================= 第 5 章 ================= -->
+<div class="ch" id="c5">
+  <h2>5. 幂级数与洛朗展开 <small>解析函数的泰勒级数永远收敛</small></h2>
+  <div class="thm"><b>定理（泰勒展开）：</b>解析函数在其收敛圆盘内等于它的泰勒级数。<div class="proof"><b>证明要点：</b>柯西公式 + 几何级数展开 1/(z−a) = Σ ((z−z₀)/(a−z₀))ⁿ，逐项积分。</div></div>
+  <div class="def"><b>定义（孤立奇点分类）：</b>z₀ 是 f 的孤立奇点：可去奇点（洛朗展开无负幂项）、极点（有限个负幂项）、本性奇点（无穷多个负幂项）。</div>
+  <div class="thm"><b>定理（皮卡定理）：</b>本性奇点邻域内，f 取遍所有复数值（至多除外一个）。<div class="proof"><b>例：</b>$e^{1/z}$ 在 z = 0 是本性奇点：当 z → 0 沿实轴 $e^{1/z}$ → +∞，沿负实轴 → 0——每个方向极限不同，且几乎所有值都被取到。</div></div>
+  <div class="ex"><b>例：</b>sin z/z³ 在 0 处有 2 阶极点；sin z/z 有可去奇点（定义 f(0)=1 后解析）；$e^{1/z}$ 本性奇点。</div>
+</div>
+
+<!-- ================= 第 6 章 ================= -->
+<div class="ch" id="c6">
+  <h2>6. 留数定理 <small>把积分变成「数奇点」</small></h2>
+  <div class="def"><b>定义（留数）：</b>Res(f, z₀) = 洛朗展开中 1/(z−z₀) 的系数 a₋₁。极点处可用公式：一阶极点 Res = lim (z−z₀)f(z)；m 阶极点 Res = 1/(m−1)! lim dᵐ⁻¹/dzᵐ⁻¹ [(z−z₀)ᵐ f(z)]。</div>
+  <div class="thm"><b>定理（留数定理）：</b>∮ f dz = 2πi Σ Res(f, 内部奇点)。<div class="proof"><b>证明要点：</b>变形回路绕每个孤立奇点的小圆，柯西定理把总积分拆成各小圆积分之和，每个小圆积分 = 2πi × 留数。</div></div>
+  <div class="thm"><b>定理（算实积分的围道法）：</b>$\int _{0}^\infty R(x) \,dx$ 型积分：取上半圆围道，验证圆弧部分趋于 0，留数定理给出结果。<div class="proof"><b>例：</b>$\int _{0}^\infty 1/(1+x^{2}) \,dx$ = π/2——1/(1+z²) 在上半平面有一阶极点 z = i，留数 1/(2i)，2πi·1/(2i) = π，取一半 = π/2。</div></div>
+  <div class="ex"><b>例：</b>计算 $\int _{0}^\infty 1/(1+x^{4}) \,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>上半平面的极点 z = $e^{iπ/4}$、$e^{i3π/4}$，留数求和 × 2πi，得 π√2/4。</div></details></div>
+</div>
+
+<!-- ================= 第 7 章 ================= -->
+<div class="ch" id="c7">
+  <h2>7. 保角映射 <small>解析映射保持角度</small></h2>
+  <div class="thm"><b>定理（保角性）：</b>f′ ≠ 0 的解析映射局部保持角度与定向。<div class="proof"><b>证明要点：</b>f(z+h) ≈ f(z) + f′(z)h——局部是「旋转 + 缩放」，角度自然不变。</div></div>
+  <div class="thm"><b>定理（黎曼映射定理）：</b>任何单连通真开子域（≠ ℂ）都共形等价于单位圆盘。<div class="proof"><b>证明要点：</b>考虑一族归一化的共形映射，用蒙泰尔定理（正规族）取极限——存在性用泛函分析，但构造很难，无一般公式。</div></div>
+  <div class="thm"><b>定理（经典保角映射）：</b>w = z² 把象限映为半平面；w = (z−1)/(z+1) 把右半平面映为圆盘；w = Log z 把角形域映为带形。<div class="proof"><b>应用：</b>流体力学、静电场的位势问题——复杂区域上的调和函数问题映射到圆盘/半平面求解再映回。</div></div>
+  <div class="ex"><b>例：</b>w = $e^z$ 把水平带 {0 &lt; Im z &lt; π} 映为上半平面。</div>
+</div>
+
+<!-- ================= 第 8 章 ================= -->
+<div class="ch" id="c8">
+  <h2>8. 应用与动手实验 <small>欧拉公式转动起来</small></h2>
+  <p><b>应用：</b>量子力学（波函数）、电路（阻抗相量）、信号处理（拉普拉斯/傅里叶变换）、流体（保角映射解位势流）、黎曼猜想（ζ 函数是复分析最深的战场——见<a href="../03-经典难题/经典难题与猜想.html">千年难题页</a>）。</p>
+  <div class="demo">
+    <p class="hint">拖动滑块改变角度 θ：观察 $e^{iθ}$ = cos θ + i sin θ 在单位圆上的位置。</p>
+    <input type="range" id="eulerSlider" min="0" max="360" value="45" style="width:100%;" min-height="44px;">
+    <div class="euler-box">
+      <canvas id="eulerCanvas" width="300" height="300" role="img" aria-label="复分析讲义：交互式画布，内容随下方控件实时变化"></canvas>
+      <div class="readout" id="eulerReadout">θ = 45°<br>cos θ = 0.7071<br>sin θ = 0.7071<br>$e^{iθ}$ = 0.7071 + 0.7071i</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 第 9 章 ================= -->
+
+<!-- ================= 深度小节：柯西积分公式与高阶导数 ================= -->
+<div class="ch" id="c9a">
+  <h2>9a. 深度：柯西积分公式与高阶导数 <small>从一个公式推出解析函数的全部性质</small></h2>
+
+  <div class="thm"><b>定理（Cauchy 积分公式）</b> 设 $f$ 在简单闭曲线 $\gamma$ 所围区域 $D$ 内解析、在 $\bar D$ 上连续，$a \in D$，则
+  $$f(a) = \frac{1}{2\pi i}\oint_\gamma \frac{f(z)}{z-a}\,dz.$$
+  更一般地，$f$ 在 $a$ 处无穷次可导，且
+  $$f^{(n)}(a) = \frac{n!}{2\pi i}\oint_\gamma \frac{f(z)}{(z-a)^{n+1}}\,dz.$$</div>
+
+  <div class="proof"><b>证明思路：</b>
+  在 $a$ 处挖一个半径 $\varepsilon$ 的小圆 $C_\varepsilon$。由柯西积分定理，沿外边界 $\gamma$ 的积分等于沿 $C_\varepsilon$ 的积分（方向相反）。令 $z = a + \varepsilon e^{i\theta}$，则
+  $$\frac{1}{2\pi i}\oint_{C_\varepsilon} \frac{f(z)}{z-a}\,dz = \frac{1}{2\pi}\int_0^{2\pi} f(a+\varepsilon e^{i\theta})\,d\theta \to f(a) \quad (\varepsilon\to 0),$$
+  由 $f$ 在 $a$ 处连续。高阶公式由对 $a$ 求导（积分号下求导合法，因为被积函数对 $a$ 连续可微）得到。</div>
+
+  <div class="ex"><b>例：</b>计算 $\displaystyle \oint_{|z|=2} \frac{e^{z}}{(z-1)^3}\,dz$。
+  这里 $f(z) = e^z$，$a=1$ 在圆内。由 $n=2$ 公式：
+  $$\oint \frac{e^z}{(z-1)^3}\,dz = \frac{2\pi i}{2!} f''(1) = \pi i \cdot e = \pi e i.$$
+  <div class="sol"><b>验证：</b>$f'(z)=e^z$，$f''(z)=e^z$，$f''(1)=e$，故结果 $\pi e i$。无需展开洛朗级数，一个公式直接算完。</div></div>
+</div>
+
+<!-- ================= 深度小节：解析函数与 C-R 方程的等价刻画 ================= -->
+<div class="ch" id="c9b">
+  <h2>9b. 深度：解析函数与柯西-黎曼方程 <small>「可导」与「调和」之间的桥梁</small></h2>
+
+  <div class="def"><b>定义（解析）</b> $f = u + iv$ 在开集 $D$ 内解析，若它在 $D$ 内每点复可导（导数 $f'(z) = \lim_{h\to 0} (f(z+h)-f(z))/h$ 存在，与 $h$ 趋近方向无关）。</div>
+
+  <div class="thm"><b>定理（C-R 方程的等价刻画）</b> $f = u+iv$ 在 $D$ 内解析当且仅当 $u, v$ 在 $D$ 内连续可微且满足
+  $$u_x = v_y, \qquad u_y = -v_x.$$
+  此时 $u, v$ 都是调和函数（$\Delta u = u_{xx}+u_{yy}=0$，$\Delta v=0$），且互为共轭调和。</div>
+
+  <div class="proof"><b>证明思路：</b>
+  必要性：$h \to 0$ 沿实轴时 $f'(z) = u_x + i v_x$；沿虚轴时 $f'(z) = -i(u_y + i v_y) = v_y - i u_y$。两式相等即得 $u_x = v_y$、$v_x = -u_y$。
+  充分性：由 C-R 与 $u,v$ 连续可微，$f(z+h) - f(z) = f'(z) h + o(|h|)$ 沿任意方向成立（实微分的可微性叠加 C-R），故复导数存在。调和性由 C-R 交叉求导：$u_{xx} = v_{yx} = -u_{yy}$。</div>
+
+  <div class="ex"><b>例：</b>检验 $f(z) = z^2 = (x^2-y^2) + i(2xy)$ 是否解析。
+  $u = x^2 - y^2$，$v = 2xy$。$u_x = 2x = v_y$；$u_y = -2y = -v_x$（$v_x = 2y$）。C-R 成立，故 $z^2$ 处处解析，$f'(z) = u_x + i v_x = 2x + i2y = 2z$。
+  <div class="sol"><b>反例：</b>$f(z) = \bar z = x - iy$：$u_x = 1 \neq v_y = -1$，不满足 C-R，故处处不解析——尽管它实可微。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9a. 深度：留数定理与实积分计算 ================= -->
+<div class="ch" id="c9g">
+  <h2>9a. 深度：留数定理与实积分计算 <small>把无穷积分变成「数极点」</small></h2>
+  <div class="thm"><b>定理（留数定理）</b> 若 $f$ 在简单闭曲线 $C$ 内除有限个奇点 $a_1,\dots,a_n$ 外解析，则
+  $$\oint_C f(z)\,dz = 2\pi i\sum_k\mathrm{Res}(f,a_k).$$
+  留数 $\mathrm{Res}(f,a)=\frac{1}{(m-1)!}\lim_{z\to a}\frac{d^{m-1}}{dz^{m-1}}[(z-a)^m f(z)]$（$m$ 阶极点）。<div class="proof"><b>思路：</b>在每极点挖小圆，由 Cauchy 公式各圆积分为 $2\pi i\,\mathrm{Res}$，外围大圆积分 = 内圆之和。</div></div>
+  <div class="ex"><b>例：</b>计算 $I=\int_{-\infty}^{\infty}\frac{dx}{1+x^2}$。
+  <div class="sol"><b>解：</b>取半圆围道，$f=1/(1+z^2)$ 在上半平面极点 $z=i$（一阶）。$\mathrm{res}=\frac{1}{2i}$。$\oint=2\pi i\cdot\frac{1}{2i}=\pi$。半圆弧上积分 $\to0$（$|f|\sim1/R^2$），故 $I=\pi$。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9b. 深度：共形映射与 Riemann 映射定理 ================= -->
+<div class="ch" id="c9f">
+  <h2>9b. 深度：共形映射与 Riemann 映射定理 <small>任何「好看的」单连通域都能映到圆盘</small></h2>
+  <div class="def"><b>定义（共形映射）</b> 全纯且单射的映射 $f:U\to V$（导数非零），保持角度与定向。</div>
+  <div class="thm"><b>定理（Riemann 映射定理）</b> 任意单连通开域 $U\subsetneq\mathbb{C}$（边界多于一点）存在共形双射 $f:U\to\mathbb{D}$（单位圆盘）。<div class="proof"><b>思路：</b>用正规族（Montel 定理）取逼近映射的紧致极限；唯一性由 Schwarz 引理给出（至三点规约自由度）。</div></div>
+  <div class="ex"><b>例（上半平面 → 圆盘）</b> $f(z)=\frac{z-i}{z+i}$ 把上半平面 $\mathbb{H}\to\mathbb{D}$，$i\mapsto0$。这是 Cayley 变换——也出现在微分几何与量子力学。</div>
+</div>
+
+
+<!-- ================= 深度小节：9c. 深度：解析延拓与自然边界 ================= -->
+<div class="ch" id="c9c">
+  <h2>9c. 深度：解析延拓与自然边界 <small>一个函数能延拓多远？</small></h2>
+  <div class="def"><b>定义（解析延拓）</b> 若 $f$ 在 $U$ 解析，$g$ 在 $V\supset U$ 解析且 $g|_U=f$，称 $g$ 是 $f$ 的解析延拓。延拓（若存在）至 $V$ 唯一（恒等定理）。</div>
+  <div class="thm"><b>定理（自然边界）</b> 存在单位圆盘内解析函数，不能延拓过任何边界点——单位圆 $|z|=1$ 是其「自然边界」。<div class="proof"><b>例（Lacunary 级数）</b> $f(z)=\sum z^{n!}$ 在 $|z|&lt;1$ 收敛，但 $|z|=1$ 每点都是奇点（单位根稠密）——这是 Hadamard 间隙定理的标准例子。</div></div>
+</div>
+
+
+<!-- ================= 第二轮深度小节：9d. 深度：黎曼映射定理 ================= -->
+<div class="ch" id="c9d">
+  <h2>9d. 深度：黎曼映射定理 <small>所有真单连通域都和圆盘等价</small></h2>
+  <div class="def"><b>定义（共形映射）</b> 全纯双射 $f:\Omega_1\to\Omega_2$ 称共形映射。局部共形 $\Leftrightarrow$ $f'(z)\ne0$（保角保向）。</div>
+  <div class="thm"><b>定理（黎曼映射定理 1851）</b> 设 $\Omega\subsetneq\mathbb{C}$ 为单连通开域。存在双射全纯 $f:\Omega\to\mathbb{D}:=\{|z|&lt;1\}$。<div class="proof"><b>思路：</b>① 用变分法（Riemann 的原始想法）或 ② 用正规族（Osgood–Carathéodory–Koebe）。关键引理：$\mathcal F=\{f:\Omega\to\mathbb{D}$ 单射全纯$\}$ 非空（先去掉一点）且 $\sup|f'|$ 的极值函数由 Schwarz 引理强制为双射。Montel 定理保证紧性。</div></div>
+  <div class="thm"><b>定理（边界对应）</b> 若 $\partial\Omega$ 为简单闭曲线，$f$ 可延拓为 $\bar\Omega\to\bar{\mathbb D}$ 的同胚（Carathéodory）。边界自由度由 3 实参数给出（PSL(2,R) 模掉自同构）。<div class="proof"><b>意义：</b>这是「单连通 = 圆盘」的几何化形式。多连通域需要更复杂的「环面/环域」分类（Koebe–Andreev–Thurston）。</div></div>
+  <div class="ex"><b>例：</b>求上半平面 $\mathbb H$ 到 $\mathbb D$ 的共形映射。
+  <div class="sol"><b>解：</b>$f(z)=\frac{z-i}{z+i}$，$f(i)=0$, $f(0)=-1$, $f(\infty)=1$，把 $\mathbb R\cup\{\infty\}$（$\partial\mathbb H$）映到单位圆。Möbius 变换是 $\mathrm{PSL}(2,\mathbb R)$ 的全部自同构。</div></div>
+</div>
+
+<!-- ================= 第二轮深度小节：9e. 深度：亚纯函数与留数定理的应用 ================= -->
+<div class="ch" id="c9e">
+  <h2>9e. 深度：亚纯函数与留数定理的应用 <small>数积分和的终极工具</small></h2>
+  <div class="def"><b>定义（留数）</b> $f$ 在孤立奇点 $a$ 处 Laurent 展开 $f(z)=\sum_{n=-\infty}^\infty c_n(z-a)^n$，$\mathrm{Res}(f,a)=c_{-1}$。等价地 $\mathrm{Res}(f,a)=\frac1{2\pi i}\oint f\,dz$（绕 $a$ 的小围道）。</div>
+  <div class="thm"><b>定理（留数定理）</b> 若 $f$ 在闭曲线 $\gamma$ 内部除有限奇点 $a_1,\dots,a_n$ 外全纯，则
+  $$\oint_\gamma f(z)\,dz = 2\pi i\sum_{k=1}^n\mathrm{Res}(f,a_k).$$
+  <div class="proof"><b>思路：</b>在每 $a_k$ 周围作互不相交小圆 $\gamma_k$，多连通域 Cauchy 给 $\oint_\gamma=\sum\oint_{\gamma_k}$，每项 $=2\pi i\,\mathrm{Res}$。</div></div>
+  <div class="thm"><b>定理（实积分计算）</b> 形如 $\int_{-\infty}^{\infty}\frac{P(x)}{Q(x)}dx$（$\deg Q\ge\deg P+2$）可通过上半平面围道计算：
+  $$\int_{-\infty}^{\infty} = 2\pi i\sum_{\Im a_k>0}\mathrm{Res}(P/Q,a_k).$$
+  <div class="proof"><b>关键：</b>大半圆弧 $\to0$（由 $|f|=O(R^{-2})$ 与长度 $\pi R$），只剩实轴贡献。</div></div>
+  <div class="ex"><b>例：</b>计算 $\int_0^\infty\frac{dx}{1+x^4}$。
+  <div class="sol"><b>解：</b>$z^4=-1$ 的根为 $e^{i\pi/4},e^{3i\pi/4},e^{5i\pi/4},e^{7i\pi/4}$，上半平面极点 $z_1=e^{i\pi/4}$, $z_2=e^{3i\pi/4}$。简单极点留数 $\mathrm{Res}(f,z_k)=\frac1{4z_k^3}=-\frac{z_k}{4}$（用 $z_k^4=-1$）。$$z_1+z_2=\frac{1+i}{\sqrt2}+\frac{-1+i}{\sqrt2}=i\sqrt2,\quad\sum\mathrm{Res}=-\frac{i\sqrt2}{4}.$$故 $\int_{-\infty}^{\infty}\frac{dx}{1+x^4}=2\pi i\bigl(-\frac{i\sqrt2}{4}\bigr)=\frac{\pi}{\sqrt2}$；被积函数为偶函数，$\int_0^\infty=\frac{\pi}{2\sqrt2}$。验证：Beta 函数 $\frac14 B(\frac14,\frac34)=\frac14\cdot\frac{\pi}{\sin(\pi/4)}=\frac{\pi}{2\sqrt2}$。</div></div>
+</div>
+
+<div class="ch" id="c9">
+  <h2>9. 练习与自测</h2>
+  <div class="ex"><b>练习 1：</b>f(z) = |z|² 在哪可导？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>只在 z = 0 可导（C-R 方程 uₓ = 2x = vᵧ = 0、uᵧ = 2y = −vₓ = 0 → x = y = 0），处处不解析。</div></details></div>
+  <div class="ex"><b>练习 2：</b>求 $\oint _{|z|=1}$ dz/z。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>2πi（z=0 是极点，留数 1）。</div></details></div>
+  <div class="ex"><b>练习 3：</b>求 $\oint _{|z|=2}$ z/(z²+1) dz。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>奇点在 z = ±i（都在圆内），留数各 1/2，总和 1，积分 = 2πi。</div></details></div>
+  <div class="ex"><b>练习 4：</b>$e^{2+i3π/2}$ 的值？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>e²(cos(3π/2) + i sin(3π/2)) = e²(0 − i) = −ie²。</div></details></div>
+  <div class="ex"><b>练习 5：</b>用留数算 $\int _{0}^\infty \,dx$/(x²+4)。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>极点 z = 2i，留数 1/(4i)，2πi·1/(4i) = π/2，一半 = π/4。</div></details></div>
+  <div class="ex"><b>练习 6：</b>证明：若 f 整函数且 |f(z)| ≤ C|z| 对充分大 |z|，则 f 是一次多项式。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>考虑 g(z) = (f(z)−f(0))/z，g 整函数且有界（|g| ≤ C + 常数），刘维尔 → g 常数 → f 线性。</div></details></div>
+</div>
+
+<!-- ================= 第 10 章 ================= -->
+
+  <div class="ex"><b>练习 7：</b>求 $\int_0^{\infty}\frac{\sin x}{x}\,dx$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>取 $f=e^{iz}/z$，半圆避原点（$\epsilon$-凹）。上半平面无极点，$\oint=0$；凸出小弧贡献 $-i\pi\,\mathrm{Res}_{z=0}(e^{iz}/z)=-i\pi$；得 $\int=\pi/2$。</div></details></div>
+
+  <div class="ex"><b>练习 8：</b>求把带状域 $\{0&lt;\mathrm{Im}\,z&lt;\pi\}$ 映到上半平面的共形映射。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$f(z)=e^z$：带状域 → 上半平面（$e^{x+iy}=e^x(\cos y+i\sin y)$，$y\in(0,\pi)$ 时 $\sin y>0$）。</div></details></div>
+
+  <div class="ex"><b>练习 9：</b>为什么 $\sum z^{n!}$ 的自然边界是 $|z|=1$？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>单位根稠密：每个单位根 $e^{2\pi ip/q}$ 都是奇点（$\sum$ 在 $n!$ 含因子 $q$ 时发散）；单位根在 $|z|=1$ 稠密，故自然边界。</div></details></div>
+
+  <div class="ex"><b>练习 10：</b>用留数定理计算 $\int_0^{2\pi}\frac{d\theta}{2+\cos\theta}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $z=e^{i\theta}$，则 $\cos\theta=(z+z^{-1})/2$，$d\theta=dz/(iz)$，$$\oint\frac{dz/(iz)}{2+(z+z^{-1})/2}=\frac2i\oint\frac{dz}{z^2+4z+1}.$$极点 $z=-2\pm\sqrt3$，仅 $z_0=-2+\sqrt3$ 在单位圆内，留数 $\frac1{2z_0+4}=\frac1{2\sqrt3}$，故积分 $=\frac2i\cdot2\pi i\cdot\frac1{2\sqrt3}=\frac{2\pi}{\sqrt3}$（即一般公式 $\int_0^{2\pi}\frac{d\theta}{a+b\cos\theta}=\frac{2\pi}{\sqrt{a^2-b^2}}$，$a>|b|$）。</div></details></div>
+
+  <div class="ex"><b>练习 11：</b>上半平面 $\mathbb H$ 的自同构群是什么？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\mathrm{PSL}(2,\mathbb R)$ 作用 $z\mapsto\frac{az+b}{cz+d}$，$ad-bc=1$。$\mathrm{Aut}(\mathbb H)\cong\mathrm{PSL}(2,\mathbb R)$——与 $\mathrm{Aut}(\mathbb D)\cong\mathrm{PSU}(1,1)$ 通过 Cayley 变换等价。</div></details></div>
+  <div class="ex"><b>练习 12：</b>用留数定理计算 $\int_0^{2\pi}\frac{d\theta}{5+3\cos\theta}$。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>令 $z=e^{i\theta}$，$5+3\cos\theta=\frac{3z^2+10z+3}{2z}$，故 $I=\frac2i\oint\frac{dz}{3z^2+10z+3}$。极点 $z=\frac{-5\pm4}{3}$，即 $-1/3$ 与 $-3$，仅 $z_0=-1/3$ 在单位圆内。留数 $\frac1{6z_0+10}=\frac1{-2+10}=\frac18$，故 $I=\frac2i\cdot2\pi i\cdot\frac18=\frac{\pi}{2}$（与公式 $2\pi/\sqrt{5^2-3^2}=2\pi/4=\pi/2$ 一致）。</div></details></div>
+
+<div class="ch" id="c10">
+  <h2>10. 术语表、在线资源与最新研究</h2>
+  <div class="gloss">
+    <dt>全纯 / 解析</dt><dd>复可导（等价于幂级数展开）。</dd>
+    <dt>整函数</dt><dd>全平面解析的函数（多项式、$e^z$、sin z）。</dd>
+    <dt>亚纯函数</dt><dd>除极点外解析的函数（有理函数）。</dd>
+    <dt>黎曼面</dt><dd>多值函数的「单值化」空间。</dd>
+    <dt>共形映射</dt><dd>保角双射（局部旋转+缩放）。</dd>
+    <dt>ζ 函数</dt><dd>ζ(s) = Σ1/nˢ 的解析延拓——黎曼猜想的战场。</dd>
+    <dt>留数</dt><dd>$m$ 阶极点处 $(z-a)^m f(z)$ 的 $m-1$ 阶导数值除 $m-1$ 阶乘。</dd>
+    <dt>Riemann 映射定理</dt><dd>任何单连通真开域共形等价于单位圆盘。</dd>
+    <dt>自然边界</dt><dd>函数不能解析延拓过的边界；如 $\sum z^{n!}$ 的 $|z|=1$。</dd>
+  </div>
+  <div class="online">
+    <b>在线资源（需联网打开）</b>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Complex_analysis" target="_blank" rel="noopener noreferrer">Wikipedia: Complex analysis</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Riemann_hypothesis" target="_blank" rel="noopener noreferrer">Wikipedia: Riemann hypothesis</a></li>
+      <li><a href="https://arxiv.org/list/math.CV/recent" target="_blank" rel="noopener noreferrer">arXiv 复分析最新论文（math.CV）</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Riemann_surface" target="_blank" rel="noopener noreferrer">Wikipedia: Riemann surface</a></li>
+    </ul>
+    <p class="hint">本页「最新研究」区加载更新器每日抓取的 arXiv 复分析（math.CV）最新论文。</p>
+  </div>
+  <div class="ch" style="margin-top:34px;">
+    <h2>本主题最新研究 <small>每日自动更新 · 来源 arXiv math.CV</small></h2>
+    <div class="papers" id="topicPapers">
+      <div class="empty">等待数据……若长时间未更新，请运行 <code>python 09-前沿动态/数学前沿更新器.py</code>。</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../02-核心主题/拓扑学.html">拓扑讲义 →</a>
+  <a href="../02-核心主题/微分方程.html">微分方程讲义 →</a>
+  <a href="../05-可视化/曼德博集合.html">曼德博可视化 →</a>
+</footer>
+</div>
+
+<script src="../09-前沿动态/论文数据.js"></script>
+<script>
+(function(){
+  var wrap = document.getElementById('topicPapers');
+  if(!wrap) return;
+  var papers = (typeof window.LBLB_PAPERS !== 'undefined' && window.LBLB_PAPERS['复分析']) || [];
+  if(!papers.length){
+    wrap.innerHTML = '<div class="empty">暂无该主题最新论文数据（更新器尚未成功抓取或已离线）。运行 <code>数学前沿更新器.py</code> 后自动填充。</div>';
+    return;
+  }
+  var html = '';
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+  for(var i=0;i<papers.length;i++){
+    var p = papers[i];
+    html += '<div class="p"><a href="' + esc(p.link) + '" target="_blank" rel="noopener noreferrer">' + esc(p.title) + '</a>' +
+      '<div class="m">' + esc(p.author||'—') + ' · ' + esc(p.date||'') + '</div></div>';
+  }
+  wrap.innerHTML = html;
+})();
+(function(){
+  var canvas = document.getElementById('eulerCanvas');
+  var slider = document.getElementById('eulerSlider');
+  var readout = document.getElementById('eulerReadout');
+  if(!canvas || !canvas.getContext || !slider) return;
+  var ctx = canvas.getContext('2d');
+  function draw(){
+    var deg = parseFloat(slider.value);
+    var rad = deg * Math.PI / 180;
+    var c = Math.cos(rad), s = Math.sin(rad);
+    ctx.clearRect(0,0,300,300);
+    ctx.strokeStyle = '#D8D0BC'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(150,0); ctx.lineTo(150,300); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0,150); ctx.lineTo(300,150); ctx.stroke();
+    ctx.beginPath(); ctx.arc(150,150,120,0,Math.PI*2); ctx.strokeStyle = '#C9C2AE'; ctx.lineWidth = 2; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(150,150); ctx.lineTo(150+c*120, 150-s*120); ctx.strokeStyle = '#C0462E'; ctx.lineWidth = 3; ctx.stroke();
+    ctx.beginPath(); ctx.arc(150+c*120, 150-s*120, 5, 0, Math.PI*2); ctx.fillStyle = '#C0462E'; ctx.fill();
+    ctx.fillStyle = '#1F4E9C';
+    ctx.fillRect(150+c*120-3, 150-3, 6, 6);
+    ctx.fillText('cos θ', 160+c*120*0.6, 140-s*120*0.6);
+    ctx.fillText('sin θ', 150-s*120*0.6+8, 155+c*120*0.6);
+    readout.innerHTML = 'θ = ' + deg + '°<br>cos θ = ' + c.toFixed(4) + '<br>sin θ = ' + s.toFixed(4) + '<br>e^(iθ) = ' + c.toFixed(4) + (s>=0?' + ':' − ') + Math.abs(s).toFixed(4) + 'i';
+  }
+  slider.addEventListener('input', draw);
+  draw();
+})();
+</script>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

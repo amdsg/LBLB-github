@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>数学群星谱 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%CE%B6%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --red:#C0392B; --gold:#A8751E; --blue:#1F4E9C; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--red); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--red); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:720px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.sec{margin-top:48px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--red); padding-left:14px;}
+.sec h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.era{margin-top:26px;}
+.era h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; color:var(--red);}
+.era .range{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.persons{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; margin-top:14px;}
+.person{background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 18px;}
+.person .nm{font-family:Georgia,"Noto Serif SC",serif; font-size:18px;}
+.person .nm .yr{font-size:12.5px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:6px;}
+.person .work{font-size:14px; margin-top:6px;}
+.person .work b{color:var(--red);}
+.person .say{font-size:13px; color:var(--ink2); font-style:italic; margin-top:8px; border-top:1px dashed var(--line); padding-top:6px;}
+.person .say b{color:var(--gold); font-style:normal;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--red); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>数学群星谱 <span class="sym">ζ</span></h1>
+  <p class="sub">两千五百年里，一批人用纸笔改写了人类理解世界的方式。按时代巡礼这些名字——每个名字都是一种思考方式的化身。</p>
+  <p class="quote">「数学家是历史的异类：他们的成果几乎永不腐烂。」</p>
+</header>
+
+<div class="sec">
+  <h2>古代奠基者 <small>公元前 600 年 – 公元 400 年</small></h2>
+  <div class="persons">
+    <div class="person">
+      <div class="nm">泰勒斯 <span class="yr">约前 624–546</span></div>
+      <p class="work"><b>第一个证明者：</b>提出「证明」的概念，证明了对顶角相等、泰勒斯定理（直径所对圆周角为直角）。</p>
+      <p class="say">「万物源于水。」（哲学与数学的最初合流）</p>
+    </div>
+    <div class="person">
+      <div class="nm">毕达哥拉斯 <span class="yr">约前 570–495</span></div>
+      <p class="work"><b>数即万物：</b>毕达哥拉斯定理（勾股定理），音程与整数比的发现，第一个因无理数而「信仰崩塌」的学派。</p>
+      <p class="say">「万物皆数。」</p>
+    </div>
+    <div class="person">
+      <div class="nm">欧几里得 <span class="yr">约前 325–265</span></div>
+      <p class="work"><b>公理化之父：</b>《几何原本》13 卷，从 5 条公设推出全部几何——两千年间「证明」一词的标准。</p>
+      <p class="say">「几何中没有王道。」（对托勒密王说）</p>
+    </div>
+    <div class="person">
+      <div class="nm">阿基米德 <span class="yr">约前 287–212</span></div>
+      <p class="work"><b>微积分的先声：</b>穷竭法算球体积与 π，浮力原理，杠杆原理。「ε-δ」的直觉在他手里已现雏形。</p>
+      <p class="say">「给我一个支点，我能撬动地球。」</p>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>近代革命者 <small>1500 – 1800</small></h2>
+  <div class="persons">
+    <div class="person">
+      <div class="nm">笛卡尔 <span class="yr">1596–1650</span></div>
+      <p class="work"><b>解析几何：</b>坐标系把几何翻译成代数，让「曲线=方程」成为可能；笛卡尔符号法则。</p>
+      <p class="say">「我思故我在。」</p>
+    </div>
+    <div class="person">
+      <div class="nm">费马 <span class="yr">1601–1665</span></div>
+      <p class="work"><b>业余数学家之王：</b>费马大定理、费马小定理、费马原理（光线走极值路径）——问题比答案更有名的人。</p>
+      <p class="say">「我确信已发现一个绝妙的证明，可惜边栏太小写不下。」</p>
+    </div>
+    <div class="person">
+      <div class="nm">牛顿 <span class="yr">1643–1727</span></div>
+      <p class="work"><b>微积分 + 万有引力：</b>流数术、牛顿法、二项式定理推广。物理与数学互相成就的顶峰。</p>
+      <p class="say">「如果我比别人看得远，是因为站在巨人的肩上。」</p>
+    </div>
+    <div class="person">
+      <div class="nm">莱布尼茨 <span class="yr">1646–1716</span></div>
+      <p class="work"><b>微积分的另一发明者：</b>贡献了现代记号 d/dx 与 ∫，二进制，以及「充足理由律」的哲学。</p>
+      <p class="say">「没有理由，就没有发生。」</p>
+    </div>
+    <div class="person">
+      <div class="nm">欧拉 <span class="yr">1707–1783</span></div>
+      <p class="work"><b>数学的化身：</b>$e^{iπ}$+1=0、欧拉公式 V−E+F=2、欧拉路径、数论与分析的交融。失明后仍高产如常。</p>
+      <p class="say">「读欧拉，读欧拉，他是我们所有人的老师。」（拉普拉斯）</p>
+    </div>
+    <div class="person">
+      <div class="nm">高斯 <span class="yr">1777–1855</span></div>
+      <p class="work"><b>数学王子：</b>算术基本定理、高斯消元、最小二乘、素数定理猜想、非欧几何——几乎每个领域都留下「高斯」。</p>
+      <p class="say">「数学是科学的皇后，数论是数学的皇后。」</p>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>现代开拓者 <small>1800 – 1950</small></h2>
+  <div class="persons">
+    <div class="person">
+      <div class="nm">伽罗瓦 <span class="yr">1811–1832</span></div>
+      <p class="work"><b>群论诞生：</b>用群论判定五次方程无根式解；20 岁死于决斗，手稿改写了代数学。</p>
+      <p class="say">「不要哭，我在 20 岁死去需要全部勇气。」</p>
+    </div>
+    <div class="person">
+      <div class="nm">黎曼 <span class="yr">1826–1866</span></div>
+      <p class="work"><b>几何与分析的深水：</b>黎曼几何（广义相对论的数学）、黎曼 ζ 函数与黎曼猜想、黎曼积分、黎曼曲面。</p>
+      <p class="say">「只有在分析中，我才感到完全自如。」</p>
+    </div>
+    <div class="person">
+      <div class="nm">康托尔 <span class="yr">1845–1918</span></div>
+      <p class="work"><b>无穷的算术：</b>超限基数 ℵ₀、对角线论证、连续统假设——把「无穷」变成可以计算的数学对象。</p>
+      <p class="say">「数学的本质在于它的自由。」</p>
+    </div>
+    <div class="person">
+      <div class="nm">希尔伯特 <span class="yr">1862–1943</span></div>
+      <p class="work"><b>问题的立法者：</b>1900 年提出 23 个问题规划 20 世纪数学；形式主义纲领；希尔伯特空间。</p>
+      <p class="say">「我们必须知道，我们必将知道。」</p>
+    </div>
+    <div class="person">
+      <div class="nm">诺特 <span class="yr">1882–1935</span></div>
+      <p class="work"><b>抽象代数的母亲：</b>诺特定理（对称性↔守恒律）、环与理想理论。爱因斯坦称她为「最重要的女数学家」。</p>
+      <p class="say">「抽象代数因其简单而强大。」</p>
+    </div>
+    <div class="person">
+      <div class="nm">拉马努金 <span class="yr">1887–1920</span></div>
+      <p class="work"><b>直觉的化身：</b>近乎通灵的数论与模形式公式（含 1729 与分拆数 p(n)），生前留下 3900 条恒等式。</p>
+      <p class="say">「一个方程式对我没有意义，除非它表达神的旨意。」</p>
+    </div>
+    <div class="person">
+      <div class="nm">冯·诺依曼 <span class="yr">1903–1957</span></div>
+      <p class="work"><b>博学家：</b>博弈论奠基、计算机体系结构（冯·诺依曼机）、量子力学数学化、算子代数。</p>
+      <p class="say">「在数学里，你并不理解事物，只是习惯它们。」</p>
+    </div>
+    <div class="person">
+      <div class="nm">图灵 <span class="yr">1912–1954</span></div>
+      <p class="work"><b>可计算性：</b>图灵机、停机问题、图灵测试、密码学破译 Enigma——计算机科学的奠基人。</p>
+      <p class="say">「我们只能看到前方很短的距离，但那里有很多值得做的事。」</p>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>当代传奇 <small>1950 – 至今</small></h2>
+  <div class="persons">
+    <div class="person">
+      <div class="nm">格罗滕迪克 <span class="yr">1928–2014</span></div>
+      <p class="work"><b>代数几何的重新奠基：</b>概形理论、拓扑斯、动机理论。晚年退隐，拒绝一切荣誉。</p>
+      <p class="say">「真正伟大的发现，往往只是把一个平凡问题问得足够深。」</p>
+    </div>
+    <div class="person">
+      <div class="nm">米尔诺 <span class="yr">1931–</span></div>
+      <p class="work"><b>微分拓扑大师：</b>怪球面（7 维球面上存在 28 种微分结构）、K 理论先驱、维基百科都难写全他的贡献。</p>
+      <p class="say">「数学证明就像给朋友讲一个特别好的故事。」</p>
+    </div>
+    <div class="person">
+      <div class="nm">佩雷尔曼 <span class="yr">1966–</span></div>
+      <p class="work"><b>隐居的天才：</b>证明庞加莱猜想（2003，Ricci 流方法），拒绝菲尔兹奖与 100 万美元，隐居民间。</p>
+      <p class="say">「如果证明是对的，不需要其他认可。」</p>
+    </div>
+    <div class="person">
+      <div class="nm">陶哲轩 <span class="yr">1975–</span></div>
+      <p class="work"><b>莫扎特式的全能：</b>调和分析、组合数论（素数间隔）、偏微分方程。31 岁获菲尔兹奖，至今仍高产。</p>
+      <p class="say">「数学是唯一可以永远玩下去的游戏。」</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="sec">
+  <h2>被遗忘的女性先驱 <small>持续被父权历史掩盖的群星</small></h2>
+  <p>历史上很多女性数学家的工作被忽视或归功于男性导师。她们的贡献：</p>
+  <ul>
+    <li><b>Hypatia of Alexandria</b>（约 350–415）：古希腊数学家，注释 Apollonius《圆锥曲线论》和 Diophantus《算术》。被基督徒暴徒杀害，标志古典时代终结。</li>
+    <li><b>Sophie Germain</b>（1776–1831）：以"Le Blanc"男性化名与 Gauss 通信，证明<b>Germain 素数</b> $p$ 与 $2p+1$ 都素时费马大定理的特殊情况。Gauss 得知其女性身份后赞赏她"承担了最令人敬重的勇气"。</li>
+    <li><b>Ada Lovelace</b>（1815–1852）：第一个程序员——她为 Babbage 分析机写的笔记包含第一个算法。"她看到了数字之外的符号组合的可能性。"</li>
+    <li><b>Sofia Kovalevskaya</b>（1850–1891）：第一位女性数学博士（1874，哥廷根），偏微分方程<b>Cauchy–Kovalevskaya 定理</b>，旋转刚体<b>Kovalevskaya 陀螺</b>。</li>
+    <li><b>Emmy Noether</b>（1882–1935）："抽象代数之母"。<b>Noether 定理</b>：每种对称性对应一个守恒律——奠定了现代物理。Einstein 在悼文中称她为"女性数学天才中最具创造性的人"。</li>
+    <li><b>Julia Robinson</b>（1919–1985）：Hilbert 第 10 问题（丢番图方程可解性）的核心推进者。1976 年成首位美国数学会女性主席。</li>
+    <li><b>Ingrid Daubechies</b>（1954–）：<b>Daubechies 小波</b>——JPEG 2000 与 MP3 压缩的数学根基。第一位美国数学会终身女性主席。</li>
+  </ul>
+  <p><b>历史上女性数学家常被迫用男性化名发表</b>—— Sophie Germain 用 Le Blanc，数学界"匿名"的很多成果可能出自她们之手。今天这种限制减少，但<b>性别比例失衡</b>在数学研究中仍存在：21 世纪菲尔兹奖得主 60 人中仅 2 位女性（Mirzakhani 2014、Viazovska 2022）。</p>
+</div>
+
+<div class="sec">
+  <h2>华裔数学家的世界版图 <small>从陈省身到今天</small></h2>
+  <p>20 世纪以来华裔数学家在多个领域走在世界前列：</p>
+  <ul>
+    <li><b>陈省身</b>（1911–2004）：整体微分几何奠基人之一。<b>Chern 类</b>、Chern–Simons 理论（拓扑量子场论基础）。1984 获 Wolf 奖，创办南开数学研究所。</li>
+    <li><b>丘成桐</b>（1949–）：<b>Calabi 猜想</b>（1977，引出 Calabi–Yau 流形，弦论核心）、<b>正质量猜想</b>（与 Schoen）、<b>Donaldson–Uhlenbeck–Yau 定理</b>。1982 菲尔兹奖，2010 Wolf 奖。</li>
+    <li><b>丘成桐的学生辈</b>：刘克峰（Calabi–Yau 流形）、田刚（Kähler–Einstein 几何）、李骏、张伟平等。今天华人在 Kähler 几何方向占相当比重。</li>
+    <li><b>张益唐</b>（1955–）：2013 年在孪生素数问题上突破——证明存在无穷多对差不超过 7000 万的素数，开启 Maynard–Tao 优化的新浪潮。</li>
+    <li><b>陶哲轩</b>（1975–）：调和分析 + 组合数论 + 加性数论。2006 菲尔兹奖、2014 突破奖。<b>blog</b> 成为数学界传播楷模。</li>
+    <li><b>张伟</b>（1978–）+ <b>朱歆文</b>：<b>几何 Langlands 纲领</b>的关键推进者。2010 论文让 Witten 改写了对偶框架。</li>
+    <li><b>恽之玮</b>、<b>张伟</b>：2012 几何 Langlands 几何化纲领证明。</li>
+    <li><b>朱邦芬</b>、<b>姚鸿泽</b>（1958–）：统计物理与动力系统，2000 菲尔兹奖。</li>
+    <li><b>倪忆</b>、<b>李骏</b>、<b>王跃飞</b>、<b>李文卿</b>等。<b>北大、清华、中科大、复旦</b>输送了大量世界级数学家。</li>
+  </ul>
+  <p><b>展望</b>：到 2024 年，华人数学家在代数几何、调和分析、几何分析、动力系统等方向的世界占比持续上升，但<b>大陆本科生培养与论文水平仍与北美顶尖名校有差距</b>——这是当下高校改革的焦点。</p>
+</div>
+
+<div class="sec">
+  <h2>菲尔兹奖得主一览 <small>"数学界诺贝尔"</small></h2>
+  <p>菲尔兹奖每 4 年颁发一次，每次最多 4 人，<b>获奖时必须 40 岁以下</b>。从 1936 至 2022 共 64 位得主。下面列举部分：</p>
+  <ul>
+    <li><b>1950</b>：L. Schwartz（法国）、A. Selberg（挪威/美）</li>
+    <li><b>1954</b>：J.-P. Serre（法，最年轻的 27 岁得主）、小平邦彦（日）</li>
+    <li><b>1958</b>：K. Roth（英）、R. Thom（法）</li>
+    <li><b>1966</b>：A. Grothendieck（拒）、S. Smale（美）、D. Mumford（美）、E. Cohen</li>
+    <li><b>1978</b>：P. Deligne、C. Fefferman、D. Quillen、G. Margulis</li>
+    <li><b>1982</b>：丘成桐（首位华裔菲尔兹）、A. Connes、W. Thurston、Y. Shigefumi</li>
+    <li><b>1986</b>：S. Donaldson、G. Faltings、M. Freedman</li>
+    <li><b>1990</b>：V. Drinfeld、V. Jones、森重宏、E. Witten（理论物理）</li>
+    <li><b>1994</b>：J. Bourgain、P.-L. Lions、J.-C. Yoccoz、E. Zelmanov</li>
+    <li><b>1998</b>：R. Borcherds、W. T. Gowers、M. Kontsevich、C. T. McMullen；特别奖 A. Wiles（Fermat 大定理）</li>
+    <li><b>2002</b>：L. Laurent、V. Voevodsky</li>
+    <li><b>2006</b>：A. Okounkov、陶哲轩、W. Werner；特别奖 P. Deligne</li>
+    <li><b>2010</b>：E. Lindenstrauss、Ngo Bao Chau（首位越南）、S. Smirnov、C. Villani</li>
+    <li><b>2014</b>：M. Mirzakhani（首位女性）、M. Bhargava、A. Avila（首位巴西）、M. Hairer</li>
+    <li><b>2018</b>：C. Birkar、A. Figalli、P. Scholze（27 岁，与 Serre 并列最年轻）、A. Venkatesh</li>
+    <li><b>2022</b>：M. Viazovska（第二位女性）、J. Huh、M. Hugo、J. Maynard</li>
+  </ul>
+  <p><b>趋势</b>：21 世纪菲尔兹奖越来越国际化——法、美、俄、日、华、越、巴西、伊朗、乌克兰、阿根廷…… 数学不再属于任何国家。Ngo Bao Chau 是首位越南裔，Mirzakhani 是首位伊朗裔，Viazovska 是首位乌克兰裔。</p>
+  <div class="key"><b>Abel 奖</b>（2003 起，挪威）相当于"终身成就"的菲尔兹——Tate、Stein、Yau、Tao、Atiyah 等都获过。和菲尔兹一起构成数学最高荣誉的双柱。</div>
+</div>
+
+<div class="sec">
+  <h2>数学家的独特心智 <small>从痴迷到创造</small></h2>
+  <p>从 2500 年的群星中，可以总结出数学家的几种独特心智模式：</p>
+  <ul>
+    <li><b>直觉派</b>（Ramanujan、Galois、Mirzakhani）：先有公式/结构/灵感，再去找证明。直觉优先。</li>
+    <li><b>构造派</b>（Grothendieck、Euler、Tao）：以无穷耐心构造普适语言与框架。重语言。</li>
+    <li><b>攻坚派</b>（Perelman、Wiles）：选定一个难题，数十年如一日。重专注。</li>
+    <li><b>桥梁派</b>（Atiyah、Witten、Connes）：连接不同领域，找到共同语言。重洞察。</li>
+    <li><b>博学派</b>（von Neumann、Tao、Poincaré）：跨学科活跃，覆盖广泛。重速度。</li>
+    <li><b>实验派</b>（Mandelbrot、Conway、Borwein）：用计算探索，寻找模式。重实验。</li>
+  </ul>
+  <p><b>"数学家的工作有四步"</b>（Hadamard 1945《数学领域中的发明心理学》）：①准备（读 + 算）；②孵化（无意识工作）；③顿悟（Aha 时刻）；④验证（写严格证明）。这四步对每位数学家都成立。</p>
+  <p><b>哲学之问</b>：数学是<b>发明</b>还是<b>发现</b>？Platon 派（Gödel、Penrose、Frege）认为数学对象独立存在；构造派（Brouwer、Heyting）认为只有可构造的才存在；形式派（Hilbert）认为数学就是符号游戏。三种立场在 20 世纪初激烈交锋，至今未决。</p>
+</div>
+
+<div class="sec">
+  <h2>补充：二十世纪末至当代数学群星</h2>
+  <table class="tbl">
+    <thead><tr><th>数学家</th><th>生卒</th><th>核心贡献</th></tr></thead>
+    <tbody>
+      <tr><td>Alexander Grothendieck</td><td>1928–2014</td><td>概形理论、动机（motive）、代数几何革命，隐居后拒绝一切荣誉</td></tr>
+      <tr><td>Michael Atiyah</td><td>1929–2019</td><td>Atiyah–Singer 指标定理，K 理论，数学物理桥梁</td></tr>
+      <tr><td>John Forbes Nash</td><td>1928–2015</td><td>Nash 均衡（博弈论）、Nash 嵌入定理（黎曼几何），诺贝尔经济学奖</td></tr>
+      <tr><td>Maryam Mirzakhani</td><td>1977–2017</td><td>首位女性菲尔兹奖得主（2014），黎曼曲面模空间、动力系统</td></tr>
+      <tr><td>Andrew Wiles</td><td>1953–</td><td>证明 Fermat 大定理（1994），椭圆曲线与模形式</td></tr>
+      <tr><td>Terence Tao</td><td>1975–</td><td>调和分析、偏微分方程、组合学，「数学界莫扎特」，博客普及数学</td></tr>
+      <tr><td>Maryna Viazovska</td><td>1984–</td><td>八维/二十四维最密球堆积，2022 菲尔兹奖</td></tr>
+      <tr><td>June Huh</td><td>1983–</td><td>组合学与代数几何，2022 菲尔兹奖，证明 Dowling–Wilson 猜想</td></tr>
+    </tbody>
+  </table>
+  <div class="key"><b>启示：</b>数学从不只属于「天才」。Grothendieck 是难民，Nash 患精神分裂，Mirzakhani 是女性且在偏见中成长——热爱与坚持胜过天赋。</div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../11-数学家/数学家的故事.html">数学家的故事 →</a>
+  <a href="../08-数学史/数学史时间线.html">数学史时间线 →</a>
+  <a href="../03-经典难题/经典难题与猜想.html">经典难题 →</a>
+  <a class="back" href="数学家名录.html">数学家名录（10,000 人检索）</a><br>
+  <a href="数学大奖与荣誉.html">数学大奖与荣誉 →</a>
+</footer>
+</div>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

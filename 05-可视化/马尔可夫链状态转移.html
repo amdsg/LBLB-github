@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self';">
+<title>马尔可夫链状态转移 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23177E89'/%3E%3Ctext x='32' y='46' font-size='28' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E链%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--teal:#177E89;--blue:#1F4E9C;--red:#C0392B;--green:#2E7D5B;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+button,select,input{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--teal);text-decoration:none;}
+.tag{display:inline-block;background:var(--teal);color:#fff;font-size:12px;padding:2px 10px;border-radius:20px;vertical-align:middle;margin-left:10px;}
+h1{font-family:Georgia,"Noto Serif SC",serif;font-size:40px;margin:14px 0 6px;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--teal);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#fffef9;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls .btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;cursor:pointer;min-height:40px;}
+.controls .btn.gray{background:#8A8270;}
+.controls label{font-size:14px;color:var(--ink2);}
+.matrix{display:grid;grid-template-columns:repeat(3,64px);gap:6px;margin-top:10px;}
+.matrix input{width:60px;padding:4px;text-align:center;border:1px solid var(--line);border-radius:6px;font-size:14px;}
+.matrix .rowlbl{display:flex;align-items:center;font-size:13px;color:var(--ink2);}
+.stats{display:flex;flex-wrap:wrap;gap:18px;font-family:Georgia,serif;font-size:15px;color:var(--ink2);margin-top:10px;}
+.stats b{color:var(--ink);font-size:18px;}
+.legend{display:flex;gap:16px;font-size:13px;color:var(--ink2);margin-top:8px;}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:5px;vertical-align:middle;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--ink2);}
+footer a{color:var(--teal);text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>马尔可夫链状态转移 <span class="tag">概率统计</span></h1>
+<p class="sub">明天是否下雨只取决于今天是否下雨——"无记忆性"的马尔可夫链，随着时间演化，状态分布会收敛到一个与起点无关的<b>平稳分布</b>。</p>
+</header>
+
+<div class="sec">
+<h2>转移矩阵与分布演化 <small>左：状态图；右：分布随步数 n 堆叠</small></h2>
+<div class="fig">
+<canvas id="cv" width="880" height="420" role="img" aria-label="马尔可夫链状态转移：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls">
+<label>预设：
+<select id="preset">
+<option value="weather">天气（晴/雨）</option>
+<option value="random3">三态随机游走</option>
+<option value="sink">含吸收态</option>
+</select></label>
+<button class="btn" id="step">推进一步</button>
+<button class="btn" id="anim">动画演化</button>
+<button class="btn gray" id="clr">从初始分布重来</button>
+</div>
+<div class="legend"><span><i style="background:#1F4E9C"></i>状态 A</span><span><i style="background:#C0392B"></i>状态 B</span><span><i style="background:#2E7D5B"></i>状态 C</span></div>
+<div class="matrix" id="mgrid"></div>
+<div class="stats" id="stats"></div>
+<p class="explain" style="margin-top:8px">可直接修改矩阵中数字（每行自动归一化）。右格每一格是一步后的概率分布，三色堆叠；若链不可约、非周期，它会收敛到平稳分布 $\pi$。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>数学陈述</h2>
+<p>状态序列 $X_n$ 满足 $P(X_{n+1}=j\mid X_n=i,\dots,X_0)=P_{ij}$。分布 $\pi_n=\pi_{n-1}P$。平稳分布满足</p>
+$$\pi P=\pi,\qquad \sum_j\pi_j=1.$$
+<p>对有限、不可约、非周期的链，无论初值如何，$\pi_n\to\pi$（<b>Perron-Frobenius 定理</b>）。这正是页面上堆叠柱条最终"锁死"颜色比例的原因。</p>
+</div>
+
+<footer><a href="可视化导航.html">← 可视化导航</a></footer>
+</div>
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var W=cv.width,H=cv.height;
+var states=['A','B','C'];
+var colors=['#1F4E9C','#C0392B','#2E7D5B'];
+var P; // 3x3
+var dist; // current distribution
+var hist=[]; // list of distributions
+var timer=null;
+var presets={
+  weather:[[0.8,0.2,0.0],[0.4,0.6,0.0],[0.3,0.3,0.4]],
+  random3:[[0.2,0.6,0.2],[0.2,0.2,0.6],[0.6,0.2,0.2]],
+  sink:[[0.7,0.3,0.0],[0.3,0.5,0.2],[0.0,0.0,1.0]]
+};
+function normalize(M){ return M.map(function(r){var s=r.reduce(function(a,b){return a+b;},0); if(s===0)return [1/3,1/3,1/3]; return r.map(function(v){return v/s;}); }); }
+function reset(){ dist=[1,0,0]; hist=[dist.slice()]; }
+function buildGrid(){
+  var g=document.getElementById('mgrid'); g.innerHTML='';
+  for(var r=0;r<3;r++){
+    var lbl=document.createElement('div'); lbl.className='rowlbl'; lbl.textContent='到'+states[r]+'→'; g.appendChild(lbl);
+    for(var c=0;c<3;c++){
+      var inp=document.createElement('input'); inp.type='number'; inp.step='0.05'; inp.min='0';
+      inp.value=P[r][c].toFixed(2); inp.dataset.r=r; inp.dataset.c=c;
+      inp.addEventListener('change',onGrid);
+      g.appendChild(inp);
+    }
+  }
+}
+function onGrid(){
+  var inputs=document.querySelectorAll('#mgrid input');
+  var M=[[0,0,0],[0,0,0],[0,0,0]];
+  inputs.forEach(function(i){M[+i.dataset.r][+i.dataset.c]=Math.max(0,+i.value||0);});
+  P=normalize(M); buildGrid(); reset(); draw();
+}
+function stepOnce(){
+  var nd=[0,0,0];
+  for(var j=0;j<3;j++) for(var i=0;i<3;i++) nd[j]+=dist[i]*P[i][j];
+  dist=nd; hist.push(nd.slice());
+  if(hist.length>60) hist.shift();
+}
+function stationary(){
+  var pi=[1/3,1/3,1/3];
+  for(var it=0;it<2000;it++){ var nd=[0,0,0]; for(var j=0;j<3;j++) for(var i=0;i<3;i++) nd[j]+=pi[i]*P[i][j]; pi=nd; }
+  return pi;
+}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  // left: state diagram
+  var cx=[120,230,175], cy=[90,90,220];
+  // arrows (simplified: self loops + between)
+  ctx.strokeStyle='#8A8270';ctx.lineWidth=1.4;
+  function arrow(x1,y1,x2,y2,lbl){
+    var a=Math.atan2(y2-y1,x2-x1);
+    var r=22;
+    var sx=x1+r*Math.cos(a), sy=y1+r*Math.sin(a);
+    var ex=x2-r*Math.cos(a), ey=y2-r*Math.sin(a);
+    ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(ex,ey);ctx.stroke();
+    // arrowhead
+    ctx.beginPath();ctx.moveTo(ex,ey);ctx.lineTo(ex-7*Math.cos(a-0.4),ey-7*Math.sin(a-0.4));ctx.lineTo(ex-7*Math.cos(a+0.4),ey-7*Math.sin(a+0.4));ctx.fillStyle='#8A8270';ctx.fill();
+    ctx.fillStyle='#4A5258';ctx.font='12px Georgia';ctx.textAlign='center';
+    ctx.fillText(lbl,(sx+ex)/2,(sy+ey)/2-6);
+  }
+  arrow(cx[0],cy[0],cx[1],cy[1],P[0][1].toFixed(2));
+  arrow(cx[1],cy[1],cx[0],cy[0],P[1][0].toFixed(2));
+  arrow(cx[1],cy[1],cx[2],cy[2],P[1][2].toFixed(2));
+  arrow(cx[2],cy[2],cx[1],cy[1],P[2][1].toFixed(2));
+  arrow(cx[0],cy[0],cx[2],cy[2],P[0][2].toFixed(2));
+  arrow(cx[2],cy[2],cx[0],cy[0],P[2][0].toFixed(2));
+  for(var i=0;i<3;i++){
+    ctx.fillStyle=colors[i];ctx.beginPath();ctx.arc(cx[i],cy[i],22,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#fff';ctx.font='bold 16px Georgia';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(states[i],cx[i],cy[i]);ctx.textBaseline='alphabetic';
+  }
+  // right: stacked distribution history
+  var pl=360,pr=30,pt=40,pb=50;
+  var pw=W-pl-pr, ph=H-pt-pb;
+  ctx.strokeStyle='#D8D0BC';ctx.strokeRect(pl,pt,pw,ph);
+  var n=hist.length, bw=pw/n;
+  for(var t=0;t<n;t++){
+    var d=hist[t], acc=0;
+    for(var s=0;s<3;s++){
+      var h=d[s]*ph;
+      ctx.fillStyle=colors[s];
+      ctx.fillRect(pl+t*bw, pt+ph-acc-h, bw-1, h);
+      acc+=h;
+    }
+  }
+  ctx.fillStyle='#4A5258';ctx.font='12px Georgia';ctx.textAlign='center';
+  ctx.fillText('最近 '+n+' 步的分布（自下而上 A/B/C）',pl+pw/2,H-15);
+  var pi=stationary();
+  document.getElementById('stats').innerHTML=
+    '<span>步数 n <b>'+(hist.length-1)+'</b></span>'+
+    '<span>当前 P(A,B,C) <b>'+dist.map(function(v){return v.toFixed(2);}).join(', ')+'</b></span>'+
+    '<span>平稳 π <b>'+pi.map(function(v){return v.toFixed(2);}).join(', ')+'</b></span>';
+}
+document.getElementById('preset').addEventListener('change',function(){P=normalize(presets[this.value]);buildGrid();reset();draw();});
+document.getElementById('step').addEventListener('click',function(){stepOnce();draw();});
+document.getElementById('anim').addEventListener('click',function(){
+  if(timer){clearInterval(timer);timer=null;document.getElementById('anim').textContent='动画演化';return;}
+  document.getElementById('anim').textContent='暂停';
+  timer=setInterval(function(){stepOnce();draw();},300);
+});
+document.getElementById('clr').addEventListener('click',function(){reset();draw();});
+P=normalize(presets.weather); buildGrid(); reset(); draw();
+})();
+</script>
+
+</body>
+</html>

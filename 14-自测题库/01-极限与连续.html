@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>极限与连续 · 自测题库 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E⟶%3C/text%3E%3C/svg%3E">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+  svg: { fontCache: 'local' },
+  startup: { typeset: true }
+};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在（本页需与 assets 目录保持原有相对位置）。';document.currentScript.after(b);"></script>
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;
+  --blue:#1F4E9C;--teal:#177E89;--gold:#A8751E;--red:#C0392B;--green:#2E7D5B;--violet:#6B4C9A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.8;}
+button{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.kicker{font-size:11px;letter-spacing:.32em;color:var(--ink2);text-transform:uppercase;margin-top:22px;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:10px 0 8px;}
+h1 .sym{color:var(--blue);font-style:italic;}
+.sub{color:var(--ink2);font-size:15.5px;max-width:760px;}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.chip{background:#fffdf6;border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-size:12.5px;color:var(--ink2);}
+.chip b{color:var(--blue);}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:20px;padding:12px 16px;
+  background:#fffdf6;border:1px solid var(--line);border-radius:12px;}
+.bar .btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:13.5px;cursor:pointer;min-height:38px;}
+.bar .btn.gray{background:#8A8270;}
+.bar .note{font-size:12.5px;color:var(--ink2);}
+.toc{margin-top:22px;background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:16px 22px;font-size:14px;}
+.toc b{font-size:13.5px;}
+.toc ol{margin:8px 0 0 22px;column-count:2;column-gap:30px;}
+.toc a{color:var(--blue);text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.toc .tt{color:var(--ink2);font-size:12px;}
+.prob{background:#fffdf6;border:1px solid var(--line);border-left:5px solid var(--c,var(--blue));
+  border-radius:10px;padding:15px 18px;margin-top:16px;}
+.prob .head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:7px;}
+.prob .num{font-family:Georgia,serif;font-weight:700;font-size:15px;color:var(--c,var(--blue));letter-spacing:.04em;}
+.prob .lvl{font-size:11.5px;color:var(--gold);letter-spacing:.1em;}
+.prob .tags{font-size:11.5px;color:var(--ink2);margin-left:auto;}
+.prob .tgt{display:inline-block;font-size:11px;letter-spacing:.06em;color:#fff;background:var(--c,var(--blue));
+  border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:1px;}
+.prob .q{font-size:15px;}
+.prob details{margin-top:10px;border-top:1px dashed var(--line);padding-top:9px;}
+.prob summary{cursor:pointer;font-size:13.5px;color:var(--blue);user-select:none;display:inline-block;padding:3px 0;}
+.prob summary:hover{text-decoration:underline;}
+.prob .ans{margin-top:9px;font-size:14.5px;}
+.prob .ans b{color:var(--green);}
+.prob .sol{margin-top:8px;font-size:14px;color:var(--ink2);}
+.prob .sol b{color:var(--ink);}
+.prob .ver{margin-top:9px;font-size:11.5px;color:var(--ink2);border-top:1px dotted var(--line);padding-top:7px;}
+.prob .ver code{background:var(--paper2);border-radius:3px;padding:1px 5px;}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;color:var(--ink2);}
+footer code{background:var(--paper2);border-radius:4px;padding:1px 6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="index.html">← 返回题库总览</a>
+  <div class="kicker">LBLB · Self-Test Problem Bank</div>
+  <h1>极限与连续 <span class="sym">⟶</span></h1>
+  <p class="sub">从等价无穷小到夹逼定理，极限题的核心是「先看能不能代入，再看能不能化」。</p>
+  <div class="stats"><span class="chip">基础 <b>8</b> 题</span><span class="chip">进阶 <b>13</b> 题</span><span class="chip">较难 <b>5</b> 题</span><span class="chip">知识点 <b>20</b> 个</span></div>
+  <div class="bar">
+    <button class="btn" id="showAll">展开全部详解</button>
+    <button class="btn gray" id="hideAll">收起全部</button>
+    <span class="note">共 26 题 · 每题答案均由 sympy 符号计算验证</span>
+  </div>
+  <nav class="toc"><b>本页目录</b><ol>    <li><a href="#L01">L01</a> <span class="tt">等价无穷小</span></li>
+    <li><a href="#L02">L02</a> <span class="tt">等价无穷小</span></li>
+    <li><a href="#L03">L03</a> <span class="tt">重要极限</span></li>
+    <li><a href="#L04">L04</a> <span class="tt">泰勒展开</span></li>
+    <li><a href="#L05">L05</a> <span class="tt">泰勒展开</span></li>
+    <li><a href="#L06">L06</a> <span class="tt">重要极限</span></li>
+    <li><a href="#L07">L07</a> <span class="tt">因式分解</span></li>
+    <li><a href="#L08">L08</a> <span class="tt">有理化</span></li>
+    <li><a href="#L09">L09</a> <span class="tt">重要极限</span></li>
+    <li><a href="#L10">L10</a> <span class="tt">三角恒等变形</span></li>
+    <li><a href="#L11">L11</a> <span class="tt">等价无穷小</span></li>
+    <li><a href="#L12">L12</a> <span class="tt">有理化</span></li>
+    <li><a href="#L13">L13</a> <span class="tt">连续</span></li>
+    <li><a href="#L14">L14</a> <span class="tt">幂指函数</span></li>
+    <li><a href="#L15">L15</a> <span class="tt">泰勒展开</span></li>
+    <li><a href="#L16">L16</a> <span class="tt">无穷小阶</span></li>
+    <li><a href="#L17">L17</a> <span class="tt">对数</span></li>
+    <li><a href="#L18">L18</a> <span class="tt">通分</span></li>
+    <li><a href="#L19">L19</a> <span class="tt">等价无穷小</span></li>
+    <li><a href="#L20">L20</a> <span class="tt">幂指函数</span></li>
+    <li><a href="#L21">L21</a> <span class="tt">夹逼定理</span></li>
+    <li><a href="#L22">L22</a> <span class="tt">通分</span></li>
+    <li><a href="#L23">L23</a> <span class="tt">等价无穷小</span></li>
+    <li><a href="#L24">L24</a> <span class="tt">反三角</span></li>
+    <li><a href="#L25">L25</a> <span class="tt">间断点</span></li>
+    <li><a href="#L26">L26</a> <span class="tt">夹逼定理</span></li></ol></nav>
+</header>
+<article class="prob" id="L01" style="--c:var(--blue)">
+<div class="head"><span class="num">L01</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">等价无穷小 · 洛必达</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}\frac{1-\cos x}{x^{2}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{1}{2}$</div>
+<div class="sol"><b>详解：</b>$1-\cos x=2\sin^{2}\frac{x}{2}\sim 2\cdot\left(\frac{x}{2}\right)^{2}=\frac{x^{2}}{2}$，故极限为 $\frac12$。</div>
+<div class="ver">基础：<code>eq(limit((1-cos(x))/x**2, x, 0), Rational(1,2))</code></div>
+</details>
+</article>
+<article class="prob" id="L02" style="--c:var(--teal)">
+<div class="head"><span class="num">L02</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">等价无穷小 · 通分</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}\frac{\tan x-\sin x}{x^{3}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{1}{2}$</div>
+<div class="sol"><b>详解：</b>$\tan x-\sin x=\sin x\left(\frac{1}{\cos x}-1\right)=\sin x\cdot\frac{1-\cos x}{\cos x}$，于是原式 $=\frac{\sin x}{x}\cdot\frac{1-\cos x}{x^{2}}\cdot\frac{1}{\cos x}\to 1\cdot\frac12\cdot 1=\frac12$。</div>
+<div class="ver">进阶：<code>eq(limit((tan(x)-sin(x))/x**3, x, 0), Rational(1,2))</code></div>
+</details>
+</article>
+<article class="prob" id="L03" style="--c:var(--red)">
+<div class="head"><span class="num">L03</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">重要极限</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to\infty}\left(1+\frac{3}{x}\right)^{x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$e^{3}$</div>
+<div class="sol"><b>详解：</b>$\left(1+\frac3x\right)^{x}=\left[\left(1+\frac3x\right)^{x/3}\right]^{3}\to e^{3}$。</div>
+<div class="ver">基础：<code>eq(limit((1+3/x)**x, x, oo), exp(3))</code></div>
+</details>
+</article>
+<article class="prob" id="L04" style="--c:var(--gold)">
+<div class="head"><span class="num">L04</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">泰勒展开</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}\frac{e^{x}-1-x}{x^{2}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{1}{2}$</div>
+<div class="sol"><b>详解：</b>$e^{x}=1+x+\frac{x^{2}}{2}+o(x^{2})$，代入得 $\frac{x^{2}/2+o(x^{2})}{x^{2}}\to\frac12$。</div>
+<div class="ver">基础：<code>eq(limit((exp(x)-1-x)/x**2, x, 0), Rational(1,2))</code></div>
+</details>
+</article>
+<article class="prob" id="L05" style="--c:var(--green)">
+<div class="head"><span class="num">L05</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">泰勒展开</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}\frac{\ln(1+x)-x}{x^{2}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$-\dfrac{1}{2}$</div>
+<div class="sol"><b>详解：</b>$\ln(1+x)=x-\frac{x^{2}}{2}+o(x^{2})$，故极限为 $-\frac12$。</div>
+<div class="ver">进阶：<code>eq(limit((log(1+x)-x)/x**2, x, 0), Rational(-1,2))</code></div>
+</details>
+</article>
+<article class="prob" id="L06" style="--c:var(--violet)">
+<div class="head"><span class="num">L06</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">重要极限 · 含参</span></div>
+<div class="q">设 $a>0$，计算 $\displaystyle\lim_{x\to 0}\frac{a^{x}-1}{x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\ln a$</div>
+<div class="sol"><b>详解：</b>$a^{x}=e^{x\ln a}$，原式 $=\frac{e^{x\ln a}-1}{x\ln a}\cdot\ln a\to\ln a$。</div>
+<div class="ver">进阶：<code>eq(limit((a**x-1)/x, x, 0), log(a))</code></div>
+</details>
+</article>
+<article class="prob" id="L07" style="--c:var(--blue)">
+<div class="head"><span class="num">L07</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">因式分解</span></div>
+<div class="q">设 $n$ 为正整数，计算 $\displaystyle\lim_{x\to 1}\frac{x^{n}-1}{x-1}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$n$</div>
+<div class="sol"><b>详解：</b>$x^{n}-1=(x-1)(x^{n-1}+x^{n-2}+\cdots+1)$，约去 $x-1$ 后令 $x\to1$ 得 $n$。</div>
+<div class="ver">基础：<code>eq(limit((x**n-1)/(x-1), x, 1), n)</code></div>
+</details>
+</article>
+<article class="prob" id="L08" style="--c:var(--teal)">
+<div class="head"><span class="num">L08</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">有理化</span></div>
+<div class="q">计算 $\displaystyle\lim_{n\to\infty}n\left(\sqrt{n^{2}+1}-n\right)$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{1}{2}$</div>
+<div class="sol"><b>详解：</b>有理化：$n\cdot\frac{1}{\sqrt{n^{2}+1}+n}=\frac{1}{\sqrt{1+1/n^{2}}+1}\to\frac12$。</div>
+<div class="ver">进阶：<code>eq(limit(n*(sqrt(n**2+1)-n), n, oo), Rational(1,2))</code></div>
+</details>
+</article>
+<article class="prob" id="L09" style="--c:var(--red)">
+<div class="head"><span class="num">L09</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">重要极限</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}(1+2x)^{3/x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$e^{6}$</div>
+<div class="sol"><b>详解：</b>$(1+2x)^{3/x}=\left[(1+2x)^{1/(2x)}\right]^{6}\to e^{6}$。</div>
+<div class="ver">进阶：<code>eq(limit((1+2*x)**(3/x), x, 0), exp(6))</code></div>
+</details>
+</article>
+<article class="prob" id="L10" style="--c:var(--gold)">
+<div class="head"><span class="num">L10</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">三角恒等变形</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to \pi/2}\left(\sec x-\tan x\right)$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$0$</div>
+<div class="sol"><b>详解：</b>$\sec x-\tan x=\frac{1-\sin x}{\cos x}=\frac{\cos x}{1+\sin x}\to\frac{0}{2}=0$。</div>
+<div class="ver">进阶：<code>eq(limit(sec(x)-tan(x), x, pi/2), 0)</code></div>
+</details>
+</article>
+<article class="prob" id="L11" style="--c:var(--green)">
+<div class="head"><span class="num">L11</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">等价无穷小</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}\frac{\sin 3x}{\tan 5x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{3}{5}$</div>
+<div class="sol"><b>详解：</b>$\sin 3x\sim 3x$，$\tan 5x\sim 5x$，比值为 $\frac35$。</div>
+<div class="ver">基础：<code>eq(limit(sin(3*x)/tan(5*x), x, 0), Rational(3,5))</code></div>
+</details>
+</article>
+<article class="prob" id="L12" style="--c:var(--violet)">
+<div class="head"><span class="num">L12</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">有理化</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to\infty}\left(\sqrt{x^{2}+3x}-x\right)$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{3}{2}$</div>
+<div class="sol"><b>详解：</b>有理化得 $\frac{3x}{\sqrt{x^{2}+3x}+x}\to\frac{3}{2}$。</div>
+<div class="ver">进阶：<code>eq(limit(sqrt(x**2+3*x)-x, x, oo), Rational(3,2))</code></div>
+</details>
+</article>
+<article class="prob" id="L13" style="--c:var(--blue)">
+<div class="head"><span class="num">L13</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">连续 · 待定常数</span></div>
+<div class="q">设 $f(x)=\dfrac{e^{2x}-1}{x}\ (x\neq0)$，$f(0)=k$。求 $k$ 使 $f$ 在 $x=0$ 处连续。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$k=2$</div>
+<div class="sol"><b>详解：</b>连续要求 $k=\lim_{x\to0}\frac{e^{2x}-1}{x}=2$。</div>
+<div class="ver">基础：<code>eq(limit((exp(2*x)-1)/x, x, 0), 2)</code></div>
+</details>
+</article>
+<article class="prob" id="L14" style="--c:var(--teal)">
+<div class="head"><span class="num">L14</span><span class="lvl">★★★★☆ 较难</span><span class="tags">幂指函数 · 洛必达</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}(\cos x)^{1/x^{2}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$e^{-1/2}$</div>
+<div class="sol"><b>详解：</b>取对数：$\frac{\ln\cos x}{x^{2}}\to-\frac12$（$\ln\cos x=\ln(1-\frac{x^2}{2}+o(x^2))\sim-\frac{x^2}{2}$），故原式为 $e^{-1/2}$。</div>
+<div class="ver">较难：<code>eq(limit(cos(x)**(1/x**2), x, 0), exp(Rational(-1,2)))</code></div>
+</details>
+</article>
+<article class="prob" id="L15" style="--c:var(--red)">
+<div class="head"><span class="num">L15</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">泰勒展开</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}\frac{\ln\cos x}{x^{2}}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$-\dfrac{1}{2}$</div>
+<div class="sol"><b>详解：</b>$\ln\cos x=\ln\left(1-\frac{x^{2}}{2}+o(x^{2})\right)=-\frac{x^{2}}{2}+o(x^{2})$，故为 $-\frac12$。</div>
+<div class="ver">进阶：<code>eq(limit(log(cos(x))/x**2, x, 0), Rational(-1,2))</code></div>
+</details>
+</article>
+<article class="prob" id="L16" style="--c:var(--gold)">
+<div class="head"><span class="num">L16</span><span class="lvl">★★★★☆ 较难</span><span class="tags">无穷小阶</span></div>
+<div class="q">当 $x\to0$ 时，$\tan x-\sin x$ 是 $x$ 的几阶无穷小？并写出等价无穷小。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$3$ 阶，且 $\tan x-\sin x\sim\dfrac{x^{3}}{2}$</div>
+<div class="sol"><b>详解：</b>由 L02 知 $\frac{\tan x-\sin x}{x^{3}}\to\frac12\neq0$，故为 3 阶无穷小，等价于 $\frac{x^{3}}{2}$。</div>
+<div class="ver">较难：<code>eq(limit((tan(x)-sin(x))/x**3, x, 0), Rational(1,2))</code></div>
+</details>
+</article>
+<article class="prob" id="L17" style="--c:var(--green)">
+<div class="head"><span class="num">L17</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">对数 · 单侧极限</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0^{+}}x\ln x$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$0$</div>
+<div class="sol"><b>详解：</b>令 $t=1/x\to+\infty$，则 $x\ln x=-\frac{\ln t}{t}\to0$。</div>
+<div class="ver">进阶：<code>eq(limit(x*log(x), x, 0, '+'), 0)</code></div>
+</details>
+</article>
+<article class="prob" id="L18" style="--c:var(--violet)">
+<div class="head"><span class="num">L18</span><span class="lvl">★★★★☆ 较难</span><span class="tags">通分 · 泰勒展开</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}\left(\frac{1}{x}-\frac{1}{e^{x}-1}\right)$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{1}{2}$</div>
+<div class="sol"><b>详解：</b>通分：$\frac{e^{x}-1-x}{x(e^{x}-1)}$。分子 $\sim\frac{x^{2}}{2}$，分母 $\sim x^{2}$，故为 $\frac12$。</div>
+<div class="ver">较难：<code>eq(limit(1/x - 1/(exp(x)-1), x, 0), Rational(1,2))</code></div>
+</details>
+</article>
+<article class="prob" id="L19" style="--c:var(--blue)">
+<div class="head"><span class="num">L19</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">等价无穷小</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}\frac{\tan x^{2}}{1-\cos x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$2$</div>
+<div class="sol"><b>详解：</b>$\tan x^{2}\sim x^{2}$，$1-\cos x\sim\frac{x^{2}}{2}$，比值为 2。</div>
+<div class="ver">进阶：<code>eq(limit(tan(x**2)/(1-cos(x)), x, 0), 2)</code></div>
+</details>
+</article>
+<article class="prob" id="L20" style="--c:var(--teal)">
+<div class="head"><span class="num">L20</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">幂指函数</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to\infty}x^{1/x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$1$</div>
+<div class="sol"><b>详解：</b>$x^{1/x}=e^{\ln x/x}$，而 $\frac{\ln x}{x}\to0$，故为 $e^{0}=1$。</div>
+<div class="ver">进阶：<code>eq(limit(x**(1/x), x, oo), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="L21" style="--c:var(--red)">
+<div class="head"><span class="num">L21</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">夹逼定理 · 有界乘无穷小</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}x^{2}\sin\frac{1}{x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$0$</div>
+<div class="sol"><b>详解：</b>$\left|x^{2}\sin\frac1x\right|\le x^{2}\to0$，由夹逼定理极限为 0。</div>
+<div class="ver">进阶：<code>eq(limit(x**2*sin(1/x), x, 0), 0)</code></div>
+</details>
+</article>
+<article class="prob" id="L22" style="--c:var(--gold)">
+<div class="head"><span class="num">L22</span><span class="lvl">★★★★☆ 较难</span><span class="tags">通分 · 泰勒展开</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 1}\left(\frac{1}{\ln x}-\frac{1}{x-1}\right)$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{1}{2}$</div>
+<div class="sol"><b>详解：</b>通分得 $\frac{x-1-\ln x}{(x-1)\ln x}$。由 $\ln x=\ln(1+(x-1))$ 展开：分子 $\sim\frac{(x-1)^{2}}{2}$，分母 $\sim(x-1)^{2}$，故为 $\frac12$。</div>
+<div class="ver">较难：<code>eq(limit(1/log(x) - 1/(x-1), x, 1), Rational(1,2))</code></div>
+</details>
+</article>
+<article class="prob" id="L23" style="--c:var(--green)">
+<div class="head"><span class="num">L23</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">等价无穷小</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}\frac{1-\cos x}{x\sin x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{1}{2}$</div>
+<div class="sol"><b>详解：</b>$1-\cos x\sim\frac{x^{2}}{2}$，$x\sin x\sim x^{2}$，比值为 $\frac12$。</div>
+<div class="ver">基础：<code>eq(limit((1-cos(x))/(x*sin(x)), x, 0), Rational(1,2))</code></div>
+</details>
+</article>
+<article class="prob" id="L24" style="--c:var(--violet)">
+<div class="head"><span class="num">L24</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">反三角 · 等价无穷小</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to 0}\frac{\arcsin x}{x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$1$</div>
+<div class="sol"><b>详解：</b>令 $t=\arcsin x$，则 $x=\sin t$，$t\to0$ 时 $\frac{t}{\sin t}\to1$。</div>
+<div class="ver">基础：<code>eq(limit(asin(x)/x, x, 0), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="L25" style="--c:var(--blue)">
+<div class="head"><span class="num">L25</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">间断点</span></div>
+<div class="q">判断 $x=1$ 是 $f(x)=\dfrac{\sin(x-1)}{x-1}$ 的哪一类间断点（可去／跳跃／无穷）。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>可去间断点</div>
+<div class="sol"><b>详解：</b>$\lim_{x\to1}\frac{\sin(x-1)}{x-1}=1$ 存在，但 $f$ 在 $x=1$ 无定义，故为可去间断点。</div>
+<div class="ver">进阶：<code>eq(limit(sin(x-1)/(x-1), x, 1), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="L26" style="--c:var(--teal)">
+<div class="head"><span class="num">L26</span><span class="lvl">★★★★☆ 较难</span><span class="tags">夹逼定理 · 取整函数</span></div>
+<div class="q">计算 $\displaystyle\lim_{x\to\infty}\frac{\lfloor x\rfloor}{x}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$1$</div>
+<div class="sol"><b>详解：</b>$x-1<\lfloor x\rfloor\le x$，两边除以 $x$ 后夹逼，极限为 1。</div>
+<div class="ver">较难：<code>eq(limit(floor(x)/x, x, oo), 1)</code></div>
+</details>
+</article>
+<footer>
+  本页题目与详解由本库编写，答案经符号计算验证；解题方法不限一种，详解给出的是其中一条思路。<br>
+  返回 <a class="back" href="index.html">题库总览</a> ·
+  <a class="back" href="../00-总览/index.html">总览</a> ·
+  授权见仓库根目录 <code>LICENSE</code>
+</footer>
+</div>
+<script>
+(function(){
+  var d=document.querySelectorAll('.prob details');
+  var s=document.getElementById('showAll'), h=document.getElementById('hideAll');
+  if(s) s.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=true; };
+  if(h) h.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=false; };
+})();
+</script>
+</body>
+</html>

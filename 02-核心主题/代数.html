@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>代数讲义 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='32' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%88%80%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --violet:#6B4E9E; --gold:#A8751E; --red:#C0392B; --blue:#1F4E9C;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.8;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:980px; margin:0 auto; padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px; color:var(--violet); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:40px; margin:12px 0 6px;}
+h1 .sym{color:var(--violet); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:740px;}
+.quote{font-family:Georgia,"Noto Serif SC",serif; font-style:italic; color:var(--ink2); font-size:15px; margin-top:10px;}
+.toc{margin-top:22px; background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:16px 22px;}
+.toc b{font-size:14px;}
+.toc ol{margin:8px 0 0 22px; font-size:14px; column-count:2; column-gap:30px;}
+.toc a{color:var(--violet); text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.ch{margin-top:44px;}
+.ch h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--violet); padding-left:14px;}
+.ch h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.ch h3{font-family:Georgia,"Noto Serif SC",serif; font-size:20px; margin-top:26px;}
+.ch p{font-size:15px; margin-top:10px; max-width:820px;}
+.f{font-family:Georgia,"Cambria Math",serif; font-style:italic; background:var(--paper2); border-radius:6px; padding:1px 8px;}
+.def{background:#EEF2FA; border:1px solid #C9D6EC; border-left:5px solid var(--blue); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.def b{color:var(--blue);}
+.thm{background:#FBF3E4; border:1px solid #E4D5B0; border-left:5px solid var(--gold); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.thm b{color:var(--gold);}
+.proof{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; font-size:14px; color:var(--ink2);}
+.proof b{color:var(--ink);}
+.ex{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-top:12px; font-size:14.5px;}
+.ex b{color:var(--violet);}
+.ex .sol{margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink2); font-size:13.5px;}
+.ex .sol b{color:var(--blue);}
+details{margin-top:6px;}
+summary{cursor:pointer; font-size:13.5px; color:var(--violet); user-select:none; display:inline-block; padding:3px 0;}
+summary:hover{text-decoration:underline;}
+.tbl{margin-top:14px; width:100%; border-collapse:collapse; background:#fffdf6; font-size:14px; table-layout:fixed;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:var(--paper2); font-weight:600; font-size:13px;}
+.demo{background:var(--paper2); border:1px solid var(--line); border-radius:16px; padding:20px; margin-top:16px;}
+.demo .btn{display:inline-block; background:var(--violet); color:#fff; border:none; border-radius:8px; padding:8px 18px; font-size:14px; cursor:pointer; margin:0 8px 12px 0; min-height:44px;}
+.demo .btn.gray{background:#8A8270;}
+.demo p.hint{font-size:13px; color:var(--ink2);}
+.papers{display:grid; gap:10px; margin-top:12px;}
+.papers .p{background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:12px 16px;}
+.papers .p a{color:var(--violet); text-decoration:none; font-weight:600; font-size:14.5px;}
+.papers .p a:hover{text-decoration:underline;}
+.papers .m{font-size:12.5px; color:var(--ink2); margin-top:3px;}
+.papers .empty{background:var(--paper2); border:1px dashed var(--line); border-radius:10px; padding:14px 16px; font-size:13.5px; color:var(--ink2);}
+.gloss{margin-top:14px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:14px;}
+.gloss dt{font-weight:700; margin-top:8px;}
+.gloss dt:first-child{margin-top:0;}
+.gloss dd{margin-left:18px; color:var(--ink2); font-size:13.5px;}
+.online{margin-top:16px; background:#fffdf6; border:1px solid var(--line); border-radius:12px; padding:16px 20px; font-size:14px;}
+.online a{color:var(--violet); text-decoration:none;}
+.online a:hover{text-decoration:underline;}
+.online ul{margin:8px 0 0 20px;}
+.online li{margin-top:6px;}
+.online .hint{font-size:12.5px; color:var(--ink2); margin-top:8px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--violet); text-decoration:none;}
+@media (max-width:640px){
+  .wrap{padding:0 16px 60px;}
+  h1{font-size:32px;}
+  .toc ol{column-count:1;}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../00-总览/index.html">← 返回总览</a>
+  <h1>代数讲义 <span class="sym">∀</span></h1>
+  <p class="sub">群、环、域与伽罗瓦理论——从「对称的代数化」到「五次方程为何无根式解」：完整讲义含定义、定理、证明、例题与练习。</p>
+  <p class="quote">「抽象代数是关于『结构』的数学：剥去具体对象，留下运算规则。」</p>
+</header>
+
+<div class="toc">
+  <b>本讲目录</b>
+  <ol>
+    <li><a href="#c1">群：对称的代数化</a></li>
+    <li><a href="#c2">子群、陪集与拉格朗日定理</a></li>
+    <li><a href="#c3">正规子群与商群</a></li>
+    <li><a href="#c4">环与域</a></li>
+    <li><a href="#c5">多项式与代数基本定理</a></li>
+    <li><a href="#c6">伽罗瓦理论：五次方程之死</a></li>
+    <li><a href="#c7">群作用与 Burnside 引理</a></li>
+    <li><a href="#c8">有限域与编码</a></li>
+    <li><a href="#cA1">深度专题：Sylow 三大定理</a></li>
+    <li><a href="#cA2">深度专题：PID、UFD 与高斯整数</a></li>
+    <li><a href="#c9a">深度：伽罗瓦理论大纲</a></li>
+    <li><a href="#c9b">深度：理想与唯一分解整环</a></li>
+    <li><a href="#c9c">深度：张量积初步</a></li>
+    <li><a href="#c9d">深度：李代数初步</a></li>
+    <li><a href="#c9e">深度：同调代数与正合序列</a></li>
+    <li><a href="#c9">练习与自测</a></li>
+    <li><a href="#c10">术语表、在线资源与最新研究</a></li>
+  </ol>
+</div>
+
+<!-- ================= 第 1 章 ================= -->
+<div class="ch" id="c1">
+  <h2>1. 群：对称的代数化 <small>一个集合 + 一条运算 + 三条公理</small></h2>
+  <div class="def"><b>定义（群）：</b>集合 G 配二元运算 · 满足：① 封闭；② 结合律 (ab)c = a(bc)；③ 存在单位元 e（ea = ae = a）；④ 每元有逆元 a⁻¹。若 ab = ba 对一切 a、b 成立，称阿贝尔群（交换群）。</div>
+  <div class="def"><b>定义（群同态 / 同构）：</b>φ: G→H 保持运算（φ(ab) = φ(a)φ(b)）称同态；双射同态称同构。同构的群本质相同。</div>
+  <div class="thm"><b>定理（凯莱定理）：</b>每个群都同构于某个置换群的子群。<div class="proof"><b>证明要点：</b>群 G 通过左乘作用在自身：a ↦ (g ↦ ag) 是 G 到 S(G) 的单射同态。抽象的群都能「具体化」为置换——对称是群的原型。</div></div>
+  <div class="ex"><b>例：</b>整数模 n 加法群 ℤₙ、模 p 乘法群 ℤₚ*（p−1 阶循环群）、正三角形对称群 D₃（6 阶）、置换群 Sₙ（n! 阶）。</div>
+</div>
+
+<!-- ================= 第 2 章 ================= -->
+<div class="ch" id="c2">
+  <h2>2. 子群、陪集与拉格朗日定理 <small>群如何「分割」自身</small></h2>
+  <div class="def"><b>定义（子群）：</b>H ⊆ G 在相同运算下构成群，记 H ≤ G。检验：非空 + 对乘法和取逆封闭。</div>
+  <div class="def"><b>定义（陪集）：</b>对 H ≤ G 与 a ∈ G，左陪集 aH = {ah : h ∈ H}。陪集把 G 分成大小相等的「块」。</div>
+  <div class="thm"><b>定理（拉格朗日定理）：</b>有限群 G 中，|H| 整除 |G|。<div class="proof"><b>证明要点：</b>陪集两两不相交或相等（aH = bH ⟺ a⁻¹b ∈ H），每个陪集大小 = |H|，故 |G| = [G:H]·|H|。</div></div>
+  <div class="thm"><b>定理（元素的阶）：</b>有限群中元素 a 的阶（最小正整数 n 使 aⁿ = e）整除 |G|；推论：a^|G| = e。<div class="proof"><b>推论：</b>费马小定理是它的特例——ℤₚ* 是 p−1 阶群，$a^{p-1}$ = 1。</div></div>
+  <div class="ex"><b>例：</b>S₃ 有 6 个元素，子群阶数只能是 1、2、3、6：单位元群、3 个二阶子群（对换）、1 个三阶子群（3-循环）、全体。</div>
+</div>
+
+<!-- ================= 第 3 章 ================= -->
+<div class="ch" id="c3">
+  <h2>3. 正规子群与商群 <small>给群「取模」</small></h2>
+  <div class="def"><b>定义（正规子群）：</b>N ≤ G 若对一切 g ∈ G 有 gNg⁻¹ = N，称正规子群，记 N ⊴ G。阿贝尔群的一切子群都正规。</div>
+  <div class="thm"><b>定理（商群）：</b>N ⊴ G 时，陪集集合 G/N 在乘法 (aN)(bN) = abN 下构成群。<div class="proof"><b>证明要点：</b>运算良定义需要 N 正规——否则 (aN)(bN) 依赖代表元选择。商群 G/N 是把 N「压成 0」得到的像，类比 ℤ/nℤ。</div></div>
+  <div class="thm"><b>定理（第一同构定理）：</b>φ: G→H 同态，则 G/ker φ ≅ Im φ。<div class="proof"><b>证明要点：</b>把核「商掉」后映射变成单射——同态基本定理是「先压平再看」的通用工具。</div></div>
+  <div class="thm"><b>定理（单群与合成列）：</b>有限群可分解为简单群的「积木」（Jordan–Hölder 定理：合成列唯一）。<div class="proof"><b>意义：</b>有限单群分类（1980s 完成，约一万页）是 20 世纪数学最庞大工程之一：包括循环素数阶群、交错群 Aₙ（n≥5）、李型群与 26 个散在单群。</div></div>
+  <div class="ex"><b>例：</b>ℤ/6ℤ ≅ ℤ₂ × ℤ₃（中国剩余定理的群论版）；S₃ 的唯一非平凡正规子群是 A₃（3-循环），S₃/A₃ ≅ ℤ₂。</div>
+</div>
+
+<!-- ================= 第 4 章 ================= -->
+<div class="ch" id="c4">
+  <h2>4. 环与域 <small>两道运算的结构</small></h2>
+  <div class="def"><b>定义（环）：</b>集合 R 上有加法（阿贝尔群）与乘法（结合、对加法分配）。交换环、含幺环（有 1）是常见约定。</div>
+  <div class="def"><b>定义（域）：</b>交换含幺环，且每个非零元有乘法逆元。ℚ、ℝ、ℂ、有限域 𝔽ₚ、𝔽_{pⁿ}。</div>
+  <div class="def"><b>定义（理想）：</b>I ⊆ R 对加法封闭且对环乘吸收（rI ⊆ I）。理想 = 「环中可商掉的东西」：R/I 是环。</div>
+  <div class="thm"><b>定理（主理想整环）：</b>ℤ、多项式环 𝔽[x]（𝔽 为域）都是主理想整环：每个理想由一个元素生成。<div class="proof"><b>证明要点：</b>取理想中「最小」元（带余除法降维），任意元对它做带余除法余数必须为 0。</div></div>
+  <div class="thm"><b>定理（唯一分解整环）：</b>ℤ、𝔽[x]、高斯整数 ℤ[i] 均满足唯一分解。<div class="proof"><b>注意：</b>ℤ[√−5] 中 6 = 2×3 = (1+√−5)(1−√−5) 两种分解——理想类数是 2，这是代数数论的起点。</div></div>
+  <div class="ex"><b>例：</b>𝔽₇ 中 2 的逆元是 4（2×4=8≡1）；多项式 x²+1 在 ℝ[x] 中不可约，但 ℝ[x]/(x²+1) ≅ ℂ——复数就是「模 x²+1 的多项式余数」！</div>
+</div>
+
+<!-- ================= 第 5 章 ================= -->
+<div class="ch" id="c5">
+  <h2>5. 多项式与代数基本定理 <small>根与因式的对偶</small></h2>
+  <div class="thm"><b>定理（代数基本定理）：</b>非常数复系数多项式在 ℂ 中至少有一个根。<div class="proof"><b>证明要点（刘维尔定理）：</b>若 P(z) 无零点，则 1/P(z) 是整函数且有界（|P|→∞ 当 |z|→∞），由刘维尔定理必为常数——矛盾。</div></div>
+  <div class="thm"><b>定理（因式定理）：</b>α 是 f(x) 的根 ⟺ (x−α) | f(x)。<div class="proof"><b>推论：</b>n 次多项式至多 n 个根（计入重数）——「根的个数」与「次数」的对偶是代数的核心工具。</div></div>
+  <div class="thm"><b>定理（有理根定理）：</b>整系数多项式 aₙxⁿ+…+a₀ 的有理根必为 p/q，其中 p | a₀、q | aₙ。<div class="proof"><b>例：</b>2x³−x²−4x+2 的有理根只能是 ±1、±2、±1/2。检验 x=1/2：2(1/8)−(1/4)−2+2 = 0 ✓ 于是可分解。</div></div>
+  <div class="thm"><b>定理（艾森斯坦判别法）：</b>整系数多项式 f(x) = aₙxⁿ+…+a₀，若素数 p 满足 p∤aₙ、p|aᵢ(i&lt;n)、p²∤a₀，则 f 在 ℚ 上不可约。<div class="proof"><b>例：</b>x⁴+2x+2 取 p=2：2∤1、2|2、2|0、4∤2 → 不可约。</div></div>
+  <div class="ex"><b>例：</b>分解 x⁴−1 = (x−1)(x+1)(x²+1) = (x−1)(x+1)(x−i)(x+i)——四次多项式有 4 个复根。</div>
+</div>
+
+<!-- ================= 第 6 章 ================= -->
+<div class="ch" id="c6">
+  <h2>6. 伽罗瓦理论：五次方程之死 <small>群论如何判死刑</small></h2>
+  <div class="def"><b>定义（域扩张与自同构）：</b>扩域 K ⊇ F 的自同构群 Aut(K/F)（固定 F 的域自同构）——K 相对 F 的「对称群」。</div>
+  <div class="thm"><b>定理（伽罗瓦对应）：</b>有限伽罗瓦扩张 K/F 中，中间域 ↔ Gal(K/F) 的子群构成一一对应。<div class="proof"><b>意义：</b>域扩张的「结构」完全由群的语言刻画——方程的解结构 ⟺ 群的子群结构。</div></div>
+  <div class="thm"><b>定理（阿贝尔-鲁菲尼定理）：</b>n ≥ 5 的一般 n 次方程无根式解。<div class="proof"><b>证明要点：</b>若方程可根式解，则伽罗瓦群必须可解（逐层可交换）。而一般 5 次方程的伽罗瓦群是 S₅，S₅ 不可解（A₅ 是非交换单群）——矛盾。</div></div>
+  <div class="ex"><b>例：</b>x⁵ − x − 1 的伽罗瓦群是 S₅（整体置换），故其根无法用有限次加减乘除与开方表达——这是「不可解」的具体标本。</div>
+  <div class="thm"><b>定理（根式可解性）：</b>f(x) = 0 可根式解 ⟺ 伽罗瓦群可解。<div class="proof"><b>2–4 次：</b>S₂、S₃、S₄ 均可解（S₄ 的子群链长度 3）——所以四次方程有求根公式（卡尔达诺、费拉里）。5 次：S₅ 不可解。</div></div>
+</div>
+
+<!-- ================= 第 7 章 ================= -->
+<div class="ch" id="c7">
+  <h2>7. 群作用与 Burnside 引理 <small>数对称 = 数不动点</small></h2>
+  <div class="def"><b>定义（群作用）：</b>G × X → X 满足兼容结合律与单位元。轨道 = 一个元素能到达的所有位置；稳定子 = 固定该元素的子群。</div>
+  <div class="thm"><b>定理（轨道-稳定子定理）：</b>|G| = |轨道| × |稳定子|。<div class="proof"><b>证明要点：</b>轨道中的点与陪集 G/Stab(x) 一一对应。</div></div>
+  <div class="thm"><b>定理（Burnside 引理）：</b>G 在 X 上的轨道数 = (1/|G|) Σ_{g∈G} |Fix(g)|。<div class="proof"><b>意义：</b>「不同构对象的个数」=「所有变换不动点的平均数」——组合计数的核心武器。</div></div>
+  <div class="ex"><b>例：</b>用 2 种颜色给正方形的 4 个顶点着色（旋转视为相同），不同方案数 = ？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>旋转群 D₄（4 个旋转）：单位元不动点 16；90°、270° 旋转各 2；180° 旋转 4。(16+2+2+4)/4 = 6 种。</div></details></div>
+</div>
+
+<!-- ================= 第 8 章 ================= -->
+<div class="ch" id="c8">
+  <h2>8. 有限域与编码 <small>𝔽₂ 上的代数守护数据</small></h2>
+  <div class="def"><b>定义（有限域）：</b>恰含 pⁿ 个元素的域 𝔽_{pⁿ}（p 素数）。𝔽_p = 模 p 整数；𝔽_{pⁿ} 由 𝔽_p 上的不可约多项式构造。</div>
+  <div class="thm"><b>定理（域唯一性）：</b>同阶有限域唯一（同构意义下）。<div class="proof"><b>证明要点：</b>𝔽_{pⁿ} 是 𝔽_p 上 $x^{p^{n}}$−x 的分裂域。</div></div>
+  <div class="thm"><b>定理（BCH / Reed–Solomon 码）：</b>有限域上的多项式码可纠正 t 个错误，只要码长与距离满足设计参数。<div class="proof"><b>应用：</b>Reed–Solomon 码用于光盘、二维码、卫星通信——错误纠正靠的是有限域算术的代数结构。</div></div>
+  <div class="ex"><b>例：</b>𝔽₅ 中 x² = 2 有解吗？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>试 0²=0, 1²=1, 2²=4, 3²=9≡4, 4²=16≡1——都不等于 2，无解。于是 𝔽₅[x]/(x²−2) 是 25 元域 𝔽₂₅。</div></details></div>
+</div>
+
+
+<!-- ================= 深度专题 A ================= -->
+<div class="ch" id="cA1">
+  <h2>9. 深度专题：Sylow 三大定理 <small>拉格朗日定理的「逆」</small></h2>
+  <p>拉格朗日定理说：子群的阶整除群的阶；反过来，若 $p^k \mid |G|$，是否一定存在阶为 $p^k$ 的子群？Sylow 给出了最强的正面回答。</p>
+  <div class="def"><b>定义（$p$-群 / Sylow $p$-子群）：</b>若有限群 $G$ 的阶是素数 $p$ 的幂，称 $G$ 是 $p$-群。设 $|G| = p^k m$，$(p,m)=1$，则阶恰为 $p^k$ 的子群 $P$ 称为 $G$ 的一个 <b>Sylow $p$-子群</b>。</div>
+  <div class="thm"><b>Sylow 第一定理（存在性）：</b>$G$ 中必存在 Sylow $p$-子群；并且对每个 $j=0,1,\dots,k$，$G$ 都有阶为 $p^j$ 的子群。<div class="proof"><b>证明思路（作用在 $p^k$-子集上）：</b>令 $\Omega = \{S \subseteq G : |S|=p^k\}$，$G$ 通过左乘作用在 $\Omega$ 上。轨道–稳定子定理给出 $|\Omega| = |G|/|\mathrm{Stab}(S)|$。组合数 $\binom{p^k m}{p^k}$ 的 $p$-进赋值恰为 $0$，故存在轨道 $G\cdot S$ 使 $p \nmid |G\cdot S|$，从而 $p^k \mid |\mathrm{Stab}(S)|$；而 $\mathrm{Stab}(S)$ 把 $S$ 作为集合保持，故 $|\mathrm{Stab}(S)| \le |S|=p^k$，于是 $|\mathrm{Stab}(S)|=p^k$，它就是 Sylow $p$-子群。逐层取子群即得所有 $p^j$ 阶子群。</div></div>
+  <div class="thm"><b>Sylow 第二定理（共轭性）：</b>任意两个 Sylow $p$-子群 $P,Q$ 在 $G$ 中共轭：存在 $g\in G$ 使 $gPg^{-1}=Q$。<div class="proof"><b>证明思路：</b>$Q$ 通过左乘作用在左陪集空间 $G/P$ 上，$|G/P|=m$ 不被 $p$ 整除。轨道分解 $m = \sum |Q\cdot xP|$，每个轨道长是 $p$ 的幂；因 $p\nmid m$，必有一个轨道长为 $1$，即存在 $gP$ 使 $Q\cdot(gP)=gP$，等价地 $g^{-1}Qg \subseteq P$，两边阶都为 $p^k$，故 $g^{-1}Qg=P$。</div></div>
+  <div class="thm"><b>Sylow 第三定理（计数）：</b>设 $n_p$ 为 Sylow $p$-子群的个数，则 ① $n_p \equiv 1 \pmod p$；② $n_p \mid m$（即 $n_p \mid |G|/p^k$）。<div class="proof"><b>证明思路：</b>取一个固定的 Sylow $P$，让它通过共轭作用在全体 Sylow $p$-子群集合上。$P$ 自身是唯一的不动点（若 $Q$ 被 $P$ 正规化，则 $PQ$ 是 $p$-群，包含 $P$，阶只能是 $p^k$，故 $Q=P$）。其余轨道长都是 $p$ 的幂，故 $n_p = 1 + (\text{若干 } p\text{ 的倍数})$，得 ①。又 $n_p = [G:N_G(P)]$，而 $P \unlhd N_G(P)$ 且 $P \subseteq N_G(P)$，故 $[G:N_G(P)] \mid [G:P]=m$，得 ②。</div></div>
+  <div class="ex"><b>例（阶 $15$ 群必循环）：</b>设 $|G|=15=3\cdot 5$。$n_3 \equiv 1\pmod 3$ 且 $n_3\mid 5$，故 $n_3=1$；同理 $n_5\equiv 1\pmod 5$ 且 $n_5\mid 3$，故 $n_5=1$。于是 Sylow $3$-子群 $P$ 与 Sylow $5$-子群 $Q$ 都正规，$P\cap Q=\{e\}$（阶互素），$|PQ|=15=|G|$，所以 $G=P\times Q\cong \mathbb Z_3\times \mathbb Z_5\cong \mathbb Z_{15}$（中国剩余定理）。<div class="sol"><b>推论：</b>阶为 $pq$（$p&lt;q$，$p\nmid q-1$）的群必为循环群——Sylow 计数是分类小阶群的主工具。</div></div>
+  <div class="ex"><b>例（$A_5$ 的简单性，第一步）：</b>$|A_5|=60=2^2\cdot 3\cdot 5$。$n_5\equiv 1\pmod 5$ 且 $n_5\mid 12$，故 $n_5\in\{1,6\}$。$A_5$ 中 $5$-循环有 $24$ 个，每个 Sylow $5$-子群含 $4$ 个非单位元，故 $n_5=6$。若 $N\trianglelefteq A_5$ 含某个 $5$-循环，则由正规性含全部 $6$ 个 Sylow $5$-子群，从而 $|N|$ 被 $6\cdot 5$ 整除——非平凡正规子群只能是 $A_5$ 本身。</div>
+</div>
+
+<!-- ================= 深度专题 B ================= -->
+<div class="ch" id="cA2">
+  <h2>10. 深度专题：PID、UFD 与高斯整数 <small>唯一分解为什么成立</small></h2>
+  <div class="def"><b>定义（主理想整环 PID / 唯一分解整环 UFD）：</b>整环 $R$ 中每个理想都由一个元素生成，称 PID。若 $R$ 中每个非零非单位元都可唯一分解为不可约元之积（不计次序与单位），称 UFD。</div>
+  <div class="thm"><b>定理：PID $\Rightarrow$ UFD。</b><div class="proof"><b>证明分两步：</b>① <b>存在性（Noether 性）：</b>若存在不能分解的元，可作严格升链 $(a_1)\subsetneq(a_2)\subsetneq\cdots$，并集是理想，在 PID 中由 $d$ 生成，$d\in(a_n)$ 对某个 $n$，与 $(a_n)\subsetneq(a_{n+1})$ 矛盾。② <b>唯一性：</b>PID 是 Bézout 环：$(\gcd(a,b))=(a)+(b)$，故不可约元 $p$ 是素元（$p\mid ab\Rightarrow p\mid a$ 或 $p\mid b$）。素元保证分解唯一性：设 $p_1\cdots p_r = q_1\cdots q_s$，$p_1$ 整除某个 $q_j$，二者不可约故相伴，约去后归纳。</div></div>
+  <div class="def"><b>定义（欧几里得整环 ED）：</b>若存在函数 $\varphi:R\setminus\{0\}\to\mathbb N$ 使对任意 $a,b\neq 0$ 有 $a=qb+r$ 且 $r=0$ 或 $\varphi(r)&lt;\varphi(b)$，则 $R$ 是 ED。ED $\Rightarrow$ PID $\Rightarrow$ UFD。</div>
+  <div class="ex"><b>例：高斯整数 $\mathbb Z[i]$ 是欧几里得整环。</b>取范数 $N(a+bi)=a^2+b^2=|a+bi|^2$，它是乘性的：$N(\alpha\beta)=N(\alpha)N(\beta)$。对 $\alpha,\beta\neq 0$，在 $\mathbb C$ 中作商 $\alpha/\beta = u+vi \in\mathbb Q(i)$，取离 $u,v$ 最近的整数 $m,n$，令 $q=m+ni\in\mathbb Z[i]$，$r=\alpha-q\beta$。则 $|\alpha/\beta-q|\le \sqrt{(1/2)^2+(1/2)^2}=1/\sqrt2$，于是
+  $$N(r)=N(\beta)\cdot|\alpha/\beta-q|^2 \le \tfrac12 N(\beta) &lt; N(\beta).$$
+  带余除法成立，$\mathbb Z[i]$ 是 ED，故是 UFD。<div class="sol"><b>推论：</b>$\mathbb Z[i]$ 中素元分三类：① $1+i$（$N=2$，分歧）；② 有理素数 $p\equiv 3\pmod 4$ 本身不可约（惯性）；③ $p\equiv 1\pmod 4$ 分裂为 $p=\pi\bar\pi$。</div></div>
+  <div class="ex"><b>例：分解 $5$ 与 $65$。</b>在 $\mathbb Z[i]$ 中，$5=(2+i)(2-i)$，且 $N(2+i)=5$ 为有理素数，故 $2+i$ 不可约。再如 $65=5\cdot 13$，而 $13=(3+2i)(3-2i)$，故
+  $$65=(2+i)(2-i)(3+2i)(3-2i).$$
+  另一条路：$65=8^2+1^2=7^2+4^2$，即 $(8+i)(8-i)=65$、$(7+4i)(7-4i)=65$。比较两种分解可验证：$(2+i)(3+2i)=4+7i$、$(2-i)(3-2i)=4-7i$（差单位 $-i$ 的相伴），UFD 成立。</div>
+</div>
+
+
+<!-- ================= 第 9 章 ================= -->
+
+<!-- ================= 深度小节：9a. 深度：伽罗瓦理论大纲 ================= -->
+<div class="ch" id="c9a">
+  <h2>11. 深度：伽罗瓦理论大纲 <small>方程何时可根式解？群论给出精确答案</small></h2>
+  <div class="def"><b>定义（伽罗瓦群）</b> 域扩张 $L/K$ 的自同构群 $\mathrm{Gal}(L/K)$ 由所有保持 $K$ 不动的自同构组成。$|\mathrm{Gal}(L/K)|=\#(L:K)$ 时称扩张为伽罗瓦扩张。</div>
+  <div class="thm"><b>定理（伽罗瓦对应）</b> 对伽罗瓦扩张 $L/K$，中间域 $E$（$K\subseteq E\subseteq L$）与子群 $H\le\mathrm{Gal}(L/K)$ 之间有一一对应
+  $$E\mapsto\mathrm{Gal}(L/E),\quad H\mapsto L^H=\{x\in L:\,\forall h\in H,\,h(x)=x\}.$$
+  且 $E/K$ 是伽罗瓦扩张当且仅当 $\mathrm{Gal}(L/E)$ 是 $\mathrm{Gal}(L/K)$ 的正规子群。<div class="proof"><b>意义：</b>「域的问题」翻译成「群的问题」——这把多项式可解性化归为群的可解性。</div></div>
+  <div class="thm"><b>定理（根式可解判据）</b> $f\in K[x]$ 根式可解当且仅当其伽罗瓦群 $\mathrm{Gal}(f)$ 可解（即合成列商皆为素数阶循环群）。<div class="proof"><b>关键：</b>$S_5$ 不可解——含 $A_5$ 这个非阿单群——故五次及以上一般方程不能根式解（阿贝尔–鲁菲尼定理的现代形式）。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9b. 深度：理想与唯一分解整环 ================= -->
+<div class="ch" id="c9b">
+  <h2>12. 深度：理想与唯一分解整环 <small>把「算术基本定理」推到更广的环</small></h2>
+  <div class="def"><b>定义</b> 整环 $R$ 是唯一分解整环（UFD）若每个非零非单位的元素可唯一分解为不可约元之积。$R$ 是主理想整环（PID）若每个理想形如 $(a)$。$R$ 是欧几里得整环（ED）若存在带余除法式映射 $\varphi:R\setminus\{0\}\to\mathbb{N}$。</div>
+  <div class="thm"><b>定理（蕴含链）</b> $\text{ED}\Rightarrow\text{PID}\Rightarrow\text{UFD}$，反之不成立。<div class="proof"><b>反例：</b>$\mathbb{Z}[x]$ 是 UFD 但非 PID（理想 $(2,x)$ 非主）；$\mathbb{Z}\left[\frac{1+\sqrt{-19}}{2}\right]$ 是 PID 但非 ED（而非平凡）。</div></div>
+  <div class="thm"><b>定理（戴德金整环的唯一分解）</b> 戴德金整环（诺特、整闭、非零素理想皆极大）中，每个非零理想可<b>唯一</b>分解为素理想之积——这是「算术基本定理」在理想层面的推广。<div class="proof"><b>注：</b>当 $R$ 不是 UFD 时（如 $\mathbb{Z}[\sqrt{-5}]$），元素层面的唯一分解失效，但理想层面始终唯一——这是数论过渡到代数数论的关键一步。</div></div>
+</div>
+
+
+<!-- ================= 深度小节：9c. 深度：张量积初步 ================= -->
+<div class="ch" id="c9c">
+  <h2>13. 深度：张量积初步 <small>把两个空间「乘」在一起的万能方式</small></h2>
+  <div class="def"><b>定义（张量积）</b> 设 $V,W$ 为域 $K$ 上向量空间。张量积 $V\otimes_K W$ 是以符号 $v\otimes w$（$v\in V,w\in W$）为生成元、满足双线性关系
+  $$(v_1+v_2)\otimes w=v_1\otimes w+v_2\otimes w,\quad v\otimes(w_1+w_2)=v\otimes w_1+v\otimes w_2,\quad (\lambda v)\otimes w=v\otimes(\lambda w)$$
+  的商空间。$\dim(V\otimes W)=\dim V\cdot\dim W$。</div>
+  <div class="thm"><b>定理（泛性质）</b> 双线性映射 $B:V\times W\to U$ 与线性映射 $\tilde B:V\otimes W\to U$ 有一一对应（$B=\tilde B\circ\otimes$）。<div class="proof"><b>意义：</b>张量积是「最经济的使双线性变线性」的空间——泛性质决定它至同构唯一。</div></div>
+  <div class="ex"><b>例：</b>$\mathbb{R}^2\otimes\mathbb{R}^3$ 的维数与基。
+  <div class="sol"><b>解：</b>$\dim=2\cdot3=6$。若 $\{e_1,e_2\}$ 与 $\{f_1,f_2,f_3\}$ 分别为基，则 $\{e_i\otimes f_j\}_{i=1,2;\,j=1,2,3}$ 是 $\mathbb{R}^2\otimes\mathbb{R}^3$ 的基。可视为 $2\times3$ 矩阵空间 $M_{2\times3}(\mathbb{R})$。</div></div>
+</div>
+
+
+<!-- ================= 第二轮深度小节：9d. 深度：李代数初步 ================= -->
+<div class="ch" id="c9d">
+  <h2>14. 深度：李代数初步 <small>连续对称的代数化</small></h2>
+  <div class="def"><b>定义（李代数）</b> 向量空间 $\mathfrak g$ 配双线性运算 $[\cdot,\cdot]$ 满足：① 反交换 $[X,Y]=-[Y,X]$；② Jacobi 恒等式 $[X,[Y,Z]]+[Y,[Z,X]]+[Z,[X,Y]]=0$。典型来源：李群单位元处的切空间，括号由换位子 $XY-YX$ 给出。</div>
+  <div class="def"><b>定义（结构常数）</b> 取基 $\{e_i\}$，$[e_i,e_j]=\sum_k c_{ij}^k e_k$。$c_{ij}^k$ 满足 $c_{ij}^k=-c_{ji}^k$ 与 Jacobi 给出的二次约束。例：$\mathfrak{so}(3)$ 有 $[e_1,e_2]=e_3$ 等循环——对应 $\mathbb{R}^3$ 叉积。</div>
+  <div class="thm"><b>定理（ Killing 型与半单性判据）</b> $B(X,Y)=\mathrm{tr}(\mathrm{ad}_X\mathrm{ad}_Y)$ 是 $\mathfrak g$ 的不变对称双线性形式。Cartan 判据：$\mathfrak g$ 半单（无非交换 Abel 理想）当且仅当 $B$ 非退化。<div class="proof"><b>思路：</b>若 $\mathfrak g$ 有根系 $\Phi\subset\mathfrak h^*$，则 $B$ 的非退化性等价于根系「既约」。这把抽象代数性质化归为组合数据。</div></div>
+  <div class="thm"><b>定理（有限维半单李代数分类）</b> 复数域上半单李代数分解为单理想的直和，单李代数由 Dynkin 图分类：$A_n(n\ge1),B_n(n\ge2),C_n(n\ge3),D_n(n\ge4)$ 四族加 $E_6,E_7,E_8,F_4,G_2$ 五个例外。<div class="proof"><b>意义：</b>这是 20 世纪代数的里程碑——「对称」被完全分类。$A_n\leftrightarrow\mathfrak{sl}(n+1)$，$B_n\leftrightarrow\mathfrak{so}(2n+1)$，$C_n\leftrightarrow\mathfrak{sp}(2n)$，$D_n\leftrightarrow\mathfrak{so}(2n)$。</div></div>
+  <div class="ex"><b>例：</b>验证 $\mathfrak{sl}(2,\mathbb{C})$ 由 $H=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$, $E=\begin{pmatrix}0&1\\0&0\end{pmatrix}$, $F=\begin{pmatrix}0&0\\1&0\end{pmatrix}$ 生成，括号关系为 $[H,E]=2E$, $[H,F]=-2F$, $[E,F]=H$。
+  <div class="sol"><b>解：</b>直接矩阵乘：$HE-EH=2E$，$HF-FH=-2F$，$EF-FE=H$。这是 $A_1$ 型的标准实现，所有其它半单李代数的表示都从 $\mathfrak{sl}_2$ 的理论出发（最高权分类）。</div></div>
+</div>
+
+<!-- ================= 第二轮深度小节：9e. 深度：同调代数与正合序列 ================= -->
+<div class="ch" id="c9e">
+  <h2>15. 深度：同调代数与正合序列 <small>把「粘合」变成代数</small></h2>
+  <div class="def"><b>定义（链复形）</b> 一列 Abel 群/模 $C_n$ 配边缘映射 $\partial_n:C_n\to C_{n-1}$ 满足 $\partial_{n-1}\partial_n=0$（即 $\mathrm{im}\,\partial_n\subseteq\ker\partial_{n-1}$）。同调群 $H_n=\ker\partial_n/\mathrm{im}\,\partial_{n+1}$。</div>
+  <div class="def"><b>定义（正合序列）</b> 一列映射 $\cdots\to A\xrightarrow{f}B\xrightarrow{g}C\to\cdots$ 正合，若 $\mathrm{im}\,f=\ker g$。短正合序列 $0\to A\to B\to C\to0$ 表「$B$ 由 $A$ 与 $C$ 拼成」但不一定分裂。</div>
+  <div class="thm"><b>定理（蛇引理）</b> 给交换图行正合
+  $$\begin{array}{ccccc}0\to&A_1\to&B_1\to&C_1\to0\\ &\downarrow f&\downarrow g&\downarrow h\\ 0\to&A_2\to&B_2\to&C_2\to0\end{array}$$
+  则有正合序列 $\ker f\to\ker g\to\ker h\xrightarrow{\delta}\mathrm{coker} f\to\mathrm{coker} g\to\mathrm{coker} h$。<div class="proof"><b>思路：</b>$\delta$ 的构造是「追图」：取 $c\in\ker h$，拉回 $B_1$，推前 $A_2$，验证良定义且正合。这是同调代数的标准工具。</div></div>
+  <div class="thm"><b>定理（长正合序列）</b> 短正合序列 $0\to A_*\to B_*\to C_*\to0$ 诱导同调的长正合序列 $\cdots\to H_n(A)\to H_n(B)\to H_n(C)\xrightarrow{\partial}H_{n-1}(A)\to\cdots$。<div class="proof"><b>意义：</b>这是把短正合「粘合信息」传递到同调层的核心机制，Mayer–Vietoris、相对同调、谱序列都基于此。</div></div>
+  <div class="ex"><b>例：</b>用蛇引理从 $0\to\mathbb{Z}\xrightarrow{\times n}\mathbb{Z}\to\mathbb{Z}/n\to0$ 计算 $\mathrm{Tor}_1^\mathbb{Z}(\mathbb{Z}/n,A)$。
+  <div class="sol"><b>解：</b>tensor $A$ 得 $0\to A\xrightarrow{\times n}A\to A/nA\to0$。$\mathrm{Tor}_1(\mathbb{Z}/n,A)=\ker(\times n:A\to A)=\{a\in A:na=0\}$——$A$ 的 $n$-挠子群。这就是 $\mathrm{Tor}$ 名字的由来。</div></div>
+</div>
+
+<div class="ch" id="c9">
+  <h2>16. 练习与自测</h2>
+  <div class="ex"><b>练习 1：</b>证明：群中单位元唯一、每元的逆唯一。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>若 e、e′ 都是单位元，则 e = ee′ = e′；若 a′、a″ 都是 a 的逆，则 a′ = a′e = a′(aa″) = (a′a)a″ = ea″ = a″。</div></details></div>
+  <div class="ex"><b>练习 2：</b>证明：若 G 是素数阶群，则 G 是循环群。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>任取 a ≠ e，⟨a⟩ 是子群，阶整除 |G| = p（拉格朗日），且大于 1，故阶 = p，⟨a⟩ = G。</div></details></div>
+  <div class="ex"><b>练习 3：</b>求 S₄ 的阶与 S₄ 的一个非正规子群。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>|S₄| = 24。取 H = {e, (12)}（固定 3、4 的对称），则 (13)(12)(13)⁻¹ = (32) ∉ H，H 不正规。</div></details></div>
+  <div class="ex"><b>练习 4：</b>x⁴ + 1 在 ℚ 上可约吗？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>不可约（有理根无解且不能分解为两个二次因子——x⁴+1 = (x²+ax+b)(x²−ax+d) 比较系数无有理解）。在 𝔽₂ 上可约：x⁴+1 = (x+1)⁴。</div></details></div>
+  <div class="ex"><b>练习 5：</b>用 Burnside 引理：用 3 种颜色给三角形 3 个顶点着色（旋转视为相同）。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>旋转群 C₃：不动点 27；120°/240° 旋转的不动点要求三顶点同色，各 3。(27+3+3)/3 = 11 种。</div></details></div>
+  <div class="ex"><b>练习 6：</b>为什么 ℤ[i] 中 3 与 7 仍不可约，而 5 = (2+i)(2−i)？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>素数 p 在 ℤ[i] 中分裂当且仅当 p ≡ 1 (mod 4)（费马两平方和定理）。5 ≡ 1 (mod 4) → 分裂；3、7 ≡ 3 (mod 4) → 仍为高斯素数。</div></details></div>
+</div>
+
+<!-- ================= 第 10 章 ================= -->
+
+  <div class="ex"><b>练习 7：</b>$f=x^3-2$ 在 $\mathbb{Q}$ 上的伽罗瓦群是什么？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$f$ 不可约（艾森斯坦 $p=2$），分裂域 $\mathbb{Q}(\sqrt[3]{2},\omega)$，次数 $6$。伽罗瓦群同构于 $S_3$（全部根置换），$S_3$ 可解，故 $f$ 根式可解。</div></details></div>
+
+  <div class="ex"><b>练习 8：</b>$\mathbb{Z}[\sqrt{-5}]$ 中 $6$ 的两种分解是什么？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$6=2\cdot3=(1+\sqrt{-5})(1-\sqrt{-5})$。$2,3,1\pm\sqrt{-5}$ 均不可约，但两个分解不等价——$\mathbb{Z}[\sqrt{-5}]$ 不是 UFD。</div></details></div>
+
+  <div class="ex"><b>练习 9：</b>证明 $\mathbb{Z}$ 是欧几里得整环。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>取 $\varphi(n)=|n|$，带余除法 $a=qb+r$ 且 $|r|&lt;|b|$。故 $\mathbb{Z}$ 是 ED→PID→UFD，即算术基本定理的现代形式。</div></details></div>
+
+  <div class="ex"><b>练习 10：</b>$\mathbb{R}^n\otimes\mathbb{R}^m$ 的维数？给出线性映射的几何解读。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$\dim=nm$。$\mathbb{R}^n\otimes\mathbb{R}^m\cong M_{n\times m}(\mathbb{R})$。线性映射 $T:\mathbb{R}^n\to\mathbb{R}^m$ 等价于 $T\in\mathbb{R}^{n*}\otimes\mathbb{R}^m\cong\mathbb{R}^n\otimes\mathbb{R}^m$。</div></details></div>
+
+  <div class="ex"><b>练习 11：</b>计算 $\mathfrak{so}(3)$ 的 Killing 型 $B$ 的符号。<details><summary>查看答案</summary><div class="sol"><b>答案：</b>$B(X,Y)=2\,\mathrm{tr}(XY)$（$\mathrm{ad}$ 在 $\mathfrak{so}(3)$ 上的迹），取标准基 $e_1,e_2,e_3$ 得 $B(e_i,e_j)=-2\delta_{ij}$——负定。Cartan 判据确认 $\mathfrak{so}(3)$ 半单（实紧致李代数 Killing 负定 $\Leftrightarrow$ 半单）。</div></details></div>
+  <div class="ex"><b>练习 12：</b>短正合 $0\to\mathbb{Z}\xrightarrow{\times2}\mathbb{Z}\to\mathbb{Z}/2\to0$ 在 tensor $\mathbb{Z}/2$ 后还正合吗？<details><summary>查看答案</summary><div class="sol"><b>答案：</b>不正合：$\mathbb{Z}/2\xrightarrow{\times2=0}\mathbb{Z}/2$ 的核为 $\mathbb{Z}/2\ne0$。Tor 修正项 $\mathrm{Tor}_1(\mathbb{Z}/2,\mathbb{Z}/2)=\mathbb{Z}/2$ 补到左边得到长正合序列。</div></details></div>
+
+<div class="ch" id="c10">
+  <h2>17. 术语表、在线资源与最新研究</h2>
+  <div class="gloss">
+    <dt>阿贝尔群</dt><dd>运算可交换的群（以阿贝尔命名）。</dd>
+    <dt>循环群</dt><dd>由单个元素生成的群。</dd>
+    <dt>同态 / 同构</dt><dd>保持结构的映射 / 可逆的结构保持映射。</dd>
+    <dt>特征</dt><dd>环中使 n·1 = 0 的最小正整数 n；域的特征是 0 或素数。</dd>
+    <dt>分裂域</dt><dd>使多项式完全分解的最小扩域。</dd>
+    <dt>伽罗瓦群</dt><dd>扩域相对基域的自同构群——方程对称性的完整编码。</dd>
+    <dt>伽罗瓦群</dt><dd>域扩张自同构群；其结构决定方程的根式可解性。</dd>
+    <dt>UFD / PID / ED</dt><dd>唯一分解整环 / 主理想整环 / 欧几里得整环；ED⇒PID⇒UFD。</dd>
+    <dt>张量积 $V\otimes W$</dt><dd>双线性映射的泛性质构造；维数为两因子维数之积。</dd>
+  </div>
+  <div class="online">
+    <b>在线资源（需联网打开）</b>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Abstract_algebra" target="_blank" rel="noopener noreferrer">Wikipedia: Abstract algebra</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Galois_theory" target="_blank" rel="noopener noreferrer">Wikipedia: Galois theory</a></li>
+      <li><a href="https://arxiv.org/list/math.AG/recent" target="_blank" rel="noopener noreferrer">arXiv 代数几何最新论文（math.AG）</a></li>
+      <li><a href="https://mathworld.wolfram.com/AbstractAlgebra.html" target="_blank" rel="noopener noreferrer">Wolfram MathWorld: Abstract Algebra</a></li>
+    </ul>
+    <p class="hint">本页「最新研究」区加载更新器每日抓取的 arXiv 代数几何（math.AG）最新论文。</p>
+  </div>
+  <div class="ch" style="margin-top:34px;">
+    <h2>本主题最新研究 <small>每日自动更新 · 来源 arXiv math.AG</small></h2>
+    <div class="papers" id="topicPapers">
+      <div class="empty">等待数据……若长时间未更新，请运行 <code>python 09-前沿动态/数学前沿更新器.py</code>。</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="../00-总览/index.html">← 总览</a>
+  <a href="../02-核心主题/几何.html">几何讲义 →</a>
+  <a href="../02-核心主题/分析.html">分析讲义 →</a>
+  <a href="../02-核心主题/线性代数.html">线性代数 →</a>
+</footer>
+</div>
+
+<script src="../09-前沿动态/论文数据.js"></script>
+<script>
+(function(){
+  var wrap = document.getElementById('topicPapers');
+  if(!wrap) return;
+  var papers = (typeof window.LBLB_PAPERS !== 'undefined' && window.LBLB_PAPERS['代数']) || [];
+  if(!papers.length){
+    wrap.innerHTML = '<div class="empty">暂无该主题最新论文数据（更新器尚未成功抓取或已离线）。运行 <code>数学前沿更新器.py</code> 后自动填充。</div>';
+    return;
+  }
+  var html = '';
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+  for(var i=0;i<papers.length;i++){
+    var p = papers[i];
+    html += '<div class="p"><a href="' + esc(p.link) + '" target="_blank" rel="noopener noreferrer">' + esc(p.title) + '</a>' +
+      '<div class="m">' + esc(p.author||'—') + ' · ' + esc(p.date||'') + '</div></div>';
+  }
+  wrap.innerHTML = html;
+})();
+</script>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

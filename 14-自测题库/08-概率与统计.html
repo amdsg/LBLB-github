@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>概率与统计 · 自测题库 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E𝔼%3C/text%3E%3C/svg%3E">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+  svg: { fontCache: 'local' },
+  startup: { typeset: true }
+};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async onerror="var b=document.createElement('div');b.style.cssText='padding:8px 12px;background:#FDEDE8;border:1px solid #EAC6B8;border-radius:8px;color:#C0392B;font-size:13px;margin:10px 0';b.textContent='公式渲染组件加载失败：请确认 ../assets/mathjax/es5/tex-svg.js 存在（本页需与 assets 目录保持原有相对位置）。';document.currentScript.after(b);"></script>
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;
+  --blue:#1F4E9C;--teal:#177E89;--gold:#A8751E;--red:#C0392B;--green:#2E7D5B;--violet:#6B4C9A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Times New Roman","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;line-height:1.8;}
+button{font-family:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 90px;}
+header{padding:52px 0 6px;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.kicker{font-size:11px;letter-spacing:.32em;color:var(--ink2);text-transform:uppercase;margin-top:22px;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:10px 0 8px;}
+h1 .sym{color:var(--blue);font-style:italic;}
+.sub{color:var(--ink2);font-size:15.5px;max-width:760px;}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.chip{background:#fffdf6;border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-size:12.5px;color:var(--ink2);}
+.chip b{color:var(--blue);}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:20px;padding:12px 16px;
+  background:#fffdf6;border:1px solid var(--line);border-radius:12px;}
+.bar .btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:13.5px;cursor:pointer;min-height:38px;}
+.bar .btn.gray{background:#8A8270;}
+.bar .note{font-size:12.5px;color:var(--ink2);}
+.toc{margin-top:22px;background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:16px 22px;font-size:14px;}
+.toc b{font-size:13.5px;}
+.toc ol{margin:8px 0 0 22px;column-count:2;column-gap:30px;}
+.toc a{color:var(--blue);text-decoration:none;}
+.toc a:hover{text-decoration:underline;}
+.toc .tt{color:var(--ink2);font-size:12px;}
+.prob{background:#fffdf6;border:1px solid var(--line);border-left:5px solid var(--c,var(--blue));
+  border-radius:10px;padding:15px 18px;margin-top:16px;}
+.prob .head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:7px;}
+.prob .num{font-family:Georgia,serif;font-weight:700;font-size:15px;color:var(--c,var(--blue));letter-spacing:.04em;}
+.prob .lvl{font-size:11.5px;color:var(--gold);letter-spacing:.1em;}
+.prob .tags{font-size:11.5px;color:var(--ink2);margin-left:auto;}
+.prob .tgt{display:inline-block;font-size:11px;letter-spacing:.06em;color:#fff;background:var(--c,var(--blue));
+  border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:1px;}
+.prob .q{font-size:15px;}
+.prob details{margin-top:10px;border-top:1px dashed var(--line);padding-top:9px;}
+.prob summary{cursor:pointer;font-size:13.5px;color:var(--blue);user-select:none;display:inline-block;padding:3px 0;}
+.prob summary:hover{text-decoration:underline;}
+.prob .ans{margin-top:9px;font-size:14.5px;}
+.prob .ans b{color:var(--green);}
+.prob .sol{margin-top:8px;font-size:14px;color:var(--ink2);}
+.prob .sol b{color:var(--ink);}
+.prob .ver{margin-top:9px;font-size:11.5px;color:var(--ink2);border-top:1px dotted var(--line);padding-top:7px;}
+.prob .ver code{background:var(--paper2);border-radius:3px;padding:1px 5px;}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;color:var(--ink2);}
+footer code{background:var(--paper2);border-radius:4px;padding:1px 6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="index.html">← 返回题库总览</a>
+  <div class="kicker">LBLB · Self-Test Problem Bank</div>
+  <h1>概率与统计 <span class="sym">𝔼</span></h1>
+  <p class="sub">概率题先想对立事件与条件分解，统计题先看估计量是否无偏。</p>
+  <div class="stats"><span class="chip">入门 <b>3</b> 题</span><span class="chip">基础 <b>11</b> 题</span><span class="chip">进阶 <b>9</b> 题</span><span class="chip">较难 <b>3</b> 题</span><span class="chip">知识点 <b>26</b> 个</span></div>
+  <div class="bar">
+    <button class="btn" id="showAll">展开全部详解</button>
+    <button class="btn gray" id="hideAll">收起全部</button>
+    <span class="note">共 26 题 · 每题答案均由 sympy 符号计算验证</span>
+  </div>
+  <nav class="toc"><b>本页目录</b><ol>    <li><a href="#P01">P01</a> <span class="tt">古典概型</span></li>
+    <li><a href="#P02">P02</a> <span class="tt">组合数</span></li>
+    <li><a href="#P03">P03</a> <span class="tt">排列数</span></li>
+    <li><a href="#P04">P04</a> <span class="tt">二项分布</span></li>
+    <li><a href="#P05">P05</a> <span class="tt">数学期望</span></li>
+    <li><a href="#P06">P06</a> <span class="tt">方差</span></li>
+    <li><a href="#P07">P07</a> <span class="tt">条件概率</span></li>
+    <li><a href="#P08">P08</a> <span class="tt">贝叶斯公式</span></li>
+    <li><a href="#P09">P09</a> <span class="tt">独立性</span></li>
+    <li><a href="#P10">P10</a> <span class="tt">超几何分布</span></li>
+    <li><a href="#P11">P11</a> <span class="tt">期望的线性性</span></li>
+    <li><a href="#P12">P12</a> <span class="tt">圆排列</span></li>
+    <li><a href="#P13">P13</a> <span class="tt">二项式定理</span></li>
+    <li><a href="#P14">P14</a> <span class="tt">几何分布</span></li>
+    <li><a href="#P15">P15</a> <span class="tt">方差性质</span></li>
+    <li><a href="#P16">P16</a> <span class="tt">全概率公式</span></li>
+    <li><a href="#P17">P17</a> <span class="tt">泊松分布</span></li>
+    <li><a href="#P18">P18</a> <span class="tt">泊松分布</span></li>
+    <li><a href="#P19">P19</a> <span class="tt">协方差</span></li>
+    <li><a href="#P20">P20</a> <span class="tt">中心极限定理</span></li>
+    <li><a href="#P21">P21</a> <span class="tt">极大似然估计</span></li>
+    <li><a href="#P22">P22</a> <span class="tt">组合对称性</span></li>
+    <li><a href="#P23">P23</a> <span class="tt">独立重复试验</span></li>
+    <li><a href="#P24">P24</a> <span class="tt">二阶矩</span></li>
+    <li><a href="#P25">P25</a> <span class="tt">生日问题</span></li>
+    <li><a href="#P26">P26</a> <span class="tt">协方差</span></li></ol></nav>
+</header>
+<article class="prob" id="P01" style="--c:var(--teal)">
+<div class="head"><span class="num">P01</span><span class="lvl">★☆☆☆☆ 入门</span><span class="tags">古典概型</span></div>
+<div class="q">从 52 张扑克牌中任取一张，求取到红桃的概率。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{13}{52}=\dfrac14$</div>
+<div class="sol"><b>详解：</b>红桃共 13 张，样本空间 52 张等可能，故概率为 $\frac{13}{52}$。</div>
+<div class="ver">入门：<code>eq(Rational(13,52), Rational(1,4))</code></div>
+</details>
+</article>
+<article class="prob" id="P02" style="--c:var(--red)">
+<div class="head"><span class="num">P02</span><span class="lvl">★☆☆☆☆ 入门</span><span class="tags">组合数</span></div>
+<div class="q">计算 $\binom{5}{2}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$10$</div>
+<div class="sol"><b>详解：</b>$\binom52=\frac{5!}{2!\,3!}=10$。</div>
+<div class="ver">入门：<code>eq(binomial(5,2), 10)</code></div>
+</details>
+</article>
+<article class="prob" id="P03" style="--c:var(--gold)">
+<div class="head"><span class="num">P03</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">排列数</span></div>
+<div class="q">计算 $A_5^3=\dfrac{5!}{(5-3)!}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$60$</div>
+<div class="sol"><b>详解：</b>$\frac{5!}{2!}=60$。</div>
+<div class="ver">基础：<code>eq(factorial(5)/factorial(2), 60)</code></div>
+</details>
+</article>
+<article class="prob" id="P04" style="--c:var(--green)">
+<div class="head"><span class="num">P04</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">二项分布</span></div>
+<div class="q">设 $X\sim B\left(5,\frac13\right)$，求 $P(X=2)$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{80}{243}$</div>
+<div class="sol"><b>详解：</b>$P(X=2)=\binom52\left(\frac13\right)^{2}\left(\frac23\right)^{3}=10\cdot\frac19\cdot\frac{8}{27}$。</div>
+<div class="ver">基础：<code>eq(binomial(5,2)*Rational(1,3)**2*Rational(2,3)**3, Rational(80,243))</code></div>
+</details>
+</article>
+<article class="prob" id="P05" style="--c:var(--violet)">
+<div class="head"><span class="num">P05</span><span class="lvl">★☆☆☆☆ 入门</span><span class="tags">数学期望</span></div>
+<div class="q">掷一枚均匀骰子，求点数的数学期望。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac72=3.5$</div>
+<div class="sol"><b>详解：</b>$E[X]=\sum_{k=1}^{6}k\cdot\frac16=\frac{21}{6}=\frac72$。</div>
+<div class="ver">入门：<code>eq(sum(Rational(k,6) for k in range(1,7)), Rational(7,2))</code></div>
+</details>
+</article>
+<article class="prob" id="P06" style="--c:var(--blue)">
+<div class="head"><span class="num">P06</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">方差</span></div>
+<div class="q">掷一枚均匀骰子，求点数的方差。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{35}{12}$</div>
+<div class="sol"><b>详解：</b>$E[X^{2}]=\frac{91}{6}$，$\operatorname{Var}=E[X^{2}]-(E[X])^{2}=\frac{91}{6}-\frac{49}{4}=\frac{35}{12}$。</div>
+<div class="ver">基础：<code>eq(sum(Rational(k*k,6) for k in range(1,7)) - Rational(7,2)**2, Rational(35,12))</code></div>
+</details>
+</article>
+<article class="prob" id="P07" style="--c:var(--teal)">
+<div class="head"><span class="num">P07</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">条件概率</span></div>
+<div class="q">设 $P(B)=\frac12$、$P(AB)=\frac14$，求 $P(A\mid B)$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac12$</div>
+<div class="sol"><b>详解：</b>$P(A\mid B)=\frac{P(AB)}{P(B)}=\frac{1/4}{1/2}=\frac12$。</div>
+<div class="ver">基础：<code>eq(Rational(1,4)/Rational(1,2), Rational(1,2))</code></div>
+</details>
+</article>
+<article class="prob" id="P08" style="--c:var(--red)">
+<div class="head"><span class="num">P08</span><span class="lvl">★★★★☆ 较难</span><span class="tags">贝叶斯公式</span></div>
+<div class="q">某病患病率 $1\%$；患者检测阳性率 $99\%$，非患者误报阳性率 $5\%$。若某人检测为阳性，求其患病的概率。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac16\approx16.7\%$</div>
+<div class="sol"><b>详解：</b>$P(D\mid +)=\frac{0.01\times0.99}{0.01\times0.99+0.99\times0.05}=\frac{0.0099}{0.0594}=\frac16$。误报带来的假阳性远多于真阳性，这正是筛查结果需要复检的原因。</div>
+<div class="ver">较难：<code>eq(Rational(99,10000)/(Rational(99,10000)+Rational(99,100)*Rational(5,100)), Rational(1,6))</code></div>
+</details>
+</article>
+<article class="prob" id="P09" style="--c:var(--gold)">
+<div class="head"><span class="num">P09</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">独立性</span></div>
+<div class="q">设 $A$、$B$ 相互独立，$P(A)=\frac12$、$P(B)=\frac13$，求 $P(AB)$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac16$</div>
+<div class="sol"><b>详解：</b>独立时 $P(AB)=P(A)P(B)=\frac12\cdot\frac13$。</div>
+<div class="ver">基础：<code>eq(Rational(1,2)*Rational(1,3), Rational(1,6))</code></div>
+</details>
+</article>
+<article class="prob" id="P10" style="--c:var(--green)">
+<div class="head"><span class="num">P10</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">超几何分布</span></div>
+<div class="q">袋中 5 白 3 黑共 8 球，任取 2 个，求两个都是白球的概率。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{5}{14}$</div>
+<div class="sol"><b>详解：</b>$\frac{\binom52}{\binom82}=\frac{10}{28}=\frac5{14}$。</div>
+<div class="ver">进阶：<code>eq(binomial(5,2)/binomial(8,2), Rational(5,14))</code></div>
+</details>
+</article>
+<article class="prob" id="P11" style="--c:var(--violet)">
+<div class="head"><span class="num">P11</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">期望的线性性</span></div>
+<div class="q">掷一枚均匀骰子得 $X$，求 $E[2X+3]$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$10$</div>
+<div class="sol"><b>详解：</b>$E[2X+3]=2E[X]+3=2\cdot\frac72+3=10$。</div>
+<div class="ver">基础：<code>eq(2*Rational(7,2)+3, 10)</code></div>
+</details>
+</article>
+<article class="prob" id="P12" style="--c:var(--blue)">
+<div class="head"><span class="num">P12</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">圆排列</span></div>
+<div class="q">5 个人围成一圈就座，共有多少种坐法？</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$24$</div>
+<div class="sol"><b>详解：</b>圆排列数为 $(n-1)!$，故为 $4!=24$。</div>
+<div class="ver">基础：<code>eq(factorial(4), 24)</code></div>
+</details>
+</article>
+<article class="prob" id="P13" style="--c:var(--teal)">
+<div class="head"><span class="num">P13</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">二项式定理</span></div>
+<div class="q">计算 $\sum_{k=0}^{5}\binom{5}{k}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$32$</div>
+<div class="sol"><b>详解：</b>由二项式定理取 $x=y=1$ 得 $\sum\binom{n}{k}=2^{n}=32$。</div>
+<div class="ver">基础：<code>eq(sum(binomial(5,k) for k in range(6)), 2**5)</code></div>
+</details>
+</article>
+<article class="prob" id="P14" style="--c:var(--red)">
+<div class="head"><span class="num">P14</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">几何分布</span></div>
+<div class="q">每次试验成功概率 $p=\frac14$，求首次成功所需试验次数的期望。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$4$</div>
+<div class="sol"><b>详解：</b>几何分布期望为 $\frac1p=4$。</div>
+<div class="ver">进阶：<code>eq(1/Rational(1,4), 4)</code></div>
+</details>
+</article>
+<article class="prob" id="P15" style="--c:var(--gold)">
+<div class="head"><span class="num">P15</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">方差性质</span></div>
+<div class="q">已知 $\operatorname{Var}[X]=\frac{35}{12}$，求 $\operatorname{Var}[3X]$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{105}{4}$</div>
+<div class="sol"><b>详解：</b>$\operatorname{Var}[aX]=a^{2}\operatorname{Var}[X]=9\cdot\frac{35}{12}=\frac{105}{4}$。</div>
+<div class="ver">基础：<code>eq(Rational(9)*Rational(35,12), Rational(105,4))</code></div>
+</details>
+</article>
+<article class="prob" id="P16" style="--c:var(--green)">
+<div class="head"><span class="num">P16</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">全概率公式</span></div>
+<div class="q">甲袋取球概率 $\frac13$、乙袋 $\frac23$；甲袋中白球概率 $\frac12$、乙袋 $\frac14$。求任取一球为白球的概率。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac13$</div>
+<div class="sol"><b>详解：</b>全概率公式：$\frac13\cdot\frac12+\frac23\cdot\frac14=\frac16+\frac16=\frac13$。</div>
+<div class="ver">进阶：<code>eq(Rational(1,3)*Rational(1,2) + Rational(2,3)*Rational(1,4), Rational(1,3))</code></div>
+</details>
+</article>
+<article class="prob" id="P17" style="--c:var(--violet)">
+<div class="head"><span class="num">P17</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">泊松分布</span></div>
+<div class="q">设 $X\sim P(3)$，求 $P(X=2)$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{9e^{-3}}{2}$</div>
+<div class="sol"><b>详解：</b>$P(X=k)=\frac{\lambda^{k}e^{-\lambda}}{k!}$，代入 $\lambda=3,k=2$。</div>
+<div class="ver">进阶：<code>eq(exp(-3)*3**2/factorial(2), exp(-3)*Rational(9,2))</code></div>
+</details>
+</article>
+<article class="prob" id="P18" style="--c:var(--blue)">
+<div class="head"><span class="num">P18</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">泊松分布 · 规范性</span></div>
+<div class="q">验证泊松分布的概率和为 1，即 $\sum_{k\ge0}\frac{3^{k}e^{-3}}{k!}=1$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$1$</div>
+<div class="sol"><b>详解：</b>由 $e^{3}=\sum_{k\ge0}\frac{3^{k}}{k!}$，乘以 $e^{-3}$ 即得。</div>
+<div class="ver">进阶：<code>eq(Sum(exp(-3)*3**k/factorial(k), (k, 0, oo)).doit(), 1)</code></div>
+</details>
+</article>
+<article class="prob" id="P19" style="--c:var(--teal)">
+<div class="head"><span class="num">P19</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">协方差 · 相关系数</span></div>
+<div class="q">已知 $\operatorname{Var}[X]=4$、$\operatorname{Var}[Y]=9$、$\rho_{XY}=0.5$，求 $\operatorname{Cov}(X,Y)$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$3$</div>
+<div class="sol"><b>详解：</b>$\rho=\frac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y}$，故 $\operatorname{Cov}=0.5\cdot2\cdot3=3$。</div>
+<div class="ver">进阶：<code>eq(Rational(1,2)*sqrt(4)*sqrt(9), 3)</code></div>
+</details>
+</article>
+<article class="prob" id="P20" style="--c:var(--red)">
+<div class="head"><span class="num">P20</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">中心极限定理</span></div>
+<div class="q">总体均值 $10$、标准差 $2$，抽容量 $n=100$ 的样本，求样本均值的标准差。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$0.2$</div>
+<div class="sol"><b>详解：</b>样本均值标准差为 $\frac{\sigma}{\sqrt n}=\frac{2}{10}=0.2$。</div>
+<div class="ver">进阶：<code>eq(2/sqrt(100), Rational(1,5))</code></div>
+</details>
+</article>
+<article class="prob" id="P21" style="--c:var(--gold)">
+<div class="head"><span class="num">P21</span><span class="lvl">★★★★☆ 较难</span><span class="tags">极大似然估计</span></div>
+<div class="q">10 次独立试验中成功 7 次，求成功概率 $p$ 的极大似然估计，并验证似然函数在此取极值。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\hat p=\dfrac{7}{10}$</div>
+<div class="sol"><b>详解：</b>对数似然 $\ell(p)=7\ln p+3\ln(1-p)$，$\ell'(p)=\frac{7}{p}-\frac{3}{1-p}=0$ 得 $p=\frac{7}{10}$。</div>
+<div class="ver">较难：<code>zero(diff(7*log(a) + 3*log(1-a), a).subs(a, Rational(7,10)))</code></div>
+</details>
+</article>
+<article class="prob" id="P22" style="--c:var(--green)">
+<div class="head"><span class="num">P22</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">组合对称性</span></div>
+<div class="q">验证 $\binom{7}{3}=\binom{7}{4}$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>相等，均为 $35$</div>
+<div class="sol"><b>详解：</b>$\binom{n}{k}=\binom{n}{n-k}$，对应「选出 $k$ 个」与「留下 $n-k$ 个」的一一对应。</div>
+<div class="ver">基础：<code>eq(binomial(7,3), binomial(7,4))</code></div>
+</details>
+</article>
+<article class="prob" id="P23" style="--c:var(--violet)">
+<div class="head"><span class="num">P23</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">独立重复试验</span></div>
+<div class="q">某事件每次发生概率 $0.1$，独立重复 3 次，求至少发生一次的概率。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{271}{1000}$</div>
+<div class="sol"><b>详解：</b>$1-(0.9)^{3}=1-0.729$，注意用对立事件计算更方便。</div>
+<div class="ver">进阶：<code>eq(1-Rational(9,10)**3, Rational(271,1000))</code></div>
+</details>
+</article>
+<article class="prob" id="P24" style="--c:var(--blue)">
+<div class="head"><span class="num">P24</span><span class="lvl">★★☆☆☆ 基础</span><span class="tags">二阶矩</span></div>
+<div class="q">掷一枚均匀骰子得 $X$，求 $E[X^{2}]$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\dfrac{91}{6}$</div>
+<div class="sol"><b>详解：</b>$E[X^{2}]=\sum k^{2}\cdot\frac16=\frac{91}{6}\approx15.17$。</div>
+<div class="ver">基础：<code>eq(sum(Rational(k**2,6) for k in range(1,7)), Rational(91,6))</code></div>
+</details>
+</article>
+<article class="prob" id="P25" style="--c:var(--teal)">
+<div class="head"><span class="num">P25</span><span class="lvl">★★★★☆ 较难</span><span class="tags">生日问题</span></div>
+<div class="q">求 23 人中至少两人生日相同的概率（一年按 365 天计）。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$\approx0.5073$</div>
+<div class="sol"><b>详解：</b>用对立事件：$P(\text{全不同})=\frac{365\cdot364\cdots(365-22)}{365^{23}}$，$1$ 减去它约为 $0.5073$，故「23 人即过半」是著名反直觉结论。</div>
+<div class="ver">较难：<code>approx(1 - factorial(365)/(factorial(365-23)*365**23), 0.507297234323986, tol=1e-12)</code></div>
+</details>
+</article>
+<article class="prob" id="P26" style="--c:var(--red)">
+<div class="head"><span class="num">P26</span><span class="lvl">★★★☆☆ 进阶</span><span class="tags">协方差 · 独立性</span></div>
+<div class="q">设 $X$、$Y$ 独立，$E[X]=E[Y]=\frac12$、$E[XY]=\frac14$，求 $\operatorname{Cov}(X,Y)$。</div>
+<details><summary>查看参考答案与详解</summary>
+<div class="ans"><b>答案：</b>$0$</div>
+<div class="sol"><b>详解：</b>$\operatorname{Cov}=E[XY]-E[X]E[Y]=\frac14-\frac14=0$，与独立性一致。</div>
+<div class="ver">进阶：<code>eq(Rational(1,4) - Rational(1,2)*Rational(1,2), 0)</code></div>
+</details>
+</article>
+<footer>
+  本页题目与详解由本库编写，答案经符号计算验证；解题方法不限一种，详解给出的是其中一条思路。<br>
+  返回 <a class="back" href="index.html">题库总览</a> ·
+  <a class="back" href="../00-总览/index.html">总览</a> ·
+  授权见仓库根目录 <code>LICENSE</code>
+</footer>
+</div>
+<script>
+(function(){
+  var d=document.querySelectorAll('.prob details');
+  var s=document.getElementById('showAll'), h=document.getElementById('hideAll');
+  if(s) s.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=true; };
+  if(h) h.onclick=function(){ for(var i=0;i<d.length;i++) d[i].open=false; };
+})();
+</script>
+</body>
+</html>

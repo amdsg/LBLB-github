@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>正多面体 3D 旋转 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%E2%97%86%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--green:#2E7D5B;--magenta:#B0396E;--gold:#A8751E;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--green);text-decoration:none;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:14px 0 6px;}
+h1 .sym{color:var(--gold);}
+.tag{display:inline-block;background:var(--paper2);border:1px solid var(--line);color:var(--green);border-radius:999px;padding:2px 12px;font-size:12px;margin-left:10px;vertical-align:middle;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:36px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--green);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;background:#fffef9;border:1px solid var(--line);border-radius:8px;cursor:grab;}
+.fig canvas:active{cursor:grabbing;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--green);width:160px;}
+button{background:var(--paper2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 14px;font-size:14px;cursor:pointer;}
+button.on{background:var(--green);color:#fff;border-color:var(--green);}
+.info{font-family:Georgia,serif;font-size:15px;color:var(--ink);margin-left:auto;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>五种正多面体 <span class="sym">◆</span><span class="tag">几何</span></h1>
+<p class="sub">柏拉图立体：每个面都是同一种正多边形，全空间只存在这五种。拖拽旋转，观察欧拉示性数 $V-E+F=2$。</p>
+</header>
+
+<div class="sec">
+<h2>3D 模型 <small>按住拖拽旋转；调速度自动转；点按钮切换</small></h2>
+<div class="fig">
+<canvas id="cv" width="760" height="520" role="img" aria-label="正多面体 3D 旋转：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls" id="btns">
+<button data-k="0" class="on">正四面体</button>
+<button data-k="1">正六面体(立方体)</button>
+<button data-k="2">正八面体</button>
+<button data-k="3">正十二面体</button>
+<button data-k="4">正二十面体</button>
+</div>
+<div class="controls" style="margin-top:8px;">
+<label>自转速度</label><input type="range" id="spd" min="0" max="10" step="1" value="3">
+<button id="autoBtn" class="on">⏸ 停止自转</button>
+<span class="info" id="stat"></span>
+</div>
+<p class="explain"><b>怎么玩：</b>在画布上按住鼠标拖动即可自由旋转当前多面体；松开后按设定速度自转。五种立体的顶点/棱/面数满足 $V-E+F=2$（欧拉公式）。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>原理</h2>
+<p>为什么只有五种？围绕每个顶点的面角之和必须小于 $360^\circ$：三角形可凑 $3,4,5$ 个，正方形只能凑 $3$ 个，正五边形只能凑 $3$ 个，正六边形及以上凑不出来——于是只剩四面体、六面体、八面体、十二面体、二十面体。</p>
+</div>
+
+<footer style="margin-top:48px;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--ink2);">
+<a class="back" href="可视化导航.html">← 可视化导航</a>
+</footer>
+</div>
+
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var phi=(1+Math.sqrt(5))/2;
+function dist(a,b){var dx=a[0]-b[0],dy=a[1]-b[1],dz=a[2]-b[2];return Math.sqrt(dx*dx+dy*dy+dz*dz);}
+function edgesFromVerts(V, tol){
+  // find min edge distance, connect pairs near it
+  var dmin=1e9;
+  for(var i=0;i<V.length;i++)for(var j=i+1;j<V.length;j++){var d=dist(V[i],V[j]);if(d<dmin)dmin=d;}
+  var E=[];
+  for(i=0;i<V.length;i++)for(j=i+1;j<V.length;j++){var d=dist(V[i],V[j]);if(d<dmin*(1+(tol||0.05)))E.push([i,j]);}
+  return E;
+}
+var solids=[
+ {name:'正四面体',F:4,
+  V:[[1,1,1],[1,-1,-1],[-1,1,-1],[-1,-1,1]],
+  E:[[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]]},
+ {name:'正六面体(立方体)',F:6,
+  V:[[1,1,1],[1,1,-1],[1,-1,1],[1,-1,-1],[-1,1,1],[-1,1,-1],[-1,-1,1],[-1,-1,-1]],
+  E:(function(){var V=[[1,1,1],[1,1,-1],[1,-1,1],[1,-1,-1],[-1,1,1],[-1,1,-1],[-1,-1,1],[-1,-1,-1]];return edgesFromVerts(V,0.01);})()},
+ {name:'正八面体',F:8,
+  V:[[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]],
+  E:(function(){var V=[[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];return edgesFromVerts(V,0.01);})()},
+ {name:'正十二面体',F:12,
+  V:(function(){
+    var V=[],i,j,k;
+    for(i=-1;i<=1;i+=2)for(j=-1;j<=1;j+=2)for(k=-1;k<=1;k+=2)V.push([i,j,k]);
+    for(i=-1;i<=1;i+=2){V.push([0,i/phi,phi]);V.push([0,i/phi,-phi]);V.push([i/phi,phi,0]);V.push([i/phi,-phi,0]);V.push([phi,0,i/phi]);V.push([-phi,0,i/phi]);}
+    return V;
+  })(),
+  E:null},
+ {name:'正二十面体',F:20,
+  V:(function(){
+    var V=[];var i,j;
+    for(i=-1;i<=1;i+=2)for(j=-1;j<=1;j+=2){V.push([0,i,j*phi]);V.push([i,j*phi,0]);V.push([j*phi,0,i]);}
+    return V;
+  })(),
+  E:null}
+];
+solids.forEach(function(s){if(!s.E)s.E=edgesFromVerts(s.V,0.02);});
+var cur=0, rx=-0.4, ry=0.6, auto=true;
+var dragging=false,lastX=0,lastY=0;
+var stat=document.getElementById('stat');
+
+function rot(p){
+  var x=p[0],y=p[1],z=p[2];
+  var cy=Math.cos(ry),sy=Math.sin(ry),cx=Math.cos(rx),sx=Math.sin(rx);
+  var x1=x*cy+z*sy, z1=-x*sy+z*cy;
+  var y2=y*cx-z1*sx, z2=y*sx+z1*cx;
+  return [x1,y2,z2];
+}
+function draw(){
+  var s=solids[cur];
+  // normalize size
+  var maxr=0;s.V.forEach(function(p){var r=Math.sqrt(p[0]*p[0]+p[1]*p[1]+p[2]*p[2]);if(r>maxr)maxr=r;});
+  var sc=180/maxr;
+  var cx=cv.width/2, cy=cv.height/2;
+  ctx.clearRect(0,0,cv.width,cv.height);
+  // sort edges by avg depth for painter
+  var proj=s.V.map(function(p){
+    var q=rot(p);
+    var f=5/(5+q[2]);
+    return [cx+q[0]*sc*f, cy+q[1]*sc*f, q[2]];
+  });
+  ctx.lineWidth=1.6;
+  s.E.forEach(function(e){
+    var a=proj[e[0]],b=proj[e[1]];
+    var depth=(a[2]+b[2])/2;
+    ctx.strokeStyle=depth>0?'#2E7D5B':'#9CBFAF';
+    ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();
+  });
+  proj.forEach(function(p){ctx.fillStyle='#B0396E';ctx.beginPath();ctx.arc(p[0],p[1],3,0,2*Math.PI);ctx.fill();});
+  stat.textContent=s.name+'  ·  V='+s.V.length+'  E='+s.E.length+'  F='+s.F+'  ·  V-E+F='+(s.V.length-s.E.length+s.F);
+}
+cv.addEventListener('mousedown',function(e){dragging=true;lastX=e.clientX;lastY=e.clientY;});
+window.addEventListener('mousemove',function(e){if(!dragging)return;ry+=(e.clientX-lastX)*0.01;rx+=(e.clientY-lastY)*0.01;lastX=e.clientX;lastY=e.clientY;draw();});
+window.addEventListener('mouseup',function(){dragging=false;});
+document.getElementById('btns').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  cur=parseInt(b.dataset.k);
+  this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+  b.classList.add('on');draw();
+});
+var spd=document.getElementById('spd'),autoBtn=document.getElementById('autoBtn');
+autoBtn.onclick=function(){auto=!auto;this.classList.toggle('on',auto);this.textContent=auto?'⏸ 停止自转':'▶ 开始自转';};
+function loop(){if(auto&&!dragging){ry+=0.004*parseInt(spd.value);draw();}requestAnimationFrame(loop);}
+draw();loop();
+})();
+</script>
+
+</body>
+</html>

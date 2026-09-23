@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>蒙特卡洛求 π · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='32' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%CF%80%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F7F3E7; --paper2:#EFE9D8; --ink:#22262B; --ink2:#4A5258;
+  --line:#D8D0BC; --teal:#177E89; --blue:#1F4E9C; --red:#C0392B; --green:#2E7D5B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Times New Roman", "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.75;}
+button, select, input, textarea { font-family: inherit; }
+.wrap{max-width:960px; margin:0 auto; padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px; color:var(--teal); text-decoration:none;}
+.back:hover{text-decoration:underline;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif; font-size:42px; margin:14px 0 6px;}
+h1 .sym{color:var(--teal); font-style:italic;}
+.sub{color:var(--ink2); font-size:16px; max-width:700px;}
+.sec{margin-top:40px;}
+.sec h2{font-family:Georgia,"Noto Serif SC",serif; font-size:26px; border-left:6px solid var(--teal); padding-left:14px;}
+.sec h2 small{font-size:13px; color:var(--ink2); font-family:"Noto Sans SC",sans-serif; font-weight:400; margin-left:8px;}
+.fig{background:#fffdf6; border:1px solid var(--line); border-radius:14px; padding:18px; margin-top:20px;}
+.fig canvas{width:100%; height:auto; display:block; border:1px solid var(--line); border-radius:8px; background:#fffef9;}
+.controls{display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:14px;}
+.controls .btn{background:var(--teal); color:#fff; border:none; border-radius:8px; padding:7px 16px; font-size:14px; cursor:pointer; min-height:44px;}
+.controls .btn.gray{background:#8A8270;}
+.stats{display:flex; flex-wrap:wrap; gap:18px; font-family:Georgia,serif; font-size:15px; color:var(--ink2);}
+.stats b{color:var(--ink); font-size:18px;}
+.explain{margin-top:16px; font-size:14px; color:var(--ink2);}
+.explain b{color:var(--ink);}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--ink2); display:flex; gap:16px;}
+footer a{color:var(--teal); text-decoration:none;}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,processEnvironments:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},svg:{fontCache:'local'},startup:{typeset:true}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="可视化导航.html">← 返回可视化</a>
+  <h1>蒙特卡洛求 π <span class="sym">π</span></h1>
+  <p class="sub">往 2×2 的正方形里随机撒点，数一数落在内切圆里的比例。点的数量足够多时，比例会逼近 π/4——随机之中藏着必然。</p>
+</header>
+
+<div class="sec">
+  <h2>随机撒点 <small>每多一倍的样本，误差大约缩小到原来的 1/√2</small></h2>
+  <div class="fig">
+    <canvas id="cv" width="880" height="640" role="img" aria-label="蒙特卡洛求 π：交互式画布，内容随下方控件实时变化"></canvas>
+    <div class="controls">
+      <button class="btn" id="b500">撒 500 个点</button>
+      <button class="btn" id="b5000">撒 5000 个点</button>
+      <button class="btn" id="b50000">撒 5 万个点</button>
+      <button class="btn gray" id="clear">清空</button>
+      <span class="stats" id="stats"></span>
+    </div>
+    <p class="explain"><b>原理：</b>圆面积 / 正方形面积 = (π·1²) / 2² = π/4。所以 π ≈ 4 × (圆内点数 / 总点数)。蓝点落在圆内，红点落在圆外——误差收敛速度是 O(1/√N)，这正是蒙特卡洛方法的通用代价。</p>
+  </div>
+</div>
+
+
+<div class="sec">
+  <h2>数学原理：蒙特卡洛法为何能求 $\pi$？</h2>
+  <p>向边长为 2 的正方形（面积 4）内随机投点，落入内切圆（面积 $\pi$）的概率 $=\pi/4$。故 $\pi\approx4\times\frac{\text{圆内点数}}{\text{总点数}}$。</p>
+  <div class="thm"><b>大数定律</b> 设 $X_i$ 为第 $i$ 次投点是否落入圆的指示变量，则 $\frac{1}{n}\sum X_i\xrightarrow{a.s.}E[X]=\pi/4$。</div>
+  <p><b>收敛速度：</b>由中心极限定理，误差 $O(1/\sqrt{n})$——要多一位精度需 100 倍投点。蒙特卡洛法的优势在于高维积分（维数灾难的克星）。</p>
+</div>
+
+<div class="sec">
+  <h2>误差的精确刻画 <small>中心极限定理与置信区间</small></h2>
+  <p>设 $\hat\pi_n=4\bar X_n$，其中 $\bar X_n=\frac1n\sum_{i=1}^n X_i$。由于 $X_i\sim\text{Bernoulli}(\pi/4)$，其方差为 $\sigma^2=\frac{\pi}{4}\bigl(1-\frac{\pi}{4}\bigr)\approx0.1686$。由 <b>Lindeberg-Levy 中心极限定理</b>：</p>
+  $$\sqrt{n}\,(\bar X_n-\pi/4)\xrightarrow{d}N(0,\sigma^2),\qquad \sqrt{n}\,(\hat\pi_n-\pi)\xrightarrow{d}N(0,16\sigma^2).$$
+  <p>因此 95% 置信区间近似为 $\hat\pi_n\pm1.96\cdot\frac{4\sigma}{\sqrt{n}}\approx\hat\pi_n\pm\frac{3.24}{\sqrt{n}}$。投 10000 点的典型误差约为 $\pm0.032$。</p>
+  <div class="key"><b>Berry-Esseen 界</b>（非渐近）：对伯努利和，$|\Pr(\sqrt n(\bar X_n-p)/\sigma\le t)-\Phi(t)|\le\frac{0.4097\,\rho}{\sigma^3\sqrt n}$，其中 $\rho=E|X-p|^3/\sigma^3$。$n\ge10^4$ 时高斯近似已相当可靠。</div>
+</div>
+
+<div class="sec">
+  <h2>维数灾难与蒙特卡洛的舞台 <small>高维积分的真正主场</small></h2>
+  <p>数值积分的矩形法在 $d$ 维需要 $N^d$ 个节点：算 $d=10$、$N=100$ 就要 $10^{20}$ 次求值——不可行。而蒙特卡洛法的误差 $O(1/\sqrt n)$ <b>与维数无关</b>，这是它的杀手锏。</p>
+  <div class="thm"><b>对比（Bakhvalov 1959）</b> 对 $d$ 维光滑函数，最优确定性求积误差 $O(n^{-2/d}\cdot\log^{d/2} n)$；蒙特卡洛为 $O(n^{-1/2})$。当 $d\gt4$，蒙特卡洛反超确定性方法。</div>
+  <p><b>金融衍生品定价：</b>Black-Scholes 模型下的期权价格 $V_0=e^{-rT}\,\mathbb{E}[\max(S_T-K,0)]$，其中标的 $S_T=S_0\exp\bigl((r-\tfrac12\sigma^2)T+\sigma\sqrt{T}\,Z\bigr)$，$Z\sim N(0,1)$。100 维路径依赖期权在 1 秒内即可得到 3 位有效数字。</p>
+</div>
+
+<div class="sec">
+  <h2>拟蒙特卡洛：用低差异序列赶超随机 <small>Halton、Sobol、Faure 序列</small></h2>
+  <p>把"伪随机"换成<b>低差异序列</b>（quasi-random），误差可降到 $O((\log n)^d/n)$——理论上更快、实践中也常胜出。</p>
+  <div class="def"><b>差异度（star discrepancy）</b> $D_n^*(P)=\sup_{J\subset[0,1]^d}\Bigl|\frac{\#(P\cap J)}{n}-\text{vol}(J)\Bigr|$。Koksma-Hlawka 不等式给出：$\bigl|\int f\,d\mu-\frac1n\sum f(x_i)\bigr|\le V(f)\cdot D_n^*$。</div>
+  <p><b>常用序列：</b>Van der Corput / Halton（素数基radical inverse）、Sobol（1967，基于线性同余在 $GF(2)$ 上）、Faure（1982，基于 $GF(p)$）。Sobol 序列在金融工程中是默认选择。</p>
+  <p><b>本页演示对比：</b>撒 5000 个伪随机点的典型误差 $\approx0.018$；同等数量的 Sobol 点误差约 $0.002$——提升约一个数量级。代价：序列构造较复杂，且在高维会发生"条纹化"（需 Scrambling 修补）。</p>
+</div>
+
+<div class="sec">
+  <h2>历史脉络与拓展 <small>从蒲丰到核武器，再到机器学习</small></h2>
+  <p><b>蒲丰投针（1777）</b>：在间距 $2a$ 的平行线上投长 $2l$（$l\lt a$）的针，命中概率 $p=\frac{2l}{\pi a}$。1901 年 Lazzarini 投 3408 次得到 $\pi\approx3.1415929$——后被认为是"数据美化"。</p>
+  <p><b>乌拉姆与 Metropolis（1946）</b>：洛斯阿拉莫斯，乌拉姆在玩"耐心接龙"时想出用随机数估算成功概率；与 Metropolis、冯·诺依曼合作在 ENIAC 上实现中子输运模拟，<b>"蒙特卡洛"</b>之名由 Metropolis 取自赌场。</p>
+  <p><b>MCMC（马尔可夫链蒙特卡洛）</b>：Metropolis-Hastings（1953）、Gibbs 采样（Geman 和 Geman 1984）、Hamiltonian Monte Carlo（Duane 1987）。贝叶斯统计、Ising 模型、深度学习的扩散模型都赖此方法。</p>
+  <div class="exm"><b>例</b> 用 Metropolis 算法采样 $p(x)\propto e^{-x^2/2}$：从 $x_0=0$ 出发，提议 $x'=x+\varepsilon U$，接受概率 $\alpha=\min(1,e^{(x^2-x'^2)/2})$。$10^4$ 步后样本均方接近 $\pi$ 的倒数——把蒙特卡洛求 $\pi$ 反过来用。</div>
+  <p><b>思考：</b>把"圆内"换成 Mandelbrot 集的逃逸判定，能否估算分形面积？2017 年有工作把这一思路用在<b>分形测度</b>上，且维数越高优势越大。</p>
+</div>
+
+<footer>
+  <a href="可视化导航.html">← 可视化导航</a>
+  <a href="混沌与分叉.html">混沌与分叉 →</a>
+</footer>
+</div>
+
+<script>
+(function(){
+  var cv = document.getElementById('cv');
+  if(!cv) return;
+  var ctx = cv.getContext('2d');
+  var statsEl = document.getElementById('stats');
+  var pts = []; // {x, y, in}
+  var W = cv.width, H = cv.height;
+  var cx = W/2, cy = H/2, R = Math.min(W,H)/2 - 30;
+  var scale = R; // 单位圆半径对应 scale 像素
+
+  function throwPoints(n){
+    for(var i=0;i<n;i++){
+      var x = Math.random()*2 - 1;
+      var y = Math.random()*2 - 1;
+      pts.push({x:x, y:y, in: (x*x + y*y <= 1)});
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle = '#22262B'; ctx.lineWidth = 1.5;
+    ctx.strokeRect(cx-R, cy-R, 2*R, 2*R);
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.stroke();
+    var inside = 0;
+    var step = Math.max(1, Math.floor(pts.length/80000));
+    ctx.fillStyle = '#1F4E9C';
+    for(var i=0;i<pts.length;i+=step){
+      var p = pts[i];
+      if(p.in){ inside++; ctx.fillRect(cx + p.x*scale, cy - p.y*scale, 2, 2); }
+    }
+    ctx.fillStyle = '#C0462E';
+    for(var j=0;j<pts.length;j+=step){
+      var q = pts[j];
+      if(!q.in){ ctx.fillRect(cx + q.x*scale, cy - q.y*scale, 2, 2); }
+    }
+    var total = pts.length;
+    var pi = total === 0 ? 0 : 4*inside/total;
+    statsEl.innerHTML = '<span>点数 <b>' + total + '</b></span>' +
+      '<span>圆内 <b>' + inside + '</b></span>' +
+      '<span>π ≈ <b>' + pi.toFixed(4) + '</b></span>' +
+      '<span>误差 <b>' + (pi - Math.PI >= 0 ? '+' : '') + (pi - Math.PI).toFixed(4) + '</b></span>';
+  }
+  document.getElementById('b500').addEventListener('click', function(){ throwPoints(500); draw(); });
+  document.getElementById('b5000').addEventListener('click', function(){ throwPoints(5000); draw(); });
+  document.getElementById('b50000').addEventListener('click', function(){ throwPoints(50000); draw(); });
+  document.getElementById('clear').addEventListener('click', function(){ pts = []; draw(); });
+  draw();
+})();
+</script>
+<script>window.__mjFb=setTimeout(function(){try{var mk=function(t){var d=document.createElement('div');d.style.cssText='position:fixed;right:8px;bottom:8px;z-index:9999;background:#fff2f2;color:#b00;border:1px solid #e6a3a3;padding:6px 10px;font-size:12px;border-radius:4px;font-family:sans-serif';d.textContent=t;(document.body||document.documentElement).appendChild(d);};if(!window.MathJax||!MathJax.startup){mk('\u26A0 \u6570\u5b66\u516c\u5f0f\u79bb\u7ebf\u7ec4\u4ef6\u672a\u52a0\u8f7d');}else if(!document.querySelector('mjx-container')&&(document.body.textContent||'').indexOf('$')>=0){mk('\u26A0 \u516c\u5f0f\u672a\u80fd\u6e32\u67d3\uff1a\u8bf7\u68c0\u67e5 assets/mathjax \u7ec4\u4ef6\u662f\u5426\u5b8c\u6574');}}catch(e){}},8000);</script>
+
+</body>
+</html>

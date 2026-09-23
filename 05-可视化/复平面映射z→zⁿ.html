@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>复平面映射 z ↦ zⁿ · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='28' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3Ez%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--green:#2E7D5B;--magenta:#B0396E;--gold:#A8751E;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--green);text-decoration:none;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:14px 0 6px;}
+h1 .sym{color:var(--green);font-style:italic;}
+.tag{display:inline-block;background:var(--paper2);border:1px solid var(--line);color:var(--green);border-radius:999px;padding:2px 12px;font-size:12px;margin-left:10px;vertical-align:middle;}
+.sub{color:var(--ink2);font-size:16px;max-width:780px;}
+.sec{margin-top:36px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--green);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.panels{display:flex;gap:14px;flex-wrap:wrap;}
+.panels .p{flex:1;min-width:300px;}
+.panels canvas{width:100%;height:auto;display:block;background:#fffef9;border:1px solid var(--line);border-radius:8px;}
+.cap{font-size:13px;color:var(--ink2);text-align:center;margin-top:6px;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--green);width:200px;}
+.info{font-family:Georgia,serif;font-size:15px;color:var(--ink);margin-left:auto;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>复平面映射 $z\mapsto z^n$ <span class="sym">zⁿ</span><span class="tag">复分析 · 几何</span></h1>
+<p class="sub">极坐标一眼看穿：模长相乘 $r\mapsto r^n$，辐角相加 $\theta\mapsto n\theta$。圆映成圆，射线被抻成 $n$ 倍角的射线。</p>
+</header>
+
+<div class="sec">
+<h2>左右两面对照 <small>在左图拖动点 z，看右图它的像 w=zⁿ</small></h2>
+<div class="fig">
+<div class="panels">
+<div class="p"><canvas id="cvL" width="440" height="440" role="img" aria-label="复平面映射 z ↦ zⁿ：交互式画布，内容随下方控件实时变化"></canvas><div class="cap">z 平面（输入）</div></div>
+<div class="p"><canvas id="cvR" width="440" height="440" role="img" aria-label="复平面映射 z ↦ zⁿ：交互式画布，内容随下方控件实时变化"></canvas><div class="cap">w = zⁿ 平面（输出）</div></div>
+</div>
+<div class="controls">
+<label>幂次 n = <span id="nV">2</span></label>
+<input type="range" id="n" min="2" max="6" step="1" value="2">
+<span class="info" id="stat"></span>
+</div>
+<p class="explain"><b>怎么玩：</b>左图绿色点是你可以拖动的复数 $z$，半透明圆/射线是极坐标网格。右图实时画出 $w=z^n$ 以及网格的像——注意每条射线在右图被旋转成 $n$ 倍角，一圈被"折"成 $n$ 圈。滑块改变 $n$。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>原理</h2>
+<p>由 De Moivre 公式，$z=re^{i\theta}$ 时 $z^n=r^n e^{in\theta}$。故 $|z^n|=|z|^n$，$\arg(z^n)=n\arg z$（模 $2\pi$）。$n=2$ 时正半平面沿负实轴"剪开"再加倍展开到全平面——这正是平方根函数两支来自的地方。</p>
+</div>
+
+<footer style="margin-top:48px;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--ink2);">
+<a class="back" href="可视化导航.html">← 可视化导航</a>
+</footer>
+</div>
+
+<script>
+(function(){
+var cL=document.getElementById('cvL'),xL=cL.getContext('2d');
+var cR=document.getElementById('cvR'),xR=cR.getContext('2d');
+var nEl=document.getElementById('n'),nV=document.getElementById('nV'),stat=document.getElementById('stat');
+var z={x:0.55,y:0.35};
+var dragging=false;
+
+function world(cv){return {cx:cv.width/2,cy:cv.height/2,s:cv.width/2.4,max:1.4};}
+function toPx(cv,wx,wy){var w=world(cv);return [w.cx+wx*w.s,w.cy-wy*w.s];}
+function drawAxes(x,cv,title){
+  var w=world(cv);
+  x.strokeStyle='#E3DCC8';x.lineWidth=1;
+  x.beginPath();x.moveTo(0,w.cy);x.lineTo(cv.width,w.cy);x.stroke();
+  x.beginPath();x.moveTo(w.cx,0);x.lineTo(w.cx,cv.height);x.stroke();
+}
+function drawGrid(x,cv,mapper,n){
+  // circles
+  x.strokeStyle='rgba(46,125,91,.18)';
+  for(var r=0.3;r<=1.2;r+=0.3){
+    x.beginPath();
+    for(var a=0;a<=2*Math.PI+0.05;a+=0.05){
+      var pt=mapper(r*Math.cos(a),r*Math.sin(a),n);
+      var p=toPx(cv,pt[0],pt[1]);
+      if(a===0)x.moveTo(p[0],p[1]);else x.lineTo(p[0],p[1]);
+    }
+    x.stroke();
+  }
+  // rays
+  x.strokeStyle='rgba(176,57,110,.15)';
+  for(var k=0;k<8;k++){
+    var th=k*Math.PI/4;
+    x.beginPath();
+    for(var t=0;t<=1.3;t+=0.03){
+      var pt=mapper(t*Math.cos(th),t*Math.sin(th),n);
+      var p=toPx(cv,pt[0],pt[1]);
+      if(t===0)x.moveTo(p[0],p[1]);else x.lineTo(p[0],p[1]);
+    }
+    x.stroke();
+  }
+}
+function identity(px,py){return [px,py];}
+function power(px,py,n){var r=Math.sqrt(px*px+py*py),th=Math.atan2(py,px);var rn=Math.pow(r,n);return [rn*Math.cos(n*th),rn*Math.sin(n*th)];}
+function drawLeft(){
+  xL.clearRect(0,0,cL.width,cL.height);
+  drawAxes(xL,cL);
+  drawGrid(xL,cL,identity,0);
+  var p=toPx(cL,z.x,z.y);
+  xL.fillStyle='#2E7D5B';xL.beginPath();xL.arc(p[0],p[1],8,0,2*Math.PI);xL.fill();
+  xL.strokeStyle='#2E7D5B';xL.lineWidth=1.5;
+  xL.beginPath();xL.moveTo(world(cL).cx,world(cL).cy);xL.lineTo(p[0],p[1]);xL.stroke();
+}
+function drawRight(){
+  var n=parseInt(nEl.value);
+  xR.clearRect(0,0,cR.width,cR.height);
+  drawAxes(xR,cR);
+  drawGrid(xR,cR,power,n);
+  var w=power(z.x,z.y,n);
+  var p=toPx(cR,w[0],w[1]);
+  xR.fillStyle='#B0396E';xR.beginPath();xR.arc(p[0],p[1],8,0,2*Math.PI);xR.fill();
+  var r=Math.sqrt(z.x*z.x+z.y*z.y),th=Math.atan2(z.y,z.x);
+  stat.textContent='z='+z.x.toFixed(2)+(z.y>=0?'+':'')+z.y.toFixed(2)+'i   →   |w|='+Math.pow(r,n).toFixed(3)+'   arg w='+((n*th*180/Math.PI)%360).toFixed(1)+'°';
+}
+function drawAll(){drawLeft();drawRight();}
+cL.addEventListener('mousedown',function(e){dragging=true;move(e);});
+window.addEventListener('mousemove',function(e){if(dragging)move(e);});
+window.addEventListener('mouseup',function(){dragging=false;});
+function move(e){
+  var r=cL.getBoundingClientRect();
+  var mx=(e.clientX-r.left)*cL.width/r.width,my=(e.clientY-r.top)*cL.height/r.height;
+  var w=world(cL);
+  var wx=(mx-w.cx)/w.s, wy=(w.cy-my)/w.s;
+  var rr=Math.sqrt(wx*wx+wy*wy);
+  if(rr>w.max){wx*=w.max/rr;wy*=w.max/rr;}
+  z.x=wx;z.y=wy;drawAll();
+}
+nEl.oninput=function(){nV.textContent=nEl.value;drawAll();};
+drawAll();
+})();
+</script>
+
+</body>
+</html>

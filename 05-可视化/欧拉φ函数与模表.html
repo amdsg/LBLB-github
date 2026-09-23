@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>欧拉 φ 函数与模表 · LBLB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2322262B'/%3E%3Ctext x='32' y='46' font-size='30' text-anchor='middle' fill='%23F7F3E7' font-family='Georgia,serif'%3E%CF%86%3C/text%3E%3C/svg%3E">
+<style>
+:root{--paper:#F7F3E7;--paper2:#EFE9D8;--ink:#22262B;--ink2:#4A5258;--line:#D8D0BC;--green:#2E7D5B;--magenta:#B0396E;--gold:#A8751E;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.75;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+header{padding:56px 0 8px;}
+.back{font-size:13px;color:var(--green);text-decoration:none;}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:40px;margin:14px 0 6px;}
+h1 .sym{color:var(--green);font-style:italic;}
+.tag{display:inline-block;background:var(--paper2);border:1px solid var(--line);color:var(--green);border-radius:999px;padding:2px 12px;font-size:12px;margin-left:10px;vertical-align:middle;}
+.sub{color:var(--ink2);font-size:16px;max-width:760px;}
+.sec{margin-top:36px;}
+.sec h2{font-family:Georgia,serif;font-size:24px;border-left:6px solid var(--green);padding-left:14px;}
+.fig{background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;}
+.fig canvas{width:100%;height:auto;display:block;background:#fffef9;border:1px solid var(--line);border-radius:8px;}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;}
+.controls label{font-size:14px;}
+.controls input[type=range]{accent-color:var(--green);width:200px;}
+button{background:var(--green);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:14px;cursor:pointer;}
+button.ghost{background:var(--paper2);color:var(--ink);border:1px solid var(--line);}
+.info{font-family:Georgia,serif;font-size:15px;color:var(--ink);margin-left:auto;}
+.explain{margin-top:14px;font-size:14px;color:var(--ink2);}
+.explain b{color:var(--ink);}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','option']}};
+</script>
+<script src="../assets/mathjax/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="可视化导航.html">← 返回可视化</a>
+<h1>欧拉 φ 函数与模表 <span class="sym">φ</span><span class="tag">数论</span></h1>
+<p class="sub">$\varphi(n)$ 等于 $1,2,\dots,n$ 中与 $n$ 互素的个数——也就是模 $n$ 乘法群里"可逆"元素的数量。</p>
+</header>
+
+<div class="sec">
+<h2>模 n 的单位群 <small>点击圆周上任一数字 a，看"乘 a"把单位旋到哪里</small></h2>
+<div class="fig">
+<canvas id="cv" width="760" height="560" role="img" aria-label="欧拉 φ 函数与模表：交互式画布，内容随下方控件实时变化"></canvas>
+<div class="controls">
+<label>模数 n = <span id="nV">30</span></label>
+<input type="range" id="n" min="2" max="60" step="1" value="30">
+<button id="auto" class="ghost">自动轮换</button>
+<span class="info" id="stat">φ(30)=8</span>
+</div>
+<p class="explain"><b>怎么玩：</b>圆周上等距标出 $0\dots n-1$。绿色点是与 $n$ 互素的"单位"，灰色点不是。点一个绿色点 $a$，就画出 $x\mapsto ax \bmod n$ 把所有单位送去的位置（品红轨迹）。若这些轨迹恰好绕成封闭圈，就是乘法群的循环结构。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>φ(n)/n 的涨落 <small>φ 不单调，但平均有规律</small></h2>
+<div class="fig">
+<canvas id="cv2" width="880" height="220" role="img" aria-label="欧拉 φ 函数与模表：交互式画布，内容随下方控件实时变化"></canvas>
+<p class="explain">$\varphi(n)/n=\prod_{p\mid n}(1-\frac1p)$。素数越多个，比值越低；素数本身接近 $1-1/n$，比值接近 1。</p>
+</div>
+</div>
+
+<div class="sec">
+<h2>原理</h2>
+<p>若 $n=p_1^{a_1}\cdots p_k^{a_k}$，则 $\varphi(n)=n\prod_{i=1}^k(1-\frac1{p_i})$。欧拉定理：对任意与 $n$ 互素的 $a$，$a^{\varphi(n)}\equiv 1\pmod n$——这是 RSA 加密的基石。</p>
+</div>
+
+<footer style="margin-top:48px;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--ink2);">
+<a class="back" href="可视化导航.html">← 可视化导航</a>
+</footer>
+</div>
+
+<script>
+(function(){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var cv2=document.getElementById('cv2'),ctx2=cv2.getContext('2d');
+var nEl=document.getElementById('n'),nV=document.getElementById('nV'),stat=document.getElementById('stat');
+var N=parseInt(nEl.value,10),selA=null,autoTimer=null;
+function gcd(a,b){while(b){var t=a%b;a=b;b=t;}return a;}
+function isUnit(k){return gcd(k,N)===1;}
+function phi(n){var r=n;for(var p=2;p*p<=n;p++){if(n%p===0){while(n%p===0)n/=p;r-=r/p;}}if(n>1)r-=r/n;return r;}
+function pt(k,R,cx,cy){var th=2*Math.PI*k/N - Math.PI/2;return [cx+R*Math.cos(th),cy+R*Math.sin(th)];}
+function draw(){
+  var cx=cv.width/2,cy=cv.height/2,R=220;
+  ctx.clearRect(0,0,cv.width,cv.height);
+  ctx.strokeStyle='#D8D0BC';ctx.beginPath();ctx.arc(cx,cy,R,0,2*Math.PI);ctx.stroke();
+  var units=[];
+  for(var k=0;k<N;k++){if(k!==0&&isUnit(k))units.push(k);}
+  // multiplication arcs from selA
+  if(selA!==null&&isUnit(selA)){
+    ctx.strokeStyle='rgba(176,57,110,.55)';ctx.lineWidth=1.2;
+    units.forEach(function(x){
+      var y=(selA*x)%N;
+      var p1=pt(x,R,cx,cy),p2=pt(y,R,cx,cy);
+      ctx.beginPath();ctx.moveTo(p1[0],p1[1]);ctx.lineTo(p2[0],p2[1]);ctx.stroke();
+    });
+    ctx.lineWidth=1;
+  }
+  ctx.font='12px Georgia,serif';ctx.textAlign='center';ctx.textBaseline='middle';
+  for(var k=0;k<N;k++){
+    var p=pt(k,R,cx,cy);
+    var u=(k!==0&&isUnit(k));
+    ctx.beginPath();ctx.arc(p[0],p[1],u?7:4,0,2*Math.PI);
+    ctx.fillStyle=u?'#2E7D5B':'#C9C2AC';ctx.fill();
+    if(selA===k){ctx.strokeStyle='#B0396E';ctx.lineWidth=2.5;ctx.beginPath();ctx.arc(p[0],p[1],11,0,2*Math.PI);ctx.stroke();ctx.lineWidth=1;}
+    ctx.fillStyle='#4A5258';ctx.fillText(k,p[0],p[1]+18);
+  }
+  stat.textContent='φ('+N+')='+phi(N)+'  ·  单位 '+units.length+' 个'+(selA!==null&&isUnit(selA)?'  ·  乘 '+selA:'');
+}
+function draw2(){
+  ctx2.clearRect(0,0,cv2.width,cv2.height);
+  var W=cv2.width-40,H=cv2.height-30,x0=20,y0=10;
+  for(var k=2;k<=N;k++){
+    var r=phi(k)/k;
+    var x=x0+(k-2)/(N-2)*W;
+    ctx2.fillStyle='#2E7D5B';ctx2.fillRect(x,y0+H-r*H,2, r*H);
+  }
+  ctx2.strokeStyle='#D8D0BC';ctx2.beginPath();ctx2.moveTo(x0,y0+H);ctx2.lineTo(x0+W,y0+H);ctx2.stroke();
+}
+cv.addEventListener('click',function(e){
+  var r=cv.getBoundingClientRect();
+  var mx=(e.clientX-r.left)*cv.width/r.width,my=(e.clientY-r.top)*cv.height/r.height;
+  var cx=cv.width/2,cy=cv.height/2,R=220;
+  var best=-1,bd=1e9;
+  for(var k=0;k<N;k++){var p=pt(k,R,cx,cy);var d=(p[0]-mx)**2+(p[1]-my)**2;if(d<bd){bd=d;best=k;}}
+  if(bd<15*15&&best!==0&&isUnit(best)){selA=best;draw();}
+});
+nEl.oninput=function(){N=parseInt(nEl.value);nV.textContent=N;selA=null;draw();draw2();};
+document.getElementById('auto').onclick=function(){
+  if(autoTimer){clearInterval(autoTimer);autoTimer=null;this.textContent='自动轮换';return;}
+  this.textContent='停止轮换';
+  var units=[],k;for(k=1;k<N;k++)if(isUnit(k))units.push(k);
+  var i=0;autoTimer=setInterval(function(){if(!units.length){clearInterval(autoTimer);return;}selA=units[i%units.length];i++;draw();},700);
+};
+draw();draw2();
+})();
+</script>
+
+</body>
+</html>
