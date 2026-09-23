@@ -98,7 +98,7 @@ var coveredProvinces=(COVER.provinces||[]).filter(function(p){return p.paperCoun
 var coveredCmc=(COVER.cmc||[]).filter(function(x){return x.paperCount;}).length;
 if(!DATA.papers.length){
   $("summary").innerHTML=
-    '<div class="notice" style="background:#FFF9E8;border:1px solid #E5D29F;border-left:4px solid var(--amber);padding:15px 17px;border-radius:10px;color:#5A4310;font-size:13.5px;line-height:1.85">'
+    '<div class="notice" style="grid-column:1/-1;background:#FFF9E8;border:1px solid #E5D29F;border-left:4px solid var(--amber);padding:15px 17px;border-radius:10px;color:#5A4310;font-size:13.5px;line-height:1.85">'
     +'<b>本页需要题库数据，当前覆盖表为空。</b><br>'
     +'原因：真题的题目正文与试卷原件因权利方（教育部教育考试院、中国数学会竞赛工作组、各高校、各省考试院）未给出再分发授权，不随本仓库发布，所以公开站点上统计不到任何试卷。<br>'
     +'本地使用时，把题库文件放回 <code>13-应试训练/123/</code> 即可正常显示。<br>'
