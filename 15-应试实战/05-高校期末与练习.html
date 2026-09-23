@@ -113,7 +113,7 @@ var notice=document.getElementById('notice');
 if(!data.length){
   // 降级：题库未随仓库分发时，用试卷清单（元数据，随仓库发布）列出试卷目录与官方获取渠道。
   // 这样公开仓库上的本页仍然可用——它变成一份「有哪些卷、去哪拿」的索引，而不是空白页。
-  var lib=(window.PAPER_LIBRARY||[]).filter(function(p){ c==='练习题' });
+  var lib=(window.PAPER_LIBRARY||[]).filter(function(p){ return p.category==='练习题'; });
   var missing=[];
   if(!window.LBLB_EXAMS) missing.push('123/真题卷.js');
   if(!window.LBLB_UNIFIED) missing.push('123/题库-汇总.js');
