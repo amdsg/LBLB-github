@@ -150,76 +150,76 @@ window.LBLB_PAPERS = {
  ],
  "概率与统计": [
   {
-   "title": "Fluctuations of the quadratic matching cost on the flat torus: dimensions two, three and four",
-   "link": "https://www.semanticscholar.org/paper/070168191176ea32e20958a7d5c1ce93def5a36a",
-   "abs": "We establish sharp variance asymptotics and limiting distributions for the quadratic optimal matching cost between the uniform measure and an empirical measure counterpart on the flat torus $\\mathbb T^d$ in dimensions…",
-   "date": "2026-09-22",
-   "author": "Shi Feng、Gilles Mordant · arXiv:2609.26597"
+   "title": "The Spectra of the Henze-Zirkler and Henze-Wagner Operators for BHEP Tests",
+   "link": "https://arxiv.org/abs/2609.28464v1",
+   "abs": "The Baringhaus-Henze-Epps-Pulley (BHEP) tests for multivariate normality are affine-invariant goodness-of-fit tests based on a Gaussian-weighted $L^2$ distance between empirical and Gaussian characteristic functions. In…",
+   "date": "2026-09-23",
+   "author": "Bruno Ebner"
   },
   {
-   "title": "Financial and Accounting Math Tools",
-   "link": "https://www.semanticscholar.org/paper/91ecae875eb191c0177ecb25ae7c873702090a97",
-   "abs": "Mathematics is the backbone of any business; because a business primarily revolves around the transaction of money or products that have some monetary value. Involvement of money makes it extremely important to have…",
-   "date": "2026-09-21",
-   "author": "Cecil Mbofana"
+   "title": "Stochastic Domination of Gaussian Maxima by the Regular Simplex",
+   "link": "https://arxiv.org/abs/2609.28452v1",
+   "abs": "Let $n\\ge2$, and let $X=(X_1,\\ldots,X_n)$ be a centered Gaussian vector with $\\mathrm{Var}(X_i)=1$ for every $i$. Let $Z_1,\\ldots,Z_n$ be independent standard Gaussians, and put $\\overline{Z}=(Z_1+\\cdots+Z_n)/n$. We…",
+   "date": "2026-09-23",
+   "author": "Abhijeet Mulgund"
   },
   {
-   "title": "Phylogenetic Inference and the Stickiness of Fréchet Means, via Precise Asymptotics of an Embedded Random Walk",
-   "link": "https://www.semanticscholar.org/paper/159f8af295ce71346395339c1b643be7da511fef",
-   "abs": "A well-known phenomenon in statistical analyses of populations of phylogenetic trees in the Billera-Holmes-Vogtmann space is that the topology of the Fréchet mean tree can contain multifurcations (i.e., internal nodes…",
-   "date": "2026-09-21",
-   "author": "Adam Quinn Jaffe · arXiv:2609.24816"
+   "title": "Local Geometric Mixing via Dobrushin Contraction with Applications to Diffusion Path Monte Carlo and the Proximal Sampler",
+   "link": "https://arxiv.org/abs/2609.28338v1",
+   "abs": "Local geometric mixing localizes geometric mixing by requiring geometric convergence to equilibrium in total variation only over finitely many transitions. It accommodates local convergence rates and captures rapid…",
+   "date": "2026-09-23",
+   "author": "Stefan Oberdörster"
   },
   {
-   "title": "Entropies and Negentropies from f -Divergences and Their Application to Dimensionality Reduction",
-   "link": "https://www.semanticscholar.org/paper/918ee4a19e6272e743b15d5bdaef919dd29032c4",
-   "abs": "Distributions are ubiquitous across scientific disciplines, extending well beyond probability and statistics. In machine learning, finite probability distributions arise naturally as the softmax output layers of…",
-   "date": "2026-09-20",
-   "author": "M. Sbert、Min Chen 等"
+   "title": "Stability under mixtures of transportation inequalities and restricted log-Sobolev inequalities",
+   "link": "https://arxiv.org/abs/2609.28234v1",
+   "abs": "We prove results about stability under mixtures for transport--entropy inequalities and restricted functional inequalities of Poincaré and log-Sobolev type. We treat Talagrand inequalities of type $\\mathbf{T}_2$ and…",
+   "date": "2026-09-23",
+   "author": "Radosław Adamczak"
   },
   {
-   "title": "Letramento matemático na formação inicial em pedagogia: uma oficina no PIBID – UFC",
-   "link": "https://www.semanticscholar.org/paper/1ca3010401864aa588cb96eb9b390f4ef3fb23c6",
-   "abs": "This article presents an analysis of the Mathematical Literacy Workshop promoted by the Study and Researchs Group Tecendo Redes Cognitivas de Aprendizagem (G-TERCOA/CNPq-UFC), held on November 18, 2025, with the…",
-   "date": "2026-09-20",
-   "author": "Marcília Cavalcante Viana、Roberto Campos da Rocha Miranda 等"
+   "title": "Gaussian Critical-Threshold Instability in Real Phase Retrieval",
+   "link": "https://arxiv.org/abs/2609.28198v1",
+   "abs": "We establish the natural scale of instability in real Gaussian phase retrieval at the critical injectivity threshold. Let $A$ be a $(2M-1)\\times M$ matrix with independent standard Gaussian entries and let…",
+   "date": "2026-09-23",
+   "author": "Christian E. Häggblom"
   }
  ],
  "组合与图论": [
   {
-   "title": "The existence and uniqueness of magic-faced hypercubes, and applications to Khajuraho most-perfect magic squares, cubes, and hypercubes",
-   "link": "https://arxiv.org/abs/2609.26762v1",
-   "abs": "A $\\textit{magic-lined hypercube}$ (or, simply, $\\textit{magic hypercube}$) of order $k$ and dimension $n$ is an arrangement of the numbers $1,\\dots,k^n$ in a $k\\times\\cdots\\times k$ ($n$-fold) grid such that every line…",
-   "date": "2026-09-22",
-   "author": "Manjul Bhargava"
+   "title": "On a class of combinatorial group invariants",
+   "link": "https://www.semanticscholar.org/paper/164f145faf114bcf7aa67f72f95aa71e56d4d2e8",
+   "abs": "In this paper, we explore group invariants arising from combinatorial structures associated with finite groups, including the functional graphs of power maps and the well-studied power graphs. These invariants induce…",
+   "date": "2026-09-17",
+   "author": "Arthur Fernandes、Claudio M. Qureshi 等 · arXiv:2609.20516"
   },
   {
-   "title": "Counterexamples to the Ramos conjecture for two hyperplanes",
-   "link": "https://arxiv.org/abs/2609.26723v1",
-   "abs": "For every $n\\ge2$, we construct $4n-2$ nondegenerate Gaussian measures on $\\mathbb{R}^{6n-3}$ that cannot be simultaneously equipartitioned by two affine hyperplanes. This disproves the Ramos conjecture for two…",
-   "date": "2026-09-22",
-   "author": "Florian Frick"
+   "title": "Graph Theory with Orbiter",
+   "link": "https://www.semanticscholar.org/paper/17a3c11e003f42eb63938dffacf86a73f1d50852",
+   "abs": "We describe the graph theory package in the Computer Algebra System Orbiter. The package is dedicated to algebraic graph theory, with emphasis on efficiency and seamless integration of algebra, combinatorics and…",
+   "date": "2026-09-15",
+   "author": "A. Betten"
   },
   {
-   "title": "Graphs with Minimum Algebraic Connectivity II: Regular Graphs of Even Degree",
-   "link": "https://arxiv.org/abs/2609.26700v1",
-   "abs": "Aldous and Fill (2002) conjectured the asymptotic maximum relaxation time of a random walk on a connected regular graph. Since the relaxation time of a $d$-regular graph $G$ is $d/μ(G)$, where $μ(G)$ denotes its…",
-   "date": "2026-09-22",
-   "author": "Maryam Abdi"
+   "title": "Perfect Combinatorial Structures in Coding Theory and Cryptography",
+   "link": "https://www.semanticscholar.org/paper/3b04906bdf8664943e38009cff8f23753e845121",
+   "abs": "This book develops algebraic and combinatorial methods for studying discrete structures. It brings together graph theory, Boolean functions, Fourier analysis on finite groups, coding theory, perfect colorings and…",
+   "date": "2026-09-07",
+   "author": "Vladimir N. Potapov · arXiv:2609.09225"
   },
   {
-   "title": "Graphs with Minimum Algebraic Connectivity I: Proofs of Aldous-Fill and Guiduli-Mohar Conjectures",
-   "link": "https://arxiv.org/abs/2609.26699v1",
-   "abs": "Aldous and Fill (2002) conjectured that the maximum relaxation time of a random walk on a connected regular graph with $n$ vertices is bounded above by $(1+o(1))\\frac{3n^2}{2π^2}$, with asymptotic equality for even $n$.…",
-   "date": "2026-09-22",
-   "author": "Maryam Abdi"
+   "title": "When a set theorist hears \"combinatorics\", Part 2: Trees",
+   "link": "https://www.semanticscholar.org/paper/8cce4eac49757fce555a62699926aa840da1482f",
+   "abs": "In the previous installment of this series (When a Set Theorist Hears “Combinatorics”: Ramsey Theory, [Gil25]) we discussed the combinatorial problem of finding large patches of order in graphs, and this was done from…",
+   "date": "2026-09-02",
+   "author": "Thomas Gilton"
   },
   {
-   "title": "Resilience of rainbow Hamilton cycles in pseudorandom graphs",
-   "link": "https://arxiv.org/abs/2609.26655v1",
-   "abs": "For every fixed $\\varepsilon\\in(0,1/2)$, we prove that every spanning subgraph $H$ of an $n$-vertex $(p,β)$-bijumbled graph satisfying $δ(H)\\geq(1/2+\\varepsilon)pn$ contains a rainbow Hamilton cycle under every globally…",
-   "date": "2026-09-22",
-   "author": "Elad Aigner-Horev"
+   "title": "Graph Coloring Algorithms and Their Applications in Combinatorial Optimization: A Survey",
+   "link": "https://www.semanticscholar.org/paper/a04d13f69afc883918c0f1e144e2cd4be64b5f0f",
+   "abs": "Coloring the vertices, edges or faces of a graph so that no two adjacent elements share a label is among the oldest problems in graph theory, and one of the few whose reach extends into exam timetables and wireless…",
+   "date": "2026-08-30",
+   "author": "Jisha Ann Abraham、C. Wilfred 等"
   }
  ],
  "线性代数": [
@@ -261,39 +261,39 @@ window.LBLB_PAPERS = {
  ],
  "拓扑学": [
   {
-   "title": "Chromatic Purity of Dualizable Categories",
-   "link": "https://arxiv.org/abs/2609.26497v1",
-   "abs": "We develop the chromatic theory of dualizable stable categories, with chromatic purity for continuous $K$-theory at its center. We generalize the chromatic purity theorem for algebraic $K$-theory to continuous…",
-   "date": "2026-09-22",
-   "author": "Yifan Jin"
-  },
-  {
-   "title": "Ext-groups of graded comodules",
-   "link": "https://arxiv.org/abs/2609.26465v1",
-   "abs": "Let $Γ$ be a coalgebra over a field. There is a well-known covariant embedding of the category of graded $Γ$-comodules into the category of graded modules over the dual algebra $Γ^*$. We show that this covariant…",
-   "date": "2026-09-22",
-   "author": "Andrew Salch"
-  },
-  {
    "title": "Gabriel Spectrum of Persistence Categories",
-   "link": "https://arxiv.org/abs/2609.25761v1",
+   "link": "https://www.semanticscholar.org/paper/c131cf448408f49aad9d19ec8b60f1e7df016263",
    "abs": "We determine the Gabriel spectrum of a category of sheaves of vector spaces in purely topological terms. For every topological space $X$, we prove that the Gabriel spectrum of ${\\mathbf{Sh}}(X)$ is homeomorphic to…",
    "date": "2026-09-22",
-   "author": "Manu Harsu"
+   "author": "Manu Harsu、Eero Hyry · arXiv:2609.25761"
   },
   {
-   "title": "Signed GLMY Homology of Signed Graphs via Double Covers",
-   "link": "https://arxiv.org/abs/2609.25557v1",
-   "abs": "We define a signed GLMY chain complex over $\\mathbb{R}$ for signed digraphs using sheet-labelled regular paths. The complex is naturally isomorphic to the deck anti-invariant subcomplex of the ordinary GLMY complex on…",
+   "title": "Signed Graph Pre-Training and Prompt Learning",
+   "link": "https://www.semanticscholar.org/paper/5bc519931fa19e54bd53cffa42c97d3c878e8a20",
+   "abs": "Signed graphs arise in trust--distrust networks, financial correlation systems, biological interaction graphs, and many other domains in which edges can be positive or negative and may also be directed. While signed…",
    "date": "2026-09-22",
-   "author": "Shuliang Bai"
+   "author": "Zi-Han Mei、Rong Pan 等 · arXiv:2609.25722"
   },
   {
-   "title": "Fixed point properties and cohomology of Banach representations of arithmetic groups",
-   "link": "https://arxiv.org/abs/2609.24951v1",
-   "abs": "We study fixed point theorems for actions of lattices of semisimple groups. They are deduced from vanishing results for the group cohomology of $L^p$-representations. We show that for lattices in simple groups of higher…",
-   "date": "2026-09-21",
-   "author": "Saar Bader"
+   "title": "Topological Vector Group Topologies Between the Minimal Topology and the Usual Topology on the Real Line",
+   "link": "https://www.semanticscholar.org/paper/46617b3d7a90b70cdb590e6fc1d2258f00c99334",
+   "abs": "For every positive sequence that tends to zero faster than every fixed exponential, we construct a Hausdorff topological Vector Group topology on the additive group of real numbers. It lies strictly between the minimal…",
+   "date": "2026-09-22",
+   "author": "I. Yaroshevskaya · arXiv:2609.26668"
+  },
+  {
+   "title": "DualCL: Dual contrastive learning for hypergraphs",
+   "link": "https://www.semanticscholar.org/paper/32ecdc161d6a063d4a2d5bdaf92fb126889c7a6b",
+   "abs": "Unsupervised hypergraph representation learning is often restricted to a single structural perspective, with hyperedges serving mainly as intermediaries for node-centric message passing. To address this limitation, we…",
+   "date": "2026-09-22",
+   "author": "Yuan Liu"
+  },
+  {
+   "title": "An analytic construction of the universal moduli space of $\\mathrm{SL}_r(\\mathbb C)$-Higgs bundles",
+   "link": "https://www.semanticscholar.org/paper/0d44d5d4ebdd43f8a07fa1046f3ab701fe3f92db",
+   "abs": "We construct the moduli space of marked polystable $\\mathrm{SL}_r(\\mathbb C)$-Higgs bundles via analytic methods. The resulting space is normal and Hausdorff, and its local models are products of a Teichmüller…",
+   "date": "2026-09-22",
+   "author": "Shi-Yu Cao · arXiv:2609.25807"
   }
  ],
  "复分析": [
