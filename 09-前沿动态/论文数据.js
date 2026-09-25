@@ -30,11 +30,11 @@ window.LBLB_PAPERS = {
    "author": "arXiv:2609.29060"
   },
   {
-   "title": "On symplectic aspects of $SU(2)$ character varieties for punctured surfaces",
-   "link": "https://www.semanticscholar.org/paper/3d4a8506be420e16629ef0cc3e960507022b4726",
-   "abs": "For a surface with an odd number of punctures, the moduli space of flat $SU(2)$ connections with traceless holonomy around each puncture is a symplectic manifold. When the moduli space is nonempty, there is a natural…",
+   "title": "Ringel self-duality of hereditary algebras via Auslander-Reiten theory",
+   "link": "https://www.semanticscholar.org/paper/42c04d11de3f9fa66e4b86f2d92cccd893289a85",
+   "abs": "Highest weight categories with finitely many simples correspond to quasi-hereditary algebras. Ringel duality shows that, up to Morita equivalence, quasi-hereditary algebras come in pairs, while Ringel self-duality is…",
    "date": "2026-09-24",
-   "author": "arXiv:2609.28907"
+   "author": "arXiv:2609.29942"
   }
  ],
  "几何": [
@@ -76,6 +76,20 @@ window.LBLB_PAPERS = {
  ],
  "代数": [
   {
+   "title": "Geometry of Newton homotopies: bivariate case",
+   "link": "https://www.semanticscholar.org/paper/ef05bd91429f00da90c0425e11eae6483fbeb3bc",
+   "abs": "A standard question in computational real algebraic geometry is to compute all real solutions to a system of polynomial equations with real coefficients. One classical and promising approach is to track along a…",
+   "date": "2026-09-24",
+   "author": "arXiv:2609.30189"
+  },
+  {
+   "title": "Exact finite-sample geometry of the Jarque-Bera statistic: support, discriminants and elliptic integrals",
+   "link": "https://www.semanticscholar.org/paper/5ce2916593a73cc882a833f78f5e96eb1b5ae65e",
+   "abs": "Under Gaussian sampling, removing location and scale turns the sample into a direction that is uniformly distributed on a sphere of dimension $n-2$, and sample skewness and kurtosis become a cubic-quartic polynomial…",
+   "date": "2026-09-24",
+   "author": "arXiv:2609.29976"
+  },
+  {
    "title": "Geometries of Quantum Field Theories",
    "link": "https://www.semanticscholar.org/paper/dac8546615ad8b32a62e90c1a47cfb606e43cf26",
    "abs": "This is an English translation of a book originally published in Japanese by Saiensu-sha in 2015. The book is an introduction to the 3d-3d correspondence, the relation between 3d $\\mathcal{N}=2$ supersymmetric gauge…",
@@ -90,28 +104,35 @@ window.LBLB_PAPERS = {
    "author": "arXiv:2609.28062"
   },
   {
-   "title": "Definite integral Albert algebras: arithmetic and finite geometry",
-   "link": "https://www.semanticscholar.org/paper/444b4ac9680d5ae36fd863c7ad18dd2e6237969f",
-   "abs": "We give a unified treatment of definite Albert algebras over $\\mathbb{Z}$, with exceptional Siegel--Weil identities as the main arithmetic tool. Starting from the standard octonion order alone, its first scalar theta…",
+   "title": "CHERN CLASSES FROM MORAVA K-THEORIES TO <mml:math xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:mnf=\"http://cambridge.org/core/manifest\"…",
+   "link": "https://www.semanticscholar.org/paper/76216e9dde7f138ec9918d1731f80f9bece5c50f",
+   "abs": "We study non-additive operations from algebraic Morava K-theories to oriented cohomology theories in algebraic geometry. For oriented cohomology theory A $A$ upper A that has a p n $p^n$ p Superscript n -typical formal…",
    "date": "2026-09-23",
-   "author": "arXiv:2609.27550"
-  },
-  {
-   "title": "Dualisable categories in noncommutative geometry",
-   "link": "https://www.semanticscholar.org/paper/3d30cd56aa9b57aa76bb11cf40abcf8dfc3a3d24",
-   "abs": "In this exposition based on a lecture series at the CIMPA School on Operator Algebras and K-theory, 2025, we highlight modern perspectives on noncommutative geometry using dualisable categories. To this end, we show…",
-   "date": "2026-09-23",
-   "author": "arXiv:2609.28433"
-  },
-  {
-   "title": "Derived Smooth and Banach Higher Groupoids: Representability and Descent",
-   "link": "https://www.semanticscholar.org/paper/3762ffeadf4d1e26ce42fd4a7d0dba6c7d64028b",
-   "abs": "We study homotopy theories of higher groupoids in specified geometries, distinguishing geometric representability from realization and descent. Ordinary smooth and Banach-open sheaves admit full Brown categories of…",
-   "date": "2026-09-23",
-   "author": "arXiv:2609.28220"
+   "author": ""
   }
  ],
  "分析": [
+  {
+   "title": "A Regularization Based Computational Method for Quantum Incommensurate Problems",
+   "link": "https://www.semanticscholar.org/paper/dd0412c3e1eb5111cd981535db56b7fb4433f184",
+   "abs": "Quantum incommensurate systems have attracted widespread interest due to their unique physical properties. Related studies have made notable progress in recent years. To gain deeper insight, it is both significant and…",
+   "date": "2026-09-24",
+   "author": "arXiv:2609.29357"
+  },
+  {
+   "title": "Analytic Combinatorics of $d$-Set Mappings and Their Applications",
+   "link": "https://www.semanticscholar.org/paper/97222d762f7615310ca13110a1206889b0b02ba5",
+   "abs": "A $d$-set mapping is a function acting on a domain $X$ equipped with a partition into $d$ disjoint subsets. While standard functions represent $1$-set mappings, generalizations to arbitrary $d$-partite structures appear…",
+   "date": "2026-09-24",
+   "author": "arXiv:2609.30191"
+  },
+  {
+   "title": "Intrinsic-Extrinsic Coupling in Learning Dynamics",
+   "link": "https://www.semanticscholar.org/paper/6ec9ab8ada60aea6dd52d92e1d0030fe59ec09ec",
+   "abs": "A learner's current observations need not determine its response to further training. We formulate intrinsic-extrinsic coupling through the continuation-conditioned value of a constrained learning-state intervention…",
+   "date": "2026-09-24",
+   "author": "arXiv:2609.30185"
+  },
   {
    "title": "The Integration of Technological Tools into Mathematics Courses: A Systematic Literature Review",
    "link": "https://www.semanticscholar.org/paper/65dc686f070c9d610d6e07fb075a408d8e1e31d4",
@@ -120,35 +141,28 @@ window.LBLB_PAPERS = {
    "author": ""
   },
   {
-   "title": "Graph Exploration Using Multiple Collaborative Mobile Agents",
-   "link": "https://www.semanticscholar.org/paper/3ece7917141e0449750925fe5c4ad1cbe1afc770",
-   "abs": "",
+   "title": "Educators’ sensemaking about mathematics equity and ability grouping",
+   "link": "https://www.semanticscholar.org/paper/56f95299799cb542d7294f54f1abb4576e1a070f",
+   "abs": "This study aims to examine how educators in one private prekindergarten through Grade 8 (PK–8) school conceptualized mathematics equity and reasoned about the equity of ability grouping. Sustainable Development Goal 4…",
    "date": "2026-09-24",
    "author": ""
-  },
-  {
-   "title": "Capacity Analysis and Joint Gaussian Beam Pattern Optimization for Positioning-Assisted Communications",
-   "link": "https://www.semanticscholar.org/paper/889279230fb60bf235d90b597d90fce8a785e135",
-   "abs": "Positioning-assisted beamforming is a novel enabling technology for massive multiple-input multiple-output in modern wireless communications, as it provides reliable beam steering without requiring explicit channel…",
-   "date": "2026-09-23",
-   "author": "arXiv:2609.28196"
-  },
-  {
-   "title": "On Some Theoretical Aspects of Functional Data Analysis of Parametrized Curves in $\\mathbb{R}^p$",
-   "link": "https://www.semanticscholar.org/paper/713e2bd483bbf0d3bba275b5ee2b107211a79a56",
-   "abs": "In this paper, one provides a comprehensive mathematical and practical overview of Functional Data Analysis (FDA) specifically applied to parametrized curves in Rp. One observes that curves depending on continuously…",
-   "date": "2026-09-23",
-   "author": "arXiv:2609.28689"
-  },
-  {
-   "title": "Primary Mathematics Preservice Teachers’ Reflections on Lesson Study-Inspired Collaborative Planning: A Didactical Suitability Perspective",
-   "link": "https://www.semanticscholar.org/paper/5ffef83bf64d41e9ba575c1dfd6baaf73419a6ac",
-   "abs": "This study investigated primary preservice teachers' (PSTs) reflections on participating in a collaborative planning model inspired by lesson study (LS). The planning model includes collaboratively brainstorming lesson…",
-   "date": "2026-09-23",
-   "author": "Dung Tran、Giang-Nguyen T. Nguyen 等"
   }
  ],
  "概率与统计": [
+  {
+   "title": "Reliability Modeling using an Equilibrium-Based Xgamma Distribution: Properties, Estimation, and Applications",
+   "link": "https://www.semanticscholar.org/paper/1aee31468287186ce5ecc2018785884b047389db",
+   "abs": "The equilibrium distribution approach is applied to the existing Xgamma model in this work to develop a new lifetime model known as the Induced Xgamma (i-Xg) distribution. Because of its adaptable shape properties, the…",
+   "date": "2026-09-23",
+   "author": ""
+  },
+  {
+   "title": "A Survival Weighted Resilience Framework for the Marshall–Olkin Distribution with Applications in Environmental and Biomedical Modeling",
+   "link": "https://www.semanticscholar.org/paper/02cd5a6559514421e8e8ff3950977073d9a67849",
+   "abs": "This paper develops a survival weighted hazard interpretation of the Marshall--Olkin extension for lifetime distributions. The resulting formulation, termed the Resilience Distribution (RD), introduces a parameter θ>0…",
+   "date": "2026-09-23",
+   "author": ""
+  },
   {
    "title": "Fluctuations of the quadratic matching cost on the flat torus: dimensions two, three and four",
    "link": "https://www.semanticscholar.org/paper/070168191176ea32e20958a7d5c1ce93def5a36a",
@@ -169,60 +183,60 @@ window.LBLB_PAPERS = {
    "abs": "A well-known phenomenon in statistical analyses of populations of phylogenetic trees in the Billera-Holmes-Vogtmann space is that the topology of the Fréchet mean tree can contain multifurcations (i.e., internal nodes…",
    "date": "2026-09-21",
    "author": "Adam Quinn Jaffe · arXiv:2609.24816"
-  },
-  {
-   "title": "Entropies and Negentropies from f -Divergences and Their Application to Dimensionality Reduction",
-   "link": "https://www.semanticscholar.org/paper/918ee4a19e6272e743b15d5bdaef919dd29032c4",
-   "abs": "Distributions are ubiquitous across scientific disciplines, extending well beyond probability and statistics. In machine learning, finite probability distributions arise naturally as the softmax output layers of…",
-   "date": "2026-09-20",
-   "author": "M. Sbert、Min Chen 等"
-  },
-  {
-   "title": "Letramento matemático na formação inicial em pedagogia: uma oficina no PIBID – UFC",
-   "link": "https://www.semanticscholar.org/paper/1ca3010401864aa588cb96eb9b390f4ef3fb23c6",
-   "abs": "This article presents an analysis of the Mathematical Literacy Workshop promoted by the Study and Researchs Group Tecendo Redes Cognitivas de Aprendizagem (G-TERCOA/CNPq-UFC), held on November 18, 2025, with the…",
-   "date": "2026-09-20",
-   "author": "Marcília Cavalcante Viana、Roberto Campos da Rocha Miranda 等"
   }
  ],
  "组合与图论": [
   {
-   "title": "On a class of combinatorial group invariants",
-   "link": "https://www.semanticscholar.org/paper/164f145faf114bcf7aa67f72f95aa71e56d4d2e8",
-   "abs": "In this paper, we explore group invariants arising from combinatorial structures associated with finite groups, including the functional graphs of power maps and the well-studied power graphs. These invariants induce…",
-   "date": "2026-09-17",
-   "author": "Arthur Fernandes、Claudio M. Qureshi 等 · arXiv:2609.20516"
+   "title": "Thresholds and spread in set systems of bounded VC-dimension",
+   "link": "https://arxiv.org/abs/2609.30263v1",
+   "abs": "Let $p_c(\\mathcal F)$, $q(\\mathcal F)$, and $q_f(\\mathcal F)$ denote the threshold, expectation threshold, and fractional expectation threshold of a family $\\mathcal F$ of nonempty subsets of a finite set, respectively.…",
+   "date": "2026-09-24",
+   "author": "Chong Shangguan"
   },
   {
-   "title": "Graph Theory with Orbiter",
-   "link": "https://www.semanticscholar.org/paper/17a3c11e003f42eb63938dffacf86a73f1d50852",
-   "abs": "We describe the graph theory package in the Computer Algebra System Orbiter. The package is dedicated to algebraic graph theory, with emphasis on efficiency and seamless integration of algebra, combinatorics and…",
-   "date": "2026-09-15",
-   "author": "A. Betten"
+   "title": "A quasisymmetric analog of Grassmannian Schubert varieties",
+   "link": "https://arxiv.org/abs/2609.30257v1",
+   "abs": "We show that the cohomology rings of toric Richardson varieties in the Grassmannian are finite truncations of the ring of quasisymmetric functions. We exhibit an affine paving of each such variety whose cell closures…",
+   "date": "2026-09-24",
+   "author": "Teddy Gonzales"
   },
   {
-   "title": "Perfect Combinatorial Structures in Coding Theory and Cryptography",
-   "link": "https://www.semanticscholar.org/paper/3b04906bdf8664943e38009cff8f23753e845121",
-   "abs": "This book develops algebraic and combinatorial methods for studying discrete structures. It brings together graph theory, Boolean functions, Fourier analysis on finite groups, coding theory, perfect colorings and…",
-   "date": "2026-09-07",
-   "author": "Vladimir N. Potapov · arXiv:2609.09225"
+   "title": "On the Binary Rank of Matrices with Constant Real Rank",
+   "link": "https://arxiv.org/abs/2609.30203v1",
+   "abs": "We continue the study initiated by Parnas and Shraibman~\\cite{PARNAS2026264} who gave upper bounds on the binary rank of $0,1$ matrices which have a small rank over the reals. We give alternative completely mathematical…",
+   "date": "2026-09-24",
+   "author": "Michal Parnas"
   },
   {
-   "title": "When a set theorist hears \"combinatorics\", Part 2: Trees",
-   "link": "https://www.semanticscholar.org/paper/8cce4eac49757fce555a62699926aa840da1482f",
-   "abs": "In the previous installment of this series (When a Set Theorist Hears “Combinatorics”: Ramsey Theory, [Gil25]) we discussed the combinatorial problem of finding large patches of order in graphs, and this was done from…",
-   "date": "2026-09-02",
-   "author": "Thomas Gilton"
+   "title": "An extremal theorem for non-isomorphic spanning trees",
+   "link": "https://arxiv.org/abs/2609.30201v1",
+   "abs": "For a graph $G$, let $τ_{\\mathrm{iso}}(G)$ denote the number of isomorphism classes of its spanning trees. For every fixed $d\\ge3$ and all sufficiently large $n$, we prove that every connected $n$-vertex graph $G$ with…",
+   "date": "2026-09-24",
+   "author": "Zhifei Yan"
   },
   {
-   "title": "Graph Coloring Algorithms and Their Applications in Combinatorial Optimization: A Survey",
-   "link": "https://www.semanticscholar.org/paper/a04d13f69afc883918c0f1e144e2cd4be64b5f0f",
-   "abs": "Coloring the vertices, edges or faces of a graph so that no two adjacent elements share a label is among the oldest problems in graph theory, and one of the few whose reach extends into exam timetables and wireless…",
-   "date": "2026-08-30",
-   "author": "Jisha Ann Abraham、C. Wilfred 等"
+   "title": "Analytic Combinatorics of $d$-Set Mappings and Their Applications",
+   "link": "https://arxiv.org/abs/2609.30191v1",
+   "abs": "A $d$-set mapping is a function acting on a domain $X$ equipped with a partition into $d$ disjoint subsets. While standard functions represent $1$-set mappings, generalizations to arbitrary $d$-partite structures appear…",
+   "date": "2026-09-24",
+   "author": "Toma Diaconescu-Grabari"
   }
  ],
  "线性代数": [
+  {
+   "title": "Operational matrix formulation for linear difference equations using ∇λ…",
+   "link": "https://www.semanticscholar.org/paper/9e6caca7607e49d20d8162767642cf20ba4049d5",
+   "abs": "",
+   "date": "2026-09-25",
+   "author": ""
+  },
+  {
+   "title": "Generalized Weight Polynomials of Codes through Flats and Orlik-Solomon Algebras of Matroids",
+   "link": "https://www.semanticscholar.org/paper/2134d086b551678efa322d87c1bb28f248f7778d",
+   "abs": "We present various ways of determining generalized weight polynomials of a matroid $M$, and we recall how one can find the generalized weight spectra of a linear code, given these polynomials, for the matroid determined…",
+   "date": "2026-09-24",
+   "author": "arXiv:2609.29796"
+  },
   {
    "title": "Hutch#: Optimal non-adaptive Frobenius norm estimation",
    "link": "https://www.semanticscholar.org/paper/5b1ea93b9e0fa480d497fa2a963ffdc22ee9ab78",
@@ -243,60 +257,53 @@ window.LBLB_PAPERS = {
    "abs": "Motivated by Eliahou's 64-modular Hadamard construction at the smallest open Hadamard order n=668, we introduce an explicit half-flip family of 32-modular Hadamard matrices at orders n=4L for L = 3 (mod 8). A master…",
    "date": "2026-09-22",
    "author": "Michel Kulhandjian · arXiv:2609.25543"
-  },
-  {
-   "title": "Linear Algebra and Algebraic Geometry: A Matrix Construction for Classifying Families of Algebraic Curves with No Solutions in Z^+",
-   "link": "https://www.semanticscholar.org/paper/428c218c539946f38842af199720877a0eba3d4f",
-   "abs": "A substantial body of results is known for curves of degree $d=3$, namely elliptic curves, including the theorems of Siegel, Mazur, and Mordell, among others. More generally, Faltings established comprehensive results…",
-   "date": "2026-09-22",
-   "author": "arXiv:2609.27049"
-  },
-  {
-   "title": "On a Conjecture Related to Eigenvalue Perturbations",
-   "link": "https://www.semanticscholar.org/paper/2e519f957c0d871ecca928733300573a50440d0e",
-   "abs": "In connection with eigenvalue perturbation bounds, Li [Linear Algebra Appl., 278 (1998), pp. 317-326] formulated three minimization problems involving Hadamard products. The third asks how to relate $$ \\min_{W\\…",
-   "date": "2026-09-22",
-   "author": "Lei-Hong Zhang、Ren-Cang Li · arXiv:2609.25552"
   }
  ],
  "拓扑学": [
   {
-   "title": "When Do Differentially Private Inputs Protect Graph Shift Operators?",
-   "link": "https://www.semanticscholar.org/paper/d6ea6e6e626ac01abf33a790bdee633f449ddbad",
-   "abs": "We study the differential privacy (DP) of a graph shift operator (GSO) when an analyst observes the output of a graph filter. In particular, we study the setting in which the input signals to the graph filter are drawn…",
+   "title": "Multivariate Quandles as Groupoid Invariants",
+   "link": "https://arxiv.org/abs/2609.30262v1",
+   "abs": "We introduce a new structural framework for constructing multivariate Alexander quandles based on a groupoid ${\\cal G}$, composed of a disjoint union of delooping groupoids of deck groups. Compared to standard Alexander…",
    "date": "2026-09-24",
-   "author": "arXiv:2609.28899"
+   "author": "Xerxes D. Arsiwalla"
   },
   {
-   "title": "Smoluchowski-Kramers approximation with Lévy noise in the Meyer--Zheng topology",
-   "link": "https://www.semanticscholar.org/paper/d3e3adcc545f340b33e1f4da1319e60210ea9c2d",
-   "abs": "We study the Smoluchowski-Kramers approximation for a stochastic wave equation with state-dependent damping on a bounded domain, driven by both a $Q$-Wiener process and a Lévy process with finite second moment. As…",
+   "title": "A quasisymmetric analog of Grassmannian Schubert varieties",
+   "link": "https://arxiv.org/abs/2609.30257v1",
+   "abs": "We show that the cohomology rings of toric Richardson varieties in the Grassmannian are finite truncations of the ring of quasisymmetric functions. We exhibit an affine paving of each such variety whose cell closures…",
    "date": "2026-09-24",
-   "author": "arXiv:2609.29205"
+   "author": "Teddy Gonzales"
   },
   {
-   "title": "Zero Forcing Sets in Temporal Graphs",
-   "link": "https://www.semanticscholar.org/paper/01a74fada1efd57c589a19d7073e6a828e77862b",
-   "abs": "The Zero Forcing (or corruption) of a graph is the problem of finding a minimum-size ``corrupting''set. It corresponds to a subset of its vertices that can corrupt the whole graph by iterating the following rule: if a…",
+   "title": "Groupoidal polygraphic homology",
+   "link": "https://arxiv.org/abs/2609.29967v1",
+   "abs": "We show that for a 1-category C, the (ω, k)-polygraphic homology of C for any k {\\geq} 1, that is taken with cofibrant resolutions in strict (ω, k)- categories, does not depend on k and is canonically isomorphic to the…",
    "date": "2026-09-24",
-   "author": "arXiv:2609.29054"
+   "author": "Léonard Guetta"
   },
   {
-   "title": "SGA: Uncertainty Quantification for Multi-Step Forecasting in Time Series Foundation Models",
-   "link": "https://www.semanticscholar.org/paper/edd830a0a5e56809f50202fdb1360ec2ef4c33a7",
-   "abs": "The recent emergence of Time Series Foundation Models (TSFMs) has significantly advanced multi-step forecasting performance, enabling accurate predictions over extended future horizons. However, existing TSFMs often…",
-   "date": "2026-09-23",
-   "author": "arXiv:2609.28582"
+   "title": "Equivariant persistence topological complexity",
+   "link": "https://arxiv.org/abs/2609.29759v1",
+   "abs": "We introduce equivariant persistent analogues of Lusternik-Schnirelmann category, topological complexity, cup length, and zero-divisors cup length for persistent spaces with group actions, and establish their stability.…",
+   "date": "2026-09-24",
+   "author": "Navnath Daundkar"
   },
   {
-   "title": "Conditional preservation of chimera states under equitable network coarse-graining",
-   "link": "https://www.semanticscholar.org/paper/d4bb6ec6fe4089988b027806ba4e588265c8c0f6",
-   "abs": "Chimera states, characterized by the coexistence of coherent and incoherent dynamics in networks of coupled oscillators, are among the most intriguing collective phenomena in nonlinear systems and are strongly shaped by…",
-   "date": "2026-09-23",
-   "author": "arXiv:2609.28733"
+   "title": "Quandle coloring quivers of pretzel links",
+   "link": "https://arxiv.org/abs/2609.29127v1",
+   "abs": "In this paper, we conduct a systematic study of quandle colorings and quandle coloring quivers for pretzel links using the dihedral quandle $\\mathbb{Z}_{n}$. First, we systematically investigate all possible colorings…",
+   "date": "2026-09-24",
+   "author": "Qinghui Meng"
   }
  ],
  "复分析": [
+  {
+   "title": "Adiabatic Theory Data on Strongly Chirped Dissipative Solitons of the Cubic-Quintic Nonlinear Ginzburg-Landau Equation",
+   "link": "https://www.semanticscholar.org/paper/e089007054388b5a5c0b62dd8b9cdd1c1c5aabdc",
+   "abs": "This data article provides the datasets, symbolic derivations, and scripts used to reproduce master diagrams, stationary-phase spectra, windowed first-order coherence functions, and quantum-noise stability maps for…",
+   "date": "2026-09-24",
+   "author": "arXiv:2609.29229"
+  },
   {
    "title": "HDG methods in finite element exterior calculus",
    "link": "https://www.semanticscholar.org/paper/d6e337b5d530ae645316f2b96bcfb09f1b69b05c",
@@ -319,21 +326,28 @@ window.LBLB_PAPERS = {
    "author": "arXiv:2609.28970"
   },
   {
-   "title": "3D pasting and the meaning of associativity",
-   "link": "https://www.semanticscholar.org/paper/1136ae9c4f913f7796e0baca8cc988b34d68a02c",
-   "abs": "",
+   "title": "Parameter identifiability of a neuroendocrine-inflammatory model across experimental designs",
+   "link": "https://www.semanticscholar.org/paper/2cd226e3e1722959ec30bec04ee01ad3ba3d2a0d",
+   "abs": "Mathematical modeling helps us identify and investigate complex mechanisms of function. This is especially useful for understanding inflammation, which is a complex, multiscale process that interacts nonlinearly with…",
    "date": "2026-09-24",
-   "author": "John Gaits、Michael Johnson 等"
-  },
-  {
-   "title": "Quantum Topological Data Analysis Beyond Betti Numbers: Complexity Hardness $\\&$ An Algorithm for Torsion Witness",
-   "link": "https://www.semanticscholar.org/paper/e44cbdb7b81869f12c82be719cf784b103f27a72",
-   "abs": "Recent advances have revealed an interplay between quantum computing and topological data analysis (TDA). Most quantum TDA has focused on Betti numbers, which characterize the connectivity and ``holes''of a dataset.…",
-   "date": "2026-09-23",
-   "author": "arXiv:2609.28112"
+   "author": "arXiv:2609.30031"
   }
  ],
  "微分方程": [
+  {
+   "title": "Inverse source problems for time-fractional diffusion with a singular involution operator",
+   "link": "https://www.semanticscholar.org/paper/e773330a8e00ecdb5276a000c59b5890f04e4d6e",
+   "abs": "",
+   "date": "2026-09-25",
+   "author": ""
+  },
+  {
+   "title": "An Analytical Theory of Auxiliary Learning",
+   "link": "https://www.semanticscholar.org/paper/de3ba4f8f4e03ffbe1f4f8bcb8acf6dc4e92465c",
+   "abs": "Auxiliary learning is an optimization paradigm in which a neural network's performance on a target task is improved by jointly training it on additional tasks. However, the mechanisms behind this improvement remain…",
+   "date": "2026-09-24",
+   "author": "arXiv:2609.29774"
+  },
   {
    "title": "On the numerical limitations of dual Koopman von Neumann embeddings for solving conservative nonlinear ordinary differential equations on quantum computers",
    "link": "https://www.semanticscholar.org/paper/dc9af1f54afc839515465d95ed80738d26df5d54",
@@ -354,20 +368,6 @@ window.LBLB_PAPERS = {
    "abs": "In this paper, we study the existence, nonexistence, and growth be haviour of solutions of certain nonlinear differential and differential-difference equa tions involving the term fnf'. Using tools from Nevanlinna…",
    "date": "2026-09-24",
    "author": "arXiv:2609.29104"
-  },
-  {
-   "title": "Meromorphic Solutions of Certain Kind of Non-Linear Differential equation with finite sums of Exponential Functions",
-   "link": "https://www.semanticscholar.org/paper/a7c1ffd4ac7c9717b65f8ccf8367901a5496f8ec",
-   "abs": "We study the existence and nonexistence of meromorphic solutions of nonlinear differential equations involving differential polynomials and finite sums of exponential-type functions with entire coefficients of…",
-   "date": "2026-09-24",
-   "author": "arXiv:2609.29113"
-  },
-  {
-   "title": "Functional dynamic mode decomposition: Learning infinite-dimensional systems from data",
-   "link": "https://www.semanticscholar.org/paper/856d61aae0979eae78fa657fd51b7ae326696611",
-   "abs": "Dynamic mode decomposition (DMD) is a data-driven method that computes the best linear approximation of the underlying dynamical system and decomposes the dynamics into a superposition of characteristic spatiotemporal…",
-   "date": "2026-09-24",
-   "author": "arXiv:2609.29159"
   }
  ],
  "博弈论": [
