@@ -164,6 +164,13 @@ window.LBLB_PAPERS = {
    "author": ""
   },
   {
+   "title": "Probability and Statistics and Its Practical Applications in Real Life",
+   "link": "https://www.semanticscholar.org/paper/3a07898c6bac022c4a31ae2d1305c4b0efa6fba3",
+   "abs": "With the widespread existence of random and uncertain events in natural society and daily production life, probability statistics has become a core mathematical tool for quantifying random laws and supporting scientific…",
+   "date": "2026-09-22",
+   "author": ""
+  },
+  {
    "title": "Fluctuations of the quadratic matching cost on the flat torus: dimensions two, three and four",
    "link": "https://www.semanticscholar.org/paper/070168191176ea32e20958a7d5c1ce93def5a36a",
    "abs": "We establish sharp variance asymptotics and limiting distributions for the quadratic optimal matching cost between the uniform measure and an empirical measure counterpart on the flat torus $\\mathbb T^d$ in dimensions…",
@@ -176,50 +183,43 @@ window.LBLB_PAPERS = {
    "abs": "Mathematics is the backbone of any business; because a business primarily revolves around the transaction of money or products that have some monetary value. Involvement of money makes it extremely important to have…",
    "date": "2026-09-21",
    "author": "Cecil Mbofana"
-  },
-  {
-   "title": "Phylogenetic Inference and the Stickiness of Fréchet Means, via Precise Asymptotics of an Embedded Random Walk",
-   "link": "https://www.semanticscholar.org/paper/159f8af295ce71346395339c1b643be7da511fef",
-   "abs": "A well-known phenomenon in statistical analyses of populations of phylogenetic trees in the Billera-Holmes-Vogtmann space is that the topology of the Fréchet mean tree can contain multifurcations (i.e., internal nodes…",
-   "date": "2026-09-21",
-   "author": "Adam Quinn Jaffe · arXiv:2609.24816"
   }
  ],
  "组合与图论": [
   {
-   "title": "Thresholds and spread in set systems of bounded VC-dimension",
-   "link": "https://arxiv.org/abs/2609.30263v1",
-   "abs": "Let $p_c(\\mathcal F)$, $q(\\mathcal F)$, and $q_f(\\mathcal F)$ denote the threshold, expectation threshold, and fractional expectation threshold of a family $\\mathcal F$ of nonempty subsets of a finite set, respectively.…",
-   "date": "2026-09-24",
-   "author": "Chong Shangguan"
+   "title": "On a class of combinatorial group invariants",
+   "link": "https://www.semanticscholar.org/paper/164f145faf114bcf7aa67f72f95aa71e56d4d2e8",
+   "abs": "In this paper, we explore group invariants arising from combinatorial structures associated with finite groups, including the functional graphs of power maps and the well-studied power graphs. These invariants induce…",
+   "date": "2026-09-17",
+   "author": "Arthur Fernandes、Claudio M. Qureshi 等 · arXiv:2609.20516"
   },
   {
-   "title": "A quasisymmetric analog of Grassmannian Schubert varieties",
-   "link": "https://arxiv.org/abs/2609.30257v1",
-   "abs": "We show that the cohomology rings of toric Richardson varieties in the Grassmannian are finite truncations of the ring of quasisymmetric functions. We exhibit an affine paving of each such variety whose cell closures…",
-   "date": "2026-09-24",
-   "author": "Teddy Gonzales"
+   "title": "Graph Theory with Orbiter",
+   "link": "https://www.semanticscholar.org/paper/17a3c11e003f42eb63938dffacf86a73f1d50852",
+   "abs": "We describe the graph theory package in the Computer Algebra System Orbiter. The package is dedicated to algebraic graph theory, with emphasis on efficiency and seamless integration of algebra, combinatorics and…",
+   "date": "2026-09-15",
+   "author": "A. Betten"
   },
   {
-   "title": "On the Binary Rank of Matrices with Constant Real Rank",
-   "link": "https://arxiv.org/abs/2609.30203v1",
-   "abs": "We continue the study initiated by Parnas and Shraibman~\\cite{PARNAS2026264} who gave upper bounds on the binary rank of $0,1$ matrices which have a small rank over the reals. We give alternative completely mathematical…",
-   "date": "2026-09-24",
-   "author": "Michal Parnas"
+   "title": "Perfect Combinatorial Structures in Coding Theory and Cryptography",
+   "link": "https://www.semanticscholar.org/paper/3b04906bdf8664943e38009cff8f23753e845121",
+   "abs": "This book develops algebraic and combinatorial methods for studying discrete structures. It brings together graph theory, Boolean functions, Fourier analysis on finite groups, coding theory, perfect colorings and…",
+   "date": "2026-09-07",
+   "author": "Vladimir N. Potapov · arXiv:2609.09225"
   },
   {
-   "title": "An extremal theorem for non-isomorphic spanning trees",
-   "link": "https://arxiv.org/abs/2609.30201v1",
-   "abs": "For a graph $G$, let $τ_{\\mathrm{iso}}(G)$ denote the number of isomorphism classes of its spanning trees. For every fixed $d\\ge3$ and all sufficiently large $n$, we prove that every connected $n$-vertex graph $G$ with…",
-   "date": "2026-09-24",
-   "author": "Zhifei Yan"
+   "title": "When a set theorist hears \"combinatorics\", Part 2: Trees",
+   "link": "https://www.semanticscholar.org/paper/8cce4eac49757fce555a62699926aa840da1482f",
+   "abs": "In the previous installment of this series (When a Set Theorist Hears “Combinatorics”: Ramsey Theory, [Gil25]) we discussed the combinatorial problem of finding large patches of order in graphs, and this was done from…",
+   "date": "2026-09-02",
+   "author": "Thomas Gilton"
   },
   {
-   "title": "Analytic Combinatorics of $d$-Set Mappings and Their Applications",
-   "link": "https://arxiv.org/abs/2609.30191v1",
-   "abs": "A $d$-set mapping is a function acting on a domain $X$ equipped with a partition into $d$ disjoint subsets. While standard functions represent $1$-set mappings, generalizations to arbitrary $d$-partite structures appear…",
-   "date": "2026-09-24",
-   "author": "Toma Diaconescu-Grabari"
+   "title": "Graph Coloring Algorithms and Their Applications in Combinatorial Optimization: A Survey",
+   "link": "https://www.semanticscholar.org/paper/a04d13f69afc883918c0f1e144e2cd4be64b5f0f",
+   "abs": "Coloring the vertices, edges or faces of a graph so that no two adjacent elements share a label is among the oldest problems in graph theory, and one of the few whose reach extends into exam timetables and wireless…",
+   "date": "2026-08-30",
+   "author": "Jisha Ann Abraham、C. Wilfred 等"
   }
  ],
  "线性代数": [
@@ -261,39 +261,39 @@ window.LBLB_PAPERS = {
  ],
  "拓扑学": [
   {
-   "title": "Multivariate Quandles as Groupoid Invariants",
-   "link": "https://arxiv.org/abs/2609.30262v1",
-   "abs": "We introduce a new structural framework for constructing multivariate Alexander quandles based on a groupoid ${\\cal G}$, composed of a disjoint union of delooping groupoids of deck groups. Compared to standard Alexander…",
-   "date": "2026-09-24",
-   "author": "Xerxes D. Arsiwalla"
+   "title": "Semi-interior points and cone topologies",
+   "link": "https://www.semanticscholar.org/paper/e701954de60954602eed55c3ff300a743b49977d",
+   "abs": "",
+   "date": "2026-09-25",
+   "author": ""
   },
   {
-   "title": "A quasisymmetric analog of Grassmannian Schubert varieties",
-   "link": "https://arxiv.org/abs/2609.30257v1",
-   "abs": "We show that the cohomology rings of toric Richardson varieties in the Grassmannian are finite truncations of the ring of quasisymmetric functions. We exhibit an affine paving of each such variety whose cell closures…",
+   "title": "Quasi-Fuchsian groups and complex realisations of $q$-deformed real numbers",
+   "link": "https://www.semanticscholar.org/paper/e039e50fc32526b212d7085c1e18b344fd3204e9",
+   "abs": "We relate the theory of $q$-rational and $q$-real numbers introduced by Morier-Genoud and Ovsienko to the classical theory of Kleinian groups and their Teichmüller spaces. This provides a geometric point of view on…",
    "date": "2026-09-24",
-   "author": "Teddy Gonzales"
+   "author": "arXiv:2609.29831"
   },
   {
-   "title": "Groupoidal polygraphic homology",
-   "link": "https://arxiv.org/abs/2609.29967v1",
-   "abs": "We show that for a 1-category C, the (ω, k)-polygraphic homology of C for any k {\\geq} 1, that is taken with cofibrant resolutions in strict (ω, k)- categories, does not depend on k and is canonically isomorphic to the…",
+   "title": "When Do Differentially Private Inputs Protect Graph Shift Operators?",
+   "link": "https://www.semanticscholar.org/paper/d6ea6e6e626ac01abf33a790bdee633f449ddbad",
+   "abs": "We study the differential privacy (DP) of a graph shift operator (GSO) when an analyst observes the output of a graph filter. In particular, we study the setting in which the input signals to the graph filter are drawn…",
    "date": "2026-09-24",
-   "author": "Léonard Guetta"
+   "author": "arXiv:2609.28899"
   },
   {
-   "title": "Equivariant persistence topological complexity",
-   "link": "https://arxiv.org/abs/2609.29759v1",
-   "abs": "We introduce equivariant persistent analogues of Lusternik-Schnirelmann category, topological complexity, cup length, and zero-divisors cup length for persistent spaces with group actions, and establish their stability.…",
+   "title": "Smoluchowski-Kramers approximation with Lévy noise in the Meyer--Zheng topology",
+   "link": "https://www.semanticscholar.org/paper/d3e3adcc545f340b33e1f4da1319e60210ea9c2d",
+   "abs": "We study the Smoluchowski-Kramers approximation for a stochastic wave equation with state-dependent damping on a bounded domain, driven by both a $Q$-Wiener process and a Lévy process with finite second moment. As…",
    "date": "2026-09-24",
-   "author": "Navnath Daundkar"
+   "author": "arXiv:2609.29205"
   },
   {
-   "title": "Quandle coloring quivers of pretzel links",
-   "link": "https://arxiv.org/abs/2609.29127v1",
-   "abs": "In this paper, we conduct a systematic study of quandle colorings and quandle coloring quivers for pretzel links using the dihedral quandle $\\mathbb{Z}_{n}$. First, we systematically investigate all possible colorings…",
+   "title": "Derivative links in contact topology",
+   "link": "https://www.semanticscholar.org/paper/cc94543b2f0289c7ee351ed2d2bc9af4845a7373",
+   "abs": "We import the theory of $R$-links and derivative links into contact topology in both the Legendrian and transverse setting. This framework is used to characterize various forms of Lagrangian and symplectic sliceness…",
    "date": "2026-09-24",
-   "author": "Qinghui Meng"
+   "author": "arXiv:2609.30182"
   }
  ],
  "复分析": [
@@ -407,41 +407,5 @@ window.LBLB_PAPERS = {
    "author": "J. Cotrina、Raúl Fierro 等 · arXiv:2608.25789"
   }
  ],
- "数理逻辑": [
-  {
-   "title": "An Infinitary and a Cyclic Sequent Calculus for Non-Monotone Inductive Definitions",
-   "link": "https://www.semanticscholar.org/paper/778c422c7b951dbd23116f76a2f0a51c45701476",
-   "abs": "Inductive definitions are an important form of knowledge in mathematics and computer science. Two common techniques to prove theorems about inductive definitions are the principle of mathematical induction and the…",
-   "date": "2026-09-22",
-   "author": "R. Van den Eede · arXiv:2609.26337"
-  },
-  {
-   "title": "The emergence of a communitarian ethics in initial mathematics teacher education contexts",
-   "link": "https://www.semanticscholar.org/paper/ba9788ae440f04e36fac7b85d8b405a4889b117f",
-   "abs": "Initial teacher education in Western societies is shaped by a market-oriented view of education that fosters relationships based on convenience and self-interest. As teacher educators, we seek to promote a communitarian…",
-   "date": "2026-09-21",
-   "author": ""
-  },
-  {
-   "title": "From foundations to applications: reverse mathematics and philosophy",
-   "link": "https://www.semanticscholar.org/paper/9736a2599ed78c1d9e98851b6d41b8da8231315c",
-   "abs": "Reverse mathematics is a branch of mathematical logic dedicated to determining the minimal set existence principles necessary and sufficient to derive ordinary mathematical theorems about concrete structures like the…",
-   "date": "2026-09-21",
-   "author": "B. Eastaugh · arXiv:2609.25183"
-  },
-  {
-   "title": "Belief Functions Meet Quantum Logic: A Mathematical Framework for Coherence-Based Decision Theories",
-   "link": "https://www.semanticscholar.org/paper/3f490d12678cdcf3add373720c1e7c8fd3c01374",
-   "abs": "Decision theories based on cognitive consistency understand decision-making as the process of constructing a coherent representation of reality, capable of providing a reliable causal map that connects actions to…",
-   "date": "2026-09-21",
-   "author": "Guido Fioretti"
-  },
-  {
-   "title": "A translation of Maehara's\"Eine Darstellung der Intuitionistischen Logik in der Klassischen\"",
-   "link": "https://www.semanticscholar.org/paper/0181261e77f055f3b32a1989983ebea64e004462",
-   "abs": "A key motivation for Heyting's intuitionistic logic was to gain a formal notion of Brouwer's idea of mathematics as a\"construction of the mind\". One might thus argue that Heyting's Calculus should also correspond to a…",
-   "date": "2026-09-21",
-   "author": "Justus Becker · arXiv:2609.24673"
-  }
- ]
+ "数理逻辑": []
 };
