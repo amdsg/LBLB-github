@@ -136,7 +136,7 @@ window.LBLB_PAPERS = {
   {
    "title": "Primary Mathematics Preservice Teachers’ Reflections on Lesson Study-Inspired Collaborative Planning: A Didactical Suitability Perspective",
    "link": "https://www.semanticscholar.org/paper/5ffef83bf64d41e9ba575c1dfd6baaf73419a6ac",
-   "abs": "",
+   "abs": "This study investigated primary preservice teachers' (PSTs) reflections on participating in a collaborative planning model inspired by lesson study (LS). The planning model includes collaboratively brainstorming lesson…",
    "date": "2026-09-23",
    "author": "Dung Tran、Giang-Nguyen T. Nguyen 等"
   },
@@ -150,76 +150,76 @@ window.LBLB_PAPERS = {
  ],
  "概率与统计": [
   {
-   "title": "The Spectra of the Henze-Zirkler and Henze-Wagner Operators for BHEP Tests",
-   "link": "https://arxiv.org/abs/2609.28464v1",
-   "abs": "The Baringhaus-Henze-Epps-Pulley (BHEP) tests for multivariate normality are affine-invariant goodness-of-fit tests based on a Gaussian-weighted $L^2$ distance between empirical and Gaussian characteristic functions. In…",
-   "date": "2026-09-23",
-   "author": "Bruno Ebner"
+   "title": "Multiple Stopping Options on a Geometric Random Walk",
+   "link": "https://arxiv.org/abs/2609.30239v1",
+   "abs": "This article develops a finite-horizon multiple-stopping framework and applies it to three American-style contracts on a geometric random walk in a Cox--Ross--Rubinstein market: an American put, a Russian option, and a…",
+   "date": "2026-09-24",
+   "author": "Katsunori Ano"
   },
   {
-   "title": "Stochastic Domination of Gaussian Maxima by the Regular Simplex",
-   "link": "https://arxiv.org/abs/2609.28452v1",
-   "abs": "Let $n\\ge2$, and let $X=(X_1,\\ldots,X_n)$ be a centered Gaussian vector with $\\mathrm{Var}(X_i)=1$ for every $i$. Let $Z_1,\\ldots,Z_n$ be independent standard Gaussians, and put $\\overline{Z}=(Z_1+\\cdots+Z_n)/n$. We…",
-   "date": "2026-09-23",
-   "author": "Abhijeet Mulgund"
+   "title": "Localization near the edge for the lattice Anderson-Bernoulli model on general dimension",
+   "link": "https://arxiv.org/abs/2609.30209v1",
+   "abs": "The Anderson tight-binding model is a fundamental model of quantum transport and localization in disordered media. Completing a problem left open by Bourgain and Kenig, this paper proves Anderson localization near the…",
+   "date": "2026-09-24",
+   "author": "Linjun Li"
   },
   {
-   "title": "Local Geometric Mixing via Dobrushin Contraction with Applications to Diffusion Path Monte Carlo and the Proximal Sampler",
-   "link": "https://arxiv.org/abs/2609.28338v1",
-   "abs": "Local geometric mixing localizes geometric mixing by requiring geometric convergence to equilibrium in total variation only over finitely many transitions. It accommodates local convergence rates and captures rapid…",
-   "date": "2026-09-23",
-   "author": "Stefan Oberdörster"
+   "title": "Analytic Combinatorics of $d$-Set Mappings and Their Applications",
+   "link": "https://arxiv.org/abs/2609.30191v1",
+   "abs": "A $d$-set mapping is a function acting on a domain $X$ equipped with a partition into $d$ disjoint subsets. While standard functions represent $1$-set mappings, generalizations to arbitrary $d$-partite structures appear…",
+   "date": "2026-09-24",
+   "author": "Toma Diaconescu-Grabari"
   },
   {
-   "title": "Stability under mixtures of transportation inequalities and restricted log-Sobolev inequalities",
-   "link": "https://arxiv.org/abs/2609.28234v1",
-   "abs": "We prove results about stability under mixtures for transport--entropy inequalities and restricted functional inequalities of Poincaré and log-Sobolev type. We treat Talagrand inequalities of type $\\mathbf{T}_2$ and…",
-   "date": "2026-09-23",
-   "author": "Radosław Adamczak"
+   "title": "Recursive Paintboxes and the Martin Boundary of the Hoffman Rooted-Tree Graph",
+   "link": "https://arxiv.org/abs/2609.30135v1",
+   "abs": "We determine the Doob-Martin boundary of Hoffman's leaf-grafting graph on finite unlabelled non-plane rooted trees. Its full and minimal boundaries coincide and are parametrized by deterministic recursive paintboxes…",
+   "date": "2026-09-24",
+   "author": "Shengjun Zhang"
   },
   {
-   "title": "Gaussian Critical-Threshold Instability in Real Phase Retrieval",
-   "link": "https://arxiv.org/abs/2609.28198v1",
-   "abs": "We establish the natural scale of instability in real Gaussian phase retrieval at the critical injectivity threshold. Let $A$ be a $(2M-1)\\times M$ matrix with independent standard Gaussian entries and let…",
-   "date": "2026-09-23",
-   "author": "Christian E. Häggblom"
+   "title": "Vanishing-noise asymptotics for Donsker-Varadhan rate functions on the circle",
+   "link": "https://arxiv.org/abs/2609.30113v1",
+   "abs": "We study the vanishing-noise limit of the rate function for the Donsker-Varadhan large deviation principle for one-dimensional diffusion processes on a circle. As is well known, the rate function can be represented…",
+   "date": "2026-09-24",
+   "author": "Milan Koresski"
   }
  ],
  "组合与图论": [
   {
-   "title": "On the multicolour Ramsey numbers $R(3,3,k)$",
-   "link": "https://arxiv.org/abs/2609.28455v1",
-   "abs": "In this paper we determine the Ramsey number $R(3,3,k)$ up to a constant factor, showing that $$R(3,3,k) = Θ\\bigg( \\frac{k^3}{(\\log k)^2} \\bigg).$$ The proof of the lower bound combines the Hefty-Horn-King-Pfender…",
-   "date": "2026-09-23",
-   "author": "Bruno Andrades"
+   "title": "Thresholds and spread in set systems of bounded VC-dimension",
+   "link": "https://arxiv.org/abs/2609.30263v1",
+   "abs": "Let $p_c(\\mathcal F)$, $q(\\mathcal F)$, and $q_f(\\mathcal F)$ denote the threshold, expectation threshold, and fractional expectation threshold of a family $\\mathcal F$ of nonempty subsets of a finite set, respectively.…",
+   "date": "2026-09-24",
+   "author": "Chong Shangguan"
   },
   {
-   "title": "Ehrhart polynomials of cyclic polytopes as averages of zonotope Ehrhart polynomials",
-   "link": "https://arxiv.org/abs/2609.28417v1",
-   "abs": "We prove an averaging formula for the Ehrhart polynomial of a cyclic polytope whose vertices are given by integer parameters on the moment curve. More precisely, its Ehrhart polynomial is the average of the Ehrhart…",
-   "date": "2026-09-23",
-   "author": "Masato Konoike"
+   "title": "A quasisymmetric analog of Grassmannian Schubert varieties",
+   "link": "https://arxiv.org/abs/2609.30257v1",
+   "abs": "We show that the cohomology rings of toric Richardson varieties in the Grassmannian are finite truncations of the ring of quasisymmetric functions. We exhibit an affine paving of each such variety whose cell closures…",
+   "date": "2026-09-24",
+   "author": "Teddy Gonzales"
   },
   {
-   "title": "Chvátal's conjecture: a proof from The Book",
-   "link": "https://arxiv.org/abs/2609.28404v1",
-   "abs": "Chvátal conjectured that every downset has a maximum-size intersecting family which is a star, that is, consists of all members of the family containing a fixed element. Recently, Chang, Liu and Liu gave a proof of this…",
-   "date": "2026-09-23",
-   "author": "David Ellis"
+   "title": "On the Binary Rank of Matrices with Constant Real Rank",
+   "link": "https://arxiv.org/abs/2609.30203v1",
+   "abs": "We continue the study initiated by Parnas and Shraibman~\\cite{PARNAS2026264} who gave upper bounds on the binary rank of $0,1$ matrices which have a small rank over the reals. We give alternative completely mathematical…",
+   "date": "2026-09-24",
+   "author": "Michal Parnas"
   },
   {
-   "title": "Field independence of the first seven Betti numbers of flag complexes",
-   "link": "https://arxiv.org/abs/2609.28376v1",
-   "abs": "In 2006, Katzman showed that the first six Betti numbers of the Stanley--Reisner ring of a flag complex are field independent. He also found flag complexes on eleven vertices whose eighth Betti number depends on the…",
-   "date": "2026-09-23",
-   "author": "Omkar Javadekar"
+   "title": "An extremal theorem for non-isomorphic spanning trees",
+   "link": "https://arxiv.org/abs/2609.30201v1",
+   "abs": "For a graph $G$, let $τ_{\\mathrm{iso}}(G)$ denote the number of isomorphism classes of its spanning trees. For every fixed $d\\ge3$ and all sufficiently large $n$, we prove that every connected $n$-vertex graph $G$ with…",
+   "date": "2026-09-24",
+   "author": "Zhifei Yan"
   },
   {
-   "title": "On the distribution of the minimal length of addition chains",
-   "link": "https://arxiv.org/abs/2609.28374v1",
-   "abs": "A sequence of integers $1=a_0 m^{0.9}$. Moreover, denoting by $G(m,r)$ the number of \\emph{distinct} addition chains of length $m+r$ leading to an integer $n\\in [2^m, 2^{m+1})$, we show that there exist positive…",
-   "date": "2026-09-23",
-   "author": "Jean-Marie De Koninck"
+   "title": "Analytic Combinatorics of $d$-Set Mappings and Their Applications",
+   "link": "https://arxiv.org/abs/2609.30191v1",
+   "abs": "A $d$-set mapping is a function acting on a domain $X$ equipped with a partition into $d$ disjoint subsets. While standard functions represent $1$-set mappings, generalizations to arbitrary $d$-partite structures appear…",
+   "date": "2026-09-24",
+   "author": "Toma Diaconescu-Grabari"
   }
  ],
  "线性代数": [
@@ -321,7 +321,7 @@ window.LBLB_PAPERS = {
   {
    "title": "Efficient and Interpretable Mixtures of Experts: Statistical Inference, Initialization, and Applications",
    "link": "https://www.semanticscholar.org/paper/ae85d1714cee912b7e475b086f4d3906a6708154",
-   "abs": "",
+   "abs": "Scientific discovery increasingly relies on methods that are both flexible and interpretable. Traditional statistical models offer interpretability but depend on restrictive assumptions, whereas modern machine learning…",
    "date": "2026-09-23",
    "author": ""
   },
