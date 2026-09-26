@@ -279,7 +279,7 @@ window.LBLB_PAPERS = {
    "link": "https://www.semanticscholar.org/paper/d6ea6e6e626ac01abf33a790bdee633f449ddbad",
    "abs": "We study the differential privacy (DP) of a graph shift operator (GSO) when an analyst observes the output of a graph filter. In particular, we study the setting in which the input signals to the graph filter are drawn…",
    "date": "2026-09-24",
-   "author": "Andrew Campbell、Chen-Yue Zhang 等 · arXiv:2609.28899"
+   "author": "Andrew Campbell、Chen-Yu Zhang 等 · arXiv:2609.28899"
   },
   {
    "title": "Smoluchowski-Kramers approximation with Lévy noise in the Meyer--Zheng topology",
