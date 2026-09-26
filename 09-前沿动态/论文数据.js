@@ -187,39 +187,39 @@ window.LBLB_PAPERS = {
  ],
  "组合与图论": [
   {
-   "title": "Thresholds and spread in set systems of bounded VC-dimension",
-   "link": "https://arxiv.org/abs/2609.30263v1",
-   "abs": "Let $p_c(\\mathcal F)$, $q(\\mathcal F)$, and $q_f(\\mathcal F)$ denote the threshold, expectation threshold, and fractional expectation threshold of a family $\\mathcal F$ of nonempty subsets of a finite set, respectively.…",
-   "date": "2026-09-24",
-   "author": "Chong Shangguan"
+   "title": "On a class of combinatorial group invariants",
+   "link": "https://www.semanticscholar.org/paper/164f145faf114bcf7aa67f72f95aa71e56d4d2e8",
+   "abs": "In this paper, we explore group invariants arising from combinatorial structures associated with finite groups, including the functional graphs of power maps and the well-studied power graphs. These invariants induce…",
+   "date": "2026-09-17",
+   "author": "Arthur Fernandes、Claudio M. Qureshi 等 · arXiv:2609.20516"
   },
   {
-   "title": "A quasisymmetric analog of Grassmannian Schubert varieties",
-   "link": "https://arxiv.org/abs/2609.30257v1",
-   "abs": "We show that the cohomology rings of toric Richardson varieties in the Grassmannian are finite truncations of the ring of quasisymmetric functions. We exhibit an affine paving of each such variety whose cell closures…",
-   "date": "2026-09-24",
-   "author": "Teddy Gonzales"
+   "title": "Graph Theory with Orbiter",
+   "link": "https://www.semanticscholar.org/paper/17a3c11e003f42eb63938dffacf86a73f1d50852",
+   "abs": "We describe the graph theory package in the Computer Algebra System Orbiter. The package is dedicated to algebraic graph theory, with emphasis on efficiency and seamless integration of algebra, combinatorics and…",
+   "date": "2026-09-15",
+   "author": "A. Betten"
   },
   {
-   "title": "On the Binary Rank of Matrices with Constant Real Rank",
-   "link": "https://arxiv.org/abs/2609.30203v1",
-   "abs": "We continue the study initiated by Parnas and Shraibman~\\cite{PARNAS2026264} who gave upper bounds on the binary rank of $0,1$ matrices which have a small rank over the reals. We give alternative completely mathematical…",
-   "date": "2026-09-24",
-   "author": "Michal Parnas"
+   "title": "Perfect Combinatorial Structures in Coding Theory and Cryptography",
+   "link": "https://www.semanticscholar.org/paper/3b04906bdf8664943e38009cff8f23753e845121",
+   "abs": "This book develops algebraic and combinatorial methods for studying discrete structures. It brings together graph theory, Boolean functions, Fourier analysis on finite groups, coding theory, perfect colorings and…",
+   "date": "2026-09-07",
+   "author": "Vladimir N. Potapov · arXiv:2609.09225"
   },
   {
-   "title": "An extremal theorem for non-isomorphic spanning trees",
-   "link": "https://arxiv.org/abs/2609.30201v1",
-   "abs": "For a graph $G$, let $τ_{\\mathrm{iso}}(G)$ denote the number of isomorphism classes of its spanning trees. For every fixed $d\\ge3$ and all sufficiently large $n$, we prove that every connected $n$-vertex graph $G$ with…",
-   "date": "2026-09-24",
-   "author": "Zhifei Yan"
+   "title": "When a set theorist hears \"combinatorics\", Part 2: Trees",
+   "link": "https://www.semanticscholar.org/paper/8cce4eac49757fce555a62699926aa840da1482f",
+   "abs": "In the previous installment of this series (When a Set Theorist Hears “Combinatorics”: Ramsey Theory, [Gil25]) we discussed the combinatorial problem of finding large patches of order in graphs, and this was done from…",
+   "date": "2026-09-02",
+   "author": "Thomas Gilton"
   },
   {
-   "title": "Analytic Combinatorics of $d$-Set Mappings and Their Applications",
-   "link": "https://arxiv.org/abs/2609.30191v1",
-   "abs": "A $d$-set mapping is a function acting on a domain $X$ equipped with a partition into $d$ disjoint subsets. While standard functions represent $1$-set mappings, generalizations to arbitrary $d$-partite structures appear…",
-   "date": "2026-09-24",
-   "author": "Toma Diaconescu-Grabari"
+   "title": "Graph Coloring Algorithms and Their Applications in Combinatorial Optimization: A Survey",
+   "link": "https://www.semanticscholar.org/paper/a04d13f69afc883918c0f1e144e2cd4be64b5f0f",
+   "abs": "Coloring the vertices, edges or faces of a graph so that no two adjacent elements share a label is among the oldest problems in graph theory, and one of the few whose reach extends into exam timetables and wireless…",
+   "date": "2026-08-30",
+   "author": "Jisha Ann Abraham、C. Wilfred 等"
   }
  ],
  "线性代数": [
