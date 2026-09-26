@@ -113,6 +113,20 @@ window.LBLB_PAPERS = {
  ],
  "分析": [
   {
+   "title": "Demographic factors and mathematics appreciation among first-year college students: a random forest approach",
+   "link": "https://www.semanticscholar.org/paper/99736ec391b08ce668adc36dcb333161b1ad0070",
+   "abs": "",
+   "date": "2026-09-25",
+   "author": "Arnel S. Travero"
+  },
+  {
+   "title": "Mathematics self-efficacy and resilience link ICT use to mathematical literacy: the moderating role of mathematics anxiety",
+   "link": "https://www.semanticscholar.org/paper/febe88b153b6e1fb00e36e43456bf61149422fe7",
+   "abs": "Digital technologies offer dynamic representations, immediate feedback, and autonomous inquiry in mathematics learning. Yet the association between ICT use and mathematical literacy may depend on students' psychological…",
+   "date": "2026-09-24",
+   "author": "Jin-Hai Liu、Lu-Lu Ren 等"
+  },
+  {
    "title": "A Regularization Based Computational Method for Quantum Incommensurate Problems",
    "link": "https://www.semanticscholar.org/paper/dd0412c3e1eb5111cd981535db56b7fb4433f184",
    "abs": "Quantum incommensurate systems have attracted widespread interest due to their unique physical properties. Related studies have made notable progress in recent years. To gain deeper insight, it is both significant and…",
@@ -120,32 +134,18 @@ window.LBLB_PAPERS = {
    "author": "Zhengtao Ding、Yan Li 等 · arXiv:2609.29357"
   },
   {
+   "title": "Equations Dash: Interactive Learning Media to Improve Mathematical Problem-Solving Skills",
+   "link": "https://www.semanticscholar.org/paper/a2577e2e7e2ef5e8057c40a01e8e9ee6f08f7919",
+   "abs": "Students frequently encounter difficulties in solving mathematical problems involving one-variable linear equations because limited interactive learning media often support classroom instruction. This study aimed to…",
+   "date": "2026-09-24",
+   "author": "H. Sukandi、E. Sudihartinih 等"
+  },
+  {
    "title": "Analytic Combinatorics of $d$-Set Mappings and Their Applications",
    "link": "https://www.semanticscholar.org/paper/97222d762f7615310ca13110a1206889b0b02ba5",
    "abs": "A $d$-set mapping is a function acting on a domain $X$ equipped with a partition into $d$ disjoint subsets. While standard functions represent $1$-set mappings, generalizations to arbitrary $d$-partite structures appear…",
    "date": "2026-09-24",
    "author": "Toma Diaconescu-Grabari、D. Panario · arXiv:2609.30191"
-  },
-  {
-   "title": "Intrinsic-Extrinsic Coupling in Learning Dynamics",
-   "link": "https://www.semanticscholar.org/paper/6ec9ab8ada60aea6dd52d92e1d0030fe59ec09ec",
-   "abs": "A learner's current observations need not determine its response to further training. We formulate intrinsic-extrinsic coupling through the continuation-conditioned value of a constrained learning-state intervention…",
-   "date": "2026-09-24",
-   "author": "Qin-You Wang · arXiv:2609.30185"
-  },
-  {
-   "title": "The Integration of Technological Tools into Mathematics Courses: A Systematic Literature Review",
-   "link": "https://www.semanticscholar.org/paper/65dc686f070c9d610d6e07fb075a408d8e1e31d4",
-   "abs": "",
-   "date": "2026-09-24",
-   "author": "Oscar Villalobos、Kinshuk"
-  },
-  {
-   "title": "Educators’ sensemaking about mathematics equity and ability grouping",
-   "link": "https://www.semanticscholar.org/paper/56f95299799cb542d7294f54f1abb4576e1a070f",
-   "abs": "This study aims to examine how educators in one private prekindergarten through Grade 8 (PK–8) school conceptualized mathematics equity and reasoned about the equity of ability grouping. Sustainable Development Goal 4…",
-   "date": "2026-09-24",
-   "author": "Telma Largent"
   }
  ],
  "概率与统计": [
@@ -187,39 +187,39 @@ window.LBLB_PAPERS = {
  ],
  "组合与图论": [
   {
-   "title": "On a class of combinatorial group invariants",
-   "link": "https://www.semanticscholar.org/paper/164f145faf114bcf7aa67f72f95aa71e56d4d2e8",
-   "abs": "In this paper, we explore group invariants arising from combinatorial structures associated with finite groups, including the functional graphs of power maps and the well-studied power graphs. These invariants induce…",
-   "date": "2026-09-17",
-   "author": "Arthur Fernandes、Claudio M. Qureshi 等 · arXiv:2609.20516"
+   "title": "Thresholds and spread in set systems of bounded VC-dimension",
+   "link": "https://arxiv.org/abs/2609.30263v1",
+   "abs": "Let $p_c(\\mathcal F)$, $q(\\mathcal F)$, and $q_f(\\mathcal F)$ denote the threshold, expectation threshold, and fractional expectation threshold of a family $\\mathcal F$ of nonempty subsets of a finite set, respectively.…",
+   "date": "2026-09-24",
+   "author": "Chong Shangguan"
   },
   {
-   "title": "Graph Theory with Orbiter",
-   "link": "https://www.semanticscholar.org/paper/17a3c11e003f42eb63938dffacf86a73f1d50852",
-   "abs": "We describe the graph theory package in the Computer Algebra System Orbiter. The package is dedicated to algebraic graph theory, with emphasis on efficiency and seamless integration of algebra, combinatorics and…",
-   "date": "2026-09-15",
-   "author": "A. Betten"
+   "title": "A quasisymmetric analog of Grassmannian Schubert varieties",
+   "link": "https://arxiv.org/abs/2609.30257v1",
+   "abs": "We show that the cohomology rings of toric Richardson varieties in the Grassmannian are finite truncations of the ring of quasisymmetric functions. We exhibit an affine paving of each such variety whose cell closures…",
+   "date": "2026-09-24",
+   "author": "Teddy Gonzales"
   },
   {
-   "title": "Perfect Combinatorial Structures in Coding Theory and Cryptography",
-   "link": "https://www.semanticscholar.org/paper/3b04906bdf8664943e38009cff8f23753e845121",
-   "abs": "This book develops algebraic and combinatorial methods for studying discrete structures. It brings together graph theory, Boolean functions, Fourier analysis on finite groups, coding theory, perfect colorings and…",
-   "date": "2026-09-07",
-   "author": "Vladimir N. Potapov · arXiv:2609.09225"
+   "title": "On the Binary Rank of Matrices with Constant Real Rank",
+   "link": "https://arxiv.org/abs/2609.30203v1",
+   "abs": "We continue the study initiated by Parnas and Shraibman~\\cite{PARNAS2026264} who gave upper bounds on the binary rank of $0,1$ matrices which have a small rank over the reals. We give alternative completely mathematical…",
+   "date": "2026-09-24",
+   "author": "Michal Parnas"
   },
   {
-   "title": "When a set theorist hears \"combinatorics\", Part 2: Trees",
-   "link": "https://www.semanticscholar.org/paper/8cce4eac49757fce555a62699926aa840da1482f",
-   "abs": "In the previous installment of this series (When a Set Theorist Hears “Combinatorics”: Ramsey Theory, [Gil25]) we discussed the combinatorial problem of finding large patches of order in graphs, and this was done from…",
-   "date": "2026-09-02",
-   "author": "Thomas Gilton"
+   "title": "An extremal theorem for non-isomorphic spanning trees",
+   "link": "https://arxiv.org/abs/2609.30201v1",
+   "abs": "For a graph $G$, let $τ_{\\mathrm{iso}}(G)$ denote the number of isomorphism classes of its spanning trees. For every fixed $d\\ge3$ and all sufficiently large $n$, we prove that every connected $n$-vertex graph $G$ with…",
+   "date": "2026-09-24",
+   "author": "Zhifei Yan"
   },
   {
-   "title": "Graph Coloring Algorithms and Their Applications in Combinatorial Optimization: A Survey",
-   "link": "https://www.semanticscholar.org/paper/a04d13f69afc883918c0f1e144e2cd4be64b5f0f",
-   "abs": "Coloring the vertices, edges or faces of a graph so that no two adjacent elements share a label is among the oldest problems in graph theory, and one of the few whose reach extends into exam timetables and wireless…",
-   "date": "2026-08-30",
-   "author": "Jisha Ann Abraham、C. Wilfred 等"
+   "title": "Analytic Combinatorics of $d$-Set Mappings and Their Applications",
+   "link": "https://arxiv.org/abs/2609.30191v1",
+   "abs": "A $d$-set mapping is a function acting on a domain $X$ equipped with a partition into $d$ disjoint subsets. While standard functions represent $1$-set mappings, generalizations to arbitrary $d$-partite structures appear…",
+   "date": "2026-09-24",
+   "author": "Toma Diaconescu-Grabari"
   }
  ],
  "线性代数": [
@@ -298,6 +298,13 @@ window.LBLB_PAPERS = {
  ],
  "复分析": [
   {
+   "title": "Multiple Disease-Free Equilibria: Toward a Vector Structure of R0…",
+   "link": "https://www.semanticscholar.org/paper/f9cd3f6de8627608f12feb0966bbccca201c5987",
+   "abs": "",
+   "date": "2026-09-25",
+   "author": "Laura Victoria Forero-Vega、I. Barradas 等"
+  },
+  {
    "title": "Adiabatic Theory Data on Strongly Chirped Dissipative Solitons of the Cubic-Quintic Nonlinear Ginzburg-Landau Equation",
    "link": "https://www.semanticscholar.org/paper/e089007054388b5a5c0b62dd8b9cdd1c1c5aabdc",
    "abs": "This data article provides the datasets, symbolic derivations, and scripts used to reproduce master diagrams, stationary-phase spectra, windowed first-order coherence functions, and quantum-noise stability maps for…",
@@ -319,18 +326,11 @@ window.LBLB_PAPERS = {
    "author": "Bin Guo、Jian Song 等 · arXiv:2609.28986"
   },
   {
-   "title": "Tessellated Isotropic Elastic Lattice Spring Model for Quasi-Brittle Fracture",
-   "link": "https://www.semanticscholar.org/paper/362a7c896cdfc60b0f1fd4a75ce07acfaf343aae",
-   "abs": "Quasi-brittle fracture is prevalent in concrete, rock, ceramics, composites, and masonry, and its simulation faces a trade-off among accuracy, efficiency, and simplicity. The classical Lattice Spring Model (LSM)…",
+   "title": "Analysis of Students’ Errors in Solving Mathematical Literacy Problems Based on Newman Procedure and Self-Efficacy",
+   "link": "https://www.semanticscholar.org/paper/646864e43ee2d11a8b844b198e6848a17650dfa5",
+   "abs": "Low mathematical literacy among Indonesian students indicates that students still experience difficulties in understanding contextual information, representing it in mathematical models, and determining appropriate…",
    "date": "2026-09-24",
-   "author": "D.-M. Li、Meng-Cheng He · arXiv:2609.28970"
-  },
-  {
-   "title": "Parameter identifiability of a neuroendocrine-inflammatory model across experimental designs",
-   "link": "https://www.semanticscholar.org/paper/2cd226e3e1722959ec30bec04ee01ad3ba3d2a0d",
-   "abs": "Mathematical modeling helps us identify and investigate complex mechanisms of function. This is especially useful for understanding inflammation, which is a complex, multiscale process that interacts nonlinearly with…",
-   "date": "2026-09-24",
-   "author": "Aubrey Ayres、M. Colebank · arXiv:2609.30031"
+   "author": "N. Ramli、Baso Intang Sappaile 等"
   }
  ],
  "微分方程": [
@@ -340,6 +340,13 @@ window.LBLB_PAPERS = {
    "abs": "",
    "date": "2026-09-25",
    "author": "S. Mambetov"
+  },
+  {
+   "title": "Time-varying single-server queues with state-dependent Hawkes arrivals",
+   "link": "https://www.semanticscholar.org/paper/70879828ff1857cabfa0af3ff32393faa2be7122",
+   "abs": "",
+   "date": "2026-09-25",
+   "author": "Tung Duong Vuong、Guo-Dong Pang"
   },
   {
    "title": "An Analytical Theory of Auxiliary Learning",
@@ -361,13 +368,6 @@ window.LBLB_PAPERS = {
    "abs": "This paper is the final installment in our series on the geometric theory of complex Monge-Ampere equations. We study singular Kahler metrics on compact normal Kahler spaces with klt singularities whose volume densities…",
    "date": "2026-09-24",
    "author": "Bin Guo、Jian Song 等 · arXiv:2609.28986"
-  },
-  {
-   "title": "Existence and Nonexistence of Solutions of Certain type of Nonlinear Differential and Differential-Difference Equations",
-   "link": "https://www.semanticscholar.org/paper/bd5eac323717bb9a31d80996f4e4049fb0e7dce4",
-   "abs": "In this paper, we study the existence, nonexistence, and growth be haviour of solutions of certain nonlinear differential and differential-difference equa tions involving the term fnf'. Using tools from Nevanlinna…",
-   "date": "2026-09-24",
-   "author": "N. Gahlian · arXiv:2609.29104"
   }
  ],
  "博弈论": [
