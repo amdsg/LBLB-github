@@ -120,6 +120,13 @@ window.LBLB_PAPERS = {
    "author": "S. Arifuzzaman、Shubhashish Kar"
   },
   {
+   "title": "Metacognitive Blindness in Mathematical Problem-Solving: An Analysis of Junior High School Students on Function Relations",
+   "link": "https://www.semanticscholar.org/paper/af6f0b1ccc32a456870b37c9368cadd9e460a32c",
+   "abs": "This research is based on the importance of mathematical problem-solving skills as a fundamental competency that students must master. However, PISA results show that Indonesian junior high school students'…",
+   "date": "2026-09-25",
+   "author": "Mala Apriliani、Irmawati Liliana Kusuma Dewi 等"
+  },
+  {
    "title": "Demographic factors and mathematics appreciation among first-year college students: a random forest approach",
    "link": "https://www.semanticscholar.org/paper/99736ec391b08ce668adc36dcb333161b1ad0070",
    "abs": "",
@@ -127,25 +134,18 @@ window.LBLB_PAPERS = {
    "author": "Arnel S. Travero"
   },
   {
+   "title": "Predictors of students’ negative achievement emotions in mathematics: a cross-national analysis based on Control-Value Theory",
+   "link": "https://www.semanticscholar.org/paper/73b16024f0c421bd2b66bcd81aac869afcbc9566",
+   "abs": "",
+   "date": "2026-09-25",
+   "author": "Umut Birkan Ozkan、Yeşim Ozansak Topcu 等"
+  },
+  {
    "title": "ASAS-NANP SYMPOSIUM: MATHEMATICAL MODELING IN ANIMAL NUTRITION: The Evolution of Large Language Models and Their Impact on Animal Sciences.",
    "link": "https://www.semanticscholar.org/paper/501caf34e2fb108887b81c4f4f40293008b95349",
    "abs": "The rapid rise of large language models (LLM) is reshaping the scientific landscape, transitioning from early statistical language models to advanced transformer-based architectures capable of synthesizing knowledge…",
    "date": "2026-09-25",
    "author": "L. O. Tedeschi"
-  },
-  {
-   "title": "Mathematics self-efficacy and resilience link ICT use to mathematical literacy: the moderating role of mathematics anxiety",
-   "link": "https://www.semanticscholar.org/paper/febe88b153b6e1fb00e36e43456bf61149422fe7",
-   "abs": "Digital technologies offer dynamic representations, immediate feedback, and autonomous inquiry in mathematics learning. Yet the association between ICT use and mathematical literacy may depend on students' psychological…",
-   "date": "2026-09-24",
-   "author": "Jin-Hai Liu、Lu-Lu Ren 等"
-  },
-  {
-   "title": "A Regularization Based Computational Method for Quantum Incommensurate Problems",
-   "link": "https://www.semanticscholar.org/paper/dd0412c3e1eb5111cd981535db56b7fb4433f184",
-   "abs": "Quantum incommensurate systems have attracted widespread interest due to their unique physical properties. Related studies have made notable progress in recent years. To gain deeper insight, it is both significant and…",
-   "date": "2026-09-24",
-   "author": "Zhengtao Ding、Yan Li 等 · arXiv:2609.29357"
   }
  ],
  "概率与统计": [
@@ -335,6 +335,20 @@ window.LBLB_PAPERS = {
  ],
  "微分方程": [
   {
+   "title": "Sliding Trajectories of Generic Inelastic Piecewise-Linear Dynamical Systems on the Torus",
+   "link": "https://www.semanticscholar.org/paper/233a54aba290508899aa8e7156ee8b6fd671d9f6",
+   "abs": "",
+   "date": "2026-09-27",
+   "author": "Mayara D. A. Caldas、Ricardo M. Martins"
+  },
+  {
+   "title": "Well-posedness and Godunov approximation for nonlinear conservation laws with hysteresis",
+   "link": "https://www.semanticscholar.org/paper/dd5f537125abb1b2d4980b1775469d5af5a0a662",
+   "abs": "",
+   "date": "2026-09-26",
+   "author": "Paola Goatin、Stefan Moreti"
+  },
+  {
    "title": "Inverse source problems for time-fractional diffusion with a singular involution operator",
    "link": "https://www.semanticscholar.org/paper/e773330a8e00ecdb5276a000c59b5890f04e4d6e",
    "abs": "",
@@ -354,20 +368,6 @@ window.LBLB_PAPERS = {
    "abs": "Auxiliary learning is an optimization paradigm in which a neural network's performance on a target task is improved by jointly training it on additional tasks. However, the mechanisms behind this improvement remain…",
    "date": "2026-09-24",
    "author": "Federico Milanesio、Alessandro Ingrosso 等 · arXiv:2609.29774"
-  },
-  {
-   "title": "On the numerical limitations of dual Koopman von Neumann embeddings for solving conservative nonlinear ordinary differential equations on quantum computers",
-   "link": "https://www.semanticscholar.org/paper/dc9af1f54afc839515465d95ed80738d26df5d54",
-   "abs": "The simulation of nonlinear ordinary differential equations on quantum computers is inherently challenging, as quantum gates are linear operators on qubit states. In this paper, we put forth a Koopman-von Neumann (KvN)…",
-   "date": "2026-09-24",
-   "author": "Thibault Fredon、A. K. Ram 等 · arXiv:2609.28999"
-  },
-  {
-   "title": "Ricci entropy, RCD structures and Kahler spaces",
-   "link": "https://www.semanticscholar.org/paper/c81c77a1541c90d5078445e07189b959c8c9f93c",
-   "abs": "This paper is the final installment in our series on the geometric theory of complex Monge-Ampere equations. We study singular Kahler metrics on compact normal Kahler spaces with klt singularities whose volume densities…",
-   "date": "2026-09-24",
-   "author": "Bin Guo、Jian Song 等 · arXiv:2609.28986"
   }
  ],
  "博弈论": [
