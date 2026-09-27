@@ -127,6 +127,13 @@ window.LBLB_PAPERS = {
    "author": "Arnel S. Travero"
   },
   {
+   "title": "ASAS-NANP SYMPOSIUM: MATHEMATICAL MODELING IN ANIMAL NUTRITION: The Evolution of Large Language Models and Their Impact on Animal Sciences.",
+   "link": "https://www.semanticscholar.org/paper/501caf34e2fb108887b81c4f4f40293008b95349",
+   "abs": "The rapid rise of large language models (LLM) is reshaping the scientific landscape, transitioning from early statistical language models to advanced transformer-based architectures capable of synthesizing knowledge…",
+   "date": "2026-09-25",
+   "author": "L. O. Tedeschi"
+  },
+  {
    "title": "Mathematics self-efficacy and resilience link ICT use to mathematical literacy: the moderating role of mathematics anxiety",
    "link": "https://www.semanticscholar.org/paper/febe88b153b6e1fb00e36e43456bf61149422fe7",
    "abs": "Digital technologies offer dynamic representations, immediate feedback, and autonomous inquiry in mathematics learning. Yet the association between ICT use and mathematical literacy may depend on students' psychological…",
@@ -139,13 +146,6 @@ window.LBLB_PAPERS = {
    "abs": "Quantum incommensurate systems have attracted widespread interest due to their unique physical properties. Related studies have made notable progress in recent years. To gain deeper insight, it is both significant and…",
    "date": "2026-09-24",
    "author": "Zhengtao Ding、Yan Li 等 · arXiv:2609.29357"
-  },
-  {
-   "title": "Equations Dash: Interactive Learning Media to Improve Mathematical Problem-Solving Skills",
-   "link": "https://www.semanticscholar.org/paper/a2577e2e7e2ef5e8057c40a01e8e9ee6f08f7919",
-   "abs": "Students frequently encounter difficulties in solving mathematical problems involving one-variable linear equations because limited interactive learning media often support classroom instruction. This study aimed to…",
-   "date": "2026-09-24",
-   "author": "H. Sukandi、E. Sudihartinih 等"
   }
  ],
  "概率与统计": [
