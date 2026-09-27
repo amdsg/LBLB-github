@@ -113,6 +113,13 @@ window.LBLB_PAPERS = {
  ],
  "分析": [
   {
+   "title": "SQUASH: Distributed Square Estimation with Provable Error Bounds for Dynamic Graphs",
+   "link": "https://www.semanticscholar.org/paper/06bc3e3044d3a9a75231bae5426e019e31fe9450",
+   "abs": "Counting subgraph motifs is a fundamental kernel in large-scale graph analytics, yet square (4-cycle) estimation in dynamic graphs remains challenging due to combinatorial explosion and distributed state maintenance…",
+   "date": "2026-09-27",
+   "author": "S. Arifuzzaman、Shubhashish Kar"
+  },
+  {
    "title": "Demographic factors and mathematics appreciation among first-year college students: a random forest approach",
    "link": "https://www.semanticscholar.org/paper/99736ec391b08ce668adc36dcb333161b1ad0070",
    "abs": "",
@@ -139,13 +146,6 @@ window.LBLB_PAPERS = {
    "abs": "Students frequently encounter difficulties in solving mathematical problems involving one-variable linear equations because limited interactive learning media often support classroom instruction. This study aimed to…",
    "date": "2026-09-24",
    "author": "H. Sukandi、E. Sudihartinih 等"
-  },
-  {
-   "title": "Analytic Combinatorics of $d$-Set Mappings and Their Applications",
-   "link": "https://www.semanticscholar.org/paper/97222d762f7615310ca13110a1206889b0b02ba5",
-   "abs": "A $d$-set mapping is a function acting on a domain $X$ equipped with a partition into $d$ disjoint subsets. While standard functions represent $1$-set mappings, generalizations to arbitrary $d$-partite structures appear…",
-   "date": "2026-09-24",
-   "author": "Toma Diaconescu-Grabari、D. Panario · arXiv:2609.30191"
   }
  ],
  "概率与统计": [
@@ -226,7 +226,7 @@ window.LBLB_PAPERS = {
   {
    "title": "Operational matrix formulation for linear difference equations using ∇λ…",
    "link": "https://www.semanticscholar.org/paper/9e6caca7607e49d20d8162767642cf20ba4049d5",
-   "abs": "",
+   "abs": "This paper develops an operational matrix formulation for nonhomogeneous linear difference equations with constant coefficients in powers of the backward difference operator. Using general ∇λ$\\nabla _{\\lambda }$-Appell…",
    "date": "2026-09-25",
    "author": "S. Díaz、W. Ramírez 等"
   },
@@ -344,7 +344,7 @@ window.LBLB_PAPERS = {
   {
    "title": "Time-varying single-server queues with state-dependent Hawkes arrivals",
    "link": "https://www.semanticscholar.org/paper/70879828ff1857cabfa0af3ff32393faa2be7122",
-   "abs": "",
+   "abs": "We study a non-stationary state-dependent Hawkes single-server queueing model with both time-varying arrival and service rates, under the first-come first-served discipline. The arrival process is a Hawkes process with…",
    "date": "2026-09-25",
    "author": "Tung Duong Vuong、Guo-Dong Pang"
   },
