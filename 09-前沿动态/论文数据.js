@@ -2,76 +2,76 @@
 window.LBLB_PAPERS = {
  "数论": [
   {
-   "title": "Quantitative Gowers uniformity of the primes in intervals of length $X^{5/8+\\varepsilon}$",
-   "link": "https://arxiv.org/abs/2610.03707v1",
-   "abs": "We prove the first quantitative bounds for the Gowers norms of the von Mangoldt function minus a Siegel corrected model function in short intervals. The result applies to intervals $(X,X+H]$ with…",
-   "date": "2026-10-02",
-   "author": "Joni Teräväinen"
+   "title": "Real τ$\\tau $-Conjecture for Sum-of-squares: A Unified A…",
+   "link": "https://www.semanticscholar.org/paper/1cee08d668c52ce42bd4d78f504f52837ceaf01d",
+   "abs": "",
+   "date": "2026-10-03",
+   "author": "P. Dutta"
   },
   {
-   "title": "Sturmian beta-shifts do not have typical periodic optimization",
-   "link": "https://arxiv.org/abs/2610.03619v1",
-   "abs": "A shift space is said to have typical periodic optimization (TPO) if the set of Lipschitz functions whose unique maximizing measure is supported on a periodic orbit contains an open dense subset of the space of…",
+   "title": "Grid Theory and Polynomiality in Dynamic Lot-Sizing",
+   "link": "https://www.semanticscholar.org/paper/d4ded0a942622ee7f51f203792a1fcf65bf5dec7",
+   "abs": "Why are some dynamic lot-sizing problems polynomial? We address this question by introducing Grid Theory, a structural framework based on cumulative production and the additive structure of production bounds. For a…",
    "date": "2026-10-02",
-   "author": "Wen Huang"
+   "author": "El-Mehdi Mehiri、N. Absi 等 · arXiv:2610.03559"
   },
   {
-   "title": "Explicit second moments of symplectic Siegel transforms",
-   "link": "https://arxiv.org/abs/2610.03499v1",
-   "abs": "We give two alternate formulations for the second moment formula of the Siegel transform over $\\mathrm{Sp}(2n, \\mathbb{Z}) \\backslash \\mathrm{Sp}(2n,\\mathbb{R})$, originally established by Kelmer and Yu. We also provide…",
+   "title": "$k$-Pairing: A Generalization of the Partition Pairing Theorems",
+   "link": "https://www.semanticscholar.org/paper/c876c80a900da93ea185c4df8b0918af3d60fae3",
+   "abs": "We extend the partition pairing theory of Andrews and Dastidar by replacing pairs with groups of $k$ equal parts. Two weight-preserving bijections give combinatorial interpretations of the joint pairing index--width…",
    "date": "2026-10-02",
-   "author": "Kristian Holm"
+   "author": "Xiao-Rui Niu、Diane Y. H. Shi · arXiv:2610.03437"
   },
   {
-   "title": "Hausdorff dimension for exactly approximable matrices",
-   "link": "https://arxiv.org/abs/2610.03442v1",
-   "abs": "We establish the Hausdorff dimension for exactly approximable matrices for all dimensions, including the inhomogeneous case. More precisely, let $ψ:\\N\\to(0,\\infty)$ be a non-increasing approximation function and let…",
+   "title": "A Compressible Miles Instability for Wind-Wave Generation in a Neutral Atmosphere",
+   "link": "https://www.semanticscholar.org/paper/868b527d5db9d8bf69d49db6e7523fba3d640916",
+   "abs": "We study the normal-mode stability of a flat interface between compressible Euler flow in the air and incompressible Euler flow in the water, including gravity and surface tension. The base state is quiescent water…",
    "date": "2026-10-02",
-   "author": "Yubin He"
+   "author": "Tian-Yi Li · arXiv:2610.02628"
   },
   {
-   "title": "Sum-product patterns in the shifted primes",
-   "link": "https://arxiv.org/abs/2610.03417v1",
-   "abs": "We show that the set $\\mathbb{P}-1$ of shifted primes contains infinitely many sum-product patterns of the form $\\{x,x+y,xy\\}$ with $x,y$ arbitrarily large distinct integers. More strongly, we can also show that, for…",
+   "title": "Eisenstein congruences in tame families and the class group of a metabelian extension",
+   "link": "https://www.semanticscholar.org/paper/856105acbf8707ba34985549270ba3e93e78e723",
+   "abs": "Ribet's 1976 proof of the converse to Herbrand's theorem created a new paradigm in algebraic number theory by illustrating that unramified abelian Galois extensions of number fields can be constructed using Galois…",
    "date": "2026-10-02",
-   "author": "Florian K. Richter"
+   "author": "Catherine Hsu、A. Pozzi 等 · arXiv:2610.03401"
   }
  ],
  "几何": [
   {
-   "title": "Geometric triangle-free graphs of large chromatic number",
-   "link": "https://arxiv.org/abs/2610.03517v1",
-   "abs": "We present several geometric constructions of triangle-free and large girth families of graphs with rapidly growing chromatic numbers. 1. We construct a triangle-free intersection graph of $n$ boxes in $\\mathbb{R}^3$…",
-   "date": "2026-10-02",
-   "author": "István Tomon"
+   "title": "SoK: Metric Differential Privacy in Theory and Practice",
+   "link": "https://www.semanticscholar.org/paper/fcbfdc0f1c3e2aed35e90e3e92cc549279bf488d",
+   "abs": "Metric Differential Privacy (mDP) extends classical differential privacy (DP) by replacing Hamming adjacency with application-aware distance metrics, which offers utility-preserving protection for structured and…",
+   "date": "2026-10-01",
+   "author": "Xinpeng Xie、Chenyang Yu 等"
   },
   {
-   "title": "Explicit second moments of symplectic Siegel transforms",
-   "link": "https://arxiv.org/abs/2610.03499v1",
-   "abs": "We give two alternate formulations for the second moment formula of the Siegel transform over $\\mathrm{Sp}(2n, \\mathbb{Z}) \\backslash \\mathrm{Sp}(2n,\\mathbb{R})$, originally established by Kelmer and Yu. We also provide…",
-   "date": "2026-10-02",
-   "author": "Kristian Holm"
+   "title": "Gravity and generalised geometry from a Lie 2-algebroid perspective",
+   "link": "https://www.semanticscholar.org/paper/8f7367743f319b45d9cac4b72aeb0e4c345c2488",
+   "abs": "We revisit the problem of defining natural torsion and curvature tensors for generalised connections and of using them to reconstruct the effective action for the massless modes of the closed string from generalised…",
+   "date": "2026-10-01",
+   "author": "A. Chatzistavrakidis、Chris Hull 等 · arXiv:2610.01292"
   },
   {
-   "title": "Infinitesimal Hilbertianity for manifolds with Sobolev regular Riemannian metrics through uniform lower capacity bounds",
-   "link": "https://arxiv.org/abs/2610.03373v1",
-   "abs": "We prove that metric measure spaces arising from $2$-manifolds equipped with Riemannian metrics $g$ such that $g, g^{-1} \\in L^\\infty_{\\rm loc} \\cap W^{1,p}_{\\rm loc}$ are infinitesimally Hilbertian. Along the way, we…",
-   "date": "2026-10-02",
-   "author": "Vanessa Ryborz"
+   "title": "Dagger Categories in Riemannian Geometry",
+   "link": "https://www.semanticscholar.org/paper/e950d8a1b9278a91504108e54c68c643ce9bed5d",
+   "abs": "A dagger on a category assigns to every morphism $f \\colon X \\to Y$ a morphism $f^\\dagger \\colon Y \\to X$, contravariantly and involutively, in the way the transpose reverses a real matrix. We show that on the…",
+   "date": "2026-09-30",
+   "author": "Jón Hákon Garðarsson、Paolo Perrone · arXiv:2610.02257"
   },
   {
-   "title": "Sub-Riemannian geodesics in the affine-additive group",
-   "link": "https://arxiv.org/abs/2610.03305v1",
-   "abs": "We derive the sub-Riemannian geodesics of the affine-additive group using the Pontryagin Maximum Principle (PMP) and compute the associated cut times. We then proceed to construct the Carnot-Carathéodory sphere of the…",
-   "date": "2026-10-02",
-   "author": "Elia Bubani"
+   "title": "Reachable sets under Kolmogorov dynamics in the probability simplex",
+   "link": "https://www.semanticscholar.org/paper/cb637f2ed67fbb5c6e499c99fef357a04325b434",
+   "abs": "The finite-time reachability problem - whether two probability vectors can be transformed in a time t through a generator from a given set - is a key question in Markovian dynamics. We address this problem for…",
+   "date": "2026-09-29",
+   "author": "Alfonso Fernández de Bobadilla、Mykhailo Hontarenko 等 · arXiv:2609.38382"
   },
   {
-   "title": "A polynomial bound in Dvoretzky's theorem",
-   "link": "https://arxiv.org/abs/2610.03204v1",
-   "abs": "We present a simple proof of the $\\varepsilon$-Dvoretzky conjecture, which asserts that the dependence on the approximation parameter $\\varepsilon$ in Dvoretzky's theorem is polynomial in $1/\\varepsilon$. In particular…",
-   "date": "2026-10-02",
-   "author": "Boaz Klartag"
+   "title": "Improving Function Space Flow Matching with Kernel Optimal Transport",
+   "link": "https://www.semanticscholar.org/paper/9995ab15860b6049eae2991ceaab396e05de4783",
+   "abs": "Generative models for function-valued data, such as time series and solutions of partial differential equations, must learn distributions over infinite-dimensional spaces. Functional Flow Matching (FFM) extends Flow…",
+   "date": "2026-09-29",
+   "author": "Fred Xu、Thomas Markovich 等 · arXiv:2609.38049"
   }
  ],
  "代数": [
