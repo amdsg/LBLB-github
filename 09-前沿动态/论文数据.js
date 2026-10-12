@@ -2,446 +2,446 @@
 window.LBLB_PAPERS = {
  "数论": [
   {
-   "title": "Geometrically Abelian Sections on Higher-Dimensional Varieties",
-   "link": "https://arxiv.org/abs/2610.12344v1",
-   "abs": "We investigate how much arithmetic information about a variety can be detected by sections of the geometrically abelian fundamental groups of sufficiently small open subvarieties. Over a \\(p\\)-adic field, such a section…",
-   "date": "2026-10-08",
-   "author": "Daebeom Choi"
+   "title": "The Tate Conjecture for Ordinary Calabi-Yau Threefolds",
+   "link": "https://arxiv.org/abs/2610.13939v1",
+   "abs": "We use the theory of canonical lifts to prove the integral geometric Tate conjecture for ordinary Calabi-Yau threefolds over finite fields, and also for divisor classes on certain ordinary Calabi-Yau varieties.",
+   "date": "2026-10-09",
+   "author": "Lukas Brantner"
   },
   {
-   "title": "Two Primes and Five Mixed Fibonacci-Lucas Summands",
-   "link": "https://arxiv.org/abs/2610.12291v1",
-   "abs": "Using the circle method, we prove that every sufficiently large positive integer is a sum of two primes, $u$ Fibonacci numbers and $5-u$ Lucas numbers for each $u\\in\\{1,2,3,4\\}$. All recurrence indices are positive, and…",
-   "date": "2026-10-08",
-   "author": "Zhao Shen"
+   "title": "An Infinite Family of Apéry-like Recurrences for Euler's Constant",
+   "link": "https://arxiv.org/abs/2610.13919v1",
+   "abs": "Euler's constant $γ$, also known as the Euler-Mascheroni constant, remains one of the most elusive constants in mathematics. Despite extensive study, its irrationality is still unproven, and Apéry-like approximations of…",
+   "date": "2026-10-09",
+   "author": "Rotem Kalisch"
   },
   {
-   "title": "Slightly improved zero-free half-planes for the quasi-Riemann hypothesis",
-   "link": "https://arxiv.org/abs/2610.12234v1",
-   "abs": "Recently, a uniform $\\frac{7}{8}$ zero-free half-plane for finite-order Hecke $L$-functions over $\\mathbb Q(\\sqrt{-3})$ and its transfer to Dirichlet $L$-functions was given by OpenAI in [1]. In its proof, there are two…",
-   "date": "2026-10-08",
-   "author": "Baiying Liu"
+   "title": "Counting with Hiccup Sequences",
+   "link": "https://arxiv.org/abs/2610.13908v1",
+   "abs": "The $(0,x,1,2)$-hiccup sequence starts at $x$ and increases by 1 when the current index has already appeared as a value, and by 2 otherwise. We prove directly that for $x\\geq3$ the gaps between its missing values are…",
+   "date": "2026-10-09",
+   "author": "Benoit Cloitre"
   },
   {
-   "title": "On Igusa's conjectures for weighted homogeneous polynomials with isolated singularities",
-   "link": "https://arxiv.org/abs/2610.12222v1",
-   "abs": "In 1991, Denef introduced an explicit formula for Igusa's local zeta functions in terms of embedded resolutions of singularities over $p$-adic fields with good reduction. In this paper, by slightly generalizing the…",
-   "date": "2026-10-08",
-   "author": "Kien Huu Nguyen"
+   "title": "On the saturability of $p$-adic Lie groups",
+   "link": "https://arxiv.org/abs/2610.13877v1",
+   "abs": "Lazard theory is becoming increasingly important in $p$-adic representation theory, especially when studying mod $p$ representations. For $G$ a connected reductive group defined over a finite extension $K/\\mathbb Q_p$…",
+   "date": "2026-10-09",
+   "author": "Casey Perdue"
   },
   {
-   "title": "Twisted Jacquet modules and induction from Speh representations",
-   "link": "https://arxiv.org/abs/2610.12221v1",
-   "abs": "Fourier coefficients of Eisenstein series induced from Speh representations are the kernels of the generalized doubling method of Cai, Friedberg, Ginzburg and Kaplan. Ginzburg and Soudry integrated these coefficients…",
-   "date": "2026-10-08",
-   "author": "Alan Xuelun Hou"
+   "title": "On Divisor Function Polynomials and Dirichlet Series",
+   "link": "https://arxiv.org/abs/2610.13864v1",
+   "abs": "We find the Dirichlet series and convergence bounds for the counting function of sum systems (collections of sets of non-negative integers whose Minkowski sum is an arithmetic progression). This motivates the definition…",
+   "date": "2026-10-09",
+   "author": "Martin N. Huxley"
   }
  ],
  "几何": [
   {
-   "title": "Estimates on Fully Nonlinear Elliptic Equations with Unrectifiable Exceptional Gradient Sets",
-   "link": "https://arxiv.org/abs/2610.12430v1",
-   "abs": "We study fully nonlinear uniformly elliptic equations that are imposed only when the gradients of solutions lie outside a closed ball and a closed purely one-unrectifiable set that can be unbounded. We prove Harnack…",
-   "date": "2026-10-08",
-   "author": "Tuoc Phan"
+   "title": "Necessary conditions for benchmarking next-generation AI in materials discovery",
+   "link": "https://arxiv.org/abs/2610.13885v1",
+   "abs": "Current AI predicts materials by speeding up energy minimisation and training on large databases. However, scaling data generation prevents manual analysis by domain experts. If novelty is evaluated by chemical…",
+   "date": "2026-10-09",
+   "author": "Daniel E Widdowson"
   },
   {
-   "title": "Tiling 3D by Translates of a Single Polycube is Undecidable",
-   "link": "https://arxiv.org/abs/2610.12392v1",
-   "abs": "We prove co-RE-completeness, and thus undecidability, of the following problem: given a single (connected) polycube, decide whether it tiles 3D Euclidean space by translations. We reduce from Wang tiling using the…",
-   "date": "2026-10-08",
-   "author": "Erik D. Demaine"
+   "title": "Each simplex in $\\mathbb{R}^4$ has a point with at least $14$ emanating normals to its boundary",
+   "link": "https://arxiv.org/abs/2610.13475v1",
+   "abs": "We prove that each simplex in $\\mathbb{R}^4$ contains a point with at least $14$ emanating normals to the boundary. Earlier, the authors proved that each generic simple polytope in $\\mathbb{R}^4$ contains a point with…",
+   "date": "2026-10-09",
+   "author": "Ivan Nasonov"
   },
   {
-   "title": "Directed fractal percolation and non-Lipschitz variants",
-   "link": "https://arxiv.org/abs/2610.12366v1",
-   "abs": "While models of undirected and directed geometry in random i.i.d. disorder with rapidly decaying tails are expected to behave similarly and exhibit features of the Kardar--Parisi--Zhang universality class, the scenario…",
-   "date": "2026-10-08",
-   "author": "Shirshendu Ganguly"
+   "title": "Cohomology and multiplicative gaps for quasi-isometries of nilpotent groups",
+   "link": "https://arxiv.org/abs/2610.13055v1",
+   "abs": "We construct two word metrics on the same seven-dimensional torsion-free nilpotent lattice whose asymptotic cones are isometric, but for which every quasi-isometry has multiplicative constant at least $1+\\varepsilon$…",
+   "date": "2026-10-09",
+   "author": "Mayukh Mukherjee"
   },
   {
-   "title": "Measurable obstructions for unmeasurable colourings",
-   "link": "https://arxiv.org/abs/2610.12301v1",
-   "abs": "Due to the availability of powerful analytic techniques, vastly superior lower bounds are known for the measurable chromatic number of Euclidean spaces compared to their ordinary chromatic number. Indeed, even the…",
+   "title": "Pointed Gromov-Hausdorff Distance between $l^p$-Wedge Sums and Isometric Embeddings of $l^\\infty$",
+   "link": "https://arxiv.org/abs/2610.12626v1",
+   "abs": "The paper studies $l^p$-wedge sums of metric spaces and provides a two-sided estimate for the pointed Gromov-Hausdorff distance between them. Using an upper bound for the Gromov-Hausdorff distance, the existence of an…",
    "date": "2026-10-08",
-   "author": "James Davies"
+   "author": "Emin Abdullaev"
   },
   {
-   "title": "Embedding large subsets of Wasserstein spaces into Banach spaces",
-   "link": "https://arxiv.org/abs/2610.12029v1",
-   "abs": "Embedding subsets of Wasserstein spaces into linear spaces is a problem of both theoretical and computational interest. In this work, we prove that three classical and natural embeddings of Wasserstein spaces into…",
+   "title": "A cyclotomic gluing construction for lattice sphere packings",
+   "link": "https://arxiv.org/abs/2610.12619v1",
+   "abs": "For a positive integer $d$, let $Δ_d^L$ denote the supremum of the densities of lattice sphere packings in $\\mathbb R^d$. We prove that, for every sufficiently large $d$, $Δ_d^L \\gg d^2\\log\\log d\\,2^{-d}$.…",
    "date": "2026-10-08",
-   "author": "Cyril Letrouit"
+   "author": "Nihar Gargava"
   }
  ],
  "代数": [
   {
-   "title": "Local Constancy of the Betti Automorphic Category over the Moduli of Curves",
-   "link": "https://arxiv.org/abs/2610.12384v1",
-   "abs": "Nadler and Yun conjectured that the automorphic side of the Betti geomet- ric Langlands correspondence forms a local system of categories over the moduli of curves. We prove this local constancy conjecture using purely…",
-   "date": "2026-10-08",
-   "author": "Joakim Færgeman"
+   "title": "The Tate Conjecture for Ordinary Calabi-Yau Threefolds",
+   "link": "https://arxiv.org/abs/2610.13939v1",
+   "abs": "We use the theory of canonical lifts to prove the integral geometric Tate conjecture for ordinary Calabi-Yau threefolds over finite fields, and also for divisor classes on certain ordinary Calabi-Yau varieties.",
+   "date": "2026-10-09",
+   "author": "Lukas Brantner"
   },
   {
-   "title": "The moduli space of curves of genus 16 is uniruled",
-   "link": "https://arxiv.org/abs/2610.12364v1",
-   "abs": "Using in a novel way non-abelian Brill-Noether theory, we show that the moduli space of curves of genus 16 is uniruled. This is the highest genus for which such a result is known.",
-   "date": "2026-10-08",
-   "author": "Gavril Farkas"
+   "title": "Weighted, GIT and Néron--Tate heights on genus-two moduli and Jacobians",
+   "link": "https://arxiv.org/abs/2610.13850v1",
+   "abs": "We compare three heights attached to a curve of genus two: the weighted height of its Igusa--Clebsch invariants, the GIT height of a binary sextic defining it, and the Néron--Tate height on its Jacobian. For a morphism…",
+   "date": "2026-10-09",
+   "author": "Sajad Salami"
   },
   {
-   "title": "Geometrically Abelian Sections on Higher-Dimensional Varieties",
-   "link": "https://arxiv.org/abs/2610.12344v1",
-   "abs": "We investigate how much arithmetic information about a variety can be detected by sections of the geometrically abelian fundamental groups of sufficiently small open subvarieties. Over a \\(p\\)-adic field, such a section…",
-   "date": "2026-10-08",
-   "author": "Daebeom Choi"
+   "title": "Biholomorphic rigidity and symmetry breaking for domains with Bergman metric of constant positive holomorphic sectional curvature",
+   "link": "https://arxiv.org/abs/2610.13831v1",
+   "abs": "Based on earlier work by Wiegerinck and Huang-Li, Hayashida-Kamimoto constructed unbounded non-smooth Reinhardt domains in \\({\\mathbb C}^n\\), \\(n\\geq 3\\), whose Bergman spaces are finite-dimensional and whose Bergman…",
+   "date": "2026-10-09",
+   "author": "Gordon Heier"
   },
   {
-   "title": "Wave packets asymptotics in $κ$-minkowski space",
-   "link": "https://arxiv.org/abs/2610.12331v1",
-   "abs": "In this paper, we study the nature of wave packets and their decay behavior in the $κ$-Minkowski space. We employ techniques from singularity theory throughout our analysis. Specifically, we use methods from the theory…",
-   "date": "2026-10-08",
-   "author": "Adith A"
+   "title": "Monodromy of Tate-Linear varieties",
+   "link": "https://arxiv.org/abs/2610.13827v1",
+   "abs": "We answer a question of Chai about the rigidity of Tate-linear subvarieties of $\\mathcal{A}_g$ over $\\overline{\\mathbb{F}}_p$: we show that that a smooth subvariety of a central leaf of $\\mathcal{A}_g$ which is…",
+   "date": "2026-10-09",
+   "author": "Livia Grammatica"
   },
   {
-   "title": "Characteristic cycles and the Gevrey filtration of irregularity in hypergeometric families",
-   "link": "https://arxiv.org/abs/2610.12330v1",
-   "abs": "We show that the characteristic cycle multiplicities of $A$-hypergeometric systems are upper semicontinuous in the parameter for every rational projective weight, thereby proving a conjecture of Schulze and Walther…",
-   "date": "2026-10-08",
-   "author": "Sheng Tan"
+   "title": "The (right) homotopy between two A$_{\\infty}$-morphisms",
+   "link": "https://arxiv.org/abs/2610.13803v1",
+   "abs": "Let $f$, $g\\colon A\\to B$ be two A$_{\\infty}$-morphisms between two A$_{\\infty}$-algebras (linear over a commutative ring $\\mathbb{K}$). In this paper, we compare different notions of (right) homotopy between $f$ and…",
+   "date": "2026-10-09",
+   "author": "Mattia Ornaghi"
   }
  ],
  "分析": [
   {
-   "title": "Global asymptotic stability of homogeneous polynomial vector fields is undecidable",
-   "link": "https://arxiv.org/abs/2610.12434v1",
-   "abs": "We study the decision problem of global asymptotic stability (GAS) of the origin for homogeneous polynomial vector fields with rational coefficients. In the first part of the paper we give, for every fixed dimension $n$…",
-   "date": "2026-10-08",
-   "author": "Ivan O. Shevchenko"
+   "title": "Characterizing higher-dimensional Hölder domains via spherical geometric functions",
+   "link": "https://arxiv.org/abs/2610.13866v1",
+   "abs": "In this paper we characterize the regularity of a domain in terms of the behavior of a certain spherical function. More precisely, given two domains we show that a certain spherical spectral function (first defined in…",
+   "date": "2026-10-09",
+   "author": "Emily Casey"
   },
   {
-   "title": "Estimates on Fully Nonlinear Elliptic Equations with Unrectifiable Exceptional Gradient Sets",
-   "link": "https://arxiv.org/abs/2610.12430v1",
-   "abs": "We study fully nonlinear uniformly elliptic equations that are imposed only when the gradients of solutions lie outside a closed ball and a closed purely one-unrectifiable set that can be unbounded. We prove Harnack…",
-   "date": "2026-10-08",
-   "author": "Tuoc Phan"
+   "title": "Dimension-free Markov--Bernstein-type inequality for $\\mathbb R^2$-valued polynomials",
+   "link": "https://arxiv.org/abs/2610.13836v1",
+   "abs": "We prove a dimension-free Markov--Bernstein-type inequality for polynomial mappings $(f_1,f_2)\\colon\\mathbb R^n\\to\\mathbb R^2$ of degree at most $d$. For product probability measures whose one-dimensional marginals have…",
+   "date": "2026-10-09",
+   "author": "Egor Kosov"
   },
   {
-   "title": "Directed fractal percolation and non-Lipschitz variants",
-   "link": "https://arxiv.org/abs/2610.12366v1",
-   "abs": "While models of undirected and directed geometry in random i.i.d. disorder with rapidly decaying tails are expected to behave similarly and exhibit features of the Kardar--Parisi--Zhang universality class, the scenario…",
-   "date": "2026-10-08",
-   "author": "Shirshendu Ganguly"
+   "title": "The second type of power mean bounds for the hypergeometric mean",
+   "link": "https://arxiv.org/abs/2610.13699v1",
+   "abs": "In this paper, by using signs rule for a class of special power series and for the Laplace integrals, we find the best power mean bounds for the hypergeometric function (sharp at the right endpoint). Our results contain…",
+   "date": "2026-10-09",
+   "author": "Zhen-Hang Yang"
   },
   {
-   "title": "Measurable obstructions for unmeasurable colourings",
-   "link": "https://arxiv.org/abs/2610.12301v1",
-   "abs": "Due to the availability of powerful analytic techniques, vastly superior lower bounds are known for the measurable chromatic number of Euclidean spaces compared to their ordinary chromatic number. Indeed, even the…",
-   "date": "2026-10-08",
-   "author": "James Davies"
+   "title": "Spread-out Furstenberg sets II: general configurations and fractal restricted projections",
+   "link": "https://arxiv.org/abs/2610.13682v1",
+   "abs": "We prove optimal dual Furstenberg estimates for Frostman and Katz--Tao configurations for which the shadings are not locally concentrated near pencils. The starting point is the sticky estimate of Orponen and Shmerkin…",
+   "date": "2026-10-09",
+   "author": "Alex Cohen"
   },
   {
-   "title": "A Computationally-Efficient Closed-Form $C^{s,1}$-Extension Formula",
-   "link": "https://arxiv.org/abs/2610.12239v1",
-   "abs": "We identify explicit closed-form and variational formulae for interpolating the exact values and derivatives through order $s$ of a $C^{s,1}$ function $f:\\mathbb{R}^d\\to\\mathbb{R}$ at $N$ distinct points in $[0,1]^d$.…",
-   "date": "2026-10-08",
-   "author": "Anastasis Kratsios"
+   "title": "Spread-out Furstenberg sets I: the sticky case",
+   "link": "https://arxiv.org/abs/2610.13677v1",
+   "abs": "We introduce spread-out measures, a notion of local non-concentration near pencils for measures on Grassmannians. We establish an optimal $δ$-discretized dual Furstenberg estimate for ``sticky spread-out'' shadings. A…",
+   "date": "2026-10-09",
+   "author": "Tuomas Orponen"
   }
  ],
  "概率与统计": [
   {
-   "title": "Infinite light rays and infinite clusters with infinitely many pivots",
-   "link": "https://arxiv.org/abs/2610.12460v1",
-   "abs": "It is conjectured that in the Lorentz mirror model on $\\Z^2$ all trajectories are finite. Quas showed that, almost surely, the two halves of any infinite trajectory, cut at an edge, meet at infinitely many vertices…",
-   "date": "2026-10-08",
-   "author": "Martin P. W. Zerner"
+   "title": "Sandpile avalanches in two dimensions are finite",
+   "link": "https://arxiv.org/abs/2610.13940v1",
+   "abs": "In the abelian sandpile model on $\\mathbb{Z}^d$, a site with at least $2d$ grains topples by sending one grain to each neighbor. In a box $[-L,L]^d$ whose boundary absorbs grains, adding grains at random sites and…",
+   "date": "2026-10-09",
+   "author": "Ahmed Bou-Rabee"
   },
   {
-   "title": "Coupling Independence Implies Zero-Freeness",
-   "link": "https://arxiv.org/abs/2610.12456v1",
-   "abs": "For $Δ\\ge2$ and $q\\ge11Δ/6$, we prove that the antiferromagnetic $q$-state Potts partition function on finite simple graphs of maximum degree at most $Δ$ has no Fisher zeros in a graph-uniform complex neighbourhood of…",
-   "date": "2026-10-08",
-   "author": "Shuai Shao"
+   "title": "Markov Chain Convergence in Kernel-Induced Geometry",
+   "link": "https://arxiv.org/abs/2610.13916v1",
+   "abs": "We study the convergence of Markov chains in the geometry induced by Hilbertian embeddings associated with positive definite kernels, also called Maximum Mean Discrepancy (MMD). Under a contraction assumption in the…",
+   "date": "2026-10-09",
+   "author": "Oleksii Kachaiev"
   },
   {
-   "title": "On Large Drift Enhancement for the Relaxation Time of Averages",
-   "link": "https://arxiv.org/abs/2610.12425v1",
-   "abs": "In this note we prove in a broad analytic set-up a general result characterizing the asymptotic vanishing of the $L^2$-relaxation time of averages in the presence of a large incompressible drift-like term. The broad…",
-   "date": "2026-10-08",
-   "author": "Alain-Sol Sznitman"
+   "title": "Fundamental Limits of Covert queueing under Busy-Period Observations",
+   "link": "https://arxiv.org/abs/2610.13911v1",
+   "abs": "Consider a queueing system operated by Bob, which is intended to serve only jobs generated by a legitimate user, Willie. Willie's jobs arrive according to a Poisson process, and the service times are exponentially…",
+   "date": "2026-10-09",
+   "author": "Anumula Venkata Sai Sree Sahithi"
   },
   {
-   "title": "Directed fractal percolation and non-Lipschitz variants",
-   "link": "https://arxiv.org/abs/2610.12366v1",
-   "abs": "While models of undirected and directed geometry in random i.i.d. disorder with rapidly decaying tails are expected to behave similarly and exhibit features of the Kardar--Parisi--Zhang universality class, the scenario…",
-   "date": "2026-10-08",
-   "author": "Shirshendu Ganguly"
+   "title": "Interacting Stochastic Systems with Agent-Based Sampling and Connection-Based Reinforcement",
+   "link": "https://arxiv.org/abs/2610.13884v1",
+   "abs": "We introduce a general class of interacting reinforced stochastic systems evolving on a network. The dynamics are governed by two distinct interaction structures: a sampling network, which determines how information is…",
+   "date": "2026-10-09",
+   "author": "Yogesh Dahiya"
   },
   {
-   "title": "Subspace Uncertainty and Sharp Sampling Thresholds on the Boolean Cube",
-   "link": "https://arxiv.org/abs/2610.12358v1",
-   "abs": "We study Gaussian regression under squared population $L_2$ loss in a known $m$-dimensional subspace of degree-at-most-$k$ functions on the $d$-dimensional Boolean cube. Random inputs can undersample regions essential…",
-   "date": "2026-10-08",
-   "author": "Thomas Weinberger"
+   "title": "Dimension-free Markov--Bernstein-type inequality for $\\mathbb R^2$-valued polynomials",
+   "link": "https://arxiv.org/abs/2610.13836v1",
+   "abs": "We prove a dimension-free Markov--Bernstein-type inequality for polynomial mappings $(f_1,f_2)\\colon\\mathbb R^n\\to\\mathbb R^2$ of degree at most $d$. For product probability measures whose one-dimensional marginals have…",
+   "date": "2026-10-09",
+   "author": "Egor Kosov"
   }
  ],
  "组合与图论": [
   {
-   "title": "The Hilton-Milner theorem in the $\\ell_2$-norm",
-   "link": "https://arxiv.org/abs/2610.12433v1",
-   "abs": "The Hilton-Milner theorem is a classical theorem in extremal set theory which determines the maximum size of a nontrivial $k$-uniform intersecting family. In this paper, we prove an exact version of the Hilton-Milner…",
-   "date": "2026-10-08",
-   "author": "George Brooks"
+   "title": "Counting with Hiccup Sequences",
+   "link": "https://arxiv.org/abs/2610.13908v1",
+   "abs": "The $(0,x,1,2)$-hiccup sequence starts at $x$ and increases by 1 when the current index has already appeared as a value, and by 2 otherwise. We prove directly that for $x\\geq3$ the gaps between its missing values are…",
+   "date": "2026-10-09",
+   "author": "Benoit Cloitre"
   },
   {
-   "title": "Tiling 3D by Translates of a Single Polycube is Undecidable",
-   "link": "https://arxiv.org/abs/2610.12392v1",
-   "abs": "We prove co-RE-completeness, and thus undecidability, of the following problem: given a single (connected) polycube, decide whether it tiles 3D Euclidean space by translations. We reduce from Wang tiling using the…",
-   "date": "2026-10-08",
-   "author": "Erik D. Demaine"
+   "title": "Degree similar and net-degree similar signed graphs",
+   "link": "https://arxiv.org/abs/2610.13863v1",
+   "abs": "Two graphs are degree similar if their adjacency matrices and their degree matrices are simultaneously similar, a notion recently introduced by Godsil and Sun. We extend it to signed graphs in two ways, degree…",
+   "date": "2026-10-09",
+   "author": "Matteo Cavaleri"
   },
   {
-   "title": "Subspace Uncertainty and Sharp Sampling Thresholds on the Boolean Cube",
-   "link": "https://arxiv.org/abs/2610.12358v1",
-   "abs": "We study Gaussian regression under squared population $L_2$ loss in a known $m$-dimensional subspace of degree-at-most-$k$ functions on the $d$-dimensional Boolean cube. Random inputs can undersample regions essential…",
-   "date": "2026-10-08",
-   "author": "Thomas Weinberger"
+   "title": "Clique and chromatic numbers of graph powers: spectral bounds and anticodes",
+   "link": "https://arxiv.org/abs/2610.13852v1",
+   "abs": "Using spectral and polynomial methods, we show several sharp spectral bounds for the clique and chromatic numbers of graph powers that only use spectral information from the original graph. In particular, we strengthen…",
+   "date": "2026-10-09",
+   "author": "Aida Abiad"
   },
   {
-   "title": "On the Nazarov-Sklyanin Lax operator for Macdonald functions",
-   "link": "https://arxiv.org/abs/2610.12326v1",
-   "abs": "We study the Lax operator for Macdonald symmetric functions introduced by Nazarov and Sklyanin in 2015, extending the spectral theory developed by Mickler-Moll in the Jack case. We extend the NS operator to a Lax…",
-   "date": "2026-10-08",
-   "author": "Ryan Mickler"
+   "title": "Counting cographs in locally dense graphs",
+   "link": "https://arxiv.org/abs/2610.13820v1",
+   "abs": "An $n$-vertex graph $G$ is $(ρ, d)$-dense if for all $U \\subseteq V(G)$ of size at least $ρn$, the induced subgraph $G[U]$ contains at least $\\frac{d}{2}|U|^2$ edges. In 2010, partly motivated by the theory of…",
+   "date": "2026-10-09",
+   "author": "Hyunwoo Lee"
   },
   {
-   "title": "Measurable obstructions for unmeasurable colourings",
-   "link": "https://arxiv.org/abs/2610.12301v1",
-   "abs": "Due to the availability of powerful analytic techniques, vastly superior lower bounds are known for the measurable chromatic number of Euclidean spaces compared to their ordinary chromatic number. Indeed, even the…",
-   "date": "2026-10-08",
-   "author": "James Davies"
+   "title": "Two-orbit right-angled Polytopes and Hypertopes",
+   "link": "https://arxiv.org/abs/2610.13817v1",
+   "abs": "Abstract polytopes and hypertopes are thin and residually-connected incidence geometries or, equivalently, chamber systems. Their degree of regularity is understood by looking at the action of their automorphism group…",
+   "date": "2026-10-09",
+   "author": "Claudio Alexandre Piedade"
   }
  ],
  "线性代数": [
   {
-   "title": "The rank of $3\\times 3$ matrix multiplication over $\\mathbb{F}_2$ is 23",
-   "link": "https://arxiv.org/abs/2610.11823v1",
-   "abs": "The rank of the tensor of $3\\times 3$ matrix multiplication over the field with two elements is at most $23$ by Laderman's algorithm, and Rudich and Rousseau recently proved that it is at least $22$. We prove that it…",
-   "date": "2026-10-08",
-   "author": "Tejasvi Singh Tomar"
+   "title": "The $E_6$ normal forms: semisimple deformations, geometry, DT invariants, and the $E_{6,\\infty}$ order",
+   "link": "https://arxiv.org/abs/2610.13745v1",
+   "abs": "We study the completed Jacobi algebras of $x^3+xy^3+p(y)$ for $\\operatorname{ord}_yp=n\\ge4$. The explicit normal-form morsification, the filtered length and centre proofs, and the cyclic terminal identities give finite…",
+   "date": "2026-10-09",
+   "author": "Shengyong Pan"
   },
   {
-   "title": "Sharp commutator bounds on complex simple Lie algebras: the Böttcher--Wenzel inequality and the comass of the Cartan $3$-form",
-   "link": "https://arxiv.org/abs/2610.11800v1",
-   "abs": "For a complex simple Lie algebra $\\mathfrak{g}$ with compact conjugation $τ$, Killing form $B$, and Hermitian form $H(x, y) = -B(x, τy)$, it is shown that $H([x,y],[x,y]) \\leq (h^{\\vee})^{-1}H(x,x)H(y,y)$, where…",
-   "date": "2026-10-08",
-   "author": "Daniel J. F. Fox"
+   "title": "A 9-dimensional nilpotent Lie algebra isomorphic to its complex conjugate admitting no real form",
+   "link": "https://arxiv.org/abs/2610.13707v1",
+   "abs": "We give an explicit example of a 9-dimensional 5-step nilpotent complex Lie algebra, generated by two elements, that is isomorphic to its complex conjugate but has no real form. In contrast to the earlier 10-dimensional…",
+   "date": "2026-10-09",
+   "author": "Tom De Medts"
   },
   {
-   "title": "BiHom-Poisson conformal superalgebras arising from related algebraic structures",
-   "link": "https://arxiv.org/abs/2610.11661v1",
-   "abs": "Inspired from some works on constructions of algebraic structures from other ones, we purpose to give some construction theorems on BiHom-Poisson conformal superalgebras which unify the notion of the Z2 -graded Poisson…",
-   "date": "2026-10-08",
-   "author": "BakolÈ Louamou"
+   "title": "Hsiang cubics as spherical Chebyshev polynomials: equioscillation and idempotent quadrature",
+   "link": "https://arxiv.org/abs/2610.13532v1",
+   "abs": "A Hsiang cubic is a cubic form on $\\mathbb{R}^{n}$ whose zero set is a minimal cone; equivalently, it is the cubic form of a commutative nonassociative metrized algebra satisfying a single identity of degree four. We…",
+   "date": "2026-10-09",
+   "author": "Vladimir G. Tkachev"
   },
   {
-   "title": "A Counterexample to Left-Right Symmetry for Diagonal Auslander-Regularity",
-   "link": "https://arxiv.org/abs/2610.11406v1",
-   "abs": "We construct a finite-dimensional Auslander-regular algebra $R$ with global dimension three, which is right diagonal but not left diagonal; moreover, any simple right $R$-module with grade $i$ has projective dimension…",
-   "date": "2026-10-08",
-   "author": "Zhenyu Wang"
+   "title": "Projective Differential Moment Invariants from the Viewpoint of Classical Invariant Theory",
+   "link": "https://arxiv.org/abs/2610.13229v1",
+   "abs": "Polynomial first-order projective differential moment invariants are investigated. The main result establishes an exact correspondence between such moment invariants and symmetric polynomial multipoint relative…",
+   "date": "2026-10-09",
+   "author": "Leonid Bedratyuk"
   },
   {
-   "title": "Structure theory of finite solvable Lie conformal algebras",
-   "link": "https://arxiv.org/abs/2610.11304v1",
-   "abs": "We develop a structure theory of finite solvable Lie conformal algebras. It is proved that every such algebra admits a Cartan subalgebra, and any two Cartan subalgebras are conjugate by a finite product of exponentials…",
+   "title": "Global obstruction property and its applications",
+   "link": "https://arxiv.org/abs/2610.12583v1",
+   "abs": "We introduce the global obstruction property (GOP) for Artin algebras: for every finitely generated module of infinite projective dimension, two distinct syzygies have a common nonprojective indecomposable direct…",
    "date": "2026-10-08",
-   "author": "Bakhrom Omirov"
+   "author": "Weiheng Xia"
   }
  ],
  "拓扑学": [
   {
-   "title": "The graph complex and the homology of the general linear groups revisited",
-   "link": "https://arxiv.org/abs/2610.12263v1",
-   "abs": "We revisit the relation between the Kontsevich commutative graph complex and the homology of $\\GL(n,\\Z)$ found by Brown--Chan--Galatius--Payne using the sharbly complex of Ash--Miller--Patzt.",
-   "date": "2026-10-08",
-   "author": "Peter Patzt"
+   "title": "Constructive Bounds for the Topological Expressivity of Neural Networks",
+   "link": "https://arxiv.org/abs/2610.13931v1",
+   "abs": "The expressivity of a neural network $Φ$ describes the class of functions that a network can express. The term topological expressivity refers to a family of measures particularly suited to understand binary…",
+   "date": "2026-10-09",
+   "author": "Kosio Beshkov"
   },
   {
-   "title": "Wedges, Rational completion and $\\mathbb Q$-bad spaces",
-   "link": "https://arxiv.org/abs/2610.12255v1",
-   "abs": "Let $A$ and $X$ be connected based CW complexes with $H_1(A;\\mathbb Q)\\neq 0$, and let $m\\geq 1$ be the least degree with $\\widetilde H_m(X;\\mathbb Q)\\neq0$. We prove that the Bousfield--Kan rational completion map of…",
-   "date": "2026-10-08",
-   "author": "Nikita Golub"
+   "title": "The (right) homotopy between two A$_{\\infty}$-morphisms",
+   "link": "https://arxiv.org/abs/2610.13803v1",
+   "abs": "Let $f$, $g\\colon A\\to B$ be two A$_{\\infty}$-morphisms between two A$_{\\infty}$-algebras (linear over a commutative ring $\\mathbb{K}$). In this paper, we compare different notions of (right) homotopy between $f$ and…",
+   "date": "2026-10-09",
+   "author": "Mattia Ornaghi"
   },
   {
-   "title": "Limit Theorems for Persistent Homology of Multiparameter Complex Processes",
-   "link": "https://arxiv.org/abs/2610.12197v1",
-   "abs": "Multiparameter complex processes, based on the Costa-Farber model, provide a common framework for growing random simplicial complexes, including the Linial-Meshulam and random flag complex processes. We establish laws…",
-   "date": "2026-10-08",
-   "author": "Masanori Hino"
+   "title": "Reconstruction of graphs and surfaces from derived categories",
+   "link": "https://arxiv.org/abs/2610.13488v1",
+   "abs": "A pair of topological spaces $X$ and $Y$ is a \\emph{Fourier--Mukai (FM) pair} if there is an equivalence of $\\infty$-categories of derived sheaves of abelian groups \\[\\operatorname{Shv}(X;\\mathrm D(\\mathbb Z))\\simeq…",
+   "date": "2026-10-09",
+   "author": "Oscar Harr"
   },
   {
-   "title": "Loyalty of the affine line in motivic homotopy theory",
-   "link": "https://arxiv.org/abs/2610.11802v1",
-   "abs": "We show that integers act invertibly on a derived scheme $S$ if and only if they act invertibly on the reduced motivic suspension spectrum of the affine line in $\\mathrm{MS}_S$. As a consequence, over regular locally…",
-   "date": "2026-10-08",
-   "author": "Viktor Burghardt"
+   "title": "Critical Point Theory for the Distance Function on PL-Spaces",
+   "link": "https://arxiv.org/abs/2610.13297v1",
+   "abs": "We study the (typical) singularities of the distance function from a point in the ambient space to a polytopal complex in Euclidean space. By means of the Goresky-MacPherson splitting we generalize the existing linear…",
+   "date": "2026-10-09",
+   "author": "Dirk Siersma"
   },
   {
-   "title": "A complete classification of the rational realization of gap-two products of Eilenberg--MacLane spaces as classifying spaces",
-   "link": "https://arxiv.org/abs/2610.11671v1",
-   "abs": "In this paper, we study the rational realization of the gap-two product $K(\\Q,n)\\times K(\\Q,n+2)$ as the classifying space $\\B(X)$ for a simply-connected $π$-finite space $X$ with rational homology of finite type. We…",
-   "date": "2026-10-08",
-   "author": "Yang Bai"
+   "title": "Derived plethystic algebra",
+   "link": "https://arxiv.org/abs/2610.12839v1",
+   "abs": "We prove comparison results about $\\infty$-categories of derived commutative rings with extra algebraic structure. For example, we show that several notions of derived $δ$-rings agree and obtain similar results for…",
+   "date": "2026-10-09",
+   "author": "Benjamin Antieau"
   }
  ],
  "复分析": [
   {
-   "title": "Atiyah classes and ellipticity of Oka manifolds",
-   "link": "https://arxiv.org/abs/2610.12175v1",
-   "abs": "We prove that every weakly pseudoconvex Oka manifold admitting a positive line bundle is elliptic in the sense of Gromov, thereby proving Gromov's ellipticity conjecture. The proof establishes a cohomological…",
-   "date": "2026-10-08",
-   "author": "Yuta Kusakabe"
+   "title": "Sharp Robertson-type coefficient estimates for radial starlike and quasi-convex of type B mappings of order α in complex Banach spaces",
+   "link": "https://arxiv.org/abs/2610.13869v1",
+   "abs": "In this paper, we study biholomorphic mappings $F: \\mathbb{B} \\to X$ of the form $F(z) = f(z)z$ for $z \\in \\mathbb{B}$, where $f: \\mathbb{B} \\to \\mathbb{C}$ is a holomorphic function satisfying $f(0) = 1$. Our main…",
+   "date": "2026-10-09",
+   "author": "Sujoy Majumder"
   },
   {
-   "title": "Rational curves on toroidal compactifications of Picard modular varieties",
-   "link": "https://arxiv.org/abs/2610.12071v1",
-   "abs": "It was known that the canonical bundle of a smooth toroidal compactification of a noncompact finite-volume ball quotient is nef in dimension $n\\geq3$ and ample in dimension $n\\geq6$. We prove that the canonical bundle…",
-   "date": "2026-10-08",
-   "author": "Soheil Memarinasorkhabi"
+   "title": "Biholomorphic rigidity and symmetry breaking for domains with Bergman metric of constant positive holomorphic sectional curvature",
+   "link": "https://arxiv.org/abs/2610.13831v1",
+   "abs": "Based on earlier work by Wiegerinck and Huang-Li, Hayashida-Kamimoto constructed unbounded non-smooth Reinhardt domains in \\({\\mathbb C}^n\\), \\(n\\geq 3\\), whose Bergman spaces are finite-dimensional and whose Bergman…",
+   "date": "2026-10-09",
+   "author": "Gordon Heier"
   },
   {
-   "title": "Quasiconformal deformations of chordal Loewner chains",
-   "link": "https://arxiv.org/abs/2610.12021v1",
-   "abs": "We establish first-order variational formulas for the driving function and the half-plane capacity of a chordal Loewner chain under quasiconformal deformations. Under the standard normalization fixing $0,1$ and…",
-   "date": "2026-10-08",
-   "author": "Yong Han"
+   "title": "Holomorphic approximation for Hamiltonian diffeomorphism groups via the Symplectic Density Property",
+   "link": "https://arxiv.org/abs/2610.13718v1",
+   "abs": "We show that the cotangent bundle of a holomorphically flexible Stein manifold has the symplectic density property. As application we deduce holomorphic approximation for Hamiltonian diffeomorphisms of real cotangent…",
+   "date": "2026-10-09",
+   "author": "Gaofeng Huang"
   },
   {
-   "title": "A Unified Approach to Sharp Subordination Radii",
-   "link": "https://arxiv.org/abs/2610.12006v1",
-   "abs": "Let $\\varphi$ and $ψ$ be univalent functions in the unit disk $\\mathbb D$ satisfying $\\varphi(0)=ψ(0)=1$ and $\\varphi\\not\\precψ$, and let $\\mathcal P_{\\varphi}$ denote the class of analytic functions $p$ in $\\mathbb D$…",
-   "date": "2026-10-08",
-   "author": "Poomalai Palanisamy"
+   "title": "On the Cohomology Classes of Certain Eisenstein-Kronecker Forms",
+   "link": "https://arxiv.org/abs/2610.13581v1",
+   "abs": "We study the de Rham cohomology and Deligne splitting for a class of Eisenstein-Kronecker forms by introducing a modular weight grading. As an application, we compute a particular cohomology class that gives rise to…",
+   "date": "2026-10-09",
+   "author": "Zhixuan Sheng"
   },
   {
-   "title": "The differentiation and integration operator on weighted spaces of analytic functions in the weight sequence setting",
-   "link": "https://arxiv.org/abs/2610.11902v1",
-   "abs": "We investigate the differentiation and integration operator defined on resp. between weighted spaces of analytic functions in the special situation when the weight is given in terms of a weight sequence. More precisely…",
-   "date": "2026-10-08",
-   "author": "Gerhard Schindl"
+   "title": "Hsiang cubics as spherical Chebyshev polynomials: equioscillation and idempotent quadrature",
+   "link": "https://arxiv.org/abs/2610.13532v1",
+   "abs": "A Hsiang cubic is a cubic form on $\\mathbb{R}^{n}$ whose zero set is a minimal cone; equivalently, it is the cubic form of a commutative nonassociative metrized algebra satisfying a single identity of degree four. We…",
+   "date": "2026-10-09",
+   "author": "Vladimir G. Tkachev"
   }
  ],
  "微分方程": [
   {
-   "title": "Estimates on Fully Nonlinear Elliptic Equations with Unrectifiable Exceptional Gradient Sets",
-   "link": "https://arxiv.org/abs/2610.12430v1",
-   "abs": "We study fully nonlinear uniformly elliptic equations that are imposed only when the gradients of solutions lie outside a closed ball and a closed purely one-unrectifiable set that can be unbounded. We prove Harnack…",
-   "date": "2026-10-08",
-   "author": "Tuoc Phan"
+   "title": "A Riesz-Map Preconditioned Extragradient Method for Price Formation in Mean Field Games",
+   "link": "https://arxiv.org/abs/2610.13934v1",
+   "abs": "We develop and analyze a projected extragradient method, preconditioned by a Riesz map, for a first-order price-formation mean field game in one space dimension. The model couples Hamilton--Jacobi--Bellman and transport…",
+   "date": "2026-10-09",
+   "author": "Yeva Gevorgyan"
   },
   {
-   "title": "On Large Drift Enhancement for the Relaxation Time of Averages",
-   "link": "https://arxiv.org/abs/2610.12425v1",
-   "abs": "In this note we prove in a broad analytic set-up a general result characterizing the asymptotic vanishing of the $L^2$-relaxation time of averages in the presence of a large incompressible drift-like term. The broad…",
-   "date": "2026-10-08",
-   "author": "Alain-Sol Sznitman"
+   "title": "An Aleksandrov estimate for kinetic equations with rough coefficients",
+   "link": "https://arxiv.org/abs/2610.13921v1",
+   "abs": "We give an exposition of a proof, discovered by Astra, of an Aleksandrov estimate for kinetic equations with rough coefficients. We explain this method in the simpler elliptic and parabolic settings as well.",
+   "date": "2026-10-09",
+   "author": "Amĺie Loher"
   },
   {
-   "title": "Endpoint Compactness and Finite-Energy Weak Solutions for the 2D Isothermal Compressible Navier-Stokes",
-   "link": "https://arxiv.org/abs/2610.12387v1",
-   "abs": "We prove global existence of finite-energy renormalized weak solutions to the 2D isothermal compressible Navier--Stokes equations in bounded $C^2$ domains with no-slip boundary conditions. The initial data are arbitrary…",
-   "date": "2026-10-08",
-   "author": "Cheng Yu"
+   "title": "The Bernstein problem in higher dimensional Heisenberg groups",
+   "link": "https://arxiv.org/abs/2610.13913v1",
+   "abs": "In every sub-Riemannian Heisenberg group $\\mathbb H^n$, with $n\\geq 2$, we prove the existence of a global perimeter minimizer whose boundary is a smooth, non-characteristic, entire intrinsic graph but it is not a…",
+   "date": "2026-10-09",
+   "author": "Gianmarco Giovannardi"
   },
   {
-   "title": "Anomalous scaling limit of a Brownian particle in a log-correlated potential",
-   "link": "https://arxiv.org/abs/2610.12335v1",
-   "abs": "We study a Brownian particle in $\\mathbb{R}^d$, $d\\geq2$, with drift given by the gradient of a log-correlated Gaussian potential. At weak disorder, we prove convergence to a scaling limit whose law is singular with…",
-   "date": "2026-10-08",
-   "author": "Scott Armstrong"
+   "title": "The Inviscid Limit in Uniformly Local Yudovich Spaces",
+   "link": "https://arxiv.org/abs/2610.13898v1",
+   "abs": "We consider solutions to the two-dimensional Navier-Stokes and Euler equations with the velocity in $L^{\\infty}(\\mathbb{R}^2)$ and the vorticity in the uniformly local Yudovich space $Y^θ_{ul}(\\mathbb{R}^2)$. We show…",
+   "date": "2026-10-09",
+   "author": "Zachary Radke"
   },
   {
-   "title": "The sharp $L^2$-Michael--Simon inequality",
-   "link": "https://arxiv.org/abs/2610.12309v1",
-   "abs": "Let $n \\geq 3$. We prove that if $j \\colon (Σ^n,g) \\to (\\mathbb{R}^N,dx^2)$ is an isometric immersion, then \\begin{equation*} \\int_Σ\\left( \\lvert \\nabla u \\rvert^2 + \\frac{n(n-2)}{4}\\lvert H \\rvert^2 u^2 \\right) \\geq…",
-   "date": "2026-10-08",
-   "author": "Jeffrey S. Case"
+   "title": "Ground states and sharp logarithmic Sobolev inequalities for logarithmic Schrödinger equations with partial confinement",
+   "link": "https://arxiv.org/abs/2610.13887v1",
+   "abs": "We study the logarithmic Schrödinger equation with an arbitrary positive semidefinite quadratic potential and a periodic potential in the unconfined directions. The main variational difficulty is to turn a constrained…",
+   "date": "2026-10-09",
+   "author": "Baihong Li"
   }
  ],
  "博弈论": [
   {
-   "title": "Asymptotically Vanishing Excitation Without Loss of Parameter Convergence",
-   "link": "https://arxiv.org/abs/2610.12353v1",
-   "abs": "Parameter convergence in recursive identification requires persistent excitation, which is typically enforced with a probing signal that degrades performance if retained indefinitely. Regulating the probing amplitude…",
-   "date": "2026-10-08",
-   "author": "Parham Oveissi"
+   "title": "A Network Simplex Framework For Discrete Unbalanced Optimal Transport",
+   "link": "https://arxiv.org/abs/2610.13847v1",
+   "abs": "The network simplex method is a classical algorithm for minimum cost flow problems formulated as linear programs, that has attracted recent interest from the optimal transport community. Indeed, discrete optimal…",
+   "date": "2026-10-09",
+   "author": "Gaetano Agazzotti"
   },
   {
-   "title": "Constraint Enforcement via Reference Governor in Dynamic Mode Adaptive Control",
-   "link": "https://arxiv.org/abs/2610.12342v1",
-   "abs": "This paper integrates reference governance with Dynamic Mode Adaptive Control (DMAC) to enforce constraints without a prior plant model. DMAC identifies and updates a discrete-time model online from measured state and…",
-   "date": "2026-10-08",
-   "author": "Parham Oveissi"
+   "title": "Warm-IP: A Path-Following ADMM Warm Start for Interior-Point Quadratic Programming",
+   "link": "https://arxiv.org/abs/2610.13805v1",
+   "abs": "Interior-point (IP) methods are powerful second-order optimization algorithms but can make slow progress during early iterations. We propose Warm-IP, a hybrid framework that combines a path-following variant of the…",
+   "date": "2026-10-09",
+   "author": "Babak Aslani"
   },
   {
-   "title": "Composite Online-to-Nonconvex Conversion with Optimal Oracle Complexity",
-   "link": "https://arxiv.org/abs/2610.12328v1",
-   "abs": "We consider stochastic nonsmooth nonconvex composite optimization, which includes several important problems such as constrained optimization and the regularized training of neural networks. The objective is the sum of…",
-   "date": "2026-10-08",
-   "author": "Mingyi Li"
+   "title": "Adaptive Variance Reduction without Knowing Oracle Smoothness",
+   "link": "https://arxiv.org/abs/2610.13799v1",
+   "abs": "Variance reduction improves the convergence rate of stochastic non-convex optimization under the average smoothness condition. Existing adaptive variance reduction methods are especially designed for average smoothness…",
+   "date": "2026-10-09",
+   "author": "Wei Jiang"
   },
   {
-   "title": "Convex Safety Filtering via Spectral Selection for Nonconvex Safe Sets",
-   "link": "https://arxiv.org/abs/2610.12324v1",
-   "abs": "The discrete-time control barrier function condition for a safe set that is a union of convex sets is nonconvex in the control input. For safe sets defined by a matrix concave function through the number of its…",
-   "date": "2026-10-08",
-   "author": "Juan Augusto Paredes Salazar"
+   "title": "Randomized Momentum Transport with Cheap Predictors",
+   "link": "https://arxiv.org/abs/2610.13789v1",
+   "abs": "Momentum methods such as STORM and second-order momentum track the gradient by adding a transport correction to momentum, at the cost of an extra oracle call per iteration. We introduce randomized momentum transport…",
+   "date": "2026-10-09",
+   "author": "El Mahdi Chayti"
   },
   {
-   "title": "Residual-Guided Global-Drive Design in Trapped-Ion Quantum Simulators",
-   "link": "https://arxiv.org/abs/2610.12314v1",
-   "abs": "Trapped-ion quantum simulators are powerful platforms for exploring many-body physics, yet engineering of arbitrary interaction graphs remains a central challenge. To leverage the intrinsic structure of native motional…",
-   "date": "2026-10-08",
-   "author": "Yuanjing Zhang"
+   "title": "Optimal Algorithms for Nonsmooth Nonconvex Stochastic Optimization with Constraints",
+   "link": "https://arxiv.org/abs/2610.13787v1",
+   "abs": "We present new algorithms for stochastic optimization problems in which the objective is neither smooth nor convex, subject to a convex constraint set. Our algorithms return a $(δ,\\varepsilon)$-Goldstein stationary…",
+   "date": "2026-10-09",
+   "author": "Gon Buzaglo"
   }
  ],
  "数理逻辑": [
+  {
+   "title": "Pseudofinite abelian groups and asymptotic classes of finite abelian groups",
+   "link": "https://arxiv.org/abs/2610.13770v1",
+   "abs": "This paper studies pseudofinite abelian groups and counting properties of definable sets in finite abelian groups and their ultraproducts. First, we characterize pseudofinite abelian groups in terms of Szmielew…",
+   "date": "2026-10-09",
+   "author": "Carlos Cordoba-Caycedo"
+  },
+  {
+   "title": "Spectral Theory and Descriptive Combinatorics for Non-Regular Borel pmp Graphs",
+   "link": "https://arxiv.org/abs/2610.13551v1",
+   "abs": "We continue the systematic study initiated in arXiv:2602.05185 of the relationship between the spectral theory and descriptive combinatorics of bounded-degree Borel pmp graphs, particularly in the non-regular setting.…",
+   "date": "2026-10-09",
+   "author": "Cecelia Higgins"
+  },
+  {
+   "title": "The strength of the minimum principle in constructive reverse mathematics",
+   "link": "https://arxiv.org/abs/2610.12964v1",
+   "abs": "The minimum principle states that every real-valued uniformly continuous function f : X -> R on a compact metric space X attains its minimum. Working in the base system EL0 of constructive reverse mathematics, we show…",
+   "date": "2026-10-09",
+   "author": "Tatsuji Kawai"
+  },
+  {
+   "title": "Ultrafilter characters and local $π$-bases",
+   "link": "https://arxiv.org/abs/2610.12612v1",
+   "abs": "We completely resolve Question~5.3 of Kania's paper \\cite{Kania} and establish a more general realization theorem. We show that for infinite cardinals $μ\\leqslantν<κ<λ$, a space with \\[ \\pc(X)=μ,\\qquad\\pcl(X)=ν,\\qquad…",
+   "date": "2026-10-08",
+   "author": "Jerzy Kcakol"
+  },
   {
    "title": "Global asymptotic stability of homogeneous polynomial vector fields is undecidable",
    "link": "https://arxiv.org/abs/2610.12434v1",
    "abs": "We study the decision problem of global asymptotic stability (GAS) of the origin for homogeneous polynomial vector fields with rational coefficients. In the first part of the paper we give, for every fixed dimension $n$…",
    "date": "2026-10-08",
    "author": "Ivan O. Shevchenko"
-  },
-  {
-   "title": "A Computationally-Efficient Closed-Form $C^{s,1}$-Extension Formula",
-   "link": "https://arxiv.org/abs/2610.12239v1",
-   "abs": "We identify explicit closed-form and variational formulae for interpolating the exact values and derivatives through order $s$ of a $C^{s,1}$ function $f:\\mathbb{R}^d\\to\\mathbb{R}$ at $N$ distinct points in $[0,1]^d$.…",
-   "date": "2026-10-08",
-   "author": "Anastasis Kratsios"
-  },
-  {
-   "title": "Independence of premise for intuitionistic Zermelo-Fraenkel set theory",
-   "link": "https://arxiv.org/abs/2610.11753v1",
-   "abs": "We answer the following question by Frittaion, Nemoto, and Rathjen positively: \"Is [independence of premise] an admissible rule of $\\textsf{CZF}$ or any other familiar constructive/intuitionistic set theory $T$?\" To be…",
-   "date": "2026-10-08",
-   "author": "Patrick Uftring"
-  },
-  {
-   "title": "A Universal Quasi-Polish Space",
-   "link": "https://arxiv.org/abs/2610.11417v1",
-   "abs": "In this paper, we first construct a universal quasi-Polish space Y with the property that every quasi-Polish space is homeomorphic to a closed subspace of Y. This gives a hyperspace F(Y) of all quasi-Polish spaces which…",
-   "date": "2026-10-08",
-   "author": "Su Gao"
-  },
-  {
-   "title": "Uniform small cancellation in torsion-free hyperbolic groups",
-   "link": "https://arxiv.org/abs/2610.11100v1",
-   "abs": "We establish a uniform small cancellation theorem for non-elementary torsion-free hyperbolic groups: given any prescribed small cancellation constant, finitely many fixed words suffice to produce a small cancellation…",
-   "date": "2026-10-08",
-   "author": "Olga Kharlampovich"
   }
  ]
 };
