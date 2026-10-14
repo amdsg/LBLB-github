@@ -2,39 +2,39 @@
 window.LBLB_PAPERS = {
  "数论": [
   {
-   "title": "Counting quaternion extensions by multi-heights",
-   "link": "https://arxiv.org/abs/2610.18815v1",
-   "abs": "We prove a case of a conjecture of Gundlach on the number of Galois extensions over $\\QQ$ with bounded multi-invariants for the group $G=Q_8$. We also obtain results when imposing local conditions at the wildly ramified…",
-   "date": "2026-10-13",
-   "author": "Willem Hansen"
+   "title": "Algebraische Zahlentheorie",
+   "link": "https://www.semanticscholar.org/paper/fdd3306016aa0f10e5c507b21292a72ede2b6b4a",
+   "abs": "This workshop focused on recent developments in algebraic number theory. Algebraic number theory is a central area of research in mathematics, and it has a long history. The workshop featured talks on topics…",
+   "date": "2026-10-12",
+   "author": "F. Andreatta、Ellen Eischen 等"
   },
   {
-   "title": "Geometric bounds on norms of signed indecomposable integers",
-   "link": "https://arxiv.org/abs/2610.18737v1",
-   "abs": "We establish bounds on the norm of signed indecomposable integers in totally real number fields, via a geometric argument. We also improve the bound on the norm of totally positive indecomposable integers in real…",
-   "date": "2026-10-13",
-   "author": "Siu Hang Man"
+   "title": "Low-dimensional Topology and Number Theory",
+   "link": "https://www.semanticscholar.org/paper/d7897e8be5b46a789d158733c818c5d57ca19090",
+   "abs": "The workshop brought together researchers in low-dimensional topology and number theory to explore the rich and increasingly deep interactions between these fields. Central themes included quantum invariants of knots…",
+   "date": "2026-10-12",
+   "author": "Thang Lê、Adam S. Sikora 等"
   },
   {
-   "title": "Proofs of four Takigiku--Tsuchioka conjectures on level $2$ principal characters of $A_{2\\ell-1}^{(2)}$",
-   "link": "https://arxiv.org/abs/2610.18666v1",
-   "abs": "We prove four conjectures of Takigiku and Tsuchioka consisting of eight Rogers--Ramanujan type identities. Two conjectures involve triple sums and a third involves quadruple sums, and their product sides are certain…",
-   "date": "2026-10-13",
-   "author": "Liuquan Wang"
+   "title": "The Navier–Stokes Equations: A Critical Review of Theory, Computation, Turbulence, and Data-Driven Frontiers",
+   "link": "https://www.semanticscholar.org/paper/55ca144e20d1cfd224e299f1703a68e0b40ad9da",
+   "abs": "The Navier–Stokes equations describe the motion of viscous fluids and stand at the center of modern fluid mechanics. They also define one of the hardest open problems in mathematics, for the question of whether smooth…",
+   "date": "2026-10-12",
+   "author": "Wei-Guang Huang"
   },
   {
-   "title": "Multidimensional Szemerédi Theorem for Pairwise Independent Jointly Intersective Polynomials",
-   "link": "https://arxiv.org/abs/2610.18657v1",
-   "abs": "We develop a new approach to the Joint Intersectivity Conjecture of Bergelson, Leibman, and Lesigne for commuting transformations. The conjecture asserts that the necessary divisibility condition is the only obstruction…",
-   "date": "2026-10-13",
-   "author": "Nikos Frantzikinakis"
+   "title": "A multi-domain Shannon-entropy descriptor vector for integers up to 106",
+   "link": "https://www.semanticscholar.org/paper/418b9fc343a75d4d4b8997365345a5459c0ca488",
+   "abs": "Classical number theory has developed many descriptors for integers, including predicates, arithmetic functions, and structural invariants. The majority of them capture a specific aspect of an integer rather than…",
+   "date": "2026-10-12",
+   "author": "Naveen Joy、Aparna Rajan 等"
   },
   {
-   "title": "Wendt's determinant and finiteness of prime characteristics for permutation binomials",
-   "link": "https://arxiv.org/abs/2610.18584v1",
-   "abs": "For $f(X)=X^r(X^s+a)\\in\\mathbb F_{p^m}[X]$, with $m,r,s\\geqslant1$ and $a\\in\\mathbb F_{p^m}^\\times$, put $g=\\gcd(s,p^m-1)$. We prove that, for each fixed $g$, only finitely many prime characteristics $p$ admit such…",
-   "date": "2026-10-13",
-   "author": "Zhichao Tang"
+   "title": "A Dichotomy Hierarchy for Linear Time Subgraph Counting in Bounded Degeneracy Graphs",
+   "link": "https://www.semanticscholar.org/paper/2efa24f8b0d36430390ea8815ee3e55e5baa6bf9",
+   "abs": "Subgraph and homomorphism counting are fundamental algorithmic problems. Given a constant-size pattern graph H and a large input graph G, we wish to count the number of H-homomorphisms/subgraphs in G. Given the massive…",
+   "date": "2026-10-12",
+   "author": "Daniel Paul-Pena、C. Seshadhri"
   }
  ],
  "几何": [
@@ -76,39 +76,39 @@ window.LBLB_PAPERS = {
  ],
  "代数": [
   {
-   "title": "A three-block higher-rank deformed Hermitian--Yang--Mills correspondence on $\\mathbb P^1\\times\\mathbb P^1$",
-   "link": "https://arxiv.org/abs/2610.18788v1",
-   "abs": "We study the invariant rank-four deformed Hermitian--Yang--Mills equation associated with the chain $\\mathcal{O}(1)\\to\\mathcal{O}(2)^{\\oplus2}\\to\\mathcal{O}(3)$ over $\\mathbb P^1$, with vertical weights $(4,2,0)$ and a…",
-   "date": "2026-10-13",
-   "author": "Yuqi Li"
+   "title": "Algebraische Zahlentheorie",
+   "link": "https://www.semanticscholar.org/paper/fdd3306016aa0f10e5c507b21292a72ede2b6b4a",
+   "abs": "This workshop focused on recent developments in algebraic number theory. Algebraic number theory is a central area of research in mathematics, and it has a long history. The workshop featured talks on topics…",
+   "date": "2026-10-12",
+   "author": "F. Andreatta、Ellen Eischen 等"
   },
   {
-   "title": "Generalized Thom Spectra, Conjugate Stacks, and truncated Brown-Peterson Spectra",
-   "link": "https://arxiv.org/abs/2610.18754v1",
-   "abs": "We propose a of definition conjugate stack for a class of suitable $\\mathbb{E}_3$-$\\mathrm{MU}$-algebras that includes the truncated Brown-Peterson spectra $\\mathrm{BP}\\langle n \\rangle$ for all heights $n$. Then we…",
-   "date": "2026-10-13",
-   "author": "Preston Cranford"
+   "title": "Complex Analysis",
+   "link": "https://www.semanticscholar.org/paper/cd24cf4b369dadef5aab08062e73f652244f0ade",
+   "abs": "The workshop was devoted to analytic and algebraic methods in the theory of Kähler spaces and to their interactions with neighboring areas. The main themes included the interaction of complex geometry with group theory…",
+   "date": "2026-10-12",
+   "author": "Eleonora Di Nezza、Stefan Kebekus 等"
   },
   {
-   "title": "Cominuscule Richardson varieties",
-   "link": "https://arxiv.org/abs/2610.18680v1",
-   "abs": "A Richardson variety in a cominuscule flag variety is defined by a skew shape of boxes. We prove that any cominuscule Richardson variety has a unique decomposition as a product of indecomposable cominuscule Richardson…",
-   "date": "2026-10-13",
-   "author": "Anders Skovsted Buch"
+   "title": "Geometry and Combinatorics: The Model Theoretic Perspective",
+   "link": "https://www.semanticscholar.org/paper/4428179fd94988ef4da35cf257496f0c2c692bfa",
+   "abs": "Our meeting focused mainly on geometric and combinatorial aspects in model theory and their interactions with geometric group theory, algebraic geometry, valued fields, and combinatorics. The model-theoretic perspective…",
+   "date": "2026-10-12",
+   "author": "E. Breuillard、Artem Chernikov 等"
   },
   {
-   "title": "On the existence of Gorenstein injective covers",
-   "link": "https://arxiv.org/abs/2610.18620v1",
-   "abs": "For a locally finitely generated Grothendieck category, we characterise the Gorenstein injective covering property by several equivalent conditions, including closure under coproducts. To complete this characterisation…",
-   "date": "2026-10-13",
-   "author": "Yuhui Hua"
+   "title": "A bibliometric analysis of realistic mathematics education research (2000-2025): Global trends and development",
+   "link": "https://www.semanticscholar.org/paper/560394e44728c533367024e93083fb0786fbf416",
+   "abs": "This study presents a comprehensive bibliometric analysis of realistic mathematics education (RME) research from 2000 to 2025, focusing on global trends and development. Employing VOSviewer and CiteSpace, we analyzed a…",
+   "date": "2026-10-11",
+   "author": "Da Tien Nguyen、Linh Phuong Tran 等"
   },
   {
-   "title": "Generalized Bogomolov--Gieseker inequalities via Frobenius",
-   "link": "https://arxiv.org/abs/2610.18595v1",
-   "abs": "We establish a Bogomolov--Gieseker-type inequality for tilt-semistable objects on smooth projective varieties of dimension $\\geq 3$, in the spirit of the Bayer--Macrì--Toda conjecture. A key ingredient is an analysis of…",
-   "date": "2026-10-13",
-   "author": "Chunyi Li"
+   "title": "Optimal Curvature Inequalities for Partially Slant Submanifolds in Complex Space Forms",
+   "link": "https://www.semanticscholar.org/paper/76e17142ca53c3901a7b7f36c343af98fc0bb92d",
+   "abs": "The class of partially slant submanifolds was introduced recently by Yerlikaya, Poyraz, and Şahin [Mediterr. J. Math. 22 (2025), 78] as a unifying framework for several important slant‐type geometries. In this paper, we…",
+   "date": "2026-10-10",
+   "author": "Mohd. Aquib、Alina-Daniela Vîlcu 等"
   }
  ],
  "分析": [
@@ -335,113 +335,113 @@ window.LBLB_PAPERS = {
  ],
  "微分方程": [
   {
-   "title": "Exterior free-boundary minimal surfaces of every topological type with at least two ends",
-   "link": "https://arxiv.org/abs/2610.18832v1",
-   "abs": "An exterior free-boundary minimal surface is a properly immersed minimal surface in the complement of the open unit ball of $\\mathbb{R}^3$ whose boundary lies on the unit sphere and meets it orthogonally. We prove that…",
+   "title": "Large time behavior for a class of 2D and 3D stochastic non-Newtonian fluids of differential types: attractors and invariant measures",
+   "link": "https://www.semanticscholar.org/paper/cef66e98f8bedcb53e9a08132ea06122a3f66b24",
+   "abs": "",
    "date": "2026-10-13",
-   "author": "Igor Kozyrev"
+   "author": "Kush Kinra"
   },
   {
-   "title": "Branching explosion of Brownian Fleming-Viot systems",
-   "link": "https://arxiv.org/abs/2610.18802v1",
-   "abs": "We resolve the long-standing non-extinction problem for Brownian Fleming-Viot systems in bounded domains. For every fixed N >= 3, we construct a bounded connected domain in R3 in which branching explosion occurs with…",
+   "title": "Remarks on mild solutions to the chemotaxis–fluid system in Besov–Morrey spaces",
+   "link": "https://www.semanticscholar.org/paper/174426e624b3992b8fbf5a882c9a7e79de33ec8e",
+   "abs": "",
    "date": "2026-10-13",
-   "author": "Yaohui Lin"
+   "author": "Taiki Takeuchi"
   },
   {
-   "title": "Global existence of smooth solutions to the Navier-Stokes equations for initial data with infinite energy",
-   "link": "https://arxiv.org/abs/2610.18797v1",
-   "abs": "We prove the global existence of solutions to the Navier-Stokes equations for any divergence-free distributional initial data. The solutions are smooth in both time and space at positive times. When the initial data…",
-   "date": "2026-10-13",
-   "author": "Alexey Cheskidov"
+   "title": "Inductive bias and out-of-distribution generalization in deep learning surrogates for 2D PDE dynamics",
+   "link": "https://www.semanticscholar.org/paper/ed4c09d5d2e26247b0939a5e2d76ac1016e75ba8",
+   "abs": "Partial differential equations (PDEs) are a foundational tool for modeling physical systems. However, high-fidelity numerical simulations are often computationally intensive, which has prompted the development of…",
+   "date": "2026-10-12",
+   "author": "Binh Duong Nguyen、Stefan Sandfeld"
   },
   {
-   "title": "A three-block higher-rank deformed Hermitian--Yang--Mills correspondence on $\\mathbb P^1\\times\\mathbb P^1$",
-   "link": "https://arxiv.org/abs/2610.18788v1",
-   "abs": "We study the invariant rank-four deformed Hermitian--Yang--Mills equation associated with the chain $\\mathcal{O}(1)\\to\\mathcal{O}(2)^{\\oplus2}\\to\\mathcal{O}(3)$ over $\\mathbb P^1$, with vertical weights $(4,2,0)$ and a…",
-   "date": "2026-10-13",
-   "author": "Yuqi Li"
+   "title": "Geometrie",
+   "link": "https://www.semanticscholar.org/paper/b0fbaf5e28361ac66f6575b4fcf195cf4bbda2ca",
+   "abs": "The workshop Geometrie was well attended with 47 in-person and two virtual participants whose interests covered a considerable part of current research in Differential Geometry. We had talks in such diverse subjects as…",
+   "date": "2026-10-12",
+   "author": "E. Di Nezza、Hans-Joachim Hein 等"
   },
   {
-   "title": "Sharp Global Well-Posedness for the Logarithmically Regularized $2$D Euler Equations",
-   "link": "https://arxiv.org/abs/2610.18775v1",
-   "abs": "We consider solutions to the two-dimensional Euler equations with a logarithmically regularized velocity given by $u=\\nabla^{\\perp}(-Δ)^{-1}\\ln^{-γ}(|\\nabla|+e)ω$ and initial vorticity in…",
-   "date": "2026-10-13",
-   "author": "Zachary Radke"
+   "title": "PDEformer-2: a versatile foundation model for two-dimensional partial differential equations",
+   "link": "https://www.semanticscholar.org/paper/a7ca32c98480a637ee2e13e37fd29f01e0283a7d",
+   "abs": "Partial differential equations (PDEs) are fundamental to modeling physical systems. Traditional PDE solvers are often computationally expensive. Neural operators require independent training for different PDEs, and tend…",
+   "date": "2026-10-12",
+   "author": "Zhan-Hong Ye、Zi-Ning Liu 等"
   }
  ],
  "博弈论": [
   {
-   "title": "Compositional Sensitivity Analysis for Multiobjective System Co-Design",
-   "link": "https://arxiv.org/abs/2610.18758v1",
-   "abs": "Sensitivity analysis of coupled systems typically propagates derivatives of single-valued maps, whereas multiobjective optimization generally treats sensitivity at the system level rather than through interconnected…",
-   "date": "2026-10-13",
-   "author": "Alan Bonomi"
+   "title": "Multiple-Pursuer Evasion Differential Games with Higher-Order Dynamics",
+   "link": "https://www.semanticscholar.org/paper/191736d426a0aa4e46463bacf8ee002159f8ccce",
+   "abs": "Pursuit-evasion differential games are mathematical models used to study competitive interactions between pursuers and an evader, with applications in control theory, optimization, and dynamical systems. Although…",
+   "date": "2026-10-08",
+   "author": "H. Abdullahi、Salisu Saleh 等"
   },
   {
-   "title": "A Rate Transfer Method: Convergence Rates in Stochastic Gradient Descent via Stochastic Calculus",
-   "link": "https://arxiv.org/abs/2610.18739v1",
-   "abs": "We develop a rate-transfer method that converts finite-time Lyapunov estimates for an associated stochastic differential equation (SDE) into finite-time convergence bounds for stochastic gradient algorithms. Under…",
-   "date": "2026-10-13",
-   "author": "Neil Walton"
+   "title": "Nash‐Based Stackelberg Strategy Under H∞ Constraint for Discrete‐time Stochastic Mean‐Field Systems",
+   "link": "https://www.semanticscholar.org/paper/f77931295165541e3ad7a75c4257388d29c7bed8",
+   "abs": "This paper is devoted to infinite‐horizon linear‐quadratic Nash‐based Stackelberg strategy under constraint for discrete‐time stochastic mean‐field systems. We use the Stackelberg game approach to deal with multiple…",
+   "date": "2026-10-01",
+   "author": "Chuan-Bo Li、Xiu-Shan Jiang 等"
   },
   {
-   "title": "Orientation Estimation of Cryo-EM Images for Molecules with Arbitrary Symmetry by Semidefinite Programming",
-   "link": "https://arxiv.org/abs/2610.18691v1",
-   "abs": "This paper extends the non-unique games framework introduced in Bandeira et al. (2020) to address symmetric structures. Precisely, we consider the problem \\[ \\begin{aligned} \\underset{g_1,\\ldots,g_n\\in…",
-   "date": "2026-10-13",
-   "author": "Yunpeng Shi"
+   "title": "Obtaining Game-Stationary Points for Smooth Nonconvex-Nonconcave Minimax Problems via First-Order Methods",
+   "link": "https://www.semanticscholar.org/paper/041d299b32c6f0b38a02d99be01499ab9c8ffbc4",
+   "abs": "Minimax optimization is a fundamental framework in machine learning, robust optimization, and game theory, yet finding first-order stationary points of general nonconvex-nonconcave minimax problems remains challenging…",
+   "date": "2026-09-26",
+   "author": "Meng-Xuan Dong、Yao-Liang Yao 等 · arXiv:2609.32970"
   },
   {
-   "title": "Optimal Decay Matrix Control Barrier Functions: Soundness and Completeness for Matrix Safety Constraints",
-   "link": "https://arxiv.org/abs/2610.18675v1",
-   "abs": "Many safety requirements, such as keeping a manipulator away from kinematic singularities, a network connected, or a system observable, amount to keeping a state-dependent matrix positive definite. Matrix control…",
-   "date": "2026-10-13",
-   "author": "Samuel G. Gessow"
+   "title": "Finite-sample guarantees for data-driven operator splitting methods via martingale inequalities",
+   "link": "https://www.semanticscholar.org/paper/b949fbc98db5bd87e666a3a931009d82923a4018",
+   "abs": "Operator splitting methods are a fundamental class of algorithms for solving structured monotone inclusion problems arising in optimization, control, and game theory. We consider the case, common in stochastic regimes…",
+   "date": "2026-09-14",
+   "author": "Andrea Martin、Filippo Fabiani 等 · arXiv:2609.16353"
   },
   {
-   "title": "Dynamic Programming for A Linear-Gaussian Dual Control Problem",
-   "link": "https://arxiv.org/abs/2610.18630v1",
-   "abs": "We consider an infinite-horizon discounted dynamic programming (DP) problem for a countable-innovation belief-state model. The model is a surrogate for a linear-Gaussian dual control problem involving an unknown…",
-   "date": "2026-10-13",
-   "author": "Ying Wang"
+   "title": "Riemannian Optimization for Multi-Player Quantum Games on Product Unitary Manifolds",
+   "link": "https://www.semanticscholar.org/paper/3e7e9ba743dbb123087ed171605c0333bfb0d3e4",
+   "abs": "Quantum game theory is an extension of classical game theory that uses quantum principles in game theory. The Eisert-Wilkens-Lewenstein (EWL) quantum game is an early example of the two-player classical Prisoner's…",
+   "date": "2026-09-07",
+   "author": "Alireza Habibi、Setareh Maghsudi · arXiv:2609.07397"
   }
  ],
  "数理逻辑": [
   {
-   "title": "On separable pairs of fields and beautiful pairs of separably closed valued fields",
-   "link": "https://arxiv.org/abs/2610.18753v1",
-   "abs": "We continue the study of beautiful pairs of henselian valued fields, initiated in joint work of the second author with Cubides Kovacsics and Ye. As our main result, we show that separably closed non-trivially valued…",
-   "date": "2026-10-13",
-   "author": "Zhengqing He"
+   "title": "Construction of Basic Probability Assignment for D-S Rough Sets Based on Inclusion-Degree Gradient",
+   "link": "https://www.semanticscholar.org/paper/4fadeae585c0e15a5b93cf00303f3a10c3b56574",
+   "abs": "Dempster–Shafer evidence theory and rough set theory are two important mathematical tools for dealing with uncertain information, and their integration provides a powerful theoretical framework for quantifying cognitive…",
+   "date": "2026-10-12",
+   "author": "Ya-Xuan Shen、Ren-Xia Wan"
   },
   {
-   "title": "Chain Continuity and Scott-Closed Interpolation",
-   "link": "https://arxiv.org/abs/2610.18692v1",
-   "abs": "We prove that every chain-continuous dcpo is continuous and that its way-below relation is the relational square of its chain-below relation, answering a question of Erné. A subalgebra lattice obtained from a locally…",
-   "date": "2026-10-13",
-   "author": "Yuxu Chen"
+   "title": "Mathematical modeling of SUMOylation reveals tissue-specific and dynamic responses to abiotic stress",
+   "link": "https://www.semanticscholar.org/paper/b898d6bf7c7fa653397aa185868159d0af3741f9",
+   "abs": "SUMOylation is an essential and evolutionarily conserved post-translational modification that enables rapid cellular adaptation to environmental stress. Despite its importance, how the SUMOylation machinery controls its…",
+   "date": "2026-10-09",
+   "author": "Kamil Drynda、Jason Banda 等"
   },
   {
-   "title": "High-Arity Rademacher Complexity and Uniform Laws of Large Numbers",
-   "link": "https://arxiv.org/abs/2610.18528v1",
-   "abs": "We characterize several properties of higher-arity function classes, specifically finite $\\VC_k$-dimension, slicewise finite $\\VC$-dimension, and finite slicewise Littlestone dimension, in terms of generalizations of…",
-   "date": "2026-10-13",
-   "author": "Aaron Anderson"
+   "title": "Mathematical Coding as an Application of Graph Theory: A Sustainable Approach to Urban Structure Analysis",
+   "link": "https://www.semanticscholar.org/paper/99790cf202c0bd4ae91080469bc4c74600fba3f5",
+   "abs": "This study investigates the application of graph theory through mathematical coding in structuring anddeveloping pedestrian pathways within the complex morphology of traditional Arabic souqs (historic marketplaces).By…",
+   "date": "2026-10-09",
+   "author": "Tamara Mutaz、Zainab Khalid"
   },
   {
-   "title": "Ramsey properties of trees and $C$-relations via the partite construction",
-   "link": "https://arxiv.org/abs/2610.18402v1",
-   "abs": "Finite convexly ordered binary branching $C$-relations have been viewed as a notable exception to the broad applicability of the partite construction in structural Ramsey theory. The absence of a proof of their Ramsey…",
-   "date": "2026-10-13",
-   "author": "Hyoyoon Lee"
+   "title": "MAPEAMENTO SISTEMÁTICO: ESCALAS DE RASTREIO DO TRANSTORNO DO ESPECTRO AUTISTA E MODELAGEM MATEMÁTICA",
+   "link": "https://www.semanticscholar.org/paper/d83dc49fcba9db951db03b9e8d936facef8993a5",
+   "abs": "Early diagnosis of Autism Spectrum Disorder (ASD) is essential to enable timely therapeutic and educational interventions. However, the screening process still faces challenges related to the subjectivity of…",
+   "date": "2026-10-08",
+   "author": "Natalia Do V. Gouvea、M. D. de Castro 等"
   },
   {
-   "title": "Finite-on-Top-of-Temporal CSPs in Fixed-Point Logic",
-   "link": "https://arxiv.org/abs/2610.18287v1",
-   "abs": "We study definability in fixed-point logic with counting (FPC) for a class of constraint satisfaction problems (CSPs) that simultaneously generalises finite-domain CSPs and temporal CSPs. The templates for the CSPs are…",
-   "date": "2026-10-13",
-   "author": "Manuel Bodirsky"
+   "title": "Mathematical Proof Assistants for Teaching Logic: The LogiKEy Methodology",
+   "link": "https://www.semanticscholar.org/paper/e66bdc3fc1f929e88ed5862e5c56e958038f97d9",
+   "abs": "We report on an approach to teaching logic to mixed groups of computer science, mathematics, and philosophy students, based on the logico-pluralistic LogiKEy methodology, used for more than a decade in courses, summer…",
+   "date": "2026-10-06",
+   "author": "Christoph Benzmüller、D. Fuenmayor 等 · arXiv:2610.08214"
   }
  ]
 };
