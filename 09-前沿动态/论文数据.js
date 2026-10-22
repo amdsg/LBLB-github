@@ -2,113 +2,113 @@
 window.LBLB_PAPERS = {
  "数论": [
   {
-   "title": "Construction of Galois modules describing ideal class groups and applications to Iwasawa theory",
-   "link": "https://www.semanticscholar.org/paper/e3473f345484575aba466f2f078c2bd1e9edbf53",
-   "abs": "For a finite Galois extension of number fields, the ideal class groups of intermediate fields do not behave well under taking Galois coinvariants in general. In this paper, we construct a Galois module whose Galois…",
+   "title": "Zeros of $E_2$, quasi-periods, and Schwarz maps",
+   "link": "https://arxiv.org/abs/2610.30025v1",
+   "abs": "We study the zeros of the Eisenstein series $E_2$, their distribution near rational cusps, and the values of modular functions at these zeros. Using Watson's inversion formula, we prove that the number of zeros in…",
    "date": "2026-10-21",
-   "author": "Takenori Kataoka · arXiv:2610.29071"
+   "author": "Abdellah Sebbar"
   },
   {
-   "title": "Nielsen coincidence theory for $(n,m)$-valued pairs",
-   "link": "https://www.semanticscholar.org/paper/de7a981f45514cf6c3fb432cf74e699f90761258",
-   "abs": "We define a Nielsen coincidence number for pairs of maps $(f,g)$ where $f$ is $n$-valued and $g$ is $m$-valued. The classical definition of the Nielsen number does not work in this setting, but we propose a theory where…",
+   "title": "A Sharp Bound for Additive Complements",
+   "link": "https://arxiv.org/abs/2610.29963v1",
+   "abs": "Let $A$ and $B$ be infinite sets of nonnegative integers whose sum contains all sufficiently large integers, and let $A(x)$ and $B(x)$ be their counting functions. We give a discrete proof of the sharp implication \\[…",
    "date": "2026-10-21",
-   "author": "Karel Dekimpe、L. De Weerdt · arXiv:2610.29274"
+   "author": "Zihan Zhang"
   },
   {
-   "title": "Dynamics and probability density function of a stochastic cholera model with Black-Karasinski process and weak kernel distributed delays: application to Somalia outbreak data",
-   "link": "https://www.semanticscholar.org/paper/9d01dd689a3eaf9e4d5f713d0fadf1693482b18e",
-   "abs": "",
+   "title": "Painlevé representations for joint moments of characteristic polynomials from the orthogonal and unitary symplectic groups",
+   "link": "https://arxiv.org/abs/2610.29947v1",
+   "abs": "We study joint moments of characteristic polynomials and their second derivatives for Haar-distributed matrices from the unitary symplectic and orthogonal groups. We establish their large-$N$ asymptotics throughout the…",
    "date": "2026-10-21",
-   "author": "Xiao-Hu Liu、Lin Hu 等"
+   "author": "Theodoros Assiotis"
   },
   {
-   "title": "The Logarithmic A-Discriminant",
-   "link": "https://www.semanticscholar.org/paper/7eaacddb2b5053b2ece01148e5c3a01a0a72de5e",
-   "abs": "We extend the GKZ theory of discriminants to the setting of Euler integrals where both coefficients and exponents are variables. The integrand is the likelihood function of a toric model in algebraic statistics, whose…",
+   "title": "Squarefree values of random polynomials are Gaussian mixtures",
+   "link": "https://arxiv.org/abs/2610.29911v1",
+   "abs": "Fix $d\\ge1$ and choose a polynomial $P$ uniformly at random from the set of integer polynomials of degree $d$ whose coefficients have absolute value at most $H$. We study $E_{P}$, the error in the count of squarefree…",
    "date": "2026-10-21",
-   "author": "Madeleine Goertz、Bernd Sturmfels 等 · arXiv:2610.29204"
+   "author": "Omer Simhi"
   },
   {
-   "title": "A General Topological Symmetry Index for Critical Orbits In Neural Network Loss Landscapes",
-   "link": "https://www.semanticscholar.org/paper/e2ceb3be10a07f795e60f14d8deb4b5cc742df86",
-   "abs": "A systematic understanding of the global structure of neural-network loss landscapes remains challenging due to their high dimensionality. Symmetries arising from network architectures and learning objectives provide a…",
-   "date": "2026-10-20",
-   "author": "Jing-Zhou Liu · arXiv:2610.28864"
+   "title": "On the notion of reasonable functions in Cohen--Lenstra type heuristics",
+   "link": "https://arxiv.org/abs/2610.29880v1",
+   "abs": "We elucidate the notion of \"reasonable functions\" in the context of Cohen--Lenstra heuristics. For a sequence $(x_i)_i$ of independent random variables valued in an infinite discrete probability space $(X,p)$, we…",
+   "date": "2026-10-21",
+   "author": "Alex Bartel"
   }
  ],
  "几何": [
   {
-   "title": "Basis Selection For Analog Coded Computing Under Differential Privacy Constraints",
-   "link": "https://www.semanticscholar.org/paper/85fe29bc3807573d636763685112a45b3fca7f33",
-   "abs": "In analog coded computing, encoding basis functions are typically chosen to guarantee exact reconstruction and improve numerical stability. However, the same basis functions also determine the statistical geometry of…",
-   "date": "2026-10-19",
-   "author": "Aaditya Sharma、Rimpi Borah 等 · arXiv:2610.26385"
+   "title": "Facets of the X-ray polytope of doubly stochastic matrices",
+   "link": "https://arxiv.org/abs/2610.30058v1",
+   "abs": "We study the polytope of anti-diagonal X-rays of k x k doubly stochastic matrices, the image of the Birkhoff polytope under the map that sums the entries along each anti-diagonal. Its facets other than the coordinate…",
+   "date": "2026-10-21",
+   "author": "Prashant Chaudhary"
   },
   {
-   "title": "Commutative Coarse-graining on the Sphere",
-   "link": "https://www.semanticscholar.org/paper/0a4772aaea9fc8a9ac35293680bfcac999b4b2fb",
-   "abs": "Filtering by spatial convolution underlies coarse-graining and Large Eddy Simulation, the analysis of multiscale dynamics, and data processing across the sciences. Yet, as commonly practiced on the sphere, it violates a…",
-   "date": "2026-10-16",
-   "author": "Chayut Teeraratkul、H. Aluie · arXiv:2610.26896"
+   "title": "Solutions of $x^α+y^α=1$ in $λ$-Cantor sets",
+   "link": "https://arxiv.org/abs/2610.29793v1",
+   "abs": "In this paper, we study the structure of the solutions of $x^α+y^α=1$ with both coordinates in a $λ$-Cantor set. We prove that, for any $α>1$, the intersection with the middle-third Cantor set has positive Hausdorff…",
+   "date": "2026-10-21",
+   "author": "Kan Jiang"
   },
   {
-   "title": "Complex Analysis",
-   "link": "https://www.semanticscholar.org/paper/cd24cf4b369dadef5aab08062e73f652244f0ade",
-   "abs": "The workshop was devoted to analytic and algebraic methods in the theory of Kähler spaces and to their interactions with neighboring areas. The main themes included the interaction of complex geometry with group theory…",
-   "date": "2026-10-12",
-   "author": "E. Di Nezza、Stefan Kebekus 等"
+   "title": "Macroscopic Poincaré Inequalities and Weak-Type Characterizations of $p$-Energy Forms",
+   "link": "https://arxiv.org/abs/2610.29789v1",
+   "abs": "For a class of regular strongly local $p$-energy forms on complete doubling metric measure spaces, $1<p<\\infty$, we derive a macroscopic Poincaré inequality from a Poincaré inequality and a capacity upper bound at a…",
+   "date": "2026-10-21",
+   "author": "Fabrice Baudoin"
   },
   {
-   "title": "Geometrie",
-   "link": "https://www.semanticscholar.org/paper/b0fbaf5e28361ac66f6575b4fcf195cf4bbda2ca",
-   "abs": "The workshop Geometrie was well attended with 47 in-person and two virtual participants whose interests covered a considerable part of current research in Differential Geometry. We had talks in such diverse subjects as…",
-   "date": "2026-10-12",
-   "author": "E. Di Nezza、Hans-Joachim Hein 等"
+   "title": "Examples of absolutely minimal polyhedral chains in maximum norm spaces",
+   "link": "https://arxiv.org/abs/2610.29593v1",
+   "abs": "We construct explicit area-minimizing polyhedral disks in $\\R^n$ with the maximum norm for $n=2,3,4$. Their boundaries are polygonal images of the geodesic circle of length $2π$, obtained from $n$ distance functions.…",
+   "date": "2026-10-21",
+   "author": "Roger Züst"
   },
   {
-   "title": "Derivation based noncommutative geometry of quiver path algebras",
-   "link": "https://www.semanticscholar.org/paper/57eaf5ff9089d16fe47fd4b702aac0614b78ab4c",
-   "abs": "In this paper, we study derivation based noncommutative geometry of path algebras arising from quivers by identifying a Lie algebra of derivations from which a differential calculus is constructed. We show that…",
-   "date": "2026-10-12",
-   "author": "Joakim Arnlind、Victor Hildebrandsson · arXiv:2610.16300"
+   "title": "Lipschitz numbers and fine differentiability on metric measure spaces",
+   "link": "https://arxiv.org/abs/2610.29359v1",
+   "abs": "On a metric space equipped with a doubling measure supporting a Poincaré inequality, we introduce capacity-relaxed infinitesimal Lipschitz numbers and characterize Newtonian functions in $N^{1,p}$, $1\\le p\\le\\infty$…",
+   "date": "2026-10-21",
+   "author": "Panu Lahti"
   }
  ],
  "代数": [
   {
-   "title": "The $m=2$ amplituhedron is a positive geometry",
-   "link": "https://www.semanticscholar.org/paper/be649c2c70c35edf07a5689b4a69ded6982b1540",
-   "abs": "Amplituhedra are semi-algebraic sets of fundamental importance in particle physics. Their discovery initiated the field of Positive Geometry. We settle a central conjecture in this field: we show that the $m=2$…",
-   "date": "2026-10-20",
-   "author": "Joris Koefler、Dmitri Pavlov 等 · arXiv:2610.27903"
+   "title": "Alternative moduli of twisted curves",
+   "link": "https://arxiv.org/abs/2610.30069v1",
+   "abs": "We define new Artin stack compactifications of the moduli of smooth curves, which parameterize \"relatively polarized curves\" consisting of stacky semistable curves equipped with line bundles that are trivialized away…",
+   "date": "2026-10-21",
+   "author": "Daniel Halpern-Leistner"
   },
   {
-   "title": "Local crystallization in three-dimensional quantization",
-   "link": "https://www.semanticscholar.org/paper/b950c86641eae4a9fe71d68b9e192d7fa292c2f5",
-   "abs": "A long-standing conjecture on the quantization problem due to Gersho, which remains open in dimensions higher than two, posits that optimal quantizers crystallize into a lattice structure; in dimension three, the…",
-   "date": "2026-10-20",
-   "author": "Ata Deniz Aydın、Mikaela Iacobelli · arXiv:2610.28547"
+   "title": "Reflection functors for non-simply-laced quiver varieties",
+   "link": "https://arxiv.org/abs/2610.30065v1",
+   "abs": "We prove the braid relations between reflection functors on non-simply-laced analogues of Nakajima quiver varieties, which are defined as critical loci of certain quivers with potential. We extend this framework to…",
+   "date": "2026-10-21",
+   "author": "Andrei Neguţ"
   },
   {
-   "title": "The Octonionic Rational Wave Numbers: Non-Associative Sequence Algebras, Moufang Loops, and Exceptional $G_2$ Symmetries",
-   "link": "https://www.semanticscholar.org/paper/5904480d7ed25a4c7e1054c8e5b4566fef33f2ca",
-   "abs": "We generalize discrete rational wave numbers (arXiv:2609.23233) to the octonionic rational wave numbers $\\mathbb{O}^\\mathbb{Z}$ over Cayley's octonions $\\mathbb{O}$. Rather than assuming higher imaginary units, all…",
-   "date": "2026-10-20",
-   "author": "Terence R. Smith · arXiv:2610.28921"
+   "title": "On OpenAI's proof of the Nagata conjecture",
+   "link": "https://arxiv.org/abs/2610.30050v1",
+   "abs": "These notes are an expanded account of my talk at UMass Amherst on OpenAI's remarkably simple proof of the Nagata conjecture. I hope they will be useful, especially to non-experts. The standard reduction to the normal…",
+   "date": "2026-10-21",
+   "author": "Jenia Tevelev"
   },
   {
-   "title": "Real Nullstellensatz for nilpotent Lie algebras",
-   "link": "https://www.semanticscholar.org/paper/4c07c46c41766cde04523bf303002f196daab792",
-   "abs": "We prove a real Nullstellensatz for the universal enveloping algebra U(g) of a nilpotent finite-dimensional real Lie algebra g: An ideal of U(g) is real if and only if it is the intersection of kernels of irreducible…",
-   "date": "2026-10-20",
-   "author": "Philipp Schmitt、Matthias Schötz · arXiv:2610.28113"
+   "title": "The recent counterexamples to the Eisenbud-Schreyer-Weyman Ulrich problem (2003) and to Hochster's small Cohen-Macaulay conjecture (1973): a survey, with a generalization to…",
+   "link": "https://arxiv.org/abs/2610.30027v1",
+   "abs": "In September 2026 four preprints and an AI-generated manuscript moved one numerical obstruction from projective geometry to local algebra. For a smooth complex projective surface $Y$ with an ample, globally generated…",
+   "date": "2026-10-21",
+   "author": "Cristian Anghel"
   },
   {
-   "title": "From Chaplygin Sleigh to Torpedo: An~example of a~Cartan-Geometric View of Left-Invariant Nonholonomic Systems",
-   "link": "https://www.semanticscholar.org/paper/e7f761fba3c4833e4aa291824be6dc46524f065c",
-   "abs": "We discuss two models of a 3D torpedo in which the centre of mass $x$ moves only longitudinally, while the body may rotate about $x$. Although these are simple examples of left-invariant distributions on the Lie group…",
-   "date": "2026-10-19",
-   "author": "Pavla Musilová、Jan Slovák · arXiv:2610.26439"
+   "title": "On the gap of thresholds",
+   "link": "https://arxiv.org/abs/2610.30020v1",
+   "abs": "We propose an algorithm to compute the gap numbers of log canonical thresholds, anticanonical thresholds, and $\\mathbb{R}$-complementary thresholds for surface pairs with a given rational hyperstandard coefficient set.…",
+   "date": "2026-10-21",
+   "author": "Yang He"
   }
  ],
  "分析": [
@@ -150,153 +150,189 @@ window.LBLB_PAPERS = {
  ],
  "概率与统计": [
   {
-   "title": "Third and Fourth Moment Phenomena for Monochromatic Edges and Applications to Graph-Based Two-Sample Tests",
-   "link": "https://www.semanticscholar.org/paper/6feee4ad3f7ffaa0e56ba08c8d0692ee59babfd8",
-   "abs": "Given a graph sequence $\\{G_n\\}_{n\\in\\mathbb{N}}$, denote by $T_n$ the number of monochromatic edges when the vertices of $G_n$ are independently colored red or blue with probabilities $p$ and $1-p$, respectively. We…",
+   "title": "Self-normalized Bernstein Inequalities for Regenerative Processes and Applications to Learning Without Independence",
+   "link": "https://arxiv.org/abs/2610.30119v1",
+   "abs": "We prove a self-normalized Bernstein inequality for bounded functions of a regenerative process with independent, identically distributed marked cycles of finite mean length. The bound uses observed cycle lengths and…",
    "date": "2026-10-21",
-   "author": "S. Athreya、B. Bhattacharya 等 · arXiv:2610.29215"
+   "author": "Imon Banerjee"
   },
   {
-   "title": "Real-Time 24-hour Ahead Forecasting of Solar Energetic Particle Events with SEPNET-PRISM-R",
-   "link": "https://www.semanticscholar.org/paper/f7ca3af595ae5179875b07304060d601d036dbe0",
-   "abs": "Solar energetic particle (SEP) events, operationally defined as proton flux exceeding 10 pfu in the>10 MeV channel, threaten spacecraft systems, astronaut safety, and high latitude aviation, yet continuous real-time…",
-   "date": "2026-10-20",
-   "author": "Yi Yu、Yang Chen 等 · arXiv:2610.28292"
+   "title": "On the proof of the Kozma-Nitzan conjecture",
+   "link": "https://arxiv.org/abs/2610.30063v1",
+   "abs": "In this short note, we give an exposition of the recent proof of the Kozma-Nitzan conjecture provided by OpenAI.",
+   "date": "2026-10-21",
+   "author": "Jean-Baptiste Gouéré"
   },
   {
-   "title": "Optimal Rényi and Logarithmic Additive Functional Entropy Estimation",
-   "link": "https://www.semanticscholar.org/paper/a900b6163b5f5711a66cdeca597ff11159ea4539",
-   "abs": "We characterize the minimax sample complexity of estimating Rényi entropy from independent samples on an alphabet of size at most $k$, when the known order $\\alpha>1$ may vary with $k$. For every fixed additive accuracy…",
-   "date": "2026-10-20",
-   "author": "Arman Adibi、Piotr Krysta · arXiv:2610.28999"
+   "title": "Tempered Langevin diffusions with polynomial-tailed targets: explosions, moment thresholds and ergodicity",
+   "link": "https://arxiv.org/abs/2610.30024v1",
+   "abs": "For tempered Langevin diffusions (TLDs) targeting polynomially tailed measures, the convergence rate is known to change from polynomial to exponential to uniform as the temperature rises through a critical value. We…",
+   "date": "2026-10-21",
+   "author": "Aleksandar Mijatović"
   },
   {
-   "title": "APPLICATION OF STOCHASTIC METHODS IN PROFESSIONALLY ORIENTED TEACHING STUDENTS OF TECHNICAL SPECIALTIES",
-   "link": "https://www.semanticscholar.org/paper/42b95ca8f238dc5f1be5af89471001f51c082909",
-   "abs": "The rapid digitalisation of engineering and the industry and the increasing technical uncertainty and complexity necessitate strengthening mathematical training among students of technical specialties. Probability…",
-   "date": "2026-10-19",
-   "author": "A. Abylkassymova、Y. Tuyakov 等"
+   "title": "On Divisibility Properties of Zipf Law and Relatives",
+   "link": "https://arxiv.org/abs/2610.29974v1",
+   "abs": "We describe recursive chance mechanisms and processes involving Zipf's law and relatives, all showing up mixing properties, both geometric and Poisson. Relations to Markov processes are explored.",
+   "date": "2026-10-21",
+   "author": "Thierry E Huillet"
   },
   {
-   "title": "The LR1 Lifetime Distribution: Properties, Nonmonotone Hazard, and Statistical Inference",
-   "link": "https://www.semanticscholar.org/paper/baae2efacc3df82ccd15a52cf177599c1a003081",
-   "abs": "The LR1 distribution links an exponential lifetime and a four-stage gamma lifetime through a single positive parameter $\\lambda$. Their rates, $2\\lambda$ and $\\lambda/2$, have a fixed ratio, whereas the exponential…",
-   "date": "2026-10-17",
-   "author": "Lalita Singh · arXiv:2610.24575"
+   "title": "Differentiability of Shape Function for Piecewise Smooth Lagrangians in Poissonian Random Environments",
+   "link": "https://arxiv.org/abs/2610.29966v1",
+   "abs": "We consider a family of models of directed first passage percolation type in continuous multi-dimensional Euclidean space and discrete time with admissible paths constrained to visiting a Poissonian point at each step.…",
+   "date": "2026-10-21",
+   "author": "Yuri Bakhtin"
   }
  ],
  "组合与图论": [
   {
-   "title": "Spectral Theory and Descriptive Combinatorics for Non-Regular Borel pmp Graphs",
-   "link": "https://www.semanticscholar.org/paper/9aa6e4a0bc792f5b693d113df01daa53de7a7c64",
-   "abs": "We continue the systematic study initiated in arXiv:2602.05185 of the relationship between the spectral theory and descriptive combinatorics of bounded-degree Borel pmp graphs, particularly in the non-regular setting.…",
-   "date": "2026-10-09",
-   "author": "C. Higgins、Pieter Spaas 等 · arXiv:2610.13551"
+   "title": "Temporal Exploration and Rendezvous via Weisfeiler-Leman Colorings",
+   "link": "https://arxiv.org/abs/2610.30123v1",
+   "abs": "Temporal graphs are graphs whose edge relation changes in discrete time steps. The Temporal Exploration Problem (TEXP) asks for a temporal walk that visits all vertices. We show that every connected temporal graph with…",
+   "date": "2026-10-21",
+   "author": "Frank Kammer"
   },
   {
-   "title": "A Path Decomposition Perspective on the Snake-in-the-Box Problem",
-   "link": "https://www.semanticscholar.org/paper/c3ba52b26f932d330578c2cec8ba4b55fdb37d8b",
-   "abs": "The Snake-in-the-Box (SIB) problem concerns finding the longest induced path in the $n$-dimensional hypercube $Q_n$ such that no two non-consecutive vertices in the path are adjacent. This problem, first introduced…",
-   "date": "2026-09-28",
-   "author": "S. Tapadia"
+   "title": "Facets of the X-ray polytope of doubly stochastic matrices",
+   "link": "https://arxiv.org/abs/2610.30058v1",
+   "abs": "We study the polytope of anti-diagonal X-rays of k x k doubly stochastic matrices, the image of the Birkhoff polytope under the map that sums the entries along each anti-diagonal. Its facets other than the coordinate…",
+   "date": "2026-10-21",
+   "author": "Prashant Chaudhary"
   },
   {
-   "title": "On a class of combinatorial group invariants",
-   "link": "https://www.semanticscholar.org/paper/164f145faf114bcf7aa67f72f95aa71e56d4d2e8",
-   "abs": "In this paper, we explore group invariants arising from combinatorial structures associated with finite groups, including the functional graphs of power maps and the well-studied power graphs. These invariants induce…",
-   "date": "2026-09-17",
-   "author": "Arthur Fernandes、Claudio M. Qureshi 等 · arXiv:2609.20516"
+   "title": "On optimal (v,5,3,1) optical orthogonal codes",
+   "link": "https://arxiv.org/abs/2610.30003v1",
+   "abs": "In this paper, we establish a tight upper bound for the size of a $(v,5,3,1)$ optical orthogonal code (OOC) and call such a code optimal when it achieves this upper bound. In addition, if an optimal OOC has the property…",
+   "date": "2026-10-21",
+   "author": "Laura Johnson"
   },
   {
-   "title": "Graph Theory with Orbiter",
-   "link": "https://www.semanticscholar.org/paper/17a3c11e003f42eb63938dffacf86a73f1d50852",
-   "abs": "We describe the graph theory package in the Computer Algebra System Orbiter. The package is dedicated to algebraic graph theory, with emphasis on efficiency and seamless integration of algebra, combinatorics and…",
-   "date": "2026-09-15",
-   "author": "A. Betten"
+   "title": "On $k$-connected Sets in Matroids",
+   "link": "https://arxiv.org/abs/2610.29979v1",
+   "abs": "In 1966, Tutte defined $k$-connected matroids for each $k \\ge 2$. Robertson and Seymour built on Tutte's idea to define tangles as a way to identify highly connected parts of a matroid. Motivated by tangles, a set $Z$…",
+   "date": "2026-10-21",
+   "author": "Sean Boros"
   },
   {
-   "title": "Perfect Combinatorial Structures in Coding Theory and Cryptography",
-   "link": "https://www.semanticscholar.org/paper/3b04906bdf8664943e38009cff8f23753e845121",
-   "abs": "This book develops algebraic and combinatorial methods for studying discrete structures. It brings together graph theory, Boolean functions, Fourier analysis on finite groups, coding theory, perfect colorings and…",
-   "date": "2026-09-07",
-   "author": "V. Potapov · arXiv:2609.09225"
+   "title": "Compression Formula for Nonattacking Fillings of Non-symmetric Macdonald Polynomials",
+   "link": "https://arxiv.org/abs/2610.29950v1",
+   "abs": "Macdonald polynomials are an important family of orthogonal polynomials that have applications to statistical physics. Corteel, Mandelshtam, and Williams proved a combinatorial model involving multiline queues for…",
+   "date": "2026-10-21",
+   "author": "Alexander P. Stewart"
   }
  ],
  "线性代数": [
   {
-   "title": "Statistics of entries of matrices from the general linear group over a finite field",
-   "link": "https://www.semanticscholar.org/paper/ab2fb7532ade8dbac7dd9994a5cb5b3a36e92a67",
-   "abs": "Let $\\mathrm{GL}_n(\\mathbb{F}_q)$ be the group of $n\\times n$ invertible matrices over a finite field $\\mathbb{F}_q$. How many matrices in $\\mathrm{GL}_n(\\mathbb{F}_q)$ are there with a subset of their entries…",
+   "title": "Unitary similarity for dual complex matrices and dual quaternion matrices",
+   "link": "https://arxiv.org/abs/2610.30060v1",
+   "abs": "We study unitary similarity of dual complex matrices and dual quaternion matrices. First, we characterize unitary similarity in terms of the existence of a skew-Hermitian solution to a Sylvester-type matrix equation.…",
    "date": "2026-10-21",
-   "author": "Ofir Gorodetsky · arXiv:2610.29305"
+   "author": "Cailing Yao"
   },
   {
-   "title": "Counting and constructing Latin tableaux",
-   "link": "https://www.semanticscholar.org/paper/2bdb67b3e60cc60dab5d7070e3db09b7392dd3bb",
-   "abs": "Latin tableaux generalize Latin squares to Young diagrams and have interesting connections to linear algebra and Rota's basis conjecture. Conjecturally, a partition admits Latin tableaux if and only if it belongs to a…",
+   "title": "Multiplying matrices via polynomials: exposition and barriers",
+   "link": "https://arxiv.org/abs/2610.30054v1",
+   "abs": "We give an exposition of OpenAI's recent proof that the exponent $ω_\\mathbb{C}$ of matrix multiplication over the complex numbers satisfies $ω_\\mathbb{C}\\leq9/4$. Our version of the proof gives $ω_\\mathbb{F}\\leq9/4$…",
    "date": "2026-10-21",
-   "author": "Spencer Daugherty、Michaela Fahnesock 等 · arXiv:2610.29291"
+   "author": "Alimzhan Amanov"
   },
   {
-   "title": "Explicit Formula and Matrix Representations of Generalized Third-Order Recurrence Relations",
-   "link": "https://www.semanticscholar.org/paper/a7c6dbd8336d9efd2d64c22867e6b03b57fa7a3c",
-   "abs": "This paper investigates third-order linear recurrence relations and derives an explicit formula for generalized tribonacci sequences in terms of the roots of their characteristic equations. Using these roots, we…",
-   "date": "2026-10-19",
-   "author": "K. Verma"
+   "title": "On unit groups of purely infinite rings",
+   "link": "https://arxiv.org/abs/2610.29712v1",
+   "abs": "We prove that the unit group of any purely infinite, regular, right self-injective ring admits a universal sequence of words (thus has strong distortion), is minimally almost periodic, has finite involution width, is…",
+   "date": "2026-10-21",
+   "author": "Friedrich Martin Schneider"
   },
   {
-   "title": "Emulating DGEMM and ZGEMM with INT8 Matrix Engines on Intel Arc GPUs: Ozaki Scheme II on the Xe2 Architecture",
-   "link": "https://www.semanticscholar.org/paper/a896ba2fc06ba879df56938268d7e01312b9aaf8",
-   "abs": "Double-precision matrix multiplication, real (DGEMM) and complex (ZGEMM), dominates the run time of dense linear algebra and electronic-structure codes. On affordable GPUs, however, FP64 throughput is a small and…",
-   "date": "2026-10-18",
-   "author": "Rostislavs Rostovskis、Aleksandrs Platonenko · arXiv:2610.26945"
+   "title": "Extending Doi--Takeuchi correspondence to bimodules and noncommutative covers",
+   "link": "https://arxiv.org/abs/2610.29619v1",
+   "abs": "Doi and Takeuchi, and independently Blattner, Cohen and Montgomery, have exhibited a correspondence between cleft extensions of an algebra $U$ by a Hopf algebra $H$ and $H$-measurings on $U$ equipped with a compatible…",
+   "date": "2026-10-21",
+   "author": "Zoran Škoda"
   },
   {
-   "title": "Comment on\"The polarization hierarchy for polynomial optimization over convex bodies, with applications to nonnegative matrix rank\"",
-   "link": "https://www.semanticscholar.org/paper/f94d4ea3eba84853f832f2445b73dbb5ef0b92a1",
-   "abs": "We revisit the feasibility and convergence claims for the polarization hierarchy of Plávala, Ligthart and Gross [Linear Algebra Appl.\\ 723 (2025) 15--32]. Counterexamples show that the stated assumption is insufficient…",
-   "date": "2026-10-17",
-   "author": "Julius A. Zeiss · arXiv:2610.24542"
+   "title": "Frobenius forms and semisimplicity of cyclotomic quiver Hecke superalgebras",
+   "link": "https://arxiv.org/abs/2610.29403v1",
+   "abs": "We determine the Nakayama automorphism of the canonical homogeneous Frobenius form on cyclotomic quiver Hecke superalgebras. We give explicit necessary and sufficient conditions on the dominant weight and the rank for…",
+   "date": "2026-10-21",
+   "author": "Shuo Li"
   }
  ],
  "拓扑学": [
   {
-   "title": "Temporal-Logical Stochastic Processes",
-   "link": "https://www.semanticscholar.org/paper/c3fefe0a55e1aa7d24056a46785435d5f6e39ebe",
-   "abs": "We develop a measure-theoretic framework for Temporal-Logical Stochastic Processes (TLSP), in which temporal-logic specifications induce time-indexed stochastic observables capturing the robustness of temporal…",
+   "title": "Spanning bipartite quadrangulations in even triangulations of real projective spaces",
+   "link": "https://arxiv.org/abs/2610.29737v1",
+   "abs": "We study spanning quadrangulations of even triangulations of real projective spaces, using the higher-dimensional notion of quadrangulation introduced by Kaiser and Stehlík. We prove that every even triangulation of…",
    "date": "2026-10-21",
-   "author": "Venkatraman Renganathan · arXiv:2610.29209"
+   "author": "Kengo Enami"
   },
   {
-   "title": "TriGeoBench: A Multimodal Mathematical Geometry Benchmark with Figures and TikZ",
-   "link": "https://www.semanticscholar.org/paper/e71d18936df4a0ed5ffd82d3b2dcdaa4860b267d",
-   "abs": "Multimodal Large Language Models show strong vision-language capabilities, yet their geometry-centric reasoning remains insufficiently understood. Existing mathematical benchmarks typically rely on rasterized figures…",
-   "date": "2026-10-20",
-   "author": "Jing Wang、Yi-Tong Yang 等 · arXiv:2610.27626"
+   "title": "Discrete homotopy of graphs and $k$-parabolic subspace arrangements",
+   "link": "https://arxiv.org/abs/2610.29690v1",
+   "abs": "Discrete homotopy theory is a combinatorial homotopy theory defined for discrete objects. Barcelo--Severs--White conjectured that the homotopy groups of complements of $k$-parabolic subspace arrangements are isomorphic…",
+   "date": "2026-10-21",
+   "author": "So Yamagata"
   },
   {
-   "title": "The moduli space of maps from hypersurfaces and its Goodwillie tower",
-   "link": "https://www.semanticscholar.org/paper/a4e24d2708fa1e9710c8b2d48fd073569c28712f",
-   "abs": "We define a moduli space of continuous maps from smooth hypersurfaces varying in an ample linear system. To study its topology, we construct a scanning map to an appropriate section space and investigate its effect on…",
-   "date": "2026-10-20",
-   "author": "Alexis Aumonier · arXiv:2610.28809"
+   "title": "Nielsen coincidence theory for $(n,m)$-valued pairs",
+   "link": "https://arxiv.org/abs/2610.29274v1",
+   "abs": "We define a Nielsen coincidence number for pairs of maps $(f,g)$ where $f$ is $n$-valued and $g$ is $m$-valued. The classical definition of the Nielsen number does not work in this setting, but we propose a theory where…",
+   "date": "2026-10-21",
+   "author": "Karel Dekimpe"
   },
   {
-   "title": "Local well-posedness of wave kinetic equations associated with water waves",
-   "link": "https://www.semanticscholar.org/paper/988118c1703a46589197853d901223b74fdd29e5",
-   "abs": "We prove two conceptually different local well-posedness results for wave kinetic equations associated with water-wave systems. For pure gravity waves with 2D interfaces, we establish a classical well-posedness theory…",
-   "date": "2026-10-20",
-   "author": "Yu Deng、A. Ionescu 等 · arXiv:2610.28549"
+   "title": "Day Convolution and Homotopy Groups on the Pointed Homotopy Category of CW Complexes",
+   "link": "https://arxiv.org/abs/2610.29239v1",
+   "abs": "We freely enrich the pointed homotopy category of CW complexes over abelian groups and equip the resulting functor category with the enriched Day convolution induced by the smash product. After identifying the…",
+   "date": "2026-10-21",
+   "author": "Abhiram Srinivas Yedathore"
   },
   {
-   "title": "Space-time large deviations for continuum birth-and-death processes",
-   "link": "https://www.semanticscholar.org/paper/8ec416ab6863e765b38b3de21bf81ad1a69e1286",
-   "abs": "We establish a space-time large deviation principle for the empirical process of spatial birth-and-death dynamics in the continuum with area interaction at arbitrary inverse temperature, including the free evolution.…",
-   "date": "2026-10-20",
-   "author": "B. Jahnel、Jonas Koppl 等 · arXiv:2610.28307"
+   "title": "Small covers and the Four Color Theorem",
+   "link": "https://arxiv.org/abs/2610.29131v1",
+   "abs": "We give a combinatorial proof that every simple convex $3$-polytope admits a small cover without using the Four Color Theorem. We also prove that the assertion that every simple plane triangulation admits a mod~$2$…",
+   "date": "2026-10-21",
+   "author": "Suyoung Choi"
   }
  ],
- "复分析": [],
+ "复分析": [
+  {
+   "title": "Irregular Gabor Frames for the Poisson Kernel",
+   "link": "https://arxiv.org/abs/2610.30037v1",
+   "abs": "Consider the semi-regular system of time-frequency shifts of the Poisson kernel $g(t) = {{1} \\over {t^2+w^2}}$ $$\\G(g, M \\times α\\Z) = \\left\\{ e^{2πi λt } g(t-n) \\colon (λ, n) \\in M \\times α\\Z \\right\\}$$ where…",
+   "date": "2026-10-21",
+   "author": "Yurii Belov"
+  },
+  {
+   "title": "On complete Ricci--flat Kähler manifolds",
+   "link": "https://arxiv.org/abs/2610.29891v1",
+   "abs": "We study complete noncompact Ricci-flat Kähler manifolds. In the case of Euclidean volume growth, we prove that the underlying complex manifold is naturally quasi-projective and that the asymptotic cone is unique.…",
+   "date": "2026-10-21",
+   "author": "Song Sun"
+  },
+  {
+   "title": "Principle of generating critical points of rational functions and Gauss-Fourier conjecture for second-kind zeros",
+   "link": "https://arxiv.org/abs/2610.29790v1",
+   "abs": "The precise origin of critical points in rational functions remains a longstanding open problem. This paper elucidates the mechanism underlying critical point generation in rational functions. For over two centuries, a…",
+   "date": "2026-10-21",
+   "author": "Lande Ma"
+  },
+  {
+   "title": "On evaluation of polynomial coefficients",
+   "link": "https://arxiv.org/abs/2610.29132v1",
+   "abs": "The evaluation of polynomial coefficients is an old mathematical problem, which is still actively investigated by many authors. The paper strengthens the known results in this direction and provides a complete solution…",
+   "date": "2026-10-21",
+   "author": "Samuel L. Krushkal"
+  },
+  {
+   "title": "Rigidity of Pseudoconvex Neighborhoods and Ohsawa--Takegoshi Extension",
+   "link": "https://arxiv.org/abs/2610.29082v1",
+   "abs": "Let $Y$ be a holomorphic section of a holomorphic submersion with one-dimensional fibers over a connected compact complex manifold. Assuming that its normal bundle is unitary flat, we prove that $Y$ admits a fundamental…",
+   "date": "2026-10-21",
+   "author": "Takayuki Koike"
+  }
+ ],
  "微分方程": [
   {
    "title": "On ABP Estimates for a Class of Fully Nonlinear Singular-Degenerate Elliptic Equations and Applications",
@@ -336,76 +372,76 @@ window.LBLB_PAPERS = {
  ],
  "博弈论": [
   {
-   "title": "A Simple and Unified Method for Gradient-Variation Regret",
-   "link": "https://www.semanticscholar.org/paper/6e0e2a617452fe97a0b027176cb904cec146a5c0",
-   "abs": "Gradient-variation online learning has attracted increasing attention for its connections to game theory and optimization. It has been studied in both non-stationary online learning, which aims to minimize dynamic…",
-   "date": "2026-10-19",
-   "author": "Hang Yu、Peng Zhao · arXiv:2610.26473"
+   "title": "A Quasipolynomial Algorithm for $\\ell_\\infty$ Contractions",
+   "link": "https://arxiv.org/abs/2610.30122v1",
+   "abs": "We give an algorithm for computing an $\\eps$-approximate fixed point of any $d$-dimensional nonexpansion with respect to the $\\ell_\\infty$ norm in time $\\log(1/\\eps)^{O(\\log^2 d)}$. At its core, our method uses a…",
+   "date": "2026-10-21",
+   "author": "Ashkan Soleymani"
   },
   {
-   "title": "Multiple-Pursuer Evasion Differential Games with Higher-Order Dynamics",
-   "link": "https://www.semanticscholar.org/paper/191736d426a0aa4e46463bacf8ee002159f8ccce",
-   "abs": "Pursuit-evasion differential games are mathematical models used to study competitive interactions between pursuers and an evader, with applications in control theory, optimization, and dynamical systems. Although…",
-   "date": "2026-10-08",
-   "author": "H. Abdullahi、Salisu Saleh 等"
+   "title": "Parallel AI Agent Collaboration as Graph-Structured Distributed Block Optimization",
+   "link": "https://arxiv.org/abs/2610.30074v1",
+   "abs": "Parallel AI agents can produce useful local edits yet degrade a shared solution when their edits are combined. We model this coordination problem as discrete block optimization with an exactly evaluable objective and a…",
+   "date": "2026-10-21",
+   "author": "Hanmin Li"
   },
   {
-   "title": "Nash‐Based Stackelberg Strategy Under H∞ Constraint for Discrete‐time Stochastic Mean‐Field Systems",
-   "link": "https://www.semanticscholar.org/paper/f77931295165541e3ad7a75c4257388d29c7bed8",
-   "abs": "This paper is devoted to infinite‐horizon linear‐quadratic Nash‐based Stackelberg strategy under constraint for discrete‐time stochastic mean‐field systems. We use the Stackelberg game approach to deal with multiple…",
-   "date": "2026-10-01",
-   "author": "Chuan-Bo Li、Xiu-Shan Jiang 等"
+   "title": "Facets of the X-ray polytope of doubly stochastic matrices",
+   "link": "https://arxiv.org/abs/2610.30058v1",
+   "abs": "We study the polytope of anti-diagonal X-rays of k x k doubly stochastic matrices, the image of the Birkhoff polytope under the map that sums the entries along each anti-diagonal. Its facets other than the coordinate…",
+   "date": "2026-10-21",
+   "author": "Prashant Chaudhary"
   },
   {
-   "title": "Obtaining Game-Stationary Points for Smooth Nonconvex-Nonconcave Minimax Problems via First-Order Methods",
-   "link": "https://www.semanticscholar.org/paper/041d299b32c6f0b38a02d99be01499ab9c8ffbc4",
-   "abs": "Minimax optimization is a fundamental framework in machine learning, robust optimization, and game theory, yet finding first-order stationary points of general nonconvex-nonconcave minimax problems remains challenging…",
-   "date": "2026-09-26",
-   "author": "Meng-Xuan Dong、Yao-Liang Yao 等 · arXiv:2609.32970"
+   "title": "Dual Effect and Certainty Equivalence Revisited for a Linear-Gaussian Dual Control Problem",
+   "link": "https://arxiv.org/abs/2610.30034v1",
+   "abs": "This paper revisits the relation between dual effect and certainty equivalence (CE) through a scalar linear-Gaussian model. In dual control, the current input affects not only the immediate cost but also the information…",
+   "date": "2026-10-21",
+   "author": "Ying Wang"
   },
   {
-   "title": "Finite-sample guarantees for data-driven operator splitting methods via martingale inequalities",
-   "link": "https://www.semanticscholar.org/paper/b949fbc98db5bd87e666a3a931009d82923a4018",
-   "abs": "Operator splitting methods are a fundamental class of algorithms for solving structured monotone inclusion problems arising in optimization, control, and game theory. We consider the case, common in stochastic regimes…",
-   "date": "2026-09-14",
-   "author": "Andrea Martin、Filippo Fabiani 等 · arXiv:2609.16353"
+   "title": "Rigidity of the ball for Hartree-type energies and second shape derivative via a continuity argument",
+   "link": "https://arxiv.org/abs/2610.29958v1",
+   "abs": "We study the second shape derivative of an optimal design functional involving a nonlocal term in order to prove rigidity of the ball. Our approach relies on a continuity argument that relates the second variation to…",
+   "date": "2026-10-21",
+   "author": "Dario Mazzoleni"
   }
  ],
  "数理逻辑": [
   {
-   "title": "Temporal-Logical Stochastic Processes",
-   "link": "https://www.semanticscholar.org/paper/c3fefe0a55e1aa7d24056a46785435d5f6e39ebe",
-   "abs": "We develop a measure-theoretic framework for Temporal-Logical Stochastic Processes (TLSP), in which temporal-logic specifications induce time-indexed stochastic observables capturing the robustness of temporal…",
+   "title": "Logic vs doctrines, a mirror symmetry",
+   "link": "https://arxiv.org/abs/2610.29771v1",
+   "abs": "This paper studies doctrines in categorical logic and their relations to fragments of geometric logic. After a brief account of the historical context for the notion of doctrine in categorical logic, we propose our…",
    "date": "2026-10-21",
-   "author": "Venkatraman Renganathan · arXiv:2610.29209"
+   "author": "Ivan Di Liberti"
   },
   {
-   "title": "Mathematical Characterization of Dynamic Risk Spillovers in Carbon-Energy Financial Networks with Multi-Dimensional Uncertainty: A TVP-VAR-DY Connectedness Approach via…",
-   "link": "https://www.semanticscholar.org/paper/c7e0a2af8c17c6e8f45b413ea6dba87619785dc8",
-   "abs": "This paper employs the established time-varying parameter vector autoregressive connectedness framework (TVP-VAR-DY) based on generalized forecast error variance decomposition (GFEVD) to characterize the nonlinear…",
-   "date": "2026-10-18",
-   "author": "Wen-Xin Zhang、Ru-Fei Zhang 等"
+   "title": "Choice principles in countable partition models",
+   "link": "https://arxiv.org/abs/2610.29752v1",
+   "abs": "We study the countable partition model over a set of atoms of arbitrary uncountable cardinality $κ$. Its supports are partitions of the atoms into countably many blocks, and a permutation fixes a support when it…",
+   "date": "2026-10-21",
+   "author": "Brinda Venkataramani"
   },
   {
-   "title": "Learning Mathematical Derivatives Through a Virtual Escape Room Application",
-   "link": "https://www.semanticscholar.org/paper/8ffde720f4052adb0304894fbdaee8dcf6cb6d7b",
-   "abs": "Purpose: This study presents the design and pilot evaluation of a virtual learning environment (VLE) integrated with an in-person digital escape room (DER) for learning derivatives in a mathematics course. It addresses…",
-   "date": "2026-10-17",
-   "author": "R. Damaševičius、Tatjana Sidekerskienė"
+   "title": "On the gradient conjecture at infinity: Finite spherical length for gradient trajectories of definable potentials",
+   "link": "https://arxiv.org/abs/2610.29211v1",
+   "abs": "We prove that for every open $ U \\subseteq \\mathbb R^n $ the spherical projection of every gradient trajectory $θ(t)$, $t \\geq 0$, of a definable $C^1$-potential $F \\colon U \\to \\mathbb R$ has finite length and, in…",
+   "date": "2026-10-21",
+   "author": "Thang Do"
   },
   {
-   "title": "Ethnomathematics and Mathematics Education: International Perspectives in Times of Local and Global Change",
-   "link": "https://www.semanticscholar.org/paper/7582f5333b06322d787b012e5d5efa4849b9e9f7",
-   "abs": "Acknowledging the challenging and complex world we live in with climate change, geo-political instability, economic inequity, and social polarization, this chapter draws upon the key roles of ethnomathematics and…",
-   "date": "2026-10-17",
-   "author": "Patrick Kyeremeh"
+   "title": "General Criterion for a Poset to Admit a Partition Into $ω$-Chains",
+   "link": "https://arxiv.org/abs/2610.29056v1",
+   "abs": "Given a poset $P$ with no maximal element the question naturally arises of when $P$ can be partitioned into $ω$-chains. In this paper we give general criterion for when this can be done. We show that in the case when a…",
+   "date": "2026-10-21",
+   "author": "Remi Salinas Schmeis"
   },
   {
-   "title": "Genetic algorithm based automated test assembly for mathematical literacy assessment inspired by the PISA framework",
-   "link": "https://www.semanticscholar.org/paper/02f54ba32ca10f02f310e082f2560975c729cb85",
-   "abs": "Automated test assembly can reduce the manual burden of test construction while preserving predefined content and difficulty constraints. This study develops a genetic algorithm (GA) based automated test assembly (ATA)…",
-   "date": "2026-10-17",
-   "author": "Fei Wang、Si Wu 等"
+   "title": "Counting Bessel zeros and applications",
+   "link": "https://arxiv.org/abs/2610.28477v1",
+   "abs": "We establish o-minimal definability results and develop point-counting machinery applicable to the zeros of a Bessel function of fixed non-negative real parameter. We also give an Ax-Schanuel theorem for Bessel…",
+   "date": "2026-10-20",
+   "author": "Gal Binyamini"
   }
  ]
 };
