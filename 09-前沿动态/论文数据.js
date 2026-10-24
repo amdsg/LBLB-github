@@ -2,39 +2,39 @@
 window.LBLB_PAPERS = {
  "数论": [
   {
-   "title": "A parametrization of nonassociative Petit algebras $K[t;\\sigma]/K[t:\\sigma](t^m-a)$ up to equivalence",
-   "link": "https://www.semanticscholar.org/paper/e0716b2637fa39ae149a2b0bcfef5c3404e2fdd3",
-   "abs": "Let $K/F$ be a cyclic Galois field extension of degree $n$ with $\\mathrm{Gal}(K/F)=\\langle\\sigma\\rangle$. The nonassociative Petit algebras $K[t;\\sigma]/K[t;\\sigma](t^m-a)$ have recently emerged as important tools in…",
+   "title": "Nonvanishing of 2-primary Kolyvagin classes via simultaneous quadratic twists",
+   "link": "https://arxiv.org/abs/2610.31631v1",
+   "abs": "Let $E/\\mathbf{Q}$ be an elliptic curve, let $K=\\mathbf{Q}(\\sqrt{D})$ satisfy the Heegner hypothesis with $D<-4$, and fix a modular parametrization $\\varphi$ with $\\varphi(\\infty)=O$. Under surjectivity modulo $2^L$…",
    "date": "2026-10-22",
-   "author": "Monica Nevins、Susanne Pumpluen · arXiv:2610.30921"
+   "author": "Zhiqi Sun"
   },
   {
-   "title": "An integer determinant approach to the length of Type II codes and the weights of shadows",
-   "link": "https://www.semanticscholar.org/paper/d8cbb3dd5bd5751649b4bb55885d149bfc414884",
-   "abs": "It is well known that the length $n$ of a binary Type II code is divisible by $8$. The classical proof relies on Gleason's theorem on weight enumerators. Motivated by a question of Vera Pless, we give elementary proofs…",
+   "title": "Langlands-Shahidi gamma factors and local transfer in families",
+   "link": "https://arxiv.org/abs/2610.31615v1",
+   "abs": "Let $G$ be a quasi-split $p$-adic group, defined over a non-archimedean local field of residue cardinality $q$, and $R$ be a $\\mathbb{Z}[\\sqrt{q}^{-1},μ_{4p^\\infty}]$-algebra. We generalize the constructions of Shahidi…",
    "date": "2026-10-22",
-   "author": "J. Baek、Jon-Lark Kim · arXiv:2610.30809"
+   "author": "Johannes Girsch"
   },
   {
-   "title": "p-adic symplectic geometry of integrable systems and Weierstrass–Williamson theory II",
-   "link": "https://www.semanticscholar.org/paper/c69eb5d95da3edc9103e188f8dd79c99e962571d",
-   "abs": "This paper is a sequel to [3], in which we shall give proofs of several results stated in [3] (Theorems D–L) which, for brevity and clarity, we postponed to this sequel paper. These results were the following: for any…",
+   "title": "Deep holes of full-length Reed--Solomon codes: uniform bounds and exact classifications",
+   "link": "https://arxiv.org/abs/2610.31460v1",
+   "abs": "Let $u$ be a received word for the full-length Reed--Solomon code $\\operatorname{RS}_q(k)$, with interpolation polynomial $f_u$ of degree $k+m$. For each $m\\in\\{3,4,5,6,7\\}$, we classify all such deep holes over every…",
    "date": "2026-10-22",
-   "author": "Luis Crespo、Álvaro Pelayo"
+   "author": "Xiang Fan"
   },
   {
-   "title": "Spectral and edge conditions for negative Hamiltonian cycles in unbalanced signed graphs",
-   "link": "https://www.semanticscholar.org/paper/84326e6022558b424f8e5a8a070189c9090c653e",
-   "abs": "Spectral conditions for Hamiltonian cycles are a fundamental subject in extremal spectral graph theory. For simple unsigned graphs, Fiedler and Nikiforov [Linear Algebra Appl., 432 (2010), 2170-2173] pioneered this…",
+   "title": "Local heights for nef toric compactified divisors",
+   "link": "https://arxiv.org/abs/2610.31442v1",
+   "abs": "We present a definition of a local height of nef toric divisors in the sense of Yuan and Zhang by approximating a height for canonical divisors and then using the local energy to extend to other metrics on the same…",
    "date": "2026-10-22",
-   "author": "Zi-Hao Zha · arXiv:2610.30883"
+   "author": "Clara Otte"
   },
   {
-   "title": "On the direct SLE-martingale approach to the integrability of Conformal Loop Ensembles",
-   "link": "https://www.semanticscholar.org/paper/663ecb7aa29080dc761b1650065a1cc7d512065c",
-   "abs": "This paper is about the derivation of\"integrability results\"(i.e., for example, explicit formulas for the probability of events involving a few marked points) for Conformal Loop Ensembles, that are the (conjectured)…",
+   "title": "Landau-Siegel zeros over a base field and effective Brauer-Siegel",
+   "link": "https://arxiv.org/abs/2610.31402v1",
+   "abs": "Let k be a number field. We prove that for every quadratic extension F/k, every real zero beta of L(s, chi_{F/k}) satisfies (1 - beta) log d_F >= c(k) with an effective constant c(k) > 0, and we deduce (through a…",
    "date": "2026-10-22",
-   "author": "Jason Miller、Wendelin Werner · arXiv:2610.31648"
+   "author": "William D. Banks"
   }
  ],
  "几何": [
