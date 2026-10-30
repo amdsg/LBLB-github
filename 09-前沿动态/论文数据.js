@@ -150,76 +150,76 @@ window.LBLB_PAPERS = {
  ],
  "概率与统计": [
   {
-   "title": "On self-similar random quotients of the line",
-   "link": "https://arxiv.org/abs/2610.39953v1",
-   "abs": "A surprisingly wide variety of important random fractal metric spaces in modern probability theory can be viewed as self-similar random quotients of the real line, including the continuum random tree, Liouville quantum…",
+   "title": "JT gravity as a conformal scaling limit of random flat combinatorial disks",
+   "link": "https://arxiv.org/abs/2610.40645v1",
+   "abs": "We prove that flat Jackiw--Teitelboim (JT) gravity arises as a conformal scaling limit of random flat combinatorial disks. We give a clean criterion, formulated in terms of branching explorations, for a discrete model…",
    "date": "2026-10-29",
-   "author": "Johannes Bäumler"
+   "author": "Morris Ang"
   },
   {
-   "title": "Level Crossing Rate Bounds for Products of Independent Nonstationary Fading Processes",
-   "link": "https://arxiv.org/abs/2610.39950v1",
-   "abs": "We develop a unified framework for the instantaneous total level crossing rate (LCR) of products of independent positive nonstationary fading processes. Universal upper and lower bounds are first derived from an exact…",
+   "title": "A self-normalized law of the iterated logarithm for Rademacher random multiplicative functions",
+   "link": "https://arxiv.org/abs/2610.40605v1",
+   "abs": "Let $f$ be a Rademacher random multiplicative function supported on the squarefree integers, and let $M(x)=\\sum_{n\\le x}f(n)$. We prove a two-sided law of the iterated logarithm normalized by the full predictable…",
    "date": "2026-10-29",
-   "author": "Plínio Santini Dester"
+   "author": "Dariusz Buraczewski"
   },
   {
-   "title": "On record behaviours of returns for interval maps",
-   "link": "https://arxiv.org/abs/2610.39928v1",
-   "abs": "Given a dynamical system $(X,T)$ and an ergodic invariant measure $μ$, a $μ$-typical point $x\\in X$ under $T$ visits arbitrarily small neighbourhood of $x$. We will use techniques based on extreme value theory and…",
+   "title": "On Zeros and Algorithms for Disordered Systems II: The Antiferromagnetic Ising Model up to Kesten-Stigum",
+   "link": "https://arxiv.org/abs/2610.40598v1",
+   "abs": "We give the first polynomial-time algorithm to estimate the partition function of the antiferromagnetic Ising model on the uniformly random $d$-regular graph to arbitrarily high accuracy for all inverse temperatures up…",
    "date": "2026-10-29",
-   "author": "Boyuan Zhao"
+   "author": "Ferenc Bencs"
   },
   {
-   "title": "Lie point symmetry analysis of a dependent jump-diffusion risk model with exponential claim sizes",
-   "link": "https://arxiv.org/abs/2610.39920v1",
-   "abs": "We carry out a Lie point symmetry analysis of the coupled integro-differential system satisfied by the conditional Gerber--Shiu functions of a dependent jump-diffusion risk model. In the model, claim sizes are…",
+   "title": "Nearly-Optimal Time-Sample Trade-off in Consensus Dynamics",
+   "link": "https://arxiv.org/abs/2610.40562v1",
+   "abs": "How does the number of sampled opinions affect the time required to reach consensus in distributed consensus dynamics? We study the synchronous $h$-\\textsf{Majority}, in which every node independently samples $h$ nodes…",
    "date": "2026-10-29",
-   "author": "Aminu Ma'aruf Nass"
+   "author": "Francesco d'Amore"
   },
   {
-   "title": "Interacting particles in random irregular media",
-   "link": "https://arxiv.org/abs/2610.39903v1",
-   "abs": "In this paper, we first develop novel tools of independent interest in the field of stochastic calculus related to SDEs with distributional drift, namely the formulation of a quasi-Stroock-Varadhan martingale problem in…",
+   "title": "Power Adjusting Games Under Block-Dependent Pool Payout Schemes",
+   "link": "https://arxiv.org/abs/2610.40558v1",
+   "abs": "Advanced power adjusting block withholding attacks such as PAW and T-PAW have been analyzed so far under a global-reset version of the proportional scheme (GRP), which is rarely used in practice. In this paper, we…",
    "date": "2026-10-29",
-   "author": "Luca Bondi"
+   "author": "Mustafa Doger"
   }
  ],
  "组合与图论": [
   {
-   "title": "Quasimodularity of $q$-series associated to root lattices",
-   "link": "https://arxiv.org/abs/2610.40034v1",
-   "abs": "Motivated by conjectures arising in part from the study of class-$\\mathcal{S}$ vertex algebras associated with four-dimensional supersymmetric field theories, we study multiple $q$-zeta functions attached to…",
+   "title": "The Number of Tropical Order Types and Coherent Matching Fields",
+   "link": "https://arxiv.org/abs/2610.40622v1",
+   "abs": "We investigate counting problems for discrete (geometric) structures in tropical settings, motivated by the comparison of the expressivity of linear programs and mean-payoff games. First, we give an upper bound on the…",
    "date": "2026-10-29",
-   "author": "Antun Milas"
+   "author": "Xavier Allamigeon"
   },
   {
-   "title": "Submodular decompositions: a bounded-variation counterexample and an exact planar cut formula",
-   "link": "https://arxiv.org/abs/2610.40032v1",
-   "abs": "Bérczi, Gehér, Imolay, Lovász, and Schwarcz (SIAM J. Discrete Math. 40(2026), 308--335) asked whether every set function of bounded variation is a difference of two bounded submodular functions, and how to determine the…",
+   "title": "An Adian-Rabin theorem for quantum automorphism groups of graphs",
+   "link": "https://arxiv.org/abs/2610.40590v1",
+   "abs": "Given a graph $G$, does it have quantum symmetries, or in other words, is the algebra of the quantum automorphism group non-commutative? In the world of ordinary groups, determining whether a finitely presented group is…",
    "date": "2026-10-29",
-   "author": "Guoqing Wang"
+   "author": "Josse van Dobben de Bruyn"
   },
   {
-   "title": "Complexity of finding color-avoiding connected components",
-   "link": "https://arxiv.org/abs/2610.39982v1",
-   "abs": "Two vertices of a (not necessarily properly) arc-colored digraph are called arc-$\\ell$-color-avoiding strongly $k$-arc-connected if, after the removal of the arcs of any at most $\\ell$ colors, they remain strongly…",
+   "title": "On the Quantum Chromatic Gap II",
+   "link": "https://arxiv.org/abs/2610.40571v1",
+   "abs": "We confirm a conjecture of the first author [SODA'26] on a strong form of pseudo-telepathy for Khot's $d$-to-$1$ games: for every $d\\geq 4$, every $ε>0$, and every $k\\in\\mathbb N$, there is a $d$-to-$1$ label-cover game…",
    "date": "2026-10-29",
-   "author": "Panna Tímea Fekete"
+   "author": "Lorenzo Ciardo"
   },
   {
-   "title": "On the maximum interval index of a graph",
-   "link": "https://arxiv.org/abs/2610.39966v1",
-   "abs": "For a connected graph P G on n vertices, the interval index is defined by Int(G) = {u,v} subset V(G) (|I(u, v)| - 1), where I(u, v) denotes the set of all vertices lying on a shortest u - v path. It was conjectured…",
+   "title": "Supersaturation: Cliques and Positive Square Energy",
+   "link": "https://arxiv.org/abs/2610.40570v1",
+   "abs": "Let $G$ be a simple graph of order $n$ and let $k_r$ denote the number of unlabeled copies of $K_r$ in $G$. Let $s^+$ denote the sum of the squares of the positive adjacency eigenvalues of $G$. For every fixed integer…",
    "date": "2026-10-29",
-   "author": "Martin Knor"
+   "author": "Abhay Jayarajan"
   },
   {
-   "title": "Dense Minors from the Crux",
-   "link": "https://arxiv.org/abs/2610.39957v1",
-   "abs": "Let $G$ be a graph with average degree $d>0$ and $C_α(G)$ be the minimum order of a subgraph whose average degree is at least $αd$ for any fixed $0<α<1$. Then $G$ has a minor of average degree $Ω(\\sqrt{d\\,C_α(G)})$…",
+   "title": "Directed Cut-Query Complexity of Finding a King",
+   "link": "https://arxiv.org/abs/2610.40521v1",
+   "abs": "A king in a tournament is a vertex from which every other vertex is reachable by a directed path of length at most two. We study the deterministic query complexity of finding a king when a query specifies a set of…",
    "date": "2026-10-29",
-   "author": "Xia Wang"
+   "author": "Ziad Ismaili Alaoui"
   }
  ],
  "线性代数": [
