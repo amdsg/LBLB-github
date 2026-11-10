@@ -76,39 +76,39 @@ window.LBLB_PAPERS = {
  ],
  "代数": [
   {
-   "title": "Semisimple Deformations of Contraction Algebras for Smooth Threefold Flops",
-   "link": "https://arxiv.org/abs/2611.12490v1",
-   "abs": "Building on Bryan--Katz--Leung, Hua--Toda and Kawamata, we study deformations of contraction algebras and the local geometry of the scheme of associative algebra laws. Let $A$ be the basic contraction algebra of a…",
+   "title": "Motivic Mirror Symmetry for Sink-recurrent Cluster Varieties",
+   "link": "https://arxiv.org/abs/2611.12863v1",
+   "abs": "We prove motivic mirror symmetry for full-rank sink-recurrent cluster varieties. We allow skew-symmetrizable principal parts and invert all frozen variables. The rational geometric motive of such a variety is isomorphic…",
    "date": "2026-11-09",
-   "author": "Shutao Bi"
+   "author": "Haoyang Liu"
   },
   {
-   "title": "$λ_g$-Integrals on triple, one-part admissible covers",
-   "link": "https://arxiv.org/abs/2611.12450v1",
-   "abs": "We effectively compute all intersection numbers of the form $λ_gψ^d$ on moduli spaces of genus $g$ admissible covers with one point of full ramification and two additional branch points with arbitrary profile. We encode…",
+   "title": "The Minimum Canonical Volume of Threefolds of General Type",
+   "link": "https://arxiv.org/abs/2611.12786v1",
+   "abs": "We prove the sharp lower bound $vol(X) \\geq 1/420$ for every smooth complex projective threefold $X$ of general type.",
    "date": "2026-11-09",
-   "author": "Renzo Cavalieri"
+   "author": "Pinxian Bie"
   },
   {
-   "title": "Derivations tangent to polar discriminants",
-   "link": "https://arxiv.org/abs/2611.12413v1",
-   "abs": "We describe the module of logarithmic derivations along the discriminant of a stable polar representation of a reductive algebraic group. It splits into derivations along the fibres of the quotient map and a free…",
+   "title": "Functorial Homological Mirror Symmetry for Acyclic Cluster Varieties",
+   "link": "https://arxiv.org/abs/2611.12751v1",
+   "abs": "We introduce the formalism of cluster models, a class of log Calabi-Yau varieties obtained from smooth quasi-affine toric varieties by iterated affine blowups along non-toric codimension 2 centers determined by a really…",
    "date": "2026-11-09",
-   "author": "Vladimiro Benedetti"
+   "author": "Josephine Hlavinka"
   },
   {
-   "title": "Singularities in leaf closures on complex surfaces",
-   "link": "https://arxiv.org/abs/2611.12402v1",
-   "abs": "We prove a geometric and dynamical criterion excluding minimal sets contained in the regular locus of a holomorphic foliation on a compact complex surface. In particular, we prove that every Jouanolou foliation of…",
+   "title": "Semiampleness of Hodge line bundles and b-semiampleness of the moduli part",
+   "link": "https://arxiv.org/abs/2611.12744v1",
+   "abs": "We give proofs of Hodge semiampleness and b-semiampleness without using o-minimality. We establish a geometric semiampleness criterion for line bundles on proper algebraic spaces. Let $(X,D)$ be a log smooth pair with…",
    "date": "2026-11-09",
-   "author": "Mauricio Corrêa"
+   "author": "Zhengyu Hu"
   },
   {
-   "title": "Lipschitz inner rates of normal surface singularities",
-   "link": "https://arxiv.org/abs/2611.12380v1",
-   "abs": "In this article, we connect the local Lipschitz geometry of a normal surface singularity with a rational homology sphere link to the analytic semigroup $S_{an}(\\tilde{X})$ associated with a convenient resolution. Under…",
+   "title": "Perfect loops of proper schemes",
+   "link": "https://arxiv.org/abs/2611.12719v1",
+   "abs": "We study the perfect loop space $LX$ of a proper scheme $X$ over a local field $F$. We show that if $X$ contains a rational curve, then $LX$ is not ind-representable, even in a very weak sense. We also show that if $X$…",
    "date": "2026-11-09",
-   "author": "János Nagy"
+   "author": "Alexander B. Ivanov"
   }
  ],
  "分析": [
@@ -187,39 +187,39 @@ window.LBLB_PAPERS = {
  ],
  "组合与图论": [
   {
-   "title": "Probabilistic counting of labelled trees with prescribed vertical edge profile",
-   "link": "https://arxiv.org/abs/2611.12525v1",
-   "abs": "The vertical edge profile of a labelled plane tree $t$ is the collection of integers counting the number of oriented edges from label $i$ to label $j$ for every possible pairs of labels $(i, j)$. In a previous work by…",
+   "title": "Permutations, Pattern Covers, Posets and Positivity, Part II: Regular Pattern Packings and Moment Sequences",
+   "link": "https://arxiv.org/abs/2611.12829v1",
+   "abs": "We prove that broad families of regular pattern packings are enumerated by moments of probability measures on $[0,\\infty)$. A packing prescribes occurrences of a consecutive permutation pattern at equally spaced…",
    "date": "2026-11-09",
-   "author": "Vanessa Dan"
+   "author": "Natasha Blitvić"
   },
   {
-   "title": "Chvátal's Toughness Conjecture for Dense Almost Regular Graphs",
-   "link": "https://arxiv.org/abs/2611.12519v1",
-   "abs": "Chvátal's toughness conjecture asserts that there is a constant $t_0$ such that every $t_0$-tough graph on at least three vertices is Hamiltonian. Most partial results on this conjecture concern graphs with a restricted…",
+   "title": "Average distance and maximum induced linear forest",
+   "link": "https://arxiv.org/abs/2611.12781v1",
+   "abs": "Let G be a connected graph of order n, let μ(G) denote its average distance, and let L(G) denote the maximum order of an induced linear forest of G, that is, of an induced subgraph whose components are chains. Hansen…",
    "date": "2026-11-09",
-   "author": "Songling Shan"
+   "author": "Mathieu Bouchard"
   },
   {
-   "title": "Exact local spectral thresholds for loose and tight Hamilton cycles in $3$-graphs",
-   "link": "https://arxiv.org/abs/2611.12453v1",
-   "abs": "For an $n$-vertex $3$-uniform hypergraph $H$, let $σ(H)$ denote the minimum adjacency spectral radius of its vertex links. We determine the exact thresholds for $σ(H)$ that force loose and tight Hamilton cycles for all…",
+   "title": "The dimension of multi-index assignment polytopes and Latin-square transversal polytopes, via association schemes",
+   "link": "https://arxiv.org/abs/2611.12780v1",
+   "abs": "We determine the dimensions, and the implicit equations, of several polytopes from integer programming whose vertices are the largest stable sets of highly symmetric graphs. Our main tools are two new dimension formulae…",
    "date": "2026-11-09",
-   "author": "Pei Liu"
+   "author": "Jon Lee"
   },
   {
-   "title": "A proof of the Theta conjecture",
-   "link": "https://arxiv.org/abs/2611.12451v1",
-   "abs": "We prove the touching refinement of the Theta conjecture of Interdonato and Iraci, giving a formula for $Θ_{e_\\ell}Θ_{e_k}\\nabla E_{d,j}$ as a weighted sum over parking functions with decorated rises and valleys and…",
+   "title": "Functorial Homological Mirror Symmetry for Acyclic Cluster Varieties",
+   "link": "https://arxiv.org/abs/2611.12751v1",
+   "abs": "We introduce the formalism of cluster models, a class of log Calabi-Yau varieties obtained from smooth quasi-affine toric varieties by iterated affine blowups along non-toric codimension 2 centers determined by a really…",
    "date": "2026-11-09",
-   "author": "Haojun Bai"
+   "author": "Josephine Hlavinka"
   },
   {
-   "title": "Sampling Colorings on $G(n, d/n)$ via Glauber Dynamics",
-   "link": "https://arxiv.org/abs/2611.12444v1",
-   "abs": "We study the mixing time of Glauber dynamics for sampling uniformly from the proper $q$-colorings of sparse Erdős-Rényi random graphs $G(n,d/n)$. Our main result establishes that with probability $1-o(1)$ over the draw…",
+   "title": "On Symmetric Chain Decompositions for Bruhat--Chevalley Posets",
+   "link": "https://arxiv.org/abs/2611.12707v1",
+   "abs": "We consider Stanley's problem on describing symmetric chain decompositions for the Bruhat--Chevalley posets of partial flag varieties and, more generally, Schubert varieties. These posets describe the containment…",
    "date": "2026-11-09",
-   "author": "Leon Schiller"
+   "author": "Aram Bingham"
   }
  ],
  "线性代数": [
@@ -261,6 +261,27 @@ window.LBLB_PAPERS = {
  ],
  "拓扑学": [
   {
+   "title": "Coarse Embeddings Beyond Doubling: Persistence Diagrams and Multiparameter Modules",
+   "link": "https://arxiv.org/abs/2611.12866v1",
+   "abs": "We study coarse embeddings into Hilbert space and the asymptotic dimension of spaces of persistence diagrams and multiparameter persistence modules. We replace doubling, the usual hypothesis for landmark embeddings, by…",
+   "date": "2026-11-09",
+   "author": "Sushovan Majhi"
+  },
+  {
+   "title": "Discrete Configuration Spaces of Simplex Skeleta: a Middle-Dimensional Manifold Phenomenon",
+   "link": "https://arxiv.org/abs/2611.12847v1",
+   "abs": "For a simple graph $Γ$ without loops and an integer $n\\geq2$, Abrams showed in his Ph.D. thesis that the discrete configuration space $DConf(Γ,n)$ is homeomorphic to a closed $n$-manifold if and only if $n=2$ and $Γ$ is…",
+   "date": "2026-11-09",
+   "author": "Emilio J. González"
+  },
+  {
+   "title": "Global Green-Schwarz response on quaternionic sphere bundles",
+   "link": "https://arxiv.org/abs/2611.12810v1",
+   "abs": "Local anomaly polynomials describe local variations, but a normalized Green-Schwarz phase also depends on global background data. We explain this dependence for ten-dimensional three-sphere bundles of quaternionic lines…",
+   "date": "2026-11-09",
+   "author": "Yuqi Li"
+  },
+  {
    "title": "$\\mathrm{RO}(G)$-graded norms for de Rham-Witt forms",
    "link": "https://arxiv.org/abs/2611.12043v1",
    "abs": "We make two case studies of $\\mathrm{RO}(G)$-graded homotopy in connection with $p$-adic cohomology. First, we identify the $\\mathrm{RO}(\\mathbf T)$-graded $\\mathrm{TC}^-$ and $\\mathrm{TP}$ of quasiregular…",
@@ -273,27 +294,6 @@ window.LBLB_PAPERS = {
    "abs": "In this paper, we show that a proper continuous open discrete map from the open unit ball $B^n$ onto a domain in $\\R^n$ with $n\\geq5$ is a homeomorphism whenever its branch set is compact. This answers Vuorinen's…",
    "date": "2026-11-09",
    "author": "Deguang Zhong"
-  },
-  {
-   "title": "Multiplicativity of the Serre Spectral Sequence in Homotopy Type Theory",
-   "link": "https://arxiv.org/abs/2611.11828v1",
-   "abs": "Working in homotopy type theory, we define relative homotopy groups and give three equivalent definitions of the product on these groups. Using this product, we establish the multiplicativity of the cohomological Serre…",
-   "date": "2026-11-09",
-   "author": "Arseniy Kryazhev"
-  },
-  {
-   "title": "On Poincaré spaces which are not manifolds",
-   "link": "https://arxiv.org/abs/2611.11463v1",
-   "abs": "This expository note gives a short derivation of the classical Spivak normal fibration formula for the total space of a spherical fibration over a Poincaré duality space. We review the associated smooth, PL, and…",
-   "date": "2026-11-08",
-   "author": "John R. Klein"
-  },
-  {
-   "title": "Fundamental Groups of Permutation Complexes",
-   "link": "https://arxiv.org/abs/2611.11362v1",
-   "abs": "We present an elementary argument showing that fundamental groups of permutation complexes are free. Hence, $\\mathbb{R} P^2$ cannot be realized by a permutation complex, answering a question of Chachólski, Levi and…",
-   "date": "2026-11-08",
-   "author": "Dejan Govc"
   }
  ],
  "复分析": [
@@ -409,6 +409,13 @@ window.LBLB_PAPERS = {
  ],
  "数理逻辑": [
   {
+   "title": "Adding unbounded and not bounded sets to a singular cardinal",
+   "link": "https://arxiv.org/abs/2611.12848v1",
+   "abs": "This paper solves a problem (SP) attributed to Solovay in the 1960s, which is to add an unbounded sequence to a singular cardinal $κ$ without adding bounded subsets to $κ$, while preserving $κ^+$. The solution applies…",
+   "date": "2026-11-09",
+   "author": "Mirna D{\\v z}amonja"
+  },
+  {
    "title": "Projections between Ramsey quasi-orders and topological Ramsey spaces",
    "link": "https://arxiv.org/abs/2611.12505v1",
    "abs": "A Ramsey quasi-order is a quasi-order $(\\cal{R},\\leq)$ such that $\\cal{R}$ is a Polish space, $\\leq$ is analytic and every analytic subset of $\\cal{R}$ is Ramsey. In this paper, we study the transfer of the analytic…",
@@ -435,13 +442,6 @@ window.LBLB_PAPERS = {
    "abs": "We show that universal algebra, and the theory of natural dualities in particular, provides a uniform framework for the dualities between median algebras and bounded poc sets and their Boolean topological variants. We…",
    "date": "2026-11-09",
    "author": "Bruno Teheux"
-  },
-  {
-   "title": "Completions of vector metric spaces and the diagonal property of order convergence",
-   "link": "https://arxiv.org/abs/2611.12365v1",
-   "abs": "A vector metric space carries a distance with values in an ordered vector space $E$; a sequence converges if its distances to the limit are dominated by a sequence decreasing to zero in $E$. We show that, for…",
-   "date": "2026-11-09",
-   "author": "Cüneyt Çevik"
   }
  ]
 };
